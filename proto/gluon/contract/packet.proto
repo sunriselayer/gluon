@@ -1,0 +1,13 @@
+syntax = "proto3";
+package gluon.contract;
+
+option go_package = "gluon/x/contract/types";
+
+message ContractPacketData {
+    oneof packet {
+        NoData noData = 1;
+    }
+}
+
+message NoData {
+}
