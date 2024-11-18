@@ -7,6 +7,10 @@ import (
 	_ "gluon/x/contract/module" // import for side-effects
 	contractmoduletypes "gluon/x/contract/types"
 
+	customauthmodulev1 "gluon/api/gluon/customauth/module"
+	_ "gluon/x/customauth/module" // import for side-effects
+	customauthmoduletypes "gluon/x/customauth/types"
+
 	runtimev1alpha1 "cosmossdk.io/api/cosmos/app/runtime/v1alpha1"
 	appv1alpha1 "cosmossdk.io/api/cosmos/app/v1alpha1"
 	authmodulev1 "cosmossdk.io/api/cosmos/auth/module/v1"
@@ -94,6 +98,7 @@ var (
 		circuittypes.ModuleName,
 		// chain modules
 		contractmoduletypes.ModuleName,
+		customauthmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -119,6 +124,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		contractmoduletypes.ModuleName,
+		customauthmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -138,6 +144,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		contractmoduletypes.ModuleName,
+		customauthmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -297,6 +304,10 @@ var (
 			{
 				Name:   contractmoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&contractmodulev1.Module{}),
+			},
+			{
+				Name:   customauthmoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&customauthmodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},

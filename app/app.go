@@ -76,6 +76,8 @@ import (
 	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
 
 	contractmodulekeeper "gluon/x/contract/keeper"
+	customauthmodulekeeper "gluon/x/customauth/keeper"
+
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	"gluon/docs"
@@ -141,7 +143,8 @@ type App struct {
 	ScopedICAHostKeeper       capabilitykeeper.ScopedKeeper
 	ScopedKeepers             map[string]capabilitykeeper.ScopedKeeper
 
-	ContractKeeper contractmodulekeeper.Keeper
+	ContractKeeper   contractmodulekeeper.Keeper
+	CustomauthKeeper customauthmodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// simulation manager
@@ -246,6 +249,7 @@ func New(
 		&app.GroupKeeper,
 		&app.CircuitBreakerKeeper,
 		&app.ContractKeeper,
+		&app.CustomauthKeeper,
 		// this line is used by starport scaffolding # stargate/app/keeperDefinition
 	); err != nil {
 		panic(err)

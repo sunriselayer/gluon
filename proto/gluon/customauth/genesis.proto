@@ -1,0 +1,17 @@
+syntax = "proto3";
+package gluon.customauth;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "gluon/customauth/params.proto";
+
+option go_package = "gluon/x/customauth/types";
+
+// GenesisState defines the customauth module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
