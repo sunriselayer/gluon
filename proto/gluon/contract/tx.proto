@@ -43,8 +43,15 @@ message MsgUpdateParamsResponse {}
 message MsgMatchOrder {
   option (cosmos.msg.v1.signer) = "earlier.address";
   option (cosmos.msg.v1.signer) = "later.address";
-  gluon.contract.Order earlier = 1;
-  gluon.contract.Order later = 2;
+  
+  gluon.contract.Order earlier = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+  gluon.contract.Order later = 2 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
 }
 
 message MsgMatchOrderResponse {}
@@ -52,8 +59,15 @@ message MsgMatchOrderResponse {}
 message MsgMatchLazyOrder {
   option (cosmos.msg.v1.signer) = "earlier.address";
   option (cosmos.msg.v1.signer) = "later.address";
-  gluon.contract.Order earlier = 1;
-  gluon.contract.Order later = 2;
+
+  gluon.contract.Order earlier = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+  gluon.contract.Order later = 2 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
 }
 
 message MsgMatchLazyOrderResponse {}
