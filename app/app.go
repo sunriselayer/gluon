@@ -305,6 +305,7 @@ func New(
 		app.AccountKeeper,
 		app.BankKeeper,
 		app.FeeGrantKeeper,
+		app.CustomauthKeeper,
 		app.txConfig.SignModeHandler(),
 		ante.DefaultSigVerificationGasConsumer,
 		app.IBCKeeper,

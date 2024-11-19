@@ -4,7 +4,6 @@ import (
 	"cosmossdk.io/x/tx/signing"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/auth/ante"
-	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 	ibcante "github.com/cosmos/ibc-go/v8/modules/core/ante"
 	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
 
@@ -13,8 +12,9 @@ import (
 
 func NewAnteHandler(
 	accountKeeper ante.AccountKeeper,
-	bankKeeper bankkeeper.Keeper,
+	bankKeeper customante.BankKeeper,
 	feegrantKeeper ante.FeegrantKeeper,
+	customAuthKeeper customante.CustomAuthKeeper,
 	signModeHandler *signing.HandlerMap,
 	sigGasConsumer ante.SignatureVerificationGasConsumer,
 	channelKeeper *ibckeeper.Keeper,

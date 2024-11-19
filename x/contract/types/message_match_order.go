@@ -8,9 +8,10 @@ import (
 
 var _ sdk.Msg = &MsgMatchOrder{}
 
-func NewMsgMatchOrder(creator string) *MsgMatchOrder {
+func NewMsgMatchOrder(earlier Order, later Order) *MsgMatchOrder {
 	return &MsgMatchOrder{
-		Creator: creator,
+		Earlier: earlier,
+		Later:   later,
 	}
 }
 
