@@ -9,6 +9,8 @@ import "gogoproto/gogo.proto";
 import "gluon/customauth/params.proto";
 import "gluon/customauth/pairing.proto";
 
+import "google/protobuf/any.proto";
+
 option go_package = "gluon/x/customauth/types";
 
 // Msg defines the Msg service.
@@ -42,7 +44,7 @@ message MsgUpdateParamsResponse {}
 message MsgCreatePairing {
   option (cosmos.msg.v1.signer) = "user";
   string user      = 1;
-  string public_key = 2;
+  google.protobuf.Any public_key = 2 [ (gogoproto.nullable) = false ];
 }
 
 message MsgCreatePairingResponse {

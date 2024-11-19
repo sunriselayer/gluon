@@ -4,11 +4,13 @@ import (
 	errorsmod "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+
+	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 )
 
 var _ sdk.Msg = &MsgCreatePairing{}
 
-func NewMsgCreatePairing(user string, publicKey string) *MsgCreatePairing {
+func NewMsgCreatePairing(user string, publicKey codectypes.Any) *MsgCreatePairing {
 	return &MsgCreatePairing{
 		User:      user,
 		PublicKey: publicKey,

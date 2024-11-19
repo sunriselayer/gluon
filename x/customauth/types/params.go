@@ -2,6 +2,8 @@ package types
 
 import (
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
+
+	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 var _ paramtypes.ParamSet = (*Params)(nil)
@@ -28,5 +30,9 @@ func (p *Params) ParamSetPairs() paramtypes.ParamSetPairs {
 
 // Validate validates the set of params
 func (p Params) Validate() error {
+	_, err := sdk.AccAddressFromBech32(p.Operator)
+	if err != nil {
+		return err
+	}
 	return nil
 }
