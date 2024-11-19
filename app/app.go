@@ -81,6 +81,8 @@ import (
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	"gluon/docs"
+
+	"gluon/app/ante"
 )
 
 const (
@@ -297,6 +299,20 @@ func New(
 	if err := app.Load(loadLatest); err != nil {
 		return nil, err
 	}
+
+	// <gluon>
+	anteHandler := ante.NewAnteHandler(
+		app.AccountKeeper,
+		app.BankKeeper,
+		app.FeeGrantKeeper,
+		app.txConfig.SignModeHandler(),
+		ante.DefaultSigVerificationGasConsumer,
+		app.IBCKeeper,
+		app.txConfig.TxEncoder(),
+	)
+
+	app.SetAnteHandler(anteHandler)
+	// </gluon>
 
 	return app, nil
 }
