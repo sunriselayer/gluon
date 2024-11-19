@@ -7,8 +7,8 @@ import (
 	errorsmod "cosmossdk.io/errors"
 )
 
-func NewOrder(address string, direction OrderDirection, type_ OrderType, amount sdkmath.Int, limitPrice *sdkmath.LegacyDec, stopPrice *sdkmath.LegacyDec) Order {
-	return Order{
+func NewOrderBody(address string, direction OrderDirection, type_ OrderType, amount sdkmath.Int, limitPrice *sdkmath.LegacyDec, stopPrice *sdkmath.LegacyDec) OrderBody {
+	return OrderBody{
 		Address:    address,
 		Direction:  direction,
 		Type:       type_,
@@ -18,13 +18,26 @@ func NewOrder(address string, direction OrderDirection, type_ OrderType, amount 
 	}
 }
 
-func (order Order) Validate() error {
-	_, err := sdk.AccAddressFromBech32(order.Address)
+func (orderBody OrderBody) Validate() error {
+	_, err := sdk.AccAddressFromBech32(orderBody.Address)
 	if err != nil {
 		return err
 	}
-	if !order.Amount.IsPositive() {
+	if !orderBody.Amount.IsPositive() {
 		return errorsmod.Wrap(ErrNotPositiveAmount, "amount must be positive")
+	}
+
+	return nil
+}
+
+func (order Order) Validate() error {
+	err := order.Body.Validate()
+	if err != nil {
+		return err
+	}
+
+	if len(order.Signature) == 0 {
+		return errorsmod.Wrap(ErrEmptySignature, "signature must not be empty")
 	}
 
 	return nil

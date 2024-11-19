@@ -21,10 +21,14 @@ func SimulateMsgMatchOrder(
 		simAccount, _ := simtypes.RandomAcc(r, accs)
 		msg := &types.MsgMatchOrder{
 			Earlier: types.Order{
-				Address: simAccount.Address.String(),
+				Body: types.OrderBody{
+					Address: simAccount.Address.String(),
+				},
 			},
 			Later: types.Order{
-				Address: simAccount.Address.String(),
+				Body: types.OrderBody{
+					Address: simAccount.Address.String(),
+				},
 			},
 		}
 

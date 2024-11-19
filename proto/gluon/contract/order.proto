@@ -5,6 +5,7 @@ package gluon.contract;
 import "amino/amino.proto";
 import "cosmos_proto/cosmos.proto";
 import "gogoproto/gogo.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "gluon/x/contract/types";
 
@@ -19,7 +20,7 @@ enum OrderType {
     LAZY = 1;
 }
 
-message Order {
+message OrderBody {
   string address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
   OrderDirection direction = 2;
   OrderType type = 3;
@@ -41,4 +42,12 @@ message Order {
     (gogoproto.nullable) = true,
     (amino.dont_omitempty) = true
   ];
+  google.protobuf.Timestamp expiry = 7
+  [ (gogoproto.nullable) = false, (gogoproto.stdtime) = true ];
+}
+
+message Order {
+  OrderBody body = 1 [ (gogoproto.nullable) = false ];
+  uint64 paring_id = 2;
+  bytes signature = 3;
 }

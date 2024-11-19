@@ -6,6 +6,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/runtime"
 
 	"gluon/x/customauth/types"
+
+	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 )
 
 // GetParams get all parameters as types.Params
@@ -22,6 +24,12 @@ func (k Keeper) GetParams(ctx context.Context) (params types.Params) {
 
 // SetParams set the params
 func (k Keeper) SetParams(ctx context.Context, params types.Params) error {
+	var pubKey cryptotypes.PubKey
+	err := k.cdc.UnpackAny(&params.OperatorPublicKey, &pubKey)
+	if err != nil {
+		return err
+	}
+
 	store := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	bz, err := k.cdc.Marshal(&params)
 	if err != nil {

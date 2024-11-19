@@ -19,10 +19,14 @@ func TestMsgMatchOrder_ValidateBasic(t *testing.T) {
 			name: "invalid address",
 			msg: MsgMatchOrder{
 				Earlier: Order{
-					Address: "invalid_address",
+					Body: OrderBody{
+						Address: "invalid_address",
+					},
 				},
 				Later: Order{
-					Address: "invalid_address",
+					Body: OrderBody{
+						Address: "invalid_address",
+					},
 				},
 			},
 			err: sdkerrors.ErrInvalidAddress,
@@ -30,10 +34,14 @@ func TestMsgMatchOrder_ValidateBasic(t *testing.T) {
 			name: "valid address",
 			msg: MsgMatchOrder{
 				Earlier: Order{
-					Address: sample.AccAddress(),
+					Body: OrderBody{
+						Address: sample.AccAddress(),
+					},
 				},
 				Later: Order{
-					Address: sample.AccAddress(),
+					Body: OrderBody{
+						Address: sample.AccAddress(),
+					},
 				},
 			},
 		},
