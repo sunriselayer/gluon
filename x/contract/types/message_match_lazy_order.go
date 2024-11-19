@@ -1,23 +1,27 @@
 package types
 
 import (
-	errorsmod "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
 var _ sdk.Msg = &MsgMatchLazyOrder{}
 
-func NewMsgMatchLazyOrder(creator string) *MsgMatchLazyOrder {
+func NewMsgMatchLazyOrder(earlier Order, later Order) *MsgMatchLazyOrder {
 	return &MsgMatchLazyOrder{
-		Creator: creator,
+		Earlier: earlier,
+		Later:   later,
 	}
 }
 
 func (msg *MsgMatchLazyOrder) ValidateBasic() error {
-	_, err := sdk.AccAddressFromBech32(msg.Creator)
+	err := msg.Earlier.Validate()
 	if err != nil {
-		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
+		return err
 	}
+	err = msg.Later.Validate()
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
