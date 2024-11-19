@@ -8,6 +8,8 @@ import "cosmos_proto/cosmos.proto";
 import "gogoproto/gogo.proto";
 import "gluon/contract/params.proto";
 
+import "gluon/contract/order.proto";
+
 option go_package = "gluon/x/contract/types";
 
 // Msg defines the Msg service.
@@ -39,15 +41,19 @@ message MsgUpdateParams {
 message MsgUpdateParamsResponse {}
 
 message MsgMatchOrder {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
+  option (cosmos.msg.v1.signer) = "earlier.address";
+  option (cosmos.msg.v1.signer) = "later.address";
+  gluon.contract.Order earlier = 1;
+  gluon.contract.Order later = 2;
 }
 
 message MsgMatchOrderResponse {}
 
 message MsgMatchLazyOrder {
-  option (cosmos.msg.v1.signer) = "creator";
-  string creator = 1;
+  option (cosmos.msg.v1.signer) = "earlier.address";
+  option (cosmos.msg.v1.signer) = "later.address";
+  gluon.contract.Order earlier = 1;
+  gluon.contract.Order later = 2;
 }
 
 message MsgMatchLazyOrderResponse {}

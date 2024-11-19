@@ -11,5 +11,5 @@ message Params {
   option (amino.name) = "gluon/x/customauth/Params";
   option (gogoproto.equal) = true;
 
-  
+  string operator = 1;
 }
