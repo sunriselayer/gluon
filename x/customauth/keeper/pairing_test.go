@@ -24,7 +24,7 @@ func TestPairingGet(t *testing.T) {
 	keeper, ctx := keepertest.CustomauthKeeper(t)
 	items := createNPairing(keeper, ctx, 10)
 	for _, item := range items {
-		got, found := keeper.GetPairing(ctx, item.Id)
+		got, found := keeper.GetPairing(ctx, item.Address, item.Id)
 		require.True(t, found)
 		require.Equal(t,
 			nullify.Fill(&item),
@@ -37,8 +37,8 @@ func TestPairingRemove(t *testing.T) {
 	keeper, ctx := keepertest.CustomauthKeeper(t)
 	items := createNPairing(keeper, ctx, 10)
 	for _, item := range items {
-		keeper.RemovePairing(ctx, item.Id)
-		_, found := keeper.GetPairing(ctx, item.Id)
+		keeper.RemovePairing(ctx, item.Address, item.Id)
+		_, found := keeper.GetPairing(ctx, item.Address, item.Id)
 		require.False(t, found)
 	}
 }

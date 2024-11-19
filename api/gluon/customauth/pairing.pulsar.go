@@ -3,22 +3,20 @@ package customauth
 
 import (
 	fmt "fmt"
-	io "io"
-	reflect "reflect"
-	sync "sync"
-
 	runtime "github.com/cosmos/cosmos-proto/runtime"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	io "io"
+	reflect "reflect"
+	sync "sync"
 )
 
 var (
-	md_Pairing           protoreflect.MessageDescriptor
-	fd_Pairing_id        protoreflect.FieldDescriptor
-	fd_Pairing_address   protoreflect.FieldDescriptor
-	fd_Pairing_publicKey protoreflect.FieldDescriptor
-	fd_Pairing_user      protoreflect.FieldDescriptor
+	md_Pairing            protoreflect.MessageDescriptor
+	fd_Pairing_id         protoreflect.FieldDescriptor
+	fd_Pairing_address    protoreflect.FieldDescriptor
+	fd_Pairing_public_key protoreflect.FieldDescriptor
 )
 
 func init() {
@@ -26,8 +24,7 @@ func init() {
 	md_Pairing = File_gluon_customauth_pairing_proto.Messages().ByName("Pairing")
 	fd_Pairing_id = md_Pairing.Fields().ByName("id")
 	fd_Pairing_address = md_Pairing.Fields().ByName("address")
-	fd_Pairing_publicKey = md_Pairing.Fields().ByName("publicKey")
-	fd_Pairing_user = md_Pairing.Fields().ByName("user")
+	fd_Pairing_public_key = md_Pairing.Fields().ByName("public_key")
 }
 
 var _ protoreflect.Message = (*fastReflection_Pairing)(nil)
@@ -109,13 +106,7 @@ func (x *fastReflection_Pairing) Range(f func(protoreflect.FieldDescriptor, prot
 	}
 	if x.PublicKey != "" {
 		value := protoreflect.ValueOfString(x.PublicKey)
-		if !f(fd_Pairing_publicKey, value) {
-			return
-		}
-	}
-	if x.User != "" {
-		value := protoreflect.ValueOfString(x.User)
-		if !f(fd_Pairing_user, value) {
+		if !f(fd_Pairing_public_key, value) {
 			return
 		}
 	}
@@ -138,10 +129,8 @@ func (x *fastReflection_Pairing) Has(fd protoreflect.FieldDescriptor) bool {
 		return x.Id != uint64(0)
 	case "gluon.customauth.Pairing.address":
 		return x.Address != ""
-	case "gluon.customauth.Pairing.publicKey":
+	case "gluon.customauth.Pairing.public_key":
 		return x.PublicKey != ""
-	case "gluon.customauth.Pairing.user":
-		return x.User != ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.Pairing"))
@@ -162,10 +151,8 @@ func (x *fastReflection_Pairing) Clear(fd protoreflect.FieldDescriptor) {
 		x.Id = uint64(0)
 	case "gluon.customauth.Pairing.address":
 		x.Address = ""
-	case "gluon.customauth.Pairing.publicKey":
+	case "gluon.customauth.Pairing.public_key":
 		x.PublicKey = ""
-	case "gluon.customauth.Pairing.user":
-		x.User = ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.Pairing"))
@@ -188,11 +175,8 @@ func (x *fastReflection_Pairing) Get(descriptor protoreflect.FieldDescriptor) pr
 	case "gluon.customauth.Pairing.address":
 		value := x.Address
 		return protoreflect.ValueOfString(value)
-	case "gluon.customauth.Pairing.publicKey":
+	case "gluon.customauth.Pairing.public_key":
 		value := x.PublicKey
-		return protoreflect.ValueOfString(value)
-	case "gluon.customauth.Pairing.user":
-		value := x.User
 		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
@@ -218,10 +202,8 @@ func (x *fastReflection_Pairing) Set(fd protoreflect.FieldDescriptor, value prot
 		x.Id = value.Uint()
 	case "gluon.customauth.Pairing.address":
 		x.Address = value.Interface().(string)
-	case "gluon.customauth.Pairing.publicKey":
+	case "gluon.customauth.Pairing.public_key":
 		x.PublicKey = value.Interface().(string)
-	case "gluon.customauth.Pairing.user":
-		x.User = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.Pairing"))
@@ -246,10 +228,8 @@ func (x *fastReflection_Pairing) Mutable(fd protoreflect.FieldDescriptor) protor
 		panic(fmt.Errorf("field id of message gluon.customauth.Pairing is not mutable"))
 	case "gluon.customauth.Pairing.address":
 		panic(fmt.Errorf("field address of message gluon.customauth.Pairing is not mutable"))
-	case "gluon.customauth.Pairing.publicKey":
-		panic(fmt.Errorf("field publicKey of message gluon.customauth.Pairing is not mutable"))
-	case "gluon.customauth.Pairing.user":
-		panic(fmt.Errorf("field user of message gluon.customauth.Pairing is not mutable"))
+	case "gluon.customauth.Pairing.public_key":
+		panic(fmt.Errorf("field public_key of message gluon.customauth.Pairing is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.Pairing"))
@@ -267,9 +247,7 @@ func (x *fastReflection_Pairing) NewField(fd protoreflect.FieldDescriptor) proto
 		return protoreflect.ValueOfUint64(uint64(0))
 	case "gluon.customauth.Pairing.address":
 		return protoreflect.ValueOfString("")
-	case "gluon.customauth.Pairing.publicKey":
-		return protoreflect.ValueOfString("")
-	case "gluon.customauth.Pairing.user":
+	case "gluon.customauth.Pairing.public_key":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
@@ -351,10 +329,6 @@ func (x *fastReflection_Pairing) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.User)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -383,13 +357,6 @@ func (x *fastReflection_Pairing) ProtoMethods() *protoiface.Methods {
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
-		}
-		if len(x.User) > 0 {
-			i -= len(x.User)
-			copy(dAtA[i:], x.User)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.User)))
-			i--
-			dAtA[i] = 0x22
 		}
 		if len(x.PublicKey) > 0 {
 			i -= len(x.PublicKey)
@@ -542,38 +509,6 @@ func (x *fastReflection_Pairing) ProtoMethods() *protoiface.Methods {
 				}
 				x.PublicKey = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 4:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field User", wireType)
-				}
-				var stringLen uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.User = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -629,8 +564,7 @@ type Pairing struct {
 
 	Id        uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Address   string `protobuf:"bytes,2,opt,name=address,proto3" json:"address,omitempty"`
-	PublicKey string `protobuf:"bytes,3,opt,name=publicKey,proto3" json:"publicKey,omitempty"`
-	User      string `protobuf:"bytes,4,opt,name=user,proto3" json:"user,omitempty"`
+	PublicKey string `protobuf:"bytes,3,opt,name=public_key,json=publicKey,proto3" json:"public_key,omitempty"`
 }
 
 func (x *Pairing) Reset() {
@@ -674,37 +608,29 @@ func (x *Pairing) GetPublicKey() string {
 	return ""
 }
 
-func (x *Pairing) GetUser() string {
-	if x != nil {
-		return x.User
-	}
-	return ""
-}
-
 var File_gluon_customauth_pairing_proto protoreflect.FileDescriptor
 
 var file_gluon_customauth_pairing_proto_rawDesc = []byte{
 	0x0a, 0x1e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75,
 	0x74, 0x68, 0x2f, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x12, 0x10, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75,
-	0x74, 0x68, 0x22, 0x65, 0x0a, 0x07, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x12, 0x0e, 0x0a,
+	0x74, 0x68, 0x22, 0x52, 0x0a, 0x07, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x12, 0x0e, 0x0a,
 	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x18, 0x0a,
 	0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07,
-	0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1c, 0x0a, 0x09, 0x70, 0x75, 0x62, 0x6c, 0x69,
-	0x63, 0x4b, 0x65, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x70, 0x75, 0x62, 0x6c,
-	0x69, 0x63, 0x4b, 0x65, 0x79, 0x12, 0x12, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x04, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x42, 0xa1, 0x01, 0x0a, 0x14, 0x63, 0x6f,
-	0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75,
-	0x74, 0x68, 0x42, 0x0c, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x50, 0x01, 0x5a, 0x1a, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c,
-	0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0xa2, 0x02,
-	0x03, 0x47, 0x43, 0x58, 0xaa, 0x02, 0x10, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x43, 0x75, 0x73,
-	0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0xca, 0x02, 0x10, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c,
-	0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0xe2, 0x02, 0x1c, 0x47, 0x6c, 0x75,
-	0x6f, 0x6e, 0x5c, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x5c, 0x47, 0x50,
-	0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x11, 0x47, 0x6c, 0x75, 0x6f,
-	0x6e, 0x3a, 0x3a, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1d, 0x0a, 0x0a, 0x70, 0x75, 0x62, 0x6c, 0x69,
+	0x63, 0x5f, 0x6b, 0x65, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x70, 0x75, 0x62,
+	0x6c, 0x69, 0x63, 0x4b, 0x65, 0x79, 0x42, 0xa1, 0x01, 0x0a, 0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x67,
+	0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x42,
+	0x0c, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a,
+	0x1a, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e,
+	0x2f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0xa2, 0x02, 0x03, 0x47, 0x43,
+	0x58, 0xaa, 0x02, 0x10, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d,
+	0x61, 0x75, 0x74, 0x68, 0xca, 0x02, 0x10, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x75, 0x73,
+	0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0xe2, 0x02, 0x1c, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c,
+	0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65,
+	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x11, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a,
+	0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (

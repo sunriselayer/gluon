@@ -48,12 +48,12 @@ func (AppModule) GenerateGenesisState(simState *module.SimulationState) {
 		Params: types.DefaultParams(),
 		PairingList: []types.Pairing{
 			{
-				Id:   0,
-				User: sample.AccAddress(),
+				Id:      0,
+				Address: sample.AccAddress(),
 			},
 			{
-				Id:   1,
-				User: sample.AccAddress(),
+				Id:      1,
+				Address: sample.AccAddress(),
 			},
 		},
 		PairingCount: 2,
@@ -80,17 +80,6 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		customauthsimulation.SimulateMsgCreatePairing(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
-	var weightMsgUpdatePairing int
-	simState.AppParams.GetOrGenerate(opWeightMsgUpdatePairing, &weightMsgUpdatePairing, nil,
-		func(_ *rand.Rand) {
-			weightMsgUpdatePairing = defaultWeightMsgUpdatePairing
-		},
-	)
-	operations = append(operations, simulation.NewWeightedOperation(
-		weightMsgUpdatePairing,
-		customauthsimulation.SimulateMsgUpdatePairing(am.accountKeeper, am.bankKeeper, am.keeper),
-	))
-
 	var weightMsgDeletePairing int
 	simState.AppParams.GetOrGenerate(opWeightMsgDeletePairing, &weightMsgDeletePairing, nil,
 		func(_ *rand.Rand) {
@@ -115,14 +104,6 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			defaultWeightMsgCreatePairing,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
 				customauthsimulation.SimulateMsgCreatePairing(am.accountKeeper, am.bankKeeper, am.keeper)
-				return nil
-			},
-		),
-		simulation.NewWeightedProposalMsg(
-			opWeightMsgUpdatePairing,
-			defaultWeightMsgUpdatePairing,
-			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				customauthsimulation.SimulateMsgUpdatePairing(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),

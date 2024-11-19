@@ -1,5 +1,7 @@
 package types
 
+import "fmt"
+
 const (
 	// ModuleName defines the module name
 	ModuleName = "customauth"
@@ -23,3 +25,7 @@ const (
 	PairingKey      = "Pairing/value/"
 	PairingCountKey = "Pairing/count/"
 )
+
+func PairingKeyPrefix(address string) []byte {
+	return KeyPrefix(fmt.Sprintf("%s%s/", PairingKey, address))
+}

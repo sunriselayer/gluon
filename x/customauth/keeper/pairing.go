@@ -51,7 +51,7 @@ func (k Keeper) AppendPairing(
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PairingKey))
 	appendedValue := k.cdc.MustMarshal(&pairing)
-	store.Set(GetPairingIDBytes(pairing.Id), appendedValue)
+	store.Set(GetPairingIDBytes(pairing.Address, pairing.Id), appendedValue)
 
 	// Update pairing count
 	k.SetPairingCount(ctx, count+1)
@@ -64,14 +64,14 @@ func (k Keeper) SetPairing(ctx context.Context, pairing types.Pairing) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PairingKey))
 	b := k.cdc.MustMarshal(&pairing)
-	store.Set(GetPairingIDBytes(pairing.Id), b)
+	store.Set(GetPairingIDBytes(pairing.Address, pairing.Id), b)
 }
 
 // GetPairing returns a pairing from its id
-func (k Keeper) GetPairing(ctx context.Context, id uint64) (val types.Pairing, found bool) {
+func (k Keeper) GetPairing(ctx context.Context, address string, id uint64) (val types.Pairing, found bool) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PairingKey))
-	b := store.Get(GetPairingIDBytes(id))
+	b := store.Get(GetPairingIDBytes(address, id))
 	if b == nil {
 		return val, false
 	}
@@ -80,10 +80,10 @@ func (k Keeper) GetPairing(ctx context.Context, id uint64) (val types.Pairing, f
 }
 
 // RemovePairing removes a pairing from the store
-func (k Keeper) RemovePairing(ctx context.Context, id uint64) {
+func (k Keeper) RemovePairing(ctx context.Context, address string, id uint64) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PairingKey))
-	store.Delete(GetPairingIDBytes(id))
+	store.Delete(GetPairingIDBytes(address, id))
 }
 
 // GetAllPairing returns all pairing
@@ -104,8 +104,8 @@ func (k Keeper) GetAllPairing(ctx context.Context) (list []types.Pairing) {
 }
 
 // GetPairingIDBytes returns the byte representation of the ID
-func GetPairingIDBytes(id uint64) []byte {
-	bz := types.KeyPrefix(types.PairingKey)
+func GetPairingIDBytes(address string, id uint64) []byte {
+	bz := types.PairingKeyPrefix(address)
 	bz = append(bz, []byte("/")...)
 	bz = binary.BigEndian.AppendUint64(bz, id)
 	return bz

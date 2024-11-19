@@ -22,11 +22,11 @@ service Query {
   
   // Queries a list of Pairing items.
   rpc Pairing    (QueryGetPairingRequest) returns (QueryGetPairingResponse) {
-    option (google.api.http).get = "/gluon/customauth/pairing/{id}";
+    option (google.api.http).get = "/gluon/customauth/pairing/{address}/{id}";
   
   }
   rpc PairingAll (QueryAllPairingRequest) returns (QueryAllPairingResponse) {
-    option (google.api.http).get = "/gluon/customauth/pairing";
+    option (google.api.http).get = "/gluon/customauth/pairing/{address}";
   
   }
 }
@@ -41,7 +41,8 @@ message QueryParamsResponse {
 }
 
 message QueryGetPairingRequest {
-  uint64 id = 1;
+  string address = 1;
+  uint64 id = 2;
 }
 
 message QueryGetPairingResponse {
@@ -49,7 +50,8 @@ message QueryGetPairingResponse {
 }
 
 message QueryAllPairingRequest {
-  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+  string address = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
 }
 
 message QueryAllPairingResponse {

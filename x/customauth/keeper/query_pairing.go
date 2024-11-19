@@ -21,7 +21,7 @@ func (k Keeper) PairingAll(ctx context.Context, req *types.QueryAllPairingReques
 	var pairings []types.Pairing
 
 	store := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	pairingStore := prefix.NewStore(store, types.KeyPrefix(types.PairingKey))
+	pairingStore := prefix.NewStore(store, types.PairingKeyPrefix(req.Address))
 
 	pageRes, err := query.Paginate(pairingStore, req.Pagination, func(key []byte, value []byte) error {
 		var pairing types.Pairing
@@ -45,7 +45,7 @@ func (k Keeper) Pairing(ctx context.Context, req *types.QueryGetPairingRequest) 
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
 
-	pairing, found := k.GetPairing(ctx, req.Id)
+	pairing, found := k.GetPairing(ctx, req.Address, req.Id)
 	if !found {
 		return nil, sdkerrors.ErrKeyNotFound
 	}

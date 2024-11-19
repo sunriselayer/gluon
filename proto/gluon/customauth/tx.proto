@@ -19,7 +19,6 @@ service Msg {
   // parameters. The authority defaults to the x/gov module account.
   rpc UpdateParams  (MsgUpdateParams ) returns (MsgUpdateParamsResponse );
   rpc CreatePairing (MsgCreatePairing) returns (MsgCreatePairingResponse);
-  rpc UpdatePairing (MsgUpdatePairing) returns (MsgUpdatePairingResponse);
   rpc DeletePairing (MsgDeletePairing) returns (MsgDeletePairingResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
@@ -43,23 +42,12 @@ message MsgUpdateParamsResponse {}
 message MsgCreatePairing {
   option (cosmos.msg.v1.signer) = "user";
   string user      = 1;
-  string address   = 2;
-  string publicKey = 3;
+  string public_key = 2;
 }
 
 message MsgCreatePairingResponse {
   uint64 id = 1;
 }
-
-message MsgUpdatePairing {
-  option (cosmos.msg.v1.signer) = "user";
-  string user      = 1;
-  uint64 id        = 2;
-  string address   = 3;
-  string publicKey = 4;
-}
-
-message MsgUpdatePairingResponse {}
 
 message MsgDeletePairing {
   option (cosmos.msg.v1.signer) = "user";

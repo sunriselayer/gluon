@@ -8,7 +8,6 @@ package customauth
 
 import (
 	context "context"
-
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -22,7 +21,6 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	Msg_UpdateParams_FullMethodName  = "/gluon.customauth.Msg/UpdateParams"
 	Msg_CreatePairing_FullMethodName = "/gluon.customauth.Msg/CreatePairing"
-	Msg_UpdatePairing_FullMethodName = "/gluon.customauth.Msg/UpdatePairing"
 	Msg_DeletePairing_FullMethodName = "/gluon.customauth.Msg/DeletePairing"
 )
 
@@ -34,7 +32,6 @@ type MsgClient interface {
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
 	CreatePairing(ctx context.Context, in *MsgCreatePairing, opts ...grpc.CallOption) (*MsgCreatePairingResponse, error)
-	UpdatePairing(ctx context.Context, in *MsgUpdatePairing, opts ...grpc.CallOption) (*MsgUpdatePairingResponse, error)
 	DeletePairing(ctx context.Context, in *MsgDeletePairing, opts ...grpc.CallOption) (*MsgDeletePairingResponse, error)
 }
 
@@ -64,15 +61,6 @@ func (c *msgClient) CreatePairing(ctx context.Context, in *MsgCreatePairing, opt
 	return out, nil
 }
 
-func (c *msgClient) UpdatePairing(ctx context.Context, in *MsgUpdatePairing, opts ...grpc.CallOption) (*MsgUpdatePairingResponse, error) {
-	out := new(MsgUpdatePairingResponse)
-	err := c.cc.Invoke(ctx, Msg_UpdatePairing_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *msgClient) DeletePairing(ctx context.Context, in *MsgDeletePairing, opts ...grpc.CallOption) (*MsgDeletePairingResponse, error) {
 	out := new(MsgDeletePairingResponse)
 	err := c.cc.Invoke(ctx, Msg_DeletePairing_FullMethodName, in, out, opts...)
@@ -90,7 +78,6 @@ type MsgServer interface {
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
 	CreatePairing(context.Context, *MsgCreatePairing) (*MsgCreatePairingResponse, error)
-	UpdatePairing(context.Context, *MsgUpdatePairing) (*MsgUpdatePairingResponse, error)
 	DeletePairing(context.Context, *MsgDeletePairing) (*MsgDeletePairingResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
@@ -104,9 +91,6 @@ func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*
 }
 func (UnimplementedMsgServer) CreatePairing(context.Context, *MsgCreatePairing) (*MsgCreatePairingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePairing not implemented")
-}
-func (UnimplementedMsgServer) UpdatePairing(context.Context, *MsgUpdatePairing) (*MsgUpdatePairingResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdatePairing not implemented")
 }
 func (UnimplementedMsgServer) DeletePairing(context.Context, *MsgDeletePairing) (*MsgDeletePairingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePairing not implemented")
@@ -160,24 +144,6 @@ func _Msg_CreatePairing_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_UpdatePairing_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgUpdatePairing)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).UpdatePairing(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Msg_UpdatePairing_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).UpdatePairing(ctx, req.(*MsgUpdatePairing))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Msg_DeletePairing_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgDeletePairing)
 	if err := dec(in); err != nil {
@@ -210,10 +176,6 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreatePairing",
 			Handler:    _Msg_CreatePairing_Handler,
-		},
-		{
-			MethodName: "UpdatePairing",
-			Handler:    _Msg_UpdatePairing_Handler,
 		},
 		{
 			MethodName: "DeletePairing",

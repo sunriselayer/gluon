@@ -40,37 +40,6 @@ func TestMsgCreatePairing_ValidateBasic(t *testing.T) {
 	}
 }
 
-func TestMsgUpdatePairing_ValidateBasic(t *testing.T) {
-	tests := []struct {
-		name string
-		msg  MsgUpdatePairing
-		err  error
-	}{
-		{
-			name: "invalid address",
-			msg: MsgUpdatePairing{
-				User: "invalid_address",
-			},
-			err: sdkerrors.ErrInvalidAddress,
-		}, {
-			name: "valid address",
-			msg: MsgUpdatePairing{
-				User: sample.AccAddress(),
-			},
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			err := tt.msg.ValidateBasic()
-			if tt.err != nil {
-				require.ErrorIs(t, err, tt.err)
-				return
-			}
-			require.NoError(t, err)
-		})
-	}
-}
-
 func TestMsgDeletePairing_ValidateBasic(t *testing.T) {
 	tests := []struct {
 		name string
