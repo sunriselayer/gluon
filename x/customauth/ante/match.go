@@ -4,11 +4,11 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
-type CustomSigVerifierMap map[sdk.Msg]func(cak CustomAuthKeeper, tx sdk.Tx) error
+type OperatorMsgMatchHandler func(msg sdk.Msg) bool
 
-func (m CustomSigVerifierMap) Match(tx sdk.Tx) bool {
+func Match(tx sdk.Tx, msgMatchHandler OperatorMsgMatchHandler) bool {
 	for _, msg := range tx.GetMsgs() {
-		if _, found := m[msg]; found {
+		if msgMatchHandler(msg) {
 			continue
 		}
 

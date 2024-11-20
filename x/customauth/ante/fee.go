@@ -16,22 +16,25 @@ type DeductFeeDecorator struct {
 	feegrantKeeper FeegrantKeeper
 	tfc            sdkante.TxFeeChecker
 
-	customMap CustomSigVerifierMap
+	msgMatchHandler OperatorMsgMatchHandler
 }
 
-func NewDeductFeeDecorator(ak AccountKeeper, bk BankKeeper, fk FeegrantKeeper, tfc sdkante.TxFeeChecker, customMap CustomSigVerifierMap) DeductFeeDecorator {
+func NewDeductFeeDecorator(ak AccountKeeper, bk BankKeeper, fk FeegrantKeeper, tfc sdkante.TxFeeChecker, msgMatchHandler OperatorMsgMatchHandler) DeductFeeDecorator {
 	return DeductFeeDecorator{
 		accountKeeper:  ak,
 		bankKeeper:     bk,
 		feegrantKeeper: fk,
 		tfc:            tfc,
 
-		customMap: customMap,
+		msgMatchHandler: msgMatchHandler,
 	}
 }
 
 func (dfd DeductFeeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool, next sdk.AnteHandler) (sdk.Context, error) {
-	if !dfd.customMap.Match(tx) {
+	// <gluon>
+	match := Match(tx, dfd.msgMatchHandler)
+	// </gluon>
+	if !match {
 		sdkante.NewDeductFeeDecorator(dfd.accountKeeper, dfd.bankKeeper, dfd.feegrantKeeper, dfd.tfc).AnteHandle(ctx, tx, simulate, next)
 	}
 

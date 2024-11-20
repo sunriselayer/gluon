@@ -75,10 +75,8 @@ import (
 	ibctransferkeeper "github.com/cosmos/ibc-go/v8/modules/apps/transfer/keeper"
 	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
 
-	contractmoduleante "gluon/x/contract/ante"
 	contractmodulekeeper "gluon/x/contract/keeper"
 	contractmoduletypes "gluon/x/contract/types"
-	customauthmoduleante "gluon/x/customauth/ante"
 	customauthmodulekeeper "gluon/x/customauth/keeper"
 	customauthmoduletypes "gluon/x/customauth/types"
 
@@ -314,11 +312,15 @@ func New(
 		ante.DefaultSigVerificationGasConsumer,
 		app.IBCKeeper,
 		app.txConfig.TxEncoder(),
-		customauthmoduleante.CustomSigVerifierMap{
-			&contractmoduletypes.MsgMatchOrder{}:      contractmoduleante.MsgMatchOrderSigVerifier,
-			&contractmoduletypes.MsgMatchLazyOrder{}:  contractmoduleante.MsgMatchLazyOrderSigVerifier,
-			&customauthmoduletypes.MsgCreatePairing{}: customauthmoduleante.MsgCreatePairingSigVerifier,
-			&customauthmoduletypes.MsgDeletePairing{}: customauthmoduleante.MsgDeletePairingSigVerifier,
+		func(msg sdk.Msg) bool {
+			switch msg.(type) {
+			case *contractmoduletypes.MsgMatchOrder:
+			case *contractmoduletypes.MsgMatchLazyOrder:
+			case *customauthmoduletypes.MsgCreatePairing:
+			case *customauthmoduletypes.MsgDeletePairing:
+				return true
+			}
+			return false
 		},
 	)
 

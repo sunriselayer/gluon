@@ -19,7 +19,7 @@ func NewAnteHandler(
 	sigGasConsumer ante.SignatureVerificationGasConsumer,
 	channelKeeper *ibckeeper.Keeper,
 	TxEncoder sdk.TxEncoder,
-	customMap customante.CustomSigVerifierMap,
+	operatorMsgMatchHandler customante.OperatorMsgMatchHandler,
 ) sdk.AnteHandler {
 	return sdk.ChainAnteDecorators(
 		// Set up the context with a gas meter.
@@ -38,7 +38,7 @@ func NewAnteHandler(
 		ante.NewConsumeGasForTxSizeDecorator(accountKeeper),
 		// Ensure the feepayer (fee granter or first signer) has enough funds to pay for the tx.
 		// Side effect: deducts fees from the fee payer. Sets the tx priority in context.
-		customante.NewDeductFeeDecorator(accountKeeper, bankKeeper, feegrantKeeper, nil, customMap),
+		customante.NewDeductFeeDecorator(accountKeeper, bankKeeper, feegrantKeeper, nil, operatorMsgMatchHandler),
 		// Set public keys in the context for fee-payer and all signers.
 		// Contract: must be called before all signature verification decorators.
 		ante.NewSetPubKeyDecorator(accountKeeper),
@@ -51,7 +51,7 @@ func NewAnteHandler(
 		// that the signature's sequence number (a.k.a nonce) matches the
 		// account sequence number of the signer.
 		// Note: does not consume gas from the gas meter.
-		customante.NewSigVerificationDecorator(accountKeeper, signModeHandler, customAuthKeeper, customMap),
+		customante.NewSigVerificationDecorator(accountKeeper, signModeHandler, customAuthKeeper, operatorMsgMatchHandler),
 		// Side effect: increment the nonce for all tx signers.
 		ante.NewIncrementSequenceDecorator(accountKeeper),
 		// Ensure that the tx is not a IBC packet or update message that has already been processed.

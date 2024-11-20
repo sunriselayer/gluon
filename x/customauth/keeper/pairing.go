@@ -10,8 +10,6 @@ import (
 	storetypes "cosmossdk.io/store/types"
 	"github.com/cosmos/cosmos-sdk/runtime"
 
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 )
 
@@ -123,12 +121,7 @@ func GetPairingIDBytes(address string, id uint64) []byte {
 	return bz
 }
 
-func (k Keeper) GetPairingPubKey(ctx context.Context, address string, id uint64) (cryptotypes.PubKey, error) {
-	pairing, found := k.GetPairing(ctx, address, id)
-	if !found {
-		return nil, sdkerrors.ErrNotFound
-	}
-
+func (k Keeper) GetPairingPubKey(ctx context.Context, pairing types.Pairing) (cryptotypes.PubKey, error) {
 	var pubKey cryptotypes.PubKey
 	err := k.cdc.UnpackAny(&pairing.PublicKey, &pubKey)
 	if err != nil {
