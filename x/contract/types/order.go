@@ -59,6 +59,21 @@ func (order Order) Validate(pubKey cryptotypes.PubKey) error {
 	return nil
 }
 
-func (order Order) CrossValidate(others Order) error {
+func (order Order) CrossValidate(other Order) error {
+	if order.Body.BaseDenom != other.Body.BaseDenom || order.Body.QuoteDenom != other.Body.QuoteDenom {
+		return ErrDenomMismatch
+	}
+
+	if order.Body.Direction == OrderDirection_UNKNOWN || other.Body.Direction == OrderDirection_UNKNOWN {
+		return ErrUnknownOrderDirection
+	}
+	if order.Body.Direction == other.Body.Direction {
+		return ErrSameOrderDirection
+	}
+
+	if order.Body.LimitPrice == nil && other.Body.LimitPrice == nil {
+		return ErrBothMarketPriceOrder
+	}
+
 	return nil
 }
