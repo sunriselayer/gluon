@@ -192,8 +192,9 @@ type ModuleInputs struct {
 	Config       *modulev1.Module
 	Logger       log.Logger
 
-	AccountKeeper types.AccountKeeper
-	BankKeeper    types.BankKeeper
+	AccountKeeper    types.AccountKeeper
+	BankKeeper       types.BankKeeper
+	CustomAuthKeeper types.CustomAuthKeeper
 
 	IBCKeeperFn        func() *ibckeeper.Keeper                   `optional:"true"`
 	CapabilityScopedFn func(string) capabilitykeeper.ScopedKeeper `optional:"true"`
@@ -221,6 +222,7 @@ func ProvideModule(in ModuleInputs) ModuleOutputs {
 		in.CapabilityScopedFn,
 		in.AccountKeeper,
 		in.BankKeeper,
+		in.CustomAuthKeeper,
 	)
 	m := NewAppModule(
 		in.Cdc,

@@ -14,11 +14,11 @@ func NewMsgMatchLazyOrder(earlier Order, later Order) *MsgMatchLazyOrder {
 }
 
 func (msg *MsgMatchLazyOrder) ValidateBasic() error {
-	err := msg.Earlier.Validate()
+	err := msg.Earlier.ValidateBasic()
 	if err != nil {
 		return err
 	}
-	err = msg.Later.Validate()
+	err = msg.Later.ValidateBasic()
 	if err != nil {
 		return err
 	}

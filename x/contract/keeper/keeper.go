@@ -33,8 +33,9 @@ type (
 		ibcKeeperFn        func() *ibckeeper.Keeper
 		capabilityScopedFn func(string) capabilitykeeper.ScopedKeeper
 
-		accountKeeper types.AccountKeeper
-		bankKeeper    types.BankKeeper
+		accountKeeper    types.AccountKeeper
+		bankKeeper       types.BankKeeper
+		customAuthKeeper types.CustomAuthKeeper
 	}
 )
 
@@ -48,6 +49,7 @@ func NewKeeper(
 
 	accountKeeper types.AccountKeeper,
 	bankKeeper types.BankKeeper,
+	customAuthKeeper types.CustomAuthKeeper,
 ) Keeper {
 	if _, err := sdk.AccAddressFromBech32(authority); err != nil {
 		panic(fmt.Sprintf("invalid authority address: %s", authority))
@@ -61,8 +63,9 @@ func NewKeeper(
 		ibcKeeperFn:        ibcKeeperFn,
 		capabilityScopedFn: capabilityScopedFn,
 
-		accountKeeper: accountKeeper,
-		bankKeeper:    bankKeeper,
+		accountKeeper:    accountKeeper,
+		bankKeeper:       bankKeeper,
+		customAuthKeeper: customAuthKeeper,
 	}
 }
 

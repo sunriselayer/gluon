@@ -5,11 +5,15 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
 	errorsmod "cosmossdk.io/errors"
+
+	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 )
 
-func NewOrderBody(address string, direction OrderDirection, type_ OrderType, amount sdkmath.Int, limitPrice *sdkmath.LegacyDec, stopPrice *sdkmath.LegacyDec) OrderBody {
+func NewOrderBody(address string, baseDenom string, quoteDenom string, direction OrderDirection, type_ OrderType, amount sdkmath.Int, limitPrice *sdkmath.LegacyDec, stopPrice *sdkmath.LegacyDec) OrderBody {
 	return OrderBody{
 		Address:    address,
+		BaseDenom:  baseDenom,
+		QuoteDenom: quoteDenom,
 		Direction:  direction,
 		Type:       type_,
 		Amount:     amount,
@@ -18,7 +22,7 @@ func NewOrderBody(address string, direction OrderDirection, type_ OrderType, amo
 	}
 }
 
-func (orderBody OrderBody) Validate() error {
+func (orderBody OrderBody) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(orderBody.Address)
 	if err != nil {
 		return err
@@ -30,8 +34,8 @@ func (orderBody OrderBody) Validate() error {
 	return nil
 }
 
-func (order Order) Validate() error {
-	err := order.Body.Validate()
+func (order Order) ValidateBasic() error {
+	err := order.Body.ValidateBasic()
 	if err != nil {
 		return err
 	}
@@ -40,5 +44,21 @@ func (order Order) Validate() error {
 		return errorsmod.Wrap(ErrEmptySignature, "signature must not be empty")
 	}
 
+	return nil
+}
+
+func (order Order) Validate(pubKey cryptotypes.PubKey) error {
+	bodyBytes, err := order.Body.Marshal()
+	if err != nil {
+		return err
+	}
+
+	if !pubKey.VerifySignature(bodyBytes, order.Signature) {
+		return errorsmod.Wrapf(ErrInvalidSignature, "address: %s", order.Body.Address)
+	}
+	return nil
+}
+
+func (order Order) CrossValidate(others Order) error {
 	return nil
 }

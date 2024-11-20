@@ -4,6 +4,10 @@ import (
 	"context"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
+
+	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
+
+	customauthtypes "gluon/x/customauth/types"
 )
 
 // AccountKeeper defines the expected interface for the Account module.
@@ -22,4 +26,9 @@ type BankKeeper interface {
 type ParamSubspace interface {
 	Get(context.Context, []byte, interface{})
 	Set(context.Context, []byte, interface{})
+}
+
+type CustomAuthKeeper interface {
+	GetPairing(ctx context.Context, address string, id uint64) (val customauthtypes.Pairing, found bool)
+	GetPairingPubKey(ctx context.Context, pairing customauthtypes.Pairing) (cryptotypes.PubKey, error)
 }
