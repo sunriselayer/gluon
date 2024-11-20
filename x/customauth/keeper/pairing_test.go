@@ -15,7 +15,7 @@ import (
 func createNPairing(keeper keeper.Keeper, ctx context.Context, n int) []types.Pairing {
 	items := make([]types.Pairing, n)
 	for i := range items {
-		items[i].Id = keeper.AppendPairing(ctx, items[i])
+		items[i].Id, _ = keeper.AppendPairing(ctx, items[i])
 	}
 	return items
 }

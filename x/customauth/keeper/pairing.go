@@ -9,6 +9,10 @@ import (
 	"cosmossdk.io/store/prefix"
 	storetypes "cosmossdk.io/store/types"
 	"github.com/cosmos/cosmos-sdk/runtime"
+
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+
+	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 )
 
 // GetPairingCount get the total number of pairing
@@ -41,7 +45,15 @@ func (k Keeper) SetPairingCount(ctx context.Context, count uint64) {
 func (k Keeper) AppendPairing(
 	ctx context.Context,
 	pairing types.Pairing,
-) uint64 {
+) (uint64, error) {
+	//
+	var pubKey cryptotypes.PubKey
+	err := k.cdc.UnpackAny(&pairing.PublicKey, &pubKey)
+	if err != nil {
+		return 0, err
+	}
+	//
+
 	// Create the pairing
 	count := k.GetPairingCount(ctx)
 
@@ -56,7 +68,7 @@ func (k Keeper) AppendPairing(
 	// Update pairing count
 	k.SetPairingCount(ctx, count+1)
 
-	return count
+	return count, nil
 }
 
 // SetPairing set a specific pairing in the store
@@ -109,4 +121,19 @@ func GetPairingIDBytes(address string, id uint64) []byte {
 	bz = append(bz, []byte("/")...)
 	bz = binary.BigEndian.AppendUint64(bz, id)
 	return bz
+}
+
+func (k Keeper) GetPairingPubKey(ctx context.Context, address string, id uint64) (cryptotypes.PubKey, error) {
+	pairing, found := k.GetPairing(ctx, address, id)
+	if !found {
+		return nil, sdkerrors.ErrNotFound
+	}
+
+	var pubKey cryptotypes.PubKey
+	err := k.cdc.UnpackAny(&pairing.PublicKey, &pubKey)
+	if err != nil {
+		return nil, err
+	}
+
+	return pubKey, nil
 }

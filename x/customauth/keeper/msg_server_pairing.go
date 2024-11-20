@@ -9,28 +9,23 @@ import (
 	errorsmod "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-
-	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 )
 
 func (k msgServer) CreatePairing(goCtx context.Context, msg *types.MsgCreatePairing) (*types.MsgCreatePairingResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
-
-	var pubKey cryptotypes.PubKey
-	err := k.cdc.UnpackAny(&msg.PublicKey, &pubKey)
-	if err != nil {
-		return nil, err
-	}
 
 	var pairing = types.Pairing{
 		Address:   msg.User,
 		PublicKey: msg.PublicKey,
 	}
 
-	id := k.AppendPairing(
+	id, err := k.AppendPairing(
 		ctx,
 		pairing,
 	)
+	if err != nil {
+		return nil, err
+	}
 
 	return &types.MsgCreatePairingResponse{
 		Id: id,

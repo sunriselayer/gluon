@@ -8,6 +8,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
+	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 	"gluon/x/customauth/types"
 )
 
@@ -35,4 +36,5 @@ type FeegrantKeeper interface {
 
 type CustomAuthKeeper interface {
 	GetParams(ctx context.Context) (params types.Params)
+	GetPairingPubKey(ctx context.Context, address string, id uint64) (cryptotypes.PubKey, error)
 }

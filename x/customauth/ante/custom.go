@@ -5,6 +5,7 @@ import (
 )
 
 func MsgCreatePairingSigVerifier(cak CustomAuthKeeper, tx sdk.Tx) error {
+
 	return nil
 }
 
