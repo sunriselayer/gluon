@@ -2,12 +2,13 @@ package ante
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
+
+	"gluon/x/customauth/types"
 )
 
 type OperatorMsgMatchHandler func(msg sdk.Msg) bool
 
-func IsOperatorMsg(tx sdk.Tx, msgMatchHandler OperatorMsgMatchHandler) bool {
+func IsOperatorTx(tx sdk.Tx, msgMatchHandler OperatorMsgMatchHandler) bool {
 	for _, msg := range tx.GetMsgs() {
 		if msgMatchHandler(msg) {
 			continue
@@ -19,7 +20,6 @@ func IsOperatorMsg(tx sdk.Tx, msgMatchHandler OperatorMsgMatchHandler) bool {
 	return true
 }
 
-func GetPairingId(tx authsigning.Tx) *uint64 {
-
-	return nil
+func GetPairingId(tx sdk.TxWithMemo) (*types.CustomAuthMetadata, error) {
+	return types.DecodeMetadata(tx.GetMemo())
 }

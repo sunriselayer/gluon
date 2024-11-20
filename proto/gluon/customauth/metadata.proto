@@ -1,0 +1,16 @@
+syntax = "proto3";
+package gluon.customauth;
+
+import "gogoproto/gogo.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "gluon/x/customauth/types";
+
+message Metadata {
+  CustomAuthMetadata custom_auth = 1;
+}
+
+message CustomAuthMetadata {
+  map<string, uint64> pairing_id = 1;
+}
