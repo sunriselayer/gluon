@@ -2,11 +2,12 @@ package ante
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
 )
 
 type OperatorMsgMatchHandler func(msg sdk.Msg) bool
 
-func Match(tx sdk.Tx, msgMatchHandler OperatorMsgMatchHandler) bool {
+func IsOperatorMsg(tx sdk.Tx, msgMatchHandler OperatorMsgMatchHandler) bool {
 	for _, msg := range tx.GetMsgs() {
 		if msgMatchHandler(msg) {
 			continue
@@ -16,4 +17,9 @@ func Match(tx sdk.Tx, msgMatchHandler OperatorMsgMatchHandler) bool {
 	}
 
 	return true
+}
+
+func GetPairingId(tx authsigning.Tx) *uint64 {
+
+	return nil
 }

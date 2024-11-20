@@ -32,7 +32,7 @@ func NewDeductFeeDecorator(ak AccountKeeper, bk BankKeeper, fk FeegrantKeeper, t
 
 func (dfd DeductFeeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool, next sdk.AnteHandler) (sdk.Context, error) {
 	// <gluon>
-	match := Match(tx, dfd.msgMatchHandler)
+	match := IsOperatorMsg(tx, dfd.msgMatchHandler)
 	// </gluon>
 	if !match {
 		sdkante.NewDeductFeeDecorator(dfd.accountKeeper, dfd.bankKeeper, dfd.feegrantKeeper, dfd.tfc).AnteHandle(ctx, tx, simulate, next)

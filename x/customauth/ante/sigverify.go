@@ -9,14 +9,51 @@ import (
 	txsigning "cosmossdk.io/x/tx/signing"
 
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
+
+	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
 
-	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
-	sdkante "github.com/cosmos/cosmos-sdk/x/auth/ante"
 	types "gluon/x/customauth/types"
+
+	sdkante "github.com/cosmos/cosmos-sdk/x/auth/ante"
 )
+
+// SetPubKeyDecorator sets PubKeys in context for any signer which does not already have pubkey set
+// PubKeys must be set in context for all signers before any other sigverify decorators run
+// CONTRACT: Tx must implement SigVerifiableTx interface
+type SetPubKeyDecorator struct {
+	ak AccountKeeper
+
+	cak             CustomAuthKeeper
+	msgMatchHandler OperatorMsgMatchHandler
+}
+
+func NewSetPubKeyDecorator(ak AccountKeeper, cak CustomAuthKeeper, msgMatchHandler OperatorMsgMatchHandler) SetPubKeyDecorator {
+	return SetPubKeyDecorator{
+		ak:              ak,
+		cak:             cak,
+		msgMatchHandler: msgMatchHandler,
+	}
+}
+
+func (spkd SetPubKeyDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool, next sdk.AnteHandler) (sdk.Context, error) {
+
+	sigTx, ok := tx.(authsigning.Tx)
+	if !ok {
+		return ctx, errorsmod.Wrap(sdkerrors.ErrTxDecode, "invalid transaction type")
+	}
+
+	isOperatorMsg := IsOperatorMsg(tx, spkd.msgMatchHandler)
+	pairingId := GetPairingId(sigTx)
+
+	if !isOperatorMsg && pairingId == nil {
+		return sdkante.NewSetPubKeyDecorator(spkd.ak).AnteHandle(ctx, tx, simulate, next)
+	}
+
+	return next(ctx, tx, simulate)
+}
 
 // SigVerificationDecorator verifies all signatures for a tx and return an error if any are invalid. Note,
 // the SigVerificationDecorator will not check signatures on ReCheck.
@@ -47,14 +84,15 @@ func NewSigVerificationDecorator(
 }
 
 func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool, next sdk.AnteHandler) (newCtx sdk.Context, err error) {
-	// <gluon>
-	match := Match(tx, svd.msgMatchHandler)
-	// </gluon>
-
 	sigTx, ok := tx.(authsigning.Tx)
 	if !ok {
 		return ctx, errorsmod.Wrap(sdkerrors.ErrTxDecode, "invalid transaction type")
 	}
+
+	// <gluon>
+	isOperatorMsg := IsOperatorMsg(tx, svd.msgMatchHandler)
+	pairingId := GetPairingId(sigTx)
+	// </gluon>
 
 	// stdSigs contains the sequence number, account number, and signatures.
 	// When simulating, this would just be a 0-length slice.
@@ -81,15 +119,15 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 
 		// <gluon>
 		var pubKey cryptotypes.PubKey
-		if !match {
-			if true {
+		if !isOperatorMsg {
+			if pairingId == nil {
 				// retrieve pubkey
 				pubKey = acc.GetPubKey()
 				if !simulate && pubKey == nil {
 					return ctx, errorsmod.Wrap(sdkerrors.ErrInvalidPubKey, "pubkey on account is not set")
 				}
 			} else {
-				pairingId := uint64(0)
+				pairingId := *pairingId
 				pairing, found := svd.cak.GetPairing(ctx, acc.GetAddress().String(), pairingId)
 				if !found {
 					return ctx, errorsmod.Wrapf(types.ErrPairingNotFound, "address: %s, pairing_id: %d", acc.GetAddress().String(), pairingId)
