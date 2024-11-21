@@ -6,10 +6,6 @@ package types
 import (
 	context "context"
 	fmt "fmt"
-	io "io"
-	math "math"
-	math_bits "math/bits"
-
 	query "github.com/cosmos/cosmos-sdk/types/query"
 	_ "github.com/cosmos/cosmos-sdk/types/tx/amino"
 	_ "github.com/cosmos/gogoproto/gogoproto"
@@ -19,6 +15,9 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	io "io"
+	math "math"
+	math_bits "math/bits"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -491,22 +490,22 @@ func (m *QueryAllSortedOrderResponse) GetPagination() *query.PageResponse {
 	return nil
 }
 
-type QueryGetLazySettlementRequest struct {
+type QueryGetLazyContractRequest struct {
 	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (m *QueryGetLazySettlementRequest) Reset()         { *m = QueryGetLazySettlementRequest{} }
-func (m *QueryGetLazySettlementRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryGetLazySettlementRequest) ProtoMessage()    {}
-func (*QueryGetLazySettlementRequest) Descriptor() ([]byte, []int) {
+func (m *QueryGetLazyContractRequest) Reset()         { *m = QueryGetLazyContractRequest{} }
+func (m *QueryGetLazyContractRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetLazyContractRequest) ProtoMessage()    {}
+func (*QueryGetLazyContractRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6b5a0b042300b082, []int{10}
 }
-func (m *QueryGetLazySettlementRequest) XXX_Unmarshal(b []byte) error {
+func (m *QueryGetLazyContractRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryGetLazySettlementRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryGetLazyContractRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryGetLazySettlementRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryGetLazyContractRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -516,41 +515,41 @@ func (m *QueryGetLazySettlementRequest) XXX_Marshal(b []byte, deterministic bool
 		return b[:n], nil
 	}
 }
-func (m *QueryGetLazySettlementRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetLazySettlementRequest.Merge(m, src)
+func (m *QueryGetLazyContractRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetLazyContractRequest.Merge(m, src)
 }
-func (m *QueryGetLazySettlementRequest) XXX_Size() int {
+func (m *QueryGetLazyContractRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryGetLazySettlementRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetLazySettlementRequest.DiscardUnknown(m)
+func (m *QueryGetLazyContractRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetLazyContractRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryGetLazySettlementRequest proto.InternalMessageInfo
+var xxx_messageInfo_QueryGetLazyContractRequest proto.InternalMessageInfo
 
-func (m *QueryGetLazySettlementRequest) GetId() uint64 {
+func (m *QueryGetLazyContractRequest) GetId() uint64 {
 	if m != nil {
 		return m.Id
 	}
 	return 0
 }
 
-type QueryGetLazySettlementResponse struct {
-	LazySettlement LazySettlement `protobuf:"bytes,1,opt,name=LazySettlement,proto3" json:"LazySettlement"`
+type QueryGetLazyContractResponse struct {
+	LazyContract LazyContract `protobuf:"bytes,1,opt,name=LazyContract,proto3" json:"LazyContract"`
 }
 
-func (m *QueryGetLazySettlementResponse) Reset()         { *m = QueryGetLazySettlementResponse{} }
-func (m *QueryGetLazySettlementResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryGetLazySettlementResponse) ProtoMessage()    {}
-func (*QueryGetLazySettlementResponse) Descriptor() ([]byte, []int) {
+func (m *QueryGetLazyContractResponse) Reset()         { *m = QueryGetLazyContractResponse{} }
+func (m *QueryGetLazyContractResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetLazyContractResponse) ProtoMessage()    {}
+func (*QueryGetLazyContractResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6b5a0b042300b082, []int{11}
 }
-func (m *QueryGetLazySettlementResponse) XXX_Unmarshal(b []byte) error {
+func (m *QueryGetLazyContractResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryGetLazySettlementResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryGetLazyContractResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryGetLazySettlementResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryGetLazyContractResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -560,41 +559,41 @@ func (m *QueryGetLazySettlementResponse) XXX_Marshal(b []byte, deterministic boo
 		return b[:n], nil
 	}
 }
-func (m *QueryGetLazySettlementResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetLazySettlementResponse.Merge(m, src)
+func (m *QueryGetLazyContractResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetLazyContractResponse.Merge(m, src)
 }
-func (m *QueryGetLazySettlementResponse) XXX_Size() int {
+func (m *QueryGetLazyContractResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryGetLazySettlementResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetLazySettlementResponse.DiscardUnknown(m)
+func (m *QueryGetLazyContractResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetLazyContractResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryGetLazySettlementResponse proto.InternalMessageInfo
+var xxx_messageInfo_QueryGetLazyContractResponse proto.InternalMessageInfo
 
-func (m *QueryGetLazySettlementResponse) GetLazySettlement() LazySettlement {
+func (m *QueryGetLazyContractResponse) GetLazyContract() LazyContract {
 	if m != nil {
-		return m.LazySettlement
+		return m.LazyContract
 	}
-	return LazySettlement{}
+	return LazyContract{}
 }
 
-type QueryAllLazySettlementRequest struct {
+type QueryAllLazyContractRequest struct {
 	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (m *QueryAllLazySettlementRequest) Reset()         { *m = QueryAllLazySettlementRequest{} }
-func (m *QueryAllLazySettlementRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryAllLazySettlementRequest) ProtoMessage()    {}
-func (*QueryAllLazySettlementRequest) Descriptor() ([]byte, []int) {
+func (m *QueryAllLazyContractRequest) Reset()         { *m = QueryAllLazyContractRequest{} }
+func (m *QueryAllLazyContractRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryAllLazyContractRequest) ProtoMessage()    {}
+func (*QueryAllLazyContractRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6b5a0b042300b082, []int{12}
 }
-func (m *QueryAllLazySettlementRequest) XXX_Unmarshal(b []byte) error {
+func (m *QueryAllLazyContractRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryAllLazySettlementRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryAllLazyContractRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryAllLazySettlementRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryAllLazyContractRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -604,42 +603,42 @@ func (m *QueryAllLazySettlementRequest) XXX_Marshal(b []byte, deterministic bool
 		return b[:n], nil
 	}
 }
-func (m *QueryAllLazySettlementRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryAllLazySettlementRequest.Merge(m, src)
+func (m *QueryAllLazyContractRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllLazyContractRequest.Merge(m, src)
 }
-func (m *QueryAllLazySettlementRequest) XXX_Size() int {
+func (m *QueryAllLazyContractRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryAllLazySettlementRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryAllLazySettlementRequest.DiscardUnknown(m)
+func (m *QueryAllLazyContractRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllLazyContractRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryAllLazySettlementRequest proto.InternalMessageInfo
+var xxx_messageInfo_QueryAllLazyContractRequest proto.InternalMessageInfo
 
-func (m *QueryAllLazySettlementRequest) GetPagination() *query.PageRequest {
+func (m *QueryAllLazyContractRequest) GetPagination() *query.PageRequest {
 	if m != nil {
 		return m.Pagination
 	}
 	return nil
 }
 
-type QueryAllLazySettlementResponse struct {
-	LazySettlement []LazySettlement    `protobuf:"bytes,1,rep,name=LazySettlement,proto3" json:"LazySettlement"`
-	Pagination     *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+type QueryAllLazyContractResponse struct {
+	LazyContract []LazyContract      `protobuf:"bytes,1,rep,name=LazyContract,proto3" json:"LazyContract"`
+	Pagination   *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (m *QueryAllLazySettlementResponse) Reset()         { *m = QueryAllLazySettlementResponse{} }
-func (m *QueryAllLazySettlementResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryAllLazySettlementResponse) ProtoMessage()    {}
-func (*QueryAllLazySettlementResponse) Descriptor() ([]byte, []int) {
+func (m *QueryAllLazyContractResponse) Reset()         { *m = QueryAllLazyContractResponse{} }
+func (m *QueryAllLazyContractResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryAllLazyContractResponse) ProtoMessage()    {}
+func (*QueryAllLazyContractResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6b5a0b042300b082, []int{13}
 }
-func (m *QueryAllLazySettlementResponse) XXX_Unmarshal(b []byte) error {
+func (m *QueryAllLazyContractResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryAllLazySettlementResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryAllLazyContractResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryAllLazySettlementResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryAllLazyContractResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -649,26 +648,26 @@ func (m *QueryAllLazySettlementResponse) XXX_Marshal(b []byte, deterministic boo
 		return b[:n], nil
 	}
 }
-func (m *QueryAllLazySettlementResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryAllLazySettlementResponse.Merge(m, src)
+func (m *QueryAllLazyContractResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllLazyContractResponse.Merge(m, src)
 }
-func (m *QueryAllLazySettlementResponse) XXX_Size() int {
+func (m *QueryAllLazyContractResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryAllLazySettlementResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryAllLazySettlementResponse.DiscardUnknown(m)
+func (m *QueryAllLazyContractResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllLazyContractResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryAllLazySettlementResponse proto.InternalMessageInfo
+var xxx_messageInfo_QueryAllLazyContractResponse proto.InternalMessageInfo
 
-func (m *QueryAllLazySettlementResponse) GetLazySettlement() []LazySettlement {
+func (m *QueryAllLazyContractResponse) GetLazyContract() []LazyContract {
 	if m != nil {
-		return m.LazySettlement
+		return m.LazyContract
 	}
 	return nil
 }
 
-func (m *QueryAllLazySettlementResponse) GetPagination() *query.PageResponse {
+func (m *QueryAllLazyContractResponse) GetPagination() *query.PageResponse {
 	if m != nil {
 		return m.Pagination
 	}
@@ -686,65 +685,65 @@ func init() {
 	proto.RegisterType((*QueryGetSortedOrderResponse)(nil), "gluon.contract.QueryGetSortedOrderResponse")
 	proto.RegisterType((*QueryAllSortedOrderRequest)(nil), "gluon.contract.QueryAllSortedOrderRequest")
 	proto.RegisterType((*QueryAllSortedOrderResponse)(nil), "gluon.contract.QueryAllSortedOrderResponse")
-	proto.RegisterType((*QueryGetLazySettlementRequest)(nil), "gluon.contract.QueryGetLazySettlementRequest")
-	proto.RegisterType((*QueryGetLazySettlementResponse)(nil), "gluon.contract.QueryGetLazySettlementResponse")
-	proto.RegisterType((*QueryAllLazySettlementRequest)(nil), "gluon.contract.QueryAllLazySettlementRequest")
-	proto.RegisterType((*QueryAllLazySettlementResponse)(nil), "gluon.contract.QueryAllLazySettlementResponse")
+	proto.RegisterType((*QueryGetLazyContractRequest)(nil), "gluon.contract.QueryGetLazyContractRequest")
+	proto.RegisterType((*QueryGetLazyContractResponse)(nil), "gluon.contract.QueryGetLazyContractResponse")
+	proto.RegisterType((*QueryAllLazyContractRequest)(nil), "gluon.contract.QueryAllLazyContractRequest")
+	proto.RegisterType((*QueryAllLazyContractResponse)(nil), "gluon.contract.QueryAllLazyContractResponse")
 }
 
 func init() { proto.RegisterFile("gluon/contract/query.proto", fileDescriptor_6b5a0b042300b082) }
 
 var fileDescriptor_6b5a0b042300b082 = []byte{
-	// 778 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x56, 0x41, 0x4f, 0xdb, 0x4a,
-	0x10, 0x8e, 0x03, 0xe4, 0x3d, 0x16, 0x29, 0x12, 0xfb, 0x20, 0x0f, 0x19, 0x30, 0x8f, 0x7d, 0x29,
-	0x54, 0x29, 0x78, 0x0b, 0x3d, 0xf5, 0x18, 0x5a, 0x15, 0xa9, 0x42, 0x2a, 0x0d, 0xb7, 0x1e, 0x8a,
-	0x1c, 0xb2, 0xb2, 0x2c, 0x39, 0x5e, 0x63, 0x1b, 0x44, 0x40, 0x5c, 0xfa, 0x07, 0x5a, 0x89, 0x5b,
-	0xab, 0xde, 0x2b, 0xf5, 0xd2, 0x5b, 0xff, 0x02, 0x47, 0xa4, 0x5e, 0xda, 0x4b, 0x55, 0x41, 0xa5,
-	0xfe, 0x8d, 0xca, 0xbb, 0x13, 0x12, 0x6f, 0xec, 0x10, 0xaa, 0x5c, 0x22, 0xc7, 0xf3, 0xcd, 0x7c,
-	0xdf, 0x37, 0xe3, 0x1d, 0x1b, 0xe9, 0xb6, 0x7b, 0xc0, 0x3d, 0xba, 0xc7, 0xbd, 0x28, 0xb0, 0xf6,
-	0x22, 0xba, 0x7f, 0xc0, 0x82, 0x96, 0xe9, 0x07, 0x3c, 0xe2, 0xb8, 0x28, 0x62, 0x66, 0x3b, 0xa6,
-	0x4f, 0x5a, 0x4d, 0xc7, 0xe3, 0x54, 0xfc, 0x4a, 0x88, 0x3e, 0x65, 0x73, 0x9b, 0x8b, 0x4b, 0x1a,
-	0x5f, 0xc1, 0xdd, 0x39, 0x9b, 0x73, 0xdb, 0x65, 0xd4, 0xf2, 0x1d, 0x6a, 0x79, 0x1e, 0x8f, 0xac,
-	0xc8, 0xe1, 0x5e, 0x08, 0xd1, 0xca, 0x1e, 0x0f, 0x9b, 0x3c, 0xa4, 0x75, 0x2b, 0x64, 0x92, 0x8f,
-	0x1e, 0xae, 0xd5, 0x59, 0x64, 0xad, 0x51, 0xdf, 0xb2, 0x1d, 0x4f, 0x80, 0x01, 0x3b, 0xab, 0xc8,
-	0xf3, 0xad, 0xc0, 0x6a, 0xb6, 0x0b, 0xa9, 0xda, 0x79, 0xd0, 0x60, 0x01, 0xc4, 0x16, 0x95, 0x58,
-	0xc8, 0x83, 0x88, 0x35, 0x76, 0xbb, 0x21, 0x65, 0x05, 0xe2, 0x5a, 0xc7, 0xad, 0xdd, 0x90, 0x45,
-	0x91, 0xcb, 0x9a, 0xcc, 0x8b, 0x24, 0x8a, 0x4c, 0x21, 0xfc, 0x3c, 0xd6, 0xb8, 0x2d, 0x98, 0x6b,
-	0x6c, 0xff, 0x80, 0x85, 0x11, 0xd9, 0x46, 0xff, 0x24, 0xee, 0x86, 0x3e, 0xf7, 0x42, 0x86, 0x1f,
-	0xa2, 0x82, 0x54, 0x38, 0xa3, 0xfd, 0xa7, 0xdd, 0x9d, 0x58, 0x2f, 0x99, 0xc9, 0x16, 0x9a, 0x12,
-	0xbf, 0x31, 0x7e, 0xfe, 0x7d, 0x21, 0xf7, 0xe1, 0xd7, 0xa7, 0x8a, 0x56, 0x83, 0x04, 0xb2, 0x84,
-	0xa6, 0x44, 0xc5, 0x4d, 0x16, 0x3d, 0x8b, 0x45, 0x02, 0x13, 0x2e, 0xa2, 0xbc, 0xd3, 0x10, 0xe5,
-	0xc6, 0x6b, 0x79, 0xa7, 0x41, 0x9e, 0xa2, 0x69, 0x05, 0x07, 0xdc, 0x6b, 0x68, 0x4c, 0xb8, 0x03,
-	0xea, 0x69, 0x95, 0x5a, 0xa0, 0x37, 0x46, 0x63, 0xe6, 0x9a, 0x44, 0x92, 0x97, 0xc0, 0x59, 0x75,
-	0xdd, 0x04, 0xe7, 0x13, 0x84, 0x3a, 0x93, 0x80, 0x7a, 0x4b, 0xa6, 0x1c, 0x9b, 0x19, 0x8f, 0xcd,
-	0x94, 0x8f, 0x09, 0x8c, 0xcd, 0xdc, 0xb6, 0x6c, 0x06, 0xb9, 0xb5, 0xae, 0x4c, 0x72, 0xa6, 0x81,
-	0xd8, 0x0e, 0x41, 0xaf, 0xd8, 0x91, 0xc1, 0xc4, 0xe2, 0xcd, 0x84, 0xa8, 0xbc, 0x10, 0xb5, 0x7c,
-	0xa3, 0x28, 0xc9, 0x97, 0x50, 0xf5, 0x18, 0xe9, 0xed, 0x0e, 0xee, 0x88, 0xa7, 0x22, 0xe1, 0xbd,
-	0x84, 0x0a, 0xec, 0xc8, 0x77, 0x82, 0x96, 0xf0, 0x3d, 0x5a, 0x83, 0x7f, 0x30, 0x87, 0xfc, 0xf5,
-	0x1c, 0xea, 0x68, 0x36, 0xb5, 0x0a, 0x18, 0x7c, 0x84, 0x26, 0xc2, 0xce, 0x6d, 0xe8, 0xe1, 0xac,
-	0x6a, 0xb3, 0x2b, 0x13, 0xcc, 0x76, 0x67, 0x91, 0x06, 0x28, 0xad, 0xba, 0x6e, 0x8a, 0xd2, 0x61,
-	0x4d, 0xe9, 0xa3, 0x06, 0x56, 0x54, 0x9a, 0x2c, 0x2b, 0x23, 0xb7, 0xb7, 0x32, 0xbc, 0xe9, 0x51,
-	0x34, 0xdf, 0xee, 0xfb, 0x96, 0x75, 0xdc, 0xda, 0xb9, 0x3e, 0xaf, 0xbd, 0x07, 0x66, 0x54, 0x0c,
-	0xca, 0x43, 0x46, 0x56, 0x02, 0x18, 0xdc, 0x42, 0xc5, 0x64, 0x04, 0x9a, 0x69, 0xa8, 0x1e, 0x93,
-	0x28, 0xb0, 0xa9, 0xe4, 0x12, 0x1b, 0x04, 0x56, 0x5d, 0x37, 0x5d, 0xe0, 0xb0, 0xe6, 0xf6, 0x59,
-	0x03, 0x67, 0x29, 0x4c, 0x7d, 0x9c, 0x8d, 0xfc, 0xa9, 0xb3, 0xa1, 0xcd, 0x70, 0xfd, 0xdb, 0x5f,
-	0x68, 0x4c, 0x28, 0xc7, 0xfb, 0xa8, 0x20, 0x57, 0x22, 0x26, 0xaa, 0xa4, 0xde, 0xad, 0xab, 0xff,
-	0xdf, 0x17, 0x23, 0x89, 0x88, 0xf1, 0xea, 0xcb, 0xcf, 0xb3, 0xfc, 0x0c, 0x2e, 0xd1, 0xd4, 0x77,
-	0x07, 0x3e, 0x42, 0x63, 0xf2, 0x91, 0x2c, 0xa7, 0x56, 0x53, 0xf6, 0xaf, 0x7e, 0xe7, 0x06, 0x14,
-	0xb0, 0x12, 0xc1, 0x3a, 0x87, 0x75, 0x9a, 0xf6, 0x52, 0xa2, 0x27, 0x4e, 0xe3, 0x14, 0x1f, 0xa2,
-	0xbf, 0x45, 0x52, 0xd5, 0x75, 0x33, 0xc8, 0x95, 0x45, 0x9c, 0x41, 0xae, 0x6e, 0x53, 0x32, 0x2f,
-	0xc8, 0xff, 0xc5, 0xd3, 0xa9, 0xe4, 0xf8, 0xad, 0x86, 0x26, 0xba, 0x8e, 0x27, 0xae, 0x64, 0x59,
-	0xea, 0x5d, 0x32, 0xfa, 0xbd, 0x81, 0xb0, 0xa0, 0x63, 0x5d, 0xe8, 0x58, 0xc1, 0x15, 0xda, 0xe7,
-	0xed, 0x4b, 0x4f, 0xe4, 0x46, 0x3d, 0x95, 0x4d, 0x79, 0xad, 0xa1, 0x62, 0x57, 0xad, 0xb8, 0x37,
-	0x95, 0x2c, 0xd7, 0x03, 0xeb, 0x4b, 0xdf, 0x64, 0xa4, 0x2c, 0xf4, 0x19, 0x78, 0xae, 0x9f, 0x3e,
-	0xfc, 0x5e, 0x53, 0x4f, 0x0d, 0x5e, 0xcd, 0xea, 0x42, 0xea, 0x09, 0xd7, 0xcd, 0x41, 0xe1, 0xa0,
-	0x6b, 0x45, 0xe8, 0x5a, 0xc2, 0x65, 0xda, 0xff, 0x93, 0x44, 0x76, 0xec, 0x9d, 0x86, 0x26, 0x93,
-	0x85, 0xe2, 0xa6, 0xad, 0x66, 0x35, 0xe2, 0x36, 0x12, 0x33, 0x37, 0x09, 0x59, 0x16, 0x12, 0x17,
-	0xf1, 0xc2, 0x0d, 0x12, 0x37, 0xee, 0x9f, 0x5f, 0x1a, 0xda, 0xc5, 0xa5, 0xa1, 0xfd, 0xb8, 0x34,
-	0xb4, 0x37, 0x57, 0x46, 0xee, 0xe2, 0xca, 0xc8, 0x7d, 0xbd, 0x32, 0x72, 0x2f, 0x4a, 0x32, 0xf3,
-	0xa8, 0x93, 0x1b, 0xb5, 0x7c, 0x16, 0xd6, 0x0b, 0xe2, 0x43, 0xeb, 0xc1, 0xef, 0x00, 0x00, 0x00,
-	0xff, 0xff, 0xff, 0xb2, 0x03, 0x57, 0x8b, 0x0a, 0x00, 0x00,
+	// 773 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x56, 0x41, 0x4f, 0xd4, 0x4e,
+	0x14, 0xdf, 0x2e, 0xb0, 0xff, 0x3f, 0x83, 0xc1, 0x38, 0xc2, 0x4a, 0xca, 0x5a, 0x64, 0x44, 0x30,
+	0x2b, 0x76, 0x04, 0x4f, 0x1e, 0x01, 0x03, 0x89, 0x31, 0x11, 0xd7, 0x9b, 0x07, 0x49, 0x97, 0x1d,
+	0x9b, 0x26, 0xdd, 0x4e, 0x69, 0x0b, 0x61, 0x21, 0x5c, 0xfc, 0x02, 0x9a, 0x10, 0x63, 0xe2, 0x27,
+	0x30, 0xf1, 0xa0, 0x1f, 0x83, 0x8b, 0x09, 0x89, 0x17, 0x4f, 0xc6, 0x80, 0x89, 0x5f, 0xc3, 0x74,
+	0xe6, 0xad, 0xdb, 0xce, 0xb6, 0xec, 0x6a, 0xf6, 0xb2, 0xd9, 0xce, 0xfc, 0xde, 0xfb, 0xfd, 0x7e,
+	0xef, 0x75, 0xde, 0x14, 0xe9, 0xb6, 0xbb, 0xcb, 0x3d, 0xba, 0xcd, 0xbd, 0x28, 0xb0, 0xb6, 0x23,
+	0xba, 0xb3, 0xcb, 0x82, 0x96, 0xe9, 0x07, 0x3c, 0xe2, 0x78, 0x5c, 0xec, 0x99, 0xed, 0x3d, 0xfd,
+	0x8a, 0xd5, 0x74, 0x3c, 0x4e, 0xc5, 0xaf, 0x84, 0xe8, 0x13, 0x36, 0xb7, 0xb9, 0xf8, 0x4b, 0xe3,
+	0x7f, 0xb0, 0x5a, 0xb1, 0x39, 0xb7, 0x5d, 0x46, 0x2d, 0xdf, 0xa1, 0x96, 0xe7, 0xf1, 0xc8, 0x8a,
+	0x1c, 0xee, 0x85, 0xb0, 0x5b, 0xdd, 0xe6, 0x61, 0x93, 0x87, 0xb4, 0x6e, 0x85, 0x4c, 0xf2, 0xd1,
+	0xbd, 0xa5, 0x3a, 0x8b, 0xac, 0x25, 0xea, 0x5b, 0xb6, 0xe3, 0x09, 0x30, 0x60, 0xa7, 0x15, 0x79,
+	0xbe, 0x15, 0x58, 0xcd, 0x76, 0x22, 0x55, 0x3b, 0x0f, 0x1a, 0x2c, 0x80, 0xbd, 0x59, 0x65, 0x2f,
+	0xe4, 0x41, 0xc4, 0x1a, 0x5b, 0x49, 0x08, 0x51, 0x20, 0xae, 0x75, 0xd0, 0xda, 0x6a, 0x3f, 0x49,
+	0x0c, 0x99, 0x40, 0xf8, 0x69, 0xac, 0x70, 0x53, 0xf0, 0xd6, 0xd8, 0xce, 0x2e, 0x0b, 0x23, 0xb2,
+	0x89, 0xae, 0xa6, 0x56, 0x43, 0x9f, 0x7b, 0x21, 0xc3, 0x0f, 0x50, 0x49, 0xea, 0x9b, 0xd2, 0x6e,
+	0x68, 0xb7, 0xc7, 0x96, 0xcb, 0x66, 0xba, 0x80, 0xa6, 0xc4, 0xaf, 0x8e, 0x9e, 0x7c, 0x9f, 0x29,
+	0x7c, 0xf8, 0xf5, 0xb9, 0xaa, 0xd5, 0x20, 0x80, 0xcc, 0xa3, 0x09, 0x91, 0x71, 0x83, 0x45, 0x4f,
+	0x62, 0x89, 0xc0, 0x84, 0xc7, 0x51, 0xd1, 0x69, 0x88, 0x74, 0xa3, 0xb5, 0xa2, 0xd3, 0x20, 0x8f,
+	0xd0, 0xa4, 0x82, 0x03, 0xee, 0x25, 0x34, 0x22, 0xbc, 0x01, 0xf5, 0xa4, 0x4a, 0x2d, 0xd0, 0xab,
+	0xc3, 0x31, 0x73, 0x4d, 0x22, 0xc9, 0x0b, 0xe0, 0x5c, 0x71, 0xdd, 0x14, 0xe7, 0x3a, 0x42, 0x9d,
+	0x3e, 0x40, 0xbe, 0x79, 0x53, 0x36, 0xcd, 0x8c, 0x9b, 0x66, 0xca, 0x97, 0x04, 0x9a, 0x66, 0x6e,
+	0x5a, 0x36, 0x83, 0xd8, 0x5a, 0x22, 0x92, 0x1c, 0x6b, 0x20, 0xb6, 0x43, 0xd0, 0x2d, 0x76, 0xa8,
+	0x3f, 0xb1, 0x78, 0x23, 0x25, 0xaa, 0x28, 0x44, 0x2d, 0xf4, 0x14, 0x25, 0xf9, 0x52, 0xaa, 0x1e,
+	0x22, 0xbd, 0x5d, 0xc1, 0x67, 0xe2, 0x9d, 0x48, 0x79, 0x2f, 0xa3, 0x12, 0xdb, 0xf7, 0x9d, 0xa0,
+	0x25, 0x7c, 0x0f, 0xd7, 0xe0, 0x09, 0xfa, 0x50, 0xfc, 0xd3, 0x87, 0x3a, 0x9a, 0xce, 0xcc, 0x02,
+	0x06, 0xd7, 0xd0, 0x58, 0xd8, 0x59, 0x86, 0x1a, 0x4e, 0xab, 0x36, 0x13, 0x91, 0x60, 0x36, 0x19,
+	0x45, 0x1a, 0xa0, 0x74, 0xc5, 0x75, 0x33, 0x94, 0x0e, 0xaa, 0x4b, 0x1f, 0x35, 0xb0, 0xa2, 0xd2,
+	0xe4, 0x59, 0x19, 0xfa, 0x7b, 0x2b, 0x83, 0xeb, 0xde, 0xdd, 0x4e, 0xdd, 0x1f, 0x5b, 0x07, 0xad,
+	0x35, 0xe0, 0xef, 0x3e, 0x2e, 0xc3, 0xa2, 0x4d, 0x2f, 0x51, 0x25, 0x1b, 0x0e, 0xe6, 0xd6, 0xd1,
+	0xa5, 0xe4, 0x3a, 0x94, 0xb1, 0xa2, 0xba, 0x4b, 0x62, 0xc0, 0x5e, 0x2a, 0x8e, 0xb0, 0x4e, 0x0d,
+	0xb3, 0x64, 0x0d, 0xaa, 0x57, 0x9f, 0x34, 0xf0, 0xd3, 0xc5, 0x93, 0xeb, 0x67, 0xe8, 0x5f, 0xfc,
+	0x0c, 0xac, 0x5f, 0xcb, 0x5f, 0xfe, 0x43, 0x23, 0x42, 0x31, 0xde, 0x41, 0x25, 0x39, 0xfe, 0x30,
+	0x51, 0xe5, 0x74, 0x4f, 0x58, 0xfd, 0xe6, 0x85, 0x18, 0x49, 0x44, 0x8c, 0x57, 0x5f, 0x7f, 0x1e,
+	0x17, 0xa7, 0x70, 0x99, 0x66, 0xde, 0x12, 0x78, 0x1f, 0x8d, 0xc8, 0xd7, 0x6f, 0x2e, 0x33, 0x9b,
+	0x32, 0x6b, 0xf5, 0x5b, 0x3d, 0x50, 0xc0, 0x4a, 0x04, 0x6b, 0x05, 0xeb, 0x34, 0xeb, 0xfa, 0xa1,
+	0x87, 0x4e, 0xe3, 0x08, 0xef, 0xa1, 0xff, 0x45, 0xd0, 0x8a, 0xeb, 0xe6, 0x90, 0x2b, 0x43, 0x37,
+	0x87, 0x5c, 0x9d, 0x9c, 0xe4, 0xba, 0x20, 0xbf, 0x86, 0x27, 0x33, 0xc9, 0xf1, 0x7b, 0x0d, 0x8d,
+	0x25, 0x8e, 0x22, 0xae, 0xe6, 0x59, 0xea, 0x1e, 0x28, 0xfa, 0x9d, 0xbe, 0xb0, 0xa0, 0x63, 0x59,
+	0xe8, 0x58, 0xc4, 0x55, 0x7a, 0xc1, 0x3d, 0x4b, 0x0f, 0xe5, 0xf4, 0x3c, 0x92, 0x45, 0x79, 0xad,
+	0xa1, 0xf1, 0x44, 0xae, 0xb8, 0x36, 0xd5, 0x3c, 0xd7, 0x7d, 0xeb, 0xcb, 0x9e, 0x5a, 0x64, 0x4e,
+	0xe8, 0x33, 0x70, 0xe5, 0x22, 0x7d, 0xf8, 0x9d, 0x96, 0x3e, 0x2f, 0x38, 0xb7, 0x06, 0x19, 0xa7,
+	0x5a, 0x5f, 0xec, 0x0f, 0x0c, 0x8a, 0x16, 0x85, 0xa2, 0x79, 0x3c, 0x47, 0xb3, 0x3e, 0x3b, 0x42,
+	0x16, 0x45, 0x2e, 0x6b, 0x32, 0x2f, 0x92, 0xb5, 0x7a, 0xab, 0xa1, 0xcb, 0xc9, 0x34, 0x71, 0xb1,
+	0x72, 0x0b, 0xd0, 0xbf, 0xb8, 0x9c, 0xb9, 0x41, 0x16, 0x84, 0xb8, 0x59, 0x3c, 0xd3, 0x43, 0xdc,
+	0xea, 0xbd, 0x93, 0x33, 0x43, 0x3b, 0x3d, 0x33, 0xb4, 0x1f, 0x67, 0x86, 0xf6, 0xe6, 0xdc, 0x28,
+	0x9c, 0x9e, 0x1b, 0x85, 0x6f, 0xe7, 0x46, 0xe1, 0x79, 0x59, 0x46, 0xee, 0x77, 0x62, 0xa3, 0x96,
+	0xcf, 0xc2, 0x7a, 0x49, 0x7c, 0x48, 0xdd, 0xff, 0x1d, 0x00, 0x00, 0xff, 0xff, 0x02, 0x69, 0x0c,
+	0x96, 0x69, 0x0a, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -767,9 +766,9 @@ type QueryClient interface {
 	// Queries a list of SortedOrder items.
 	SortedOrder(ctx context.Context, in *QueryGetSortedOrderRequest, opts ...grpc.CallOption) (*QueryGetSortedOrderResponse, error)
 	SortedOrderAll(ctx context.Context, in *QueryAllSortedOrderRequest, opts ...grpc.CallOption) (*QueryAllSortedOrderResponse, error)
-	// Queries a list of LazySettlement items.
-	LazySettlement(ctx context.Context, in *QueryGetLazySettlementRequest, opts ...grpc.CallOption) (*QueryGetLazySettlementResponse, error)
-	LazySettlementAll(ctx context.Context, in *QueryAllLazySettlementRequest, opts ...grpc.CallOption) (*QueryAllLazySettlementResponse, error)
+	// Queries a list of LazyContract items.
+	LazyContract(ctx context.Context, in *QueryGetLazyContractRequest, opts ...grpc.CallOption) (*QueryGetLazyContractResponse, error)
+	LazyContractAll(ctx context.Context, in *QueryAllLazyContractRequest, opts ...grpc.CallOption) (*QueryAllLazyContractResponse, error)
 }
 
 type queryClient struct {
@@ -825,18 +824,18 @@ func (c *queryClient) SortedOrderAll(ctx context.Context, in *QueryAllSortedOrde
 	return out, nil
 }
 
-func (c *queryClient) LazySettlement(ctx context.Context, in *QueryGetLazySettlementRequest, opts ...grpc.CallOption) (*QueryGetLazySettlementResponse, error) {
-	out := new(QueryGetLazySettlementResponse)
-	err := c.cc.Invoke(ctx, "/gluon.contract.Query/LazySettlement", in, out, opts...)
+func (c *queryClient) LazyContract(ctx context.Context, in *QueryGetLazyContractRequest, opts ...grpc.CallOption) (*QueryGetLazyContractResponse, error) {
+	out := new(QueryGetLazyContractResponse)
+	err := c.cc.Invoke(ctx, "/gluon.contract.Query/LazyContract", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *queryClient) LazySettlementAll(ctx context.Context, in *QueryAllLazySettlementRequest, opts ...grpc.CallOption) (*QueryAllLazySettlementResponse, error) {
-	out := new(QueryAllLazySettlementResponse)
-	err := c.cc.Invoke(ctx, "/gluon.contract.Query/LazySettlementAll", in, out, opts...)
+func (c *queryClient) LazyContractAll(ctx context.Context, in *QueryAllLazyContractRequest, opts ...grpc.CallOption) (*QueryAllLazyContractResponse, error) {
+	out := new(QueryAllLazyContractResponse)
+	err := c.cc.Invoke(ctx, "/gluon.contract.Query/LazyContractAll", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -853,9 +852,9 @@ type QueryServer interface {
 	// Queries a list of SortedOrder items.
 	SortedOrder(context.Context, *QueryGetSortedOrderRequest) (*QueryGetSortedOrderResponse, error)
 	SortedOrderAll(context.Context, *QueryAllSortedOrderRequest) (*QueryAllSortedOrderResponse, error)
-	// Queries a list of LazySettlement items.
-	LazySettlement(context.Context, *QueryGetLazySettlementRequest) (*QueryGetLazySettlementResponse, error)
-	LazySettlementAll(context.Context, *QueryAllLazySettlementRequest) (*QueryAllLazySettlementResponse, error)
+	// Queries a list of LazyContract items.
+	LazyContract(context.Context, *QueryGetLazyContractRequest) (*QueryGetLazyContractResponse, error)
+	LazyContractAll(context.Context, *QueryAllLazyContractRequest) (*QueryAllLazyContractResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -877,11 +876,11 @@ func (*UnimplementedQueryServer) SortedOrder(ctx context.Context, req *QueryGetS
 func (*UnimplementedQueryServer) SortedOrderAll(ctx context.Context, req *QueryAllSortedOrderRequest) (*QueryAllSortedOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SortedOrderAll not implemented")
 }
-func (*UnimplementedQueryServer) LazySettlement(ctx context.Context, req *QueryGetLazySettlementRequest) (*QueryGetLazySettlementResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LazySettlement not implemented")
+func (*UnimplementedQueryServer) LazyContract(ctx context.Context, req *QueryGetLazyContractRequest) (*QueryGetLazyContractResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LazyContract not implemented")
 }
-func (*UnimplementedQueryServer) LazySettlementAll(ctx context.Context, req *QueryAllLazySettlementRequest) (*QueryAllLazySettlementResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LazySettlementAll not implemented")
+func (*UnimplementedQueryServer) LazyContractAll(ctx context.Context, req *QueryAllLazyContractRequest) (*QueryAllLazyContractResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LazyContractAll not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -978,38 +977,38 @@ func _Query_SortedOrderAll_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_LazySettlement_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetLazySettlementRequest)
+func _Query_LazyContract_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetLazyContractRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).LazySettlement(ctx, in)
+		return srv.(QueryServer).LazyContract(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gluon.contract.Query/LazySettlement",
+		FullMethod: "/gluon.contract.Query/LazyContract",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).LazySettlement(ctx, req.(*QueryGetLazySettlementRequest))
+		return srv.(QueryServer).LazyContract(ctx, req.(*QueryGetLazyContractRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_LazySettlementAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryAllLazySettlementRequest)
+func _Query_LazyContractAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllLazyContractRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).LazySettlementAll(ctx, in)
+		return srv.(QueryServer).LazyContractAll(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gluon.contract.Query/LazySettlementAll",
+		FullMethod: "/gluon.contract.Query/LazyContractAll",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).LazySettlementAll(ctx, req.(*QueryAllLazySettlementRequest))
+		return srv.(QueryServer).LazyContractAll(ctx, req.(*QueryAllLazyContractRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1040,12 +1039,12 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Query_SortedOrderAll_Handler,
 		},
 		{
-			MethodName: "LazySettlement",
-			Handler:    _Query_LazySettlement_Handler,
+			MethodName: "LazyContract",
+			Handler:    _Query_LazyContract_Handler,
 		},
 		{
-			MethodName: "LazySettlementAll",
-			Handler:    _Query_LazySettlementAll_Handler,
+			MethodName: "LazyContractAll",
+			Handler:    _Query_LazyContractAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -1407,7 +1406,7 @@ func (m *QueryAllSortedOrderResponse) MarshalToSizedBuffer(dAtA []byte) (int, er
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryGetLazySettlementRequest) Marshal() (dAtA []byte, err error) {
+func (m *QueryGetLazyContractRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1417,12 +1416,12 @@ func (m *QueryGetLazySettlementRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryGetLazySettlementRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryGetLazyContractRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryGetLazySettlementRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryGetLazyContractRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1435,7 +1434,7 @@ func (m *QueryGetLazySettlementRequest) MarshalToSizedBuffer(dAtA []byte) (int, 
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryGetLazySettlementResponse) Marshal() (dAtA []byte, err error) {
+func (m *QueryGetLazyContractResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1445,18 +1444,18 @@ func (m *QueryGetLazySettlementResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryGetLazySettlementResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryGetLazyContractResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryGetLazySettlementResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryGetLazyContractResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
 	{
-		size, err := m.LazySettlement.MarshalToSizedBuffer(dAtA[:i])
+		size, err := m.LazyContract.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
 			return 0, err
 		}
@@ -1468,7 +1467,7 @@ func (m *QueryGetLazySettlementResponse) MarshalToSizedBuffer(dAtA []byte) (int,
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryAllLazySettlementRequest) Marshal() (dAtA []byte, err error) {
+func (m *QueryAllLazyContractRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1478,12 +1477,12 @@ func (m *QueryAllLazySettlementRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryAllLazySettlementRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryAllLazyContractRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryAllLazySettlementRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryAllLazyContractRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1503,7 +1502,7 @@ func (m *QueryAllLazySettlementRequest) MarshalToSizedBuffer(dAtA []byte) (int, 
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryAllLazySettlementResponse) Marshal() (dAtA []byte, err error) {
+func (m *QueryAllLazyContractResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1513,12 +1512,12 @@ func (m *QueryAllLazySettlementResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryAllLazySettlementResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryAllLazyContractResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryAllLazySettlementResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryAllLazyContractResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1535,10 +1534,10 @@ func (m *QueryAllLazySettlementResponse) MarshalToSizedBuffer(dAtA []byte) (int,
 		i--
 		dAtA[i] = 0x12
 	}
-	if len(m.LazySettlement) > 0 {
-		for iNdEx := len(m.LazySettlement) - 1; iNdEx >= 0; iNdEx-- {
+	if len(m.LazyContract) > 0 {
+		for iNdEx := len(m.LazyContract) - 1; iNdEx >= 0; iNdEx-- {
 			{
-				size, err := m.LazySettlement[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				size, err := m.LazyContract[iNdEx].MarshalToSizedBuffer(dAtA[:i])
 				if err != nil {
 					return 0, err
 				}
@@ -1698,7 +1697,7 @@ func (m *QueryAllSortedOrderResponse) Size() (n int) {
 	return n
 }
 
-func (m *QueryGetLazySettlementRequest) Size() (n int) {
+func (m *QueryGetLazyContractRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1710,18 +1709,18 @@ func (m *QueryGetLazySettlementRequest) Size() (n int) {
 	return n
 }
 
-func (m *QueryGetLazySettlementResponse) Size() (n int) {
+func (m *QueryGetLazyContractResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = m.LazySettlement.Size()
+	l = m.LazyContract.Size()
 	n += 1 + l + sovQuery(uint64(l))
 	return n
 }
 
-func (m *QueryAllLazySettlementRequest) Size() (n int) {
+func (m *QueryAllLazyContractRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1734,14 +1733,14 @@ func (m *QueryAllLazySettlementRequest) Size() (n int) {
 	return n
 }
 
-func (m *QueryAllLazySettlementResponse) Size() (n int) {
+func (m *QueryAllLazyContractResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if len(m.LazySettlement) > 0 {
-		for _, e := range m.LazySettlement {
+	if len(m.LazyContract) > 0 {
+		for _, e := range m.LazyContract {
 			l = e.Size()
 			n += 1 + l + sovQuery(uint64(l))
 		}
@@ -2653,7 +2652,7 @@ func (m *QueryAllSortedOrderResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryGetLazySettlementRequest) Unmarshal(dAtA []byte) error {
+func (m *QueryGetLazyContractRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2676,10 +2675,10 @@ func (m *QueryGetLazySettlementRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetLazySettlementRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryGetLazyContractRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetLazySettlementRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryGetLazyContractRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -2722,7 +2721,7 @@ func (m *QueryGetLazySettlementRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryGetLazySettlementResponse) Unmarshal(dAtA []byte) error {
+func (m *QueryGetLazyContractResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2745,15 +2744,15 @@ func (m *QueryGetLazySettlementResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetLazySettlementResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryGetLazyContractResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetLazySettlementResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryGetLazyContractResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field LazySettlement", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field LazyContract", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -2780,7 +2779,7 @@ func (m *QueryGetLazySettlementResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.LazySettlement.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.LazyContract.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -2805,7 +2804,7 @@ func (m *QueryGetLazySettlementResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryAllLazySettlementRequest) Unmarshal(dAtA []byte) error {
+func (m *QueryAllLazyContractRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2828,10 +2827,10 @@ func (m *QueryAllLazySettlementRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryAllLazySettlementRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryAllLazyContractRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryAllLazySettlementRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryAllLazyContractRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -2891,7 +2890,7 @@ func (m *QueryAllLazySettlementRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryAllLazySettlementResponse) Unmarshal(dAtA []byte) error {
+func (m *QueryAllLazyContractResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2914,15 +2913,15 @@ func (m *QueryAllLazySettlementResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryAllLazySettlementResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryAllLazyContractResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryAllLazySettlementResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryAllLazyContractResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field LazySettlement", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field LazyContract", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -2949,8 +2948,8 @@ func (m *QueryAllLazySettlementResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.LazySettlement = append(m.LazySettlement, LazySettlement{})
-			if err := m.LazySettlement[len(m.LazySettlement)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			m.LazyContract = append(m.LazyContract, LazyContract{})
+			if err := m.LazyContract[len(m.LazyContract)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

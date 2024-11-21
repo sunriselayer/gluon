@@ -7,7 +7,7 @@ import "gogoproto/gogo.proto";
 import "gluon/contract/params.proto";
 import "gluon/contract/order.proto";
 import "gluon/contract/sorted_order.proto";
-import "gluon/contract/lazy_settlement.proto";
+import "gluon/contract/lazy_contract.proto";
 
 option go_package = "gluon/x/contract/types";
 
@@ -19,7 +19,7 @@ message GenesisState {
            string         port_id             = 2;
   repeated Order          orderList           = 3 [(gogoproto.nullable) = false] ;
   repeated SortedOrder    sortedOrderList     = 4 [(gogoproto.nullable) = false] ;
-  repeated LazySettlement lazySettlementList  = 5 [(gogoproto.nullable) = false] ;
-           uint64         lazySettlementCount = 6;
+  repeated LazyContract   lazyContractList  = 5 [(gogoproto.nullable) = false] ;
+           uint64         lazyContractCount = 6;
 }
 

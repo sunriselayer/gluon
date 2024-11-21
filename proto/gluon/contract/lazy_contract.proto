@@ -1,0 +1,16 @@
+syntax = "proto3";
+package gluon.contract;
+
+option go_package = "gluon/x/contract/types";
+import "gogoproto/gogo.proto"; 
+import "cosmos/base/v1beta1/coin.proto"; 
+import "google/protobuf/timestamp.proto";
+
+message LazyContract {
+  uint64 id = 1;
+  string creditor = 2; 
+  string debtor = 3; 
+  cosmos.base.v1beta1.Coin amount_escrow = 4 [(gogoproto.nullable) = false]; 
+  cosmos.base.v1beta1.Coin amount_pending = 5 [(gogoproto.nullable) = false]; 
+  google.protobuf.Timestamp expiry = 6 [ (gogoproto.nullable) = false, (gogoproto.stdtime) = true ];
+}

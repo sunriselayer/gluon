@@ -9,7 +9,7 @@ import "cosmos/base/query/v1beta1/pagination.proto";
 import "gluon/contract/params.proto";
 import "gluon/contract/order.proto";
 import "gluon/contract/sorted_order.proto";
-import "gluon/contract/lazy_settlement.proto";
+import "gluon/contract/lazy_contract.proto";
 
 option go_package = "gluon/x/contract/types";
 
@@ -42,12 +42,12 @@ service Query {
   
   }
   
-  // Queries a list of LazySettlement items.
-  rpc LazySettlement    (QueryGetLazySettlementRequest) returns (QueryGetLazySettlementResponse) {
+  // Queries a list of LazyContract items.
+  rpc LazyContract    (QueryGetLazyContractRequest) returns (QueryGetLazyContractResponse) {
     option (google.api.http).get = "/gluon/contract/lazy_settlement/{id}";
   
   }
-  rpc LazySettlementAll (QueryAllLazySettlementRequest) returns (QueryAllLazySettlementResponse) {
+  rpc LazyContractAll (QueryAllLazyContractRequest) returns (QueryAllLazyContractResponse) {
     option (google.api.http).get = "/gluon/contract/lazy_settlement";
   
   }
@@ -97,20 +97,20 @@ message QueryAllSortedOrderResponse {
            cosmos.base.query.v1beta1.PageResponse pagination  = 2;
 }
 
-message QueryGetLazySettlementRequest {
+message QueryGetLazyContractRequest {
   uint64 id = 1;
 }
 
-message QueryGetLazySettlementResponse {
-  LazySettlement LazySettlement = 1 [(gogoproto.nullable) = false];
+message QueryGetLazyContractResponse {
+  LazyContract LazyContract = 1 [(gogoproto.nullable) = false];
 }
 
-message QueryAllLazySettlementRequest {
+message QueryAllLazyContractRequest {
   cosmos.base.query.v1beta1.PageRequest pagination = 1;
 }
 
-message QueryAllLazySettlementResponse {
-  repeated LazySettlement                         LazySettlement = 1 [(gogoproto.nullable) = false];
+message QueryAllLazyContractResponse {
+  repeated LazyContract                         LazyContract = 1 [(gogoproto.nullable) = false];
            cosmos.base.query.v1beta1.PageResponse pagination     = 2;
 }
 

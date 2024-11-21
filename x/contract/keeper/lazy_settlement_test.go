@@ -12,19 +12,19 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func createNLazySettlement(keeper keeper.Keeper, ctx context.Context, n int) []types.LazySettlement {
-	items := make([]types.LazySettlement, n)
+func createNLazyContract(keeper keeper.Keeper, ctx context.Context, n int) []types.LazyContract {
+	items := make([]types.LazyContract, n)
 	for i := range items {
-		items[i].Id = keeper.AppendLazySettlement(ctx, items[i])
+		items[i].Id = keeper.AppendLazyContract(ctx, items[i])
 	}
 	return items
 }
 
-func TestLazySettlementGet(t *testing.T) {
+func TestLazyContractGet(t *testing.T) {
 	keeper, ctx := keepertest.ContractKeeper(t)
-	items := createNLazySettlement(keeper, ctx, 10)
+	items := createNLazyContract(keeper, ctx, 10)
 	for _, item := range items {
-		got, found := keeper.GetLazySettlement(ctx, item.Id)
+		got, found := keeper.GetLazyContract(ctx, item.Id)
 		require.True(t, found)
 		require.Equal(t,
 			nullify.Fill(&item),
@@ -33,28 +33,28 @@ func TestLazySettlementGet(t *testing.T) {
 	}
 }
 
-func TestLazySettlementRemove(t *testing.T) {
+func TestLazyContractRemove(t *testing.T) {
 	keeper, ctx := keepertest.ContractKeeper(t)
-	items := createNLazySettlement(keeper, ctx, 10)
+	items := createNLazyContract(keeper, ctx, 10)
 	for _, item := range items {
-		keeper.RemoveLazySettlement(ctx, item.Id)
-		_, found := keeper.GetLazySettlement(ctx, item.Id)
+		keeper.RemoveLazyContract(ctx, item.Id)
+		_, found := keeper.GetLazyContract(ctx, item.Id)
 		require.False(t, found)
 	}
 }
 
-func TestLazySettlementGetAll(t *testing.T) {
+func TestLazyContractGetAll(t *testing.T) {
 	keeper, ctx := keepertest.ContractKeeper(t)
-	items := createNLazySettlement(keeper, ctx, 10)
+	items := createNLazyContract(keeper, ctx, 10)
 	require.ElementsMatch(t,
 		nullify.Fill(items),
-		nullify.Fill(keeper.GetAllLazySettlement(ctx)),
+		nullify.Fill(keeper.GetAllLazyContract(ctx)),
 	)
 }
 
-func TestLazySettlementCount(t *testing.T) {
+func TestLazyContractCount(t *testing.T) {
 	keeper, ctx := keepertest.ContractKeeper(t)
-	items := createNLazySettlement(keeper, ctx, 10)
+	items := createNLazyContract(keeper, ctx, 10)
 	count := uint64(len(items))
-	require.Equal(t, count, keeper.GetLazySettlementCount(ctx))
+	require.Equal(t, count, keeper.GetLazyContractCount(ctx))
 }

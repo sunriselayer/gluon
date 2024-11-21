@@ -8,7 +8,6 @@ package contract
 
 import (
 	context "context"
-
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,13 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName            = "/gluon.contract.Query/Params"
-	Query_Order_FullMethodName             = "/gluon.contract.Query/Order"
-	Query_OrderAll_FullMethodName          = "/gluon.contract.Query/OrderAll"
-	Query_SortedOrder_FullMethodName       = "/gluon.contract.Query/SortedOrder"
-	Query_SortedOrderAll_FullMethodName    = "/gluon.contract.Query/SortedOrderAll"
-	Query_LazySettlement_FullMethodName    = "/gluon.contract.Query/LazySettlement"
-	Query_LazySettlementAll_FullMethodName = "/gluon.contract.Query/LazySettlementAll"
+	Query_Params_FullMethodName          = "/gluon.contract.Query/Params"
+	Query_Order_FullMethodName           = "/gluon.contract.Query/Order"
+	Query_OrderAll_FullMethodName        = "/gluon.contract.Query/OrderAll"
+	Query_SortedOrder_FullMethodName     = "/gluon.contract.Query/SortedOrder"
+	Query_SortedOrderAll_FullMethodName  = "/gluon.contract.Query/SortedOrderAll"
+	Query_LazyContract_FullMethodName    = "/gluon.contract.Query/LazyContract"
+	Query_LazyContractAll_FullMethodName = "/gluon.contract.Query/LazyContractAll"
 )
 
 // QueryClient is the client API for Query service.
@@ -41,9 +40,9 @@ type QueryClient interface {
 	// Queries a list of SortedOrder items.
 	SortedOrder(ctx context.Context, in *QueryGetSortedOrderRequest, opts ...grpc.CallOption) (*QueryGetSortedOrderResponse, error)
 	SortedOrderAll(ctx context.Context, in *QueryAllSortedOrderRequest, opts ...grpc.CallOption) (*QueryAllSortedOrderResponse, error)
-	// Queries a list of LazySettlement items.
-	LazySettlement(ctx context.Context, in *QueryGetLazySettlementRequest, opts ...grpc.CallOption) (*QueryGetLazySettlementResponse, error)
-	LazySettlementAll(ctx context.Context, in *QueryAllLazySettlementRequest, opts ...grpc.CallOption) (*QueryAllLazySettlementResponse, error)
+	// Queries a list of LazyContract items.
+	LazyContract(ctx context.Context, in *QueryGetLazyContractRequest, opts ...grpc.CallOption) (*QueryGetLazyContractResponse, error)
+	LazyContractAll(ctx context.Context, in *QueryAllLazyContractRequest, opts ...grpc.CallOption) (*QueryAllLazyContractResponse, error)
 }
 
 type queryClient struct {
@@ -99,18 +98,18 @@ func (c *queryClient) SortedOrderAll(ctx context.Context, in *QueryAllSortedOrde
 	return out, nil
 }
 
-func (c *queryClient) LazySettlement(ctx context.Context, in *QueryGetLazySettlementRequest, opts ...grpc.CallOption) (*QueryGetLazySettlementResponse, error) {
-	out := new(QueryGetLazySettlementResponse)
-	err := c.cc.Invoke(ctx, Query_LazySettlement_FullMethodName, in, out, opts...)
+func (c *queryClient) LazyContract(ctx context.Context, in *QueryGetLazyContractRequest, opts ...grpc.CallOption) (*QueryGetLazyContractResponse, error) {
+	out := new(QueryGetLazyContractResponse)
+	err := c.cc.Invoke(ctx, Query_LazyContract_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *queryClient) LazySettlementAll(ctx context.Context, in *QueryAllLazySettlementRequest, opts ...grpc.CallOption) (*QueryAllLazySettlementResponse, error) {
-	out := new(QueryAllLazySettlementResponse)
-	err := c.cc.Invoke(ctx, Query_LazySettlementAll_FullMethodName, in, out, opts...)
+func (c *queryClient) LazyContractAll(ctx context.Context, in *QueryAllLazyContractRequest, opts ...grpc.CallOption) (*QueryAllLazyContractResponse, error) {
+	out := new(QueryAllLazyContractResponse)
+	err := c.cc.Invoke(ctx, Query_LazyContractAll_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -129,9 +128,9 @@ type QueryServer interface {
 	// Queries a list of SortedOrder items.
 	SortedOrder(context.Context, *QueryGetSortedOrderRequest) (*QueryGetSortedOrderResponse, error)
 	SortedOrderAll(context.Context, *QueryAllSortedOrderRequest) (*QueryAllSortedOrderResponse, error)
-	// Queries a list of LazySettlement items.
-	LazySettlement(context.Context, *QueryGetLazySettlementRequest) (*QueryGetLazySettlementResponse, error)
-	LazySettlementAll(context.Context, *QueryAllLazySettlementRequest) (*QueryAllLazySettlementResponse, error)
+	// Queries a list of LazyContract items.
+	LazyContract(context.Context, *QueryGetLazyContractRequest) (*QueryGetLazyContractResponse, error)
+	LazyContractAll(context.Context, *QueryAllLazyContractRequest) (*QueryAllLazyContractResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -154,11 +153,11 @@ func (UnimplementedQueryServer) SortedOrder(context.Context, *QueryGetSortedOrde
 func (UnimplementedQueryServer) SortedOrderAll(context.Context, *QueryAllSortedOrderRequest) (*QueryAllSortedOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SortedOrderAll not implemented")
 }
-func (UnimplementedQueryServer) LazySettlement(context.Context, *QueryGetLazySettlementRequest) (*QueryGetLazySettlementResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LazySettlement not implemented")
+func (UnimplementedQueryServer) LazyContract(context.Context, *QueryGetLazyContractRequest) (*QueryGetLazyContractResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LazyContract not implemented")
 }
-func (UnimplementedQueryServer) LazySettlementAll(context.Context, *QueryAllLazySettlementRequest) (*QueryAllLazySettlementResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LazySettlementAll not implemented")
+func (UnimplementedQueryServer) LazyContractAll(context.Context, *QueryAllLazyContractRequest) (*QueryAllLazyContractResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LazyContractAll not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -263,38 +262,38 @@ func _Query_SortedOrderAll_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_LazySettlement_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetLazySettlementRequest)
+func _Query_LazyContract_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetLazyContractRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).LazySettlement(ctx, in)
+		return srv.(QueryServer).LazyContract(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_LazySettlement_FullMethodName,
+		FullMethod: Query_LazyContract_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).LazySettlement(ctx, req.(*QueryGetLazySettlementRequest))
+		return srv.(QueryServer).LazyContract(ctx, req.(*QueryGetLazyContractRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_LazySettlementAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryAllLazySettlementRequest)
+func _Query_LazyContractAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllLazyContractRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).LazySettlementAll(ctx, in)
+		return srv.(QueryServer).LazyContractAll(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_LazySettlementAll_FullMethodName,
+		FullMethod: Query_LazyContractAll_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).LazySettlementAll(ctx, req.(*QueryAllLazySettlementRequest))
+		return srv.(QueryServer).LazyContractAll(ctx, req.(*QueryAllLazyContractRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -327,12 +326,12 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Query_SortedOrderAll_Handler,
 		},
 		{
-			MethodName: "LazySettlement",
-			Handler:    _Query_LazySettlement_Handler,
+			MethodName: "LazyContract",
+			Handler:    _Query_LazyContract_Handler,
 		},
 		{
-			MethodName: "LazySettlementAll",
-			Handler:    _Query_LazySettlementAll_Handler,
+			MethodName: "LazyContractAll",
+			Handler:    _Query_LazyContractAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

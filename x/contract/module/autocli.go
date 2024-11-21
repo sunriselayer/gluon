@@ -40,12 +40,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "expiry"}, {ProtoField: "index"}},
 				},
 				{
-					RpcMethod: "LazySettlementAll",
+					RpcMethod: "LazyContractAll",
 					Use:       "list-lazy-settlement",
 					Short:     "List all lazy-settlement",
 				},
 				{
-					RpcMethod:      "LazySettlement",
+					RpcMethod:      "LazyContract",
 					Use:            "show-lazy-settlement [id]",
 					Short:          "Shows a lazy-settlement by id",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},

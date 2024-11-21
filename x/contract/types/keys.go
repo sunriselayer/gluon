@@ -31,6 +31,6 @@ func KeyPrefix(p string) []byte {
 }
 
 const (
-	LazySettlementKey      = "LazySettlement/value/"
-	LazySettlementCountKey = "LazySettlement/count/"
+	LazyContractKey      = "LazyContract/value/"
+	LazyContractCountKey = "LazyContract/count/"
 )

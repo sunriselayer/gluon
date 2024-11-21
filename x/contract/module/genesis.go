@@ -17,13 +17,13 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 	for _, elem := range genState.SortedOrderList {
 		k.SetSortedOrder(ctx, elem)
 	}
-	// Set all the lazySettlement
-	for _, elem := range genState.LazySettlementList {
-		k.SetLazySettlement(ctx, elem)
+	// Set all the lazyContract
+	for _, elem := range genState.LazyContractList {
+		k.SetLazyContract(ctx, elem)
 	}
 
-	// Set lazySettlement count
-	k.SetLazySettlementCount(ctx, genState.LazySettlementCount)
+	// Set lazyContract count
+	k.SetLazyContractCount(ctx, genState.LazyContractCount)
 	// this line is used by starport scaffolding # genesis/module/init
 	k.SetPort(ctx, genState.PortId)
 	// Only try to bind to port if it is not already bound, since we may already own
@@ -49,8 +49,8 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	genesis.PortId = k.GetPort(ctx)
 	genesis.OrderList = k.GetAllOrder(ctx)
 	genesis.SortedOrderList = k.GetAllSortedOrder(ctx)
-	genesis.LazySettlementList = k.GetAllLazySettlement(ctx)
-	genesis.LazySettlementCount = k.GetLazySettlementCount(ctx)
+	genesis.LazyContractList = k.GetAllLazyContract(ctx)
+	genesis.LazyContractCount = k.GetLazyContractCount(ctx)
 	// this line is used by starport scaffolding # genesis/module/export
 
 	return genesis

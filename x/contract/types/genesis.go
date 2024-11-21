@@ -12,10 +12,10 @@ const DefaultIndex uint64 = 1
 // DefaultGenesis returns the default genesis state
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{
-		PortId:             PortID,
-		OrderList:          []Order{},
-		SortedOrderList:    []SortedOrder{},
-		LazySettlementList: []LazySettlement{},
+		PortId:           PortID,
+		OrderList:        []Order{},
+		SortedOrderList:  []SortedOrder{},
+		LazyContractList: []LazyContract{},
 		// this line is used by starport scaffolding # genesis/types/default
 		Params: DefaultParams(),
 	}
@@ -47,17 +47,17 @@ func (gs GenesisState) Validate() error {
 		}
 		sortedOrderIndexMap[index] = struct{}{}
 	}
-	// Check for duplicated ID in lazySettlement
-	lazySettlementIdMap := make(map[uint64]bool)
-	lazySettlementCount := gs.GetLazySettlementCount()
-	for _, elem := range gs.LazySettlementList {
-		if _, ok := lazySettlementIdMap[elem.Id]; ok {
-			return fmt.Errorf("duplicated id for lazySettlement")
+	// Check for duplicated ID in lazyContract
+	lazyContractIdMap := make(map[uint64]bool)
+	lazyContractCount := gs.GetLazyContractCount()
+	for _, elem := range gs.LazyContractList {
+		if _, ok := lazyContractIdMap[elem.Id]; ok {
+			return fmt.Errorf("duplicated id for lazyContract")
 		}
-		if elem.Id >= lazySettlementCount {
-			return fmt.Errorf("lazySettlement id should be lower or equal than the last id")
+		if elem.Id >= lazyContractCount {
+			return fmt.Errorf("lazyContract id should be lower or equal than the last id")
 		}
-		lazySettlementIdMap[elem.Id] = true
+		lazyContractIdMap[elem.Id] = true
 	}
 	// this line is used by starport scaffolding # genesis/types/validate
 

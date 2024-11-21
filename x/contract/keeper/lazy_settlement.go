@@ -11,11 +11,11 @@ import (
 	"github.com/cosmos/cosmos-sdk/runtime"
 )
 
-// GetLazySettlementCount get the total number of lazySettlement
-func (k Keeper) GetLazySettlementCount(ctx context.Context) uint64 {
+// GetLazyContractCount get the total number of lazyContract
+func (k Keeper) GetLazyContractCount(ctx context.Context) uint64 {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, []byte{})
-	byteKey := types.KeyPrefix(types.LazySettlementCountKey)
+	byteKey := types.KeyPrefix(types.LazyContractCountKey)
 	bz := store.Get(byteKey)
 
 	// Count doesn't exist: no element
@@ -27,51 +27,51 @@ func (k Keeper) GetLazySettlementCount(ctx context.Context) uint64 {
 	return binary.BigEndian.Uint64(bz)
 }
 
-// SetLazySettlementCount set the total number of lazySettlement
-func (k Keeper) SetLazySettlementCount(ctx context.Context, count uint64) {
+// SetLazyContractCount set the total number of lazyContract
+func (k Keeper) SetLazyContractCount(ctx context.Context, count uint64) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, []byte{})
-	byteKey := types.KeyPrefix(types.LazySettlementCountKey)
+	byteKey := types.KeyPrefix(types.LazyContractCountKey)
 	bz := make([]byte, 8)
 	binary.BigEndian.PutUint64(bz, count)
 	store.Set(byteKey, bz)
 }
 
-// AppendLazySettlement appends a lazySettlement in the store with a new id and update the count
-func (k Keeper) AppendLazySettlement(
+// AppendLazyContract appends a lazyContract in the store with a new id and update the count
+func (k Keeper) AppendLazyContract(
 	ctx context.Context,
-	lazySettlement types.LazySettlement,
+	lazyContract types.LazyContract,
 ) uint64 {
-	// Create the lazySettlement
-	count := k.GetLazySettlementCount(ctx)
+	// Create the lazyContract
+	count := k.GetLazyContractCount(ctx)
 
 	// Set the ID of the appended value
-	lazySettlement.Id = count
+	lazyContract.Id = count
 
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.LazySettlementKey))
-	appendedValue := k.cdc.MustMarshal(&lazySettlement)
-	store.Set(GetLazySettlementIDBytes(lazySettlement.Id), appendedValue)
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.LazyContractKey))
+	appendedValue := k.cdc.MustMarshal(&lazyContract)
+	store.Set(GetLazyContractIDBytes(lazyContract.Id), appendedValue)
 
-	// Update lazySettlement count
-	k.SetLazySettlementCount(ctx, count+1)
+	// Update lazyContract count
+	k.SetLazyContractCount(ctx, count+1)
 
 	return count
 }
 
-// SetLazySettlement set a specific lazySettlement in the store
-func (k Keeper) SetLazySettlement(ctx context.Context, lazySettlement types.LazySettlement) {
+// SetLazyContract set a specific lazyContract in the store
+func (k Keeper) SetLazyContract(ctx context.Context, lazyContract types.LazyContract) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.LazySettlementKey))
-	b := k.cdc.MustMarshal(&lazySettlement)
-	store.Set(GetLazySettlementIDBytes(lazySettlement.Id), b)
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.LazyContractKey))
+	b := k.cdc.MustMarshal(&lazyContract)
+	store.Set(GetLazyContractIDBytes(lazyContract.Id), b)
 }
 
-// GetLazySettlement returns a lazySettlement from its id
-func (k Keeper) GetLazySettlement(ctx context.Context, id uint64) (val types.LazySettlement, found bool) {
+// GetLazyContract returns a lazyContract from its id
+func (k Keeper) GetLazyContract(ctx context.Context, id uint64) (val types.LazyContract, found bool) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.LazySettlementKey))
-	b := store.Get(GetLazySettlementIDBytes(id))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.LazyContractKey))
+	b := store.Get(GetLazyContractIDBytes(id))
 	if b == nil {
 		return val, false
 	}
@@ -79,23 +79,23 @@ func (k Keeper) GetLazySettlement(ctx context.Context, id uint64) (val types.Laz
 	return val, true
 }
 
-// RemoveLazySettlement removes a lazySettlement from the store
-func (k Keeper) RemoveLazySettlement(ctx context.Context, id uint64) {
+// RemoveLazyContract removes a lazyContract from the store
+func (k Keeper) RemoveLazyContract(ctx context.Context, id uint64) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.LazySettlementKey))
-	store.Delete(GetLazySettlementIDBytes(id))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.LazyContractKey))
+	store.Delete(GetLazyContractIDBytes(id))
 }
 
-// GetAllLazySettlement returns all lazySettlement
-func (k Keeper) GetAllLazySettlement(ctx context.Context) (list []types.LazySettlement) {
+// GetAllLazyContract returns all lazyContract
+func (k Keeper) GetAllLazyContract(ctx context.Context) (list []types.LazyContract) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.LazySettlementKey))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.LazyContractKey))
 	iterator := storetypes.KVStorePrefixIterator(store, []byte{})
 
 	defer iterator.Close()
 
 	for ; iterator.Valid(); iterator.Next() {
-		var val types.LazySettlement
+		var val types.LazyContract
 		k.cdc.MustUnmarshal(iterator.Value(), &val)
 		list = append(list, val)
 	}
@@ -103,9 +103,9 @@ func (k Keeper) GetAllLazySettlement(ctx context.Context) (list []types.LazySett
 	return
 }
 
-// GetLazySettlementIDBytes returns the byte representation of the ID
-func GetLazySettlementIDBytes(id uint64) []byte {
-	bz := types.KeyPrefix(types.LazySettlementKey)
+// GetLazyContractIDBytes returns the byte representation of the ID
+func GetLazyContractIDBytes(id uint64) []byte {
+	bz := types.KeyPrefix(types.LazyContractKey)
 	bz = append(bz, []byte("/")...)
 	bz = binary.BigEndian.AppendUint64(bz, id)
 	return bz

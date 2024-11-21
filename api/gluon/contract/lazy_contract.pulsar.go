@@ -2,37 +2,37 @@
 package contract
 
 import (
-	fmt "fmt"
-	io "io"
-	reflect "reflect"
-	sync "sync"
-
 	v1beta1 "cosmossdk.io/api/cosmos/base/v1beta1"
+	fmt "fmt"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	io "io"
+	reflect "reflect"
+	sync "sync"
 )
 
 var (
-	md_LazyContract               protoreflect.MessageDescriptor
-	fd_LazyContract_id            protoreflect.FieldDescriptor
-	fd_LazyContract_creditor      protoreflect.FieldDescriptor
-	fd_LazyContract_debtor        protoreflect.FieldDescriptor
-	fd_LazyContract_amountEscrow  protoreflect.FieldDescriptor
-	fd_LazyContract_amountPending protoreflect.FieldDescriptor
-	fd_LazyContract_expiry        protoreflect.FieldDescriptor
+	md_LazyContract                protoreflect.MessageDescriptor
+	fd_LazyContract_id             protoreflect.FieldDescriptor
+	fd_LazyContract_creditor       protoreflect.FieldDescriptor
+	fd_LazyContract_debtor         protoreflect.FieldDescriptor
+	fd_LazyContract_amount_escrow  protoreflect.FieldDescriptor
+	fd_LazyContract_amount_pending protoreflect.FieldDescriptor
+	fd_LazyContract_expiry         protoreflect.FieldDescriptor
 )
 
 func init() {
-	file_gluon_contract_lazy_settlement_proto_init()
-	md_LazyContract = File_gluon_contract_lazy_settlement_proto.Messages().ByName("LazyContract")
+	file_gluon_contract_lazy_contract_proto_init()
+	md_LazyContract = File_gluon_contract_lazy_contract_proto.Messages().ByName("LazyContract")
 	fd_LazyContract_id = md_LazyContract.Fields().ByName("id")
 	fd_LazyContract_creditor = md_LazyContract.Fields().ByName("creditor")
 	fd_LazyContract_debtor = md_LazyContract.Fields().ByName("debtor")
-	fd_LazyContract_amountEscrow = md_LazyContract.Fields().ByName("amountEscrow")
-	fd_LazyContract_amountPending = md_LazyContract.Fields().ByName("amountPending")
+	fd_LazyContract_amount_escrow = md_LazyContract.Fields().ByName("amount_escrow")
+	fd_LazyContract_amount_pending = md_LazyContract.Fields().ByName("amount_pending")
 	fd_LazyContract_expiry = md_LazyContract.Fields().ByName("expiry")
 }
 
@@ -45,7 +45,7 @@ func (x *LazyContract) ProtoReflect() protoreflect.Message {
 }
 
 func (x *LazyContract) slowProtoReflect() protoreflect.Message {
-	mi := &file_gluon_contract_lazy_settlement_proto_msgTypes[0]
+	mi := &file_gluon_contract_lazy_contract_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -121,18 +121,18 @@ func (x *fastReflection_LazyContract) Range(f func(protoreflect.FieldDescriptor,
 	}
 	if x.AmountEscrow != nil {
 		value := protoreflect.ValueOfMessage(x.AmountEscrow.ProtoReflect())
-		if !f(fd_LazyContract_amountEscrow, value) {
+		if !f(fd_LazyContract_amount_escrow, value) {
 			return
 		}
 	}
 	if x.AmountPending != nil {
 		value := protoreflect.ValueOfMessage(x.AmountPending.ProtoReflect())
-		if !f(fd_LazyContract_amountPending, value) {
+		if !f(fd_LazyContract_amount_pending, value) {
 			return
 		}
 	}
-	if x.Expiry != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.Expiry)
+	if x.Expiry != nil {
+		value := protoreflect.ValueOfMessage(x.Expiry.ProtoReflect())
 		if !f(fd_LazyContract_expiry, value) {
 			return
 		}
@@ -158,12 +158,12 @@ func (x *fastReflection_LazyContract) Has(fd protoreflect.FieldDescriptor) bool 
 		return x.Creditor != ""
 	case "gluon.contract.LazyContract.debtor":
 		return x.Debtor != ""
-	case "gluon.contract.LazyContract.amountEscrow":
+	case "gluon.contract.LazyContract.amount_escrow":
 		return x.AmountEscrow != nil
-	case "gluon.contract.LazyContract.amountPending":
+	case "gluon.contract.LazyContract.amount_pending":
 		return x.AmountPending != nil
 	case "gluon.contract.LazyContract.expiry":
-		return x.Expiry != uint64(0)
+		return x.Expiry != nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.LazyContract"))
@@ -186,12 +186,12 @@ func (x *fastReflection_LazyContract) Clear(fd protoreflect.FieldDescriptor) {
 		x.Creditor = ""
 	case "gluon.contract.LazyContract.debtor":
 		x.Debtor = ""
-	case "gluon.contract.LazyContract.amountEscrow":
+	case "gluon.contract.LazyContract.amount_escrow":
 		x.AmountEscrow = nil
-	case "gluon.contract.LazyContract.amountPending":
+	case "gluon.contract.LazyContract.amount_pending":
 		x.AmountPending = nil
 	case "gluon.contract.LazyContract.expiry":
-		x.Expiry = uint64(0)
+		x.Expiry = nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.LazyContract"))
@@ -217,15 +217,15 @@ func (x *fastReflection_LazyContract) Get(descriptor protoreflect.FieldDescripto
 	case "gluon.contract.LazyContract.debtor":
 		value := x.Debtor
 		return protoreflect.ValueOfString(value)
-	case "gluon.contract.LazyContract.amountEscrow":
+	case "gluon.contract.LazyContract.amount_escrow":
 		value := x.AmountEscrow
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "gluon.contract.LazyContract.amountPending":
+	case "gluon.contract.LazyContract.amount_pending":
 		value := x.AmountPending
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	case "gluon.contract.LazyContract.expiry":
 		value := x.Expiry
-		return protoreflect.ValueOfUint64(value)
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.LazyContract"))
@@ -252,12 +252,12 @@ func (x *fastReflection_LazyContract) Set(fd protoreflect.FieldDescriptor, value
 		x.Creditor = value.Interface().(string)
 	case "gluon.contract.LazyContract.debtor":
 		x.Debtor = value.Interface().(string)
-	case "gluon.contract.LazyContract.amountEscrow":
+	case "gluon.contract.LazyContract.amount_escrow":
 		x.AmountEscrow = value.Message().Interface().(*v1beta1.Coin)
-	case "gluon.contract.LazyContract.amountPending":
+	case "gluon.contract.LazyContract.amount_pending":
 		x.AmountPending = value.Message().Interface().(*v1beta1.Coin)
 	case "gluon.contract.LazyContract.expiry":
-		x.Expiry = value.Uint()
+		x.Expiry = value.Message().Interface().(*timestamppb.Timestamp)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.LazyContract"))
@@ -278,24 +278,27 @@ func (x *fastReflection_LazyContract) Set(fd protoreflect.FieldDescriptor, value
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_LazyContract) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.contract.LazyContract.amountEscrow":
+	case "gluon.contract.LazyContract.amount_escrow":
 		if x.AmountEscrow == nil {
 			x.AmountEscrow = new(v1beta1.Coin)
 		}
 		return protoreflect.ValueOfMessage(x.AmountEscrow.ProtoReflect())
-	case "gluon.contract.LazyContract.amountPending":
+	case "gluon.contract.LazyContract.amount_pending":
 		if x.AmountPending == nil {
 			x.AmountPending = new(v1beta1.Coin)
 		}
 		return protoreflect.ValueOfMessage(x.AmountPending.ProtoReflect())
+	case "gluon.contract.LazyContract.expiry":
+		if x.Expiry == nil {
+			x.Expiry = new(timestamppb.Timestamp)
+		}
+		return protoreflect.ValueOfMessage(x.Expiry.ProtoReflect())
 	case "gluon.contract.LazyContract.id":
 		panic(fmt.Errorf("field id of message gluon.contract.LazyContract is not mutable"))
 	case "gluon.contract.LazyContract.creditor":
 		panic(fmt.Errorf("field creditor of message gluon.contract.LazyContract is not mutable"))
 	case "gluon.contract.LazyContract.debtor":
 		panic(fmt.Errorf("field debtor of message gluon.contract.LazyContract is not mutable"))
-	case "gluon.contract.LazyContract.expiry":
-		panic(fmt.Errorf("field expiry of message gluon.contract.LazyContract is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.LazyContract"))
@@ -315,14 +318,15 @@ func (x *fastReflection_LazyContract) NewField(fd protoreflect.FieldDescriptor) 
 		return protoreflect.ValueOfString("")
 	case "gluon.contract.LazyContract.debtor":
 		return protoreflect.ValueOfString("")
-	case "gluon.contract.LazyContract.amountEscrow":
+	case "gluon.contract.LazyContract.amount_escrow":
 		m := new(v1beta1.Coin)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "gluon.contract.LazyContract.amountPending":
+	case "gluon.contract.LazyContract.amount_pending":
 		m := new(v1beta1.Coin)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	case "gluon.contract.LazyContract.expiry":
-		return protoreflect.ValueOfUint64(uint64(0))
+		m := new(timestamppb.Timestamp)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.LazyContract"))
@@ -411,8 +415,9 @@ func (x *fastReflection_LazyContract) ProtoMethods() *protoiface.Methods {
 			l = options.Size(x.AmountPending)
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		if x.Expiry != 0 {
-			n += 1 + runtime.Sov(uint64(x.Expiry))
+		if x.Expiry != nil {
+			l = options.Size(x.Expiry)
+			n += 1 + l + runtime.Sov(uint64(l))
 		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
@@ -443,10 +448,19 @@ func (x *fastReflection_LazyContract) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.Expiry != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.Expiry))
+		if x.Expiry != nil {
+			encoded, err := options.Marshal(x.Expiry)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
 			i--
-			dAtA[i] = 0x30
+			dAtA[i] = 0x32
 		}
 		if x.AmountPending != nil {
 			encoded, err := options.Marshal(x.AmountPending)
@@ -700,10 +714,10 @@ func (x *fastReflection_LazyContract) ProtoMethods() *protoiface.Methods {
 				}
 				iNdEx = postIndex
 			case 6:
-				if wireType != 0 {
+				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Expiry", wireType)
 				}
-				x.Expiry = 0
+				var msglen int
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -713,11 +727,28 @@ func (x *fastReflection_LazyContract) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					x.Expiry |= uint64(b&0x7F) << shift
+					msglen |= int(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.Expiry == nil {
+					x.Expiry = &timestamppb.Timestamp{}
+				}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Expiry); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -757,7 +788,7 @@ func (x *fastReflection_LazyContract) ProtoMethods() *protoiface.Methods {
 // versions:
 // 	protoc-gen-go v1.27.0
 // 	protoc        (unknown)
-// source: gluon/contract/lazy_settlement.proto
+// source: gluon/contract/lazy_contract.proto
 
 const (
 	// Verify that this generated code is sufficiently up-to-date.
@@ -771,18 +802,18 @@ type LazyContract struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id            uint64        `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Creditor      string        `protobuf:"bytes,2,opt,name=creditor,proto3" json:"creditor,omitempty"`
-	Debtor        string        `protobuf:"bytes,3,opt,name=debtor,proto3" json:"debtor,omitempty"`
-	AmountEscrow  *v1beta1.Coin `protobuf:"bytes,4,opt,name=amountEscrow,proto3" json:"amountEscrow,omitempty"`
-	AmountPending *v1beta1.Coin `protobuf:"bytes,5,opt,name=amountPending,proto3" json:"amountPending,omitempty"`
-	Expiry        uint64        `protobuf:"varint,6,opt,name=expiry,proto3" json:"expiry,omitempty"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Creditor      string                 `protobuf:"bytes,2,opt,name=creditor,proto3" json:"creditor,omitempty"`
+	Debtor        string                 `protobuf:"bytes,3,opt,name=debtor,proto3" json:"debtor,omitempty"`
+	AmountEscrow  *v1beta1.Coin          `protobuf:"bytes,4,opt,name=amount_escrow,json=amountEscrow,proto3" json:"amount_escrow,omitempty"`
+	AmountPending *v1beta1.Coin          `protobuf:"bytes,5,opt,name=amount_pending,json=amountPending,proto3" json:"amount_pending,omitempty"`
+	Expiry        *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=expiry,proto3" json:"expiry,omitempty"`
 }
 
 func (x *LazyContract) Reset() {
 	*x = LazyContract{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_gluon_contract_lazy_settlement_proto_msgTypes[0]
+		mi := &file_gluon_contract_lazy_contract_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -796,7 +827,7 @@ func (*LazyContract) ProtoMessage() {}
 
 // Deprecated: Use LazyContract.ProtoReflect.Descriptor instead.
 func (*LazyContract) Descriptor() ([]byte, []int) {
-	return file_gluon_contract_lazy_settlement_proto_rawDescGZIP(), []int{0}
+	return file_gluon_contract_lazy_contract_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *LazyContract) GetId() uint64 {
@@ -834,85 +865,92 @@ func (x *LazyContract) GetAmountPending() *v1beta1.Coin {
 	return nil
 }
 
-func (x *LazyContract) GetExpiry() uint64 {
+func (x *LazyContract) GetExpiry() *timestamppb.Timestamp {
 	if x != nil {
 		return x.Expiry
 	}
-	return 0
+	return nil
 }
 
-var File_gluon_contract_lazy_settlement_proto protoreflect.FileDescriptor
+var File_gluon_contract_lazy_contract_proto protoreflect.FileDescriptor
 
-var file_gluon_contract_lazy_settlement_proto_rawDesc = []byte{
-	0x0a, 0x24, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
-	0x2f, 0x6c, 0x61, 0x7a, 0x79, 0x5f, 0x73, 0x65, 0x74, 0x74, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f,
-	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x63, 0x6f,
-	0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x62, 0x61, 0x73, 0x65, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61,
-	0x31, 0x2f, 0x63, 0x6f, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xf8, 0x01, 0x0a,
-	0x0e, 0x4c, 0x61, 0x7a, 0x79, 0x53, 0x65, 0x74, 0x74, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x12,
-	0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12,
-	0x1a, 0x0a, 0x08, 0x63, 0x72, 0x65, 0x64, 0x69, 0x74, 0x6f, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x08, 0x63, 0x72, 0x65, 0x64, 0x69, 0x74, 0x6f, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x64,
-	0x65, 0x62, 0x74, 0x6f, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x64, 0x65, 0x62,
-	0x74, 0x6f, 0x72, 0x12, 0x43, 0x0a, 0x0c, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x45, 0x73, 0x63,
-	0x72, 0x6f, 0x77, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d,
-	0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e,
-	0x43, 0x6f, 0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0c, 0x61, 0x6d, 0x6f, 0x75,
-	0x6e, 0x74, 0x45, 0x73, 0x63, 0x72, 0x6f, 0x77, 0x12, 0x45, 0x0a, 0x0d, 0x61, 0x6d, 0x6f, 0x75,
-	0x6e, 0x74, 0x50, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31,
-	0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00,
-	0x52, 0x0d, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x50, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x12,
-	0x16, 0x0a, 0x06, 0x65, 0x78, 0x70, 0x69, 0x72, 0x79, 0x18, 0x06, 0x20, 0x01, 0x28, 0x04, 0x52,
-	0x06, 0x65, 0x78, 0x70, 0x69, 0x72, 0x79, 0x42, 0x9c, 0x01, 0x0a, 0x12, 0x63, 0x6f, 0x6d, 0x2e,
-	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x42, 0x13,
-	0x4c, 0x61, 0x7a, 0x79, 0x53, 0x65, 0x74, 0x74, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x50, 0x72,
-	0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x18, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69,
-	0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xa2,
-	0x02, 0x03, 0x47, 0x43, 0x58, 0xaa, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x43, 0x6f,
-	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xca, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43,
-	0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xe2, 0x02, 0x1a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c,
-	0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61,
-	0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0f, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x43, 0x6f,
-	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+var file_gluon_contract_lazy_contract_proto_rawDesc = []byte{
+	0x0a, 0x22, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
+	0x2f, 0x6c, 0x61, 0x7a, 0x79, 0x5f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74,
+	0x72, 0x61, 0x63, 0x74, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f,
+	0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x63, 0x6f, 0x73, 0x6d,
+	0x6f, 0x73, 0x2f, 0x62, 0x61, 0x73, 0x65, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2f,
+	0x63, 0x6f, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67,
+	0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65,
+	0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x9e, 0x02, 0x0a, 0x0c,
+	0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x12, 0x0e, 0x0a, 0x02,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08,
+	0x63, 0x72, 0x65, 0x64, 0x69, 0x74, 0x6f, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
+	0x63, 0x72, 0x65, 0x64, 0x69, 0x74, 0x6f, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x64, 0x65, 0x62, 0x74,
+	0x6f, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x64, 0x65, 0x62, 0x74, 0x6f, 0x72,
+	0x12, 0x44, 0x0a, 0x0d, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x65, 0x73, 0x63, 0x72, 0x6f,
+	0x77, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f,
+	0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0c, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74,
+	0x45, 0x73, 0x63, 0x72, 0x6f, 0x77, 0x12, 0x46, 0x0a, 0x0e, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74,
+	0x5f, 0x70, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19,
+	0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62,
+	0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52,
+	0x0d, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x50, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x12, 0x3c,
+	0x0a, 0x06, 0x65, 0x78, 0x70, 0x69, 0x72, 0x79, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a,
+	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
+	0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x08, 0xc8, 0xde, 0x1f, 0x00,
+	0x90, 0xdf, 0x1f, 0x01, 0x52, 0x06, 0x65, 0x78, 0x70, 0x69, 0x72, 0x79, 0x42, 0x9a, 0x01, 0x0a,
+	0x12, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72,
+	0x61, 0x63, 0x74, 0x42, 0x11, 0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
+	0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x18, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f,
+	0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61,
+	0x63, 0x74, 0xa2, 0x02, 0x03, 0x47, 0x43, 0x58, 0xaa, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e,
+	0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xca, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f,
+	0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xe2, 0x02, 0x1a, 0x47, 0x6c, 0x75,
+	0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x5c, 0x47, 0x50, 0x42, 0x4d,
+	0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0f, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a,
+	0x3a, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
-	file_gluon_contract_lazy_settlement_proto_rawDescOnce sync.Once
-	file_gluon_contract_lazy_settlement_proto_rawDescData = file_gluon_contract_lazy_settlement_proto_rawDesc
+	file_gluon_contract_lazy_contract_proto_rawDescOnce sync.Once
+	file_gluon_contract_lazy_contract_proto_rawDescData = file_gluon_contract_lazy_contract_proto_rawDesc
 )
 
-func file_gluon_contract_lazy_settlement_proto_rawDescGZIP() []byte {
-	file_gluon_contract_lazy_settlement_proto_rawDescOnce.Do(func() {
-		file_gluon_contract_lazy_settlement_proto_rawDescData = protoimpl.X.CompressGZIP(file_gluon_contract_lazy_settlement_proto_rawDescData)
+func file_gluon_contract_lazy_contract_proto_rawDescGZIP() []byte {
+	file_gluon_contract_lazy_contract_proto_rawDescOnce.Do(func() {
+		file_gluon_contract_lazy_contract_proto_rawDescData = protoimpl.X.CompressGZIP(file_gluon_contract_lazy_contract_proto_rawDescData)
 	})
-	return file_gluon_contract_lazy_settlement_proto_rawDescData
+	return file_gluon_contract_lazy_contract_proto_rawDescData
 }
 
-var file_gluon_contract_lazy_settlement_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_gluon_contract_lazy_settlement_proto_goTypes = []interface{}{
-	(*LazyContract)(nil), // 0: gluon.contract.LazyContract
-	(*v1beta1.Coin)(nil),   // 1: cosmos.base.v1beta1.Coin
+var file_gluon_contract_lazy_contract_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_gluon_contract_lazy_contract_proto_goTypes = []interface{}{
+	(*LazyContract)(nil),          // 0: gluon.contract.LazyContract
+	(*v1beta1.Coin)(nil),          // 1: cosmos.base.v1beta1.Coin
+	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
 }
-var file_gluon_contract_lazy_settlement_proto_depIdxs = []int32{
-	1, // 0: gluon.contract.LazyContract.amountEscrow:type_name -> cosmos.base.v1beta1.Coin
-	1, // 1: gluon.contract.LazyContract.amountPending:type_name -> cosmos.base.v1beta1.Coin
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+var file_gluon_contract_lazy_contract_proto_depIdxs = []int32{
+	1, // 0: gluon.contract.LazyContract.amount_escrow:type_name -> cosmos.base.v1beta1.Coin
+	1, // 1: gluon.contract.LazyContract.amount_pending:type_name -> cosmos.base.v1beta1.Coin
+	2, // 2: gluon.contract.LazyContract.expiry:type_name -> google.protobuf.Timestamp
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
-func init() { file_gluon_contract_lazy_settlement_proto_init() }
-func file_gluon_contract_lazy_settlement_proto_init() {
-	if File_gluon_contract_lazy_settlement_proto != nil {
+func init() { file_gluon_contract_lazy_contract_proto_init() }
+func file_gluon_contract_lazy_contract_proto_init() {
+	if File_gluon_contract_lazy_contract_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_gluon_contract_lazy_settlement_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_gluon_contract_lazy_contract_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LazyContract); i {
 			case 0:
 				return &v.state
@@ -929,18 +967,18 @@ func file_gluon_contract_lazy_settlement_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_gluon_contract_lazy_settlement_proto_rawDesc,
+			RawDescriptor: file_gluon_contract_lazy_contract_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_gluon_contract_lazy_settlement_proto_goTypes,
-		DependencyIndexes: file_gluon_contract_lazy_settlement_proto_depIdxs,
-		MessageInfos:      file_gluon_contract_lazy_settlement_proto_msgTypes,
+		GoTypes:           file_gluon_contract_lazy_contract_proto_goTypes,
+		DependencyIndexes: file_gluon_contract_lazy_contract_proto_depIdxs,
+		MessageInfos:      file_gluon_contract_lazy_contract_proto_msgTypes,
 	}.Build()
-	File_gluon_contract_lazy_settlement_proto = out.File
-	file_gluon_contract_lazy_settlement_proto_rawDesc = nil
-	file_gluon_contract_lazy_settlement_proto_goTypes = nil
-	file_gluon_contract_lazy_settlement_proto_depIdxs = nil
+	File_gluon_contract_lazy_contract_proto = out.File
+	file_gluon_contract_lazy_contract_proto_rawDesc = nil
+	file_gluon_contract_lazy_contract_proto_goTypes = nil
+	file_gluon_contract_lazy_contract_proto_depIdxs = nil
 }
