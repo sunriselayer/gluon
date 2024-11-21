@@ -57,16 +57,12 @@ func (AppModule) GenerateGenesisState(simState *module.SimulationState) {
 		PortId: types.PortID,
 		OrderList: []types.Order{
 			{
-				Id: "0",
-				Body: types.OrderBody{
-					Address: sample.AccAddress(),
-				},
+				Id:      "0",
+				Address: sample.AccAddress(),
 			},
 			{
-				Id: "1",
-				Body: types.OrderBody{
-					Address: sample.AccAddress(),
-				},
+				Id:      "1",
+				Address: sample.AccAddress(),
 			},
 		},
 		// this line is used by starport scaffolding # simapp/module/genesisState

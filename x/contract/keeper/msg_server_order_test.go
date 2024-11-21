@@ -22,10 +22,8 @@ func TestOrderMsgServerCreate(t *testing.T) {
 	for i := 0; i < 5; i++ {
 		expected := &types.MsgCreateOrder{
 			Order: types.Order{
-				Id: strconv.Itoa(i),
-				Body: types.OrderBody{
-					Address: user,
-				},
+				Id:      strconv.Itoa(i),
+				Address: user,
 			},
 		}
 		_, err := srv.CreateOrder(ctx, expected)
@@ -34,7 +32,7 @@ func TestOrderMsgServerCreate(t *testing.T) {
 			expected.Order.Id,
 		)
 		require.True(t, found)
-		require.Equal(t, expected.Order.Body.Address, rst.Body.Address)
+		require.Equal(t, expected.Order.Address, rst.Address)
 	}
 }
 
@@ -74,10 +72,8 @@ func TestOrderMsgServerDelete(t *testing.T) {
 
 			_, err := srv.CreateOrder(ctx, &types.MsgCreateOrder{
 				Order: types.Order{
-					Id: strconv.Itoa(0),
-					Body: types.OrderBody{
-						Address: user,
-					},
+					Id:      strconv.Itoa(0),
+					Address: user,
 				},
 			})
 			require.NoError(t, err)

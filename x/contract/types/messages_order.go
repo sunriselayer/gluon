@@ -9,10 +9,16 @@ import (
 var _ sdk.Msg = &MsgCreateOrder{}
 
 func NewMsgCreateOrder(
+	id string,
 	order Order,
+	pairingId uint64,
+	signature []byte,
 ) *MsgCreateOrder {
 	return &MsgCreateOrder{
-		Order: order,
+		Id:        id,
+		Order:     order,
+		PairingId: pairingId,
+		Signature: signature,
 	}
 }
 
@@ -21,6 +27,10 @@ func (msg *MsgCreateOrder) ValidateBasic() error {
 	if err != nil {
 		return err
 	}
+	if len(msg.Signature) == 0 {
+		return errorsmod.Wrap(ErrEmptySignature, "signature must not be empty")
+	}
+
 	return nil
 }
 

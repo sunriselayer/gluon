@@ -4,12 +4,15 @@
 package types
 
 import (
+	cosmossdk_io_math "cosmossdk.io/math"
 	fmt "fmt"
+	_ "github.com/cosmos/cosmos-proto"
+	_ "github.com/cosmos/cosmos-sdk/types/tx/amino"
+	_ "github.com/cosmos/gogoproto/gogoproto"
+	proto "github.com/cosmos/gogoproto/proto"
 	io "io"
 	math "math"
 	math_bits "math/bits"
-
-	proto "github.com/cosmos/gogoproto/proto"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -24,8 +27,10 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type SortedOrder struct {
-	Expiry string `protobuf:"bytes,1,opt,name=expiry,proto3" json:"expiry,omitempty"`
-	Index  string `protobuf:"bytes,2,opt,name=index,proto3" json:"index,omitempty"`
+	Expiry           uint64                `protobuf:"varint,1,opt,name=expiry,proto3" json:"expiry,omitempty"`
+	Id               string                `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	Cancelled        bool                  `protobuf:"varint,3,opt,name=cancelled,proto3" json:"cancelled,omitempty"`
+	ContractedAmount cosmossdk_io_math.Int `protobuf:"bytes,4,opt,name=contracted_amount,json=contractedAmount,proto3,customtype=cosmossdk.io/math.Int" json:"contracted_amount"`
 }
 
 func (m *SortedOrder) Reset()         { *m = SortedOrder{} }
@@ -61,18 +66,25 @@ func (m *SortedOrder) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_SortedOrder proto.InternalMessageInfo
 
-func (m *SortedOrder) GetExpiry() string {
+func (m *SortedOrder) GetExpiry() uint64 {
 	if m != nil {
 		return m.Expiry
+	}
+	return 0
+}
+
+func (m *SortedOrder) GetId() string {
+	if m != nil {
+		return m.Id
 	}
 	return ""
 }
 
-func (m *SortedOrder) GetIndex() string {
+func (m *SortedOrder) GetCancelled() bool {
 	if m != nil {
-		return m.Index
+		return m.Cancelled
 	}
-	return ""
+	return false
 }
 
 func init() {
@@ -82,17 +94,25 @@ func init() {
 func init() { proto.RegisterFile("gluon/contract/sorted_order.proto", fileDescriptor_f4a98d023afd6b1e) }
 
 var fileDescriptor_f4a98d023afd6b1e = []byte{
-	// 155 bytes of a gzipped FileDescriptorProto
+	// 286 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x52, 0x4c, 0xcf, 0x29, 0xcd,
 	0xcf, 0xd3, 0x4f, 0xce, 0xcf, 0x2b, 0x29, 0x4a, 0x4c, 0x2e, 0xd1, 0x2f, 0xce, 0x2f, 0x2a, 0x49,
 	0x4d, 0x89, 0xcf, 0x2f, 0x4a, 0x49, 0x2d, 0xd2, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x03,
-	0x2b, 0xd1, 0x83, 0x29, 0x51, 0xb2, 0xe6, 0xe2, 0x0e, 0x06, 0xab, 0xf2, 0x07, 0x29, 0x12, 0x12,
-	0xe3, 0x62, 0x4b, 0xad, 0x28, 0xc8, 0x2c, 0xaa, 0x94, 0x60, 0x54, 0x60, 0xd4, 0xe0, 0x0c, 0x82,
-	0xf2, 0x84, 0x44, 0xb8, 0x58, 0x33, 0xf3, 0x52, 0x52, 0x2b, 0x24, 0x98, 0xc0, 0xc2, 0x10, 0x8e,
-	0x93, 0xc1, 0x89, 0x47, 0x72, 0x8c, 0x17, 0x1e, 0xc9, 0x31, 0x3e, 0x78, 0x24, 0xc7, 0x38, 0xe1,
-	0xb1, 0x1c, 0xc3, 0x85, 0xc7, 0x72, 0x0c, 0x37, 0x1e, 0xcb, 0x31, 0x44, 0x89, 0x41, 0x5c, 0x52,
-	0x81, 0x70, 0x4b, 0x49, 0x65, 0x41, 0x6a, 0x71, 0x12, 0x1b, 0xd8, 0x15, 0xc6, 0x80, 0x00, 0x00,
-	0x00, 0xff, 0xff, 0xeb, 0xad, 0x49, 0x9a, 0xaa, 0x00, 0x00, 0x00,
+	0x2b, 0xd1, 0x83, 0x29, 0x91, 0x12, 0x4c, 0xcc, 0xcd, 0xcc, 0xcb, 0xd7, 0x07, 0x93, 0x10, 0x25,
+	0x52, 0x92, 0xc9, 0xf9, 0xc5, 0xb9, 0xf9, 0xc5, 0xf1, 0x60, 0x9e, 0x3e, 0x84, 0x03, 0x95, 0x12,
+	0x49, 0xcf, 0x4f, 0xcf, 0x87, 0x88, 0x83, 0x58, 0x10, 0x51, 0xa5, 0x4d, 0x8c, 0x5c, 0xdc, 0xc1,
+	0x60, 0xab, 0xfc, 0x41, 0x36, 0x09, 0x89, 0x71, 0xb1, 0xa5, 0x56, 0x14, 0x64, 0x16, 0x55, 0x4a,
+	0x30, 0x2a, 0x30, 0x6a, 0xb0, 0x04, 0x41, 0x79, 0x42, 0x7c, 0x5c, 0x4c, 0x99, 0x29, 0x12, 0x4c,
+	0x0a, 0x8c, 0x1a, 0x9c, 0x41, 0x4c, 0x99, 0x29, 0x42, 0x32, 0x5c, 0x9c, 0xc9, 0x89, 0x79, 0xc9,
+	0xa9, 0x39, 0x39, 0xa9, 0x29, 0x12, 0xcc, 0x0a, 0x8c, 0x1a, 0x1c, 0x41, 0x08, 0x01, 0xa1, 0x58,
+	0x2e, 0x41, 0x98, 0x2b, 0x53, 0x53, 0xe2, 0x13, 0x73, 0xf3, 0x4b, 0xf3, 0x4a, 0x24, 0x58, 0x40,
+	0x9a, 0x9d, 0x0c, 0x4e, 0xdc, 0x93, 0x67, 0xb8, 0x75, 0x4f, 0x5e, 0x14, 0xe2, 0xb8, 0xe2, 0x94,
+	0x6c, 0xbd, 0xcc, 0x7c, 0xfd, 0xdc, 0xc4, 0x92, 0x0c, 0x3d, 0xcf, 0xbc, 0x92, 0x4b, 0x5b, 0x74,
+	0xb9, 0xa0, 0xae, 0xf6, 0xcc, 0x2b, 0x59, 0xf1, 0x7c, 0x83, 0x16, 0x63, 0x90, 0x00, 0xc2, 0x28,
+	0x47, 0xb0, 0x49, 0x4e, 0x06, 0x27, 0x1e, 0xc9, 0x31, 0x5e, 0x78, 0x24, 0xc7, 0xf8, 0xe0, 0x91,
+	0x1c, 0xe3, 0x84, 0xc7, 0x72, 0x0c, 0x17, 0x1e, 0xcb, 0x31, 0xdc, 0x78, 0x2c, 0xc7, 0x10, 0x25,
+	0x06, 0x09, 0xc5, 0x0a, 0x44, 0x38, 0x96, 0x54, 0x16, 0xa4, 0x16, 0x27, 0xb1, 0x81, 0x7d, 0x6b,
+	0x0c, 0x08, 0x00, 0x00, 0xff, 0xff, 0x1f, 0xb9, 0xbf, 0x11, 0x66, 0x01, 0x00, 0x00,
 }
 
 func (m *SortedOrder) Marshal() (dAtA []byte, err error) {
@@ -115,19 +135,37 @@ func (m *SortedOrder) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.Index) > 0 {
-		i -= len(m.Index)
-		copy(dAtA[i:], m.Index)
-		i = encodeVarintSortedOrder(dAtA, i, uint64(len(m.Index)))
+	{
+		size := m.ContractedAmount.Size()
+		i -= size
+		if _, err := m.ContractedAmount.MarshalTo(dAtA[i:]); err != nil {
+			return 0, err
+		}
+		i = encodeVarintSortedOrder(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0x22
+	if m.Cancelled {
+		i--
+		if m.Cancelled {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x18
+	}
+	if len(m.Id) > 0 {
+		i -= len(m.Id)
+		copy(dAtA[i:], m.Id)
+		i = encodeVarintSortedOrder(dAtA, i, uint64(len(m.Id)))
 		i--
 		dAtA[i] = 0x12
 	}
-	if len(m.Expiry) > 0 {
-		i -= len(m.Expiry)
-		copy(dAtA[i:], m.Expiry)
-		i = encodeVarintSortedOrder(dAtA, i, uint64(len(m.Expiry)))
+	if m.Expiry != 0 {
+		i = encodeVarintSortedOrder(dAtA, i, uint64(m.Expiry))
 		i--
-		dAtA[i] = 0xa
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
@@ -149,14 +187,18 @@ func (m *SortedOrder) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.Expiry)
+	if m.Expiry != 0 {
+		n += 1 + sovSortedOrder(uint64(m.Expiry))
+	}
+	l = len(m.Id)
 	if l > 0 {
 		n += 1 + l + sovSortedOrder(uint64(l))
 	}
-	l = len(m.Index)
-	if l > 0 {
-		n += 1 + l + sovSortedOrder(uint64(l))
+	if m.Cancelled {
+		n += 2
 	}
+	l = m.ContractedAmount.Size()
+	n += 1 + l + sovSortedOrder(uint64(l))
 	return n
 }
 
@@ -196,10 +238,10 @@ func (m *SortedOrder) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 2 {
+			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Expiry", wireType)
 			}
-			var stringLen uint64
+			m.Expiry = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowSortedOrder
@@ -209,27 +251,14 @@ func (m *SortedOrder) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				m.Expiry |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthSortedOrder
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthSortedOrder
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Expiry = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -257,7 +286,61 @@ func (m *SortedOrder) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Index = string(dAtA[iNdEx:postIndex])
+			m.Id = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Cancelled", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSortedOrder
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Cancelled = bool(v != 0)
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ContractedAmount", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowSortedOrder
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthSortedOrder
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthSortedOrder
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.ContractedAmount.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

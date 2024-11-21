@@ -33,7 +33,7 @@ service Query {
   
   // Queries a list of SortedOrder items.
   rpc SortedOrder    (QueryGetSortedOrderRequest) returns (QueryGetSortedOrderResponse) {
-    option (google.api.http).get = "/gluon/contract/sorted_order/{expiry}/{index}";
+    option (google.api.http).get = "/gluon/contract/sorted_order/{expiry}/{id}";
   
   }
   rpc SortedOrderAll (QueryAllSortedOrderRequest) returns (QueryAllSortedOrderResponse) {
@@ -69,8 +69,8 @@ message QueryAllOrderResponse {
 }
 
 message QueryGetSortedOrderRequest {
-  string expiry = 1;
-  string index  = 2;
+  uint64 expiry = 1;
+  string id  = 2;
 }
 
 message QueryGetSortedOrderResponse {

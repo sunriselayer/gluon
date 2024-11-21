@@ -6,8 +6,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
-func (k Keeper) ValidateOrder(ctx sdk.Context, order types.Order) error {
-	pairing, found := k.customAuthKeeper.GetPairing(ctx, order.Body.Address, order.ParingId)
+func (k Keeper) ValidateOrder(ctx sdk.Context, order types.Order, pairingId uint64, signature []byte) error {
+	pairing, found := k.customAuthKeeper.GetPairing(ctx, order.Address, pairingId)
 	if !found {
 		return types.ErrPairingNotFound
 	}
@@ -15,45 +15,9 @@ func (k Keeper) ValidateOrder(ctx sdk.Context, order types.Order) error {
 	if err != nil {
 		return err
 	}
-	err = order.Validate(pubKey)
+	err = order.Validate(pubKey, signature)
 	if err != nil {
 		return err
 	}
-	return nil
-}
-
-func (k Keeper) ValidateOrderPair(ctx sdk.Context, earlier types.Order, later types.Order) error {
-	pairingEarlier, found := k.customAuthKeeper.GetPairing(ctx, earlier.Body.Address, earlier.ParingId)
-	if !found {
-		return types.ErrPairingNotFound
-	}
-	pairingLater, found := k.customAuthKeeper.GetPairing(ctx, later.Body.Address, later.ParingId)
-	if !found {
-		return types.ErrPairingNotFound
-	}
-
-	pubKeyEarlier, err := k.customAuthKeeper.GetPairingPubKey(ctx, pairingEarlier)
-	if err != nil {
-		return err
-	}
-	pubKeyLater, err := k.customAuthKeeper.GetPairingPubKey(ctx, pairingLater)
-	if err != nil {
-		return err
-	}
-
-	err = earlier.Validate(pubKeyEarlier)
-	if err != nil {
-		return err
-	}
-	err = later.Validate(pubKeyLater)
-	if err != nil {
-		return err
-	}
-
-	err = earlier.CrossValidate(later)
-	if err != nil {
-		return err
-	}
-
 	return nil
 }

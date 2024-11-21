@@ -19,8 +19,8 @@ var _ = strconv.IntSize
 func createNSortedOrder(keeper keeper.Keeper, ctx context.Context, n int) []types.SortedOrder {
 	items := make([]types.SortedOrder, n)
 	for i := range items {
-		items[i].Expiry = strconv.Itoa(i)
-		items[i].Index = strconv.Itoa(i)
+		items[i].Expiry = uint64(i)
+		items[i].Id = strconv.Itoa(i)
 
 		keeper.SetSortedOrder(ctx, items[i])
 	}
@@ -33,7 +33,7 @@ func TestSortedOrderGet(t *testing.T) {
 	for _, item := range items {
 		rst, found := keeper.GetSortedOrder(ctx,
 			item.Expiry,
-			item.Index,
+			item.Id,
 		)
 		require.True(t, found)
 		require.Equal(t,
@@ -48,11 +48,11 @@ func TestSortedOrderRemove(t *testing.T) {
 	for _, item := range items {
 		keeper.RemoveSortedOrder(ctx,
 			item.Expiry,
-			item.Index,
+			item.Id,
 		)
 		_, found := keeper.GetSortedOrder(ctx,
 			item.Expiry,
-			item.Index,
+			item.Id,
 		)
 		require.False(t, found)
 	}

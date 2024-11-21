@@ -22,7 +22,7 @@ func (k msgServer) CreateOrder(goCtx context.Context, msg *types.MsgCreateOrder)
 		return nil, errorsmod.Wrap(sdkerrors.ErrInvalidRequest, "index already set")
 	}
 
-	err := k.ValidateOrder(ctx, msg.Order)
+	err := k.ValidateOrder(ctx, msg.Order, msg.PairingId, msg.Signature)
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +47,7 @@ func (k msgServer) DeleteOrder(goCtx context.Context, msg *types.MsgDeleteOrder)
 	}
 
 	// Checks if the msg user is the same as the current owner
-	if msg.User != valFound.Body.Address {
+	if msg.User != valFound.Address {
 		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
 	}
 

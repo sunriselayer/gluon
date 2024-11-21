@@ -9,8 +9,8 @@ import (
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 )
 
-func NewOrderBody(address string, baseDenom string, quoteDenom string, direction OrderDirection, type_ OrderType, amount sdkmath.Int, limitPrice *sdkmath.LegacyDec, stopPrice *sdkmath.LegacyDec) OrderBody {
-	return OrderBody{
+func NewOrder(address string, baseDenom string, quoteDenom string, direction OrderDirection, type_ OrderType, amount sdkmath.Int, limitPrice *sdkmath.LegacyDec, stopPrice *sdkmath.LegacyDec) Order {
+	return Order{
 		Address:    address,
 		BaseDenom:  baseDenom,
 		QuoteDenom: quoteDenom,
@@ -22,56 +22,43 @@ func NewOrderBody(address string, baseDenom string, quoteDenom string, direction
 	}
 }
 
-func (orderBody OrderBody) ValidateBasic() error {
-	_, err := sdk.AccAddressFromBech32(orderBody.Address)
+func (order Order) ValidateBasic() error {
+	_, err := sdk.AccAddressFromBech32(order.Address)
 	if err != nil {
 		return err
 	}
-	if !orderBody.Amount.IsPositive() {
+	if !order.Amount.IsPositive() {
 		return errorsmod.Wrap(ErrNotPositiveAmount, "amount must be positive")
 	}
 
 	return nil
 }
 
-func (order Order) ValidateBasic() error {
-	err := order.Body.ValidateBasic()
+func (order Order) Validate(pubKey cryptotypes.PubKey, signature []byte) error {
+	bodyBytes, err := order.Marshal()
 	if err != nil {
 		return err
 	}
 
-	if len(order.Signature) == 0 {
-		return errorsmod.Wrap(ErrEmptySignature, "signature must not be empty")
-	}
-
-	return nil
-}
-
-func (order Order) Validate(pubKey cryptotypes.PubKey) error {
-	bodyBytes, err := order.Body.Marshal()
-	if err != nil {
-		return err
-	}
-
-	if !pubKey.VerifySignature(bodyBytes, order.Signature) {
-		return errorsmod.Wrapf(ErrInvalidSignature, "address: %s", order.Body.Address)
+	if !pubKey.VerifySignature(bodyBytes, signature) {
+		return errorsmod.Wrapf(ErrInvalidSignature, "address: %s", order.Address)
 	}
 	return nil
 }
 
 func (order Order) CrossValidate(other Order) error {
-	if order.Body.BaseDenom != other.Body.BaseDenom || order.Body.QuoteDenom != other.Body.QuoteDenom {
+	if order.BaseDenom != other.BaseDenom || order.QuoteDenom != other.QuoteDenom {
 		return ErrDenomMismatch
 	}
 
-	if order.Body.Direction == OrderDirection_UNKNOWN || other.Body.Direction == OrderDirection_UNKNOWN {
+	if order.Direction == OrderDirection_UNKNOWN || other.Direction == OrderDirection_UNKNOWN {
 		return ErrUnknownOrderDirection
 	}
-	if order.Body.Direction == other.Body.Direction {
+	if order.Direction == other.Direction {
 		return ErrSameOrderDirection
 	}
 
-	if order.Body.LimitPrice == nil && other.Body.LimitPrice == nil {
+	if order.LimitPrice == nil && other.LimitPrice == nil {
 		return ErrBothMarketPriceOrder
 	}
 

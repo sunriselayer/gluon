@@ -19,9 +19,7 @@ func TestMsgCreateOrder_ValidateBasic(t *testing.T) {
 			name: "invalid address",
 			msg: MsgCreateOrder{
 				Order: Order{
-					Body: OrderBody{
-						Address: "invalid address",
-					},
+					Address: "invalid address",
 				},
 			},
 			err: sdkerrors.ErrInvalidAddress,
@@ -29,9 +27,7 @@ func TestMsgCreateOrder_ValidateBasic(t *testing.T) {
 			name: "valid address",
 			msg: MsgCreateOrder{
 				Order: Order{
-					Body: OrderBody{
-						Address: sample.AccAddress(),
-					},
+					Address: sample.AccAddress(),
 				},
 			},
 		},

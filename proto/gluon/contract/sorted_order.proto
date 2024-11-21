@@ -1,11 +1,21 @@
 syntax = "proto3";
 package gluon.contract;
 
+import "amino/amino.proto";
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+
 option go_package = "gluon/x/contract/types";
 
 message SortedOrder {
-  string expiry = 1; 
-  string index = 2; 
-  
+  uint64 expiry = 1; 
+  string id = 2; 
+  bool cancelled = 3;
+  string contracted_amount = 4 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
 }
 

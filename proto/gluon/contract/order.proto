@@ -8,13 +8,6 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "gluon/x/contract/types";
 
-message Order {
-  string id = 1; 
-  OrderBody body = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
-  uint64 paring_id = 3;
-  bytes signature = 4;
-}
-
 enum OrderDirection {
   UNKNOWN = 0;
   BUY = 1;
@@ -26,31 +19,32 @@ enum OrderType {
   LAZY = 1;
 }
 
-message OrderBody {
-  string address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  string base_denom = 2;
-  string quote_denom = 3;
-  OrderDirection direction = 4;
-  OrderType type = 5;
-  string amount = 6 [
+message Order {
+  string id = 1;
+  string address = 2 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string base_denom = 3;
+  string quote_denom = 4;
+  OrderDirection direction = 5;
+  OrderType type = 6;
+  string amount = 7 [
     (cosmos_proto.scalar) = "cosmos.Int",
     (gogoproto.customtype) = "cosmossdk.io/math.Int",
     (gogoproto.nullable) = false,
     (amino.dont_omitempty) = true
   ];
-  string limit_price = 7 [
+  string limit_price = 8 [
     (cosmos_proto.scalar) = "cosmos.Dec",
     (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
     (gogoproto.nullable) = true,
     (amino.dont_omitempty) = true
   ];
-  string stop_price = 8 [
+  string stop_price = 9 [
     (cosmos_proto.scalar) = "cosmos.Dec",
     (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
     (gogoproto.nullable) = true,
     (amino.dont_omitempty) = true
   ];
-  google.protobuf.Timestamp expiry = 9 [
+  google.protobuf.Timestamp expiry = 10 [
     (gogoproto.nullable) = false,
     (gogoproto.stdtime) = true
   ];

@@ -47,7 +47,7 @@ func (k Keeper) SortedOrder(ctx context.Context, req *types.QueryGetSortedOrderR
 	val, found := k.GetSortedOrder(
 		ctx,
 		req.Expiry,
-		req.Index,
+		req.Id,
 	)
 	if !found {
 		return nil, status.Error(codes.NotFound, "not found")

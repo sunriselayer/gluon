@@ -42,8 +42,12 @@ message MsgUpdateParams {
 message MsgUpdateParamsResponse {}
 
 message MsgCreateOrder {
-  option (cosmos.msg.v1.signer) = "order.body.address";
-  Order order = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  option (cosmos.msg.v1.signer) = "order.address";
+
+  string id = 1; 
+  Order order = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  uint64 pairing_id = 3;
+  bytes signature = 4;
 }
 
 message MsgCreateOrderResponse {}
@@ -64,6 +68,18 @@ message MsgMatchOrder {
   string earlier_order_id = 2;
   string later_address = 3;
   string later_order_id = 4;
+  string amount = 5 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+  string price = 6 [
+    (cosmos_proto.scalar) = "cosmos.Dec",
+    (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
+    (gogoproto.nullable) = true,
+    (amino.dont_omitempty) = true
+  ];
 }
 
 message MsgMatchOrderResponse {}
@@ -76,6 +92,18 @@ message MsgMatchLazyOrder {
   string earlier_order_id = 2;
   string later_address = 3;
   string later_order_id = 4;
+  string amount = 5 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+  string price = 6 [
+    (cosmos_proto.scalar) = "cosmos.Dec",
+    (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
+    (gogoproto.nullable) = true,
+    (amino.dont_omitempty) = true
+  ];
 }
 
 message MsgMatchLazyOrderResponse {}

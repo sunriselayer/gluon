@@ -2,28 +2,34 @@
 package contract
 
 import (
+	_ "cosmossdk.io/api/amino"
 	fmt "fmt"
-	io "io"
-	reflect "reflect"
-	sync "sync"
-
+	_ "github.com/cosmos/cosmos-proto"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
+	_ "github.com/cosmos/gogoproto/gogoproto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	io "io"
+	reflect "reflect"
+	sync "sync"
 )
 
 var (
-	md_SortedOrder        protoreflect.MessageDescriptor
-	fd_SortedOrder_expiry protoreflect.FieldDescriptor
-	fd_SortedOrder_index  protoreflect.FieldDescriptor
+	md_SortedOrder                   protoreflect.MessageDescriptor
+	fd_SortedOrder_expiry            protoreflect.FieldDescriptor
+	fd_SortedOrder_id                protoreflect.FieldDescriptor
+	fd_SortedOrder_cancelled         protoreflect.FieldDescriptor
+	fd_SortedOrder_contracted_amount protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_contract_sorted_order_proto_init()
 	md_SortedOrder = File_gluon_contract_sorted_order_proto.Messages().ByName("SortedOrder")
 	fd_SortedOrder_expiry = md_SortedOrder.Fields().ByName("expiry")
-	fd_SortedOrder_index = md_SortedOrder.Fields().ByName("index")
+	fd_SortedOrder_id = md_SortedOrder.Fields().ByName("id")
+	fd_SortedOrder_cancelled = md_SortedOrder.Fields().ByName("cancelled")
+	fd_SortedOrder_contracted_amount = md_SortedOrder.Fields().ByName("contracted_amount")
 }
 
 var _ protoreflect.Message = (*fastReflection_SortedOrder)(nil)
@@ -91,15 +97,27 @@ func (x *fastReflection_SortedOrder) Interface() protoreflect.ProtoMessage {
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_SortedOrder) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Expiry != "" {
-		value := protoreflect.ValueOfString(x.Expiry)
+	if x.Expiry != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.Expiry)
 		if !f(fd_SortedOrder_expiry, value) {
 			return
 		}
 	}
-	if x.Index != "" {
-		value := protoreflect.ValueOfString(x.Index)
-		if !f(fd_SortedOrder_index, value) {
+	if x.Id != "" {
+		value := protoreflect.ValueOfString(x.Id)
+		if !f(fd_SortedOrder_id, value) {
+			return
+		}
+	}
+	if x.Cancelled != false {
+		value := protoreflect.ValueOfBool(x.Cancelled)
+		if !f(fd_SortedOrder_cancelled, value) {
+			return
+		}
+	}
+	if x.ContractedAmount != "" {
+		value := protoreflect.ValueOfString(x.ContractedAmount)
+		if !f(fd_SortedOrder_contracted_amount, value) {
 			return
 		}
 	}
@@ -119,9 +137,13 @@ func (x *fastReflection_SortedOrder) Range(f func(protoreflect.FieldDescriptor, 
 func (x *fastReflection_SortedOrder) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
 	case "gluon.contract.SortedOrder.expiry":
-		return x.Expiry != ""
-	case "gluon.contract.SortedOrder.index":
-		return x.Index != ""
+		return x.Expiry != uint64(0)
+	case "gluon.contract.SortedOrder.id":
+		return x.Id != ""
+	case "gluon.contract.SortedOrder.cancelled":
+		return x.Cancelled != false
+	case "gluon.contract.SortedOrder.contracted_amount":
+		return x.ContractedAmount != ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.SortedOrder"))
@@ -139,9 +161,13 @@ func (x *fastReflection_SortedOrder) Has(fd protoreflect.FieldDescriptor) bool {
 func (x *fastReflection_SortedOrder) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
 	case "gluon.contract.SortedOrder.expiry":
-		x.Expiry = ""
-	case "gluon.contract.SortedOrder.index":
-		x.Index = ""
+		x.Expiry = uint64(0)
+	case "gluon.contract.SortedOrder.id":
+		x.Id = ""
+	case "gluon.contract.SortedOrder.cancelled":
+		x.Cancelled = false
+	case "gluon.contract.SortedOrder.contracted_amount":
+		x.ContractedAmount = ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.SortedOrder"))
@@ -160,9 +186,15 @@ func (x *fastReflection_SortedOrder) Get(descriptor protoreflect.FieldDescriptor
 	switch descriptor.FullName() {
 	case "gluon.contract.SortedOrder.expiry":
 		value := x.Expiry
+		return protoreflect.ValueOfUint64(value)
+	case "gluon.contract.SortedOrder.id":
+		value := x.Id
 		return protoreflect.ValueOfString(value)
-	case "gluon.contract.SortedOrder.index":
-		value := x.Index
+	case "gluon.contract.SortedOrder.cancelled":
+		value := x.Cancelled
+		return protoreflect.ValueOfBool(value)
+	case "gluon.contract.SortedOrder.contracted_amount":
+		value := x.ContractedAmount
 		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
@@ -185,9 +217,13 @@ func (x *fastReflection_SortedOrder) Get(descriptor protoreflect.FieldDescriptor
 func (x *fastReflection_SortedOrder) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
 	case "gluon.contract.SortedOrder.expiry":
-		x.Expiry = value.Interface().(string)
-	case "gluon.contract.SortedOrder.index":
-		x.Index = value.Interface().(string)
+		x.Expiry = value.Uint()
+	case "gluon.contract.SortedOrder.id":
+		x.Id = value.Interface().(string)
+	case "gluon.contract.SortedOrder.cancelled":
+		x.Cancelled = value.Bool()
+	case "gluon.contract.SortedOrder.contracted_amount":
+		x.ContractedAmount = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.SortedOrder"))
@@ -210,8 +246,12 @@ func (x *fastReflection_SortedOrder) Mutable(fd protoreflect.FieldDescriptor) pr
 	switch fd.FullName() {
 	case "gluon.contract.SortedOrder.expiry":
 		panic(fmt.Errorf("field expiry of message gluon.contract.SortedOrder is not mutable"))
-	case "gluon.contract.SortedOrder.index":
-		panic(fmt.Errorf("field index of message gluon.contract.SortedOrder is not mutable"))
+	case "gluon.contract.SortedOrder.id":
+		panic(fmt.Errorf("field id of message gluon.contract.SortedOrder is not mutable"))
+	case "gluon.contract.SortedOrder.cancelled":
+		panic(fmt.Errorf("field cancelled of message gluon.contract.SortedOrder is not mutable"))
+	case "gluon.contract.SortedOrder.contracted_amount":
+		panic(fmt.Errorf("field contracted_amount of message gluon.contract.SortedOrder is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.SortedOrder"))
@@ -226,8 +266,12 @@ func (x *fastReflection_SortedOrder) Mutable(fd protoreflect.FieldDescriptor) pr
 func (x *fastReflection_SortedOrder) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
 	case "gluon.contract.SortedOrder.expiry":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "gluon.contract.SortedOrder.id":
 		return protoreflect.ValueOfString("")
-	case "gluon.contract.SortedOrder.index":
+	case "gluon.contract.SortedOrder.cancelled":
+		return protoreflect.ValueOfBool(false)
+	case "gluon.contract.SortedOrder.contracted_amount":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
@@ -298,11 +342,17 @@ func (x *fastReflection_SortedOrder) ProtoMethods() *protoiface.Methods {
 		var n int
 		var l int
 		_ = l
-		l = len(x.Expiry)
+		if x.Expiry != 0 {
+			n += 1 + runtime.Sov(uint64(x.Expiry))
+		}
+		l = len(x.Id)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.Index)
+		if x.Cancelled {
+			n += 2
+		}
+		l = len(x.ContractedAmount)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -335,19 +385,34 @@ func (x *fastReflection_SortedOrder) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if len(x.Index) > 0 {
-			i -= len(x.Index)
-			copy(dAtA[i:], x.Index)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Index)))
+		if len(x.ContractedAmount) > 0 {
+			i -= len(x.ContractedAmount)
+			copy(dAtA[i:], x.ContractedAmount)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.ContractedAmount)))
+			i--
+			dAtA[i] = 0x22
+		}
+		if x.Cancelled {
+			i--
+			if x.Cancelled {
+				dAtA[i] = 1
+			} else {
+				dAtA[i] = 0
+			}
+			i--
+			dAtA[i] = 0x18
+		}
+		if len(x.Id) > 0 {
+			i -= len(x.Id)
+			copy(dAtA[i:], x.Id)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Id)))
 			i--
 			dAtA[i] = 0x12
 		}
-		if len(x.Expiry) > 0 {
-			i -= len(x.Expiry)
-			copy(dAtA[i:], x.Expiry)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Expiry)))
+		if x.Expiry != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.Expiry))
 			i--
-			dAtA[i] = 0xa
+			dAtA[i] = 0x8
 		}
 		if input.Buf != nil {
 			input.Buf = append(input.Buf, dAtA...)
@@ -399,10 +464,10 @@ func (x *fastReflection_SortedOrder) ProtoMethods() *protoiface.Methods {
 			}
 			switch fieldNum {
 			case 1:
-				if wireType != 2 {
+				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Expiry", wireType)
 				}
-				var stringLen uint64
+				x.Expiry = 0
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -412,27 +477,14 @@ func (x *fastReflection_SortedOrder) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
+					x.Expiry |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.Expiry = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
 			case 2:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -460,7 +512,59 @@ func (x *fastReflection_SortedOrder) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.Index = string(dAtA[iNdEx:postIndex])
+				x.Id = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 3:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Cancelled", wireType)
+				}
+				var v int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					v |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				x.Cancelled = bool(v != 0)
+			case 4:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ContractedAmount", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.ContractedAmount = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
@@ -515,8 +619,10 @@ type SortedOrder struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Expiry string `protobuf:"bytes,1,opt,name=expiry,proto3" json:"expiry,omitempty"`
-	Index  string `protobuf:"bytes,2,opt,name=index,proto3" json:"index,omitempty"`
+	Expiry           uint64 `protobuf:"varint,1,opt,name=expiry,proto3" json:"expiry,omitempty"`
+	Id               string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	Cancelled        bool   `protobuf:"varint,3,opt,name=cancelled,proto3" json:"cancelled,omitempty"`
+	ContractedAmount string `protobuf:"bytes,4,opt,name=contracted_amount,json=contractedAmount,proto3" json:"contracted_amount,omitempty"`
 }
 
 func (x *SortedOrder) Reset() {
@@ -539,16 +645,30 @@ func (*SortedOrder) Descriptor() ([]byte, []int) {
 	return file_gluon_contract_sorted_order_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *SortedOrder) GetExpiry() string {
+func (x *SortedOrder) GetExpiry() uint64 {
 	if x != nil {
 		return x.Expiry
+	}
+	return 0
+}
+
+func (x *SortedOrder) GetId() string {
+	if x != nil {
+		return x.Id
 	}
 	return ""
 }
 
-func (x *SortedOrder) GetIndex() string {
+func (x *SortedOrder) GetCancelled() bool {
 	if x != nil {
-		return x.Index
+		return x.Cancelled
+	}
+	return false
+}
+
+func (x *SortedOrder) GetContractedAmount() string {
+	if x != nil {
+		return x.ContractedAmount
 	}
 	return ""
 }
@@ -559,21 +679,32 @@ var file_gluon_contract_sorted_order_proto_rawDesc = []byte{
 	0x0a, 0x21, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
 	0x2f, 0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x72,
 	0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72,
-	0x61, 0x63, 0x74, 0x22, 0x3b, 0x0a, 0x0b, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64,
-	0x65, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x65, 0x78, 0x70, 0x69, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x06, 0x65, 0x78, 0x70, 0x69, 0x72, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x69, 0x6e,
-	0x64, 0x65, 0x78, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x69, 0x6e, 0x64, 0x65, 0x78,
-	0x42, 0x99, 0x01, 0x0a, 0x12, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63,
-	0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x42, 0x10, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f,
-	0x72, 0x64, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x18, 0x67, 0x6c, 0x75,
-	0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e,
-	0x74, 0x72, 0x61, 0x63, 0x74, 0xa2, 0x02, 0x03, 0x47, 0x43, 0x58, 0xaa, 0x02, 0x0e, 0x47, 0x6c,
-	0x75, 0x6f, 0x6e, 0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xca, 0x02, 0x0e, 0x47,
-	0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xe2, 0x02, 0x1a,
-	0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x5c, 0x47,
-	0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0f, 0x47, 0x6c, 0x75,
-	0x6f, 0x6e, 0x3a, 0x3a, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x61, 0x63, 0x74, 0x1a, 0x11, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2f, 0x61, 0x6d, 0x69, 0x6e, 0x6f,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x19, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5f, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67,
+	0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xb2, 0x01, 0x0a, 0x0b, 0x53, 0x6f, 0x72, 0x74,
+	0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x65, 0x78, 0x70, 0x69, 0x72,
+	0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x65, 0x78, 0x70, 0x69, 0x72, 0x79, 0x12,
+	0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12,
+	0x1c, 0x0a, 0x09, 0x63, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x6c, 0x65, 0x64, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x08, 0x52, 0x09, 0x63, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x6c, 0x65, 0x64, 0x12, 0x5d, 0x0a,
+	0x11, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x6d, 0x6f, 0x75,
+	0x6e, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x42, 0x30, 0xc8, 0xde, 0x1f, 0x00, 0xda, 0xde,
+	0x1f, 0x15, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d,
+	0x61, 0x74, 0x68, 0x2e, 0x49, 0x6e, 0x74, 0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
+	0x73, 0x2e, 0x49, 0x6e, 0x74, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x10, 0x63, 0x6f, 0x6e, 0x74,
+	0x72, 0x61, 0x63, 0x74, 0x65, 0x64, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0x99, 0x01, 0x0a,
+	0x12, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72,
+	0x61, 0x63, 0x74, 0x42, 0x10, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72,
+	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x18, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61,
+	0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
+	0x74, 0xa2, 0x02, 0x03, 0x47, 0x43, 0x58, 0xaa, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e,
+	0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xca, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e,
+	0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xe2, 0x02, 0x1a, 0x47, 0x6c, 0x75, 0x6f,
+	0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65,
+	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0f, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a,
+	0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

@@ -25,12 +25,12 @@ func TestGenesis(t *testing.T) {
 		},
 		SortedOrderList: []types.SortedOrder{
 			{
-				Expiry: "0",
-				Index:  "0",
+				Expiry: 0,
+				Id:     "0",
 			},
 			{
-				Expiry: "1",
-				Index:  "1",
+				Expiry: 1,
+				Id:     "1",
 			},
 		},
 		// this line is used by starport scaffolding # genesis/test/state

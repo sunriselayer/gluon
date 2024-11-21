@@ -17,15 +17,15 @@ func (k Keeper) SetSortedOrder(ctx context.Context, sortedOrder types.SortedOrde
 	b := k.cdc.MustMarshal(&sortedOrder)
 	store.Set(types.SortedOrderKey(
 		sortedOrder.Expiry,
-		sortedOrder.Index,
+		sortedOrder.Id,
 	), b)
 }
 
 // GetSortedOrder returns a sortedOrder from its index
 func (k Keeper) GetSortedOrder(
 	ctx context.Context,
-	expiry string,
-	index string,
+	expiry uint64,
+	id string,
 
 ) (val types.SortedOrder, found bool) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
@@ -33,7 +33,7 @@ func (k Keeper) GetSortedOrder(
 
 	b := store.Get(types.SortedOrderKey(
 		expiry,
-		index,
+		id,
 	))
 	if b == nil {
 		return val, false
@@ -46,15 +46,15 @@ func (k Keeper) GetSortedOrder(
 // RemoveSortedOrder removes a sortedOrder from the store
 func (k Keeper) RemoveSortedOrder(
 	ctx context.Context,
-	expiry string,
-	index string,
+	expiry uint64,
+	id string,
 
 ) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.SortedOrderKeyPrefix))
 	store.Delete(types.SortedOrderKey(
 		expiry,
-		index,
+		id,
 	))
 }
 

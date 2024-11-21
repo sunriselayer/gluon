@@ -29,10 +29,8 @@ func SimulateMsgCreateOrder(
 		i := r.Int()
 		msg := &types.MsgCreateOrder{
 			Order: types.Order{
-				Id: strconv.Itoa(i),
-				Body: types.OrderBody{
-					Address: simAccount.Address.String(),
-				},
+				Id:      strconv.Itoa(i),
+				Address: simAccount.Address.String(),
 			},
 		}
 
@@ -73,7 +71,7 @@ func SimulateMsgDeleteOrder(
 			found      = false
 		)
 		for _, obj := range allOrder {
-			simAccount, found = FindAccount(accs, obj.Body.Address)
+			simAccount, found = FindAccount(accs, obj.Address)
 			if found {
 				order = obj
 				break

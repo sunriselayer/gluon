@@ -30,7 +30,7 @@ func TestSortedOrderQuerySingle(t *testing.T) {
 			desc: "First",
 			request: &types.QueryGetSortedOrderRequest{
 				Expiry: msgs[0].Expiry,
-				Index:  msgs[0].Index,
+				Id:     msgs[0].Id,
 			},
 			response: &types.QueryGetSortedOrderResponse{SortedOrder: msgs[0]},
 		},
@@ -38,15 +38,15 @@ func TestSortedOrderQuerySingle(t *testing.T) {
 			desc: "Second",
 			request: &types.QueryGetSortedOrderRequest{
 				Expiry: msgs[1].Expiry,
-				Index:  msgs[1].Index,
+				Id:     msgs[1].Id,
 			},
 			response: &types.QueryGetSortedOrderResponse{SortedOrder: msgs[1]},
 		},
 		{
 			desc: "KeyNotFound",
 			request: &types.QueryGetSortedOrderRequest{
-				Expiry: strconv.Itoa(100000),
-				Index:  strconv.Itoa(100000),
+				Expiry: uint64(100000),
+				Id:     strconv.Itoa(100000),
 			},
 			err: status.Error(codes.NotFound, "not found"),
 		},
