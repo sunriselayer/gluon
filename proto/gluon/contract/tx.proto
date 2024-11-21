@@ -18,8 +18,8 @@ service Msg {
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
   rpc UpdateParams   (MsgUpdateParams  ) returns (MsgUpdateParamsResponse  );
-  rpc CreateOrder    (MsgCreateOrder   ) returns (MsgCreateOrderResponse   );
-  rpc DeleteOrder    (MsgDeleteOrder   ) returns (MsgDeleteOrderResponse   );
+  rpc LazyRegisterOrder    (MsgLazyRegisterOrder   ) returns (MsgLazyRegisterOrderResponse   );
+  rpc CancelOrder    (MsgCancelOrder   ) returns (MsgCancelOrderResponse   );
   rpc MatchOrder     (MsgMatchOrder    ) returns (MsgMatchOrderResponse    );
   rpc MatchLazyOrder (MsgMatchLazyOrder) returns (MsgMatchLazyOrderResponse);
 }
@@ -41,7 +41,7 @@ message MsgUpdateParams {
 // MsgUpdateParams message.
 message MsgUpdateParamsResponse {}
 
-message MsgCreateOrder {
+message MsgLazyRegisterOrder {
   option (cosmos.msg.v1.signer) = "order.address";
 
   string id = 1; 
@@ -50,15 +50,15 @@ message MsgCreateOrder {
   bytes signature = 4;
 }
 
-message MsgCreateOrderResponse {}
+message MsgLazyRegisterOrderResponse {}
 
-message MsgDeleteOrder {
+message MsgCancelOrder {
   option (cosmos.msg.v1.signer) = "user";
   string user  = 1;
   string id = 2;
 }
 
-message MsgDeleteOrderResponse {}
+message MsgCancelOrderResponse {}
 
 message MsgMatchOrder {
   option (cosmos.msg.v1.signer) = "earlier_address";

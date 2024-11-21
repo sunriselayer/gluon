@@ -314,8 +314,8 @@ func New(
 		app.txConfig.TxEncoder(),
 		func(msg sdk.Msg) bool {
 			switch msg.(type) {
-			case *contractmoduletypes.MsgCreateOrder:
-			case *contractmoduletypes.MsgDeleteOrder:
+			case *contractmoduletypes.MsgLazyRegisterOrder:
+			case *contractmoduletypes.MsgCancelOrder:
 			case *contractmoduletypes.MsgMatchOrder:
 			case *contractmoduletypes.MsgMatchLazyOrder:
 			case *customauthmoduletypes.MsgCreatePairing:

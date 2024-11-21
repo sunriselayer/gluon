@@ -6,15 +6,15 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
-var _ sdk.Msg = &MsgCreateOrder{}
+var _ sdk.Msg = &MsgLazyRegisterOrder{}
 
-func NewMsgCreateOrder(
+func NewMsgLazyRegisterOrder(
 	id string,
 	order Order,
 	pairingId uint64,
 	signature []byte,
-) *MsgCreateOrder {
-	return &MsgCreateOrder{
+) *MsgLazyRegisterOrder {
+	return &MsgLazyRegisterOrder{
 		Id:        id,
 		Order:     order,
 		PairingId: pairingId,
@@ -22,7 +22,7 @@ func NewMsgCreateOrder(
 	}
 }
 
-func (msg *MsgCreateOrder) ValidateBasic() error {
+func (msg *MsgLazyRegisterOrder) ValidateBasic() error {
 	err := msg.Order.ValidateBasic()
 	if err != nil {
 		return err
@@ -34,20 +34,20 @@ func (msg *MsgCreateOrder) ValidateBasic() error {
 	return nil
 }
 
-var _ sdk.Msg = &MsgDeleteOrder{}
+var _ sdk.Msg = &MsgCancelOrder{}
 
-func NewMsgDeleteOrder(
+func NewMsgCancelOrder(
 	user string,
 	id string,
 
-) *MsgDeleteOrder {
-	return &MsgDeleteOrder{
+) *MsgCancelOrder {
+	return &MsgCancelOrder{
 		User: user,
 		Id:   id,
 	}
 }
 
-func (msg *MsgDeleteOrder) ValidateBasic() error {
+func (msg *MsgCancelOrder) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.User)
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid user address (%s)", err)

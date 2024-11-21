@@ -10,8 +10,8 @@ import (
 
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgCreateOrder{},
-		&MsgDeleteOrder{},
+		&MsgLazyRegisterOrder{},
+		&MsgCancelOrder{},
 	)
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgMatchOrder{},

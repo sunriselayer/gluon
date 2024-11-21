@@ -872,31 +872,31 @@ func (x *fastReflection_MsgUpdateParamsResponse) ProtoMethods() *protoiface.Meth
 }
 
 var (
-	md_MsgCreateOrder            protoreflect.MessageDescriptor
-	fd_MsgCreateOrder_id         protoreflect.FieldDescriptor
-	fd_MsgCreateOrder_order      protoreflect.FieldDescriptor
-	fd_MsgCreateOrder_pairing_id protoreflect.FieldDescriptor
-	fd_MsgCreateOrder_signature  protoreflect.FieldDescriptor
+	md_MsgLazyRegisterOrder            protoreflect.MessageDescriptor
+	fd_MsgLazyRegisterOrder_id         protoreflect.FieldDescriptor
+	fd_MsgLazyRegisterOrder_order      protoreflect.FieldDescriptor
+	fd_MsgLazyRegisterOrder_pairing_id protoreflect.FieldDescriptor
+	fd_MsgLazyRegisterOrder_signature  protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_contract_tx_proto_init()
-	md_MsgCreateOrder = File_gluon_contract_tx_proto.Messages().ByName("MsgCreateOrder")
-	fd_MsgCreateOrder_id = md_MsgCreateOrder.Fields().ByName("id")
-	fd_MsgCreateOrder_order = md_MsgCreateOrder.Fields().ByName("order")
-	fd_MsgCreateOrder_pairing_id = md_MsgCreateOrder.Fields().ByName("pairing_id")
-	fd_MsgCreateOrder_signature = md_MsgCreateOrder.Fields().ByName("signature")
+	md_MsgLazyRegisterOrder = File_gluon_contract_tx_proto.Messages().ByName("MsgLazyRegisterOrder")
+	fd_MsgLazyRegisterOrder_id = md_MsgLazyRegisterOrder.Fields().ByName("id")
+	fd_MsgLazyRegisterOrder_order = md_MsgLazyRegisterOrder.Fields().ByName("order")
+	fd_MsgLazyRegisterOrder_pairing_id = md_MsgLazyRegisterOrder.Fields().ByName("pairing_id")
+	fd_MsgLazyRegisterOrder_signature = md_MsgLazyRegisterOrder.Fields().ByName("signature")
 }
 
-var _ protoreflect.Message = (*fastReflection_MsgCreateOrder)(nil)
+var _ protoreflect.Message = (*fastReflection_MsgLazyRegisterOrder)(nil)
 
-type fastReflection_MsgCreateOrder MsgCreateOrder
+type fastReflection_MsgLazyRegisterOrder MsgLazyRegisterOrder
 
-func (x *MsgCreateOrder) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_MsgCreateOrder)(x)
+func (x *MsgLazyRegisterOrder) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgLazyRegisterOrder)(x)
 }
 
-func (x *MsgCreateOrder) slowProtoReflect() protoreflect.Message {
+func (x *MsgLazyRegisterOrder) slowProtoReflect() protoreflect.Message {
 	mi := &file_gluon_contract_tx_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -908,43 +908,43 @@ func (x *MsgCreateOrder) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_MsgCreateOrder_messageType fastReflection_MsgCreateOrder_messageType
-var _ protoreflect.MessageType = fastReflection_MsgCreateOrder_messageType{}
+var _fastReflection_MsgLazyRegisterOrder_messageType fastReflection_MsgLazyRegisterOrder_messageType
+var _ protoreflect.MessageType = fastReflection_MsgLazyRegisterOrder_messageType{}
 
-type fastReflection_MsgCreateOrder_messageType struct{}
+type fastReflection_MsgLazyRegisterOrder_messageType struct{}
 
-func (x fastReflection_MsgCreateOrder_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_MsgCreateOrder)(nil)
+func (x fastReflection_MsgLazyRegisterOrder_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgLazyRegisterOrder)(nil)
 }
-func (x fastReflection_MsgCreateOrder_messageType) New() protoreflect.Message {
-	return new(fastReflection_MsgCreateOrder)
+func (x fastReflection_MsgLazyRegisterOrder_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgLazyRegisterOrder)
 }
-func (x fastReflection_MsgCreateOrder_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgCreateOrder
+func (x fastReflection_MsgLazyRegisterOrder_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgLazyRegisterOrder
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_MsgCreateOrder) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgCreateOrder
+func (x *fastReflection_MsgLazyRegisterOrder) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgLazyRegisterOrder
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_MsgCreateOrder) Type() protoreflect.MessageType {
-	return _fastReflection_MsgCreateOrder_messageType
+func (x *fastReflection_MsgLazyRegisterOrder) Type() protoreflect.MessageType {
+	return _fastReflection_MsgLazyRegisterOrder_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_MsgCreateOrder) New() protoreflect.Message {
-	return new(fastReflection_MsgCreateOrder)
+func (x *fastReflection_MsgLazyRegisterOrder) New() protoreflect.Message {
+	return new(fastReflection_MsgLazyRegisterOrder)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_MsgCreateOrder) Interface() protoreflect.ProtoMessage {
-	return (*MsgCreateOrder)(x)
+func (x *fastReflection_MsgLazyRegisterOrder) Interface() protoreflect.ProtoMessage {
+	return (*MsgLazyRegisterOrder)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -952,28 +952,28 @@ func (x *fastReflection_MsgCreateOrder) Interface() protoreflect.ProtoMessage {
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_MsgCreateOrder) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_MsgLazyRegisterOrder) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if x.Id != "" {
 		value := protoreflect.ValueOfString(x.Id)
-		if !f(fd_MsgCreateOrder_id, value) {
+		if !f(fd_MsgLazyRegisterOrder_id, value) {
 			return
 		}
 	}
 	if x.Order != nil {
 		value := protoreflect.ValueOfMessage(x.Order.ProtoReflect())
-		if !f(fd_MsgCreateOrder_order, value) {
+		if !f(fd_MsgLazyRegisterOrder_order, value) {
 			return
 		}
 	}
 	if x.PairingId != uint64(0) {
 		value := protoreflect.ValueOfUint64(x.PairingId)
-		if !f(fd_MsgCreateOrder_pairing_id, value) {
+		if !f(fd_MsgLazyRegisterOrder_pairing_id, value) {
 			return
 		}
 	}
 	if len(x.Signature) != 0 {
 		value := protoreflect.ValueOfBytes(x.Signature)
-		if !f(fd_MsgCreateOrder_signature, value) {
+		if !f(fd_MsgLazyRegisterOrder_signature, value) {
 			return
 		}
 	}
@@ -990,21 +990,21 @@ func (x *fastReflection_MsgCreateOrder) Range(f func(protoreflect.FieldDescripto
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_MsgCreateOrder) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_MsgLazyRegisterOrder) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.contract.MsgCreateOrder.id":
+	case "gluon.contract.MsgLazyRegisterOrder.id":
 		return x.Id != ""
-	case "gluon.contract.MsgCreateOrder.order":
+	case "gluon.contract.MsgLazyRegisterOrder.order":
 		return x.Order != nil
-	case "gluon.contract.MsgCreateOrder.pairing_id":
+	case "gluon.contract.MsgLazyRegisterOrder.pairing_id":
 		return x.PairingId != uint64(0)
-	case "gluon.contract.MsgCreateOrder.signature":
+	case "gluon.contract.MsgLazyRegisterOrder.signature":
 		return len(x.Signature) != 0
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCreateOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgLazyRegisterOrder"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgCreateOrder does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgLazyRegisterOrder does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1014,21 +1014,21 @@ func (x *fastReflection_MsgCreateOrder) Has(fd protoreflect.FieldDescriptor) boo
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateOrder) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_MsgLazyRegisterOrder) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.contract.MsgCreateOrder.id":
+	case "gluon.contract.MsgLazyRegisterOrder.id":
 		x.Id = ""
-	case "gluon.contract.MsgCreateOrder.order":
+	case "gluon.contract.MsgLazyRegisterOrder.order":
 		x.Order = nil
-	case "gluon.contract.MsgCreateOrder.pairing_id":
+	case "gluon.contract.MsgLazyRegisterOrder.pairing_id":
 		x.PairingId = uint64(0)
-	case "gluon.contract.MsgCreateOrder.signature":
+	case "gluon.contract.MsgLazyRegisterOrder.signature":
 		x.Signature = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCreateOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgLazyRegisterOrder"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgCreateOrder does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgLazyRegisterOrder does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1038,25 +1038,25 @@ func (x *fastReflection_MsgCreateOrder) Clear(fd protoreflect.FieldDescriptor) {
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_MsgCreateOrder) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgLazyRegisterOrder) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.contract.MsgCreateOrder.id":
+	case "gluon.contract.MsgLazyRegisterOrder.id":
 		value := x.Id
 		return protoreflect.ValueOfString(value)
-	case "gluon.contract.MsgCreateOrder.order":
+	case "gluon.contract.MsgLazyRegisterOrder.order":
 		value := x.Order
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "gluon.contract.MsgCreateOrder.pairing_id":
+	case "gluon.contract.MsgLazyRegisterOrder.pairing_id":
 		value := x.PairingId
 		return protoreflect.ValueOfUint64(value)
-	case "gluon.contract.MsgCreateOrder.signature":
+	case "gluon.contract.MsgLazyRegisterOrder.signature":
 		value := x.Signature
 		return protoreflect.ValueOfBytes(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCreateOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgLazyRegisterOrder"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgCreateOrder does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgLazyRegisterOrder does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1070,21 +1070,21 @@ func (x *fastReflection_MsgCreateOrder) Get(descriptor protoreflect.FieldDescrip
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateOrder) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_MsgLazyRegisterOrder) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.contract.MsgCreateOrder.id":
+	case "gluon.contract.MsgLazyRegisterOrder.id":
 		x.Id = value.Interface().(string)
-	case "gluon.contract.MsgCreateOrder.order":
+	case "gluon.contract.MsgLazyRegisterOrder.order":
 		x.Order = value.Message().Interface().(*Order)
-	case "gluon.contract.MsgCreateOrder.pairing_id":
+	case "gluon.contract.MsgLazyRegisterOrder.pairing_id":
 		x.PairingId = value.Uint()
-	case "gluon.contract.MsgCreateOrder.signature":
+	case "gluon.contract.MsgLazyRegisterOrder.signature":
 		x.Signature = value.Bytes()
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCreateOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgLazyRegisterOrder"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgCreateOrder does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgLazyRegisterOrder does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1098,56 +1098,56 @@ func (x *fastReflection_MsgCreateOrder) Set(fd protoreflect.FieldDescriptor, val
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateOrder) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgLazyRegisterOrder) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.contract.MsgCreateOrder.order":
+	case "gluon.contract.MsgLazyRegisterOrder.order":
 		if x.Order == nil {
 			x.Order = new(Order)
 		}
 		return protoreflect.ValueOfMessage(x.Order.ProtoReflect())
-	case "gluon.contract.MsgCreateOrder.id":
-		panic(fmt.Errorf("field id of message gluon.contract.MsgCreateOrder is not mutable"))
-	case "gluon.contract.MsgCreateOrder.pairing_id":
-		panic(fmt.Errorf("field pairing_id of message gluon.contract.MsgCreateOrder is not mutable"))
-	case "gluon.contract.MsgCreateOrder.signature":
-		panic(fmt.Errorf("field signature of message gluon.contract.MsgCreateOrder is not mutable"))
+	case "gluon.contract.MsgLazyRegisterOrder.id":
+		panic(fmt.Errorf("field id of message gluon.contract.MsgLazyRegisterOrder is not mutable"))
+	case "gluon.contract.MsgLazyRegisterOrder.pairing_id":
+		panic(fmt.Errorf("field pairing_id of message gluon.contract.MsgLazyRegisterOrder is not mutable"))
+	case "gluon.contract.MsgLazyRegisterOrder.signature":
+		panic(fmt.Errorf("field signature of message gluon.contract.MsgLazyRegisterOrder is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCreateOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgLazyRegisterOrder"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgCreateOrder does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgLazyRegisterOrder does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_MsgCreateOrder) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgLazyRegisterOrder) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.contract.MsgCreateOrder.id":
+	case "gluon.contract.MsgLazyRegisterOrder.id":
 		return protoreflect.ValueOfString("")
-	case "gluon.contract.MsgCreateOrder.order":
+	case "gluon.contract.MsgLazyRegisterOrder.order":
 		m := new(Order)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "gluon.contract.MsgCreateOrder.pairing_id":
+	case "gluon.contract.MsgLazyRegisterOrder.pairing_id":
 		return protoreflect.ValueOfUint64(uint64(0))
-	case "gluon.contract.MsgCreateOrder.signature":
+	case "gluon.contract.MsgLazyRegisterOrder.signature":
 		return protoreflect.ValueOfBytes(nil)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCreateOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgLazyRegisterOrder"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgCreateOrder does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgLazyRegisterOrder does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_MsgCreateOrder) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_MsgLazyRegisterOrder) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.MsgCreateOrder", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.MsgLazyRegisterOrder", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1155,7 +1155,7 @@ func (x *fastReflection_MsgCreateOrder) WhichOneof(d protoreflect.OneofDescripto
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_MsgCreateOrder) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_MsgLazyRegisterOrder) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -1166,7 +1166,7 @@ func (x *fastReflection_MsgCreateOrder) GetUnknown() protoreflect.RawFields {
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateOrder) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_MsgLazyRegisterOrder) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -1178,7 +1178,7 @@ func (x *fastReflection_MsgCreateOrder) SetUnknown(fields protoreflect.RawFields
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_MsgCreateOrder) IsValid() bool {
+func (x *fastReflection_MsgLazyRegisterOrder) IsValid() bool {
 	return x != nil
 }
 
@@ -1188,9 +1188,9 @@ func (x *fastReflection_MsgCreateOrder) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_MsgCreateOrder) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_MsgLazyRegisterOrder) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*MsgCreateOrder)
+		x := input.Message.Interface().(*MsgLazyRegisterOrder)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1227,7 +1227,7 @@ func (x *fastReflection_MsgCreateOrder) ProtoMethods() *protoiface.Methods {
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*MsgCreateOrder)
+		x := input.Message.Interface().(*MsgLazyRegisterOrder)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1290,7 +1290,7 @@ func (x *fastReflection_MsgCreateOrder) ProtoMethods() *protoiface.Methods {
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*MsgCreateOrder)
+		x := input.Message.Interface().(*MsgLazyRegisterOrder)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1322,10 +1322,10 @@ func (x *fastReflection_MsgCreateOrder) ProtoMethods() *protoiface.Methods {
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateOrder: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgLazyRegisterOrder: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateOrder: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgLazyRegisterOrder: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -1485,23 +1485,23 @@ func (x *fastReflection_MsgCreateOrder) ProtoMethods() *protoiface.Methods {
 }
 
 var (
-	md_MsgCreateOrderResponse protoreflect.MessageDescriptor
+	md_MsgLazyRegisterOrderResponse protoreflect.MessageDescriptor
 )
 
 func init() {
 	file_gluon_contract_tx_proto_init()
-	md_MsgCreateOrderResponse = File_gluon_contract_tx_proto.Messages().ByName("MsgCreateOrderResponse")
+	md_MsgLazyRegisterOrderResponse = File_gluon_contract_tx_proto.Messages().ByName("MsgLazyRegisterOrderResponse")
 }
 
-var _ protoreflect.Message = (*fastReflection_MsgCreateOrderResponse)(nil)
+var _ protoreflect.Message = (*fastReflection_MsgLazyRegisterOrderResponse)(nil)
 
-type fastReflection_MsgCreateOrderResponse MsgCreateOrderResponse
+type fastReflection_MsgLazyRegisterOrderResponse MsgLazyRegisterOrderResponse
 
-func (x *MsgCreateOrderResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_MsgCreateOrderResponse)(x)
+func (x *MsgLazyRegisterOrderResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgLazyRegisterOrderResponse)(x)
 }
 
-func (x *MsgCreateOrderResponse) slowProtoReflect() protoreflect.Message {
+func (x *MsgLazyRegisterOrderResponse) slowProtoReflect() protoreflect.Message {
 	mi := &file_gluon_contract_tx_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1513,43 +1513,43 @@ func (x *MsgCreateOrderResponse) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_MsgCreateOrderResponse_messageType fastReflection_MsgCreateOrderResponse_messageType
-var _ protoreflect.MessageType = fastReflection_MsgCreateOrderResponse_messageType{}
+var _fastReflection_MsgLazyRegisterOrderResponse_messageType fastReflection_MsgLazyRegisterOrderResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgLazyRegisterOrderResponse_messageType{}
 
-type fastReflection_MsgCreateOrderResponse_messageType struct{}
+type fastReflection_MsgLazyRegisterOrderResponse_messageType struct{}
 
-func (x fastReflection_MsgCreateOrderResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_MsgCreateOrderResponse)(nil)
+func (x fastReflection_MsgLazyRegisterOrderResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgLazyRegisterOrderResponse)(nil)
 }
-func (x fastReflection_MsgCreateOrderResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_MsgCreateOrderResponse)
+func (x fastReflection_MsgLazyRegisterOrderResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgLazyRegisterOrderResponse)
 }
-func (x fastReflection_MsgCreateOrderResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgCreateOrderResponse
+func (x fastReflection_MsgLazyRegisterOrderResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgLazyRegisterOrderResponse
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_MsgCreateOrderResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgCreateOrderResponse
+func (x *fastReflection_MsgLazyRegisterOrderResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgLazyRegisterOrderResponse
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_MsgCreateOrderResponse) Type() protoreflect.MessageType {
-	return _fastReflection_MsgCreateOrderResponse_messageType
+func (x *fastReflection_MsgLazyRegisterOrderResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgLazyRegisterOrderResponse_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_MsgCreateOrderResponse) New() protoreflect.Message {
-	return new(fastReflection_MsgCreateOrderResponse)
+func (x *fastReflection_MsgLazyRegisterOrderResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgLazyRegisterOrderResponse)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_MsgCreateOrderResponse) Interface() protoreflect.ProtoMessage {
-	return (*MsgCreateOrderResponse)(x)
+func (x *fastReflection_MsgLazyRegisterOrderResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgLazyRegisterOrderResponse)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -1557,7 +1557,7 @@ func (x *fastReflection_MsgCreateOrderResponse) Interface() protoreflect.ProtoMe
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_MsgCreateOrderResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_MsgLazyRegisterOrderResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 }
 
 // Has reports whether a field is populated.
@@ -1571,13 +1571,13 @@ func (x *fastReflection_MsgCreateOrderResponse) Range(f func(protoreflect.FieldD
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_MsgCreateOrderResponse) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_MsgLazyRegisterOrderResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCreateOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgLazyRegisterOrderResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgCreateOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgLazyRegisterOrderResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1587,13 +1587,13 @@ func (x *fastReflection_MsgCreateOrderResponse) Has(fd protoreflect.FieldDescrip
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateOrderResponse) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_MsgLazyRegisterOrderResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCreateOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgLazyRegisterOrderResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgCreateOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgLazyRegisterOrderResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1603,13 +1603,13 @@ func (x *fastReflection_MsgCreateOrderResponse) Clear(fd protoreflect.FieldDescr
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_MsgCreateOrderResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgLazyRegisterOrderResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCreateOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgLazyRegisterOrderResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgCreateOrderResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgLazyRegisterOrderResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1623,13 +1623,13 @@ func (x *fastReflection_MsgCreateOrderResponse) Get(descriptor protoreflect.Fiel
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateOrderResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_MsgLazyRegisterOrderResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCreateOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgLazyRegisterOrderResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgCreateOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgLazyRegisterOrderResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1643,36 +1643,36 @@ func (x *fastReflection_MsgCreateOrderResponse) Set(fd protoreflect.FieldDescrip
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateOrderResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgLazyRegisterOrderResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCreateOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgLazyRegisterOrderResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgCreateOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgLazyRegisterOrderResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_MsgCreateOrderResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgLazyRegisterOrderResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCreateOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgLazyRegisterOrderResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgCreateOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgLazyRegisterOrderResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_MsgCreateOrderResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_MsgLazyRegisterOrderResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.MsgCreateOrderResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.MsgLazyRegisterOrderResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1680,7 +1680,7 @@ func (x *fastReflection_MsgCreateOrderResponse) WhichOneof(d protoreflect.OneofD
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_MsgCreateOrderResponse) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_MsgLazyRegisterOrderResponse) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -1691,7 +1691,7 @@ func (x *fastReflection_MsgCreateOrderResponse) GetUnknown() protoreflect.RawFie
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgCreateOrderResponse) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_MsgLazyRegisterOrderResponse) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -1703,7 +1703,7 @@ func (x *fastReflection_MsgCreateOrderResponse) SetUnknown(fields protoreflect.R
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_MsgCreateOrderResponse) IsValid() bool {
+func (x *fastReflection_MsgLazyRegisterOrderResponse) IsValid() bool {
 	return x != nil
 }
 
@@ -1713,9 +1713,9 @@ func (x *fastReflection_MsgCreateOrderResponse) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_MsgCreateOrderResponse) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_MsgLazyRegisterOrderResponse) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*MsgCreateOrderResponse)
+		x := input.Message.Interface().(*MsgLazyRegisterOrderResponse)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1737,7 +1737,7 @@ func (x *fastReflection_MsgCreateOrderResponse) ProtoMethods() *protoiface.Metho
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*MsgCreateOrderResponse)
+		x := input.Message.Interface().(*MsgLazyRegisterOrderResponse)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1767,7 +1767,7 @@ func (x *fastReflection_MsgCreateOrderResponse) ProtoMethods() *protoiface.Metho
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*MsgCreateOrderResponse)
+		x := input.Message.Interface().(*MsgLazyRegisterOrderResponse)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1799,10 +1799,10 @@ func (x *fastReflection_MsgCreateOrderResponse) ProtoMethods() *protoiface.Metho
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateOrderResponse: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgLazyRegisterOrderResponse: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateOrderResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgLazyRegisterOrderResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			default:
@@ -1841,27 +1841,27 @@ func (x *fastReflection_MsgCreateOrderResponse) ProtoMethods() *protoiface.Metho
 }
 
 var (
-	md_MsgDeleteOrder      protoreflect.MessageDescriptor
-	fd_MsgDeleteOrder_user protoreflect.FieldDescriptor
-	fd_MsgDeleteOrder_id   protoreflect.FieldDescriptor
+	md_MsgCancelOrder      protoreflect.MessageDescriptor
+	fd_MsgCancelOrder_user protoreflect.FieldDescriptor
+	fd_MsgCancelOrder_id   protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_contract_tx_proto_init()
-	md_MsgDeleteOrder = File_gluon_contract_tx_proto.Messages().ByName("MsgDeleteOrder")
-	fd_MsgDeleteOrder_user = md_MsgDeleteOrder.Fields().ByName("user")
-	fd_MsgDeleteOrder_id = md_MsgDeleteOrder.Fields().ByName("id")
+	md_MsgCancelOrder = File_gluon_contract_tx_proto.Messages().ByName("MsgCancelOrder")
+	fd_MsgCancelOrder_user = md_MsgCancelOrder.Fields().ByName("user")
+	fd_MsgCancelOrder_id = md_MsgCancelOrder.Fields().ByName("id")
 }
 
-var _ protoreflect.Message = (*fastReflection_MsgDeleteOrder)(nil)
+var _ protoreflect.Message = (*fastReflection_MsgCancelOrder)(nil)
 
-type fastReflection_MsgDeleteOrder MsgDeleteOrder
+type fastReflection_MsgCancelOrder MsgCancelOrder
 
-func (x *MsgDeleteOrder) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_MsgDeleteOrder)(x)
+func (x *MsgCancelOrder) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgCancelOrder)(x)
 }
 
-func (x *MsgDeleteOrder) slowProtoReflect() protoreflect.Message {
+func (x *MsgCancelOrder) slowProtoReflect() protoreflect.Message {
 	mi := &file_gluon_contract_tx_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1873,43 +1873,43 @@ func (x *MsgDeleteOrder) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_MsgDeleteOrder_messageType fastReflection_MsgDeleteOrder_messageType
-var _ protoreflect.MessageType = fastReflection_MsgDeleteOrder_messageType{}
+var _fastReflection_MsgCancelOrder_messageType fastReflection_MsgCancelOrder_messageType
+var _ protoreflect.MessageType = fastReflection_MsgCancelOrder_messageType{}
 
-type fastReflection_MsgDeleteOrder_messageType struct{}
+type fastReflection_MsgCancelOrder_messageType struct{}
 
-func (x fastReflection_MsgDeleteOrder_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_MsgDeleteOrder)(nil)
+func (x fastReflection_MsgCancelOrder_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgCancelOrder)(nil)
 }
-func (x fastReflection_MsgDeleteOrder_messageType) New() protoreflect.Message {
-	return new(fastReflection_MsgDeleteOrder)
+func (x fastReflection_MsgCancelOrder_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgCancelOrder)
 }
-func (x fastReflection_MsgDeleteOrder_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgDeleteOrder
+func (x fastReflection_MsgCancelOrder_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgCancelOrder
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_MsgDeleteOrder) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgDeleteOrder
+func (x *fastReflection_MsgCancelOrder) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgCancelOrder
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_MsgDeleteOrder) Type() protoreflect.MessageType {
-	return _fastReflection_MsgDeleteOrder_messageType
+func (x *fastReflection_MsgCancelOrder) Type() protoreflect.MessageType {
+	return _fastReflection_MsgCancelOrder_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_MsgDeleteOrder) New() protoreflect.Message {
-	return new(fastReflection_MsgDeleteOrder)
+func (x *fastReflection_MsgCancelOrder) New() protoreflect.Message {
+	return new(fastReflection_MsgCancelOrder)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_MsgDeleteOrder) Interface() protoreflect.ProtoMessage {
-	return (*MsgDeleteOrder)(x)
+func (x *fastReflection_MsgCancelOrder) Interface() protoreflect.ProtoMessage {
+	return (*MsgCancelOrder)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -1917,16 +1917,16 @@ func (x *fastReflection_MsgDeleteOrder) Interface() protoreflect.ProtoMessage {
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_MsgDeleteOrder) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_MsgCancelOrder) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if x.User != "" {
 		value := protoreflect.ValueOfString(x.User)
-		if !f(fd_MsgDeleteOrder_user, value) {
+		if !f(fd_MsgCancelOrder_user, value) {
 			return
 		}
 	}
 	if x.Id != "" {
 		value := protoreflect.ValueOfString(x.Id)
-		if !f(fd_MsgDeleteOrder_id, value) {
+		if !f(fd_MsgCancelOrder_id, value) {
 			return
 		}
 	}
@@ -1943,17 +1943,17 @@ func (x *fastReflection_MsgDeleteOrder) Range(f func(protoreflect.FieldDescripto
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_MsgDeleteOrder) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_MsgCancelOrder) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.contract.MsgDeleteOrder.user":
+	case "gluon.contract.MsgCancelOrder.user":
 		return x.User != ""
-	case "gluon.contract.MsgDeleteOrder.id":
+	case "gluon.contract.MsgCancelOrder.id":
 		return x.Id != ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgDeleteOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCancelOrder"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgDeleteOrder does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgCancelOrder does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1963,17 +1963,17 @@ func (x *fastReflection_MsgDeleteOrder) Has(fd protoreflect.FieldDescriptor) boo
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgDeleteOrder) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_MsgCancelOrder) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.contract.MsgDeleteOrder.user":
+	case "gluon.contract.MsgCancelOrder.user":
 		x.User = ""
-	case "gluon.contract.MsgDeleteOrder.id":
+	case "gluon.contract.MsgCancelOrder.id":
 		x.Id = ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgDeleteOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCancelOrder"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgDeleteOrder does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgCancelOrder does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1983,19 +1983,19 @@ func (x *fastReflection_MsgDeleteOrder) Clear(fd protoreflect.FieldDescriptor) {
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_MsgDeleteOrder) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgCancelOrder) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.contract.MsgDeleteOrder.user":
+	case "gluon.contract.MsgCancelOrder.user":
 		value := x.User
 		return protoreflect.ValueOfString(value)
-	case "gluon.contract.MsgDeleteOrder.id":
+	case "gluon.contract.MsgCancelOrder.id":
 		value := x.Id
 		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgDeleteOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCancelOrder"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgDeleteOrder does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgCancelOrder does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -2009,17 +2009,17 @@ func (x *fastReflection_MsgDeleteOrder) Get(descriptor protoreflect.FieldDescrip
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgDeleteOrder) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_MsgCancelOrder) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.contract.MsgDeleteOrder.user":
+	case "gluon.contract.MsgCancelOrder.user":
 		x.User = value.Interface().(string)
-	case "gluon.contract.MsgDeleteOrder.id":
+	case "gluon.contract.MsgCancelOrder.id":
 		x.Id = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgDeleteOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCancelOrder"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgDeleteOrder does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgCancelOrder does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2033,44 +2033,44 @@ func (x *fastReflection_MsgDeleteOrder) Set(fd protoreflect.FieldDescriptor, val
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgDeleteOrder) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgCancelOrder) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.contract.MsgDeleteOrder.user":
-		panic(fmt.Errorf("field user of message gluon.contract.MsgDeleteOrder is not mutable"))
-	case "gluon.contract.MsgDeleteOrder.id":
-		panic(fmt.Errorf("field id of message gluon.contract.MsgDeleteOrder is not mutable"))
+	case "gluon.contract.MsgCancelOrder.user":
+		panic(fmt.Errorf("field user of message gluon.contract.MsgCancelOrder is not mutable"))
+	case "gluon.contract.MsgCancelOrder.id":
+		panic(fmt.Errorf("field id of message gluon.contract.MsgCancelOrder is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgDeleteOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCancelOrder"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgDeleteOrder does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgCancelOrder does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_MsgDeleteOrder) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgCancelOrder) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.contract.MsgDeleteOrder.user":
+	case "gluon.contract.MsgCancelOrder.user":
 		return protoreflect.ValueOfString("")
-	case "gluon.contract.MsgDeleteOrder.id":
+	case "gluon.contract.MsgCancelOrder.id":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgDeleteOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCancelOrder"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgDeleteOrder does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgCancelOrder does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_MsgDeleteOrder) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_MsgCancelOrder) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.MsgDeleteOrder", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.MsgCancelOrder", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -2078,7 +2078,7 @@ func (x *fastReflection_MsgDeleteOrder) WhichOneof(d protoreflect.OneofDescripto
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_MsgDeleteOrder) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_MsgCancelOrder) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -2089,7 +2089,7 @@ func (x *fastReflection_MsgDeleteOrder) GetUnknown() protoreflect.RawFields {
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgDeleteOrder) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_MsgCancelOrder) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -2101,7 +2101,7 @@ func (x *fastReflection_MsgDeleteOrder) SetUnknown(fields protoreflect.RawFields
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_MsgDeleteOrder) IsValid() bool {
+func (x *fastReflection_MsgCancelOrder) IsValid() bool {
 	return x != nil
 }
 
@@ -2111,9 +2111,9 @@ func (x *fastReflection_MsgDeleteOrder) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_MsgDeleteOrder) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_MsgCancelOrder) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*MsgDeleteOrder)
+		x := input.Message.Interface().(*MsgCancelOrder)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -2143,7 +2143,7 @@ func (x *fastReflection_MsgDeleteOrder) ProtoMethods() *protoiface.Methods {
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*MsgDeleteOrder)
+		x := input.Message.Interface().(*MsgCancelOrder)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -2187,7 +2187,7 @@ func (x *fastReflection_MsgDeleteOrder) ProtoMethods() *protoiface.Methods {
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*MsgDeleteOrder)
+		x := input.Message.Interface().(*MsgCancelOrder)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -2219,10 +2219,10 @@ func (x *fastReflection_MsgDeleteOrder) ProtoMethods() *protoiface.Methods {
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgDeleteOrder: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCancelOrder: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgDeleteOrder: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCancelOrder: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -2325,23 +2325,23 @@ func (x *fastReflection_MsgDeleteOrder) ProtoMethods() *protoiface.Methods {
 }
 
 var (
-	md_MsgDeleteOrderResponse protoreflect.MessageDescriptor
+	md_MsgCancelOrderResponse protoreflect.MessageDescriptor
 )
 
 func init() {
 	file_gluon_contract_tx_proto_init()
-	md_MsgDeleteOrderResponse = File_gluon_contract_tx_proto.Messages().ByName("MsgDeleteOrderResponse")
+	md_MsgCancelOrderResponse = File_gluon_contract_tx_proto.Messages().ByName("MsgCancelOrderResponse")
 }
 
-var _ protoreflect.Message = (*fastReflection_MsgDeleteOrderResponse)(nil)
+var _ protoreflect.Message = (*fastReflection_MsgCancelOrderResponse)(nil)
 
-type fastReflection_MsgDeleteOrderResponse MsgDeleteOrderResponse
+type fastReflection_MsgCancelOrderResponse MsgCancelOrderResponse
 
-func (x *MsgDeleteOrderResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_MsgDeleteOrderResponse)(x)
+func (x *MsgCancelOrderResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgCancelOrderResponse)(x)
 }
 
-func (x *MsgDeleteOrderResponse) slowProtoReflect() protoreflect.Message {
+func (x *MsgCancelOrderResponse) slowProtoReflect() protoreflect.Message {
 	mi := &file_gluon_contract_tx_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2353,43 +2353,43 @@ func (x *MsgDeleteOrderResponse) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_MsgDeleteOrderResponse_messageType fastReflection_MsgDeleteOrderResponse_messageType
-var _ protoreflect.MessageType = fastReflection_MsgDeleteOrderResponse_messageType{}
+var _fastReflection_MsgCancelOrderResponse_messageType fastReflection_MsgCancelOrderResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgCancelOrderResponse_messageType{}
 
-type fastReflection_MsgDeleteOrderResponse_messageType struct{}
+type fastReflection_MsgCancelOrderResponse_messageType struct{}
 
-func (x fastReflection_MsgDeleteOrderResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_MsgDeleteOrderResponse)(nil)
+func (x fastReflection_MsgCancelOrderResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgCancelOrderResponse)(nil)
 }
-func (x fastReflection_MsgDeleteOrderResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_MsgDeleteOrderResponse)
+func (x fastReflection_MsgCancelOrderResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgCancelOrderResponse)
 }
-func (x fastReflection_MsgDeleteOrderResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgDeleteOrderResponse
+func (x fastReflection_MsgCancelOrderResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgCancelOrderResponse
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_MsgDeleteOrderResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgDeleteOrderResponse
+func (x *fastReflection_MsgCancelOrderResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgCancelOrderResponse
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_MsgDeleteOrderResponse) Type() protoreflect.MessageType {
-	return _fastReflection_MsgDeleteOrderResponse_messageType
+func (x *fastReflection_MsgCancelOrderResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgCancelOrderResponse_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_MsgDeleteOrderResponse) New() protoreflect.Message {
-	return new(fastReflection_MsgDeleteOrderResponse)
+func (x *fastReflection_MsgCancelOrderResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgCancelOrderResponse)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_MsgDeleteOrderResponse) Interface() protoreflect.ProtoMessage {
-	return (*MsgDeleteOrderResponse)(x)
+func (x *fastReflection_MsgCancelOrderResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgCancelOrderResponse)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -2397,7 +2397,7 @@ func (x *fastReflection_MsgDeleteOrderResponse) Interface() protoreflect.ProtoMe
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_MsgDeleteOrderResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_MsgCancelOrderResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 }
 
 // Has reports whether a field is populated.
@@ -2411,13 +2411,13 @@ func (x *fastReflection_MsgDeleteOrderResponse) Range(f func(protoreflect.FieldD
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_MsgDeleteOrderResponse) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_MsgCancelOrderResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgDeleteOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCancelOrderResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgDeleteOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgCancelOrderResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2427,13 +2427,13 @@ func (x *fastReflection_MsgDeleteOrderResponse) Has(fd protoreflect.FieldDescrip
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgDeleteOrderResponse) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_MsgCancelOrderResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgDeleteOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCancelOrderResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgDeleteOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgCancelOrderResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2443,13 +2443,13 @@ func (x *fastReflection_MsgDeleteOrderResponse) Clear(fd protoreflect.FieldDescr
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_MsgDeleteOrderResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgCancelOrderResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgDeleteOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCancelOrderResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgDeleteOrderResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgCancelOrderResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -2463,13 +2463,13 @@ func (x *fastReflection_MsgDeleteOrderResponse) Get(descriptor protoreflect.Fiel
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgDeleteOrderResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_MsgCancelOrderResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgDeleteOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCancelOrderResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgDeleteOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgCancelOrderResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2483,36 +2483,36 @@ func (x *fastReflection_MsgDeleteOrderResponse) Set(fd protoreflect.FieldDescrip
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgDeleteOrderResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgCancelOrderResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgDeleteOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCancelOrderResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgDeleteOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgCancelOrderResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_MsgDeleteOrderResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgCancelOrderResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgDeleteOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.MsgCancelOrderResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.MsgDeleteOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.MsgCancelOrderResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_MsgDeleteOrderResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_MsgCancelOrderResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.MsgDeleteOrderResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.MsgCancelOrderResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -2520,7 +2520,7 @@ func (x *fastReflection_MsgDeleteOrderResponse) WhichOneof(d protoreflect.OneofD
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_MsgDeleteOrderResponse) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_MsgCancelOrderResponse) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -2531,7 +2531,7 @@ func (x *fastReflection_MsgDeleteOrderResponse) GetUnknown() protoreflect.RawFie
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgDeleteOrderResponse) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_MsgCancelOrderResponse) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -2543,7 +2543,7 @@ func (x *fastReflection_MsgDeleteOrderResponse) SetUnknown(fields protoreflect.R
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_MsgDeleteOrderResponse) IsValid() bool {
+func (x *fastReflection_MsgCancelOrderResponse) IsValid() bool {
 	return x != nil
 }
 
@@ -2553,9 +2553,9 @@ func (x *fastReflection_MsgDeleteOrderResponse) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_MsgDeleteOrderResponse) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_MsgCancelOrderResponse) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*MsgDeleteOrderResponse)
+		x := input.Message.Interface().(*MsgCancelOrderResponse)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -2577,7 +2577,7 @@ func (x *fastReflection_MsgDeleteOrderResponse) ProtoMethods() *protoiface.Metho
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*MsgDeleteOrderResponse)
+		x := input.Message.Interface().(*MsgCancelOrderResponse)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -2607,7 +2607,7 @@ func (x *fastReflection_MsgDeleteOrderResponse) ProtoMethods() *protoiface.Metho
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*MsgDeleteOrderResponse)
+		x := input.Message.Interface().(*MsgCancelOrderResponse)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -2639,10 +2639,10 @@ func (x *fastReflection_MsgDeleteOrderResponse) ProtoMethods() *protoiface.Metho
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgDeleteOrderResponse: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCancelOrderResponse: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgDeleteOrderResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCancelOrderResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			default:
@@ -4959,7 +4959,7 @@ func (*MsgUpdateParamsResponse) Descriptor() ([]byte, []int) {
 	return file_gluon_contract_tx_proto_rawDescGZIP(), []int{1}
 }
 
-type MsgCreateOrder struct {
+type MsgLazyRegisterOrder struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -4970,8 +4970,8 @@ type MsgCreateOrder struct {
 	Signature []byte `protobuf:"bytes,4,opt,name=signature,proto3" json:"signature,omitempty"`
 }
 
-func (x *MsgCreateOrder) Reset() {
-	*x = MsgCreateOrder{}
+func (x *MsgLazyRegisterOrder) Reset() {
+	*x = MsgLazyRegisterOrder{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_gluon_contract_tx_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4979,53 +4979,53 @@ func (x *MsgCreateOrder) Reset() {
 	}
 }
 
-func (x *MsgCreateOrder) String() string {
+func (x *MsgLazyRegisterOrder) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MsgCreateOrder) ProtoMessage() {}
+func (*MsgLazyRegisterOrder) ProtoMessage() {}
 
-// Deprecated: Use MsgCreateOrder.ProtoReflect.Descriptor instead.
-func (*MsgCreateOrder) Descriptor() ([]byte, []int) {
+// Deprecated: Use MsgLazyRegisterOrder.ProtoReflect.Descriptor instead.
+func (*MsgLazyRegisterOrder) Descriptor() ([]byte, []int) {
 	return file_gluon_contract_tx_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *MsgCreateOrder) GetId() string {
+func (x *MsgLazyRegisterOrder) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *MsgCreateOrder) GetOrder() *Order {
+func (x *MsgLazyRegisterOrder) GetOrder() *Order {
 	if x != nil {
 		return x.Order
 	}
 	return nil
 }
 
-func (x *MsgCreateOrder) GetPairingId() uint64 {
+func (x *MsgLazyRegisterOrder) GetPairingId() uint64 {
 	if x != nil {
 		return x.PairingId
 	}
 	return 0
 }
 
-func (x *MsgCreateOrder) GetSignature() []byte {
+func (x *MsgLazyRegisterOrder) GetSignature() []byte {
 	if x != nil {
 		return x.Signature
 	}
 	return nil
 }
 
-type MsgCreateOrderResponse struct {
+type MsgLazyRegisterOrderResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *MsgCreateOrderResponse) Reset() {
-	*x = MsgCreateOrderResponse{}
+func (x *MsgLazyRegisterOrderResponse) Reset() {
+	*x = MsgLazyRegisterOrderResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_gluon_contract_tx_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5033,18 +5033,18 @@ func (x *MsgCreateOrderResponse) Reset() {
 	}
 }
 
-func (x *MsgCreateOrderResponse) String() string {
+func (x *MsgLazyRegisterOrderResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MsgCreateOrderResponse) ProtoMessage() {}
+func (*MsgLazyRegisterOrderResponse) ProtoMessage() {}
 
-// Deprecated: Use MsgCreateOrderResponse.ProtoReflect.Descriptor instead.
-func (*MsgCreateOrderResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use MsgLazyRegisterOrderResponse.ProtoReflect.Descriptor instead.
+func (*MsgLazyRegisterOrderResponse) Descriptor() ([]byte, []int) {
 	return file_gluon_contract_tx_proto_rawDescGZIP(), []int{3}
 }
 
-type MsgDeleteOrder struct {
+type MsgCancelOrder struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -5053,8 +5053,8 @@ type MsgDeleteOrder struct {
 	Id   string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (x *MsgDeleteOrder) Reset() {
-	*x = MsgDeleteOrder{}
+func (x *MsgCancelOrder) Reset() {
+	*x = MsgCancelOrder{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_gluon_contract_tx_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5062,39 +5062,39 @@ func (x *MsgDeleteOrder) Reset() {
 	}
 }
 
-func (x *MsgDeleteOrder) String() string {
+func (x *MsgCancelOrder) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MsgDeleteOrder) ProtoMessage() {}
+func (*MsgCancelOrder) ProtoMessage() {}
 
-// Deprecated: Use MsgDeleteOrder.ProtoReflect.Descriptor instead.
-func (*MsgDeleteOrder) Descriptor() ([]byte, []int) {
+// Deprecated: Use MsgCancelOrder.ProtoReflect.Descriptor instead.
+func (*MsgCancelOrder) Descriptor() ([]byte, []int) {
 	return file_gluon_contract_tx_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *MsgDeleteOrder) GetUser() string {
+func (x *MsgCancelOrder) GetUser() string {
 	if x != nil {
 		return x.User
 	}
 	return ""
 }
 
-func (x *MsgDeleteOrder) GetId() string {
+func (x *MsgCancelOrder) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-type MsgDeleteOrderResponse struct {
+type MsgCancelOrderResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *MsgDeleteOrderResponse) Reset() {
-	*x = MsgDeleteOrderResponse{}
+func (x *MsgCancelOrderResponse) Reset() {
+	*x = MsgCancelOrderResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_gluon_contract_tx_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -5102,14 +5102,14 @@ func (x *MsgDeleteOrderResponse) Reset() {
 	}
 }
 
-func (x *MsgDeleteOrderResponse) String() string {
+func (x *MsgCancelOrderResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MsgDeleteOrderResponse) ProtoMessage() {}
+func (*MsgCancelOrderResponse) ProtoMessage() {}
 
-// Deprecated: Use MsgDeleteOrderResponse.ProtoReflect.Descriptor instead.
-func (*MsgDeleteOrderResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use MsgCancelOrderResponse.ProtoReflect.Descriptor instead.
+func (*MsgCancelOrderResponse) Descriptor() ([]byte, []int) {
 	return file_gluon_contract_tx_proto_rawDescGZIP(), []int{5}
 }
 
@@ -5343,113 +5343,115 @@ var file_gluon_contract_tx_proto_rawDesc = []byte{
 	0x2f, 0x78, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x4d, 0x73, 0x67, 0x55,
 	0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x22, 0x19, 0x0a, 0x17, 0x4d,
 	0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xa9, 0x01, 0x0a, 0x0e, 0x4d, 0x73, 0x67, 0x43, 0x72,
-	0x65, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x36, 0x0a, 0x05, 0x6f, 0x72, 0x64,
-	0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e,
-	0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42,
-	0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x05, 0x6f, 0x72, 0x64, 0x65,
-	0x72, 0x12, 0x1d, 0x0a, 0x0a, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x5f, 0x69, 0x64, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x09, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x49, 0x64,
-	0x12, 0x1c, 0x0a, 0x09, 0x73, 0x69, 0x67, 0x6e, 0x61, 0x74, 0x75, 0x72, 0x65, 0x18, 0x04, 0x20,
-	0x01, 0x28, 0x0c, 0x52, 0x09, 0x73, 0x69, 0x67, 0x6e, 0x61, 0x74, 0x75, 0x72, 0x65, 0x3a, 0x12,
-	0x82, 0xe7, 0xb0, 0x2a, 0x0d, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x61, 0x64, 0x64, 0x72, 0x65,
-	0x73, 0x73, 0x22, 0x18, 0x0a, 0x16, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4f,
-	0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x3f, 0x0a, 0x0e,
-	0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x12,
-	0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x75, 0x73,
-	0x65, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02,
-	0x69, 0x64, 0x3a, 0x09, 0x82, 0xe7, 0xb0, 0x2a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x18, 0x0a,
-	0x16, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xed, 0x02, 0x0a, 0x0d, 0x4d, 0x73, 0x67, 0x4d,
-	0x61, 0x74, 0x63, 0x68, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x27, 0x0a, 0x0f, 0x65, 0x61, 0x72,
-	0x6c, 0x69, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x0e, 0x65, 0x61, 0x72, 0x6c, 0x69, 0x65, 0x72, 0x41, 0x64, 0x64, 0x72, 0x65,
-	0x73, 0x73, 0x12, 0x28, 0x0a, 0x10, 0x65, 0x61, 0x72, 0x6c, 0x69, 0x65, 0x72, 0x5f, 0x6f, 0x72,
-	0x64, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x65, 0x61,
-	0x72, 0x6c, 0x69, 0x65, 0x72, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x64, 0x12, 0x23, 0x0a, 0x0d,
-	0x6c, 0x61, 0x74, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x03, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x0c, 0x6c, 0x61, 0x74, 0x65, 0x72, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73,
-	0x73, 0x12, 0x24, 0x0a, 0x0e, 0x6c, 0x61, 0x74, 0x65, 0x72, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72,
-	0x5f, 0x69, 0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6c, 0x61, 0x74, 0x65, 0x72,
-	0x4f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x64, 0x12, 0x48, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e,
-	0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x42, 0x30, 0xc8, 0xde, 0x1f, 0x00, 0xda, 0xde, 0x1f,
-	0x15, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61,
-	0x74, 0x68, 0x2e, 0x49, 0x6e, 0x74, 0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
-	0x2e, 0x49, 0x6e, 0x74, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e,
-	0x74, 0x12, 0x4c, 0x0a, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09,
-	0x42, 0x36, 0xc8, 0xde, 0x1f, 0x01, 0xda, 0xde, 0x1f, 0x1b, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
-	0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e, 0x4c, 0x65, 0x67, 0x61,
-	0x63, 0x79, 0x44, 0x65, 0x63, 0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e,
-	0x44, 0x65, 0x63, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x3a,
-	0x26, 0x82, 0xe7, 0xb0, 0x2a, 0x0f, 0x65, 0x61, 0x72, 0x6c, 0x69, 0x65, 0x72, 0x5f, 0x61, 0x64,
-	0x64, 0x72, 0x65, 0x73, 0x73, 0x82, 0xe7, 0xb0, 0x2a, 0x0d, 0x6c, 0x61, 0x74, 0x65, 0x72, 0x5f,
-	0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x22, 0x17, 0x0a, 0x15, 0x4d, 0x73, 0x67, 0x4d, 0x61,
-	0x74, 0x63, 0x68, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x22, 0xf1, 0x02, 0x0a, 0x11, 0x4d, 0x73, 0x67, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4c, 0x61, 0x7a,
-	0x79, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x27, 0x0a, 0x0f, 0x65, 0x61, 0x72, 0x6c, 0x69, 0x65,
-	0x72, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x0e, 0x65, 0x61, 0x72, 0x6c, 0x69, 0x65, 0x72, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12,
-	0x28, 0x0a, 0x10, 0x65, 0x61, 0x72, 0x6c, 0x69, 0x65, 0x72, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72,
-	0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x65, 0x61, 0x72, 0x6c, 0x69,
-	0x65, 0x72, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x64, 0x12, 0x23, 0x0a, 0x0d, 0x6c, 0x61, 0x74,
-	0x65, 0x72, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x0c, 0x6c, 0x61, 0x74, 0x65, 0x72, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x24,
-	0x0a, 0x0e, 0x6c, 0x61, 0x74, 0x65, 0x72, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x69, 0x64,
-	0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6c, 0x61, 0x74, 0x65, 0x72, 0x4f, 0x72, 0x64,
-	0x65, 0x72, 0x49, 0x64, 0x12, 0x48, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x05,
-	0x20, 0x01, 0x28, 0x09, 0x42, 0x30, 0xc8, 0xde, 0x1f, 0x00, 0xda, 0xde, 0x1f, 0x15, 0x63, 0x6f,
-	0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e,
-	0x49, 0x6e, 0x74, 0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x49, 0x6e,
-	0x74, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x4c,
-	0x0a, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x42, 0x36, 0xc8,
-	0xde, 0x1f, 0x01, 0xda, 0xde, 0x1f, 0x1b, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b,
-	0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e, 0x4c, 0x65, 0x67, 0x61, 0x63, 0x79, 0x44,
-	0x65, 0x63, 0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x44, 0x65, 0x63,
-	0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x3a, 0x26, 0x82, 0xe7,
-	0xb0, 0x2a, 0x0f, 0x65, 0x61, 0x72, 0x6c, 0x69, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65,
-	0x73, 0x73, 0x82, 0xe7, 0xb0, 0x2a, 0x0d, 0x6c, 0x61, 0x74, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x64,
-	0x72, 0x65, 0x73, 0x73, 0x22, 0x1b, 0x0a, 0x19, 0x4d, 0x73, 0x67, 0x4d, 0x61, 0x74, 0x63, 0x68,
-	0x4c, 0x61, 0x7a, 0x79, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x32, 0xc8, 0x03, 0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x58, 0x0a, 0x0c, 0x55, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x1f, 0x2e, 0x67, 0x6c, 0x75, 0x6f,
-	0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x27, 0x2e, 0x67, 0x6c, 0x75,
-	0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x55, 0x0a, 0x0b, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x64,
-	0x65, 0x72, 0x12, 0x1e, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72,
-	0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x64,
-	0x65, 0x72, 0x1a, 0x26, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72,
-	0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x64,
-	0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x55, 0x0a, 0x0b, 0x44, 0x65,
-	0x6c, 0x65, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x1e, 0x2e, 0x67, 0x6c, 0x75, 0x6f,
-	0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x44, 0x65,
-	0x6c, 0x65, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x1a, 0x26, 0x2e, 0x67, 0x6c, 0x75, 0x6f,
-	0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x44, 0x65,
-	0x6c, 0x65, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x52, 0x0a, 0x0a, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12,
-	0x1d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
-	0x2e, 0x4d, 0x73, 0x67, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x1a, 0x25,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xaf, 0x01, 0x0a, 0x14, 0x4d, 0x73, 0x67, 0x4c, 0x61,
+	0x7a, 0x79, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12,
+	0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12,
+	0x36, 0x0a, 0x05, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15,
 	0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e,
-	0x4d, 0x73, 0x67, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5e, 0x0a, 0x0e, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4c, 0x61,
-	0x7a, 0x79, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x21, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e,
-	0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x4d, 0x61, 0x74, 0x63,
-	0x68, 0x4c, 0x61, 0x7a, 0x79, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x1a, 0x29, 0x2e, 0x67, 0x6c, 0x75,
-	0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x4d,
-	0x61, 0x74, 0x63, 0x68, 0x4c, 0x61, 0x7a, 0x79, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01, 0x42, 0x90, 0x01, 0x0a,
-	0x12, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72,
-	0x61, 0x63, 0x74, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x18,
-	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f,
-	0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xa2, 0x02, 0x03, 0x47, 0x43, 0x58, 0xaa, 0x02,
-	0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xca,
-	0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
-	0xe2, 0x02, 0x1a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
-	0x74, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0f,
-	0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01,
+	0x52, 0x05, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x1d, 0x0a, 0x0a, 0x70, 0x61, 0x69, 0x72, 0x69,
+	0x6e, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x09, 0x70, 0x61, 0x69,
+	0x72, 0x69, 0x6e, 0x67, 0x49, 0x64, 0x12, 0x1c, 0x0a, 0x09, 0x73, 0x69, 0x67, 0x6e, 0x61, 0x74,
+	0x75, 0x72, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x09, 0x73, 0x69, 0x67, 0x6e, 0x61,
+	0x74, 0x75, 0x72, 0x65, 0x3a, 0x12, 0x82, 0xe7, 0xb0, 0x2a, 0x0d, 0x6f, 0x72, 0x64, 0x65, 0x72,
+	0x2e, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x22, 0x1e, 0x0a, 0x1c, 0x4d, 0x73, 0x67, 0x4c,
+	0x61, 0x7a, 0x79, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x4f, 0x72, 0x64, 0x65, 0x72,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x3f, 0x0a, 0x0e, 0x4d, 0x73, 0x67, 0x43,
+	0x61, 0x6e, 0x63, 0x65, 0x6c, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x12, 0x0a, 0x04, 0x75, 0x73,
+	0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x12, 0x0e,
+	0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x3a, 0x09,
+	0x82, 0xe7, 0xb0, 0x2a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x18, 0x0a, 0x16, 0x4d, 0x73, 0x67,
+	0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x22, 0xed, 0x02, 0x0a, 0x0d, 0x4d, 0x73, 0x67, 0x4d, 0x61, 0x74, 0x63, 0x68,
+	0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x27, 0x0a, 0x0f, 0x65, 0x61, 0x72, 0x6c, 0x69, 0x65, 0x72,
+	0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e,
+	0x65, 0x61, 0x72, 0x6c, 0x69, 0x65, 0x72, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x28,
+	0x0a, 0x10, 0x65, 0x61, 0x72, 0x6c, 0x69, 0x65, 0x72, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f,
+	0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x65, 0x61, 0x72, 0x6c, 0x69, 0x65,
+	0x72, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x64, 0x12, 0x23, 0x0a, 0x0d, 0x6c, 0x61, 0x74, 0x65,
+	0x72, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0c, 0x6c, 0x61, 0x74, 0x65, 0x72, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x24, 0x0a,
+	0x0e, 0x6c, 0x61, 0x74, 0x65, 0x72, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18,
+	0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6c, 0x61, 0x74, 0x65, 0x72, 0x4f, 0x72, 0x64, 0x65,
+	0x72, 0x49, 0x64, 0x12, 0x48, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x05, 0x20,
+	0x01, 0x28, 0x09, 0x42, 0x30, 0xc8, 0xde, 0x1f, 0x00, 0xda, 0xde, 0x1f, 0x15, 0x63, 0x6f, 0x73,
+	0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e, 0x49,
+	0x6e, 0x74, 0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x49, 0x6e, 0x74,
+	0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x4c, 0x0a,
+	0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x42, 0x36, 0xc8, 0xde,
+	0x1f, 0x01, 0xda, 0xde, 0x1f, 0x1b, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e,
+	0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e, 0x4c, 0x65, 0x67, 0x61, 0x63, 0x79, 0x44, 0x65,
+	0x63, 0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x44, 0x65, 0x63, 0xa8,
+	0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x3a, 0x26, 0x82, 0xe7, 0xb0,
+	0x2a, 0x0f, 0x65, 0x61, 0x72, 0x6c, 0x69, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73,
+	0x73, 0x82, 0xe7, 0xb0, 0x2a, 0x0d, 0x6c, 0x61, 0x74, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x64, 0x72,
+	0x65, 0x73, 0x73, 0x22, 0x17, 0x0a, 0x15, 0x4d, 0x73, 0x67, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4f,
+	0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xf1, 0x02, 0x0a,
+	0x11, 0x4d, 0x73, 0x67, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4c, 0x61, 0x7a, 0x79, 0x4f, 0x72, 0x64,
+	0x65, 0x72, 0x12, 0x27, 0x0a, 0x0f, 0x65, 0x61, 0x72, 0x6c, 0x69, 0x65, 0x72, 0x5f, 0x61, 0x64,
+	0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x65, 0x61, 0x72,
+	0x6c, 0x69, 0x65, 0x72, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x28, 0x0a, 0x10, 0x65,
+	0x61, 0x72, 0x6c, 0x69, 0x65, 0x72, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x65, 0x61, 0x72, 0x6c, 0x69, 0x65, 0x72, 0x4f, 0x72,
+	0x64, 0x65, 0x72, 0x49, 0x64, 0x12, 0x23, 0x0a, 0x0d, 0x6c, 0x61, 0x74, 0x65, 0x72, 0x5f, 0x61,
+	0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6c, 0x61,
+	0x74, 0x65, 0x72, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x24, 0x0a, 0x0e, 0x6c, 0x61,
+	0x74, 0x65, 0x72, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x04, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0c, 0x6c, 0x61, 0x74, 0x65, 0x72, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x64,
+	0x12, 0x48, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09,
+	0x42, 0x30, 0xc8, 0xde, 0x1f, 0x00, 0xda, 0xde, 0x1f, 0x15, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e, 0x49, 0x6e, 0x74, 0xd2,
+	0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x49, 0x6e, 0x74, 0xa8, 0xe7, 0xb0,
+	0x2a, 0x01, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x4c, 0x0a, 0x05, 0x70, 0x72,
+	0x69, 0x63, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x42, 0x36, 0xc8, 0xde, 0x1f, 0x01, 0xda,
+	0xde, 0x1f, 0x1b, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f,
+	0x6d, 0x61, 0x74, 0x68, 0x2e, 0x4c, 0x65, 0x67, 0x61, 0x63, 0x79, 0x44, 0x65, 0x63, 0xd2, 0xb4,
+	0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x44, 0x65, 0x63, 0xa8, 0xe7, 0xb0, 0x2a,
+	0x01, 0x52, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x3a, 0x26, 0x82, 0xe7, 0xb0, 0x2a, 0x0f, 0x65,
+	0x61, 0x72, 0x6c, 0x69, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x82, 0xe7,
+	0xb0, 0x2a, 0x0d, 0x6c, 0x61, 0x74, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
+	0x22, 0x1b, 0x0a, 0x19, 0x4d, 0x73, 0x67, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4c, 0x61, 0x7a, 0x79,
+	0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xda, 0x03,
+	0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x58, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50,
+	0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x1f, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f,
+	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x27, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63,
+	0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x67, 0x0a, 0x11, 0x4c, 0x61, 0x7a, 0x79, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x4f,
+	0x72, 0x64, 0x65, 0x72, 0x12, 0x24, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e,
+	0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x4c, 0x61, 0x7a, 0x79, 0x52, 0x65, 0x67,
+	0x69, 0x73, 0x74, 0x65, 0x72, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x1a, 0x2c, 0x2e, 0x67, 0x6c, 0x75,
+	0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x4c,
+	0x61, 0x7a, 0x79, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x4f, 0x72, 0x64, 0x65, 0x72,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x55, 0x0a, 0x0b, 0x43, 0x61, 0x6e, 0x63,
+	0x65, 0x6c, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x1e, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e,
+	0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x61, 0x6e, 0x63,
+	0x65, 0x6c, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x1a, 0x26, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e,
+	0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x61, 0x6e, 0x63,
+	0x65, 0x6c, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x52, 0x0a, 0x0a, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x1d, 0x2e,
+	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4d,
+	0x73, 0x67, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x1a, 0x25, 0x2e, 0x67,
+	0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73,
+	0x67, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x5e, 0x0a, 0x0e, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4c, 0x61, 0x7a, 0x79,
+	0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x21, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f,
+	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4c,
+	0x61, 0x7a, 0x79, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x1a, 0x29, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e,
+	0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4d, 0x73, 0x67, 0x4d, 0x61, 0x74,
+	0x63, 0x68, 0x4c, 0x61, 0x7a, 0x79, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01, 0x42, 0x90, 0x01, 0x0a, 0x12, 0x63,
+	0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
+	0x74, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x18, 0x67, 0x6c,
+	0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f,
+	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xa2, 0x02, 0x03, 0x47, 0x43, 0x58, 0xaa, 0x02, 0x0e, 0x47,
+	0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xca, 0x02, 0x0e,
+	0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xe2, 0x02,
+	0x1a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x5c,
+	0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0f, 0x47, 0x6c,
+	0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -5466,30 +5468,30 @@ func file_gluon_contract_tx_proto_rawDescGZIP() []byte {
 
 var file_gluon_contract_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_gluon_contract_tx_proto_goTypes = []interface{}{
-	(*MsgUpdateParams)(nil),           // 0: gluon.contract.MsgUpdateParams
-	(*MsgUpdateParamsResponse)(nil),   // 1: gluon.contract.MsgUpdateParamsResponse
-	(*MsgCreateOrder)(nil),            // 2: gluon.contract.MsgCreateOrder
-	(*MsgCreateOrderResponse)(nil),    // 3: gluon.contract.MsgCreateOrderResponse
-	(*MsgDeleteOrder)(nil),            // 4: gluon.contract.MsgDeleteOrder
-	(*MsgDeleteOrderResponse)(nil),    // 5: gluon.contract.MsgDeleteOrderResponse
-	(*MsgMatchOrder)(nil),             // 6: gluon.contract.MsgMatchOrder
-	(*MsgMatchOrderResponse)(nil),     // 7: gluon.contract.MsgMatchOrderResponse
-	(*MsgMatchLazyOrder)(nil),         // 8: gluon.contract.MsgMatchLazyOrder
-	(*MsgMatchLazyOrderResponse)(nil), // 9: gluon.contract.MsgMatchLazyOrderResponse
-	(*Params)(nil),                    // 10: gluon.contract.Params
-	(*Order)(nil),                     // 11: gluon.contract.Order
+	(*MsgUpdateParams)(nil),              // 0: gluon.contract.MsgUpdateParams
+	(*MsgUpdateParamsResponse)(nil),      // 1: gluon.contract.MsgUpdateParamsResponse
+	(*MsgLazyRegisterOrder)(nil),         // 2: gluon.contract.MsgLazyRegisterOrder
+	(*MsgLazyRegisterOrderResponse)(nil), // 3: gluon.contract.MsgLazyRegisterOrderResponse
+	(*MsgCancelOrder)(nil),               // 4: gluon.contract.MsgCancelOrder
+	(*MsgCancelOrderResponse)(nil),       // 5: gluon.contract.MsgCancelOrderResponse
+	(*MsgMatchOrder)(nil),                // 6: gluon.contract.MsgMatchOrder
+	(*MsgMatchOrderResponse)(nil),        // 7: gluon.contract.MsgMatchOrderResponse
+	(*MsgMatchLazyOrder)(nil),            // 8: gluon.contract.MsgMatchLazyOrder
+	(*MsgMatchLazyOrderResponse)(nil),    // 9: gluon.contract.MsgMatchLazyOrderResponse
+	(*Params)(nil),                       // 10: gluon.contract.Params
+	(*Order)(nil),                        // 11: gluon.contract.Order
 }
 var file_gluon_contract_tx_proto_depIdxs = []int32{
 	10, // 0: gluon.contract.MsgUpdateParams.params:type_name -> gluon.contract.Params
-	11, // 1: gluon.contract.MsgCreateOrder.order:type_name -> gluon.contract.Order
+	11, // 1: gluon.contract.MsgLazyRegisterOrder.order:type_name -> gluon.contract.Order
 	0,  // 2: gluon.contract.Msg.UpdateParams:input_type -> gluon.contract.MsgUpdateParams
-	2,  // 3: gluon.contract.Msg.CreateOrder:input_type -> gluon.contract.MsgCreateOrder
-	4,  // 4: gluon.contract.Msg.DeleteOrder:input_type -> gluon.contract.MsgDeleteOrder
+	2,  // 3: gluon.contract.Msg.LazyRegisterOrder:input_type -> gluon.contract.MsgLazyRegisterOrder
+	4,  // 4: gluon.contract.Msg.CancelOrder:input_type -> gluon.contract.MsgCancelOrder
 	6,  // 5: gluon.contract.Msg.MatchOrder:input_type -> gluon.contract.MsgMatchOrder
 	8,  // 6: gluon.contract.Msg.MatchLazyOrder:input_type -> gluon.contract.MsgMatchLazyOrder
 	1,  // 7: gluon.contract.Msg.UpdateParams:output_type -> gluon.contract.MsgUpdateParamsResponse
-	3,  // 8: gluon.contract.Msg.CreateOrder:output_type -> gluon.contract.MsgCreateOrderResponse
-	5,  // 9: gluon.contract.Msg.DeleteOrder:output_type -> gluon.contract.MsgDeleteOrderResponse
+	3,  // 8: gluon.contract.Msg.LazyRegisterOrder:output_type -> gluon.contract.MsgLazyRegisterOrderResponse
+	5,  // 9: gluon.contract.Msg.CancelOrder:output_type -> gluon.contract.MsgCancelOrderResponse
 	7,  // 10: gluon.contract.Msg.MatchOrder:output_type -> gluon.contract.MsgMatchOrderResponse
 	9,  // 11: gluon.contract.Msg.MatchLazyOrder:output_type -> gluon.contract.MsgMatchLazyOrderResponse
 	7,  // [7:12] is the sub-list for method output_type
@@ -5532,7 +5534,7 @@ func file_gluon_contract_tx_proto_init() {
 			}
 		}
 		file_gluon_contract_tx_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgCreateOrder); i {
+			switch v := v.(*MsgLazyRegisterOrder); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5544,7 +5546,7 @@ func file_gluon_contract_tx_proto_init() {
 			}
 		}
 		file_gluon_contract_tx_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgCreateOrderResponse); i {
+			switch v := v.(*MsgLazyRegisterOrderResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5556,7 +5558,7 @@ func file_gluon_contract_tx_proto_init() {
 			}
 		}
 		file_gluon_contract_tx_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgDeleteOrder); i {
+			switch v := v.(*MsgCancelOrder); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -5568,7 +5570,7 @@ func file_gluon_contract_tx_proto_init() {
 			}
 		}
 		file_gluon_contract_tx_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgDeleteOrderResponse); i {
+			switch v := v.(*MsgCancelOrderResponse); i {
 			case 0:
 				return &v.state
 			case 1:

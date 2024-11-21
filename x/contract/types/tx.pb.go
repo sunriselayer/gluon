@@ -125,25 +125,25 @@ func (m *MsgUpdateParamsResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgUpdateParamsResponse proto.InternalMessageInfo
 
-type MsgCreateOrder struct {
+type MsgLazyRegisterOrder struct {
 	Id        string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Order     Order  `protobuf:"bytes,2,opt,name=order,proto3" json:"order"`
 	PairingId uint64 `protobuf:"varint,3,opt,name=pairing_id,json=pairingId,proto3" json:"pairing_id,omitempty"`
 	Signature []byte `protobuf:"bytes,4,opt,name=signature,proto3" json:"signature,omitempty"`
 }
 
-func (m *MsgCreateOrder) Reset()         { *m = MsgCreateOrder{} }
-func (m *MsgCreateOrder) String() string { return proto.CompactTextString(m) }
-func (*MsgCreateOrder) ProtoMessage()    {}
-func (*MsgCreateOrder) Descriptor() ([]byte, []int) {
+func (m *MsgLazyRegisterOrder) Reset()         { *m = MsgLazyRegisterOrder{} }
+func (m *MsgLazyRegisterOrder) String() string { return proto.CompactTextString(m) }
+func (*MsgLazyRegisterOrder) ProtoMessage()    {}
+func (*MsgLazyRegisterOrder) Descriptor() ([]byte, []int) {
 	return fileDescriptor_a41fd393ca4bcbb6, []int{2}
 }
-func (m *MsgCreateOrder) XXX_Unmarshal(b []byte) error {
+func (m *MsgLazyRegisterOrder) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *MsgCreateOrder) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *MsgLazyRegisterOrder) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_MsgCreateOrder.Marshal(b, m, deterministic)
+		return xxx_messageInfo_MsgLazyRegisterOrder.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -153,61 +153,61 @@ func (m *MsgCreateOrder) XXX_Marshal(b []byte, deterministic bool) ([]byte, erro
 		return b[:n], nil
 	}
 }
-func (m *MsgCreateOrder) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MsgCreateOrder.Merge(m, src)
+func (m *MsgLazyRegisterOrder) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgLazyRegisterOrder.Merge(m, src)
 }
-func (m *MsgCreateOrder) XXX_Size() int {
+func (m *MsgLazyRegisterOrder) XXX_Size() int {
 	return m.Size()
 }
-func (m *MsgCreateOrder) XXX_DiscardUnknown() {
-	xxx_messageInfo_MsgCreateOrder.DiscardUnknown(m)
+func (m *MsgLazyRegisterOrder) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgLazyRegisterOrder.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_MsgCreateOrder proto.InternalMessageInfo
+var xxx_messageInfo_MsgLazyRegisterOrder proto.InternalMessageInfo
 
-func (m *MsgCreateOrder) GetId() string {
+func (m *MsgLazyRegisterOrder) GetId() string {
 	if m != nil {
 		return m.Id
 	}
 	return ""
 }
 
-func (m *MsgCreateOrder) GetOrder() Order {
+func (m *MsgLazyRegisterOrder) GetOrder() Order {
 	if m != nil {
 		return m.Order
 	}
 	return Order{}
 }
 
-func (m *MsgCreateOrder) GetPairingId() uint64 {
+func (m *MsgLazyRegisterOrder) GetPairingId() uint64 {
 	if m != nil {
 		return m.PairingId
 	}
 	return 0
 }
 
-func (m *MsgCreateOrder) GetSignature() []byte {
+func (m *MsgLazyRegisterOrder) GetSignature() []byte {
 	if m != nil {
 		return m.Signature
 	}
 	return nil
 }
 
-type MsgCreateOrderResponse struct {
+type MsgLazyRegisterOrderResponse struct {
 }
 
-func (m *MsgCreateOrderResponse) Reset()         { *m = MsgCreateOrderResponse{} }
-func (m *MsgCreateOrderResponse) String() string { return proto.CompactTextString(m) }
-func (*MsgCreateOrderResponse) ProtoMessage()    {}
-func (*MsgCreateOrderResponse) Descriptor() ([]byte, []int) {
+func (m *MsgLazyRegisterOrderResponse) Reset()         { *m = MsgLazyRegisterOrderResponse{} }
+func (m *MsgLazyRegisterOrderResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgLazyRegisterOrderResponse) ProtoMessage()    {}
+func (*MsgLazyRegisterOrderResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_a41fd393ca4bcbb6, []int{3}
 }
-func (m *MsgCreateOrderResponse) XXX_Unmarshal(b []byte) error {
+func (m *MsgLazyRegisterOrderResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *MsgCreateOrderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *MsgLazyRegisterOrderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_MsgCreateOrderResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_MsgLazyRegisterOrderResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -217,35 +217,35 @@ func (m *MsgCreateOrderResponse) XXX_Marshal(b []byte, deterministic bool) ([]by
 		return b[:n], nil
 	}
 }
-func (m *MsgCreateOrderResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MsgCreateOrderResponse.Merge(m, src)
+func (m *MsgLazyRegisterOrderResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgLazyRegisterOrderResponse.Merge(m, src)
 }
-func (m *MsgCreateOrderResponse) XXX_Size() int {
+func (m *MsgLazyRegisterOrderResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *MsgCreateOrderResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_MsgCreateOrderResponse.DiscardUnknown(m)
+func (m *MsgLazyRegisterOrderResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgLazyRegisterOrderResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_MsgCreateOrderResponse proto.InternalMessageInfo
+var xxx_messageInfo_MsgLazyRegisterOrderResponse proto.InternalMessageInfo
 
-type MsgDeleteOrder struct {
+type MsgCancelOrder struct {
 	User string `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	Id   string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (m *MsgDeleteOrder) Reset()         { *m = MsgDeleteOrder{} }
-func (m *MsgDeleteOrder) String() string { return proto.CompactTextString(m) }
-func (*MsgDeleteOrder) ProtoMessage()    {}
-func (*MsgDeleteOrder) Descriptor() ([]byte, []int) {
+func (m *MsgCancelOrder) Reset()         { *m = MsgCancelOrder{} }
+func (m *MsgCancelOrder) String() string { return proto.CompactTextString(m) }
+func (*MsgCancelOrder) ProtoMessage()    {}
+func (*MsgCancelOrder) Descriptor() ([]byte, []int) {
 	return fileDescriptor_a41fd393ca4bcbb6, []int{4}
 }
-func (m *MsgDeleteOrder) XXX_Unmarshal(b []byte) error {
+func (m *MsgCancelOrder) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *MsgDeleteOrder) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *MsgCancelOrder) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_MsgDeleteOrder.Marshal(b, m, deterministic)
+		return xxx_messageInfo_MsgCancelOrder.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -255,47 +255,47 @@ func (m *MsgDeleteOrder) XXX_Marshal(b []byte, deterministic bool) ([]byte, erro
 		return b[:n], nil
 	}
 }
-func (m *MsgDeleteOrder) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MsgDeleteOrder.Merge(m, src)
+func (m *MsgCancelOrder) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgCancelOrder.Merge(m, src)
 }
-func (m *MsgDeleteOrder) XXX_Size() int {
+func (m *MsgCancelOrder) XXX_Size() int {
 	return m.Size()
 }
-func (m *MsgDeleteOrder) XXX_DiscardUnknown() {
-	xxx_messageInfo_MsgDeleteOrder.DiscardUnknown(m)
+func (m *MsgCancelOrder) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgCancelOrder.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_MsgDeleteOrder proto.InternalMessageInfo
+var xxx_messageInfo_MsgCancelOrder proto.InternalMessageInfo
 
-func (m *MsgDeleteOrder) GetUser() string {
+func (m *MsgCancelOrder) GetUser() string {
 	if m != nil {
 		return m.User
 	}
 	return ""
 }
 
-func (m *MsgDeleteOrder) GetId() string {
+func (m *MsgCancelOrder) GetId() string {
 	if m != nil {
 		return m.Id
 	}
 	return ""
 }
 
-type MsgDeleteOrderResponse struct {
+type MsgCancelOrderResponse struct {
 }
 
-func (m *MsgDeleteOrderResponse) Reset()         { *m = MsgDeleteOrderResponse{} }
-func (m *MsgDeleteOrderResponse) String() string { return proto.CompactTextString(m) }
-func (*MsgDeleteOrderResponse) ProtoMessage()    {}
-func (*MsgDeleteOrderResponse) Descriptor() ([]byte, []int) {
+func (m *MsgCancelOrderResponse) Reset()         { *m = MsgCancelOrderResponse{} }
+func (m *MsgCancelOrderResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgCancelOrderResponse) ProtoMessage()    {}
+func (*MsgCancelOrderResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_a41fd393ca4bcbb6, []int{5}
 }
-func (m *MsgDeleteOrderResponse) XXX_Unmarshal(b []byte) error {
+func (m *MsgCancelOrderResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *MsgDeleteOrderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *MsgCancelOrderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_MsgDeleteOrderResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_MsgCancelOrderResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -305,17 +305,17 @@ func (m *MsgDeleteOrderResponse) XXX_Marshal(b []byte, deterministic bool) ([]by
 		return b[:n], nil
 	}
 }
-func (m *MsgDeleteOrderResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MsgDeleteOrderResponse.Merge(m, src)
+func (m *MsgCancelOrderResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgCancelOrderResponse.Merge(m, src)
 }
-func (m *MsgDeleteOrderResponse) XXX_Size() int {
+func (m *MsgCancelOrderResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *MsgDeleteOrderResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_MsgDeleteOrderResponse.DiscardUnknown(m)
+func (m *MsgCancelOrderResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgCancelOrderResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_MsgDeleteOrderResponse proto.InternalMessageInfo
+var xxx_messageInfo_MsgCancelOrderResponse proto.InternalMessageInfo
 
 type MsgMatchOrder struct {
 	EarlierAddress string                       `protobuf:"bytes,1,opt,name=earlier_address,json=earlierAddress,proto3" json:"earlier_address,omitempty"`
@@ -532,10 +532,10 @@ var xxx_messageInfo_MsgMatchLazyOrderResponse proto.InternalMessageInfo
 func init() {
 	proto.RegisterType((*MsgUpdateParams)(nil), "gluon.contract.MsgUpdateParams")
 	proto.RegisterType((*MsgUpdateParamsResponse)(nil), "gluon.contract.MsgUpdateParamsResponse")
-	proto.RegisterType((*MsgCreateOrder)(nil), "gluon.contract.MsgCreateOrder")
-	proto.RegisterType((*MsgCreateOrderResponse)(nil), "gluon.contract.MsgCreateOrderResponse")
-	proto.RegisterType((*MsgDeleteOrder)(nil), "gluon.contract.MsgDeleteOrder")
-	proto.RegisterType((*MsgDeleteOrderResponse)(nil), "gluon.contract.MsgDeleteOrderResponse")
+	proto.RegisterType((*MsgLazyRegisterOrder)(nil), "gluon.contract.MsgLazyRegisterOrder")
+	proto.RegisterType((*MsgLazyRegisterOrderResponse)(nil), "gluon.contract.MsgLazyRegisterOrderResponse")
+	proto.RegisterType((*MsgCancelOrder)(nil), "gluon.contract.MsgCancelOrder")
+	proto.RegisterType((*MsgCancelOrderResponse)(nil), "gluon.contract.MsgCancelOrderResponse")
 	proto.RegisterType((*MsgMatchOrder)(nil), "gluon.contract.MsgMatchOrder")
 	proto.RegisterType((*MsgMatchOrderResponse)(nil), "gluon.contract.MsgMatchOrderResponse")
 	proto.RegisterType((*MsgMatchLazyOrder)(nil), "gluon.contract.MsgMatchLazyOrder")
@@ -545,54 +545,55 @@ func init() {
 func init() { proto.RegisterFile("gluon/contract/tx.proto", fileDescriptor_a41fd393ca4bcbb6) }
 
 var fileDescriptor_a41fd393ca4bcbb6 = []byte{
-	// 743 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x55, 0x3f, 0x4f, 0xdb, 0x5a,
-	0x14, 0x8f, 0xf3, 0x4f, 0xca, 0x01, 0xc2, 0xe3, 0x0a, 0x88, 0x31, 0x8f, 0x24, 0x2f, 0xaf, 0x85,
-	0x14, 0x89, 0x84, 0x82, 0x84, 0xd4, 0x2c, 0x55, 0x29, 0x43, 0x23, 0x11, 0xb5, 0x4a, 0x85, 0x54,
-	0x75, 0x68, 0x74, 0x6b, 0x5f, 0x19, 0xab, 0x89, 0x1d, 0xf9, 0xde, 0x54, 0xa4, 0x53, 0xd5, 0xb1,
-	0x53, 0x3f, 0x46, 0xbb, 0x31, 0xb0, 0xf4, 0x1b, 0x64, 0x44, 0x4c, 0x15, 0x43, 0x54, 0xc1, 0xc0,
-	0xd4, 0xa1, 0xdf, 0xa0, 0xf2, 0xbd, 0xd7, 0x8e, 0x63, 0x52, 0x98, 0xba, 0x75, 0x49, 0xec, 0xf3,
-	0x3b, 0xe7, 0x77, 0xce, 0xef, 0x9c, 0xa3, 0x63, 0xc8, 0x99, 0xed, 0x9e, 0x63, 0x57, 0x75, 0xc7,
-	0x66, 0x2e, 0xd6, 0x59, 0x95, 0x1d, 0x55, 0xba, 0xae, 0xc3, 0x1c, 0x94, 0xe5, 0x40, 0xc5, 0x07,
-	0xb4, 0x39, 0xdc, 0xb1, 0x6c, 0xa7, 0xca, 0x7f, 0x85, 0x8b, 0x96, 0xd3, 0x1d, 0xda, 0x71, 0x68,
-	0xb5, 0x43, 0xcd, 0xea, 0xdb, 0xfb, 0xde, 0x9f, 0x04, 0x96, 0x04, 0xd0, 0xe2, 0x6f, 0x55, 0xf1,
-	0x22, 0xa1, 0x79, 0xd3, 0x31, 0x1d, 0x61, 0xf7, 0x9e, 0xa4, 0x75, 0x39, 0x52, 0x45, 0x17, 0xbb,
-	0xb8, 0xe3, 0x87, 0x68, 0x11, 0xd0, 0x71, 0x0d, 0xe2, 0x0a, 0xac, 0xf4, 0x55, 0x81, 0xd9, 0x06,
-	0x35, 0x0f, 0xba, 0x06, 0x66, 0xe4, 0x19, 0x8f, 0x42, 0x3b, 0x90, 0xc1, 0x3d, 0x76, 0xe8, 0xb8,
-	0x16, 0xeb, 0xab, 0x4a, 0x51, 0x29, 0x67, 0x76, 0xd5, 0xb3, 0x93, 0x8d, 0x79, 0x59, 0xc7, 0x23,
-	0xc3, 0x70, 0x09, 0xa5, 0xcf, 0x99, 0x6b, 0xd9, 0x66, 0x73, 0xe4, 0x8a, 0x1e, 0x40, 0x5a, 0xe4,
-	0x55, 0xe3, 0x45, 0xa5, 0x3c, 0xb5, 0xb5, 0x58, 0x19, 0x6f, 0x41, 0x45, 0xf0, 0xef, 0x66, 0x06,
-	0xc3, 0x42, 0xec, 0xf3, 0xd5, 0xf1, 0xba, 0xd2, 0x94, 0x01, 0xb5, 0xed, 0x0f, 0x57, 0xc7, 0xeb,
-	0x23, 0xaa, 0x8f, 0x57, 0xc7, 0xeb, 0x45, 0x51, 0xf5, 0xd1, 0xa8, 0xee, 0x48, 0x9d, 0xa5, 0x25,
-	0xc8, 0x45, 0x4c, 0x4d, 0x42, 0xbb, 0x8e, 0x4d, 0x49, 0xe9, 0x8b, 0x02, 0xd9, 0x06, 0x35, 0x1f,
-	0xbb, 0x04, 0x33, 0xf2, 0xd4, 0xd3, 0x8b, 0xb2, 0x10, 0xb7, 0x0c, 0x21, 0xa7, 0x19, 0xb7, 0x0c,
-	0xb4, 0x03, 0x29, 0xde, 0x08, 0x59, 0xec, 0x42, 0xb4, 0x58, 0x1e, 0x15, 0xae, 0x55, 0xb8, 0xa3,
-	0x15, 0x80, 0x2e, 0xb6, 0x3c, 0xed, 0x2d, 0xcb, 0x50, 0x13, 0x45, 0xa5, 0x9c, 0x6c, 0x66, 0xa4,
-	0xa5, 0x6e, 0xa0, 0x7f, 0x21, 0x43, 0x2d, 0xd3, 0xc6, 0xac, 0xe7, 0x12, 0x35, 0x59, 0x54, 0xca,
-	0xd3, 0xcd, 0x91, 0xa1, 0x86, 0x3c, 0x9d, 0x33, 0x62, 0x00, 0x58, 0xf4, 0xb1, 0xa4, 0xc2, 0xe2,
-	0x78, 0xa9, 0x81, 0x8a, 0x87, 0x5c, 0xc4, 0x1e, 0x69, 0x13, 0x5f, 0x04, 0x82, 0x64, 0x8f, 0x12,
-	0x57, 0xca, 0xe0, 0xcf, 0x52, 0x58, 0xdc, 0x17, 0x56, 0xcb, 0x78, 0x39, 0x38, 0x24, 0xa9, 0x43,
-	0x04, 0x01, 0xf5, 0x8f, 0x38, 0xcc, 0x34, 0xa8, 0xd9, 0xc0, 0x4c, 0x3f, 0x14, 0xd4, 0x6b, 0x30,
-	0x4b, 0xb0, 0xdb, 0xb6, 0x88, 0xdb, 0x92, 0x95, 0xc9, 0x2c, 0x59, 0x69, 0x96, 0x73, 0x47, 0x65,
-	0xf8, 0xc7, 0x77, 0xe4, 0x42, 0x5a, 0x41, 0x76, 0xdf, 0x93, 0x13, 0xd6, 0x0d, 0xf4, 0x3f, 0xcc,
-	0xb4, 0x31, 0x0b, 0x11, 0x26, 0xb8, 0xdb, 0x34, 0x37, 0xfa, 0x74, 0x77, 0x20, 0x2b, 0x9c, 0x02,
-	0xb2, 0x64, 0xc8, 0xcb, 0xa7, 0x7a, 0x02, 0x69, 0xdc, 0x71, 0x7a, 0x36, 0x53, 0x53, 0x7c, 0x21,
-	0x37, 0xbd, 0xb9, 0x9c, 0x0f, 0x0b, 0x0b, 0x62, 0x29, 0xa9, 0xf1, 0xa6, 0x62, 0x39, 0xd5, 0x0e,
-	0x66, 0x87, 0x95, 0xba, 0xcd, 0xce, 0x4e, 0x36, 0x40, 0x6e, 0x6b, 0xdd, 0x66, 0x72, 0xd5, 0x44,
-	0x3c, 0xda, 0x87, 0x54, 0xd7, 0xb5, 0x74, 0xa2, 0xa6, 0x39, 0xd1, 0xce, 0x60, 0x58, 0x50, 0xce,
-	0x87, 0x85, 0xe5, 0xeb, 0x44, 0xfb, 0xc4, 0xc4, 0x7a, 0x7f, 0x8f, 0xe8, 0x21, 0xba, 0x3d, 0xa2,
-	0xcb, 0x6d, 0xe0, 0x24, 0xb5, 0x55, 0xaf, 0xd9, 0xd1, 0xc6, 0xf1, 0x21, 0x8f, 0x29, 0x2f, 0xe5,
-	0x60, 0x61, 0xac, 0xdd, 0xc1, 0x20, 0x7e, 0xc6, 0x61, 0xce, 0x47, 0xf6, 0xf1, 0xbb, 0xfe, 0xdf,
-	0x61, 0xfc, 0xf9, 0x61, 0x2c, 0xc3, 0xd2, 0xb5, 0x96, 0xfb, 0x03, 0xd9, 0x1a, 0x24, 0x20, 0xd1,
-	0xa0, 0x26, 0x7a, 0x01, 0xd3, 0x63, 0x57, 0xb1, 0x10, 0x3d, 0x10, 0x91, 0xdb, 0xa3, 0xad, 0xdd,
-	0xe2, 0xe0, 0x67, 0x40, 0x07, 0x30, 0x15, 0x3e, 0x4c, 0xf9, 0x09, 0x71, 0x21, 0x5c, 0x5b, 0xbd,
-	0x19, 0x0f, 0xd3, 0x86, 0x4f, 0xc5, 0x24, 0xda, 0x10, 0x3e, 0x91, 0x76, 0xc2, 0xa5, 0x40, 0x4d,
-	0x80, 0xd0, 0x95, 0x58, 0x99, 0x10, 0x35, 0x82, 0xb5, 0xbb, 0x37, 0xc2, 0x01, 0xe7, 0x2b, 0xc8,
-	0x46, 0x16, 0xfe, 0xbf, 0xdf, 0x05, 0x06, 0x2e, 0xda, 0xbd, 0x5b, 0x5d, 0x7c, 0x7e, 0x2d, 0xf5,
-	0xde, 0x5b, 0x8b, 0xdd, 0xcd, 0xc1, 0x45, 0x5e, 0x39, 0xbd, 0xc8, 0x2b, 0xdf, 0x2f, 0xf2, 0xca,
-	0xa7, 0xcb, 0x7c, 0xec, 0xf4, 0x32, 0x1f, 0xfb, 0x76, 0x99, 0x8f, 0xbd, 0x5c, 0xbc, 0xf6, 0x71,
-	0x61, 0xfd, 0x2e, 0xa1, 0xaf, 0xd3, 0xfc, 0xab, 0xb8, 0xfd, 0x2b, 0x00, 0x00, 0xff, 0xff, 0xd0,
-	0xac, 0xc0, 0x02, 0xd6, 0x07, 0x00, 0x00,
+	// 755 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x55, 0x3d, 0x4f, 0xdb, 0x5c,
+	0x14, 0x8e, 0xf3, 0x25, 0xe5, 0x00, 0xe1, 0xc5, 0x02, 0x62, 0x0c, 0x38, 0x79, 0xf3, 0xf2, 0x42,
+	0x8a, 0x4a, 0x42, 0x41, 0x42, 0x6a, 0x96, 0xaa, 0x94, 0xa1, 0x91, 0x88, 0x5a, 0xb9, 0x42, 0xaa,
+	0x3a, 0x34, 0xba, 0xb5, 0xaf, 0x8c, 0xd5, 0xc4, 0x8e, 0x7c, 0x6f, 0x2a, 0xd2, 0xa9, 0xea, 0xd8,
+	0xa9, 0x3f, 0xa3, 0x5b, 0x19, 0x58, 0xfa, 0x0f, 0x18, 0x11, 0x53, 0xc5, 0x10, 0x55, 0x30, 0x30,
+	0x75, 0xe8, 0x3f, 0xa8, 0x7c, 0xef, 0xb5, 0x93, 0x38, 0x29, 0x74, 0xe9, 0xd6, 0x05, 0xec, 0xf3,
+	0x3c, 0xe7, 0x39, 0x9f, 0x39, 0x86, 0x9c, 0xd5, 0xec, 0xb8, 0x4e, 0xc5, 0x70, 0x1d, 0xea, 0x21,
+	0x83, 0x56, 0xe8, 0x51, 0xb9, 0xed, 0xb9, 0xd4, 0x95, 0xb3, 0x0c, 0x28, 0x07, 0x80, 0x3a, 0x83,
+	0x5a, 0xb6, 0xe3, 0x56, 0xd8, 0x5f, 0x4e, 0x51, 0x73, 0x86, 0x4b, 0x5a, 0x2e, 0xa9, 0xb4, 0x88,
+	0x55, 0x79, 0x73, 0xcf, 0xff, 0x27, 0x80, 0x05, 0x0e, 0x34, 0xd8, 0x5b, 0x85, 0xbf, 0x08, 0x68,
+	0xd6, 0x72, 0x2d, 0x97, 0xdb, 0xfd, 0x27, 0x61, 0x5d, 0x8c, 0x64, 0xd1, 0x46, 0x1e, 0x6a, 0x05,
+	0x2e, 0x6a, 0x04, 0x74, 0x3d, 0x13, 0x7b, 0x1c, 0x2b, 0x7e, 0x91, 0x60, 0xba, 0x4e, 0xac, 0x83,
+	0xb6, 0x89, 0x28, 0x7e, 0xca, 0xbc, 0xe4, 0x1d, 0xc8, 0xa0, 0x0e, 0x3d, 0x74, 0x3d, 0x9b, 0x76,
+	0x15, 0xa9, 0x20, 0x95, 0x32, 0xbb, 0xca, 0xf9, 0xc9, 0xc6, 0xac, 0xc8, 0xe3, 0xa1, 0x69, 0x7a,
+	0x98, 0x90, 0x67, 0xd4, 0xb3, 0x1d, 0x4b, 0xef, 0x53, 0xe5, 0xfb, 0x90, 0xe6, 0x71, 0x95, 0x78,
+	0x41, 0x2a, 0x4d, 0x6c, 0xcd, 0x97, 0x87, 0x5b, 0x50, 0xe6, 0xfa, 0xbb, 0x99, 0xd3, 0x5e, 0x3e,
+	0xf6, 0xe9, 0xfa, 0x78, 0x5d, 0xd2, 0x85, 0x43, 0x75, 0xfb, 0xfd, 0xf5, 0xf1, 0x7a, 0x5f, 0xea,
+	0xc3, 0xf5, 0xf1, 0x7a, 0x81, 0x67, 0x7d, 0xd4, 0xcf, 0x3b, 0x92, 0x67, 0x71, 0x01, 0x72, 0x11,
+	0x93, 0x8e, 0x49, 0xdb, 0x75, 0x08, 0x2e, 0x7e, 0x96, 0x60, 0xb6, 0x4e, 0xac, 0x7d, 0xf4, 0xb6,
+	0xab, 0x63, 0xcb, 0x26, 0x14, 0x7b, 0x4f, 0xfc, 0xaa, 0xe5, 0x2c, 0xc4, 0x6d, 0x93, 0x17, 0xa5,
+	0xc7, 0x6d, 0x53, 0xde, 0x81, 0x14, 0x6b, 0x87, 0x48, 0x79, 0x2e, 0x9a, 0x32, 0xf3, 0x1a, 0xcc,
+	0x98, 0xd3, 0xe5, 0x65, 0x80, 0x36, 0xb2, 0xfd, 0x0e, 0x34, 0x6c, 0x53, 0x49, 0x14, 0xa4, 0x52,
+	0x52, 0xcf, 0x08, 0x4b, 0xcd, 0x94, 0x97, 0x20, 0x43, 0x6c, 0xcb, 0x41, 0xb4, 0xe3, 0x61, 0x25,
+	0x59, 0x90, 0x4a, 0x93, 0x7a, 0xdf, 0x50, 0x95, 0xfd, 0x6a, 0xa7, 0xf8, 0x18, 0x10, 0xef, 0x66,
+	0x51, 0x83, 0xa5, 0x71, 0x09, 0x87, 0x15, 0x3d, 0x80, 0x6c, 0x9d, 0x58, 0x8f, 0x90, 0x63, 0xe0,
+	0x26, 0x2f, 0x45, 0x86, 0x64, 0x87, 0x60, 0x4f, 0x14, 0xc3, 0x9e, 0x45, 0x79, 0xf1, 0xa0, 0xbc,
+	0x6a, 0xc6, 0x8f, 0xc4, 0xa0, 0xa2, 0x02, 0xf3, 0xc3, 0x02, 0xa1, 0xf4, 0xf7, 0x38, 0x4c, 0xd5,
+	0x89, 0x55, 0x47, 0xd4, 0x38, 0xe4, 0xd2, 0x6b, 0x30, 0x8d, 0x91, 0xd7, 0xb4, 0xb1, 0xd7, 0x10,
+	0xf9, 0x89, 0x28, 0x59, 0x61, 0x16, 0x3b, 0x20, 0x97, 0xe0, 0x9f, 0x80, 0xc8, 0xca, 0x69, 0x84,
+	0xd1, 0x03, 0x26, 0x13, 0xac, 0x99, 0xf2, 0x7f, 0x30, 0xd5, 0x44, 0x74, 0x40, 0x30, 0xc1, 0x68,
+	0x93, 0xcc, 0x18, 0xc8, 0xad, 0x40, 0x96, 0x93, 0x42, 0xb1, 0xe4, 0x00, 0x2b, 0x90, 0x7a, 0x0c,
+	0x69, 0xd4, 0x72, 0x3b, 0x0e, 0x55, 0x52, 0x6c, 0x39, 0x37, 0xfd, 0xe9, 0x5c, 0xf4, 0xf2, 0x73,
+	0x7c, 0x41, 0x89, 0xf9, 0xba, 0x6c, 0xbb, 0x95, 0x16, 0xa2, 0x87, 0xe5, 0x9a, 0x43, 0xcf, 0x4f,
+	0x36, 0x40, 0x6c, 0x6e, 0xcd, 0xa1, 0x62, 0xed, 0xb8, 0xbf, 0xbc, 0x0f, 0xa9, 0xb6, 0x67, 0x1b,
+	0x58, 0x49, 0x33, 0xa1, 0x9d, 0xd3, 0x5e, 0x5e, 0xba, 0xe8, 0xe5, 0x17, 0x47, 0x85, 0xf6, 0xb1,
+	0x85, 0x8c, 0xee, 0x1e, 0x36, 0x06, 0xe4, 0xf6, 0xb0, 0x21, 0x76, 0x82, 0x89, 0x54, 0x57, 0xfd,
+	0x66, 0x47, 0x1b, 0xc7, 0x46, 0x3d, 0x54, 0x79, 0x31, 0x07, 0x73, 0x43, 0xed, 0x0e, 0x07, 0xf1,
+	0x23, 0x0e, 0x33, 0x01, 0xe2, 0x6f, 0xc2, 0xdf, 0x61, 0xfc, 0xf9, 0x61, 0x2c, 0xc2, 0xc2, 0x48,
+	0xcb, 0x83, 0x81, 0x6c, 0x5d, 0x24, 0x20, 0x51, 0x27, 0x96, 0xfc, 0x1c, 0x26, 0x87, 0x2e, 0x64,
+	0x3e, 0x7a, 0x26, 0x22, 0x77, 0x48, 0x5d, 0xbb, 0x85, 0x10, 0x44, 0x90, 0x2d, 0x98, 0x19, 0x3d,
+	0x52, 0x2b, 0x63, 0xbc, 0x47, 0x58, 0xea, 0xdd, 0xdf, 0x61, 0x85, 0x81, 0x0e, 0x60, 0x62, 0xf0,
+	0x78, 0x68, 0x63, 0x9c, 0x07, 0x70, 0x75, 0xf5, 0x66, 0x3c, 0x94, 0xd5, 0x01, 0x06, 0xee, 0xc6,
+	0xf2, 0x18, 0xaf, 0x3e, 0xac, 0xfe, 0x7f, 0x23, 0x1c, 0x6a, 0xbe, 0x84, 0x6c, 0xe4, 0x27, 0xf0,
+	0xef, 0xaf, 0x1c, 0x43, 0x8a, 0x7a, 0xe7, 0x56, 0x4a, 0xa0, 0xaf, 0xa6, 0xde, 0xf9, 0x8b, 0xb2,
+	0xbb, 0x79, 0x7a, 0xa9, 0x49, 0x67, 0x97, 0x9a, 0xf4, 0xed, 0x52, 0x93, 0x3e, 0x5e, 0x69, 0xb1,
+	0xb3, 0x2b, 0x2d, 0xf6, 0xf5, 0x4a, 0x8b, 0xbd, 0x98, 0x1f, 0xf9, 0xf4, 0xd0, 0x6e, 0x1b, 0x93,
+	0x57, 0x69, 0xf6, 0xcd, 0xdc, 0xfe, 0x19, 0x00, 0x00, 0xff, 0xff, 0xc3, 0xd4, 0x95, 0x7e, 0xf4,
+	0x07, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -610,8 +611,8 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
-	CreateOrder(ctx context.Context, in *MsgCreateOrder, opts ...grpc.CallOption) (*MsgCreateOrderResponse, error)
-	DeleteOrder(ctx context.Context, in *MsgDeleteOrder, opts ...grpc.CallOption) (*MsgDeleteOrderResponse, error)
+	LazyRegisterOrder(ctx context.Context, in *MsgLazyRegisterOrder, opts ...grpc.CallOption) (*MsgLazyRegisterOrderResponse, error)
+	CancelOrder(ctx context.Context, in *MsgCancelOrder, opts ...grpc.CallOption) (*MsgCancelOrderResponse, error)
 	MatchOrder(ctx context.Context, in *MsgMatchOrder, opts ...grpc.CallOption) (*MsgMatchOrderResponse, error)
 	MatchLazyOrder(ctx context.Context, in *MsgMatchLazyOrder, opts ...grpc.CallOption) (*MsgMatchLazyOrderResponse, error)
 }
@@ -633,18 +634,18 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 	return out, nil
 }
 
-func (c *msgClient) CreateOrder(ctx context.Context, in *MsgCreateOrder, opts ...grpc.CallOption) (*MsgCreateOrderResponse, error) {
-	out := new(MsgCreateOrderResponse)
-	err := c.cc.Invoke(ctx, "/gluon.contract.Msg/CreateOrder", in, out, opts...)
+func (c *msgClient) LazyRegisterOrder(ctx context.Context, in *MsgLazyRegisterOrder, opts ...grpc.CallOption) (*MsgLazyRegisterOrderResponse, error) {
+	out := new(MsgLazyRegisterOrderResponse)
+	err := c.cc.Invoke(ctx, "/gluon.contract.Msg/LazyRegisterOrder", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *msgClient) DeleteOrder(ctx context.Context, in *MsgDeleteOrder, opts ...grpc.CallOption) (*MsgDeleteOrderResponse, error) {
-	out := new(MsgDeleteOrderResponse)
-	err := c.cc.Invoke(ctx, "/gluon.contract.Msg/DeleteOrder", in, out, opts...)
+func (c *msgClient) CancelOrder(ctx context.Context, in *MsgCancelOrder, opts ...grpc.CallOption) (*MsgCancelOrderResponse, error) {
+	out := new(MsgCancelOrderResponse)
+	err := c.cc.Invoke(ctx, "/gluon.contract.Msg/CancelOrder", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -674,8 +675,8 @@ type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
-	CreateOrder(context.Context, *MsgCreateOrder) (*MsgCreateOrderResponse, error)
-	DeleteOrder(context.Context, *MsgDeleteOrder) (*MsgDeleteOrderResponse, error)
+	LazyRegisterOrder(context.Context, *MsgLazyRegisterOrder) (*MsgLazyRegisterOrderResponse, error)
+	CancelOrder(context.Context, *MsgCancelOrder) (*MsgCancelOrderResponse, error)
 	MatchOrder(context.Context, *MsgMatchOrder) (*MsgMatchOrderResponse, error)
 	MatchLazyOrder(context.Context, *MsgMatchLazyOrder) (*MsgMatchLazyOrderResponse, error)
 }
@@ -687,11 +688,11 @@ type UnimplementedMsgServer struct {
 func (*UnimplementedMsgServer) UpdateParams(ctx context.Context, req *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
 }
-func (*UnimplementedMsgServer) CreateOrder(ctx context.Context, req *MsgCreateOrder) (*MsgCreateOrderResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateOrder not implemented")
+func (*UnimplementedMsgServer) LazyRegisterOrder(ctx context.Context, req *MsgLazyRegisterOrder) (*MsgLazyRegisterOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LazyRegisterOrder not implemented")
 }
-func (*UnimplementedMsgServer) DeleteOrder(ctx context.Context, req *MsgDeleteOrder) (*MsgDeleteOrderResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrder not implemented")
+func (*UnimplementedMsgServer) CancelOrder(ctx context.Context, req *MsgCancelOrder) (*MsgCancelOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CancelOrder not implemented")
 }
 func (*UnimplementedMsgServer) MatchOrder(ctx context.Context, req *MsgMatchOrder) (*MsgMatchOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MatchOrder not implemented")
@@ -722,38 +723,38 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_CreateOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgCreateOrder)
+func _Msg_LazyRegisterOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgLazyRegisterOrder)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MsgServer).CreateOrder(ctx, in)
+		return srv.(MsgServer).LazyRegisterOrder(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gluon.contract.Msg/CreateOrder",
+		FullMethod: "/gluon.contract.Msg/LazyRegisterOrder",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).CreateOrder(ctx, req.(*MsgCreateOrder))
+		return srv.(MsgServer).LazyRegisterOrder(ctx, req.(*MsgLazyRegisterOrder))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_DeleteOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgDeleteOrder)
+func _Msg_CancelOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCancelOrder)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MsgServer).DeleteOrder(ctx, in)
+		return srv.(MsgServer).CancelOrder(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gluon.contract.Msg/DeleteOrder",
+		FullMethod: "/gluon.contract.Msg/CancelOrder",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).DeleteOrder(ctx, req.(*MsgDeleteOrder))
+		return srv.(MsgServer).CancelOrder(ctx, req.(*MsgCancelOrder))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -804,12 +805,12 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Msg_UpdateParams_Handler,
 		},
 		{
-			MethodName: "CreateOrder",
-			Handler:    _Msg_CreateOrder_Handler,
+			MethodName: "LazyRegisterOrder",
+			Handler:    _Msg_LazyRegisterOrder_Handler,
 		},
 		{
-			MethodName: "DeleteOrder",
-			Handler:    _Msg_DeleteOrder_Handler,
+			MethodName: "CancelOrder",
+			Handler:    _Msg_CancelOrder_Handler,
 		},
 		{
 			MethodName: "MatchOrder",
@@ -887,7 +888,7 @@ func (m *MsgUpdateParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	return len(dAtA) - i, nil
 }
 
-func (m *MsgCreateOrder) Marshal() (dAtA []byte, err error) {
+func (m *MsgLazyRegisterOrder) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -897,12 +898,12 @@ func (m *MsgCreateOrder) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *MsgCreateOrder) MarshalTo(dAtA []byte) (int, error) {
+func (m *MsgLazyRegisterOrder) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *MsgCreateOrder) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *MsgLazyRegisterOrder) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -939,7 +940,7 @@ func (m *MsgCreateOrder) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *MsgCreateOrderResponse) Marshal() (dAtA []byte, err error) {
+func (m *MsgLazyRegisterOrderResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -949,12 +950,12 @@ func (m *MsgCreateOrderResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *MsgCreateOrderResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *MsgLazyRegisterOrderResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *MsgCreateOrderResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *MsgLazyRegisterOrderResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -962,7 +963,7 @@ func (m *MsgCreateOrderResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 	return len(dAtA) - i, nil
 }
 
-func (m *MsgDeleteOrder) Marshal() (dAtA []byte, err error) {
+func (m *MsgCancelOrder) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -972,12 +973,12 @@ func (m *MsgDeleteOrder) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *MsgDeleteOrder) MarshalTo(dAtA []byte) (int, error) {
+func (m *MsgCancelOrder) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *MsgDeleteOrder) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *MsgCancelOrder) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -999,7 +1000,7 @@ func (m *MsgDeleteOrder) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *MsgDeleteOrderResponse) Marshal() (dAtA []byte, err error) {
+func (m *MsgCancelOrderResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1009,12 +1010,12 @@ func (m *MsgDeleteOrderResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *MsgDeleteOrderResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *MsgCancelOrderResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *MsgDeleteOrderResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *MsgCancelOrderResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1249,7 +1250,7 @@ func (m *MsgUpdateParamsResponse) Size() (n int) {
 	return n
 }
 
-func (m *MsgCreateOrder) Size() (n int) {
+func (m *MsgLazyRegisterOrder) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1271,7 +1272,7 @@ func (m *MsgCreateOrder) Size() (n int) {
 	return n
 }
 
-func (m *MsgCreateOrderResponse) Size() (n int) {
+func (m *MsgLazyRegisterOrderResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1280,7 +1281,7 @@ func (m *MsgCreateOrderResponse) Size() (n int) {
 	return n
 }
 
-func (m *MsgDeleteOrder) Size() (n int) {
+func (m *MsgCancelOrder) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1297,7 +1298,7 @@ func (m *MsgDeleteOrder) Size() (n int) {
 	return n
 }
 
-func (m *MsgDeleteOrderResponse) Size() (n int) {
+func (m *MsgCancelOrderResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1557,7 +1558,7 @@ func (m *MsgUpdateParamsResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *MsgCreateOrder) Unmarshal(dAtA []byte) error {
+func (m *MsgLazyRegisterOrder) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1580,10 +1581,10 @@ func (m *MsgCreateOrder) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: MsgCreateOrder: wiretype end group for non-group")
+			return fmt.Errorf("proto: MsgLazyRegisterOrder: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: MsgCreateOrder: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: MsgLazyRegisterOrder: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1725,7 +1726,7 @@ func (m *MsgCreateOrder) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *MsgCreateOrderResponse) Unmarshal(dAtA []byte) error {
+func (m *MsgLazyRegisterOrderResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1748,10 +1749,10 @@ func (m *MsgCreateOrderResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: MsgCreateOrderResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: MsgLazyRegisterOrderResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: MsgCreateOrderResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: MsgLazyRegisterOrderResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:
@@ -1775,7 +1776,7 @@ func (m *MsgCreateOrderResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *MsgDeleteOrder) Unmarshal(dAtA []byte) error {
+func (m *MsgCancelOrder) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1798,10 +1799,10 @@ func (m *MsgDeleteOrder) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: MsgDeleteOrder: wiretype end group for non-group")
+			return fmt.Errorf("proto: MsgCancelOrder: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: MsgDeleteOrder: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: MsgCancelOrder: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1889,7 +1890,7 @@ func (m *MsgDeleteOrder) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *MsgDeleteOrderResponse) Unmarshal(dAtA []byte) error {
+func (m *MsgCancelOrderResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1912,10 +1913,10 @@ func (m *MsgDeleteOrderResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: MsgDeleteOrderResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: MsgCancelOrderResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: MsgDeleteOrderResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: MsgCancelOrderResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

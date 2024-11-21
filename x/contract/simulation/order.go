@@ -17,7 +17,7 @@ import (
 // Prevent strconv unused error
 var _ = strconv.IntSize
 
-func SimulateMsgCreateOrder(
+func SimulateMsgLazyRegisterOrder(
 	ak types.AccountKeeper,
 	bk types.BankKeeper,
 	k keeper.Keeper,
@@ -27,7 +27,7 @@ func SimulateMsgCreateOrder(
 		simAccount, _ := simtypes.RandomAcc(r, accs)
 
 		i := r.Int()
-		msg := &types.MsgCreateOrder{
+		msg := &types.MsgLazyRegisterOrder{
 			Order: types.Order{
 				Id:      strconv.Itoa(i),
 				Address: simAccount.Address.String(),
@@ -56,7 +56,7 @@ func SimulateMsgCreateOrder(
 	}
 }
 
-func SimulateMsgDeleteOrder(
+func SimulateMsgCancelOrder(
 	ak types.AccountKeeper,
 	bk types.BankKeeper,
 	k keeper.Keeper,
@@ -66,7 +66,7 @@ func SimulateMsgDeleteOrder(
 		var (
 			simAccount = simtypes.Account{}
 			order      = types.Order{}
-			msg        = &types.MsgDeleteOrder{}
+			msg        = &types.MsgCancelOrder{}
 			allOrder   = k.GetAllOrder(ctx)
 			found      = false
 		)
