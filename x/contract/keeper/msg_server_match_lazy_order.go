@@ -21,7 +21,7 @@ func (k msgServer) MatchLazyOrder(goCtx context.Context, msg *types.MsgMatchLazy
 		return nil, types.ErrOrderNotFound
 	}
 
-	err := buy.CrossValidate(sell, msg.Price)
+	err := buy.CrossValidate(sell, msg.Price, ctx.BlockTime())
 	if err != nil {
 		return nil, err
 	}
@@ -37,15 +37,6 @@ func (k msgServer) MatchLazyOrder(goCtx context.Context, msg *types.MsgMatchLazy
 	}
 
 	err = k.SettleLazy(ctx, buy, sell, msg.Amount, msg.Price)
-	if err != nil {
-		return nil, err
-	}
-
-	err = k.AddContractedAmount(ctx, uint64(buy.Expiry.UnixMilli()), buy.Id, msg.Amount)
-	if err != nil {
-		return nil, err
-	}
-	err = k.AddContractedAmount(ctx, uint64(sell.Expiry.UnixMilli()), sell.Id, msg.Amount)
 	if err != nil {
 		return nil, err
 	}

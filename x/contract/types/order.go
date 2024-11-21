@@ -1,6 +1,8 @@
 package types
 
 import (
+	"time"
+
 	sdkmath "cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
@@ -46,7 +48,7 @@ func (order Order) VerifySignature(pubKey cryptotypes.PubKey, signature []byte) 
 	return nil
 }
 
-func (buy Order) CrossValidate(sell Order, price sdkmath.LegacyDec) error {
+func (buy Order) CrossValidate(sell Order, price sdkmath.LegacyDec, blockTime time.Time) error {
 	if buy.DenomBase != sell.DenomBase || buy.DenomQuote != sell.DenomQuote {
 		return ErrDenomMismatch
 	}
@@ -62,8 +64,29 @@ func (buy Order) CrossValidate(sell Order, price sdkmath.LegacyDec) error {
 		return ErrBothMarketPriceOrder
 	}
 
-	// TODO
-	_ = price
+	if buy.LimitPrice != nil && price.GT(*buy.LimitPrice) {
+		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, buy limit price: %s", price.String(), buy.LimitPrice.String())
+	}
+
+	if sell.LimitPrice != nil && price.LT(*sell.LimitPrice) {
+		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, sell limit price: %s", price.String(), sell.LimitPrice.String())
+	}
+
+	if buy.StopPrice != nil && price.LT(*buy.StopPrice) {
+		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, buy stop price: %s", price.String(), buy.StopPrice.String())
+	}
+
+	if sell.StopPrice != nil && price.GT(*sell.StopPrice) {
+		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, sell stop price: %s", price.String(), sell.StopPrice.String())
+	}
+
+	if blockTime.After(buy.Expiry) {
+		return ErrOrderExpired
+	}
+
+	if blockTime.After(sell.Expiry) {
+		return ErrOrderExpired
+	}
 
 	return nil
 }
