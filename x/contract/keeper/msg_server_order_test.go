@@ -20,70 +20,21 @@ func TestOrderMsgServerCreate(t *testing.T) {
 	srv := keeper.NewMsgServerImpl(k)
 	user := "A"
 	for i := 0; i < 5; i++ {
-		expected := &types.MsgCreateOrder{User: user,
-			Index: strconv.Itoa(i),
+		expected := &types.MsgCreateOrder{
+			Order: types.Order{
+				Id: strconv.Itoa(i),
+				Body: types.OrderBody{
+					Address: user,
+				},
+			},
 		}
 		_, err := srv.CreateOrder(ctx, expected)
 		require.NoError(t, err)
 		rst, found := k.GetOrder(ctx,
-			expected.Index,
+			expected.Order.Id,
 		)
 		require.True(t, found)
-		require.Equal(t, expected.User, rst.User)
-	}
-}
-
-func TestOrderMsgServerUpdate(t *testing.T) {
-	user := "A"
-
-	tests := []struct {
-		desc    string
-		request *types.MsgUpdateOrder
-		err     error
-	}{
-		{
-			desc: "Completed",
-			request: &types.MsgUpdateOrder{User: user,
-				Index: strconv.Itoa(0),
-			},
-		},
-		{
-			desc: "Unauthorized",
-			request: &types.MsgUpdateOrder{User: "B",
-				Index: strconv.Itoa(0),
-			},
-			err: sdkerrors.ErrUnauthorized,
-		},
-		{
-			desc: "KeyNotFound",
-			request: &types.MsgUpdateOrder{User: user,
-				Index: strconv.Itoa(100000),
-			},
-			err: sdkerrors.ErrKeyNotFound,
-		},
-	}
-	for _, tc := range tests {
-		t.Run(tc.desc, func(t *testing.T) {
-			k, ctx := keepertest.ContractKeeper(t)
-			srv := keeper.NewMsgServerImpl(k)
-			expected := &types.MsgCreateOrder{User: user,
-				Index: strconv.Itoa(0),
-			}
-			_, err := srv.CreateOrder(ctx, expected)
-			require.NoError(t, err)
-
-			_, err = srv.UpdateOrder(ctx, tc.request)
-			if tc.err != nil {
-				require.ErrorIs(t, err, tc.err)
-			} else {
-				require.NoError(t, err)
-				rst, found := k.GetOrder(ctx,
-					expected.Index,
-				)
-				require.True(t, found)
-				require.Equal(t, expected.User, rst.User)
-			}
-		})
+		require.Equal(t, expected.Order.Body.Address, rst.Body.Address)
 	}
 }
 
@@ -98,20 +49,20 @@ func TestOrderMsgServerDelete(t *testing.T) {
 		{
 			desc: "Completed",
 			request: &types.MsgDeleteOrder{User: user,
-				Index: strconv.Itoa(0),
+				Id: strconv.Itoa(0),
 			},
 		},
 		{
 			desc: "Unauthorized",
 			request: &types.MsgDeleteOrder{User: "B",
-				Index: strconv.Itoa(0),
+				Id: strconv.Itoa(0),
 			},
 			err: sdkerrors.ErrUnauthorized,
 		},
 		{
 			desc: "KeyNotFound",
 			request: &types.MsgDeleteOrder{User: user,
-				Index: strconv.Itoa(100000),
+				Id: strconv.Itoa(100000),
 			},
 			err: sdkerrors.ErrKeyNotFound,
 		},
@@ -121,8 +72,13 @@ func TestOrderMsgServerDelete(t *testing.T) {
 			k, ctx := keepertest.ContractKeeper(t)
 			srv := keeper.NewMsgServerImpl(k)
 
-			_, err := srv.CreateOrder(ctx, &types.MsgCreateOrder{User: user,
-				Index: strconv.Itoa(0),
+			_, err := srv.CreateOrder(ctx, &types.MsgCreateOrder{
+				Order: types.Order{
+					Id: strconv.Itoa(0),
+					Body: types.OrderBody{
+						Address: user,
+					},
+				},
 			})
 			require.NoError(t, err)
 			_, err = srv.DeleteOrder(ctx, tc.request)
@@ -131,7 +87,7 @@ func TestOrderMsgServerDelete(t *testing.T) {
 			} else {
 				require.NoError(t, err)
 				_, found := k.GetOrder(ctx,
-					tc.request.Index,
+					tc.request.Id,
 				)
 				require.False(t, found)
 			}

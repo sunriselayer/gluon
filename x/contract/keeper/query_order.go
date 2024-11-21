@@ -46,7 +46,7 @@ func (k Keeper) Order(ctx context.Context, req *types.QueryGetOrderRequest) (*ty
 
 	val, found := k.GetOrder(
 		ctx,
-		req.Index,
+		req.Id,
 	)
 	if !found {
 		return nil, status.Error(codes.NotFound, "not found")

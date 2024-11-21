@@ -22,7 +22,7 @@ service Query {
   
   // Queries a list of Order items.
   rpc Order    (QueryGetOrderRequest) returns (QueryGetOrderResponse) {
-    option (google.api.http).get = "/gluon/contract/order/{index}";
+    option (google.api.http).get = "/gluon/contract/order/{id}";
   
   }
   rpc OrderAll (QueryAllOrderRequest) returns (QueryAllOrderResponse) {
@@ -41,7 +41,7 @@ message QueryParamsResponse {
 }
 
 message QueryGetOrderRequest {
-  string index = 1;
+  string id = 1;
 }
 
 message QueryGetOrderResponse {

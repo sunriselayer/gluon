@@ -16,21 +16,21 @@ func (k Keeper) SetOrder(ctx context.Context, order types.Order) {
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.OrderKeyPrefix))
 	b := k.cdc.MustMarshal(&order)
 	store.Set(types.OrderKey(
-		order.Index,
+		order.Id,
 	), b)
 }
 
 // GetOrder returns a order from its index
 func (k Keeper) GetOrder(
 	ctx context.Context,
-	index string,
+	id string,
 
 ) (val types.Order, found bool) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.OrderKeyPrefix))
 
 	b := store.Get(types.OrderKey(
-		index,
+		id,
 	))
 	if b == nil {
 		return val, false
@@ -43,13 +43,13 @@ func (k Keeper) GetOrder(
 // RemoveOrder removes a order from the store
 func (k Keeper) RemoveOrder(
 	ctx context.Context,
-	index string,
+	id string,
 
 ) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.OrderKeyPrefix))
 	store.Delete(types.OrderKey(
-		index,
+		id,
 	))
 }
 

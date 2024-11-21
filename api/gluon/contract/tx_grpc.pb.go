@@ -20,11 +20,10 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	Msg_UpdateParams_FullMethodName   = "/gluon.contract.Msg/UpdateParams"
+	Msg_CreateOrder_FullMethodName    = "/gluon.contract.Msg/CreateOrder"
+	Msg_DeleteOrder_FullMethodName    = "/gluon.contract.Msg/DeleteOrder"
 	Msg_MatchOrder_FullMethodName     = "/gluon.contract.Msg/MatchOrder"
 	Msg_MatchLazyOrder_FullMethodName = "/gluon.contract.Msg/MatchLazyOrder"
-	Msg_CreateOrder_FullMethodName    = "/gluon.contract.Msg/CreateOrder"
-	Msg_UpdateOrder_FullMethodName    = "/gluon.contract.Msg/UpdateOrder"
-	Msg_DeleteOrder_FullMethodName    = "/gluon.contract.Msg/DeleteOrder"
 )
 
 // MsgClient is the client API for Msg service.
@@ -34,11 +33,10 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
+	CreateOrder(ctx context.Context, in *MsgCreateOrder, opts ...grpc.CallOption) (*MsgCreateOrderResponse, error)
+	DeleteOrder(ctx context.Context, in *MsgDeleteOrder, opts ...grpc.CallOption) (*MsgDeleteOrderResponse, error)
 	MatchOrder(ctx context.Context, in *MsgMatchOrder, opts ...grpc.CallOption) (*MsgMatchOrderResponse, error)
 	MatchLazyOrder(ctx context.Context, in *MsgMatchLazyOrder, opts ...grpc.CallOption) (*MsgMatchLazyOrderResponse, error)
-	CreateOrder(ctx context.Context, in *MsgCreateOrder, opts ...grpc.CallOption) (*MsgCreateOrderResponse, error)
-	UpdateOrder(ctx context.Context, in *MsgUpdateOrder, opts ...grpc.CallOption) (*MsgUpdateOrderResponse, error)
-	DeleteOrder(ctx context.Context, in *MsgDeleteOrder, opts ...grpc.CallOption) (*MsgDeleteOrderResponse, error)
 }
 
 type msgClient struct {
@@ -52,6 +50,24 @@ func NewMsgClient(cc grpc.ClientConnInterface) MsgClient {
 func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error) {
 	out := new(MsgUpdateParamsResponse)
 	err := c.cc.Invoke(ctx, Msg_UpdateParams_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) CreateOrder(ctx context.Context, in *MsgCreateOrder, opts ...grpc.CallOption) (*MsgCreateOrderResponse, error) {
+	out := new(MsgCreateOrderResponse)
+	err := c.cc.Invoke(ctx, Msg_CreateOrder_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) DeleteOrder(ctx context.Context, in *MsgDeleteOrder, opts ...grpc.CallOption) (*MsgDeleteOrderResponse, error) {
+	out := new(MsgDeleteOrderResponse)
+	err := c.cc.Invoke(ctx, Msg_DeleteOrder_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,33 +92,6 @@ func (c *msgClient) MatchLazyOrder(ctx context.Context, in *MsgMatchLazyOrder, o
 	return out, nil
 }
 
-func (c *msgClient) CreateOrder(ctx context.Context, in *MsgCreateOrder, opts ...grpc.CallOption) (*MsgCreateOrderResponse, error) {
-	out := new(MsgCreateOrderResponse)
-	err := c.cc.Invoke(ctx, Msg_CreateOrder_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *msgClient) UpdateOrder(ctx context.Context, in *MsgUpdateOrder, opts ...grpc.CallOption) (*MsgUpdateOrderResponse, error) {
-	out := new(MsgUpdateOrderResponse)
-	err := c.cc.Invoke(ctx, Msg_UpdateOrder_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *msgClient) DeleteOrder(ctx context.Context, in *MsgDeleteOrder, opts ...grpc.CallOption) (*MsgDeleteOrderResponse, error) {
-	out := new(MsgDeleteOrderResponse)
-	err := c.cc.Invoke(ctx, Msg_DeleteOrder_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -110,11 +99,10 @@ type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
+	CreateOrder(context.Context, *MsgCreateOrder) (*MsgCreateOrderResponse, error)
+	DeleteOrder(context.Context, *MsgDeleteOrder) (*MsgDeleteOrderResponse, error)
 	MatchOrder(context.Context, *MsgMatchOrder) (*MsgMatchOrderResponse, error)
 	MatchLazyOrder(context.Context, *MsgMatchLazyOrder) (*MsgMatchLazyOrderResponse, error)
-	CreateOrder(context.Context, *MsgCreateOrder) (*MsgCreateOrderResponse, error)
-	UpdateOrder(context.Context, *MsgUpdateOrder) (*MsgUpdateOrderResponse, error)
-	DeleteOrder(context.Context, *MsgDeleteOrder) (*MsgDeleteOrderResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -125,20 +113,17 @@ type UnimplementedMsgServer struct {
 func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
 }
+func (UnimplementedMsgServer) CreateOrder(context.Context, *MsgCreateOrder) (*MsgCreateOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOrder not implemented")
+}
+func (UnimplementedMsgServer) DeleteOrder(context.Context, *MsgDeleteOrder) (*MsgDeleteOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrder not implemented")
+}
 func (UnimplementedMsgServer) MatchOrder(context.Context, *MsgMatchOrder) (*MsgMatchOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MatchOrder not implemented")
 }
 func (UnimplementedMsgServer) MatchLazyOrder(context.Context, *MsgMatchLazyOrder) (*MsgMatchLazyOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MatchLazyOrder not implemented")
-}
-func (UnimplementedMsgServer) CreateOrder(context.Context, *MsgCreateOrder) (*MsgCreateOrderResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateOrder not implemented")
-}
-func (UnimplementedMsgServer) UpdateOrder(context.Context, *MsgUpdateOrder) (*MsgUpdateOrderResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrder not implemented")
-}
-func (UnimplementedMsgServer) DeleteOrder(context.Context, *MsgDeleteOrder) (*MsgDeleteOrderResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrder not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -167,6 +152,42 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MsgServer).UpdateParams(ctx, req.(*MsgUpdateParams))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_CreateOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateOrder)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_CreateOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateOrder(ctx, req.(*MsgCreateOrder))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_DeleteOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDeleteOrder)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).DeleteOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_DeleteOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).DeleteOrder(ctx, req.(*MsgDeleteOrder))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -207,60 +228,6 @@ func _Msg_MatchLazyOrder_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_CreateOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgCreateOrder)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).CreateOrder(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Msg_CreateOrder_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).CreateOrder(ctx, req.(*MsgCreateOrder))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Msg_UpdateOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgUpdateOrder)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).UpdateOrder(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Msg_UpdateOrder_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).UpdateOrder(ctx, req.(*MsgUpdateOrder))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Msg_DeleteOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgDeleteOrder)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).DeleteOrder(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Msg_DeleteOrder_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).DeleteOrder(ctx, req.(*MsgDeleteOrder))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -273,24 +240,20 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Msg_UpdateParams_Handler,
 		},
 		{
+			MethodName: "CreateOrder",
+			Handler:    _Msg_CreateOrder_Handler,
+		},
+		{
+			MethodName: "DeleteOrder",
+			Handler:    _Msg_DeleteOrder_Handler,
+		},
+		{
 			MethodName: "MatchOrder",
 			Handler:    _Msg_MatchOrder_Handler,
 		},
 		{
 			MethodName: "MatchLazyOrder",
 			Handler:    _Msg_MatchLazyOrder_Handler,
-		},
-		{
-			MethodName: "CreateOrder",
-			Handler:    _Msg_CreateOrder_Handler,
-		},
-		{
-			MethodName: "UpdateOrder",
-			Handler:    _Msg_UpdateOrder_Handler,
-		},
-		{
-			MethodName: "DeleteOrder",
-			Handler:    _Msg_DeleteOrder_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -9,41 +9,17 @@ import (
 var _ sdk.Msg = &MsgCreateOrder{}
 
 func NewMsgCreateOrder(
-	user string,
-	index string,
-
+	order Order,
 ) *MsgCreateOrder {
 	return &MsgCreateOrder{
-		User:  user,
-		Index: index,
+		Order: order,
 	}
 }
 
 func (msg *MsgCreateOrder) ValidateBasic() error {
-	_, err := sdk.AccAddressFromBech32(msg.User)
+	err := msg.Order.ValidateBasic()
 	if err != nil {
-		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid user address (%s)", err)
-	}
-	return nil
-}
-
-var _ sdk.Msg = &MsgUpdateOrder{}
-
-func NewMsgUpdateOrder(
-	user string,
-	index string,
-
-) *MsgUpdateOrder {
-	return &MsgUpdateOrder{
-		User:  user,
-		Index: index,
-	}
-}
-
-func (msg *MsgUpdateOrder) ValidateBasic() error {
-	_, err := sdk.AccAddressFromBech32(msg.User)
-	if err != nil {
-		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid user address (%s)", err)
+		return err
 	}
 	return nil
 }
@@ -52,12 +28,12 @@ var _ sdk.Msg = &MsgDeleteOrder{}
 
 func NewMsgDeleteOrder(
 	user string,
-	index string,
+	id string,
 
 ) *MsgDeleteOrder {
 	return &MsgDeleteOrder{
-		User:  user,
-		Index: index,
+		User: user,
+		Id:   id,
 	}
 }
 

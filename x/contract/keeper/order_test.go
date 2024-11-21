@@ -19,7 +19,7 @@ var _ = strconv.IntSize
 func createNOrder(keeper keeper.Keeper, ctx context.Context, n int) []types.Order {
 	items := make([]types.Order, n)
 	for i := range items {
-		items[i].Index = strconv.Itoa(i)
+		items[i].Id = strconv.Itoa(i)
 
 		keeper.SetOrder(ctx, items[i])
 	}
@@ -31,7 +31,7 @@ func TestOrderGet(t *testing.T) {
 	items := createNOrder(keeper, ctx, 10)
 	for _, item := range items {
 		rst, found := keeper.GetOrder(ctx,
-			item.Index,
+			item.Id,
 		)
 		require.True(t, found)
 		require.Equal(t,
@@ -45,10 +45,10 @@ func TestOrderRemove(t *testing.T) {
 	items := createNOrder(keeper, ctx, 10)
 	for _, item := range items {
 		keeper.RemoveOrder(ctx,
-			item.Index,
+			item.Id,
 		)
 		_, found := keeper.GetOrder(ctx,
-			item.Index,
+			item.Id,
 		)
 		require.False(t, found)
 	}

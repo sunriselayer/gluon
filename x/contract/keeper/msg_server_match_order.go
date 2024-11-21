@@ -11,10 +11,7 @@ import (
 func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (*types.MsgMatchOrderResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	err := k.ValidateOrderPair(ctx, msg.Earlier, msg.Later)
-	if err != nil {
-		return nil, err
-	}
+	_ = ctx
 
 	return &types.MsgMatchOrderResponse{}, nil
 }

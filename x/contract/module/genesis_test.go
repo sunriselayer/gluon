@@ -17,10 +17,10 @@ func TestGenesis(t *testing.T) {
 		PortId: types.PortID,
 		OrderList: []types.Order{
 			{
-				Index: "0",
+				Id: "0",
 			},
 			{
-				Index: "1",
+				Id: "1",
 			},
 		},
 		// this line is used by starport scaffolding # genesis/test/state

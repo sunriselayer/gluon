@@ -9,13 +9,11 @@ import "google/protobuf/timestamp.proto";
 option go_package = "gluon/x/contract/types";
 
 message Order {
-  string index = 1; 
-  string user = 2;
-  OrderBody body = 3 [ (gogoproto.nullable) = false ];
-  uint64 paring_id = 4;
-  bytes signature = 5;
+  string id = 1; 
+  OrderBody body = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  uint64 paring_id = 3;
+  bytes signature = 4;
 }
-
 
 enum OrderDirection {
   UNKNOWN = 0;
@@ -29,31 +27,31 @@ enum OrderType {
 }
 
 message OrderBody {
-string address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-string base_denom = 2;
-string quote_denom = 3;
-OrderDirection direction = 4;
-OrderType type = 5;
-string amount = 6 [
-  (cosmos_proto.scalar) = "cosmos.Int",
-  (gogoproto.customtype) = "cosmossdk.io/math.Int",
-  (gogoproto.nullable) = false,
-  (amino.dont_omitempty) = true
-];
-string limit_price = 7 [
-  (cosmos_proto.scalar) = "cosmos.Dec",
-  (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
-  (gogoproto.nullable) = true,
-  (amino.dont_omitempty) = true
-];
-string stop_price = 8 [
-  (cosmos_proto.scalar) = "cosmos.Dec",
-  (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
-  (gogoproto.nullable) = true,
-  (amino.dont_omitempty) = true
-];
-google.protobuf.Timestamp expiry = 9 [
-  (gogoproto.nullable) = false,
-  (gogoproto.stdtime) = true
-];
+  string address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string base_denom = 2;
+  string quote_denom = 3;
+  OrderDirection direction = 4;
+  OrderType type = 5;
+  string amount = 6 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+  string limit_price = 7 [
+    (cosmos_proto.scalar) = "cosmos.Dec",
+    (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
+    (gogoproto.nullable) = true,
+    (amino.dont_omitempty) = true
+  ];
+  string stop_price = 8 [
+    (cosmos_proto.scalar) = "cosmos.Dec",
+    (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
+    (gogoproto.nullable) = true,
+    (amino.dont_omitempty) = true
+  ];
+  google.protobuf.Timestamp expiry = 9 [
+    (gogoproto.nullable) = false,
+    (gogoproto.stdtime) = true
+  ];
 }

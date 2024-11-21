@@ -18,11 +18,10 @@ service Msg {
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
   rpc UpdateParams   (MsgUpdateParams  ) returns (MsgUpdateParamsResponse  );
+  rpc CreateOrder    (MsgCreateOrder   ) returns (MsgCreateOrderResponse   );
+  rpc DeleteOrder    (MsgDeleteOrder   ) returns (MsgDeleteOrderResponse   );
   rpc MatchOrder     (MsgMatchOrder    ) returns (MsgMatchOrderResponse    );
   rpc MatchLazyOrder (MsgMatchLazyOrder) returns (MsgMatchLazyOrderResponse);
-  rpc CreateOrder    (MsgCreateOrder   ) returns (MsgCreateOrderResponse   );
-  rpc UpdateOrder    (MsgUpdateOrder   ) returns (MsgUpdateOrderResponse   );
-  rpc DeleteOrder    (MsgDeleteOrder   ) returns (MsgDeleteOrderResponse   );
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -42,45 +41,41 @@ message MsgUpdateParams {
 // MsgUpdateParams message.
 message MsgUpdateParamsResponse {}
 
+message MsgCreateOrder {
+  option (cosmos.msg.v1.signer) = "order.body.address";
+  Order order = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+message MsgCreateOrderResponse {}
+
+message MsgDeleteOrder {
+  option (cosmos.msg.v1.signer) = "user";
+  string user  = 1;
+  string id = 2;
+}
+
+message MsgDeleteOrderResponse {}
+
 message MsgMatchOrder {
-  option (cosmos.msg.v1.signer) = "earlier.address";
-  option (cosmos.msg.v1.signer) =   "later.address";
-  gluon.contract.Order earlier = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
-  gluon.contract.Order later   = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  option (cosmos.msg.v1.signer) = "earlier_address";
+  option (cosmos.msg.v1.signer) =   "later_address";
+
+  string earlier_address = 1;
+  string earlier_order_id = 2;
+  string later_address = 3;
+  string later_order_id = 4;
 }
 
 message MsgMatchOrderResponse {}
 
 message MsgMatchLazyOrder {
-  option (cosmos.msg.v1.signer) = "earlier.address";
-  option (cosmos.msg.v1.signer) =   "later.address";
-  gluon.contract.Order earlier = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
-  gluon.contract.Order later   = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  option (cosmos.msg.v1.signer) = "earlier_address";
+  option (cosmos.msg.v1.signer) =   "later_address";
+
+  string earlier_address = 1;
+  string earlier_order_id = 2;
+  string later_address = 3;
+  string later_order_id = 4;
 }
 
 message MsgMatchLazyOrderResponse {}
-
-message MsgCreateOrder {
-  option (cosmos.msg.v1.signer) = "user";
-  string user  = 1;
-  string index = 2;
-}
-
-message MsgCreateOrderResponse {}
-
-message MsgUpdateOrder {
-  option (cosmos.msg.v1.signer) = "user";
-  string user  = 1;
-  string index = 2;
-}
-
-message MsgUpdateOrderResponse {}
-
-message MsgDeleteOrder {
-  option (cosmos.msg.v1.signer) = "user";
-  string user  = 1;
-  string index = 2;
-}
-
-message MsgDeleteOrderResponse {}
-
