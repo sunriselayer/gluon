@@ -18,15 +18,15 @@ func TestMsgMatchLazyOrder_ValidateBasic(t *testing.T) {
 		{
 			name: "invalid address",
 			msg: MsgMatchLazyOrder{
-				EarlierAddress: "invalid_address",
-				LaterAddress:   "invalid_address",
+				AddressBuy:  "invalid_address",
+				AddressSell: "invalid_address",
 			},
 			err: sdkerrors.ErrInvalidAddress,
 		}, {
 			name: "valid address",
 			msg: MsgMatchLazyOrder{
-				EarlierAddress: sample.AccAddress(),
-				LaterAddress:   sample.AccAddress(),
+				AddressBuy:  sample.AccAddress(),
+				AddressSell: sample.AccAddress(),
 			},
 		},
 	}

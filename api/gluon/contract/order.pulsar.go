@@ -20,8 +20,8 @@ var (
 	md_Order             protoreflect.MessageDescriptor
 	fd_Order_id          protoreflect.FieldDescriptor
 	fd_Order_address     protoreflect.FieldDescriptor
-	fd_Order_base_denom  protoreflect.FieldDescriptor
-	fd_Order_quote_denom protoreflect.FieldDescriptor
+	fd_Order_denom_base  protoreflect.FieldDescriptor
+	fd_Order_denom_quote protoreflect.FieldDescriptor
 	fd_Order_direction   protoreflect.FieldDescriptor
 	fd_Order_type        protoreflect.FieldDescriptor
 	fd_Order_amount      protoreflect.FieldDescriptor
@@ -35,8 +35,8 @@ func init() {
 	md_Order = File_gluon_contract_order_proto.Messages().ByName("Order")
 	fd_Order_id = md_Order.Fields().ByName("id")
 	fd_Order_address = md_Order.Fields().ByName("address")
-	fd_Order_base_denom = md_Order.Fields().ByName("base_denom")
-	fd_Order_quote_denom = md_Order.Fields().ByName("quote_denom")
+	fd_Order_denom_base = md_Order.Fields().ByName("denom_base")
+	fd_Order_denom_quote = md_Order.Fields().ByName("denom_quote")
 	fd_Order_direction = md_Order.Fields().ByName("direction")
 	fd_Order_type = md_Order.Fields().ByName("type")
 	fd_Order_amount = md_Order.Fields().ByName("amount")
@@ -122,15 +122,15 @@ func (x *fastReflection_Order) Range(f func(protoreflect.FieldDescriptor, protor
 			return
 		}
 	}
-	if x.BaseDenom != "" {
-		value := protoreflect.ValueOfString(x.BaseDenom)
-		if !f(fd_Order_base_denom, value) {
+	if x.DenomBase != "" {
+		value := protoreflect.ValueOfString(x.DenomBase)
+		if !f(fd_Order_denom_base, value) {
 			return
 		}
 	}
-	if x.QuoteDenom != "" {
-		value := protoreflect.ValueOfString(x.QuoteDenom)
-		if !f(fd_Order_quote_denom, value) {
+	if x.DenomQuote != "" {
+		value := protoreflect.ValueOfString(x.DenomQuote)
+		if !f(fd_Order_denom_quote, value) {
 			return
 		}
 	}
@@ -189,10 +189,10 @@ func (x *fastReflection_Order) Has(fd protoreflect.FieldDescriptor) bool {
 		return x.Id != ""
 	case "gluon.contract.Order.address":
 		return x.Address != ""
-	case "gluon.contract.Order.base_denom":
-		return x.BaseDenom != ""
-	case "gluon.contract.Order.quote_denom":
-		return x.QuoteDenom != ""
+	case "gluon.contract.Order.denom_base":
+		return x.DenomBase != ""
+	case "gluon.contract.Order.denom_quote":
+		return x.DenomQuote != ""
 	case "gluon.contract.Order.direction":
 		return x.Direction != 0
 	case "gluon.contract.Order.type":
@@ -225,10 +225,10 @@ func (x *fastReflection_Order) Clear(fd protoreflect.FieldDescriptor) {
 		x.Id = ""
 	case "gluon.contract.Order.address":
 		x.Address = ""
-	case "gluon.contract.Order.base_denom":
-		x.BaseDenom = ""
-	case "gluon.contract.Order.quote_denom":
-		x.QuoteDenom = ""
+	case "gluon.contract.Order.denom_base":
+		x.DenomBase = ""
+	case "gluon.contract.Order.denom_quote":
+		x.DenomQuote = ""
 	case "gluon.contract.Order.direction":
 		x.Direction = 0
 	case "gluon.contract.Order.type":
@@ -263,11 +263,11 @@ func (x *fastReflection_Order) Get(descriptor protoreflect.FieldDescriptor) prot
 	case "gluon.contract.Order.address":
 		value := x.Address
 		return protoreflect.ValueOfString(value)
-	case "gluon.contract.Order.base_denom":
-		value := x.BaseDenom
+	case "gluon.contract.Order.denom_base":
+		value := x.DenomBase
 		return protoreflect.ValueOfString(value)
-	case "gluon.contract.Order.quote_denom":
-		value := x.QuoteDenom
+	case "gluon.contract.Order.denom_quote":
+		value := x.DenomQuote
 		return protoreflect.ValueOfString(value)
 	case "gluon.contract.Order.direction":
 		value := x.Direction
@@ -311,10 +311,10 @@ func (x *fastReflection_Order) Set(fd protoreflect.FieldDescriptor, value protor
 		x.Id = value.Interface().(string)
 	case "gluon.contract.Order.address":
 		x.Address = value.Interface().(string)
-	case "gluon.contract.Order.base_denom":
-		x.BaseDenom = value.Interface().(string)
-	case "gluon.contract.Order.quote_denom":
-		x.QuoteDenom = value.Interface().(string)
+	case "gluon.contract.Order.denom_base":
+		x.DenomBase = value.Interface().(string)
+	case "gluon.contract.Order.denom_quote":
+		x.DenomQuote = value.Interface().(string)
 	case "gluon.contract.Order.direction":
 		x.Direction = (OrderDirection)(value.Enum())
 	case "gluon.contract.Order.type":
@@ -356,10 +356,10 @@ func (x *fastReflection_Order) Mutable(fd protoreflect.FieldDescriptor) protoref
 		panic(fmt.Errorf("field id of message gluon.contract.Order is not mutable"))
 	case "gluon.contract.Order.address":
 		panic(fmt.Errorf("field address of message gluon.contract.Order is not mutable"))
-	case "gluon.contract.Order.base_denom":
-		panic(fmt.Errorf("field base_denom of message gluon.contract.Order is not mutable"))
-	case "gluon.contract.Order.quote_denom":
-		panic(fmt.Errorf("field quote_denom of message gluon.contract.Order is not mutable"))
+	case "gluon.contract.Order.denom_base":
+		panic(fmt.Errorf("field denom_base of message gluon.contract.Order is not mutable"))
+	case "gluon.contract.Order.denom_quote":
+		panic(fmt.Errorf("field denom_quote of message gluon.contract.Order is not mutable"))
 	case "gluon.contract.Order.direction":
 		panic(fmt.Errorf("field direction of message gluon.contract.Order is not mutable"))
 	case "gluon.contract.Order.type":
@@ -387,9 +387,9 @@ func (x *fastReflection_Order) NewField(fd protoreflect.FieldDescriptor) protore
 		return protoreflect.ValueOfString("")
 	case "gluon.contract.Order.address":
 		return protoreflect.ValueOfString("")
-	case "gluon.contract.Order.base_denom":
+	case "gluon.contract.Order.denom_base":
 		return protoreflect.ValueOfString("")
-	case "gluon.contract.Order.quote_denom":
+	case "gluon.contract.Order.denom_quote":
 		return protoreflect.ValueOfString("")
 	case "gluon.contract.Order.direction":
 		return protoreflect.ValueOfEnum(0)
@@ -481,11 +481,11 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.BaseDenom)
+		l = len(x.DenomBase)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.QuoteDenom)
+		l = len(x.DenomQuote)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -585,17 +585,17 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 			i--
 			dAtA[i] = 0x28
 		}
-		if len(x.QuoteDenom) > 0 {
-			i -= len(x.QuoteDenom)
-			copy(dAtA[i:], x.QuoteDenom)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.QuoteDenom)))
+		if len(x.DenomQuote) > 0 {
+			i -= len(x.DenomQuote)
+			copy(dAtA[i:], x.DenomQuote)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.DenomQuote)))
 			i--
 			dAtA[i] = 0x22
 		}
-		if len(x.BaseDenom) > 0 {
-			i -= len(x.BaseDenom)
-			copy(dAtA[i:], x.BaseDenom)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.BaseDenom)))
+		if len(x.DenomBase) > 0 {
+			i -= len(x.DenomBase)
+			copy(dAtA[i:], x.DenomBase)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.DenomBase)))
 			i--
 			dAtA[i] = 0x1a
 		}
@@ -728,7 +728,7 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 				iNdEx = postIndex
 			case 3:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field BaseDenom", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field DenomBase", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -756,11 +756,11 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.BaseDenom = string(dAtA[iNdEx:postIndex])
+				x.DenomBase = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 4:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field QuoteDenom", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field DenomQuote", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -788,7 +788,7 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.QuoteDenom = string(dAtA[iNdEx:postIndex])
+				x.DenomQuote = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 5:
 				if wireType != 0 {
@@ -1110,8 +1110,8 @@ type Order struct {
 
 	Id         string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Address    string                 `protobuf:"bytes,2,opt,name=address,proto3" json:"address,omitempty"`
-	BaseDenom  string                 `protobuf:"bytes,3,opt,name=base_denom,json=baseDenom,proto3" json:"base_denom,omitempty"`
-	QuoteDenom string                 `protobuf:"bytes,4,opt,name=quote_denom,json=quoteDenom,proto3" json:"quote_denom,omitempty"`
+	DenomBase  string                 `protobuf:"bytes,3,opt,name=denom_base,json=denomBase,proto3" json:"denom_base,omitempty"`
+	DenomQuote string                 `protobuf:"bytes,4,opt,name=denom_quote,json=denomQuote,proto3" json:"denom_quote,omitempty"`
 	Direction  OrderDirection         `protobuf:"varint,5,opt,name=direction,proto3,enum=gluon.contract.OrderDirection" json:"direction,omitempty"`
 	Type_      OrderType              `protobuf:"varint,6,opt,name=type,proto3,enum=gluon.contract.OrderType" json:"type,omitempty"`
 	Amount     string                 `protobuf:"bytes,7,opt,name=amount,proto3" json:"amount,omitempty"`
@@ -1154,16 +1154,16 @@ func (x *Order) GetAddress() string {
 	return ""
 }
 
-func (x *Order) GetBaseDenom() string {
+func (x *Order) GetDenomBase() string {
 	if x != nil {
-		return x.BaseDenom
+		return x.DenomBase
 	}
 	return ""
 }
 
-func (x *Order) GetQuoteDenom() string {
+func (x *Order) GetDenomQuote() string {
 	if x != nil {
-		return x.QuoteDenom
+		return x.DenomQuote
 	}
 	return ""
 }
@@ -1227,10 +1227,10 @@ var file_gluon_contract_order_proto_rawDesc = []byte{
 	0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4,
 	0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
 	0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12,
-	0x1d, 0x0a, 0x0a, 0x62, 0x61, 0x73, 0x65, 0x5f, 0x64, 0x65, 0x6e, 0x6f, 0x6d, 0x18, 0x03, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x09, 0x62, 0x61, 0x73, 0x65, 0x44, 0x65, 0x6e, 0x6f, 0x6d, 0x12, 0x1f,
-	0x0a, 0x0b, 0x71, 0x75, 0x6f, 0x74, 0x65, 0x5f, 0x64, 0x65, 0x6e, 0x6f, 0x6d, 0x18, 0x04, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x0a, 0x71, 0x75, 0x6f, 0x74, 0x65, 0x44, 0x65, 0x6e, 0x6f, 0x6d, 0x12,
+	0x1d, 0x0a, 0x0a, 0x64, 0x65, 0x6e, 0x6f, 0x6d, 0x5f, 0x62, 0x61, 0x73, 0x65, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x09, 0x64, 0x65, 0x6e, 0x6f, 0x6d, 0x42, 0x61, 0x73, 0x65, 0x12, 0x1f,
+	0x0a, 0x0b, 0x64, 0x65, 0x6e, 0x6f, 0x6d, 0x5f, 0x71, 0x75, 0x6f, 0x74, 0x65, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x0a, 0x64, 0x65, 0x6e, 0x6f, 0x6d, 0x51, 0x75, 0x6f, 0x74, 0x65, 0x12,
 	0x3c, 0x0a, 0x09, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x05, 0x20, 0x01,
 	0x28, 0x0e, 0x32, 0x1e, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72,
 	0x61, 0x63, 0x74, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x44, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69,

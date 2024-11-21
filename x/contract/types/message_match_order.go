@@ -7,35 +7,35 @@ import (
 var _ sdk.Msg = &MsgMatchOrder{}
 
 func NewMsgMatchOrder(
-	earlierAddress string,
-	earlierOrderId string,
-	laterAddress string,
-	laterOrderId string,
+	addressBuy string,
+	orderIdBuy string,
+	addressSell string,
+	orderIdSell string,
 ) *MsgMatchOrder {
 	return &MsgMatchOrder{
-		EarlierAddress: earlierAddress,
-		EarlierOrderId: earlierOrderId,
-		LaterAddress:   laterAddress,
-		LaterOrderId:   laterOrderId,
+		AddressBuy:  addressBuy,
+		OrderIdBuy:  orderIdBuy,
+		AddressSell: addressSell,
+		OrderIdSell: orderIdSell,
 	}
 }
 
 func (msg *MsgMatchOrder) ValidateBasic() error {
-	_, err := sdk.AccAddressFromBech32(msg.EarlierAddress)
+	_, err := sdk.AccAddressFromBech32(msg.AddressBuy)
 	if err != nil {
 		return err
 	}
 
-	if len(msg.EarlierOrderId) == 0 {
+	if len(msg.OrderIdBuy) == 0 {
 		return ErrEmptyOrderId
 	}
 
-	_, err = sdk.AccAddressFromBech32(msg.LaterAddress)
+	_, err = sdk.AccAddressFromBech32(msg.AddressSell)
 	if err != nil {
 		return err
 	}
 
-	if len(msg.LaterOrderId) == 0 {
+	if len(msg.OrderIdSell) == 0 {
 		return ErrEmptyOrderId
 	}
 

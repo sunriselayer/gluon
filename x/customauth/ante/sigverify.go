@@ -19,8 +19,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/tx/signing"
 	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
 
-	types "gluon/x/customauth/types"
-
 	sdkante "github.com/cosmos/cosmos-sdk/x/auth/ante"
 )
 
@@ -56,6 +54,7 @@ func (spkd SetPubKeyDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate b
 	}
 
 	isOperatorTx := IsOperatorTx(tx, spkd.msgMatchHandler)
+	// skip operator tx
 	if isOperatorTx {
 		return next(ctx, tx, simulate)
 	}
@@ -96,6 +95,7 @@ func (spkd SetPubKeyDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate b
 		}
 
 		// <gluon>
+		// If the signer is pairing key, skip setting pub key.
 		if _, found := pairingId[signerStrs[i]]; found {
 			continue
 		}
@@ -238,29 +238,14 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 			if err != nil {
 				return ctx, err
 			}
-		} else {
-			if id, found := pairingId[acc.GetAddress().String()]; found {
-				pairing, found := svd.cak.GetPairing(ctx, acc.GetAddress().String(), id)
-				if !found {
-					return ctx, errorsmod.Wrapf(types.ErrPairingNotFound, "address: %s, pairing_id: %d", acc.GetAddress().String(), id)
-				}
-				params := svd.cak.GetParams(ctx)
-
-				if ctx.BlockTime().Compare(pairing.CreatedAt.Add(params.ParingDelay)) < 0 {
-					return ctx, errorsmod.Wrapf(types.ErrPairingDelayPeriod, "address: %s, pairing_id: %d", acc.GetAddress().String(), id)
-				}
-
-				pubKey, err = svd.cak.GetPairingPubKey(ctx, pairing)
-				if err != nil {
-					return ctx, err
-				}
-			} else {
-				// retrieve pubkey
-				pubKey = acc.GetPubKey()
-				if !simulate && pubKey == nil {
-					return ctx, errorsmod.Wrap(sdkerrors.ErrInvalidPubKey, "pubkey on account is not set")
-				}
+		} else if id, found := pairingId[acc.GetAddress().String()]; found {
+			pubKey, err = svd.cak.GetDoubleSigPubKey(ctx, acc.GetAddress().String(), id)
+			if err != nil {
+				return ctx, err
 			}
+		} else {
+			// force error for EOA
+			return ctx, errorsmod.Wrap(sdkerrors.ErrInvalidPubKey, "pairing pubkey on account is not set")
 		}
 		// </gluon>
 

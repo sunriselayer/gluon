@@ -7,28 +7,45 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
-// TODO
 func (k Keeper) Settle(
 	ctx sdk.Context,
-	earlier types.Order,
-	later types.Order,
+	buy types.Order,
+	sell types.Order,
 	amount sdkmath.Int,
+	price sdkmath.LegacyDec,
 ) error {
-	earlierAddress, err := sdk.AccAddressFromBech32(earlier.Address)
+	denomBase := buy.DenomBase
+	denomQuote := buy.DenomQuote
+
+	addressBuy, err := sdk.AccAddressFromBech32(buy.Address)
 	if err != nil {
 		return err
 	}
-	laterAddress, err := sdk.AccAddressFromBech32(later.Address)
+	addressSell, err := sdk.AccAddressFromBech32(sell.Address)
 	if err != nil {
 		return err
 	}
 
-	err = k.bankKeeper.SendCoins(ctx, earlierAddress, laterAddress, sdk.NewCoins())
+	err = k.bankKeeper.SendCoins(
+		ctx,
+		addressBuy,
+		addressSell,
+		sdk.NewCoins(
+			sdk.NewCoin(denomQuote, price.MulInt(amount).RoundInt()),
+		),
+	)
 	if err != nil {
 		return err
 	}
 
-	err = k.bankKeeper.SendCoins(ctx, laterAddress, earlierAddress, sdk.NewCoins())
+	err = k.bankKeeper.SendCoins(
+		ctx,
+		addressSell,
+		addressBuy,
+		sdk.NewCoins(
+			sdk.NewCoin(denomBase, amount),
+		),
+	)
 	if err != nil {
 		return err
 	}
@@ -42,6 +59,7 @@ func (k Keeper) SettleLazy(
 	earlier types.Order,
 	later types.Order,
 	amount sdkmath.Int,
+	price sdkmath.LegacyDec,
 ) error {
 	return nil
 }

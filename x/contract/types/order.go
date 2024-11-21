@@ -9,11 +9,11 @@ import (
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 )
 
-func NewOrder(address string, baseDenom string, quoteDenom string, direction OrderDirection, type_ OrderType, amount sdkmath.Int, limitPrice *sdkmath.LegacyDec, stopPrice *sdkmath.LegacyDec) Order {
+func NewOrder(address string, denomBase string, denomQuote string, direction OrderDirection, type_ OrderType, amount sdkmath.Int, limitPrice *sdkmath.LegacyDec, stopPrice *sdkmath.LegacyDec) Order {
 	return Order{
 		Address:    address,
-		BaseDenom:  baseDenom,
-		QuoteDenom: quoteDenom,
+		DenomBase:  denomBase,
+		DenomQuote: denomQuote,
 		Direction:  direction,
 		Type:       type_,
 		Amount:     amount,
@@ -46,19 +46,19 @@ func (order Order) VerifySignature(pubKey cryptotypes.PubKey, signature []byte) 
 	return nil
 }
 
-func (order Order) CrossValidate(other Order, price sdkmath.LegacyDec) error {
-	if order.BaseDenom != other.BaseDenom || order.QuoteDenom != other.QuoteDenom {
+func (buy Order) CrossValidate(sell Order, price sdkmath.LegacyDec) error {
+	if buy.DenomBase != sell.DenomBase || buy.DenomQuote != sell.DenomQuote {
 		return ErrDenomMismatch
 	}
 
-	if order.Direction == OrderDirection_UNKNOWN || other.Direction == OrderDirection_UNKNOWN {
-		return ErrUnknownOrderDirection
+	if buy.Direction != OrderDirection_BUY {
+		return ErrInvalidOrderDirection
 	}
-	if order.Direction == other.Direction {
-		return ErrSameOrderDirection
+	if sell.Direction != OrderDirection_SELL {
+		return ErrInvalidOrderDirection
 	}
 
-	if order.LimitPrice == nil && other.LimitPrice == nil {
+	if buy.LimitPrice == nil && sell.LimitPrice == nil {
 		return ErrBothMarketPriceOrder
 	}
 

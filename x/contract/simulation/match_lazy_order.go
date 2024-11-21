@@ -20,8 +20,8 @@ func SimulateMsgMatchLazyOrder(
 	) (simtypes.OperationMsg, []simtypes.FutureOperation, error) {
 		simAccount, _ := simtypes.RandomAcc(r, accs)
 		msg := &types.MsgMatchLazyOrder{
-			EarlierAddress: simAccount.Address.String(),
-			LaterAddress:   simAccount.Address.String(),
+			AddressBuy:  simAccount.Address.String(),
+			AddressSell: simAccount.Address.String(),
 		}
 
 		// TODO: Handling the MatchLazyOrder simulation

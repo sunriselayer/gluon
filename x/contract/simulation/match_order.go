@@ -20,8 +20,8 @@ func SimulateMsgMatchOrder(
 	) (simtypes.OperationMsg, []simtypes.FutureOperation, error) {
 		simAccount, _ := simtypes.RandomAcc(r, accs)
 		msg := &types.MsgMatchOrder{
-			EarlierAddress: simAccount.Address.String(),
-			LaterAddress:   simAccount.Address.String(),
+			AddressBuy:  simAccount.Address.String(),
+			AddressSell: simAccount.Address.String(),
 		}
 
 		// TODO: Handling the MatchOrder simulation

@@ -11,41 +11,41 @@ import (
 func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (*types.MsgMatchOrderResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	earlier, found := k.GetOrder(ctx, msg.EarlierOrderId)
+	buy, found := k.GetOrder(ctx, msg.OrderIdBuy)
 	if !found {
 		return nil, types.ErrOrderNotFound
 	}
 
-	later, found := k.GetOrder(ctx, msg.LaterOrderId)
+	sell, found := k.GetOrder(ctx, msg.OrderIdSell)
 	if !found {
 		return nil, types.ErrOrderNotFound
 	}
 
-	err := earlier.CrossValidate(later, msg.Price)
+	err := buy.CrossValidate(sell, msg.Price)
 	if err != nil {
 		return nil, err
 	}
 
-	err = k.ValidateContractAmount(ctx, earlier, msg.Amount)
+	err = k.ValidateContractAmount(ctx, buy, msg.Amount)
 	if err != nil {
 		return nil, err
 	}
 
-	err = k.ValidateContractAmount(ctx, later, msg.Amount)
+	err = k.ValidateContractAmount(ctx, sell, msg.Amount)
 	if err != nil {
 		return nil, err
 	}
 
-	err = k.Settle(ctx, earlier, later, msg.Amount)
+	err = k.Settle(ctx, buy, sell, msg.Amount, msg.Price)
 	if err != nil {
 		return nil, err
 	}
 
-	err = k.AddContractedAmount(ctx, uint64(earlier.Expiry.UnixMilli()), earlier.Id, msg.Amount)
+	err = k.AddContractedAmount(ctx, uint64(buy.Expiry.UnixMilli()), buy.Id, msg.Amount)
 	if err != nil {
 		return nil, err
 	}
-	err = k.AddContractedAmount(ctx, uint64(later.Expiry.UnixMilli()), later.Id, msg.Amount)
+	err = k.AddContractedAmount(ctx, uint64(sell.Expiry.UnixMilli()), sell.Id, msg.Amount)
 	if err != nil {
 		return nil, err
 	}
