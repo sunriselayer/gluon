@@ -39,6 +39,17 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Shows a sorted_order",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "expiry"}, {ProtoField: "index"}},
 				},
+				{
+					RpcMethod: "LazySettlementAll",
+					Use:       "list-lazy-settlement",
+					Short:     "List all lazy-settlement",
+				},
+				{
+					RpcMethod:      "LazySettlement",
+					Use:            "show-lazy-settlement [id]",
+					Short:          "Shows a lazy-settlement by id",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
+				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},

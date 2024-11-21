@@ -10,8 +10,9 @@ import (
 
 	"gluon/x/customauth/types"
 
-	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 	pairing "gluon/x/customauth/types/pairing"
+
+	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 )
 
 // AccountKeeper defines the contract needed for AccountKeeper related APIs.

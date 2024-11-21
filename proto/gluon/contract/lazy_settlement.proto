@@ -1,0 +1,16 @@
+syntax = "proto3";
+package gluon.contract;
+
+option go_package = "gluon/x/contract/types";
+import "gogoproto/gogo.proto"; 
+import "cosmos/base/v1beta1/coin.proto"; 
+
+message LazySettlement {
+  uint64 id = 1;
+  string creditor = 2; 
+  string debtor = 3; 
+  cosmos.base.v1beta1.Coin amountEscrow = 4 [(gogoproto.nullable) = false]; 
+  cosmos.base.v1beta1.Coin amountPending = 5 [(gogoproto.nullable) = false]; 
+  uint64 expiry = 6; 
+  
+}

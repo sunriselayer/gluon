@@ -29,3 +29,8 @@ var (
 func KeyPrefix(p string) []byte {
 	return []byte(p)
 }
+
+const (
+	LazySettlementKey      = "LazySettlement/value/"
+	LazySettlementCountKey = "LazySettlement/count/"
+)

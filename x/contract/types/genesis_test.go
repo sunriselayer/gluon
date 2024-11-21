@@ -41,6 +41,15 @@ func TestGenesisState_Validate(t *testing.T) {
 						Id:     "1",
 					},
 				},
+				LazySettlementList: []types.LazySettlement{
+					{
+						Id: 0,
+					},
+					{
+						Id: 1,
+					},
+				},
+				LazySettlementCount: 2,
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -72,6 +81,32 @@ func TestGenesisState_Validate(t *testing.T) {
 						Id:     "0",
 					},
 				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated lazySettlement",
+			genState: &types.GenesisState{
+				LazySettlementList: []types.LazySettlement{
+					{
+						Id: 0,
+					},
+					{
+						Id: 0,
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "invalid lazySettlement count",
+			genState: &types.GenesisState{
+				LazySettlementList: []types.LazySettlement{
+					{
+						Id: 1,
+					},
+				},
+				LazySettlementCount: 0,
 			},
 			valid: false,
 		},

@@ -33,6 +33,15 @@ func TestGenesis(t *testing.T) {
 				Id:     "1",
 			},
 		},
+		LazySettlementList: []types.LazySettlement{
+			{
+				Id: 0,
+			},
+			{
+				Id: 1,
+			},
+		},
+		LazySettlementCount: 2,
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -48,5 +57,7 @@ func TestGenesis(t *testing.T) {
 
 	require.ElementsMatch(t, genesisState.OrderList, got.OrderList)
 	require.ElementsMatch(t, genesisState.SortedOrderList, got.SortedOrderList)
+	require.ElementsMatch(t, genesisState.LazySettlementList, got.LazySettlementList)
+	require.Equal(t, genesisState.LazySettlementCount, got.LazySettlementCount)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

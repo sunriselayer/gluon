@@ -10,10 +10,11 @@ import (
 	storetypes "cosmossdk.io/store/types"
 	"github.com/cosmos/cosmos-sdk/runtime"
 
+	"gluon/x/customauth/types/pairing"
+
 	errorsmod "cosmossdk.io/errors"
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"gluon/x/customauth/types/pairing"
 )
 
 // GetPairingCount get the total number of pairing

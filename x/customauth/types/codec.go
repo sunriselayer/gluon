@@ -4,11 +4,13 @@ import (
 	cdctypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/msgservice"
+
 	// this line is used by starport scaffolding # 1
 
-	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 	"gluon/x/customauth/types/operator"
 	"gluon/x/customauth/types/pairing"
+
+	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 )
 
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {

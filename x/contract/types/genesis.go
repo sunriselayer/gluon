@@ -12,9 +12,10 @@ const DefaultIndex uint64 = 1
 // DefaultGenesis returns the default genesis state
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{
-		PortId:          PortID,
-		OrderList:       []Order{},
-		SortedOrderList: []SortedOrder{},
+		PortId:             PortID,
+		OrderList:          []Order{},
+		SortedOrderList:    []SortedOrder{},
+		LazySettlementList: []LazySettlement{},
 		// this line is used by starport scaffolding # genesis/types/default
 		Params: DefaultParams(),
 	}
@@ -45,6 +46,18 @@ func (gs GenesisState) Validate() error {
 			return fmt.Errorf("duplicated index for sortedOrder")
 		}
 		sortedOrderIndexMap[index] = struct{}{}
+	}
+	// Check for duplicated ID in lazySettlement
+	lazySettlementIdMap := make(map[uint64]bool)
+	lazySettlementCount := gs.GetLazySettlementCount()
+	for _, elem := range gs.LazySettlementList {
+		if _, ok := lazySettlementIdMap[elem.Id]; ok {
+			return fmt.Errorf("duplicated id for lazySettlement")
+		}
+		if elem.Id >= lazySettlementCount {
+			return fmt.Errorf("lazySettlement id should be lower or equal than the last id")
+		}
+		lazySettlementIdMap[elem.Id] = true
 	}
 	// this line is used by starport scaffolding # genesis/types/validate
 
