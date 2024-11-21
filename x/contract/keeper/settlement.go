@@ -7,6 +7,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
+// TODO
 func (k Keeper) Settle(
 	ctx sdk.Context,
 	earlier types.Order,
@@ -32,5 +33,15 @@ func (k Keeper) Settle(
 		return err
 	}
 
+	return nil
+}
+
+// TODO
+func (k Keeper) SettleLazy(
+	ctx sdk.Context,
+	earlier types.Order,
+	later types.Order,
+	amount sdkmath.Int,
+) error {
 	return nil
 }

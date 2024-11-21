@@ -8,6 +8,8 @@ import (
 	"cosmossdk.io/store/prefix"
 	storetypes "cosmossdk.io/store/types"
 	"github.com/cosmos/cosmos-sdk/runtime"
+
+	sdkmath "cosmossdk.io/math"
 )
 
 // SetSortedOrder set a specific sortedOrder in the store from its index
@@ -73,4 +75,16 @@ func (k Keeper) GetAllSortedOrder(ctx context.Context) (list []types.SortedOrder
 	}
 
 	return
+}
+
+func (k Keeper) AddContractedAmount(ctx context.Context, expiry uint64, id string, amount sdkmath.Int) error {
+	sortedOrder, found := k.GetSortedOrder(ctx, expiry, id)
+	if !found {
+		return types.ErrOrderNotFound
+	}
+
+	sortedOrder.ContractedAmount = sortedOrder.ContractedAmount.Add(amount)
+	k.SetSortedOrder(ctx, sortedOrder)
+
+	return nil
 }

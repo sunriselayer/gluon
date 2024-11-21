@@ -34,7 +34,7 @@ func (order Order) ValidateBasic() error {
 	return nil
 }
 
-func (order Order) Validate(pubKey cryptotypes.PubKey, signature []byte) error {
+func (order Order) VerifySignature(pubKey cryptotypes.PubKey, signature []byte) error {
 	bodyBytes, err := order.Marshal()
 	if err != nil {
 		return err
@@ -46,7 +46,7 @@ func (order Order) Validate(pubKey cryptotypes.PubKey, signature []byte) error {
 	return nil
 }
 
-func (order Order) CrossValidate(other Order) error {
+func (order Order) CrossValidate(other Order, price sdkmath.LegacyDec) error {
 	if order.BaseDenom != other.BaseDenom || order.QuoteDenom != other.QuoteDenom {
 		return ErrDenomMismatch
 	}
@@ -61,6 +61,9 @@ func (order Order) CrossValidate(other Order) error {
 	if order.LimitPrice == nil && other.LimitPrice == nil {
 		return ErrBothMarketPriceOrder
 	}
+
+	// TODO
+	_ = price
 
 	return nil
 }

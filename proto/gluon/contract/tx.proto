@@ -77,7 +77,7 @@ message MsgMatchOrder {
   string price = 6 [
     (cosmos_proto.scalar) = "cosmos.Dec",
     (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
-    (gogoproto.nullable) = true,
+    (gogoproto.nullable) = false,
     (amino.dont_omitempty) = true
   ];
 }
@@ -101,7 +101,7 @@ message MsgMatchLazyOrder {
   string price = 6 [
     (cosmos_proto.scalar) = "cosmos.Dec",
     (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
-    (gogoproto.nullable) = true,
+    (gogoproto.nullable) = false,
     (amino.dont_omitempty) = true
   ];
 }
