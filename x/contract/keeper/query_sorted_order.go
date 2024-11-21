@@ -10,6 +10,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+
+	"time"
 )
 
 func (k Keeper) SortedOrderAll(ctx context.Context, req *types.QueryAllSortedOrderRequest) (*types.QueryAllSortedOrderResponse, error) {
@@ -46,7 +48,7 @@ func (k Keeper) SortedOrder(ctx context.Context, req *types.QueryGetSortedOrderR
 
 	val, found := k.GetSortedOrder(
 		ctx,
-		req.Expiry,
+		time.UnixMilli(int64(req.Expiry)),
 		req.Id,
 	)
 	if !found {

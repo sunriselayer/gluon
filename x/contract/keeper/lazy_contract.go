@@ -48,10 +48,7 @@ func (k Keeper) AppendLazyContract(
 	// Set the ID of the appended value
 	lazyContract.Id = count
 
-	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.LazyContractKey))
-	appendedValue := k.cdc.MustMarshal(&lazyContract)
-	store.Set(GetLazyContractIDBytes(lazyContract.Id), appendedValue)
+	k.SetLazyContract(ctx, lazyContract)
 
 	// Update lazyContract count
 	k.SetLazyContractCount(ctx, count+1)

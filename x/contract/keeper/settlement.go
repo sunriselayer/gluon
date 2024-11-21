@@ -50,11 +50,11 @@ func (k Keeper) Settle(
 		return err
 	}
 
-	err = k.AddContractedAmount(ctx, uint64(buy.Expiry.UnixMilli()), buy.Id, amount)
+	err = k.AddContractedAmount(ctx, buy.Expiry, buy.Id, amount)
 	if err != nil {
 		return err
 	}
-	err = k.AddContractedAmount(ctx, uint64(sell.Expiry.UnixMilli()), sell.Id, amount)
+	err = k.AddContractedAmount(ctx, sell.Expiry, sell.Id, amount)
 	if err != nil {
 		return err
 	}
@@ -88,11 +88,11 @@ func (k Keeper) SettleLazy(
 	_ = addressSell
 	_ = price
 
-	err = k.AddContractedAmount(ctx, uint64(buy.Expiry.UnixMilli()), buy.Id, amount)
+	err = k.AddContractedAmount(ctx, buy.Expiry, buy.Id, amount)
 	if err != nil {
 		return err
 	}
-	err = k.AddContractedAmount(ctx, uint64(sell.Expiry.UnixMilli()), sell.Id, amount)
+	err = k.AddContractedAmount(ctx, sell.Expiry, sell.Id, amount)
 	if err != nil {
 		return err
 	}

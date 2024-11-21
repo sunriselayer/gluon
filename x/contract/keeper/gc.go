@@ -15,6 +15,15 @@ import (
 func (k Keeper) GarbageCollect(goCtx context.Context) error {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	err := k.GarbageCollectOrder(ctx)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (k Keeper) GarbageCollectOrder(ctx sdk.Context) error {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.SortedOrderKeyPrefix))
 	iterator := storetypes.KVStorePrefixIterator(store, []byte{})
@@ -32,6 +41,26 @@ func (k Keeper) GarbageCollect(goCtx context.Context) error {
 
 		store.Delete(iterator.Key())
 		k.RemoveOrder(ctx, val.Id)
+	}
+
+	return nil
+}
+
+func (k Keeper) GarbageCollectLazyContract(ctx sdk.Context) error {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.SortedLazyContractIdKey))
+	iterator := storetypes.KVStorePrefixIterator(store, []byte{})
+
+	defer iterator.Close()
+
+	// Because expiry is contained in the key, expiry will be iterated in ascending order
+	for ; iterator.Valid(); iterator.Next() {
+		id := sdk.BigEndianToUint64(iterator.Value())
+
+		// TODO
+
+		store.Delete(iterator.Key())
+		k.RemoveLazyContract(ctx, id)
 	}
 
 	return nil

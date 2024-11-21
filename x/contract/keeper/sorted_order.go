@@ -10,6 +10,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/runtime"
 
 	sdkmath "cosmossdk.io/math"
+
+	"time"
 )
 
 // SetSortedOrder set a specific sortedOrder in the store from its index
@@ -26,7 +28,7 @@ func (k Keeper) SetSortedOrder(ctx context.Context, sortedOrder types.SortedOrde
 // GetSortedOrder returns a sortedOrder from its index
 func (k Keeper) GetSortedOrder(
 	ctx context.Context,
-	expiry uint64,
+	expiry time.Time,
 	id string,
 
 ) (val types.SortedOrder, found bool) {
@@ -34,7 +36,7 @@ func (k Keeper) GetSortedOrder(
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.SortedOrderKeyPrefix))
 
 	b := store.Get(types.SortedOrderKey(
-		expiry,
+		uint64(expiry.UnixMilli()),
 		id,
 	))
 	if b == nil {
@@ -77,7 +79,7 @@ func (k Keeper) GetAllSortedOrder(ctx context.Context) (list []types.SortedOrder
 	return
 }
 
-func (k Keeper) AddContractedAmount(ctx context.Context, expiry uint64, id string, amount sdkmath.Int) error {
+func (k Keeper) AddContractedAmount(ctx context.Context, expiry time.Time, id string, amount sdkmath.Int) error {
 	sortedOrder, found := k.GetSortedOrder(ctx, expiry, id)
 	if !found {
 		return types.ErrOrderNotFound

@@ -59,7 +59,7 @@ func (k msgServer) CancelOrder(goCtx context.Context, msg *types.MsgCancelOrder)
 		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
 	}
 
-	sortedOrder, isFound := k.GetSortedOrder(ctx, uint64(valFound.Expiry.UnixMilli()), valFound.Id)
+	sortedOrder, isFound := k.GetSortedOrder(ctx, valFound.Expiry, valFound.Id)
 	if !isFound {
 		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, "sorted order not found")
 	}

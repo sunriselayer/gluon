@@ -11,6 +11,8 @@ import (
 	"gluon/x/contract/types"
 
 	"github.com/stretchr/testify/require"
+
+	"time"
 )
 
 // Prevent strconv unused error
@@ -32,7 +34,7 @@ func TestSortedOrderGet(t *testing.T) {
 	items := createNSortedOrder(keeper, ctx, 10)
 	for _, item := range items {
 		rst, found := keeper.GetSortedOrder(ctx,
-			item.Expiry,
+			time.UnixMilli(int64(item.Expiry)),
 			item.Id,
 		)
 		require.True(t, found)
@@ -51,7 +53,7 @@ func TestSortedOrderRemove(t *testing.T) {
 			item.Id,
 		)
 		_, found := keeper.GetSortedOrder(ctx,
-			item.Expiry,
+			time.UnixMilli(int64(item.Expiry)),
 			item.Id,
 		)
 		require.False(t, found)

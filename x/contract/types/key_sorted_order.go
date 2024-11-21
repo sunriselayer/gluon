@@ -1,8 +1,8 @@
 package types
 
-import "encoding/binary"
-
-var _ binary.ByteOrder
+import (
+	sdk "github.com/cosmos/cosmos-sdk/types"
+)
 
 const (
 	// SortedOrderKeyPrefix is the prefix to retrieve all SortedOrder
@@ -16,8 +16,7 @@ func SortedOrderKey(
 ) []byte {
 	var key []byte
 
-	var expiryBytes []byte
-	binary.BigEndian.Uint64(expiryBytes)
+	expiryBytes := sdk.Uint64ToBigEndian(expiry)
 	key = append(key, expiryBytes...)
 	key = append(key, []byte("/")...)
 

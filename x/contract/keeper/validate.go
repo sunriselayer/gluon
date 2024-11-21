@@ -24,7 +24,7 @@ func (k Keeper) ValidateOrder(ctx sdk.Context, order types.Order, pairingId uint
 }
 
 func (k Keeper) ValidateContractAmount(ctx sdk.Context, order types.Order, amount sdkmath.Int) error {
-	sortedOrder, found := k.GetSortedOrder(ctx, uint64(order.Expiry.UnixMilli()), order.Id)
+	sortedOrder, found := k.GetSortedOrder(ctx, order.Expiry, order.Id)
 	if !found {
 		return types.ErrOrderNotFound
 	}
