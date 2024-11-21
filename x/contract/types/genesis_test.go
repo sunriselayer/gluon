@@ -31,6 +31,16 @@ func TestGenesisState_Validate(t *testing.T) {
 						Id: "1",
 					},
 				},
+				SortedOrderList: []types.SortedOrder{
+					{
+						Expiry: "0",
+						Index:  "0",
+					},
+					{
+						Expiry: "1",
+						Index:  "1",
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -44,6 +54,22 @@ func TestGenesisState_Validate(t *testing.T) {
 					},
 					{
 						Id: "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated sortedOrder",
+			genState: &types.GenesisState{
+				SortedOrderList: []types.SortedOrder{
+					{
+						Expiry: "0",
+						Index:  "0",
+					},
+					{
+						Expiry: "0",
+						Index:  "0",
 					},
 				},
 			},

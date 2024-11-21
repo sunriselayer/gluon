@@ -8,6 +8,7 @@ package contract
 
 import (
 	context "context"
+
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -19,9 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName   = "/gluon.contract.Query/Params"
-	Query_Order_FullMethodName    = "/gluon.contract.Query/Order"
-	Query_OrderAll_FullMethodName = "/gluon.contract.Query/OrderAll"
+	Query_Params_FullMethodName         = "/gluon.contract.Query/Params"
+	Query_Order_FullMethodName          = "/gluon.contract.Query/Order"
+	Query_OrderAll_FullMethodName       = "/gluon.contract.Query/OrderAll"
+	Query_SortedOrder_FullMethodName    = "/gluon.contract.Query/SortedOrder"
+	Query_SortedOrderAll_FullMethodName = "/gluon.contract.Query/SortedOrderAll"
 )
 
 // QueryClient is the client API for Query service.
@@ -33,6 +36,9 @@ type QueryClient interface {
 	// Queries a list of Order items.
 	Order(ctx context.Context, in *QueryGetOrderRequest, opts ...grpc.CallOption) (*QueryGetOrderResponse, error)
 	OrderAll(ctx context.Context, in *QueryAllOrderRequest, opts ...grpc.CallOption) (*QueryAllOrderResponse, error)
+	// Queries a list of SortedOrder items.
+	SortedOrder(ctx context.Context, in *QueryGetSortedOrderRequest, opts ...grpc.CallOption) (*QueryGetSortedOrderResponse, error)
+	SortedOrderAll(ctx context.Context, in *QueryAllSortedOrderRequest, opts ...grpc.CallOption) (*QueryAllSortedOrderResponse, error)
 }
 
 type queryClient struct {
@@ -70,6 +76,24 @@ func (c *queryClient) OrderAll(ctx context.Context, in *QueryAllOrderRequest, op
 	return out, nil
 }
 
+func (c *queryClient) SortedOrder(ctx context.Context, in *QueryGetSortedOrderRequest, opts ...grpc.CallOption) (*QueryGetSortedOrderResponse, error) {
+	out := new(QueryGetSortedOrderResponse)
+	err := c.cc.Invoke(ctx, Query_SortedOrder_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) SortedOrderAll(ctx context.Context, in *QueryAllSortedOrderRequest, opts ...grpc.CallOption) (*QueryAllSortedOrderResponse, error) {
+	out := new(QueryAllSortedOrderResponse)
+	err := c.cc.Invoke(ctx, Query_SortedOrderAll_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
@@ -79,6 +103,9 @@ type QueryServer interface {
 	// Queries a list of Order items.
 	Order(context.Context, *QueryGetOrderRequest) (*QueryGetOrderResponse, error)
 	OrderAll(context.Context, *QueryAllOrderRequest) (*QueryAllOrderResponse, error)
+	// Queries a list of SortedOrder items.
+	SortedOrder(context.Context, *QueryGetSortedOrderRequest) (*QueryGetSortedOrderResponse, error)
+	SortedOrderAll(context.Context, *QueryAllSortedOrderRequest) (*QueryAllSortedOrderResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -94,6 +121,12 @@ func (UnimplementedQueryServer) Order(context.Context, *QueryGetOrderRequest) (*
 }
 func (UnimplementedQueryServer) OrderAll(context.Context, *QueryAllOrderRequest) (*QueryAllOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method OrderAll not implemented")
+}
+func (UnimplementedQueryServer) SortedOrder(context.Context, *QueryGetSortedOrderRequest) (*QueryGetSortedOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SortedOrder not implemented")
+}
+func (UnimplementedQueryServer) SortedOrderAll(context.Context, *QueryAllSortedOrderRequest) (*QueryAllSortedOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SortedOrderAll not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -162,6 +195,42 @@ func _Query_OrderAll_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_SortedOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetSortedOrderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).SortedOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_SortedOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).SortedOrder(ctx, req.(*QueryGetSortedOrderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_SortedOrderAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllSortedOrderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).SortedOrderAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_SortedOrderAll_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).SortedOrderAll(ctx, req.(*QueryAllSortedOrderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -180,6 +249,14 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "OrderAll",
 			Handler:    _Query_OrderAll_Handler,
+		},
+		{
+			MethodName: "SortedOrder",
+			Handler:    _Query_SortedOrder_Handler,
+		},
+		{
+			MethodName: "SortedOrderAll",
+			Handler:    _Query_SortedOrderAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

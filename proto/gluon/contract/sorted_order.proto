@@ -1,0 +1,11 @@
+syntax = "proto3";
+package gluon.contract;
+
+option go_package = "gluon/x/contract/types";
+
+message SortedOrder {
+  string expiry = 1; 
+  string index = 2; 
+  
+}
+

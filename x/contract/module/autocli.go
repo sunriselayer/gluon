@@ -28,6 +28,17 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Shows a order",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}},
 				},
+				{
+					RpcMethod: "SortedOrderAll",
+					Use:       "list-sorted-order",
+					Short:     "List all sorted_order",
+				},
+				{
+					RpcMethod:      "SortedOrder",
+					Use:            "show-sorted-order [id]",
+					Short:          "Shows a sorted_order",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "expiry"}, {ProtoField: "index"}},
+				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},
