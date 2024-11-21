@@ -1,0 +1,18 @@
+syntax = "proto3";
+package gluon.customauth.pairing;
+
+import "gogoproto/gogo.proto";
+import "google/protobuf/any.proto";
+
+option go_package = "gluon/x/customauth/types/pairing";
+
+message PubKeyNotVerifiable {
+  bytes user = 1;
+  uint64 pairing_id = 2;
+}
+
+message PubKey {
+  bytes user = 1;
+  google.protobuf.Any pairing_public_key = 2 [ (gogoproto.nullable) = false ];
+  google.protobuf.Any operator_public_key = 3 [ (gogoproto.nullable) = false ];
+}

@@ -10,7 +10,10 @@ import (
 	storetypes "cosmossdk.io/store/types"
 	"github.com/cosmos/cosmos-sdk/runtime"
 
+	errorsmod "cosmossdk.io/errors"
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
+	sdk "github.com/cosmos/cosmos-sdk/types"
+	"gluon/x/customauth/types/pairing"
 )
 
 // GetPairingCount get the total number of pairing
@@ -121,7 +124,7 @@ func GetPairingIDBytes(address string, id uint64) []byte {
 	return bz
 }
 
-func (k Keeper) GetPairingPubKey(ctx context.Context, pairing types.Pairing) (cryptotypes.PubKey, error) {
+func (k Keeper) getPairingPubKey(pairing types.Pairing) (cryptotypes.PubKey, error) {
 	var pubKey cryptotypes.PubKey
 	err := k.cdc.UnpackAny(&pairing.PublicKey, &pubKey)
 	if err != nil {
@@ -129,4 +132,26 @@ func (k Keeper) GetPairingPubKey(ctx context.Context, pairing types.Pairing) (cr
 	}
 
 	return pubKey, nil
+}
+
+func (k Keeper) GetPairingPubKey(goCtx context.Context, user sdk.AccAddress, pairingId uint64) (*pairing.PubKey, error) {
+	pairingVal, found := k.GetPairing(goCtx, user.String(), pairingId)
+	if !found {
+		return nil, errorsmod.Wrapf(types.ErrPairingNotFound, "address: %s, pairing_id: %d", user.String(), pairingId)
+	}
+	params := k.GetParams(goCtx)
+
+	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	if ctx.BlockTime().Compare(pairingVal.CreatedAt.Add(params.ParingDelay)) < 0 {
+		return nil, errorsmod.Wrapf(types.ErrPairingDelayPeriod, "address: %s, pairing_id: %d", user.String(), pairingId)
+	}
+
+	pubKey := pairing.PubKey{
+		User:              user,
+		PairingPublicKey:  pairingVal.PublicKey,
+		OperatorPublicKey: params.OperatorPublicKey,
+	}
+
+	return &pubKey, nil
 }

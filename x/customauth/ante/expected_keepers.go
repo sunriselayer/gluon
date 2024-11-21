@@ -11,7 +11,7 @@ import (
 	"gluon/x/customauth/types"
 
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
-	doublesig "gluon/x/customauth/types/doublesig"
+	pairing "gluon/x/customauth/types/pairing"
 )
 
 // AccountKeeper defines the contract needed for AccountKeeper related APIs.
@@ -39,5 +39,5 @@ type FeegrantKeeper interface {
 type CustomAuthKeeper interface {
 	GetParams(ctx context.Context) (params types.Params)
 	GetOperatorPubKey(ctx context.Context) (cryptotypes.PubKey, error)
-	GetDoubleSigPubKey(goCtx context.Context, userAddress string, pairingId uint64) (*doublesig.PubKey, error)
+	GetPairingPubKey(goCtx context.Context, user sdk.AccAddress, pairingId uint64) (*pairing.PubKey, error)
 }

@@ -41,7 +41,10 @@ func NewAnteHandler(
 		customante.NewDeductFeeDecorator(accountKeeper, bankKeeper, feegrantKeeper, nil, operatorMsgMatchHandler),
 		// Set public keys in the context for fee-payer and all signers.
 		// Contract: must be called before all signature verification decorators.
-		customante.NewSetPubKeyDecorator(accountKeeper, customAuthKeeper, operatorMsgMatchHandler),
+		// <gluon>
+		// Because EOA is disabled, this decorator also can be disabled
+		// ante.NewSetPubKeyDecorator(accountKeeper),
+		// </gluon>
 		// Ensure that the tx's count of signatures is <= the tx signature limit.
 		ante.NewValidateSigCountDecorator(accountKeeper),
 		// Ensure that the tx's gas limit is > the gas consumed based on signature verification.

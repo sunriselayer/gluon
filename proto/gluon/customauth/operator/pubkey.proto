@@ -1,0 +1,8 @@
+syntax = "proto3";
+package gluon.customauth.operator;
+
+option go_package = "gluon/x/customauth/types/operator";
+
+message PubKeyNotVerifiable {
+  bytes user = 1;
+}
