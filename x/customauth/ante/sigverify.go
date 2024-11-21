@@ -89,7 +89,7 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 		// <gluon>
 		var pubKey cryptotypes.PubKey
 		switch pk := pubKeys[i].(type) {
-		case *operator.PubKeyNotVerifiable:
+		case *operator.PubKey:
 			if !isOperatorTx {
 				return ctx, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "operator pubkey can be used only for designated messages")
 			}
@@ -98,7 +98,7 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 				return ctx, err
 			}
 
-		case *pairing.PubKeyNotVerifiable:
+		case *pairing.PubKey:
 			pubKey, err = svd.cak.GetPairingPubKey(ctx, acc.GetAddress(), pk.PairingId)
 			if err != nil {
 				return ctx, err

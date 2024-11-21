@@ -13,8 +13,8 @@ import (
 
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	registry.RegisterImplementations((*cryptotypes.PubKey)(nil),
-		&operator.PubKeyNotVerifiable{},
-		&pairing.PubKeyNotVerifiable{},
+		&operator.PubKey{},
+		&pairing.PubKey{},
 	)
 
 	registry.RegisterImplementations((*sdk.Msg)(nil),

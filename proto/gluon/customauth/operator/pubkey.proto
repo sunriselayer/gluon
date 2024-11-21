@@ -3,6 +3,6 @@ package gluon.customauth.operator;
 
 option go_package = "gluon/x/customauth/types/operator";
 
-message PubKeyNotVerifiable {
+message PubKey {
   bytes user = 1;
 }

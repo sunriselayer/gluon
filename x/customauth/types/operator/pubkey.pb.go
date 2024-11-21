@@ -22,22 +22,22 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-type PubKeyNotVerifiable struct {
+type PubKey struct {
 	User []byte `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 }
 
-func (m *PubKeyNotVerifiable) Reset()         { *m = PubKeyNotVerifiable{} }
-func (m *PubKeyNotVerifiable) String() string { return proto.CompactTextString(m) }
-func (*PubKeyNotVerifiable) ProtoMessage()    {}
-func (*PubKeyNotVerifiable) Descriptor() ([]byte, []int) {
+func (m *PubKey) Reset()         { *m = PubKey{} }
+func (m *PubKey) String() string { return proto.CompactTextString(m) }
+func (*PubKey) ProtoMessage()    {}
+func (*PubKey) Descriptor() ([]byte, []int) {
 	return fileDescriptor_424ef6ede97e6782, []int{0}
 }
-func (m *PubKeyNotVerifiable) XXX_Unmarshal(b []byte) error {
+func (m *PubKey) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *PubKeyNotVerifiable) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *PubKey) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_PubKeyNotVerifiable.Marshal(b, m, deterministic)
+		return xxx_messageInfo_PubKey.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -47,19 +47,19 @@ func (m *PubKeyNotVerifiable) XXX_Marshal(b []byte, deterministic bool) ([]byte,
 		return b[:n], nil
 	}
 }
-func (m *PubKeyNotVerifiable) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PubKeyNotVerifiable.Merge(m, src)
+func (m *PubKey) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PubKey.Merge(m, src)
 }
-func (m *PubKeyNotVerifiable) XXX_Size() int {
+func (m *PubKey) XXX_Size() int {
 	return m.Size()
 }
-func (m *PubKeyNotVerifiable) XXX_DiscardUnknown() {
-	xxx_messageInfo_PubKeyNotVerifiable.DiscardUnknown(m)
+func (m *PubKey) XXX_DiscardUnknown() {
+	xxx_messageInfo_PubKey.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_PubKeyNotVerifiable proto.InternalMessageInfo
+var xxx_messageInfo_PubKey proto.InternalMessageInfo
 
-func (m *PubKeyNotVerifiable) GetUser() []byte {
+func (m *PubKey) GetUser() []byte {
 	if m != nil {
 		return m.User
 	}
@@ -67,7 +67,7 @@ func (m *PubKeyNotVerifiable) GetUser() []byte {
 }
 
 func init() {
-	proto.RegisterType((*PubKeyNotVerifiable)(nil), "gluon.customauth.operator.PubKeyNotVerifiable")
+	proto.RegisterType((*PubKey)(nil), "gluon.customauth.operator.PubKey")
 }
 
 func init() {
@@ -75,21 +75,20 @@ func init() {
 }
 
 var fileDescriptor_424ef6ede97e6782 = []byte{
-	// 161 bytes of a gzipped FileDescriptorProto
+	// 148 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x52, 0x4b, 0xcf, 0x29, 0xcd,
 	0xcf, 0xd3, 0x4f, 0x2e, 0x2d, 0x2e, 0xc9, 0xcf, 0x4d, 0x2c, 0x2d, 0xc9, 0xd0, 0xcf, 0x2f, 0x48,
 	0x2d, 0x4a, 0x2c, 0xc9, 0x2f, 0xd2, 0x2f, 0x28, 0x4d, 0xca, 0x4e, 0xad, 0xd4, 0x2b, 0x28, 0xca,
-	0x2f, 0xc9, 0x17, 0x92, 0x04, 0xab, 0xd3, 0x43, 0xa8, 0xd3, 0x83, 0xa9, 0x53, 0xd2, 0xe4, 0x12,
-	0x0e, 0x28, 0x4d, 0xf2, 0x4e, 0xad, 0xf4, 0xcb, 0x2f, 0x09, 0x4b, 0x2d, 0xca, 0x4c, 0xcb, 0x4c,
-	0x4c, 0xca, 0x49, 0x15, 0x12, 0xe2, 0x62, 0x29, 0x2d, 0x4e, 0x2d, 0x92, 0x60, 0x54, 0x60, 0xd4,
-	0xe0, 0x09, 0x02, 0xb3, 0x9d, 0xac, 0x4f, 0x3c, 0x92, 0x63, 0xbc, 0xf0, 0x48, 0x8e, 0xf1, 0xc1,
-	0x23, 0x39, 0xc6, 0x09, 0x8f, 0xe5, 0x18, 0x2e, 0x3c, 0x96, 0x63, 0xb8, 0xf1, 0x58, 0x8e, 0x21,
-	0x4a, 0x11, 0xe2, 0x8e, 0x0a, 0x64, 0x97, 0x94, 0x54, 0x16, 0xa4, 0x16, 0xc3, 0xdd, 0x93, 0xc4,
-	0x06, 0x76, 0x89, 0x31, 0x20, 0x00, 0x00, 0xff, 0xff, 0x67, 0x52, 0xaa, 0x60, 0xb3, 0x00, 0x00,
-	0x00,
+	0x2f, 0xc9, 0x17, 0x92, 0x04, 0xab, 0xd3, 0x43, 0xa8, 0xd3, 0x83, 0xa9, 0x53, 0x92, 0xe1, 0x62,
+	0x0b, 0x28, 0x4d, 0xf2, 0x4e, 0xad, 0x14, 0x12, 0xe2, 0x62, 0x29, 0x2d, 0x4e, 0x2d, 0x92, 0x60,
+	0x54, 0x60, 0xd4, 0xe0, 0x09, 0x02, 0xb3, 0x9d, 0xac, 0x4f, 0x3c, 0x92, 0x63, 0xbc, 0xf0, 0x48,
+	0x8e, 0xf1, 0xc1, 0x23, 0x39, 0xc6, 0x09, 0x8f, 0xe5, 0x18, 0x2e, 0x3c, 0x96, 0x63, 0xb8, 0xf1,
+	0x58, 0x8e, 0x21, 0x4a, 0x11, 0x62, 0x75, 0x05, 0xb2, 0xe5, 0x25, 0x95, 0x05, 0xa9, 0xc5, 0x70,
+	0x27, 0x24, 0xb1, 0x81, 0x2d, 0x37, 0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0x99, 0x9d, 0x5e, 0x5a,
+	0xa6, 0x00, 0x00, 0x00,
 }
 
-func (m *PubKeyNotVerifiable) Marshal() (dAtA []byte, err error) {
+func (m *PubKey) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -99,12 +98,12 @@ func (m *PubKeyNotVerifiable) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *PubKeyNotVerifiable) MarshalTo(dAtA []byte) (int, error) {
+func (m *PubKey) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *PubKeyNotVerifiable) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *PubKey) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -130,7 +129,7 @@ func encodeVarintPubkey(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *PubKeyNotVerifiable) Size() (n int) {
+func (m *PubKey) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -149,7 +148,7 @@ func sovPubkey(x uint64) (n int) {
 func sozPubkey(x uint64) (n int) {
 	return sovPubkey(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (m *PubKeyNotVerifiable) Unmarshal(dAtA []byte) error {
+func (m *PubKey) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -172,10 +171,10 @@ func (m *PubKeyNotVerifiable) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: PubKeyNotVerifiable: wiretype end group for non-group")
+			return fmt.Errorf("proto: PubKey: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: PubKeyNotVerifiable: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: PubKey: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:

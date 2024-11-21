@@ -134,7 +134,7 @@ func (k Keeper) getPairingPubKey(pairing types.Pairing) (cryptotypes.PubKey, err
 	return pubKey, nil
 }
 
-func (k Keeper) GetPairingPubKey(goCtx context.Context, user sdk.AccAddress, pairingId uint64) (*pairing.PubKey, error) {
+func (k Keeper) GetPairingPubKey(goCtx context.Context, user sdk.AccAddress, pairingId uint64) (*pairing.PubKeyInternal, error) {
 	pairingVal, found := k.GetPairing(goCtx, user.String(), pairingId)
 	if !found {
 		return nil, errorsmod.Wrapf(types.ErrPairingNotFound, "address: %s, pairing_id: %d", user.String(), pairingId)
@@ -147,7 +147,7 @@ func (k Keeper) GetPairingPubKey(goCtx context.Context, user sdk.AccAddress, pai
 		return nil, errorsmod.Wrapf(types.ErrPairingDelayPeriod, "address: %s, pairing_id: %d", user.String(), pairingId)
 	}
 
-	pubKey := pairing.PubKey{
+	pubKey := pairing.PubKeyInternal{
 		User:              user,
 		PairingPublicKey:  pairingVal.PublicKey,
 		OperatorPublicKey: params.OperatorPublicKey,

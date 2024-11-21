@@ -15,27 +15,27 @@ import (
 )
 
 var (
-	md_PubKeyNotVerifiable            protoreflect.MessageDescriptor
-	fd_PubKeyNotVerifiable_user       protoreflect.FieldDescriptor
-	fd_PubKeyNotVerifiable_pairing_id protoreflect.FieldDescriptor
+	md_PubKey            protoreflect.MessageDescriptor
+	fd_PubKey_user       protoreflect.FieldDescriptor
+	fd_PubKey_pairing_id protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_customauth_pairing_pubkey_proto_init()
-	md_PubKeyNotVerifiable = File_gluon_customauth_pairing_pubkey_proto.Messages().ByName("PubKeyNotVerifiable")
-	fd_PubKeyNotVerifiable_user = md_PubKeyNotVerifiable.Fields().ByName("user")
-	fd_PubKeyNotVerifiable_pairing_id = md_PubKeyNotVerifiable.Fields().ByName("pairing_id")
+	md_PubKey = File_gluon_customauth_pairing_pubkey_proto.Messages().ByName("PubKey")
+	fd_PubKey_user = md_PubKey.Fields().ByName("user")
+	fd_PubKey_pairing_id = md_PubKey.Fields().ByName("pairing_id")
 }
 
-var _ protoreflect.Message = (*fastReflection_PubKeyNotVerifiable)(nil)
+var _ protoreflect.Message = (*fastReflection_PubKey)(nil)
 
-type fastReflection_PubKeyNotVerifiable PubKeyNotVerifiable
+type fastReflection_PubKey PubKey
 
-func (x *PubKeyNotVerifiable) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_PubKeyNotVerifiable)(x)
+func (x *PubKey) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_PubKey)(x)
 }
 
-func (x *PubKeyNotVerifiable) slowProtoReflect() protoreflect.Message {
+func (x *PubKey) slowProtoReflect() protoreflect.Message {
 	mi := &file_gluon_customauth_pairing_pubkey_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -47,43 +47,43 @@ func (x *PubKeyNotVerifiable) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_PubKeyNotVerifiable_messageType fastReflection_PubKeyNotVerifiable_messageType
-var _ protoreflect.MessageType = fastReflection_PubKeyNotVerifiable_messageType{}
+var _fastReflection_PubKey_messageType fastReflection_PubKey_messageType
+var _ protoreflect.MessageType = fastReflection_PubKey_messageType{}
 
-type fastReflection_PubKeyNotVerifiable_messageType struct{}
+type fastReflection_PubKey_messageType struct{}
 
-func (x fastReflection_PubKeyNotVerifiable_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_PubKeyNotVerifiable)(nil)
+func (x fastReflection_PubKey_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_PubKey)(nil)
 }
-func (x fastReflection_PubKeyNotVerifiable_messageType) New() protoreflect.Message {
-	return new(fastReflection_PubKeyNotVerifiable)
+func (x fastReflection_PubKey_messageType) New() protoreflect.Message {
+	return new(fastReflection_PubKey)
 }
-func (x fastReflection_PubKeyNotVerifiable_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_PubKeyNotVerifiable
+func (x fastReflection_PubKey_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_PubKey
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_PubKeyNotVerifiable) Descriptor() protoreflect.MessageDescriptor {
-	return md_PubKeyNotVerifiable
+func (x *fastReflection_PubKey) Descriptor() protoreflect.MessageDescriptor {
+	return md_PubKey
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_PubKeyNotVerifiable) Type() protoreflect.MessageType {
-	return _fastReflection_PubKeyNotVerifiable_messageType
+func (x *fastReflection_PubKey) Type() protoreflect.MessageType {
+	return _fastReflection_PubKey_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_PubKeyNotVerifiable) New() protoreflect.Message {
-	return new(fastReflection_PubKeyNotVerifiable)
+func (x *fastReflection_PubKey) New() protoreflect.Message {
+	return new(fastReflection_PubKey)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_PubKeyNotVerifiable) Interface() protoreflect.ProtoMessage {
-	return (*PubKeyNotVerifiable)(x)
+func (x *fastReflection_PubKey) Interface() protoreflect.ProtoMessage {
+	return (*PubKey)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -91,16 +91,16 @@ func (x *fastReflection_PubKeyNotVerifiable) Interface() protoreflect.ProtoMessa
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_PubKeyNotVerifiable) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_PubKey) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if len(x.User) != 0 {
 		value := protoreflect.ValueOfBytes(x.User)
-		if !f(fd_PubKeyNotVerifiable_user, value) {
+		if !f(fd_PubKey_user, value) {
 			return
 		}
 	}
 	if x.PairingId != uint64(0) {
 		value := protoreflect.ValueOfUint64(x.PairingId)
-		if !f(fd_PubKeyNotVerifiable_pairing_id, value) {
+		if !f(fd_PubKey_pairing_id, value) {
 			return
 		}
 	}
@@ -117,17 +117,17 @@ func (x *fastReflection_PubKeyNotVerifiable) Range(f func(protoreflect.FieldDesc
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_PubKeyNotVerifiable) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_PubKey) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.customauth.pairing.PubKeyNotVerifiable.user":
+	case "gluon.customauth.pairing.PubKey.user":
 		return len(x.User) != 0
-	case "gluon.customauth.pairing.PubKeyNotVerifiable.pairing_id":
+	case "gluon.customauth.pairing.PubKey.pairing_id":
 		return x.PairingId != uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKeyNotVerifiable"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKey"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.pairing.PubKeyNotVerifiable does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.pairing.PubKey does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -137,17 +137,17 @@ func (x *fastReflection_PubKeyNotVerifiable) Has(fd protoreflect.FieldDescriptor
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_PubKeyNotVerifiable) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_PubKey) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.customauth.pairing.PubKeyNotVerifiable.user":
+	case "gluon.customauth.pairing.PubKey.user":
 		x.User = nil
-	case "gluon.customauth.pairing.PubKeyNotVerifiable.pairing_id":
+	case "gluon.customauth.pairing.PubKey.pairing_id":
 		x.PairingId = uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKeyNotVerifiable"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKey"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.pairing.PubKeyNotVerifiable does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.pairing.PubKey does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -157,19 +157,19 @@ func (x *fastReflection_PubKeyNotVerifiable) Clear(fd protoreflect.FieldDescript
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_PubKeyNotVerifiable) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_PubKey) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.customauth.pairing.PubKeyNotVerifiable.user":
+	case "gluon.customauth.pairing.PubKey.user":
 		value := x.User
 		return protoreflect.ValueOfBytes(value)
-	case "gluon.customauth.pairing.PubKeyNotVerifiable.pairing_id":
+	case "gluon.customauth.pairing.PubKey.pairing_id":
 		value := x.PairingId
 		return protoreflect.ValueOfUint64(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKeyNotVerifiable"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKey"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.pairing.PubKeyNotVerifiable does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.pairing.PubKey does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -183,17 +183,17 @@ func (x *fastReflection_PubKeyNotVerifiable) Get(descriptor protoreflect.FieldDe
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_PubKeyNotVerifiable) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_PubKey) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.customauth.pairing.PubKeyNotVerifiable.user":
+	case "gluon.customauth.pairing.PubKey.user":
 		x.User = value.Bytes()
-	case "gluon.customauth.pairing.PubKeyNotVerifiable.pairing_id":
+	case "gluon.customauth.pairing.PubKey.pairing_id":
 		x.PairingId = value.Uint()
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKeyNotVerifiable"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKey"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.pairing.PubKeyNotVerifiable does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.pairing.PubKey does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -207,44 +207,44 @@ func (x *fastReflection_PubKeyNotVerifiable) Set(fd protoreflect.FieldDescriptor
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_PubKeyNotVerifiable) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_PubKey) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.customauth.pairing.PubKeyNotVerifiable.user":
-		panic(fmt.Errorf("field user of message gluon.customauth.pairing.PubKeyNotVerifiable is not mutable"))
-	case "gluon.customauth.pairing.PubKeyNotVerifiable.pairing_id":
-		panic(fmt.Errorf("field pairing_id of message gluon.customauth.pairing.PubKeyNotVerifiable is not mutable"))
+	case "gluon.customauth.pairing.PubKey.user":
+		panic(fmt.Errorf("field user of message gluon.customauth.pairing.PubKey is not mutable"))
+	case "gluon.customauth.pairing.PubKey.pairing_id":
+		panic(fmt.Errorf("field pairing_id of message gluon.customauth.pairing.PubKey is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKeyNotVerifiable"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKey"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.pairing.PubKeyNotVerifiable does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.pairing.PubKey does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_PubKeyNotVerifiable) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_PubKey) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.customauth.pairing.PubKeyNotVerifiable.user":
+	case "gluon.customauth.pairing.PubKey.user":
 		return protoreflect.ValueOfBytes(nil)
-	case "gluon.customauth.pairing.PubKeyNotVerifiable.pairing_id":
+	case "gluon.customauth.pairing.PubKey.pairing_id":
 		return protoreflect.ValueOfUint64(uint64(0))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKeyNotVerifiable"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKey"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.pairing.PubKeyNotVerifiable does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.pairing.PubKey does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_PubKeyNotVerifiable) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_PubKey) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.customauth.pairing.PubKeyNotVerifiable", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in gluon.customauth.pairing.PubKey", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -252,7 +252,7 @@ func (x *fastReflection_PubKeyNotVerifiable) WhichOneof(d protoreflect.OneofDesc
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_PubKeyNotVerifiable) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_PubKey) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -263,7 +263,7 @@ func (x *fastReflection_PubKeyNotVerifiable) GetUnknown() protoreflect.RawFields
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_PubKeyNotVerifiable) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_PubKey) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -275,7 +275,7 @@ func (x *fastReflection_PubKeyNotVerifiable) SetUnknown(fields protoreflect.RawF
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_PubKeyNotVerifiable) IsValid() bool {
+func (x *fastReflection_PubKey) IsValid() bool {
 	return x != nil
 }
 
@@ -285,9 +285,9 @@ func (x *fastReflection_PubKeyNotVerifiable) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_PubKeyNotVerifiable) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_PubKey) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*PubKeyNotVerifiable)
+		x := input.Message.Interface().(*PubKey)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -316,7 +316,7 @@ func (x *fastReflection_PubKeyNotVerifiable) ProtoMethods() *protoiface.Methods 
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*PubKeyNotVerifiable)
+		x := input.Message.Interface().(*PubKey)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -358,7 +358,7 @@ func (x *fastReflection_PubKeyNotVerifiable) ProtoMethods() *protoiface.Methods 
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*PubKeyNotVerifiable)
+		x := input.Message.Interface().(*PubKey)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -390,10 +390,10 @@ func (x *fastReflection_PubKeyNotVerifiable) ProtoMethods() *protoiface.Methods 
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: PubKeyNotVerifiable: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: PubKey: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: PubKeyNotVerifiable: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: PubKey: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -485,29 +485,29 @@ func (x *fastReflection_PubKeyNotVerifiable) ProtoMethods() *protoiface.Methods 
 }
 
 var (
-	md_PubKey                     protoreflect.MessageDescriptor
-	fd_PubKey_user                protoreflect.FieldDescriptor
-	fd_PubKey_pairing_public_key  protoreflect.FieldDescriptor
-	fd_PubKey_operator_public_key protoreflect.FieldDescriptor
+	md_PubKeyInternal                     protoreflect.MessageDescriptor
+	fd_PubKeyInternal_user                protoreflect.FieldDescriptor
+	fd_PubKeyInternal_pairing_public_key  protoreflect.FieldDescriptor
+	fd_PubKeyInternal_operator_public_key protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_customauth_pairing_pubkey_proto_init()
-	md_PubKey = File_gluon_customauth_pairing_pubkey_proto.Messages().ByName("PubKey")
-	fd_PubKey_user = md_PubKey.Fields().ByName("user")
-	fd_PubKey_pairing_public_key = md_PubKey.Fields().ByName("pairing_public_key")
-	fd_PubKey_operator_public_key = md_PubKey.Fields().ByName("operator_public_key")
+	md_PubKeyInternal = File_gluon_customauth_pairing_pubkey_proto.Messages().ByName("PubKeyInternal")
+	fd_PubKeyInternal_user = md_PubKeyInternal.Fields().ByName("user")
+	fd_PubKeyInternal_pairing_public_key = md_PubKeyInternal.Fields().ByName("pairing_public_key")
+	fd_PubKeyInternal_operator_public_key = md_PubKeyInternal.Fields().ByName("operator_public_key")
 }
 
-var _ protoreflect.Message = (*fastReflection_PubKey)(nil)
+var _ protoreflect.Message = (*fastReflection_PubKeyInternal)(nil)
 
-type fastReflection_PubKey PubKey
+type fastReflection_PubKeyInternal PubKeyInternal
 
-func (x *PubKey) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_PubKey)(x)
+func (x *PubKeyInternal) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_PubKeyInternal)(x)
 }
 
-func (x *PubKey) slowProtoReflect() protoreflect.Message {
+func (x *PubKeyInternal) slowProtoReflect() protoreflect.Message {
 	mi := &file_gluon_customauth_pairing_pubkey_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -519,43 +519,43 @@ func (x *PubKey) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_PubKey_messageType fastReflection_PubKey_messageType
-var _ protoreflect.MessageType = fastReflection_PubKey_messageType{}
+var _fastReflection_PubKeyInternal_messageType fastReflection_PubKeyInternal_messageType
+var _ protoreflect.MessageType = fastReflection_PubKeyInternal_messageType{}
 
-type fastReflection_PubKey_messageType struct{}
+type fastReflection_PubKeyInternal_messageType struct{}
 
-func (x fastReflection_PubKey_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_PubKey)(nil)
+func (x fastReflection_PubKeyInternal_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_PubKeyInternal)(nil)
 }
-func (x fastReflection_PubKey_messageType) New() protoreflect.Message {
-	return new(fastReflection_PubKey)
+func (x fastReflection_PubKeyInternal_messageType) New() protoreflect.Message {
+	return new(fastReflection_PubKeyInternal)
 }
-func (x fastReflection_PubKey_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_PubKey
+func (x fastReflection_PubKeyInternal_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_PubKeyInternal
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_PubKey) Descriptor() protoreflect.MessageDescriptor {
-	return md_PubKey
+func (x *fastReflection_PubKeyInternal) Descriptor() protoreflect.MessageDescriptor {
+	return md_PubKeyInternal
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_PubKey) Type() protoreflect.MessageType {
-	return _fastReflection_PubKey_messageType
+func (x *fastReflection_PubKeyInternal) Type() protoreflect.MessageType {
+	return _fastReflection_PubKeyInternal_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_PubKey) New() protoreflect.Message {
-	return new(fastReflection_PubKey)
+func (x *fastReflection_PubKeyInternal) New() protoreflect.Message {
+	return new(fastReflection_PubKeyInternal)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_PubKey) Interface() protoreflect.ProtoMessage {
-	return (*PubKey)(x)
+func (x *fastReflection_PubKeyInternal) Interface() protoreflect.ProtoMessage {
+	return (*PubKeyInternal)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -563,22 +563,22 @@ func (x *fastReflection_PubKey) Interface() protoreflect.ProtoMessage {
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_PubKey) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_PubKeyInternal) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if len(x.User) != 0 {
 		value := protoreflect.ValueOfBytes(x.User)
-		if !f(fd_PubKey_user, value) {
+		if !f(fd_PubKeyInternal_user, value) {
 			return
 		}
 	}
 	if x.PairingPublicKey != nil {
 		value := protoreflect.ValueOfMessage(x.PairingPublicKey.ProtoReflect())
-		if !f(fd_PubKey_pairing_public_key, value) {
+		if !f(fd_PubKeyInternal_pairing_public_key, value) {
 			return
 		}
 	}
 	if x.OperatorPublicKey != nil {
 		value := protoreflect.ValueOfMessage(x.OperatorPublicKey.ProtoReflect())
-		if !f(fd_PubKey_operator_public_key, value) {
+		if !f(fd_PubKeyInternal_operator_public_key, value) {
 			return
 		}
 	}
@@ -595,19 +595,19 @@ func (x *fastReflection_PubKey) Range(f func(protoreflect.FieldDescriptor, proto
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_PubKey) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_PubKeyInternal) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.customauth.pairing.PubKey.user":
+	case "gluon.customauth.pairing.PubKeyInternal.user":
 		return len(x.User) != 0
-	case "gluon.customauth.pairing.PubKey.pairing_public_key":
+	case "gluon.customauth.pairing.PubKeyInternal.pairing_public_key":
 		return x.PairingPublicKey != nil
-	case "gluon.customauth.pairing.PubKey.operator_public_key":
+	case "gluon.customauth.pairing.PubKeyInternal.operator_public_key":
 		return x.OperatorPublicKey != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKey"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKeyInternal"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.pairing.PubKey does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.pairing.PubKeyInternal does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -617,19 +617,19 @@ func (x *fastReflection_PubKey) Has(fd protoreflect.FieldDescriptor) bool {
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_PubKey) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_PubKeyInternal) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.customauth.pairing.PubKey.user":
+	case "gluon.customauth.pairing.PubKeyInternal.user":
 		x.User = nil
-	case "gluon.customauth.pairing.PubKey.pairing_public_key":
+	case "gluon.customauth.pairing.PubKeyInternal.pairing_public_key":
 		x.PairingPublicKey = nil
-	case "gluon.customauth.pairing.PubKey.operator_public_key":
+	case "gluon.customauth.pairing.PubKeyInternal.operator_public_key":
 		x.OperatorPublicKey = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKey"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKeyInternal"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.pairing.PubKey does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.pairing.PubKeyInternal does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -639,22 +639,22 @@ func (x *fastReflection_PubKey) Clear(fd protoreflect.FieldDescriptor) {
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_PubKey) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_PubKeyInternal) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.customauth.pairing.PubKey.user":
+	case "gluon.customauth.pairing.PubKeyInternal.user":
 		value := x.User
 		return protoreflect.ValueOfBytes(value)
-	case "gluon.customauth.pairing.PubKey.pairing_public_key":
+	case "gluon.customauth.pairing.PubKeyInternal.pairing_public_key":
 		value := x.PairingPublicKey
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "gluon.customauth.pairing.PubKey.operator_public_key":
+	case "gluon.customauth.pairing.PubKeyInternal.operator_public_key":
 		value := x.OperatorPublicKey
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKey"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKeyInternal"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.pairing.PubKey does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.pairing.PubKeyInternal does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -668,19 +668,19 @@ func (x *fastReflection_PubKey) Get(descriptor protoreflect.FieldDescriptor) pro
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_PubKey) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_PubKeyInternal) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.customauth.pairing.PubKey.user":
+	case "gluon.customauth.pairing.PubKeyInternal.user":
 		x.User = value.Bytes()
-	case "gluon.customauth.pairing.PubKey.pairing_public_key":
+	case "gluon.customauth.pairing.PubKeyInternal.pairing_public_key":
 		x.PairingPublicKey = value.Message().Interface().(*anypb.Any)
-	case "gluon.customauth.pairing.PubKey.operator_public_key":
+	case "gluon.customauth.pairing.PubKeyInternal.operator_public_key":
 		x.OperatorPublicKey = value.Message().Interface().(*anypb.Any)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKey"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKeyInternal"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.pairing.PubKey does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.pairing.PubKeyInternal does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -694,56 +694,56 @@ func (x *fastReflection_PubKey) Set(fd protoreflect.FieldDescriptor, value proto
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_PubKey) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_PubKeyInternal) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.customauth.pairing.PubKey.pairing_public_key":
+	case "gluon.customauth.pairing.PubKeyInternal.pairing_public_key":
 		if x.PairingPublicKey == nil {
 			x.PairingPublicKey = new(anypb.Any)
 		}
 		return protoreflect.ValueOfMessage(x.PairingPublicKey.ProtoReflect())
-	case "gluon.customauth.pairing.PubKey.operator_public_key":
+	case "gluon.customauth.pairing.PubKeyInternal.operator_public_key":
 		if x.OperatorPublicKey == nil {
 			x.OperatorPublicKey = new(anypb.Any)
 		}
 		return protoreflect.ValueOfMessage(x.OperatorPublicKey.ProtoReflect())
-	case "gluon.customauth.pairing.PubKey.user":
-		panic(fmt.Errorf("field user of message gluon.customauth.pairing.PubKey is not mutable"))
+	case "gluon.customauth.pairing.PubKeyInternal.user":
+		panic(fmt.Errorf("field user of message gluon.customauth.pairing.PubKeyInternal is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKey"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKeyInternal"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.pairing.PubKey does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.pairing.PubKeyInternal does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_PubKey) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_PubKeyInternal) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.customauth.pairing.PubKey.user":
+	case "gluon.customauth.pairing.PubKeyInternal.user":
 		return protoreflect.ValueOfBytes(nil)
-	case "gluon.customauth.pairing.PubKey.pairing_public_key":
+	case "gluon.customauth.pairing.PubKeyInternal.pairing_public_key":
 		m := new(anypb.Any)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "gluon.customauth.pairing.PubKey.operator_public_key":
+	case "gluon.customauth.pairing.PubKeyInternal.operator_public_key":
 		m := new(anypb.Any)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKey"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.pairing.PubKeyInternal"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.pairing.PubKey does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.pairing.PubKeyInternal does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_PubKey) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_PubKeyInternal) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.customauth.pairing.PubKey", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in gluon.customauth.pairing.PubKeyInternal", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -751,7 +751,7 @@ func (x *fastReflection_PubKey) WhichOneof(d protoreflect.OneofDescriptor) proto
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_PubKey) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_PubKeyInternal) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -762,7 +762,7 @@ func (x *fastReflection_PubKey) GetUnknown() protoreflect.RawFields {
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_PubKey) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_PubKeyInternal) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -774,7 +774,7 @@ func (x *fastReflection_PubKey) SetUnknown(fields protoreflect.RawFields) {
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_PubKey) IsValid() bool {
+func (x *fastReflection_PubKeyInternal) IsValid() bool {
 	return x != nil
 }
 
@@ -784,9 +784,9 @@ func (x *fastReflection_PubKey) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_PubKey) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_PubKeyInternal) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*PubKey)
+		x := input.Message.Interface().(*PubKeyInternal)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -820,7 +820,7 @@ func (x *fastReflection_PubKey) ProtoMethods() *protoiface.Methods {
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*PubKey)
+		x := input.Message.Interface().(*PubKeyInternal)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -885,7 +885,7 @@ func (x *fastReflection_PubKey) ProtoMethods() *protoiface.Methods {
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*PubKey)
+		x := input.Message.Interface().(*PubKeyInternal)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -917,10 +917,10 @@ func (x *fastReflection_PubKey) ProtoMethods() *protoiface.Methods {
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: PubKey: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: PubKeyInternal: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: PubKey: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: PubKeyInternal: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -1077,7 +1077,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type PubKeyNotVerifiable struct {
+type PubKey struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1086,54 +1086,10 @@ type PubKeyNotVerifiable struct {
 	PairingId uint64 `protobuf:"varint,2,opt,name=pairing_id,json=pairingId,proto3" json:"pairing_id,omitempty"`
 }
 
-func (x *PubKeyNotVerifiable) Reset() {
-	*x = PubKeyNotVerifiable{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_gluon_customauth_pairing_pubkey_proto_msgTypes[0]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *PubKeyNotVerifiable) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PubKeyNotVerifiable) ProtoMessage() {}
-
-// Deprecated: Use PubKeyNotVerifiable.ProtoReflect.Descriptor instead.
-func (*PubKeyNotVerifiable) Descriptor() ([]byte, []int) {
-	return file_gluon_customauth_pairing_pubkey_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *PubKeyNotVerifiable) GetUser() []byte {
-	if x != nil {
-		return x.User
-	}
-	return nil
-}
-
-func (x *PubKeyNotVerifiable) GetPairingId() uint64 {
-	if x != nil {
-		return x.PairingId
-	}
-	return 0
-}
-
-type PubKey struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	User              []byte     `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-	PairingPublicKey  *anypb.Any `protobuf:"bytes,2,opt,name=pairing_public_key,json=pairingPublicKey,proto3" json:"pairing_public_key,omitempty"`
-	OperatorPublicKey *anypb.Any `protobuf:"bytes,3,opt,name=operator_public_key,json=operatorPublicKey,proto3" json:"operator_public_key,omitempty"`
-}
-
 func (x *PubKey) Reset() {
 	*x = PubKey{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_gluon_customauth_pairing_pubkey_proto_msgTypes[1]
+		mi := &file_gluon_customauth_pairing_pubkey_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1147,7 +1103,7 @@ func (*PubKey) ProtoMessage() {}
 
 // Deprecated: Use PubKey.ProtoReflect.Descriptor instead.
 func (*PubKey) Descriptor() ([]byte, []int) {
-	return file_gluon_customauth_pairing_pubkey_proto_rawDescGZIP(), []int{1}
+	return file_gluon_customauth_pairing_pubkey_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *PubKey) GetUser() []byte {
@@ -1157,14 +1113,58 @@ func (x *PubKey) GetUser() []byte {
 	return nil
 }
 
-func (x *PubKey) GetPairingPublicKey() *anypb.Any {
+func (x *PubKey) GetPairingId() uint64 {
+	if x != nil {
+		return x.PairingId
+	}
+	return 0
+}
+
+type PubKeyInternal struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User              []byte     `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	PairingPublicKey  *anypb.Any `protobuf:"bytes,2,opt,name=pairing_public_key,json=pairingPublicKey,proto3" json:"pairing_public_key,omitempty"`
+	OperatorPublicKey *anypb.Any `protobuf:"bytes,3,opt,name=operator_public_key,json=operatorPublicKey,proto3" json:"operator_public_key,omitempty"`
+}
+
+func (x *PubKeyInternal) Reset() {
+	*x = PubKeyInternal{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_gluon_customauth_pairing_pubkey_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PubKeyInternal) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PubKeyInternal) ProtoMessage() {}
+
+// Deprecated: Use PubKeyInternal.ProtoReflect.Descriptor instead.
+func (*PubKeyInternal) Descriptor() ([]byte, []int) {
+	return file_gluon_customauth_pairing_pubkey_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *PubKeyInternal) GetUser() []byte {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+func (x *PubKeyInternal) GetPairingPublicKey() *anypb.Any {
 	if x != nil {
 		return x.PairingPublicKey
 	}
 	return nil
 }
 
-func (x *PubKey) GetOperatorPublicKey() *anypb.Any {
+func (x *PubKeyInternal) GetOperatorPublicKey() *anypb.Any {
 	if x != nil {
 		return x.OperatorPublicKey
 	}
@@ -1181,36 +1181,36 @@ var file_gluon_customauth_pairing_pubkey_proto_rawDesc = []byte{
 	0x67, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67,
 	0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x19, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x61, 0x6e, 0x79, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x22, 0x48, 0x0a, 0x13, 0x50, 0x75, 0x62, 0x4b, 0x65, 0x79, 0x4e, 0x6f, 0x74, 0x56,
-	0x65, 0x72, 0x69, 0x66, 0x69, 0x61, 0x62, 0x6c, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x75, 0x73, 0x65,
-	0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x12, 0x1d, 0x0a,
-	0x0a, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x04, 0x52, 0x09, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x49, 0x64, 0x22, 0xb2, 0x01, 0x0a,
-	0x06, 0x50, 0x75, 0x62, 0x4b, 0x65, 0x79, 0x12, 0x12, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x12, 0x48, 0x0a, 0x12, 0x70,
-	0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x5f, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x5f, 0x6b, 0x65,
-	0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x41, 0x6e, 0x79, 0x42, 0x04, 0xc8,
-	0xde, 0x1f, 0x00, 0x52, 0x10, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x50, 0x75, 0x62, 0x6c,
-	0x69, 0x63, 0x4b, 0x65, 0x79, 0x12, 0x4a, 0x0a, 0x13, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f,
-	0x72, 0x5f, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x5f, 0x6b, 0x65, 0x79, 0x18, 0x03, 0x20, 0x01,
+	0x74, 0x6f, 0x22, 0x3b, 0x0a, 0x06, 0x50, 0x75, 0x62, 0x4b, 0x65, 0x79, 0x12, 0x12, 0x0a, 0x04,
+	0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72,
+	0x12, 0x1d, 0x0a, 0x0a, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x04, 0x52, 0x09, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x49, 0x64, 0x22,
+	0xba, 0x01, 0x0a, 0x0e, 0x50, 0x75, 0x62, 0x4b, 0x65, 0x79, 0x49, 0x6e, 0x74, 0x65, 0x72, 0x6e,
+	0x61, 0x6c, 0x12, 0x12, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c,
+	0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x12, 0x48, 0x0a, 0x12, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e,
+	0x67, 0x5f, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x5f, 0x6b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01,
 	0x28, 0x0b, 0x32, 0x14, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x41, 0x6e, 0x79, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x11,
-	0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x4b, 0x65,
-	0x79, 0x42, 0xd1, 0x01, 0x0a, 0x1c, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e,
-	0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x70, 0x61, 0x69, 0x72, 0x69,
-	0x6e, 0x67, 0x42, 0x0b, 0x50, 0x75, 0x62, 0x6b, 0x65, 0x79, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50,
-	0x01, 0x5a, 0x22, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75,
-	0x6f, 0x6e, 0x2f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2f, 0x70, 0x61,
-	0x69, 0x72, 0x69, 0x6e, 0x67, 0xa2, 0x02, 0x03, 0x47, 0x43, 0x50, 0xaa, 0x02, 0x18, 0x47, 0x6c,
-	0x75, 0x6f, 0x6e, 0x2e, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x50,
-	0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0xca, 0x02, 0x18, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43,
-	0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x5c, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e,
-	0x67, 0xe2, 0x02, 0x24, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d,
-	0x61, 0x75, 0x74, 0x68, 0x5c, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x5c, 0x47, 0x50, 0x42,
-	0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x1a, 0x47, 0x6c, 0x75, 0x6f, 0x6e,
-	0x3a, 0x3a, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x3a, 0x3a, 0x50, 0x61,
-	0x69, 0x72, 0x69, 0x6e, 0x67, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x41, 0x6e, 0x79, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x10,
+	0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x4b, 0x65, 0x79,
+	0x12, 0x4a, 0x0a, 0x13, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x5f, 0x70, 0x75, 0x62,
+	0x6c, 0x69, 0x63, 0x5f, 0x6b, 0x65, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e,
+	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
+	0x41, 0x6e, 0x79, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x11, 0x6f, 0x70, 0x65, 0x72, 0x61,
+	0x74, 0x6f, 0x72, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x4b, 0x65, 0x79, 0x42, 0xd1, 0x01, 0x0a,
+	0x1c, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f,
+	0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x42, 0x0b, 0x50,
+	0x75, 0x62, 0x6b, 0x65, 0x79, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x22, 0x67, 0x6c,
+	0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x75,
+	0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2f, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67,
+	0xa2, 0x02, 0x03, 0x47, 0x43, 0x50, 0xaa, 0x02, 0x18, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x43,
+	0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e,
+	0x67, 0xca, 0x02, 0x18, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d,
+	0x61, 0x75, 0x74, 0x68, 0x5c, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0xe2, 0x02, 0x24, 0x47,
+	0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x5c,
+	0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64,
+	0x61, 0x74, 0x61, 0xea, 0x02, 0x1a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x43, 0x75, 0x73,
+	0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x3a, 0x3a, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1227,13 +1227,13 @@ func file_gluon_customauth_pairing_pubkey_proto_rawDescGZIP() []byte {
 
 var file_gluon_customauth_pairing_pubkey_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_gluon_customauth_pairing_pubkey_proto_goTypes = []interface{}{
-	(*PubKeyNotVerifiable)(nil), // 0: gluon.customauth.pairing.PubKeyNotVerifiable
-	(*PubKey)(nil),              // 1: gluon.customauth.pairing.PubKey
-	(*anypb.Any)(nil),           // 2: google.protobuf.Any
+	(*PubKey)(nil),         // 0: gluon.customauth.pairing.PubKey
+	(*PubKeyInternal)(nil), // 1: gluon.customauth.pairing.PubKeyInternal
+	(*anypb.Any)(nil),      // 2: google.protobuf.Any
 }
 var file_gluon_customauth_pairing_pubkey_proto_depIdxs = []int32{
-	2, // 0: gluon.customauth.pairing.PubKey.pairing_public_key:type_name -> google.protobuf.Any
-	2, // 1: gluon.customauth.pairing.PubKey.operator_public_key:type_name -> google.protobuf.Any
+	2, // 0: gluon.customauth.pairing.PubKeyInternal.pairing_public_key:type_name -> google.protobuf.Any
+	2, // 1: gluon.customauth.pairing.PubKeyInternal.operator_public_key:type_name -> google.protobuf.Any
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -1248,7 +1248,7 @@ func file_gluon_customauth_pairing_pubkey_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_gluon_customauth_pairing_pubkey_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PubKeyNotVerifiable); i {
+			switch v := v.(*PubKey); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1260,7 +1260,7 @@ func file_gluon_customauth_pairing_pubkey_proto_init() {
 			}
 		}
 		file_gluon_customauth_pairing_pubkey_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PubKey); i {
+			switch v := v.(*PubKeyInternal); i {
 			case 0:
 				return &v.state
 			case 1:
