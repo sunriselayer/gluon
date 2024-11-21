@@ -8,6 +8,7 @@ import "gluon/contract/params.proto";
 import "gluon/contract/order.proto";
 import "gluon/contract/sorted_order.proto";
 import "gluon/contract/lazy_contract.proto";
+import "gluon/contract/sorted_lazy_contract.proto";
 
 option go_package = "gluon/x/contract/types";
 
@@ -15,11 +16,12 @@ option go_package = "gluon/x/contract/types";
 message GenesisState {
   
   // params defines all the parameters of the module.
-           Params         params              = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
-           string         port_id             = 2;
-  repeated Order          orderList           = 3 [(gogoproto.nullable) = false] ;
-  repeated SortedOrder    sortedOrderList     = 4 [(gogoproto.nullable) = false] ;
-  repeated LazyContract   lazyContractList  = 5 [(gogoproto.nullable) = false] ;
-           uint64         lazyContractCount = 6;
+           Params             params                 = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+           string             port_id                = 2;
+  repeated Order              orderList              = 3 [(gogoproto.nullable) = false] ;
+  repeated SortedOrder        sortedOrderList        = 4 [(gogoproto.nullable) = false] ;
+  repeated LazyContract       lazyContractList       = 5 [(gogoproto.nullable) = false] ;
+           uint64             lazyContractCount      = 6;
+  repeated SortedLazyContract sortedLazyContractList = 7 [(gogoproto.nullable) = false] ;
 }
 

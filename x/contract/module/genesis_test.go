@@ -42,6 +42,16 @@ func TestGenesis(t *testing.T) {
 			},
 		},
 		LazyContractCount: 2,
+		SortedLazyContractList: []types.SortedLazyContract{
+			{
+				Expiry: 0,
+				Index:  0,
+			},
+			{
+				Expiry: 1,
+				Index:  1,
+			},
+		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -59,5 +69,6 @@ func TestGenesis(t *testing.T) {
 	require.ElementsMatch(t, genesisState.SortedOrderList, got.SortedOrderList)
 	require.ElementsMatch(t, genesisState.LazyContractList, got.LazyContractList)
 	require.Equal(t, genesisState.LazyContractCount, got.LazyContractCount)
+	require.ElementsMatch(t, genesisState.SortedLazyContractList, got.SortedLazyContractList)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

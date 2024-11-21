@@ -61,36 +61,6 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					RpcMethod: "UpdateParams",
 					Skip:      true, // skipped because authority gated
 				},
-				{
-					RpcMethod:      "MatchOrder",
-					Use:            "match-order",
-					Short:          "Send a match-order tx",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{},
-				},
-				{
-					RpcMethod:      "MatchLazyOrder",
-					Use:            "match-lazy-order",
-					Short:          "Send a match-lazy-order tx",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{},
-				},
-				{
-					RpcMethod:      "CreateOrder",
-					Use:            "create-order [index]",
-					Short:          "Create a new order",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}},
-				},
-				{
-					RpcMethod:      "UpdateOrder",
-					Use:            "update-order [index]",
-					Short:          "Update order",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}},
-				},
-				{
-					RpcMethod:      "DeleteOrder",
-					Use:            "delete-order [index]",
-					Short:          "Delete order",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}},
-				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},

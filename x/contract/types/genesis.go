@@ -12,10 +12,11 @@ const DefaultIndex uint64 = 1
 // DefaultGenesis returns the default genesis state
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{
-		PortId:           PortID,
-		OrderList:        []Order{},
-		SortedOrderList:  []SortedOrder{},
-		LazyContractList: []LazyContract{},
+		PortId:                 PortID,
+		OrderList:              []Order{},
+		SortedOrderList:        []SortedOrder{},
+		LazyContractList:       []LazyContract{},
+		SortedLazyContractList: []SortedLazyContract{},
 		// this line is used by starport scaffolding # genesis/types/default
 		Params: DefaultParams(),
 	}
@@ -58,6 +59,16 @@ func (gs GenesisState) Validate() error {
 			return fmt.Errorf("lazyContract id should be lower or equal than the last id")
 		}
 		lazyContractIdMap[elem.Id] = true
+	}
+	// Check for duplicated index in sortedLazyContract
+	sortedLazyContractIndexMap := make(map[string]struct{})
+
+	for _, elem := range gs.SortedLazyContractList {
+		index := string(SortedLazyContractKey(elem.Expiry, elem.Index))
+		if _, ok := sortedLazyContractIndexMap[index]; ok {
+			return fmt.Errorf("duplicated index for sortedLazyContract")
+		}
+		sortedLazyContractIndexMap[index] = struct{}{}
 	}
 	// this line is used by starport scaffolding # genesis/types/validate
 

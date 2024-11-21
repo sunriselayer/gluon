@@ -50,6 +50,16 @@ func TestGenesisState_Validate(t *testing.T) {
 					},
 				},
 				LazyContractCount: 2,
+				SortedLazyContractList: []types.SortedLazyContract{
+					{
+						Expiry: 0,
+						Index:  0,
+					},
+					{
+						Expiry: 1,
+						Index:  1,
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -107,6 +117,22 @@ func TestGenesisState_Validate(t *testing.T) {
 					},
 				},
 				LazyContractCount: 0,
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated sortedLazyContract",
+			genState: &types.GenesisState{
+				SortedLazyContractList: []types.SortedLazyContract{
+					{
+						Expiry: 0,
+						Index:  0,
+					},
+					{
+						Expiry: 0,
+						Index:  0,
+					},
+				},
 			},
 			valid: false,
 		},

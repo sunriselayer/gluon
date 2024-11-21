@@ -10,6 +10,7 @@ import "gluon/contract/params.proto";
 import "gluon/contract/order.proto";
 import "gluon/contract/sorted_order.proto";
 import "gluon/contract/lazy_contract.proto";
+import "gluon/contract/sorted_lazy_contract.proto";
 
 option go_package = "gluon/x/contract/types";
 
@@ -110,7 +111,6 @@ message QueryAllLazyContractRequest {
 }
 
 message QueryAllLazyContractResponse {
-  repeated LazyContract                         LazyContract = 1 [(gogoproto.nullable) = false];
-           cosmos.base.query.v1beta1.PageResponse pagination     = 2;
+  repeated LazyContract                           LazyContract = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination   = 2;
 }
-

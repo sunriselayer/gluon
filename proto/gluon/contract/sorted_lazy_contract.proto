@@ -1,0 +1,11 @@
+syntax = "proto3";
+package gluon.contract;
+
+option go_package = "gluon/x/contract/types";
+
+message SortedLazyContract {
+  uint64 expiry = 1; 
+  uint64 index = 2; 
+  
+}
+

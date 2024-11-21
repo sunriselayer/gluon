@@ -1,11 +1,5 @@
 package types
 
-import (
-	"time"
-
-	sdk "github.com/cosmos/cosmos-sdk/types"
-)
-
 const (
 	// ModuleName defines the module name
 	ModuleName = "contract"
@@ -37,11 +31,6 @@ func KeyPrefix(p string) []byte {
 }
 
 const (
-	LazyContractKey         = "LazyContract/value/"
-	LazyContractCountKey    = "LazyContract/count/"
-	SortedLazyContractIdKey = "SortedLazyContract/id/"
+	LazyContractKey      = "LazyContract/value/"
+	LazyContractCountKey = "LazyContract/count/"
 )
-
-func SortedLazyContractIdPrefix(expiry time.Time) []byte {
-	return append([]byte(SortedLazyContractIdKey), sdk.Uint64ToBigEndian(uint64(expiry.UnixMilli()))...)
-}

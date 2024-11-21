@@ -48,19 +48,22 @@ func (k Keeper) GarbageCollectOrder(ctx sdk.Context) error {
 
 func (k Keeper) GarbageCollectLazyContract(ctx sdk.Context) error {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.SortedLazyContractIdKey))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.SortedLazyContractKeyPrefix))
 	iterator := storetypes.KVStorePrefixIterator(store, []byte{})
 
 	defer iterator.Close()
 
 	// Because expiry is contained in the key, expiry will be iterated in ascending order
 	for ; iterator.Valid(); iterator.Next() {
-		id := sdk.BigEndianToUint64(iterator.Value())
+		var val types.SortedLazyContract
+		k.cdc.MustUnmarshal(iterator.Value(), &val)
 
-		// TODO
+		if uint64(ctx.BlockTime().UnixMilli()) < val.Expiry {
+			break
+		}
 
 		store.Delete(iterator.Key())
-		k.RemoveLazyContract(ctx, id)
+		k.RemoveLazyContract(ctx, val.Index)
 	}
 
 	return nil
