@@ -139,6 +139,7 @@ func (k Keeper) GetPairingPubKey(goCtx context.Context, user sdk.AccAddress, pai
 	if !found {
 		return nil, errorsmod.Wrapf(types.ErrPairingNotFound, "address: %s, pairing_id: %d", user.String(), pairingId)
 	}
+
 	params := k.GetParams(goCtx)
 
 	ctx := sdk.UnwrapSDKContext(goCtx)
@@ -151,6 +152,16 @@ func (k Keeper) GetPairingPubKey(goCtx context.Context, user sdk.AccAddress, pai
 		User:              user,
 		PairingPublicKey:  pairingVal.PublicKey,
 		OperatorPublicKey: params.OperatorPublicKey,
+	}
+
+	// IMPORTANT: To create cache
+	// because pairing.PubKey depends on cache
+	var buffer cryptotypes.PubKey
+	if err := k.cdc.UnpackAny(&pubKey.PairingPublicKey, &buffer); err != nil {
+		return nil, err
+	}
+	if err := k.cdc.UnpackAny(&pubKey.OperatorPublicKey, &buffer); err != nil {
+		return nil, err
 	}
 
 	return &pubKey, nil
