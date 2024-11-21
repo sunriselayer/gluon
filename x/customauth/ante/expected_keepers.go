@@ -8,8 +8,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 	"gluon/x/customauth/types"
+
+	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 )
 
 // AccountKeeper defines the contract needed for AccountKeeper related APIs.
