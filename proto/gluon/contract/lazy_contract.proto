@@ -1,16 +1,42 @@
 syntax = "proto3";
 package gluon.contract;
 
-option go_package = "gluon/x/contract/types";
+import "amino/amino.proto";
 import "gogoproto/gogo.proto"; 
-import "cosmos/base/v1beta1/coin.proto"; 
+import "cosmos_proto/cosmos.proto";
 import "google/protobuf/timestamp.proto";
+
+option go_package = "gluon/x/contract/types";
 
 message LazyContract {
   uint64 id = 1;
-  string creditor = 2; 
-  string debtor = 3; 
-  cosmos.base.v1beta1.Coin amount_escrow = 4 [(gogoproto.nullable) = false]; 
-  cosmos.base.v1beta1.Coin amount_pending = 5 [(gogoproto.nullable) = false]; 
-  google.protobuf.Timestamp expiry = 6 [ (gogoproto.nullable) = false, (gogoproto.stdtime) = true ];
+  string buyer = 2; 
+  string seller = 3; 
+  string denom_base = 4;
+  string denom_quote = 5;
+  string amount_pending_buyer = 6 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+  string amount_pending_seller = 7 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+  string amount_escrow_buyer = 8 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+  string amount_escrow_seller = 9 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+  google.protobuf.Timestamp expiry = 10 [ (gogoproto.nullable) = false, (gogoproto.stdtime) = true ];
 }

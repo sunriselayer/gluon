@@ -2,8 +2,9 @@
 package contract
 
 import (
-	v1beta1 "cosmossdk.io/api/cosmos/base/v1beta1"
+	_ "cosmossdk.io/api/amino"
 	fmt "fmt"
+	_ "github.com/cosmos/cosmos-proto"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -16,23 +17,31 @@ import (
 )
 
 var (
-	md_LazyContract                protoreflect.MessageDescriptor
-	fd_LazyContract_id             protoreflect.FieldDescriptor
-	fd_LazyContract_creditor       protoreflect.FieldDescriptor
-	fd_LazyContract_debtor         protoreflect.FieldDescriptor
-	fd_LazyContract_amount_escrow  protoreflect.FieldDescriptor
-	fd_LazyContract_amount_pending protoreflect.FieldDescriptor
-	fd_LazyContract_expiry         protoreflect.FieldDescriptor
+	md_LazyContract                       protoreflect.MessageDescriptor
+	fd_LazyContract_id                    protoreflect.FieldDescriptor
+	fd_LazyContract_buyer                 protoreflect.FieldDescriptor
+	fd_LazyContract_seller                protoreflect.FieldDescriptor
+	fd_LazyContract_denom_base            protoreflect.FieldDescriptor
+	fd_LazyContract_denom_quote           protoreflect.FieldDescriptor
+	fd_LazyContract_amount_pending_buyer  protoreflect.FieldDescriptor
+	fd_LazyContract_amount_pending_seller protoreflect.FieldDescriptor
+	fd_LazyContract_amount_escrow_buyer   protoreflect.FieldDescriptor
+	fd_LazyContract_amount_escrow_seller  protoreflect.FieldDescriptor
+	fd_LazyContract_expiry                protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_contract_lazy_contract_proto_init()
 	md_LazyContract = File_gluon_contract_lazy_contract_proto.Messages().ByName("LazyContract")
 	fd_LazyContract_id = md_LazyContract.Fields().ByName("id")
-	fd_LazyContract_creditor = md_LazyContract.Fields().ByName("creditor")
-	fd_LazyContract_debtor = md_LazyContract.Fields().ByName("debtor")
-	fd_LazyContract_amount_escrow = md_LazyContract.Fields().ByName("amount_escrow")
-	fd_LazyContract_amount_pending = md_LazyContract.Fields().ByName("amount_pending")
+	fd_LazyContract_buyer = md_LazyContract.Fields().ByName("buyer")
+	fd_LazyContract_seller = md_LazyContract.Fields().ByName("seller")
+	fd_LazyContract_denom_base = md_LazyContract.Fields().ByName("denom_base")
+	fd_LazyContract_denom_quote = md_LazyContract.Fields().ByName("denom_quote")
+	fd_LazyContract_amount_pending_buyer = md_LazyContract.Fields().ByName("amount_pending_buyer")
+	fd_LazyContract_amount_pending_seller = md_LazyContract.Fields().ByName("amount_pending_seller")
+	fd_LazyContract_amount_escrow_buyer = md_LazyContract.Fields().ByName("amount_escrow_buyer")
+	fd_LazyContract_amount_escrow_seller = md_LazyContract.Fields().ByName("amount_escrow_seller")
 	fd_LazyContract_expiry = md_LazyContract.Fields().ByName("expiry")
 }
 
@@ -107,27 +116,51 @@ func (x *fastReflection_LazyContract) Range(f func(protoreflect.FieldDescriptor,
 			return
 		}
 	}
-	if x.Creditor != "" {
-		value := protoreflect.ValueOfString(x.Creditor)
-		if !f(fd_LazyContract_creditor, value) {
+	if x.Buyer != "" {
+		value := protoreflect.ValueOfString(x.Buyer)
+		if !f(fd_LazyContract_buyer, value) {
 			return
 		}
 	}
-	if x.Debtor != "" {
-		value := protoreflect.ValueOfString(x.Debtor)
-		if !f(fd_LazyContract_debtor, value) {
+	if x.Seller != "" {
+		value := protoreflect.ValueOfString(x.Seller)
+		if !f(fd_LazyContract_seller, value) {
 			return
 		}
 	}
-	if x.AmountEscrow != nil {
-		value := protoreflect.ValueOfMessage(x.AmountEscrow.ProtoReflect())
-		if !f(fd_LazyContract_amount_escrow, value) {
+	if x.DenomBase != "" {
+		value := protoreflect.ValueOfString(x.DenomBase)
+		if !f(fd_LazyContract_denom_base, value) {
 			return
 		}
 	}
-	if x.AmountPending != nil {
-		value := protoreflect.ValueOfMessage(x.AmountPending.ProtoReflect())
-		if !f(fd_LazyContract_amount_pending, value) {
+	if x.DenomQuote != "" {
+		value := protoreflect.ValueOfString(x.DenomQuote)
+		if !f(fd_LazyContract_denom_quote, value) {
+			return
+		}
+	}
+	if x.AmountPendingBuyer != "" {
+		value := protoreflect.ValueOfString(x.AmountPendingBuyer)
+		if !f(fd_LazyContract_amount_pending_buyer, value) {
+			return
+		}
+	}
+	if x.AmountPendingSeller != "" {
+		value := protoreflect.ValueOfString(x.AmountPendingSeller)
+		if !f(fd_LazyContract_amount_pending_seller, value) {
+			return
+		}
+	}
+	if x.AmountEscrowBuyer != "" {
+		value := protoreflect.ValueOfString(x.AmountEscrowBuyer)
+		if !f(fd_LazyContract_amount_escrow_buyer, value) {
+			return
+		}
+	}
+	if x.AmountEscrowSeller != "" {
+		value := protoreflect.ValueOfString(x.AmountEscrowSeller)
+		if !f(fd_LazyContract_amount_escrow_seller, value) {
 			return
 		}
 	}
@@ -154,14 +187,22 @@ func (x *fastReflection_LazyContract) Has(fd protoreflect.FieldDescriptor) bool 
 	switch fd.FullName() {
 	case "gluon.contract.LazyContract.id":
 		return x.Id != uint64(0)
-	case "gluon.contract.LazyContract.creditor":
-		return x.Creditor != ""
-	case "gluon.contract.LazyContract.debtor":
-		return x.Debtor != ""
-	case "gluon.contract.LazyContract.amount_escrow":
-		return x.AmountEscrow != nil
-	case "gluon.contract.LazyContract.amount_pending":
-		return x.AmountPending != nil
+	case "gluon.contract.LazyContract.buyer":
+		return x.Buyer != ""
+	case "gluon.contract.LazyContract.seller":
+		return x.Seller != ""
+	case "gluon.contract.LazyContract.denom_base":
+		return x.DenomBase != ""
+	case "gluon.contract.LazyContract.denom_quote":
+		return x.DenomQuote != ""
+	case "gluon.contract.LazyContract.amount_pending_buyer":
+		return x.AmountPendingBuyer != ""
+	case "gluon.contract.LazyContract.amount_pending_seller":
+		return x.AmountPendingSeller != ""
+	case "gluon.contract.LazyContract.amount_escrow_buyer":
+		return x.AmountEscrowBuyer != ""
+	case "gluon.contract.LazyContract.amount_escrow_seller":
+		return x.AmountEscrowSeller != ""
 	case "gluon.contract.LazyContract.expiry":
 		return x.Expiry != nil
 	default:
@@ -182,14 +223,22 @@ func (x *fastReflection_LazyContract) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
 	case "gluon.contract.LazyContract.id":
 		x.Id = uint64(0)
-	case "gluon.contract.LazyContract.creditor":
-		x.Creditor = ""
-	case "gluon.contract.LazyContract.debtor":
-		x.Debtor = ""
-	case "gluon.contract.LazyContract.amount_escrow":
-		x.AmountEscrow = nil
-	case "gluon.contract.LazyContract.amount_pending":
-		x.AmountPending = nil
+	case "gluon.contract.LazyContract.buyer":
+		x.Buyer = ""
+	case "gluon.contract.LazyContract.seller":
+		x.Seller = ""
+	case "gluon.contract.LazyContract.denom_base":
+		x.DenomBase = ""
+	case "gluon.contract.LazyContract.denom_quote":
+		x.DenomQuote = ""
+	case "gluon.contract.LazyContract.amount_pending_buyer":
+		x.AmountPendingBuyer = ""
+	case "gluon.contract.LazyContract.amount_pending_seller":
+		x.AmountPendingSeller = ""
+	case "gluon.contract.LazyContract.amount_escrow_buyer":
+		x.AmountEscrowBuyer = ""
+	case "gluon.contract.LazyContract.amount_escrow_seller":
+		x.AmountEscrowSeller = ""
 	case "gluon.contract.LazyContract.expiry":
 		x.Expiry = nil
 	default:
@@ -211,18 +260,30 @@ func (x *fastReflection_LazyContract) Get(descriptor protoreflect.FieldDescripto
 	case "gluon.contract.LazyContract.id":
 		value := x.Id
 		return protoreflect.ValueOfUint64(value)
-	case "gluon.contract.LazyContract.creditor":
-		value := x.Creditor
+	case "gluon.contract.LazyContract.buyer":
+		value := x.Buyer
 		return protoreflect.ValueOfString(value)
-	case "gluon.contract.LazyContract.debtor":
-		value := x.Debtor
+	case "gluon.contract.LazyContract.seller":
+		value := x.Seller
 		return protoreflect.ValueOfString(value)
-	case "gluon.contract.LazyContract.amount_escrow":
-		value := x.AmountEscrow
-		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "gluon.contract.LazyContract.amount_pending":
-		value := x.AmountPending
-		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	case "gluon.contract.LazyContract.denom_base":
+		value := x.DenomBase
+		return protoreflect.ValueOfString(value)
+	case "gluon.contract.LazyContract.denom_quote":
+		value := x.DenomQuote
+		return protoreflect.ValueOfString(value)
+	case "gluon.contract.LazyContract.amount_pending_buyer":
+		value := x.AmountPendingBuyer
+		return protoreflect.ValueOfString(value)
+	case "gluon.contract.LazyContract.amount_pending_seller":
+		value := x.AmountPendingSeller
+		return protoreflect.ValueOfString(value)
+	case "gluon.contract.LazyContract.amount_escrow_buyer":
+		value := x.AmountEscrowBuyer
+		return protoreflect.ValueOfString(value)
+	case "gluon.contract.LazyContract.amount_escrow_seller":
+		value := x.AmountEscrowSeller
+		return protoreflect.ValueOfString(value)
 	case "gluon.contract.LazyContract.expiry":
 		value := x.Expiry
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
@@ -248,14 +309,22 @@ func (x *fastReflection_LazyContract) Set(fd protoreflect.FieldDescriptor, value
 	switch fd.FullName() {
 	case "gluon.contract.LazyContract.id":
 		x.Id = value.Uint()
-	case "gluon.contract.LazyContract.creditor":
-		x.Creditor = value.Interface().(string)
-	case "gluon.contract.LazyContract.debtor":
-		x.Debtor = value.Interface().(string)
-	case "gluon.contract.LazyContract.amount_escrow":
-		x.AmountEscrow = value.Message().Interface().(*v1beta1.Coin)
-	case "gluon.contract.LazyContract.amount_pending":
-		x.AmountPending = value.Message().Interface().(*v1beta1.Coin)
+	case "gluon.contract.LazyContract.buyer":
+		x.Buyer = value.Interface().(string)
+	case "gluon.contract.LazyContract.seller":
+		x.Seller = value.Interface().(string)
+	case "gluon.contract.LazyContract.denom_base":
+		x.DenomBase = value.Interface().(string)
+	case "gluon.contract.LazyContract.denom_quote":
+		x.DenomQuote = value.Interface().(string)
+	case "gluon.contract.LazyContract.amount_pending_buyer":
+		x.AmountPendingBuyer = value.Interface().(string)
+	case "gluon.contract.LazyContract.amount_pending_seller":
+		x.AmountPendingSeller = value.Interface().(string)
+	case "gluon.contract.LazyContract.amount_escrow_buyer":
+		x.AmountEscrowBuyer = value.Interface().(string)
+	case "gluon.contract.LazyContract.amount_escrow_seller":
+		x.AmountEscrowSeller = value.Interface().(string)
 	case "gluon.contract.LazyContract.expiry":
 		x.Expiry = value.Message().Interface().(*timestamppb.Timestamp)
 	default:
@@ -278,16 +347,6 @@ func (x *fastReflection_LazyContract) Set(fd protoreflect.FieldDescriptor, value
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_LazyContract) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.contract.LazyContract.amount_escrow":
-		if x.AmountEscrow == nil {
-			x.AmountEscrow = new(v1beta1.Coin)
-		}
-		return protoreflect.ValueOfMessage(x.AmountEscrow.ProtoReflect())
-	case "gluon.contract.LazyContract.amount_pending":
-		if x.AmountPending == nil {
-			x.AmountPending = new(v1beta1.Coin)
-		}
-		return protoreflect.ValueOfMessage(x.AmountPending.ProtoReflect())
 	case "gluon.contract.LazyContract.expiry":
 		if x.Expiry == nil {
 			x.Expiry = new(timestamppb.Timestamp)
@@ -295,10 +354,22 @@ func (x *fastReflection_LazyContract) Mutable(fd protoreflect.FieldDescriptor) p
 		return protoreflect.ValueOfMessage(x.Expiry.ProtoReflect())
 	case "gluon.contract.LazyContract.id":
 		panic(fmt.Errorf("field id of message gluon.contract.LazyContract is not mutable"))
-	case "gluon.contract.LazyContract.creditor":
-		panic(fmt.Errorf("field creditor of message gluon.contract.LazyContract is not mutable"))
-	case "gluon.contract.LazyContract.debtor":
-		panic(fmt.Errorf("field debtor of message gluon.contract.LazyContract is not mutable"))
+	case "gluon.contract.LazyContract.buyer":
+		panic(fmt.Errorf("field buyer of message gluon.contract.LazyContract is not mutable"))
+	case "gluon.contract.LazyContract.seller":
+		panic(fmt.Errorf("field seller of message gluon.contract.LazyContract is not mutable"))
+	case "gluon.contract.LazyContract.denom_base":
+		panic(fmt.Errorf("field denom_base of message gluon.contract.LazyContract is not mutable"))
+	case "gluon.contract.LazyContract.denom_quote":
+		panic(fmt.Errorf("field denom_quote of message gluon.contract.LazyContract is not mutable"))
+	case "gluon.contract.LazyContract.amount_pending_buyer":
+		panic(fmt.Errorf("field amount_pending_buyer of message gluon.contract.LazyContract is not mutable"))
+	case "gluon.contract.LazyContract.amount_pending_seller":
+		panic(fmt.Errorf("field amount_pending_seller of message gluon.contract.LazyContract is not mutable"))
+	case "gluon.contract.LazyContract.amount_escrow_buyer":
+		panic(fmt.Errorf("field amount_escrow_buyer of message gluon.contract.LazyContract is not mutable"))
+	case "gluon.contract.LazyContract.amount_escrow_seller":
+		panic(fmt.Errorf("field amount_escrow_seller of message gluon.contract.LazyContract is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.LazyContract"))
@@ -314,16 +385,22 @@ func (x *fastReflection_LazyContract) NewField(fd protoreflect.FieldDescriptor) 
 	switch fd.FullName() {
 	case "gluon.contract.LazyContract.id":
 		return protoreflect.ValueOfUint64(uint64(0))
-	case "gluon.contract.LazyContract.creditor":
+	case "gluon.contract.LazyContract.buyer":
 		return protoreflect.ValueOfString("")
-	case "gluon.contract.LazyContract.debtor":
+	case "gluon.contract.LazyContract.seller":
 		return protoreflect.ValueOfString("")
-	case "gluon.contract.LazyContract.amount_escrow":
-		m := new(v1beta1.Coin)
-		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "gluon.contract.LazyContract.amount_pending":
-		m := new(v1beta1.Coin)
-		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	case "gluon.contract.LazyContract.denom_base":
+		return protoreflect.ValueOfString("")
+	case "gluon.contract.LazyContract.denom_quote":
+		return protoreflect.ValueOfString("")
+	case "gluon.contract.LazyContract.amount_pending_buyer":
+		return protoreflect.ValueOfString("")
+	case "gluon.contract.LazyContract.amount_pending_seller":
+		return protoreflect.ValueOfString("")
+	case "gluon.contract.LazyContract.amount_escrow_buyer":
+		return protoreflect.ValueOfString("")
+	case "gluon.contract.LazyContract.amount_escrow_seller":
+		return protoreflect.ValueOfString("")
 	case "gluon.contract.LazyContract.expiry":
 		m := new(timestamppb.Timestamp)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
@@ -399,20 +476,36 @@ func (x *fastReflection_LazyContract) ProtoMethods() *protoiface.Methods {
 		if x.Id != 0 {
 			n += 1 + runtime.Sov(uint64(x.Id))
 		}
-		l = len(x.Creditor)
+		l = len(x.Buyer)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.Debtor)
+		l = len(x.Seller)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		if x.AmountEscrow != nil {
-			l = options.Size(x.AmountEscrow)
+		l = len(x.DenomBase)
+		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		if x.AmountPending != nil {
-			l = options.Size(x.AmountPending)
+		l = len(x.DenomQuote)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.AmountPendingBuyer)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.AmountPendingSeller)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.AmountEscrowBuyer)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.AmountEscrowSeller)
+		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
 		if x.Expiry != nil {
@@ -460,47 +553,61 @@ func (x *fastReflection_LazyContract) ProtoMethods() *protoiface.Methods {
 			copy(dAtA[i:], encoded)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
 			i--
+			dAtA[i] = 0x52
+		}
+		if len(x.AmountEscrowSeller) > 0 {
+			i -= len(x.AmountEscrowSeller)
+			copy(dAtA[i:], x.AmountEscrowSeller)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.AmountEscrowSeller)))
+			i--
+			dAtA[i] = 0x4a
+		}
+		if len(x.AmountEscrowBuyer) > 0 {
+			i -= len(x.AmountEscrowBuyer)
+			copy(dAtA[i:], x.AmountEscrowBuyer)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.AmountEscrowBuyer)))
+			i--
+			dAtA[i] = 0x42
+		}
+		if len(x.AmountPendingSeller) > 0 {
+			i -= len(x.AmountPendingSeller)
+			copy(dAtA[i:], x.AmountPendingSeller)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.AmountPendingSeller)))
+			i--
+			dAtA[i] = 0x3a
+		}
+		if len(x.AmountPendingBuyer) > 0 {
+			i -= len(x.AmountPendingBuyer)
+			copy(dAtA[i:], x.AmountPendingBuyer)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.AmountPendingBuyer)))
+			i--
 			dAtA[i] = 0x32
 		}
-		if x.AmountPending != nil {
-			encoded, err := options.Marshal(x.AmountPending)
-			if err != nil {
-				return protoiface.MarshalOutput{
-					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-					Buf:               input.Buf,
-				}, err
-			}
-			i -= len(encoded)
-			copy(dAtA[i:], encoded)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+		if len(x.DenomQuote) > 0 {
+			i -= len(x.DenomQuote)
+			copy(dAtA[i:], x.DenomQuote)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.DenomQuote)))
 			i--
 			dAtA[i] = 0x2a
 		}
-		if x.AmountEscrow != nil {
-			encoded, err := options.Marshal(x.AmountEscrow)
-			if err != nil {
-				return protoiface.MarshalOutput{
-					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-					Buf:               input.Buf,
-				}, err
-			}
-			i -= len(encoded)
-			copy(dAtA[i:], encoded)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+		if len(x.DenomBase) > 0 {
+			i -= len(x.DenomBase)
+			copy(dAtA[i:], x.DenomBase)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.DenomBase)))
 			i--
 			dAtA[i] = 0x22
 		}
-		if len(x.Debtor) > 0 {
-			i -= len(x.Debtor)
-			copy(dAtA[i:], x.Debtor)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Debtor)))
+		if len(x.Seller) > 0 {
+			i -= len(x.Seller)
+			copy(dAtA[i:], x.Seller)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Seller)))
 			i--
 			dAtA[i] = 0x1a
 		}
-		if len(x.Creditor) > 0 {
-			i -= len(x.Creditor)
-			copy(dAtA[i:], x.Creditor)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creditor)))
+		if len(x.Buyer) > 0 {
+			i -= len(x.Buyer)
+			copy(dAtA[i:], x.Buyer)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Buyer)))
 			i--
 			dAtA[i] = 0x12
 		}
@@ -579,7 +686,7 @@ func (x *fastReflection_LazyContract) ProtoMethods() *protoiface.Methods {
 				}
 			case 2:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creditor", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Buyer", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -607,11 +714,11 @@ func (x *fastReflection_LazyContract) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.Creditor = string(dAtA[iNdEx:postIndex])
+				x.Buyer = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 3:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Debtor", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Seller", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -639,13 +746,13 @@ func (x *fastReflection_LazyContract) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.Debtor = string(dAtA[iNdEx:postIndex])
+				x.Seller = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 4:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AmountEscrow", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field DenomBase", wireType)
 				}
-				var msglen int
+				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -655,33 +762,29 @@ func (x *fastReflection_LazyContract) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					msglen |= int(b&0x7F) << shift
+					stringLen |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
-				if msglen < 0 {
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
 				}
-				postIndex := iNdEx + msglen
+				postIndex := iNdEx + intStringLen
 				if postIndex < 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
 				}
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				if x.AmountEscrow == nil {
-					x.AmountEscrow = &v1beta1.Coin{}
-				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.AmountEscrow); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
+				x.DenomBase = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 5:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AmountPending", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field DenomQuote", wireType)
 				}
-				var msglen int
+				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -691,29 +794,153 @@ func (x *fastReflection_LazyContract) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					msglen |= int(b&0x7F) << shift
+					stringLen |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
-				if msglen < 0 {
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
 				}
-				postIndex := iNdEx + msglen
+				postIndex := iNdEx + intStringLen
 				if postIndex < 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
 				}
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				if x.AmountPending == nil {
-					x.AmountPending = &v1beta1.Coin{}
-				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.AmountPending); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
+				x.DenomQuote = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 6:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AmountPendingBuyer", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.AmountPendingBuyer = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 7:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AmountPendingSeller", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.AmountPendingSeller = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 8:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AmountEscrowBuyer", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.AmountEscrowBuyer = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 9:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AmountEscrowSeller", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.AmountEscrowSeller = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 10:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Expiry", wireType)
 				}
@@ -802,12 +1029,16 @@ type LazyContract struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Creditor      string                 `protobuf:"bytes,2,opt,name=creditor,proto3" json:"creditor,omitempty"`
-	Debtor        string                 `protobuf:"bytes,3,opt,name=debtor,proto3" json:"debtor,omitempty"`
-	AmountEscrow  *v1beta1.Coin          `protobuf:"bytes,4,opt,name=amount_escrow,json=amountEscrow,proto3" json:"amount_escrow,omitempty"`
-	AmountPending *v1beta1.Coin          `protobuf:"bytes,5,opt,name=amount_pending,json=amountPending,proto3" json:"amount_pending,omitempty"`
-	Expiry        *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=expiry,proto3" json:"expiry,omitempty"`
+	Id                  uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Buyer               string                 `protobuf:"bytes,2,opt,name=buyer,proto3" json:"buyer,omitempty"`
+	Seller              string                 `protobuf:"bytes,3,opt,name=seller,proto3" json:"seller,omitempty"`
+	DenomBase           string                 `protobuf:"bytes,4,opt,name=denom_base,json=denomBase,proto3" json:"denom_base,omitempty"`
+	DenomQuote          string                 `protobuf:"bytes,5,opt,name=denom_quote,json=denomQuote,proto3" json:"denom_quote,omitempty"`
+	AmountPendingBuyer  string                 `protobuf:"bytes,6,opt,name=amount_pending_buyer,json=amountPendingBuyer,proto3" json:"amount_pending_buyer,omitempty"`
+	AmountPendingSeller string                 `protobuf:"bytes,7,opt,name=amount_pending_seller,json=amountPendingSeller,proto3" json:"amount_pending_seller,omitempty"`
+	AmountEscrowBuyer   string                 `protobuf:"bytes,8,opt,name=amount_escrow_buyer,json=amountEscrowBuyer,proto3" json:"amount_escrow_buyer,omitempty"`
+	AmountEscrowSeller  string                 `protobuf:"bytes,9,opt,name=amount_escrow_seller,json=amountEscrowSeller,proto3" json:"amount_escrow_seller,omitempty"`
+	Expiry              *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=expiry,proto3" json:"expiry,omitempty"`
 }
 
 func (x *LazyContract) Reset() {
@@ -837,32 +1068,60 @@ func (x *LazyContract) GetId() uint64 {
 	return 0
 }
 
-func (x *LazyContract) GetCreditor() string {
+func (x *LazyContract) GetBuyer() string {
 	if x != nil {
-		return x.Creditor
+		return x.Buyer
 	}
 	return ""
 }
 
-func (x *LazyContract) GetDebtor() string {
+func (x *LazyContract) GetSeller() string {
 	if x != nil {
-		return x.Debtor
+		return x.Seller
 	}
 	return ""
 }
 
-func (x *LazyContract) GetAmountEscrow() *v1beta1.Coin {
+func (x *LazyContract) GetDenomBase() string {
 	if x != nil {
-		return x.AmountEscrow
+		return x.DenomBase
 	}
-	return nil
+	return ""
 }
 
-func (x *LazyContract) GetAmountPending() *v1beta1.Coin {
+func (x *LazyContract) GetDenomQuote() string {
 	if x != nil {
-		return x.AmountPending
+		return x.DenomQuote
 	}
-	return nil
+	return ""
+}
+
+func (x *LazyContract) GetAmountPendingBuyer() string {
+	if x != nil {
+		return x.AmountPendingBuyer
+	}
+	return ""
+}
+
+func (x *LazyContract) GetAmountPendingSeller() string {
+	if x != nil {
+		return x.AmountPendingSeller
+	}
+	return ""
+}
+
+func (x *LazyContract) GetAmountEscrowBuyer() string {
+	if x != nil {
+		return x.AmountEscrowBuyer
+	}
+	return ""
+}
+
+func (x *LazyContract) GetAmountEscrowSeller() string {
+	if x != nil {
+		return x.AmountEscrowSeller
+	}
+	return ""
 }
 
 func (x *LazyContract) GetExpiry() *timestamppb.Timestamp {
@@ -878,41 +1137,61 @@ var file_gluon_contract_lazy_contract_proto_rawDesc = []byte{
 	0x0a, 0x22, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
 	0x2f, 0x6c, 0x61, 0x7a, 0x79, 0x5f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74,
-	0x72, 0x61, 0x63, 0x74, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f,
-	0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x63, 0x6f, 0x73, 0x6d,
-	0x6f, 0x73, 0x2f, 0x62, 0x61, 0x73, 0x65, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2f,
-	0x63, 0x6f, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67,
-	0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65,
-	0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x9e, 0x02, 0x0a, 0x0c,
-	0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x12, 0x0e, 0x0a, 0x02,
-	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1a, 0x0a, 0x08,
-	0x63, 0x72, 0x65, 0x64, 0x69, 0x74, 0x6f, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
-	0x63, 0x72, 0x65, 0x64, 0x69, 0x74, 0x6f, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x64, 0x65, 0x62, 0x74,
-	0x6f, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x64, 0x65, 0x62, 0x74, 0x6f, 0x72,
-	0x12, 0x44, 0x0a, 0x0d, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x65, 0x73, 0x63, 0x72, 0x6f,
-	0x77, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
-	0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f,
-	0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0c, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74,
-	0x45, 0x73, 0x63, 0x72, 0x6f, 0x77, 0x12, 0x46, 0x0a, 0x0e, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74,
-	0x5f, 0x70, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19,
-	0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62,
-	0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52,
-	0x0d, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x50, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x12, 0x3c,
-	0x0a, 0x06, 0x65, 0x78, 0x70, 0x69, 0x72, 0x79, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a,
-	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
-	0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x08, 0xc8, 0xde, 0x1f, 0x00,
-	0x90, 0xdf, 0x1f, 0x01, 0x52, 0x06, 0x65, 0x78, 0x70, 0x69, 0x72, 0x79, 0x42, 0x9a, 0x01, 0x0a,
-	0x12, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72,
-	0x61, 0x63, 0x74, 0x42, 0x11, 0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
-	0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x18, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f,
-	0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61,
-	0x63, 0x74, 0xa2, 0x02, 0x03, 0x47, 0x43, 0x58, 0xaa, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e,
-	0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xca, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f,
-	0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xe2, 0x02, 0x1a, 0x47, 0x6c, 0x75,
-	0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x5c, 0x47, 0x50, 0x42, 0x4d,
-	0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0f, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a,
-	0x3a, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x72, 0x61, 0x63, 0x74, 0x1a, 0x11, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2f, 0x61, 0x6d, 0x69, 0x6e,
+	0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x19, 0x63,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63, 0x6f, 0x73, 0x6d,
+	0x6f, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
+	0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74,
+	0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xda, 0x04, 0x0a, 0x0c, 0x4c, 0x61,
+	0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x62, 0x75,
+	0x79, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x62, 0x75, 0x79, 0x65, 0x72,
+	0x12, 0x16, 0x0a, 0x06, 0x73, 0x65, 0x6c, 0x6c, 0x65, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x06, 0x73, 0x65, 0x6c, 0x6c, 0x65, 0x72, 0x12, 0x1d, 0x0a, 0x0a, 0x64, 0x65, 0x6e, 0x6f,
+	0x6d, 0x5f, 0x62, 0x61, 0x73, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x64, 0x65,
+	0x6e, 0x6f, 0x6d, 0x42, 0x61, 0x73, 0x65, 0x12, 0x1f, 0x0a, 0x0b, 0x64, 0x65, 0x6e, 0x6f, 0x6d,
+	0x5f, 0x71, 0x75, 0x6f, 0x74, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x64, 0x65,
+	0x6e, 0x6f, 0x6d, 0x51, 0x75, 0x6f, 0x74, 0x65, 0x12, 0x62, 0x0a, 0x14, 0x61, 0x6d, 0x6f, 0x75,
+	0x6e, 0x74, 0x5f, 0x70, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x5f, 0x62, 0x75, 0x79, 0x65, 0x72,
+	0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x42, 0x30, 0xc8, 0xde, 0x1f, 0x00, 0xda, 0xde, 0x1f, 0x15,
+	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74,
+	0x68, 0x2e, 0x49, 0x6e, 0x74, 0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e,
+	0x49, 0x6e, 0x74, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x12, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74,
+	0x50, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x75, 0x79, 0x65, 0x72, 0x12, 0x64, 0x0a, 0x15,
+	0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x70, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x5f, 0x73,
+	0x65, 0x6c, 0x6c, 0x65, 0x72, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x42, 0x30, 0xc8, 0xde, 0x1f,
+	0x00, 0xda, 0xde, 0x1f, 0x15, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69,
+	0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e, 0x49, 0x6e, 0x74, 0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f,
+	0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x49, 0x6e, 0x74, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x13, 0x61,
+	0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x50, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x53, 0x65, 0x6c, 0x6c,
+	0x65, 0x72, 0x12, 0x60, 0x0a, 0x13, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x65, 0x73, 0x63,
+	0x72, 0x6f, 0x77, 0x5f, 0x62, 0x75, 0x79, 0x65, 0x72, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x42,
+	0x30, 0xc8, 0xde, 0x1f, 0x00, 0xda, 0xde, 0x1f, 0x15, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73,
+	0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e, 0x49, 0x6e, 0x74, 0xd2, 0xb4,
+	0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x49, 0x6e, 0x74, 0xa8, 0xe7, 0xb0, 0x2a,
+	0x01, 0x52, 0x11, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x45, 0x73, 0x63, 0x72, 0x6f, 0x77, 0x42,
+	0x75, 0x79, 0x65, 0x72, 0x12, 0x62, 0x0a, 0x14, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x65,
+	0x73, 0x63, 0x72, 0x6f, 0x77, 0x5f, 0x73, 0x65, 0x6c, 0x6c, 0x65, 0x72, 0x18, 0x09, 0x20, 0x01,
+	0x28, 0x09, 0x42, 0x30, 0xc8, 0xde, 0x1f, 0x00, 0xda, 0xde, 0x1f, 0x15, 0x63, 0x6f, 0x73, 0x6d,
+	0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e, 0x49, 0x6e,
+	0x74, 0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x49, 0x6e, 0x74, 0xa8,
+	0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x12, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x45, 0x73, 0x63, 0x72,
+	0x6f, 0x77, 0x53, 0x65, 0x6c, 0x6c, 0x65, 0x72, 0x12, 0x3c, 0x0a, 0x06, 0x65, 0x78, 0x70, 0x69,
+	0x72, 0x79, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73,
+	0x74, 0x61, 0x6d, 0x70, 0x42, 0x08, 0xc8, 0xde, 0x1f, 0x00, 0x90, 0xdf, 0x1f, 0x01, 0x52, 0x06,
+	0x65, 0x78, 0x70, 0x69, 0x72, 0x79, 0x42, 0x9a, 0x01, 0x0a, 0x12, 0x63, 0x6f, 0x6d, 0x2e, 0x67,
+	0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x42, 0x11, 0x4c,
+	0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f,
+	0x50, 0x01, 0x5a, 0x18, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c,
+	0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xa2, 0x02, 0x03, 0x47,
+	0x43, 0x58, 0xaa, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x72,
+	0x61, 0x63, 0x74, 0xca, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74,
+	0x72, 0x61, 0x63, 0x74, 0xe2, 0x02, 0x1a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e,
+	0x74, 0x72, 0x61, 0x63, 0x74, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
+	0x61, 0xea, 0x02, 0x0f, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x43, 0x6f, 0x6e, 0x74, 0x72,
+	0x61, 0x63, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -930,18 +1209,15 @@ func file_gluon_contract_lazy_contract_proto_rawDescGZIP() []byte {
 var file_gluon_contract_lazy_contract_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_gluon_contract_lazy_contract_proto_goTypes = []interface{}{
 	(*LazyContract)(nil),          // 0: gluon.contract.LazyContract
-	(*v1beta1.Coin)(nil),          // 1: cosmos.base.v1beta1.Coin
-	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
+	(*timestamppb.Timestamp)(nil), // 1: google.protobuf.Timestamp
 }
 var file_gluon_contract_lazy_contract_proto_depIdxs = []int32{
-	1, // 0: gluon.contract.LazyContract.amount_escrow:type_name -> cosmos.base.v1beta1.Coin
-	1, // 1: gluon.contract.LazyContract.amount_pending:type_name -> cosmos.base.v1beta1.Coin
-	2, // 2: gluon.contract.LazyContract.expiry:type_name -> google.protobuf.Timestamp
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	1, // 0: gluon.contract.LazyContract.expiry:type_name -> google.protobuf.Timestamp
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_gluon_contract_lazy_contract_proto_init() }

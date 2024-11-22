@@ -88,6 +88,23 @@ func (k Keeper) SettleLazy(
 	_ = addressSell
 	_ = price
 
+	params := k.GetParams(ctx)
+	expiry := ctx.BlockTime().Add(params.LazyContractPeriod)
+
+	// TODO: Check order expiry and contract expiry
+
+	// TODO
+	lazyContractId := k.AppendLazyContract(ctx, types.LazyContract{
+		Buyer:  buy.Address,
+		Seller: sell.Address,
+
+		Expiry: expiry,
+	})
+	k.SetSortedLazyContract(ctx, types.SortedLazyContract{
+		Expiry: uint64(expiry.UnixMilli()),
+		Index:  lazyContractId,
+	})
+
 	err = k.AddContractedAmount(ctx, buy.Expiry, buy.Id, amount)
 	if err != nil {
 		return err

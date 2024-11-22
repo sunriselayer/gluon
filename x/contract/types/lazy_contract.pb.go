@@ -4,8 +4,10 @@
 package types
 
 import (
+	cosmossdk_io_math "cosmossdk.io/math"
 	fmt "fmt"
-	types "github.com/cosmos/cosmos-sdk/types"
+	_ "github.com/cosmos/cosmos-proto"
+	_ "github.com/cosmos/cosmos-sdk/types/tx/amino"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	proto "github.com/cosmos/gogoproto/proto"
 	github_com_cosmos_gogoproto_types "github.com/cosmos/gogoproto/types"
@@ -29,12 +31,16 @@ var _ = time.Kitchen
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type LazyContract struct {
-	Id            uint64     `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Creditor      string     `protobuf:"bytes,2,opt,name=creditor,proto3" json:"creditor,omitempty"`
-	Debtor        string     `protobuf:"bytes,3,opt,name=debtor,proto3" json:"debtor,omitempty"`
-	AmountEscrow  types.Coin `protobuf:"bytes,4,opt,name=amount_escrow,json=amountEscrow,proto3" json:"amount_escrow"`
-	AmountPending types.Coin `protobuf:"bytes,5,opt,name=amount_pending,json=amountPending,proto3" json:"amount_pending"`
-	Expiry        time.Time  `protobuf:"bytes,6,opt,name=expiry,proto3,stdtime" json:"expiry"`
+	Id                  uint64                `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Buyer               string                `protobuf:"bytes,2,opt,name=buyer,proto3" json:"buyer,omitempty"`
+	Seller              string                `protobuf:"bytes,3,opt,name=seller,proto3" json:"seller,omitempty"`
+	DenomBase           string                `protobuf:"bytes,4,opt,name=denom_base,json=denomBase,proto3" json:"denom_base,omitempty"`
+	DenomQuote          string                `protobuf:"bytes,5,opt,name=denom_quote,json=denomQuote,proto3" json:"denom_quote,omitempty"`
+	AmountPendingBuyer  cosmossdk_io_math.Int `protobuf:"bytes,6,opt,name=amount_pending_buyer,json=amountPendingBuyer,proto3,customtype=cosmossdk.io/math.Int" json:"amount_pending_buyer"`
+	AmountPendingSeller cosmossdk_io_math.Int `protobuf:"bytes,7,opt,name=amount_pending_seller,json=amountPendingSeller,proto3,customtype=cosmossdk.io/math.Int" json:"amount_pending_seller"`
+	AmountEscrowBuyer   cosmossdk_io_math.Int `protobuf:"bytes,8,opt,name=amount_escrow_buyer,json=amountEscrowBuyer,proto3,customtype=cosmossdk.io/math.Int" json:"amount_escrow_buyer"`
+	AmountEscrowSeller  cosmossdk_io_math.Int `protobuf:"bytes,9,opt,name=amount_escrow_seller,json=amountEscrowSeller,proto3,customtype=cosmossdk.io/math.Int" json:"amount_escrow_seller"`
+	Expiry              time.Time             `protobuf:"bytes,10,opt,name=expiry,proto3,stdtime" json:"expiry"`
 }
 
 func (m *LazyContract) Reset()         { *m = LazyContract{} }
@@ -77,32 +83,32 @@ func (m *LazyContract) GetId() uint64 {
 	return 0
 }
 
-func (m *LazyContract) GetCreditor() string {
+func (m *LazyContract) GetBuyer() string {
 	if m != nil {
-		return m.Creditor
+		return m.Buyer
 	}
 	return ""
 }
 
-func (m *LazyContract) GetDebtor() string {
+func (m *LazyContract) GetSeller() string {
 	if m != nil {
-		return m.Debtor
+		return m.Seller
 	}
 	return ""
 }
 
-func (m *LazyContract) GetAmountEscrow() types.Coin {
+func (m *LazyContract) GetDenomBase() string {
 	if m != nil {
-		return m.AmountEscrow
+		return m.DenomBase
 	}
-	return types.Coin{}
+	return ""
 }
 
-func (m *LazyContract) GetAmountPending() types.Coin {
+func (m *LazyContract) GetDenomQuote() string {
 	if m != nil {
-		return m.AmountPending
+		return m.DenomQuote
 	}
-	return types.Coin{}
+	return ""
 }
 
 func (m *LazyContract) GetExpiry() time.Time {
@@ -121,29 +127,35 @@ func init() {
 }
 
 var fileDescriptor_df50d0b8489692fb = []byte{
-	// 337 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x51, 0xbd, 0x4e, 0xeb, 0x30,
-	0x18, 0x8d, 0x73, 0x7b, 0xa3, 0x5e, 0xdf, 0xd2, 0x21, 0x42, 0x55, 0xc8, 0x90, 0x56, 0x9d, 0x3a,
-	0xd9, 0x14, 0x56, 0xa6, 0x16, 0x98, 0x18, 0x50, 0xc4, 0xc4, 0x52, 0xe5, 0xc7, 0x44, 0x96, 0x1a,
-	0x7f, 0x51, 0xe2, 0x42, 0xd3, 0xa7, 0xe8, 0x13, 0xf0, 0x3c, 0x1d, 0x3b, 0x32, 0x01, 0x6a, 0x5f,
-	0x04, 0xc5, 0x76, 0x60, 0x65, 0xf3, 0xf1, 0xf9, 0xce, 0xf9, 0x8e, 0xce, 0x87, 0xc7, 0xd9, 0x72,
-	0x05, 0x82, 0x26, 0x20, 0x64, 0x19, 0x25, 0x92, 0x2e, 0xa3, 0x4d, 0xbd, 0x68, 0x11, 0x29, 0x4a,
-	0x90, 0xe0, 0xf6, 0xd5, 0x0c, 0x69, 0x7f, 0xfd, 0xd3, 0x0c, 0x32, 0x50, 0x14, 0x6d, 0x5e, 0x7a,
-	0xca, 0x0f, 0x12, 0xa8, 0x72, 0xa8, 0x68, 0x1c, 0x55, 0x8c, 0x3e, 0x4f, 0x63, 0x26, 0xa3, 0x29,
-	0x4d, 0x80, 0x0b, 0xc3, 0x0f, 0x33, 0x80, 0x6c, 0xc9, 0xa8, 0x42, 0xf1, 0xea, 0x89, 0x4a, 0x9e,
-	0xb3, 0x4a, 0x46, 0x79, 0xa1, 0x07, 0xc6, 0xaf, 0x36, 0xee, 0xdd, 0x45, 0x9b, 0x7a, 0x6e, 0xf6,
-	0xb8, 0x7d, 0x6c, 0xf3, 0xd4, 0x43, 0x23, 0x34, 0xe9, 0x84, 0x36, 0x4f, 0x5d, 0x1f, 0x77, 0x93,
-	0x92, 0xa5, 0x5c, 0x42, 0xe9, 0xd9, 0x23, 0x34, 0xf9, 0x17, 0x7e, 0x63, 0x77, 0x80, 0x9d, 0x94,
-	0xc5, 0x0d, 0xf3, 0x47, 0x31, 0x06, 0xb9, 0xd7, 0xf8, 0x24, 0xca, 0x61, 0x25, 0xe4, 0x82, 0x55,
-	0x49, 0x09, 0x2f, 0x5e, 0x67, 0x84, 0x26, 0xff, 0x2f, 0xce, 0x88, 0x4e, 0x4b, 0x9a, 0xb4, 0xc4,
-	0xa4, 0x25, 0x73, 0xe0, 0x62, 0xd6, 0xd9, 0xbd, 0x0f, 0xad, 0xb0, 0xa7, 0x55, 0x37, 0x4a, 0xe4,
-	0xde, 0xe2, 0xbe, 0x71, 0x29, 0x98, 0x48, 0xb9, 0xc8, 0xbc, 0xbf, 0xbf, 0xb3, 0x31, 0xcb, 0xef,
-	0xb5, 0xca, 0xbd, 0xc2, 0x0e, 0x5b, 0x17, 0xbc, 0xac, 0x3d, 0x47, 0xe9, 0x7d, 0xa2, 0x4b, 0x21,
-	0x6d, 0x29, 0xe4, 0xa1, 0x2d, 0x65, 0xd6, 0x6d, 0x0c, 0xb6, 0x1f, 0x43, 0x14, 0x1a, 0xcd, 0xec,
-	0x7c, 0x77, 0x08, 0xd0, 0xfe, 0x10, 0xa0, 0xcf, 0x43, 0x80, 0xb6, 0xc7, 0xc0, 0xda, 0x1f, 0x03,
-	0xeb, 0xed, 0x18, 0x58, 0x8f, 0x03, 0x7d, 0xc5, 0xf5, 0xcf, 0x1d, 0x65, 0x5d, 0xb0, 0x2a, 0x76,
-	0x94, 0xef, 0xe5, 0x57, 0x00, 0x00, 0x00, 0xff, 0xff, 0xc0, 0xfe, 0x3e, 0xed, 0xe6, 0x01, 0x00,
-	0x00,
+	// 436 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x53, 0xb1, 0x6e, 0xd4, 0x40,
+	0x10, 0xbd, 0x3d, 0x2e, 0x47, 0x6e, 0x83, 0x22, 0x65, 0xb9, 0x44, 0xe6, 0x24, 0xec, 0x53, 0xaa,
+	0x13, 0x12, 0x76, 0x04, 0x2d, 0x95, 0x11, 0x45, 0x24, 0x0a, 0x30, 0x54, 0x34, 0x66, 0x6d, 0x2f,
+	0xc6, 0xc2, 0xde, 0x31, 0xde, 0xb5, 0x88, 0xf3, 0x15, 0xf9, 0x0c, 0x4a, 0x0a, 0x3e, 0x22, 0x65,
+	0x44, 0x85, 0x52, 0x04, 0x74, 0x57, 0xf0, 0x1b, 0xc8, 0x3b, 0x6b, 0x45, 0x50, 0x26, 0x8d, 0xb5,
+	0xf3, 0xde, 0xec, 0x7b, 0x7e, 0xa3, 0x59, 0x7a, 0x98, 0x97, 0x2d, 0xc8, 0x20, 0x05, 0xa9, 0x1b,
+	0x9e, 0xea, 0xa0, 0xe4, 0xa7, 0x5d, 0x3c, 0x54, 0x7e, 0xdd, 0x80, 0x06, 0xb6, 0x6b, 0x7a, 0xfc,
+	0x01, 0x5d, 0xec, 0xf1, 0xaa, 0x90, 0x10, 0x98, 0x2f, 0xb6, 0x2c, 0xe6, 0x39, 0xe4, 0x60, 0x8e,
+	0x41, 0x7f, 0xb2, 0xe8, 0x83, 0x14, 0x54, 0x05, 0x2a, 0x46, 0x02, 0x0b, 0x4b, 0x79, 0x39, 0x40,
+	0x5e, 0x8a, 0xc0, 0x54, 0x49, 0xfb, 0x21, 0xd0, 0x45, 0x25, 0x94, 0xe6, 0x55, 0x8d, 0x0d, 0x87,
+	0x97, 0x13, 0x7a, 0xef, 0x25, 0x3f, 0xed, 0x9e, 0x5b, 0x57, 0xb6, 0x4b, 0xc7, 0x45, 0xe6, 0x90,
+	0x25, 0x59, 0x4d, 0xa2, 0x71, 0x91, 0xb1, 0x39, 0xdd, 0x4a, 0xda, 0x4e, 0x34, 0xce, 0x78, 0x49,
+	0x56, 0xb3, 0x08, 0x0b, 0x76, 0x40, 0xa7, 0x4a, 0x94, 0xa5, 0x68, 0x9c, 0x3b, 0x06, 0xb6, 0x15,
+	0x7b, 0x48, 0x69, 0x26, 0x24, 0x54, 0x71, 0xc2, 0x95, 0x70, 0x26, 0x86, 0x9b, 0x19, 0x24, 0xe4,
+	0x4a, 0x30, 0x8f, 0xee, 0x20, 0xfd, 0xb9, 0x05, 0x2d, 0x9c, 0x2d, 0xc3, 0xe3, 0x8d, 0xd7, 0x3d,
+	0xc2, 0x12, 0x3a, 0xe7, 0x15, 0xb4, 0x52, 0xc7, 0xb5, 0x90, 0x59, 0x21, 0xf3, 0x18, 0xcd, 0xa7,
+	0x7d, 0x67, 0x78, 0x74, 0x7e, 0xe5, 0x8d, 0x2e, 0xaf, 0xbc, 0x7d, 0xcc, 0xa8, 0xb2, 0x4f, 0x7e,
+	0x01, 0x41, 0xc5, 0xf5, 0x47, 0xff, 0x58, 0xea, 0x1f, 0xdf, 0x1f, 0x53, 0x1b, 0xfe, 0x58, 0xea,
+	0xaf, 0x7f, 0xbe, 0x3d, 0x22, 0x11, 0x43, 0xb5, 0x57, 0x28, 0x16, 0x9a, 0x7f, 0xcf, 0xe8, 0xfe,
+	0x7f, 0x1e, 0x36, 0xca, 0xdd, 0x1b, 0x9a, 0xdc, 0xff, 0xc7, 0xe4, 0x0d, 0x4e, 0xe2, 0x3d, 0xb5,
+	0x70, 0x2c, 0x54, 0xda, 0xc0, 0x17, 0x1b, 0x64, 0xfb, 0x86, 0x1e, 0x7b, 0x28, 0xf6, 0xc2, 0x68,
+	0x61, 0x8e, 0xeb, 0x59, 0x59, 0x07, 0x1b, 0x63, 0x76, 0xbb, 0x59, 0xa1, 0x85, 0x4d, 0xf1, 0x8c,
+	0x4e, 0xc5, 0x49, 0x5d, 0x34, 0x9d, 0x43, 0x97, 0x64, 0xb5, 0xf3, 0x64, 0xe1, 0xe3, 0x42, 0xf9,
+	0xc3, 0x42, 0xf9, 0x6f, 0x87, 0x85, 0x0a, 0xb7, 0x7b, 0xc7, 0xb3, 0x5f, 0x1e, 0x89, 0xec, 0x9d,
+	0xf0, 0xe8, 0x7c, 0xed, 0x92, 0x8b, 0xb5, 0x4b, 0x7e, 0xaf, 0x5d, 0x72, 0xb6, 0x71, 0x47, 0x17,
+	0x1b, 0x77, 0xf4, 0x73, 0xe3, 0x8e, 0xde, 0x1d, 0xe0, 0x7b, 0x38, 0xb9, 0x7e, 0x11, 0xba, 0xab,
+	0x85, 0x4a, 0xa6, 0x46, 0xf7, 0xe9, 0xdf, 0x00, 0x00, 0x00, 0xff, 0xff, 0xcb, 0x1e, 0xf5, 0x20,
+	0x30, 0x03, 0x00, 0x00,
 }
 
 func (m *LazyContract) Marshal() (dAtA []byte, err error) {
@@ -173,38 +185,72 @@ func (m *LazyContract) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i -= n1
 	i = encodeVarintLazyContract(dAtA, i, uint64(n1))
 	i--
+	dAtA[i] = 0x52
+	{
+		size := m.AmountEscrowSeller.Size()
+		i -= size
+		if _, err := m.AmountEscrowSeller.MarshalTo(dAtA[i:]); err != nil {
+			return 0, err
+		}
+		i = encodeVarintLazyContract(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0x4a
+	{
+		size := m.AmountEscrowBuyer.Size()
+		i -= size
+		if _, err := m.AmountEscrowBuyer.MarshalTo(dAtA[i:]); err != nil {
+			return 0, err
+		}
+		i = encodeVarintLazyContract(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0x42
+	{
+		size := m.AmountPendingSeller.Size()
+		i -= size
+		if _, err := m.AmountPendingSeller.MarshalTo(dAtA[i:]); err != nil {
+			return 0, err
+		}
+		i = encodeVarintLazyContract(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0x3a
+	{
+		size := m.AmountPendingBuyer.Size()
+		i -= size
+		if _, err := m.AmountPendingBuyer.MarshalTo(dAtA[i:]); err != nil {
+			return 0, err
+		}
+		i = encodeVarintLazyContract(dAtA, i, uint64(size))
+	}
+	i--
 	dAtA[i] = 0x32
-	{
-		size, err := m.AmountPending.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintLazyContract(dAtA, i, uint64(size))
+	if len(m.DenomQuote) > 0 {
+		i -= len(m.DenomQuote)
+		copy(dAtA[i:], m.DenomQuote)
+		i = encodeVarintLazyContract(dAtA, i, uint64(len(m.DenomQuote)))
+		i--
+		dAtA[i] = 0x2a
 	}
-	i--
-	dAtA[i] = 0x2a
-	{
-		size, err := m.AmountEscrow.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintLazyContract(dAtA, i, uint64(size))
+	if len(m.DenomBase) > 0 {
+		i -= len(m.DenomBase)
+		copy(dAtA[i:], m.DenomBase)
+		i = encodeVarintLazyContract(dAtA, i, uint64(len(m.DenomBase)))
+		i--
+		dAtA[i] = 0x22
 	}
-	i--
-	dAtA[i] = 0x22
-	if len(m.Debtor) > 0 {
-		i -= len(m.Debtor)
-		copy(dAtA[i:], m.Debtor)
-		i = encodeVarintLazyContract(dAtA, i, uint64(len(m.Debtor)))
+	if len(m.Seller) > 0 {
+		i -= len(m.Seller)
+		copy(dAtA[i:], m.Seller)
+		i = encodeVarintLazyContract(dAtA, i, uint64(len(m.Seller)))
 		i--
 		dAtA[i] = 0x1a
 	}
-	if len(m.Creditor) > 0 {
-		i -= len(m.Creditor)
-		copy(dAtA[i:], m.Creditor)
-		i = encodeVarintLazyContract(dAtA, i, uint64(len(m.Creditor)))
+	if len(m.Buyer) > 0 {
+		i -= len(m.Buyer)
+		copy(dAtA[i:], m.Buyer)
+		i = encodeVarintLazyContract(dAtA, i, uint64(len(m.Buyer)))
 		i--
 		dAtA[i] = 0x12
 	}
@@ -236,17 +282,29 @@ func (m *LazyContract) Size() (n int) {
 	if m.Id != 0 {
 		n += 1 + sovLazyContract(uint64(m.Id))
 	}
-	l = len(m.Creditor)
+	l = len(m.Buyer)
 	if l > 0 {
 		n += 1 + l + sovLazyContract(uint64(l))
 	}
-	l = len(m.Debtor)
+	l = len(m.Seller)
 	if l > 0 {
 		n += 1 + l + sovLazyContract(uint64(l))
 	}
-	l = m.AmountEscrow.Size()
+	l = len(m.DenomBase)
+	if l > 0 {
+		n += 1 + l + sovLazyContract(uint64(l))
+	}
+	l = len(m.DenomQuote)
+	if l > 0 {
+		n += 1 + l + sovLazyContract(uint64(l))
+	}
+	l = m.AmountPendingBuyer.Size()
 	n += 1 + l + sovLazyContract(uint64(l))
-	l = m.AmountPending.Size()
+	l = m.AmountPendingSeller.Size()
+	n += 1 + l + sovLazyContract(uint64(l))
+	l = m.AmountEscrowBuyer.Size()
+	n += 1 + l + sovLazyContract(uint64(l))
+	l = m.AmountEscrowSeller.Size()
 	n += 1 + l + sovLazyContract(uint64(l))
 	l = github_com_cosmos_gogoproto_types.SizeOfStdTime(m.Expiry)
 	n += 1 + l + sovLazyContract(uint64(l))
@@ -309,7 +367,7 @@ func (m *LazyContract) Unmarshal(dAtA []byte) error {
 			}
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Creditor", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Buyer", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -337,11 +395,11 @@ func (m *LazyContract) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Creditor = string(dAtA[iNdEx:postIndex])
+			m.Buyer = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 3:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Debtor", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Seller", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -369,13 +427,13 @@ func (m *LazyContract) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Debtor = string(dAtA[iNdEx:postIndex])
+			m.Seller = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 4:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field AmountEscrow", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field DenomBase", wireType)
 			}
-			var msglen int
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowLazyContract
@@ -385,30 +443,29 @@ func (m *LazyContract) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				msglen |= int(b&0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			if msglen < 0 {
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
 				return ErrInvalidLengthLazyContract
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx + intStringLen
 			if postIndex < 0 {
 				return ErrInvalidLengthLazyContract
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.AmountEscrow.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			m.DenomBase = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 5:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field AmountPending", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field DenomQuote", wireType)
 			}
-			var msglen int
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowLazyContract
@@ -418,26 +475,161 @@ func (m *LazyContract) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				msglen |= int(b&0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			if msglen < 0 {
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
 				return ErrInvalidLengthLazyContract
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx + intStringLen
 			if postIndex < 0 {
 				return ErrInvalidLengthLazyContract
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.AmountPending.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			m.DenomQuote = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AmountPendingBuyer", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowLazyContract
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthLazyContract
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthLazyContract
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.AmountPendingBuyer.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
-		case 6:
+		case 7:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AmountPendingSeller", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowLazyContract
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthLazyContract
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthLazyContract
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.AmountPendingSeller.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AmountEscrowBuyer", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowLazyContract
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthLazyContract
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthLazyContract
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.AmountEscrowBuyer.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 9:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AmountEscrowSeller", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowLazyContract
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthLazyContract
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthLazyContract
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.AmountEscrowSeller.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 10:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Expiry", wireType)
 			}
