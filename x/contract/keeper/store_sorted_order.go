@@ -9,8 +9,6 @@ import (
 	storetypes "cosmossdk.io/store/types"
 	"github.com/cosmos/cosmos-sdk/runtime"
 
-	sdkmath "cosmossdk.io/math"
-
 	"time"
 )
 
@@ -50,14 +48,14 @@ func (k Keeper) GetSortedOrder(
 // RemoveSortedOrder removes a sortedOrder from the store
 func (k Keeper) RemoveSortedOrder(
 	ctx context.Context,
-	expiry uint64,
+	expiry time.Time,
 	id string,
 
 ) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.SortedOrderKeyPrefix))
 	store.Delete(types.SortedOrderKey(
-		expiry,
+		uint64(expiry.UnixMilli()),
 		id,
 	))
 }
@@ -77,16 +75,4 @@ func (k Keeper) GetAllSortedOrder(ctx context.Context) (list []types.SortedOrder
 	}
 
 	return
-}
-
-func (k Keeper) AddContractedAmount(ctx context.Context, expiry time.Time, id string, amount sdkmath.Int) error {
-	sortedOrder, found := k.GetSortedOrder(ctx, expiry, id)
-	if !found {
-		return types.ErrOrderNotFound
-	}
-
-	sortedOrder.ContractedAmount = sortedOrder.ContractedAmount.Add(amount)
-	k.SetSortedOrder(ctx, sortedOrder)
-
-	return nil
 }

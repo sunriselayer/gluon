@@ -49,7 +49,7 @@ func TestSortedOrderRemove(t *testing.T) {
 	items := createNSortedOrder(keeper, ctx, 10)
 	for _, item := range items {
 		keeper.RemoveSortedOrder(ctx,
-			item.Expiry,
+			time.UnixMilli(int64(item.Expiry)),
 			item.Id,
 		)
 		_, found := keeper.GetSortedOrder(ctx,

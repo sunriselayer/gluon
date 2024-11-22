@@ -1,7 +1,9 @@
 package keeper
 
 import (
+	"context"
 	"gluon/x/contract/types"
+	"time"
 
 	sdkmath "cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -113,6 +115,18 @@ func (k Keeper) SettleLazy(
 	if err != nil {
 		return err
 	}
+
+	return nil
+}
+
+func (k Keeper) AddContractedAmount(ctx context.Context, expiry time.Time, id string, amount sdkmath.Int) error {
+	sortedOrder, found := k.GetSortedOrder(ctx, expiry, id)
+	if !found {
+		return types.ErrOrderNotFound
+	}
+
+	sortedOrder.ContractedAmount = sortedOrder.ContractedAmount.Add(amount)
+	k.SetSortedOrder(ctx, sortedOrder)
 
 	return nil
 }
