@@ -23,7 +23,6 @@ const (
 	Msg_LazyRegisterOrder_FullMethodName = "/gluon.contract.Msg/LazyRegisterOrder"
 	Msg_CancelOrder_FullMethodName       = "/gluon.contract.Msg/CancelOrder"
 	Msg_MatchOrder_FullMethodName        = "/gluon.contract.Msg/MatchOrder"
-	Msg_MatchLazyOrder_FullMethodName    = "/gluon.contract.Msg/MatchLazyOrder"
 )
 
 // MsgClient is the client API for Msg service.
@@ -36,7 +35,6 @@ type MsgClient interface {
 	LazyRegisterOrder(ctx context.Context, in *MsgLazyRegisterOrder, opts ...grpc.CallOption) (*MsgLazyRegisterOrderResponse, error)
 	CancelOrder(ctx context.Context, in *MsgCancelOrder, opts ...grpc.CallOption) (*MsgCancelOrderResponse, error)
 	MatchOrder(ctx context.Context, in *MsgMatchOrder, opts ...grpc.CallOption) (*MsgMatchOrderResponse, error)
-	MatchLazyOrder(ctx context.Context, in *MsgMatchLazyOrder, opts ...grpc.CallOption) (*MsgMatchLazyOrderResponse, error)
 }
 
 type msgClient struct {
@@ -83,15 +81,6 @@ func (c *msgClient) MatchOrder(ctx context.Context, in *MsgMatchOrder, opts ...g
 	return out, nil
 }
 
-func (c *msgClient) MatchLazyOrder(ctx context.Context, in *MsgMatchLazyOrder, opts ...grpc.CallOption) (*MsgMatchLazyOrderResponse, error) {
-	out := new(MsgMatchLazyOrderResponse)
-	err := c.cc.Invoke(ctx, Msg_MatchLazyOrder_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -102,7 +91,6 @@ type MsgServer interface {
 	LazyRegisterOrder(context.Context, *MsgLazyRegisterOrder) (*MsgLazyRegisterOrderResponse, error)
 	CancelOrder(context.Context, *MsgCancelOrder) (*MsgCancelOrderResponse, error)
 	MatchOrder(context.Context, *MsgMatchOrder) (*MsgMatchOrderResponse, error)
-	MatchLazyOrder(context.Context, *MsgMatchLazyOrder) (*MsgMatchLazyOrderResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -121,9 +109,6 @@ func (UnimplementedMsgServer) CancelOrder(context.Context, *MsgCancelOrder) (*Ms
 }
 func (UnimplementedMsgServer) MatchOrder(context.Context, *MsgMatchOrder) (*MsgMatchOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MatchOrder not implemented")
-}
-func (UnimplementedMsgServer) MatchLazyOrder(context.Context, *MsgMatchLazyOrder) (*MsgMatchLazyOrderResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method MatchLazyOrder not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -210,24 +195,6 @@ func _Msg_MatchOrder_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_MatchLazyOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgMatchLazyOrder)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).MatchLazyOrder(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Msg_MatchLazyOrder_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).MatchLazyOrder(ctx, req.(*MsgMatchLazyOrder))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -250,10 +217,6 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MatchOrder",
 			Handler:    _Msg_MatchOrder_Handler,
-		},
-		{
-			MethodName: "MatchLazyOrder",
-			Handler:    _Msg_MatchLazyOrder_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

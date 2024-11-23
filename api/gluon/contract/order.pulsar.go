@@ -17,17 +17,18 @@ import (
 )
 
 var (
-	md_Order             protoreflect.MessageDescriptor
-	fd_Order_id          protoreflect.FieldDescriptor
-	fd_Order_address     protoreflect.FieldDescriptor
-	fd_Order_denom_base  protoreflect.FieldDescriptor
-	fd_Order_denom_quote protoreflect.FieldDescriptor
-	fd_Order_direction   protoreflect.FieldDescriptor
-	fd_Order_type        protoreflect.FieldDescriptor
-	fd_Order_amount      protoreflect.FieldDescriptor
-	fd_Order_limit_price protoreflect.FieldDescriptor
-	fd_Order_stop_price  protoreflect.FieldDescriptor
-	fd_Order_expiry      protoreflect.FieldDescriptor
+	md_Order                         protoreflect.MessageDescriptor
+	fd_Order_id                      protoreflect.FieldDescriptor
+	fd_Order_address                 protoreflect.FieldDescriptor
+	fd_Order_denom_base              protoreflect.FieldDescriptor
+	fd_Order_denom_quote             protoreflect.FieldDescriptor
+	fd_Order_direction               protoreflect.FieldDescriptor
+	fd_Order_amount                  protoreflect.FieldDescriptor
+	fd_Order_limit_price             protoreflect.FieldDescriptor
+	fd_Order_stop_price              protoreflect.FieldDescriptor
+	fd_Order_expiry                  protoreflect.FieldDescriptor
+	fd_Order_lazy_contract           protoreflect.FieldDescriptor
+	fd_Order_allow_lazy_counterparty protoreflect.FieldDescriptor
 )
 
 func init() {
@@ -38,11 +39,12 @@ func init() {
 	fd_Order_denom_base = md_Order.Fields().ByName("denom_base")
 	fd_Order_denom_quote = md_Order.Fields().ByName("denom_quote")
 	fd_Order_direction = md_Order.Fields().ByName("direction")
-	fd_Order_type = md_Order.Fields().ByName("type")
 	fd_Order_amount = md_Order.Fields().ByName("amount")
 	fd_Order_limit_price = md_Order.Fields().ByName("limit_price")
 	fd_Order_stop_price = md_Order.Fields().ByName("stop_price")
 	fd_Order_expiry = md_Order.Fields().ByName("expiry")
+	fd_Order_lazy_contract = md_Order.Fields().ByName("lazy_contract")
+	fd_Order_allow_lazy_counterparty = md_Order.Fields().ByName("allow_lazy_counterparty")
 }
 
 var _ protoreflect.Message = (*fastReflection_Order)(nil)
@@ -140,12 +142,6 @@ func (x *fastReflection_Order) Range(f func(protoreflect.FieldDescriptor, protor
 			return
 		}
 	}
-	if x.Type_ != 0 {
-		value := protoreflect.ValueOfEnum((protoreflect.EnumNumber)(x.Type_))
-		if !f(fd_Order_type, value) {
-			return
-		}
-	}
 	if x.Amount != "" {
 		value := protoreflect.ValueOfString(x.Amount)
 		if !f(fd_Order_amount, value) {
@@ -167,6 +163,18 @@ func (x *fastReflection_Order) Range(f func(protoreflect.FieldDescriptor, protor
 	if x.Expiry != nil {
 		value := protoreflect.ValueOfMessage(x.Expiry.ProtoReflect())
 		if !f(fd_Order_expiry, value) {
+			return
+		}
+	}
+	if x.LazyContract != false {
+		value := protoreflect.ValueOfBool(x.LazyContract)
+		if !f(fd_Order_lazy_contract, value) {
+			return
+		}
+	}
+	if x.AllowLazyCounterparty != false {
+		value := protoreflect.ValueOfBool(x.AllowLazyCounterparty)
+		if !f(fd_Order_allow_lazy_counterparty, value) {
 			return
 		}
 	}
@@ -195,8 +203,6 @@ func (x *fastReflection_Order) Has(fd protoreflect.FieldDescriptor) bool {
 		return x.DenomQuote != ""
 	case "gluon.contract.Order.direction":
 		return x.Direction != 0
-	case "gluon.contract.Order.type":
-		return x.Type_ != 0
 	case "gluon.contract.Order.amount":
 		return x.Amount != ""
 	case "gluon.contract.Order.limit_price":
@@ -205,6 +211,10 @@ func (x *fastReflection_Order) Has(fd protoreflect.FieldDescriptor) bool {
 		return x.StopPrice != ""
 	case "gluon.contract.Order.expiry":
 		return x.Expiry != nil
+	case "gluon.contract.Order.lazy_contract":
+		return x.LazyContract != false
+	case "gluon.contract.Order.allow_lazy_counterparty":
+		return x.AllowLazyCounterparty != false
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.Order"))
@@ -231,8 +241,6 @@ func (x *fastReflection_Order) Clear(fd protoreflect.FieldDescriptor) {
 		x.DenomQuote = ""
 	case "gluon.contract.Order.direction":
 		x.Direction = 0
-	case "gluon.contract.Order.type":
-		x.Type_ = 0
 	case "gluon.contract.Order.amount":
 		x.Amount = ""
 	case "gluon.contract.Order.limit_price":
@@ -241,6 +249,10 @@ func (x *fastReflection_Order) Clear(fd protoreflect.FieldDescriptor) {
 		x.StopPrice = ""
 	case "gluon.contract.Order.expiry":
 		x.Expiry = nil
+	case "gluon.contract.Order.lazy_contract":
+		x.LazyContract = false
+	case "gluon.contract.Order.allow_lazy_counterparty":
+		x.AllowLazyCounterparty = false
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.Order"))
@@ -272,9 +284,6 @@ func (x *fastReflection_Order) Get(descriptor protoreflect.FieldDescriptor) prot
 	case "gluon.contract.Order.direction":
 		value := x.Direction
 		return protoreflect.ValueOfEnum((protoreflect.EnumNumber)(value))
-	case "gluon.contract.Order.type":
-		value := x.Type_
-		return protoreflect.ValueOfEnum((protoreflect.EnumNumber)(value))
 	case "gluon.contract.Order.amount":
 		value := x.Amount
 		return protoreflect.ValueOfString(value)
@@ -287,6 +296,12 @@ func (x *fastReflection_Order) Get(descriptor protoreflect.FieldDescriptor) prot
 	case "gluon.contract.Order.expiry":
 		value := x.Expiry
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	case "gluon.contract.Order.lazy_contract":
+		value := x.LazyContract
+		return protoreflect.ValueOfBool(value)
+	case "gluon.contract.Order.allow_lazy_counterparty":
+		value := x.AllowLazyCounterparty
+		return protoreflect.ValueOfBool(value)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.Order"))
@@ -317,8 +332,6 @@ func (x *fastReflection_Order) Set(fd protoreflect.FieldDescriptor, value protor
 		x.DenomQuote = value.Interface().(string)
 	case "gluon.contract.Order.direction":
 		x.Direction = (OrderDirection)(value.Enum())
-	case "gluon.contract.Order.type":
-		x.Type_ = (OrderType)(value.Enum())
 	case "gluon.contract.Order.amount":
 		x.Amount = value.Interface().(string)
 	case "gluon.contract.Order.limit_price":
@@ -327,6 +340,10 @@ func (x *fastReflection_Order) Set(fd protoreflect.FieldDescriptor, value protor
 		x.StopPrice = value.Interface().(string)
 	case "gluon.contract.Order.expiry":
 		x.Expiry = value.Message().Interface().(*timestamppb.Timestamp)
+	case "gluon.contract.Order.lazy_contract":
+		x.LazyContract = value.Bool()
+	case "gluon.contract.Order.allow_lazy_counterparty":
+		x.AllowLazyCounterparty = value.Bool()
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.Order"))
@@ -362,14 +379,16 @@ func (x *fastReflection_Order) Mutable(fd protoreflect.FieldDescriptor) protoref
 		panic(fmt.Errorf("field denom_quote of message gluon.contract.Order is not mutable"))
 	case "gluon.contract.Order.direction":
 		panic(fmt.Errorf("field direction of message gluon.contract.Order is not mutable"))
-	case "gluon.contract.Order.type":
-		panic(fmt.Errorf("field type of message gluon.contract.Order is not mutable"))
 	case "gluon.contract.Order.amount":
 		panic(fmt.Errorf("field amount of message gluon.contract.Order is not mutable"))
 	case "gluon.contract.Order.limit_price":
 		panic(fmt.Errorf("field limit_price of message gluon.contract.Order is not mutable"))
 	case "gluon.contract.Order.stop_price":
 		panic(fmt.Errorf("field stop_price of message gluon.contract.Order is not mutable"))
+	case "gluon.contract.Order.lazy_contract":
+		panic(fmt.Errorf("field lazy_contract of message gluon.contract.Order is not mutable"))
+	case "gluon.contract.Order.allow_lazy_counterparty":
+		panic(fmt.Errorf("field allow_lazy_counterparty of message gluon.contract.Order is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.Order"))
@@ -393,8 +412,6 @@ func (x *fastReflection_Order) NewField(fd protoreflect.FieldDescriptor) protore
 		return protoreflect.ValueOfString("")
 	case "gluon.contract.Order.direction":
 		return protoreflect.ValueOfEnum(0)
-	case "gluon.contract.Order.type":
-		return protoreflect.ValueOfEnum(0)
 	case "gluon.contract.Order.amount":
 		return protoreflect.ValueOfString("")
 	case "gluon.contract.Order.limit_price":
@@ -404,6 +421,10 @@ func (x *fastReflection_Order) NewField(fd protoreflect.FieldDescriptor) protore
 	case "gluon.contract.Order.expiry":
 		m := new(timestamppb.Timestamp)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	case "gluon.contract.Order.lazy_contract":
+		return protoreflect.ValueOfBool(false)
+	case "gluon.contract.Order.allow_lazy_counterparty":
+		return protoreflect.ValueOfBool(false)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.Order"))
@@ -492,9 +513,6 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 		if x.Direction != 0 {
 			n += 1 + runtime.Sov(uint64(x.Direction))
 		}
-		if x.Type_ != 0 {
-			n += 1 + runtime.Sov(uint64(x.Type_))
-		}
 		l = len(x.Amount)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
@@ -510,6 +528,12 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 		if x.Expiry != nil {
 			l = options.Size(x.Expiry)
 			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.LazyContract {
+			n += 2
+		}
+		if x.AllowLazyCounterparty {
+			n += 2
 		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
@@ -540,6 +564,26 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
+		if x.AllowLazyCounterparty {
+			i--
+			if x.AllowLazyCounterparty {
+				dAtA[i] = 1
+			} else {
+				dAtA[i] = 0
+			}
+			i--
+			dAtA[i] = 0x58
+		}
+		if x.LazyContract {
+			i--
+			if x.LazyContract {
+				dAtA[i] = 1
+			} else {
+				dAtA[i] = 0
+			}
+			i--
+			dAtA[i] = 0x50
+		}
 		if x.Expiry != nil {
 			encoded, err := options.Marshal(x.Expiry)
 			if err != nil {
@@ -552,33 +596,28 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 			copy(dAtA[i:], encoded)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
 			i--
-			dAtA[i] = 0x52
+			dAtA[i] = 0x4a
 		}
 		if len(x.StopPrice) > 0 {
 			i -= len(x.StopPrice)
 			copy(dAtA[i:], x.StopPrice)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.StopPrice)))
 			i--
-			dAtA[i] = 0x4a
+			dAtA[i] = 0x42
 		}
 		if len(x.LimitPrice) > 0 {
 			i -= len(x.LimitPrice)
 			copy(dAtA[i:], x.LimitPrice)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.LimitPrice)))
 			i--
-			dAtA[i] = 0x42
+			dAtA[i] = 0x3a
 		}
 		if len(x.Amount) > 0 {
 			i -= len(x.Amount)
 			copy(dAtA[i:], x.Amount)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Amount)))
 			i--
-			dAtA[i] = 0x3a
-		}
-		if x.Type_ != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.Type_))
-			i--
-			dAtA[i] = 0x30
+			dAtA[i] = 0x32
 		}
 		if x.Direction != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.Direction))
@@ -810,25 +849,6 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 					}
 				}
 			case 6:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Type_", wireType)
-				}
-				x.Type_ = 0
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					x.Type_ |= OrderType(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-			case 7:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Amount", wireType)
 				}
@@ -860,7 +880,7 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 				}
 				x.Amount = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 8:
+			case 7:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field LimitPrice", wireType)
 				}
@@ -892,7 +912,7 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 				}
 				x.LimitPrice = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 9:
+			case 8:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field StopPrice", wireType)
 				}
@@ -924,7 +944,7 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 				}
 				x.StopPrice = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
-			case 10:
+			case 9:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Expiry", wireType)
 				}
@@ -960,6 +980,46 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
+			case 10:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field LazyContract", wireType)
+				}
+				var v int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					v |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				x.LazyContract = bool(v != 0)
+			case 11:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AllowLazyCounterparty", wireType)
+				}
+				var v int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					v |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				x.AllowLazyCounterparty = bool(v != 0)
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -1057,67 +1117,22 @@ func (OrderDirection) EnumDescriptor() ([]byte, []int) {
 	return file_gluon_contract_order_proto_rawDescGZIP(), []int{0}
 }
 
-type OrderType int32
-
-const (
-	OrderType_NORMAL OrderType = 0
-	OrderType_LAZY   OrderType = 1
-)
-
-// Enum value maps for OrderType.
-var (
-	OrderType_name = map[int32]string{
-		0: "NORMAL",
-		1: "LAZY",
-	}
-	OrderType_value = map[string]int32{
-		"NORMAL": 0,
-		"LAZY":   1,
-	}
-)
-
-func (x OrderType) Enum() *OrderType {
-	p := new(OrderType)
-	*p = x
-	return p
-}
-
-func (x OrderType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (OrderType) Descriptor() protoreflect.EnumDescriptor {
-	return file_gluon_contract_order_proto_enumTypes[1].Descriptor()
-}
-
-func (OrderType) Type() protoreflect.EnumType {
-	return &file_gluon_contract_order_proto_enumTypes[1]
-}
-
-func (x OrderType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use OrderType.Descriptor instead.
-func (OrderType) EnumDescriptor() ([]byte, []int) {
-	return file_gluon_contract_order_proto_rawDescGZIP(), []int{1}
-}
-
 type Order struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id         string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Address    string                 `protobuf:"bytes,2,opt,name=address,proto3" json:"address,omitempty"`
-	DenomBase  string                 `protobuf:"bytes,3,opt,name=denom_base,json=denomBase,proto3" json:"denom_base,omitempty"`
-	DenomQuote string                 `protobuf:"bytes,4,opt,name=denom_quote,json=denomQuote,proto3" json:"denom_quote,omitempty"`
-	Direction  OrderDirection         `protobuf:"varint,5,opt,name=direction,proto3,enum=gluon.contract.OrderDirection" json:"direction,omitempty"`
-	Type_      OrderType              `protobuf:"varint,6,opt,name=type,proto3,enum=gluon.contract.OrderType" json:"type,omitempty"`
-	Amount     string                 `protobuf:"bytes,7,opt,name=amount,proto3" json:"amount,omitempty"`
-	LimitPrice string                 `protobuf:"bytes,8,opt,name=limit_price,json=limitPrice,proto3" json:"limit_price,omitempty"`
-	StopPrice  string                 `protobuf:"bytes,9,opt,name=stop_price,json=stopPrice,proto3" json:"stop_price,omitempty"`
-	Expiry     *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=expiry,proto3" json:"expiry,omitempty"`
+	Id                    string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Address               string                 `protobuf:"bytes,2,opt,name=address,proto3" json:"address,omitempty"`
+	DenomBase             string                 `protobuf:"bytes,3,opt,name=denom_base,json=denomBase,proto3" json:"denom_base,omitempty"`
+	DenomQuote            string                 `protobuf:"bytes,4,opt,name=denom_quote,json=denomQuote,proto3" json:"denom_quote,omitempty"`
+	Direction             OrderDirection         `protobuf:"varint,5,opt,name=direction,proto3,enum=gluon.contract.OrderDirection" json:"direction,omitempty"`
+	Amount                string                 `protobuf:"bytes,6,opt,name=amount,proto3" json:"amount,omitempty"`
+	LimitPrice            string                 `protobuf:"bytes,7,opt,name=limit_price,json=limitPrice,proto3" json:"limit_price,omitempty"`
+	StopPrice             string                 `protobuf:"bytes,8,opt,name=stop_price,json=stopPrice,proto3" json:"stop_price,omitempty"`
+	Expiry                *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=expiry,proto3" json:"expiry,omitempty"`
+	LazyContract          bool                   `protobuf:"varint,10,opt,name=lazy_contract,json=lazyContract,proto3" json:"lazy_contract,omitempty"`
+	AllowLazyCounterparty bool                   `protobuf:"varint,11,opt,name=allow_lazy_counterparty,json=allowLazyCounterparty,proto3" json:"allow_lazy_counterparty,omitempty"`
 }
 
 func (x *Order) Reset() {
@@ -1175,13 +1190,6 @@ func (x *Order) GetDirection() OrderDirection {
 	return OrderDirection_UNKNOWN
 }
 
-func (x *Order) GetType_() OrderType {
-	if x != nil {
-		return x.Type_
-	}
-	return OrderType_NORMAL
-}
-
 func (x *Order) GetAmount() string {
 	if x != nil {
 		return x.Amount
@@ -1210,6 +1218,20 @@ func (x *Order) GetExpiry() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *Order) GetLazyContract() bool {
+	if x != nil {
+		return x.LazyContract
+	}
+	return false
+}
+
+func (x *Order) GetAllowLazyCounterparty() bool {
+	if x != nil {
+		return x.AllowLazyCounterparty
+	}
+	return false
+}
+
 var File_gluon_contract_order_proto protoreflect.FileDescriptor
 
 var file_gluon_contract_order_proto_rawDesc = []byte{
@@ -1222,7 +1244,7 @@ var file_gluon_contract_order_proto_rawDesc = []byte{
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
 	0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x22, 0xb0, 0x04, 0x0a, 0x05, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69,
+	0x6f, 0x22, 0xde, 0x04, 0x0a, 0x05, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x0e, 0x0a, 0x02, 0x69,
 	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x32, 0x0a, 0x07, 0x61,
 	0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4,
 	0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
@@ -1234,45 +1256,46 @@ var file_gluon_contract_order_proto_rawDesc = []byte{
 	0x3c, 0x0a, 0x09, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x05, 0x20, 0x01,
 	0x28, 0x0e, 0x32, 0x1e, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72,
 	0x61, 0x63, 0x74, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x44, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69,
-	0x6f, 0x6e, 0x52, 0x09, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2d, 0x0a,
-	0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x19, 0x2e, 0x67, 0x6c,
-	0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4f, 0x72, 0x64,
-	0x65, 0x72, 0x54, 0x79, 0x70, 0x65, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x48, 0x0a, 0x06,
-	0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x42, 0x30, 0xc8, 0xde,
-	0x1f, 0x00, 0xda, 0xde, 0x1f, 0x15, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e,
-	0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e, 0x49, 0x6e, 0x74, 0xd2, 0xb4, 0x2d, 0x0a, 0x63,
-	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x49, 0x6e, 0x74, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06,
-	0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x57, 0x0a, 0x0b, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x5f,
-	0x70, 0x72, 0x69, 0x63, 0x65, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x42, 0x36, 0xc8, 0xde, 0x1f,
-	0x01, 0xda, 0xde, 0x1f, 0x1b, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69,
-	0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e, 0x4c, 0x65, 0x67, 0x61, 0x63, 0x79, 0x44, 0x65, 0x63,
-	0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x44, 0x65, 0x63, 0xa8, 0xe7,
-	0xb0, 0x2a, 0x01, 0x52, 0x0a, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x50, 0x72, 0x69, 0x63, 0x65, 0x12,
-	0x55, 0x0a, 0x0a, 0x73, 0x74, 0x6f, 0x70, 0x5f, 0x70, 0x72, 0x69, 0x63, 0x65, 0x18, 0x09, 0x20,
-	0x01, 0x28, 0x09, 0x42, 0x36, 0xc8, 0xde, 0x1f, 0x01, 0xda, 0xde, 0x1f, 0x1b, 0x63, 0x6f, 0x73,
-	0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e, 0x4c,
-	0x65, 0x67, 0x61, 0x63, 0x79, 0x44, 0x65, 0x63, 0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d,
-	0x6f, 0x73, 0x2e, 0x44, 0x65, 0x63, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x09, 0x73, 0x74, 0x6f,
-	0x70, 0x50, 0x72, 0x69, 0x63, 0x65, 0x12, 0x3c, 0x0a, 0x06, 0x65, 0x78, 0x70, 0x69, 0x72, 0x79,
-	0x18, 0x0a, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61,
-	0x6d, 0x70, 0x42, 0x08, 0xc8, 0xde, 0x1f, 0x00, 0x90, 0xdf, 0x1f, 0x01, 0x52, 0x06, 0x65, 0x78,
-	0x70, 0x69, 0x72, 0x79, 0x2a, 0x30, 0x0a, 0x0e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x44, 0x69, 0x72,
-	0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x0b, 0x0a, 0x07, 0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57,
-	0x4e, 0x10, 0x00, 0x12, 0x07, 0x0a, 0x03, 0x42, 0x55, 0x59, 0x10, 0x01, 0x12, 0x08, 0x0a, 0x04,
-	0x53, 0x45, 0x4c, 0x4c, 0x10, 0x02, 0x2a, 0x21, 0x0a, 0x09, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x54,
-	0x79, 0x70, 0x65, 0x12, 0x0a, 0x0a, 0x06, 0x4e, 0x4f, 0x52, 0x4d, 0x41, 0x4c, 0x10, 0x00, 0x12,
-	0x08, 0x0a, 0x04, 0x4c, 0x41, 0x5a, 0x59, 0x10, 0x01, 0x42, 0x93, 0x01, 0x0a, 0x12, 0x63, 0x6f,
-	0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
-	0x42, 0x0a, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x18,
-	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f,
-	0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xa2, 0x02, 0x03, 0x47, 0x43, 0x58, 0xaa, 0x02,
-	0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xca,
-	0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
-	0xe2, 0x02, 0x1a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
-	0x74, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0f,
-	0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x6e, 0x52, 0x09, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x48, 0x0a,
+	0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x42, 0x30, 0xc8,
+	0xde, 0x1f, 0x00, 0xda, 0xde, 0x1f, 0x15, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b,
+	0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e, 0x49, 0x6e, 0x74, 0xd2, 0xb4, 0x2d, 0x0a,
+	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x49, 0x6e, 0x74, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52,
+	0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x57, 0x0a, 0x0b, 0x6c, 0x69, 0x6d, 0x69, 0x74,
+	0x5f, 0x70, 0x72, 0x69, 0x63, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x42, 0x36, 0xc8, 0xde,
+	0x1f, 0x01, 0xda, 0xde, 0x1f, 0x1b, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e,
+	0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e, 0x4c, 0x65, 0x67, 0x61, 0x63, 0x79, 0x44, 0x65,
+	0x63, 0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x44, 0x65, 0x63, 0xa8,
+	0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x0a, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x50, 0x72, 0x69, 0x63, 0x65,
+	0x12, 0x55, 0x0a, 0x0a, 0x73, 0x74, 0x6f, 0x70, 0x5f, 0x70, 0x72, 0x69, 0x63, 0x65, 0x18, 0x08,
+	0x20, 0x01, 0x28, 0x09, 0x42, 0x36, 0xc8, 0xde, 0x1f, 0x01, 0xda, 0xde, 0x1f, 0x1b, 0x63, 0x6f,
+	0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e,
+	0x4c, 0x65, 0x67, 0x61, 0x63, 0x79, 0x44, 0x65, 0x63, 0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73,
+	0x6d, 0x6f, 0x73, 0x2e, 0x44, 0x65, 0x63, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x09, 0x73, 0x74,
+	0x6f, 0x70, 0x50, 0x72, 0x69, 0x63, 0x65, 0x12, 0x3c, 0x0a, 0x06, 0x65, 0x78, 0x70, 0x69, 0x72,
+	0x79, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74,
+	0x61, 0x6d, 0x70, 0x42, 0x08, 0xc8, 0xde, 0x1f, 0x00, 0x90, 0xdf, 0x1f, 0x01, 0x52, 0x06, 0x65,
+	0x78, 0x70, 0x69, 0x72, 0x79, 0x12, 0x23, 0x0a, 0x0d, 0x6c, 0x61, 0x7a, 0x79, 0x5f, 0x63, 0x6f,
+	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0c, 0x6c, 0x61,
+	0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x12, 0x36, 0x0a, 0x17, 0x61, 0x6c,
+	0x6c, 0x6f, 0x77, 0x5f, 0x6c, 0x61, 0x7a, 0x79, 0x5f, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x65, 0x72,
+	0x70, 0x61, 0x72, 0x74, 0x79, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x08, 0x52, 0x15, 0x61, 0x6c, 0x6c,
+	0x6f, 0x77, 0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x65, 0x72, 0x70, 0x61, 0x72,
+	0x74, 0x79, 0x2a, 0x30, 0x0a, 0x0e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x44, 0x69, 0x72, 0x65, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x12, 0x0b, 0x0a, 0x07, 0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x4e, 0x10,
+	0x00, 0x12, 0x07, 0x0a, 0x03, 0x42, 0x55, 0x59, 0x10, 0x01, 0x12, 0x08, 0x0a, 0x04, 0x53, 0x45,
+	0x4c, 0x4c, 0x10, 0x02, 0x42, 0x93, 0x01, 0x0a, 0x12, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75,
+	0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x42, 0x0a, 0x4f, 0x72, 0x64,
+	0x65, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x18, 0x67, 0x6c, 0x75, 0x6f, 0x6e,
+	0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72,
+	0x61, 0x63, 0x74, 0xa2, 0x02, 0x03, 0x47, 0x43, 0x58, 0xaa, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f,
+	0x6e, 0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xca, 0x02, 0x0e, 0x47, 0x6c, 0x75,
+	0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xe2, 0x02, 0x1a, 0x47, 0x6c,
+	0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x5c, 0x47, 0x50, 0x42,
+	0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0f, 0x47, 0x6c, 0x75, 0x6f, 0x6e,
+	0x3a, 0x3a, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -1287,23 +1310,21 @@ func file_gluon_contract_order_proto_rawDescGZIP() []byte {
 	return file_gluon_contract_order_proto_rawDescData
 }
 
-var file_gluon_contract_order_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_gluon_contract_order_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_gluon_contract_order_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_gluon_contract_order_proto_goTypes = []interface{}{
 	(OrderDirection)(0),           // 0: gluon.contract.OrderDirection
-	(OrderType)(0),                // 1: gluon.contract.OrderType
-	(*Order)(nil),                 // 2: gluon.contract.Order
-	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
+	(*Order)(nil),                 // 1: gluon.contract.Order
+	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
 }
 var file_gluon_contract_order_proto_depIdxs = []int32{
 	0, // 0: gluon.contract.Order.direction:type_name -> gluon.contract.OrderDirection
-	1, // 1: gluon.contract.Order.type:type_name -> gluon.contract.OrderType
-	3, // 2: gluon.contract.Order.expiry:type_name -> google.protobuf.Timestamp
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	2, // 1: gluon.contract.Order.expiry:type_name -> google.protobuf.Timestamp
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_gluon_contract_order_proto_init() }
@@ -1330,7 +1351,7 @@ func file_gluon_contract_order_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_gluon_contract_order_proto_rawDesc,
-			NumEnums:      2,
+			NumEnums:      1,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,

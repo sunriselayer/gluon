@@ -9,6 +9,22 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
+func transferAmount(params types.Params, amount sdkmath.Int, lazyContract bool) sdkmath.Int {
+	if lazyContract {
+		return params.LazyContractMarginRatio.MulInt(amount).RoundInt()
+	}
+
+	return amount
+}
+
+func (k Keeper) transferRecipientAddress(defaultTarget sdk.AccAddress, atLeastOneLazyContract bool) sdk.AccAddress {
+	if atLeastOneLazyContract {
+		return k.accountKeeper.GetModuleAddress(types.ModuleName)
+	}
+
+	return defaultTarget
+}
+
 func (k Keeper) Settle(
 	ctx sdk.Context,
 	buy types.Order,
@@ -28,84 +44,43 @@ func (k Keeper) Settle(
 		return err
 	}
 
-	err = k.bankKeeper.SendCoins(
-		ctx,
-		addressBuy,
-		addressSell,
-		sdk.NewCoins(
-			sdk.NewCoin(denomQuote, price.MulInt(amount).RoundInt()),
-		),
-	)
-	if err != nil {
-		return err
-	}
-
-	err = k.bankKeeper.SendCoins(
-		ctx,
-		addressSell,
-		addressBuy,
-		sdk.NewCoins(
-			sdk.NewCoin(denomBase, amount),
-		),
-	)
-	if err != nil {
-		return err
-	}
-
-	err = k.AddContractedAmount(ctx, buy.Expiry, buy.Id, amount)
-	if err != nil {
-		return err
-	}
-	err = k.AddContractedAmount(ctx, sell.Expiry, sell.Id, amount)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// TODO
-func (k Keeper) SettleLazy(
-	ctx sdk.Context,
-	buy types.Order,
-	sell types.Order,
-	amount sdkmath.Int,
-	price sdkmath.LegacyDec,
-) error {
-	denomBase := buy.DenomBase
-	denomQuote := buy.DenomQuote
-
-	addressBuy, err := sdk.AccAddressFromBech32(buy.Address)
-	if err != nil {
-		return err
-	}
-	addressSell, err := sdk.AccAddressFromBech32(sell.Address)
-	if err != nil {
-		return err
-	}
-
-	_ = denomBase
-	_ = denomQuote
-	_ = addressBuy
-	_ = addressSell
-	_ = price
-
 	params := k.GetParams(ctx)
-	expiry := ctx.BlockTime().Add(params.LazyContractPeriod)
+	amountBase := amount
+	amountQuote := price.MulInt(amount).RoundInt()
+	amountBaseTransfer := transferAmount(params, amountBase, sell.LazyContract)
+	amountQuoteTransfer := transferAmount(params, amountQuote, buy.LazyContract)
 
-	// TODO: Check order expiry and contract expiry
+	atLeastOneLazyContract := buy.LazyContract || sell.LazyContract
 
-	// TODO
-	lazyContractId := k.AppendLazyContract(ctx, types.LazyContract{
-		Buyer:  buy.Address,
-		Seller: sell.Address,
+	if amountQuoteTransfer.IsPositive() {
+		recipient := k.transferRecipientAddress(addressSell, atLeastOneLazyContract)
+		err = k.bankKeeper.SendCoins(
+			ctx,
+			addressBuy,
+			recipient,
+			sdk.NewCoins(
+				sdk.NewCoin(denomQuote, amountQuoteTransfer),
+			),
+		)
+		if err != nil {
+			return err
+		}
+	}
 
-		Expiry: expiry,
-	})
-	k.SetSortedLazyContract(ctx, types.SortedLazyContract{
-		Expiry: uint64(expiry.UnixMilli()),
-		Index:  lazyContractId,
-	})
+	if amountBaseTransfer.IsPositive() {
+		recipient := k.transferRecipientAddress(addressBuy, atLeastOneLazyContract)
+		err = k.bankKeeper.SendCoins(
+			ctx,
+			addressSell,
+			recipient,
+			sdk.NewCoins(
+				sdk.NewCoin(denomBase, amountBaseTransfer),
+			),
+		)
+		if err != nil {
+			return err
+		}
+	}
 
 	err = k.AddContractedAmount(ctx, buy.Expiry, buy.Id, amount)
 	if err != nil {
@@ -114,6 +89,31 @@ func (k Keeper) SettleLazy(
 	err = k.AddContractedAmount(ctx, sell.Expiry, sell.Id, amount)
 	if err != nil {
 		return err
+	}
+
+	if atLeastOneLazyContract {
+		expiry := ctx.BlockTime().Add(params.LazyContractPeriod)
+
+		// Check order expiry and contract expiry to prevent from order info garbage collected before the settlement
+		if buy.Expiry.Before(expiry) || sell.Expiry.Before(expiry) {
+			return types.ErrOrderExpireBeforeLazyContract
+		}
+
+		lazyContractId := k.AppendLazyContract(ctx, types.LazyContract{
+			Buyer:               buy.Address,
+			Seller:              sell.Address,
+			DenomBase:           denomBase,
+			DenomQuote:          denomQuote,
+			AmountEscrowBuyer:   amountQuoteTransfer,
+			AmountEscrowSeller:  amountBaseTransfer,
+			AmountPendingBuyer:  amountQuote.Sub(amountQuoteTransfer),
+			AmountPendingSeller: amountBase.Sub(amountBaseTransfer),
+			Expiry:              expiry,
+		})
+		k.SetSortedLazyContract(ctx, types.SortedLazyContract{
+			Expiry: uint64(expiry.UnixMilli()),
+			Index:  lazyContractId,
+		})
 	}
 
 	return nil

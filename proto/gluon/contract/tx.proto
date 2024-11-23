@@ -21,7 +21,6 @@ service Msg {
   rpc LazyRegisterOrder    (MsgLazyRegisterOrder   ) returns (MsgLazyRegisterOrderResponse   );
   rpc CancelOrder    (MsgCancelOrder   ) returns (MsgCancelOrderResponse   );
   rpc MatchOrder     (MsgMatchOrder    ) returns (MsgMatchOrderResponse    );
-  rpc MatchLazyOrder (MsgMatchLazyOrder) returns (MsgMatchLazyOrderResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -83,27 +82,3 @@ message MsgMatchOrder {
 }
 
 message MsgMatchOrderResponse {}
-
-message MsgMatchLazyOrder {
-  option (cosmos.msg.v1.signer) = "address_buy";
-  option (cosmos.msg.v1.signer) =   "address_sell";
-
-  string address_buy = 1;
-  string address_sell = 2;
-  string order_id_buy = 3;
-  string order_id_sell = 4;
-  string amount = 5 [
-    (cosmos_proto.scalar) = "cosmos.Int",
-    (gogoproto.customtype) = "cosmossdk.io/math.Int",
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
-  string price = 6 [
-    (cosmos_proto.scalar) = "cosmos.Dec",
-    (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
-}
-
-message MsgMatchLazyOrderResponse {}

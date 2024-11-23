@@ -4,6 +4,7 @@ package contract
 import (
 	_ "cosmossdk.io/api/amino"
 	fmt "fmt"
+	_ "github.com/cosmos/cosmos-proto"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -16,14 +17,16 @@ import (
 )
 
 var (
-	md_Params                      protoreflect.MessageDescriptor
-	fd_Params_lazy_contract_period protoreflect.FieldDescriptor
+	md_Params                            protoreflect.MessageDescriptor
+	fd_Params_lazy_contract_period       protoreflect.FieldDescriptor
+	fd_Params_lazy_contract_margin_ratio protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_contract_params_proto_init()
 	md_Params = File_gluon_contract_params_proto.Messages().ByName("Params")
 	fd_Params_lazy_contract_period = md_Params.Fields().ByName("lazy_contract_period")
+	fd_Params_lazy_contract_margin_ratio = md_Params.Fields().ByName("lazy_contract_margin_ratio")
 }
 
 var _ protoreflect.Message = (*fastReflection_Params)(nil)
@@ -97,6 +100,12 @@ func (x *fastReflection_Params) Range(f func(protoreflect.FieldDescriptor, proto
 			return
 		}
 	}
+	if x.LazyContractMarginRatio != "" {
+		value := protoreflect.ValueOfString(x.LazyContractMarginRatio)
+		if !f(fd_Params_lazy_contract_margin_ratio, value) {
+			return
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -114,6 +123,8 @@ func (x *fastReflection_Params) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
 	case "gluon.contract.Params.lazy_contract_period":
 		return x.LazyContractPeriod != nil
+	case "gluon.contract.Params.lazy_contract_margin_ratio":
+		return x.LazyContractMarginRatio != ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.Params"))
@@ -132,6 +143,8 @@ func (x *fastReflection_Params) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
 	case "gluon.contract.Params.lazy_contract_period":
 		x.LazyContractPeriod = nil
+	case "gluon.contract.Params.lazy_contract_margin_ratio":
+		x.LazyContractMarginRatio = ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.Params"))
@@ -151,6 +164,9 @@ func (x *fastReflection_Params) Get(descriptor protoreflect.FieldDescriptor) pro
 	case "gluon.contract.Params.lazy_contract_period":
 		value := x.LazyContractPeriod
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	case "gluon.contract.Params.lazy_contract_margin_ratio":
+		value := x.LazyContractMarginRatio
+		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.Params"))
@@ -173,6 +189,8 @@ func (x *fastReflection_Params) Set(fd protoreflect.FieldDescriptor, value proto
 	switch fd.FullName() {
 	case "gluon.contract.Params.lazy_contract_period":
 		x.LazyContractPeriod = value.Message().Interface().(*durationpb.Duration)
+	case "gluon.contract.Params.lazy_contract_margin_ratio":
+		x.LazyContractMarginRatio = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.Params"))
@@ -198,6 +216,8 @@ func (x *fastReflection_Params) Mutable(fd protoreflect.FieldDescriptor) protore
 			x.LazyContractPeriod = new(durationpb.Duration)
 		}
 		return protoreflect.ValueOfMessage(x.LazyContractPeriod.ProtoReflect())
+	case "gluon.contract.Params.lazy_contract_margin_ratio":
+		panic(fmt.Errorf("field lazy_contract_margin_ratio of message gluon.contract.Params is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.Params"))
@@ -214,6 +234,8 @@ func (x *fastReflection_Params) NewField(fd protoreflect.FieldDescriptor) protor
 	case "gluon.contract.Params.lazy_contract_period":
 		m := new(durationpb.Duration)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	case "gluon.contract.Params.lazy_contract_margin_ratio":
+		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.Params"))
@@ -287,6 +309,10 @@ func (x *fastReflection_Params) ProtoMethods() *protoiface.Methods {
 			l = options.Size(x.LazyContractPeriod)
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
+		l = len(x.LazyContractMarginRatio)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -315,6 +341,13 @@ func (x *fastReflection_Params) ProtoMethods() *protoiface.Methods {
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.LazyContractMarginRatio) > 0 {
+			i -= len(x.LazyContractMarginRatio)
+			copy(dAtA[i:], x.LazyContractMarginRatio)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.LazyContractMarginRatio)))
+			i--
+			dAtA[i] = 0x12
 		}
 		if x.LazyContractPeriod != nil {
 			encoded, err := options.Marshal(x.LazyContractPeriod)
@@ -415,6 +448,38 @@ func (x *fastReflection_Params) ProtoMethods() *protoiface.Methods {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field LazyContractMarginRatio", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.LazyContractMarginRatio = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -469,7 +534,8 @@ type Params struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	LazyContractPeriod *durationpb.Duration `protobuf:"bytes,1,opt,name=lazy_contract_period,json=lazyContractPeriod,proto3" json:"lazy_contract_period,omitempty"`
+	LazyContractPeriod      *durationpb.Duration `protobuf:"bytes,1,opt,name=lazy_contract_period,json=lazyContractPeriod,proto3" json:"lazy_contract_period,omitempty"`
+	LazyContractMarginRatio string               `protobuf:"bytes,2,opt,name=lazy_contract_margin_ratio,json=lazyContractMarginRatio,proto3" json:"lazy_contract_margin_ratio,omitempty"`
 }
 
 func (x *Params) Reset() {
@@ -499,6 +565,13 @@ func (x *Params) GetLazyContractPeriod() *durationpb.Duration {
 	return nil
 }
 
+func (x *Params) GetLazyContractMarginRatio() string {
+	if x != nil {
+		return x.LazyContractMarginRatio
+	}
+	return ""
+}
+
 var File_gluon_contract_params_proto protoreflect.FileDescriptor
 
 var file_gluon_contract_params_proto_rawDesc = []byte{
@@ -506,16 +579,25 @@ var file_gluon_contract_params_proto_rawDesc = []byte{
 	0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x67,
 	0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x1a, 0x11, 0x61,
 	0x6d, 0x69, 0x6e, 0x6f, 0x2f, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x81, 0x01, 0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d,
-	0x73, 0x12, 0x55, 0x0a, 0x14, 0x6c, 0x61, 0x7a, 0x79, 0x5f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61,
-	0x63, 0x74, 0x5f, 0x70, 0x65, 0x72, 0x69, 0x6f, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x19, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
-	0x66, 0x2e, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x08, 0xc8, 0xde, 0x1f, 0x00,
-	0x98, 0xdf, 0x1f, 0x01, 0x52, 0x12, 0x6c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61,
-	0x63, 0x74, 0x50, 0x65, 0x72, 0x69, 0x6f, 0x64, 0x3a, 0x20, 0xe8, 0xa0, 0x1f, 0x01, 0x8a, 0xe7,
+	0x1a, 0x19, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67,
+	0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x1a, 0x1e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
+	0x75, 0x66, 0x2f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x22, 0xf6, 0x01, 0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x55, 0x0a, 0x14,
+	0x6c, 0x61, 0x7a, 0x79, 0x5f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x5f, 0x70, 0x65,
+	0x72, 0x69, 0x6f, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6f, 0x6f,
+	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x44, 0x75, 0x72,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x08, 0xc8, 0xde, 0x1f, 0x00, 0x98, 0xdf, 0x1f, 0x01, 0x52,
+	0x12, 0x6c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x50, 0x65, 0x72,
+	0x69, 0x6f, 0x64, 0x12, 0x73, 0x0a, 0x1a, 0x6c, 0x61, 0x7a, 0x79, 0x5f, 0x63, 0x6f, 0x6e, 0x74,
+	0x72, 0x61, 0x63, 0x74, 0x5f, 0x6d, 0x61, 0x72, 0x67, 0x69, 0x6e, 0x5f, 0x72, 0x61, 0x74, 0x69,
+	0x6f, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x36, 0xc8, 0xde, 0x1f, 0x01, 0xda, 0xde, 0x1f,
+	0x1b, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61,
+	0x74, 0x68, 0x2e, 0x4c, 0x65, 0x67, 0x61, 0x63, 0x79, 0x44, 0x65, 0x63, 0xd2, 0xb4, 0x2d, 0x0a,
+	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x44, 0x65, 0x63, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52,
+	0x17, 0x6c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x4d, 0x61, 0x72,
+	0x67, 0x69, 0x6e, 0x52, 0x61, 0x74, 0x69, 0x6f, 0x3a, 0x20, 0xe8, 0xa0, 0x1f, 0x01, 0x8a, 0xe7,
 	0xb0, 0x2a, 0x17, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x78, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72,
 	0x61, 0x63, 0x74, 0x2f, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x94, 0x01, 0x0a, 0x12, 0x63,
 	0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,

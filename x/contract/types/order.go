@@ -11,16 +11,27 @@ import (
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 )
 
-func NewOrder(address string, denomBase string, denomQuote string, direction OrderDirection, type_ OrderType, amount sdkmath.Int, limitPrice *sdkmath.LegacyDec, stopPrice *sdkmath.LegacyDec) Order {
+func NewOrder(
+	address string,
+	denomBase string,
+	denomQuote string,
+	direction OrderDirection,
+	amount sdkmath.Int,
+	limitPrice *sdkmath.LegacyDec,
+	stopPrice *sdkmath.LegacyDec,
+	lazyContract bool,
+	allowLazyCounterparty bool,
+) Order {
 	return Order{
-		Address:    address,
-		DenomBase:  denomBase,
-		DenomQuote: denomQuote,
-		Direction:  direction,
-		Type:       type_,
-		Amount:     amount,
-		LimitPrice: limitPrice,
-		StopPrice:  stopPrice,
+		Address:               address,
+		DenomBase:             denomBase,
+		DenomQuote:            denomQuote,
+		Direction:             direction,
+		Amount:                amount,
+		LimitPrice:            limitPrice,
+		StopPrice:             stopPrice,
+		LazyContract:          lazyContract,
+		AllowLazyCounterparty: allowLazyCounterparty,
 	}
 }
 
@@ -29,6 +40,16 @@ func (order Order) ValidateBasic() error {
 	if err != nil {
 		return err
 	}
+
+	err = sdk.ValidateDenom(order.DenomBase)
+	if err != nil {
+		return err
+	}
+	err = sdk.ValidateDenom(order.DenomQuote)
+	if err != nil {
+		return err
+	}
+
 	if !order.Amount.IsPositive() {
 		return errorsmod.Wrap(ErrNotPositiveAmount, "amount must be positive")
 	}
@@ -86,6 +107,14 @@ func (buy Order) CrossValidate(sell Order, price sdkmath.LegacyDec, blockTime ti
 
 	if blockTime.After(sell.Expiry) {
 		return ErrOrderExpired
+	}
+
+	if buy.LazyContract && !sell.AllowLazyCounterparty {
+		return ErrLazyContractNotAllowed
+	}
+
+	if sell.LazyContract && !buy.AllowLazyCounterparty {
+		return ErrLazyContractNotAllowed
 	}
 
 	return nil

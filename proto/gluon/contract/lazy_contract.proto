@@ -14,25 +14,25 @@ message LazyContract {
   string seller = 3; 
   string denom_base = 4;
   string denom_quote = 5;
-  string amount_pending_buyer = 6 [
+  string amount_escrow_buyer = 6 [
     (cosmos_proto.scalar) = "cosmos.Int",
     (gogoproto.customtype) = "cosmossdk.io/math.Int",
     (gogoproto.nullable) = false,
     (amino.dont_omitempty) = true
   ];
-  string amount_pending_seller = 7 [
+  string amount_escrow_seller = 7 [
     (cosmos_proto.scalar) = "cosmos.Int",
     (gogoproto.customtype) = "cosmossdk.io/math.Int",
     (gogoproto.nullable) = false,
     (amino.dont_omitempty) = true
   ];
-  string amount_escrow_buyer = 8 [
+  string amount_pending_buyer = 8 [
     (cosmos_proto.scalar) = "cosmos.Int",
     (gogoproto.customtype) = "cosmossdk.io/math.Int",
     (gogoproto.nullable) = false,
     (amino.dont_omitempty) = true
   ];
-  string amount_escrow_seller = 9 [
+  string amount_pending_seller = 9 [
     (cosmos_proto.scalar) = "cosmos.Int",
     (gogoproto.customtype) = "cosmossdk.io/math.Int",
     (gogoproto.nullable) = false,

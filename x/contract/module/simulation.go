@@ -27,10 +27,6 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgMatchOrder int = 100
 
-	opWeightMsgMatchLazyOrder = "op_weight_msg_match_lazy_order"
-	// TODO: Determine the simulation weight value
-	defaultWeightMsgMatchLazyOrder int = 100
-
 	opWeightMsgLazyRegisterOrder = "op_weight_msg_order"
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgLazyRegisterOrder int = 100
@@ -84,17 +80,6 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		contractsimulation.SimulateMsgMatchOrder(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
-	var weightMsgMatchLazyOrder int
-	simState.AppParams.GetOrGenerate(opWeightMsgMatchLazyOrder, &weightMsgMatchLazyOrder, nil,
-		func(_ *rand.Rand) {
-			weightMsgMatchLazyOrder = defaultWeightMsgMatchLazyOrder
-		},
-	)
-	operations = append(operations, simulation.NewWeightedOperation(
-		weightMsgMatchLazyOrder,
-		contractsimulation.SimulateMsgMatchLazyOrder(am.accountKeeper, am.bankKeeper, am.keeper),
-	))
-
 	var weightMsgLazyRegisterOrder int
 	simState.AppParams.GetOrGenerate(opWeightMsgLazyRegisterOrder, &weightMsgLazyRegisterOrder, nil,
 		func(_ *rand.Rand) {
@@ -130,14 +115,6 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			defaultWeightMsgMatchOrder,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
 				contractsimulation.SimulateMsgMatchOrder(am.accountKeeper, am.bankKeeper, am.keeper)
-				return nil
-			},
-		),
-		simulation.NewWeightedProposalMsg(
-			opWeightMsgMatchLazyOrder,
-			defaultWeightMsgMatchLazyOrder,
-			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				contractsimulation.SimulateMsgMatchLazyOrder(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),
