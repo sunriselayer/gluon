@@ -19,7 +19,7 @@ func (k Keeper) SetSortedLazyContract(ctx context.Context, sortedLazyContract ty
 	b := k.cdc.MustMarshal(&sortedLazyContract)
 	store.Set(types.SortedLazyContractKey(
 		sortedLazyContract.Expiry,
-		sortedLazyContract.Index,
+		sortedLazyContract.Id,
 	), b)
 }
 

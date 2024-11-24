@@ -64,7 +64,7 @@ func (gs GenesisState) Validate() error {
 	sortedLazyContractIndexMap := make(map[string]struct{})
 
 	for _, elem := range gs.SortedLazyContractList {
-		index := string(SortedLazyContractKey(elem.Expiry, elem.Index))
+		index := string(SortedLazyContractKey(elem.Expiry, elem.Id))
 		if _, ok := sortedLazyContractIndexMap[index]; ok {
 			return fmt.Errorf("duplicated index for sortedLazyContract")
 		}

@@ -49,7 +49,7 @@ func (k Keeper) GarbageCollectLazyContract(ctx sdk.Context) error {
 		// Penalized if pending amount is positive
 
 		store.Delete(iterator.Key())
-		k.RemoveLazyContract(ctx, val.Index)
+		k.RemoveLazyContract(ctx, val.Id)
 	}
 
 	return nil

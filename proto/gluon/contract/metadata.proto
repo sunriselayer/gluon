@@ -1,0 +1,17 @@
+syntax = "proto3";
+package gluon.contract;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto"; 
+import "cosmos_proto/cosmos.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "gluon/x/contract/types";
+
+message PacketMetadata {
+  ContractMetadata contract = 1;
+}
+
+message ContractMetadata {
+  uint64 lazy_contract_id = 1;
+}

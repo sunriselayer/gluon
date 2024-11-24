@@ -5,7 +5,5 @@ option go_package = "gluon/x/contract/types";
 
 message SortedLazyContract {
   uint64 expiry = 1; 
-  uint64 index = 2; 
-  
+  uint64 id = 2; 
 }
-

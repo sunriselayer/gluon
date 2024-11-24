@@ -112,7 +112,7 @@ func (k Keeper) Contract(
 		})
 		k.SetSortedLazyContract(ctx, types.SortedLazyContract{
 			Expiry: uint64(expiry.UnixMilli()),
-			Index:  lazyContractId,
+			Id:     lazyContractId,
 		})
 	}
 

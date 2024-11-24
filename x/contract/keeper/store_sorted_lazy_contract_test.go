@@ -22,7 +22,7 @@ func createNSortedLazyContract(keeper keeper.Keeper, ctx context.Context, n int)
 	items := make([]types.SortedLazyContract, n)
 	for i := range items {
 		items[i].Expiry = uint64(i)
-		items[i].Index = uint64(i)
+		items[i].Id = uint64(i)
 
 		keeper.SetSortedLazyContract(ctx, items[i])
 	}
@@ -35,7 +35,7 @@ func TestSortedLazyContractGet(t *testing.T) {
 	for _, item := range items {
 		rst, found := keeper.GetSortedLazyContract(ctx,
 			time.UnixMilli(int64(item.Expiry)),
-			item.Index,
+			item.Id,
 		)
 		require.True(t, found)
 		require.Equal(t,
@@ -50,11 +50,11 @@ func TestSortedLazyContractRemove(t *testing.T) {
 	for _, item := range items {
 		keeper.RemoveSortedLazyContract(ctx,
 			item.Expiry,
-			item.Index,
+			item.Id,
 		)
 		_, found := keeper.GetSortedLazyContract(ctx,
 			time.UnixMilli(int64(item.Expiry)),
-			item.Index,
+			item.Id,
 		)
 		require.False(t, found)
 	}

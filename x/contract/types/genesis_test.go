@@ -53,11 +53,11 @@ func TestGenesisState_Validate(t *testing.T) {
 				SortedLazyContractList: []types.SortedLazyContract{
 					{
 						Expiry: 0,
-						Index:  0,
+						Id:     0,
 					},
 					{
 						Expiry: 1,
-						Index:  1,
+						Id:     1,
 					},
 				},
 				// this line is used by starport scaffolding # types/genesis/validField
@@ -126,11 +126,11 @@ func TestGenesisState_Validate(t *testing.T) {
 				SortedLazyContractList: []types.SortedLazyContract{
 					{
 						Expiry: 0,
-						Index:  0,
+						Id:     0,
 					},
 					{
 						Expiry: 0,
-						Index:  0,
+						Id:     0,
 					},
 				},
 			},
