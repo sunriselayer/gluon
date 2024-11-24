@@ -23,10 +23,6 @@ var (
 )
 
 const (
-	opWeightMsgMatchOrder = "op_weight_msg_match_order"
-	// TODO: Determine the simulation weight value
-	defaultWeightMsgMatchOrder int = 100
-
 	opWeightMsgLazyRegisterOrder = "op_weight_msg_order"
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgLazyRegisterOrder int = 100
@@ -34,6 +30,10 @@ const (
 	opWeightMsgCancelOrder = "op_weight_msg_order"
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgCancelOrder int = 100
+
+	opWeightMsgMatchOrder = "op_weight_msg_match_order"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgMatchOrder int = 100
 
 	// this line is used by starport scaffolding # simapp/module/const
 )
@@ -69,17 +69,6 @@ func (am AppModule) RegisterStoreDecoder(_ simtypes.StoreDecoderRegistry) {}
 func (am AppModule) WeightedOperations(simState module.SimulationState) []simtypes.WeightedOperation {
 	operations := make([]simtypes.WeightedOperation, 0)
 
-	var weightMsgMatchOrder int
-	simState.AppParams.GetOrGenerate(opWeightMsgMatchOrder, &weightMsgMatchOrder, nil,
-		func(_ *rand.Rand) {
-			weightMsgMatchOrder = defaultWeightMsgMatchOrder
-		},
-	)
-	operations = append(operations, simulation.NewWeightedOperation(
-		weightMsgMatchOrder,
-		contractsimulation.SimulateMsgMatchOrder(am.accountKeeper, am.bankKeeper, am.keeper),
-	))
-
 	var weightMsgLazyRegisterOrder int
 	simState.AppParams.GetOrGenerate(opWeightMsgLazyRegisterOrder, &weightMsgLazyRegisterOrder, nil,
 		func(_ *rand.Rand) {
@@ -102,6 +91,17 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		contractsimulation.SimulateMsgCancelOrder(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
+	var weightMsgMatchOrder int
+	simState.AppParams.GetOrGenerate(opWeightMsgMatchOrder, &weightMsgMatchOrder, nil,
+		func(_ *rand.Rand) {
+			weightMsgMatchOrder = defaultWeightMsgMatchOrder
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgMatchOrder,
+		contractsimulation.SimulateMsgMatchOrder(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
 	// this line is used by starport scaffolding # simapp/module/operation
 
 	return operations
@@ -110,14 +110,6 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 // ProposalMsgs returns msgs used for governance proposals for simulations.
 func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.WeightedProposalMsg {
 	return []simtypes.WeightedProposalMsg{
-		simulation.NewWeightedProposalMsg(
-			opWeightMsgMatchOrder,
-			defaultWeightMsgMatchOrder,
-			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				contractsimulation.SimulateMsgMatchOrder(am.accountKeeper, am.bankKeeper, am.keeper)
-				return nil
-			},
-		),
 		simulation.NewWeightedProposalMsg(
 			opWeightMsgLazyRegisterOrder,
 			defaultWeightMsgLazyRegisterOrder,
@@ -131,6 +123,14 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			defaultWeightMsgCancelOrder,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
 				contractsimulation.SimulateMsgCancelOrder(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgMatchOrder,
+			defaultWeightMsgMatchOrder,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				contractsimulation.SimulateMsgMatchOrder(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),
