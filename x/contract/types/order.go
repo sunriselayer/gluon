@@ -70,6 +70,10 @@ func (order Order) VerifySignature(pubKey cryptotypes.PubKey, signature []byte) 
 }
 
 func (buy Order) CrossValidate(sell Order, price sdkmath.LegacyDec, blockTime time.Time) error {
+	if buy.Address == sell.Address {
+		return ErrSameAddress
+	}
+
 	if buy.DenomBase != sell.DenomBase || buy.DenomQuote != sell.DenomQuote {
 		return ErrDenomMismatch
 	}

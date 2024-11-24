@@ -19,7 +19,7 @@ func transferAmount(params types.Params, amount sdkmath.Int, lazyContract bool) 
 
 func (k Keeper) transferRecipientAddress(defaultTarget sdk.AccAddress, atLeastOneLazyContract bool) sdk.AccAddress {
 	if atLeastOneLazyContract {
-		return k.accountKeeper.GetModuleAddress(types.ModuleName)
+		return k.AccountKeeper.GetModuleAddress(types.ModuleName)
 	}
 
 	return defaultTarget

@@ -40,7 +40,7 @@ var (
 	_ appmodule.AppModule       = (*AppModule)(nil)
 	_ appmodule.HasBeginBlocker = (*AppModule)(nil)
 	_ appmodule.HasEndBlocker   = (*AppModule)(nil)
-	_ porttypes.IBCModule       = (*IBCModule)(nil)
+	_ porttypes.IBCModule       = (*IBCMiddleware)(nil)
 )
 
 // ----------------------------------------------------------------------------

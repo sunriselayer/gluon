@@ -1,11 +1,6 @@
 syntax = "proto3";
 package gluon.contract;
 
-import "amino/amino.proto";
-import "gogoproto/gogo.proto"; 
-import "cosmos_proto/cosmos.proto";
-import "google/protobuf/timestamp.proto";
-
 option go_package = "gluon/x/contract/types";
 
 message PacketMetadata {

@@ -36,9 +36,8 @@ import (
 	solomachine "github.com/cosmos/ibc-go/v8/modules/light-clients/06-solomachine"
 	ibctm "github.com/cosmos/ibc-go/v8/modules/light-clients/07-tendermint"
 
-	// this line is used by starport scaffolding # ibc/app/import
 	contractmodule "gluon/x/contract/module"
-	contractmoduletypes "gluon/x/contract/types"
+	// this line is used by starport scaffolding # ibc/app/import
 )
 
 // registerIBCModules register IBC keepers and non dependency inject modules.
@@ -146,7 +145,8 @@ func (app *App) registerIBCModules(appOpts servertypes.AppOptions) error {
 	app.GovKeeper.SetLegacyRouter(govRouter)
 
 	// Create IBC modules with ibcfee middleware
-	transferIBCModule := ibcfee.NewIBCMiddleware(ibctransfer.NewIBCModule(app.TransferKeeper), app.IBCFeeKeeper)
+	transferIBCModuleIbcFee := ibcfee.NewIBCMiddleware(ibctransfer.NewIBCModule(app.TransferKeeper), app.IBCFeeKeeper)
+	transferIBCModule := contractmodule.NewIBCMiddleware(transferIBCModuleIbcFee, &app.ContractKeeper)
 
 	// integration point for custom authentication modules
 	var noAuthzModule porttypes.IBCModule
@@ -163,8 +163,6 @@ func (app *App) registerIBCModules(appOpts servertypes.AppOptions) error {
 		AddRoute(icacontrollertypes.SubModuleName, icaControllerIBCModule).
 		AddRoute(icahosttypes.SubModuleName, icaHostIBCModule)
 
-	contractIBCModule := ibcfee.NewIBCMiddleware(contractmodule.NewIBCModule(app.ContractKeeper), app.IBCFeeKeeper)
-	ibcRouter.AddRoute(contractmoduletypes.ModuleName, contractIBCModule)
 	// this line is used by starport scaffolding # ibc/app/module
 
 	app.IBCKeeper.SetRouter(ibcRouter)

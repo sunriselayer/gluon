@@ -33,7 +33,7 @@ type (
 		ibcKeeperFn        func() *ibckeeper.Keeper
 		capabilityScopedFn func(string) capabilitykeeper.ScopedKeeper
 
-		accountKeeper    types.AccountKeeper
+		AccountKeeper    types.AccountKeeper
 		bankKeeper       types.BankKeeper
 		customAuthKeeper types.CustomAuthKeeper
 	}
@@ -63,7 +63,7 @@ func NewKeeper(
 		ibcKeeperFn:        ibcKeeperFn,
 		capabilityScopedFn: capabilityScopedFn,
 
-		accountKeeper:    accountKeeper,
+		AccountKeeper:    accountKeeper,
 		bankKeeper:       bankKeeper,
 		customAuthKeeper: customAuthKeeper,
 	}
