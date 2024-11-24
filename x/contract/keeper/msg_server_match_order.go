@@ -36,7 +36,7 @@ func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (
 		return nil, err
 	}
 
-	err = k.Settle(ctx, buy, sell, msg.Amount, msg.Price)
+	err = k.Contract(ctx, buy, sell, msg.Amount, msg.Price)
 	if err != nil {
 		return nil, err
 	}

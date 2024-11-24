@@ -317,7 +317,6 @@ func New(
 			case *contractmoduletypes.MsgLazyRegisterOrder:
 			case *contractmoduletypes.MsgCancelOrder:
 			case *contractmoduletypes.MsgMatchOrder:
-			case *contractmoduletypes.MsgMatchLazyOrder:
 			case *customauthmoduletypes.MsgCreatePairing:
 			case *customauthmoduletypes.MsgDeletePairing:
 				return true

@@ -25,7 +25,7 @@ func (k Keeper) transferRecipientAddress(defaultTarget sdk.AccAddress, atLeastOn
 	return defaultTarget
 }
 
-func (k Keeper) Settle(
+func (k Keeper) Contract(
 	ctx sdk.Context,
 	buy types.Order,
 	sell types.Order,
