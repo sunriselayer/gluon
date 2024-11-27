@@ -18,7 +18,6 @@ func NewOrder(
 	direction OrderDirection,
 	amount sdkmath.Int,
 	limitPrice *sdkmath.LegacyDec,
-	stopPrice *sdkmath.LegacyDec,
 	lazyContract bool,
 	allowLazyCounterparty bool,
 ) Order {
@@ -29,7 +28,6 @@ func NewOrder(
 		Direction:             direction,
 		Amount:                amount,
 		LimitPrice:            limitPrice,
-		StopPrice:             stopPrice,
 		LazyContract:          lazyContract,
 		AllowLazyCounterparty: allowLazyCounterparty,
 	}
@@ -95,14 +93,6 @@ func (buy Order) CrossValidate(sell Order, price sdkmath.LegacyDec, blockTime ti
 
 	if sell.LimitPrice != nil && price.LT(*sell.LimitPrice) {
 		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, sell limit price: %s", price.String(), sell.LimitPrice.String())
-	}
-
-	if buy.StopPrice != nil && price.LT(*buy.StopPrice) {
-		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, buy stop price: %s", price.String(), buy.StopPrice.String())
-	}
-
-	if sell.StopPrice != nil && price.GT(*sell.StopPrice) {
-		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, sell stop price: %s", price.String(), sell.StopPrice.String())
 	}
 
 	if blockTime.After(buy.Expiry) {

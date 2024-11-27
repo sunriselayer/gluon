@@ -32,16 +32,10 @@ message Order {
     (gogoproto.nullable) = true,
     (amino.dont_omitempty) = true
   ];
-  string stop_price = 8 [
-    (cosmos_proto.scalar) = "cosmos.Dec",
-    (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
-    (gogoproto.nullable) = true,
-    (amino.dont_omitempty) = true
-  ];
-  google.protobuf.Timestamp expiry = 9 [
+  google.protobuf.Timestamp expiry = 8 [
     (gogoproto.nullable) = false,
     (gogoproto.stdtime) = true
   ];
-  bool lazy_contract = 10;
-  bool allow_lazy_counterparty = 11;
+  bool lazy_contract = 9;
+  bool allow_lazy_counterparty = 10;
 }
