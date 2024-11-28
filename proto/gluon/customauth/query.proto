@@ -1,61 +1,63 @@
 syntax = "proto3";
-
 package gluon.customauth;
 
 import "amino/amino.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "gluon/customauth/pairing.proto";
+import "gluon/customauth/params.proto";
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
-import "cosmos/base/query/v1beta1/pagination.proto";
-import "gluon/customauth/params.proto";
-import "gluon/customauth/pairing.proto";
 
 option go_package = "gluon/x/customauth/types";
 
 // Query defines the gRPC querier service.
 service Query {
-  
   // Parameters queries the parameters of the module.
-  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/gluon/customauth/params";
-  
   }
-  
-  // Queries a list of Pairing items.
-  rpc Pairing    (QueryGetPairingRequest) returns (QueryGetPairingResponse) {
-    option (google.api.http).get = "/gluon/customauth/pairing/{address}/{id}";
-  
+
+  // Pairing
+  rpc Pairing(QueryGetPairingRequest) returns (QueryGetPairingResponse) {
+    option (google.api.http).get = "/gluon/customauth/pairings/{address}/{id}";
   }
-  rpc PairingAll (QueryAllPairingRequest) returns (QueryAllPairingResponse) {
-    option (google.api.http).get = "/gluon/customauth/pairing/{address}";
-  
+  // Pairings
+  rpc Pairings(QueryPairingsRequest) returns (QueryPairingsResponse) {
+    option (google.api.http).get = "/gluon/customauth/pairings/{address}";
   }
 }
+
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
 
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
-  
   // params holds all the parameters of this module.
-  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
 }
 
+// QueryGetPairingRequest
 message QueryGetPairingRequest {
   string address = 1;
   uint64 id = 2;
 }
 
+// QueryGetPairingResponse
 message QueryGetPairingResponse {
-  Pairing Pairing = 1 [(gogoproto.nullable) = false];
+  Pairing pairing = 1 [(gogoproto.nullable) = false];
 }
 
-message QueryAllPairingRequest {
+// QueryPairingsRequest
+message QueryPairingsRequest {
   string address = 1;
   cosmos.base.query.v1beta1.PageRequest pagination = 2;
 }
 
-message QueryAllPairingResponse {
-  repeated Pairing                                Pairing    = 1 [(gogoproto.nullable) = false];
-           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+// QueryPairingsResponse
+message QueryPairingsResponse {
+  repeated Pairing pairings = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
-

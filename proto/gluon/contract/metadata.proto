@@ -3,10 +3,12 @@ package gluon.contract;
 
 option go_package = "gluon/x/contract/types";
 
+// PacketMetadata
 message PacketMetadata {
   ContractMetadata contract = 1;
 }
 
+// ContractMetadata
 message ContractMetadata {
   uint64 lazy_contract_id = 1;
 }

@@ -7,9 +7,10 @@ import "gogoproto/gogo.proto";
 
 option go_package = "gluon/x/contract/types";
 
+// SortedOrder
 message SortedOrder {
-  uint64 expiry = 1; 
-  string id = 2; 
+  uint64 expiry = 1;
+  string id = 2;
   bool cancelled = 3;
   string contracted_amount = 4 [
     (cosmos_proto.scalar) = "cosmos.Int",
@@ -18,4 +19,3 @@ message SortedOrder {
     (amino.dont_omitempty) = true
   ];
 }
-

@@ -3,6 +3,7 @@ package gluon.customauth.operator;
 
 option go_package = "gluon/x/customauth/types/operator";
 
+// Operator PubKey
 message PubKey {
   bytes user = 1;
 }

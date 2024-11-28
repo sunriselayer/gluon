@@ -7,10 +7,13 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "gluon/x/customauth/types";
 
+// Pairing
 message Pairing {
   uint64 id = 1;
-  string address = 2; 
-  google.protobuf.Any public_key = 3 [ (gogoproto.nullable) = false ];
-  google.protobuf.Timestamp created_at = 4
-      [ (gogoproto.nullable) = false, (gogoproto.stdtime) = true ];
+  string address = 2;
+  google.protobuf.Any public_key = 3 [(gogoproto.nullable) = false];
+  google.protobuf.Timestamp created_at = 4 [
+    (gogoproto.nullable) = false,
+    (gogoproto.stdtime) = true
+  ];
 }

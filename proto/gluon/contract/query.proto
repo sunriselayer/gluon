@@ -1,116 +1,93 @@
 syntax = "proto3";
-
 package gluon.contract;
 
 import "amino/amino.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "gluon/contract/order.proto";
+import "gluon/contract/params.proto";
+import "gluon/contract/sorted_order.proto";
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
-import "cosmos/base/query/v1beta1/pagination.proto";
-import "gluon/contract/params.proto";
-import "gluon/contract/order.proto";
-import "gluon/contract/sorted_order.proto";
-import "gluon/contract/lazy_contract.proto";
-import "gluon/contract/sorted_lazy_contract.proto";
 
 option go_package = "gluon/x/contract/types";
 
 // Query defines the gRPC querier service.
 service Query {
-  
   // Parameters queries the parameters of the module.
-  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/gluon/contract/params";
-  
   }
-  
-  // Queries a list of Order items.
-  rpc Order    (QueryGetOrderRequest) returns (QueryGetOrderResponse) {
-    option (google.api.http).get = "/gluon/contract/order/{id}";
-  
+
+  // Order
+  rpc Order(QueryGetOrderRequest) returns (QueryGetOrderResponse) {
+    option (google.api.http).get = "/gluon/contract/orders/{id}";
   }
-  rpc OrderAll (QueryAllOrderRequest) returns (QueryAllOrderResponse) {
-    option (google.api.http).get = "/gluon/contract/order";
-  
+  // Orders
+  rpc Orders(QueryOrdersRequest) returns (QueryOrdersResponse) {
+    option (google.api.http).get = "/gluon/contract/orders";
   }
-  
-  // Queries a list of SortedOrder items.
-  rpc SortedOrder    (QueryGetSortedOrderRequest) returns (QueryGetSortedOrderResponse) {
-    option (google.api.http).get = "/gluon/contract/sorted_order/{expiry}/{id}";
-  
+
+  // SortedOrder
+  rpc SortedOrder(QueryGetSortedOrderRequest) returns (QueryGetSortedOrderResponse) {
+    option (google.api.http).get = "/gluon/contract/sorted_orders/{expiry}/{id}";
   }
-  rpc SortedOrderAll (QueryAllSortedOrderRequest) returns (QueryAllSortedOrderResponse) {
-    option (google.api.http).get = "/gluon/contract/sorted_order";
-  
-  }
-  
-  // Queries a list of LazyContract items.
-  rpc LazyContract    (QueryGetLazyContractRequest) returns (QueryGetLazyContractResponse) {
-    option (google.api.http).get = "/gluon/contract/lazy_settlement/{id}";
-  
-  }
-  rpc LazyContractAll (QueryAllLazyContractRequest) returns (QueryAllLazyContractResponse) {
-    option (google.api.http).get = "/gluon/contract/lazy_settlement";
-  
+  // SortedOrders
+  rpc SortedOrders(QuerySortedOrdersRequest) returns (QuerySortedOrdersResponse) {
+    option (google.api.http).get = "/gluon/contract/sorted_orders";
   }
 }
+
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
 
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
-  
   // params holds all the parameters of this module.
-  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
 }
 
+// QueryGetOrderRequest
 message QueryGetOrderRequest {
   string id = 1;
 }
 
+// QueryGetOrderResponse
 message QueryGetOrderResponse {
   Order order = 1 [(gogoproto.nullable) = false];
 }
 
-message QueryAllOrderRequest {
+// QueryOrdersRequest
+message QueryOrdersRequest {
   cosmos.base.query.v1beta1.PageRequest pagination = 1;
 }
 
-message QueryAllOrderResponse {
-  repeated Order                                  order      = 1 [(gogoproto.nullable) = false];
-           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+// QueryOrdersResponse
+message QueryOrdersResponse {
+  repeated Order order = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
+// QueryGetSortedOrderRequest
 message QueryGetSortedOrderRequest {
   uint64 expiry = 1;
-  string id     = 2;
+  string id = 2;
 }
 
+// QueryGetSortedOrderResponse
 message QueryGetSortedOrderResponse {
-  SortedOrder sortedOrder = 1 [(gogoproto.nullable) = false];
+  SortedOrder sorted_orders = 1 [(gogoproto.nullable) = false];
 }
 
-message QueryAllSortedOrderRequest {
+// QuerySortedOrdersRequest
+message QuerySortedOrdersRequest {
   cosmos.base.query.v1beta1.PageRequest pagination = 1;
 }
 
-message QueryAllSortedOrderResponse {
-  repeated SortedOrder                            sortedOrder = 1 [(gogoproto.nullable) = false];
-           cosmos.base.query.v1beta1.PageResponse pagination  = 2;
-}
-
-message QueryGetLazyContractRequest {
-  uint64 id = 1;
-}
-
-message QueryGetLazyContractResponse {
-  LazyContract LazyContract = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryAllLazyContractRequest {
-  cosmos.base.query.v1beta1.PageRequest pagination = 1;
-}
-
-message QueryAllLazyContractResponse {
-  repeated LazyContract                           LazyContract = 1 [(gogoproto.nullable) = false];
-           cosmos.base.query.v1beta1.PageResponse pagination   = 2;
+// QuerySortedOrdersResponse
+message QuerySortedOrdersResponse {
+  repeated SortedOrder sorted_orders = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }

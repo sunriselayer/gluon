@@ -5,63 +5,77 @@ package gluon.contract;
 import "amino/amino.proto";
 import "cosmos/msg/v1/msg.proto";
 import "cosmos_proto/cosmos.proto";
-import "gogoproto/gogo.proto";
-import "gluon/contract/params.proto";
 import "gluon/contract/order.proto";
+import "gluon/contract/params.proto";
+import "gogoproto/gogo.proto";
 
 option go_package = "gluon/x/contract/types";
 
 // Msg defines the Msg service.
 service Msg {
   option (cosmos.msg.v1.service) = true;
-  
+
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
-  rpc UpdateParams   (MsgUpdateParams  ) returns (MsgUpdateParamsResponse  );
-  rpc LazyRegisterOrder    (MsgLazyRegisterOrder   ) returns (MsgLazyRegisterOrderResponse   );
-  rpc CancelOrder    (MsgCancelOrder   ) returns (MsgCancelOrderResponse   );
-  rpc MatchOrder     (MsgMatchOrder    ) returns (MsgMatchOrderResponse    );
+  rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
+  // LazyRegisterOrder
+  rpc LazyRegisterOrder(MsgLazyRegisterOrder) returns (MsgLazyRegisterOrderResponse);
+  // CancelOrder
+  rpc CancelOrder(MsgCancelOrder) returns (MsgCancelOrderResponse);
+  // MatchOrder
+  rpc MatchOrder(MsgMatchOrder) returns (MsgMatchOrderResponse);
 }
+
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
-  option (cosmos.msg.v1.signer) =                        "authority";
-  option           (amino.name) = "gluon/x/contract/MsgUpdateParams";
-  
+  option (cosmos.msg.v1.signer) = "authority";
+  option (amino.name) = "gluon/x/contract/MsgUpdateParams";
+
   // authority is the address that controls the module (defaults to x/gov unless overwritten).
   string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
   // params defines the module parameters to update.
-  
+
   // NOTE: All parameters must be supplied.
-  Params params = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  Params params = 2 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
 }
 
 // MsgUpdateParamsResponse defines the response structure for executing a
 // MsgUpdateParams message.
 message MsgUpdateParamsResponse {}
 
+// MsgLazyRegisterOrder
 message MsgLazyRegisterOrder {
   option (cosmos.msg.v1.signer) = "order.address";
 
-  string id = 1; 
-  Order order = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
-  uint64 pairing_id = 3;
-  bytes signature = 4;
+  Order order = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+  uint64 pairing_id = 2;
+  bytes signature = 3;
 }
 
+// MsgLazyRegisterOrderResponse
 message MsgLazyRegisterOrderResponse {}
 
+// MsgCancelOrder
 message MsgCancelOrder {
   option (cosmos.msg.v1.signer) = "user";
-  string user  = 1;
+  string user = 1;
   string id = 2;
 }
 
+// MsgCancelOrderResponse
 message MsgCancelOrderResponse {}
 
+// MsgMatchOrder
 message MsgMatchOrder {
   option (cosmos.msg.v1.signer) = "address_buy";
-  option (cosmos.msg.v1.signer) =   "address_sell";
+  option (cosmos.msg.v1.signer) = "address_sell";
 
   string address_buy = 1;
   string address_sell = 2;
@@ -81,4 +95,5 @@ message MsgMatchOrder {
   ];
 }
 
+// MsgMatchOrderResponse
 message MsgMatchOrderResponse {}
