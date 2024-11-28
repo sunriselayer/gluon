@@ -116,129 +116,19 @@ func (x *_GenesisState_4_list) IsValid() bool {
 	return x.list != nil
 }
 
-var _ protoreflect.List = (*_GenesisState_5_list)(nil)
-
-type _GenesisState_5_list struct {
-	list *[]*LazyContract
-}
-
-func (x *_GenesisState_5_list) Len() int {
-	if x.list == nil {
-		return 0
-	}
-	return len(*x.list)
-}
-
-func (x *_GenesisState_5_list) Get(i int) protoreflect.Value {
-	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
-}
-
-func (x *_GenesisState_5_list) Set(i int, value protoreflect.Value) {
-	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*LazyContract)
-	(*x.list)[i] = concreteValue
-}
-
-func (x *_GenesisState_5_list) Append(value protoreflect.Value) {
-	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*LazyContract)
-	*x.list = append(*x.list, concreteValue)
-}
-
-func (x *_GenesisState_5_list) AppendMutable() protoreflect.Value {
-	v := new(LazyContract)
-	*x.list = append(*x.list, v)
-	return protoreflect.ValueOfMessage(v.ProtoReflect())
-}
-
-func (x *_GenesisState_5_list) Truncate(n int) {
-	for i := n; i < len(*x.list); i++ {
-		(*x.list)[i] = nil
-	}
-	*x.list = (*x.list)[:n]
-}
-
-func (x *_GenesisState_5_list) NewElement() protoreflect.Value {
-	v := new(LazyContract)
-	return protoreflect.ValueOfMessage(v.ProtoReflect())
-}
-
-func (x *_GenesisState_5_list) IsValid() bool {
-	return x.list != nil
-}
-
-var _ protoreflect.List = (*_GenesisState_7_list)(nil)
-
-type _GenesisState_7_list struct {
-	list *[]*SortedLazyContract
-}
-
-func (x *_GenesisState_7_list) Len() int {
-	if x.list == nil {
-		return 0
-	}
-	return len(*x.list)
-}
-
-func (x *_GenesisState_7_list) Get(i int) protoreflect.Value {
-	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
-}
-
-func (x *_GenesisState_7_list) Set(i int, value protoreflect.Value) {
-	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*SortedLazyContract)
-	(*x.list)[i] = concreteValue
-}
-
-func (x *_GenesisState_7_list) Append(value protoreflect.Value) {
-	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*SortedLazyContract)
-	*x.list = append(*x.list, concreteValue)
-}
-
-func (x *_GenesisState_7_list) AppendMutable() protoreflect.Value {
-	v := new(SortedLazyContract)
-	*x.list = append(*x.list, v)
-	return protoreflect.ValueOfMessage(v.ProtoReflect())
-}
-
-func (x *_GenesisState_7_list) Truncate(n int) {
-	for i := n; i < len(*x.list); i++ {
-		(*x.list)[i] = nil
-	}
-	*x.list = (*x.list)[:n]
-}
-
-func (x *_GenesisState_7_list) NewElement() protoreflect.Value {
-	v := new(SortedLazyContract)
-	return protoreflect.ValueOfMessage(v.ProtoReflect())
-}
-
-func (x *_GenesisState_7_list) IsValid() bool {
-	return x.list != nil
-}
-
 var (
-	md_GenesisState                           protoreflect.MessageDescriptor
-	fd_GenesisState_params                    protoreflect.FieldDescriptor
-	fd_GenesisState_port_id                   protoreflect.FieldDescriptor
-	fd_GenesisState_order_list                protoreflect.FieldDescriptor
-	fd_GenesisState_sorted_order_list         protoreflect.FieldDescriptor
-	fd_GenesisState_lazy_contract_list        protoreflect.FieldDescriptor
-	fd_GenesisState_lazy_contract_count       protoreflect.FieldDescriptor
-	fd_GenesisState_sorted_lazy_contract_list protoreflect.FieldDescriptor
+	md_GenesisState               protoreflect.MessageDescriptor
+	fd_GenesisState_params        protoreflect.FieldDescriptor
+	fd_GenesisState_orders        protoreflect.FieldDescriptor
+	fd_GenesisState_sorted_orders protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_contract_genesis_proto_init()
 	md_GenesisState = File_gluon_contract_genesis_proto.Messages().ByName("GenesisState")
 	fd_GenesisState_params = md_GenesisState.Fields().ByName("params")
-	fd_GenesisState_port_id = md_GenesisState.Fields().ByName("port_id")
-	fd_GenesisState_order_list = md_GenesisState.Fields().ByName("order_list")
-	fd_GenesisState_sorted_order_list = md_GenesisState.Fields().ByName("sorted_order_list")
-	fd_GenesisState_lazy_contract_list = md_GenesisState.Fields().ByName("lazy_contract_list")
-	fd_GenesisState_lazy_contract_count = md_GenesisState.Fields().ByName("lazy_contract_count")
-	fd_GenesisState_sorted_lazy_contract_list = md_GenesisState.Fields().ByName("sorted_lazy_contract_list")
+	fd_GenesisState_orders = md_GenesisState.Fields().ByName("orders")
+	fd_GenesisState_sorted_orders = md_GenesisState.Fields().ByName("sorted_orders")
 }
 
 var _ protoreflect.Message = (*fastReflection_GenesisState)(nil)
@@ -312,39 +202,15 @@ func (x *fastReflection_GenesisState) Range(f func(protoreflect.FieldDescriptor,
 			return
 		}
 	}
-	if x.PortId != "" {
-		value := protoreflect.ValueOfString(x.PortId)
-		if !f(fd_GenesisState_port_id, value) {
+	if len(x.Orders) != 0 {
+		value := protoreflect.ValueOfList(&_GenesisState_3_list{list: &x.Orders})
+		if !f(fd_GenesisState_orders, value) {
 			return
 		}
 	}
-	if len(x.OrderList) != 0 {
-		value := protoreflect.ValueOfList(&_GenesisState_3_list{list: &x.OrderList})
-		if !f(fd_GenesisState_order_list, value) {
-			return
-		}
-	}
-	if len(x.SortedOrderList) != 0 {
-		value := protoreflect.ValueOfList(&_GenesisState_4_list{list: &x.SortedOrderList})
-		if !f(fd_GenesisState_sorted_order_list, value) {
-			return
-		}
-	}
-	if len(x.LazyContractList) != 0 {
-		value := protoreflect.ValueOfList(&_GenesisState_5_list{list: &x.LazyContractList})
-		if !f(fd_GenesisState_lazy_contract_list, value) {
-			return
-		}
-	}
-	if x.LazyContractCount != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.LazyContractCount)
-		if !f(fd_GenesisState_lazy_contract_count, value) {
-			return
-		}
-	}
-	if len(x.SortedLazyContractList) != 0 {
-		value := protoreflect.ValueOfList(&_GenesisState_7_list{list: &x.SortedLazyContractList})
-		if !f(fd_GenesisState_sorted_lazy_contract_list, value) {
+	if len(x.SortedOrders) != 0 {
+		value := protoreflect.ValueOfList(&_GenesisState_4_list{list: &x.SortedOrders})
+		if !f(fd_GenesisState_sorted_orders, value) {
 			return
 		}
 	}
@@ -365,18 +231,10 @@ func (x *fastReflection_GenesisState) Has(fd protoreflect.FieldDescriptor) bool 
 	switch fd.FullName() {
 	case "gluon.contract.GenesisState.params":
 		return x.Params != nil
-	case "gluon.contract.GenesisState.port_id":
-		return x.PortId != ""
-	case "gluon.contract.GenesisState.order_list":
-		return len(x.OrderList) != 0
-	case "gluon.contract.GenesisState.sorted_order_list":
-		return len(x.SortedOrderList) != 0
-	case "gluon.contract.GenesisState.lazy_contract_list":
-		return len(x.LazyContractList) != 0
-	case "gluon.contract.GenesisState.lazy_contract_count":
-		return x.LazyContractCount != uint64(0)
-	case "gluon.contract.GenesisState.sorted_lazy_contract_list":
-		return len(x.SortedLazyContractList) != 0
+	case "gluon.contract.GenesisState.orders":
+		return len(x.Orders) != 0
+	case "gluon.contract.GenesisState.sorted_orders":
+		return len(x.SortedOrders) != 0
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.GenesisState"))
@@ -395,18 +253,10 @@ func (x *fastReflection_GenesisState) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
 	case "gluon.contract.GenesisState.params":
 		x.Params = nil
-	case "gluon.contract.GenesisState.port_id":
-		x.PortId = ""
-	case "gluon.contract.GenesisState.order_list":
-		x.OrderList = nil
-	case "gluon.contract.GenesisState.sorted_order_list":
-		x.SortedOrderList = nil
-	case "gluon.contract.GenesisState.lazy_contract_list":
-		x.LazyContractList = nil
-	case "gluon.contract.GenesisState.lazy_contract_count":
-		x.LazyContractCount = uint64(0)
-	case "gluon.contract.GenesisState.sorted_lazy_contract_list":
-		x.SortedLazyContractList = nil
+	case "gluon.contract.GenesisState.orders":
+		x.Orders = nil
+	case "gluon.contract.GenesisState.sorted_orders":
+		x.SortedOrders = nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.GenesisState"))
@@ -426,35 +276,17 @@ func (x *fastReflection_GenesisState) Get(descriptor protoreflect.FieldDescripto
 	case "gluon.contract.GenesisState.params":
 		value := x.Params
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "gluon.contract.GenesisState.port_id":
-		value := x.PortId
-		return protoreflect.ValueOfString(value)
-	case "gluon.contract.GenesisState.order_list":
-		if len(x.OrderList) == 0 {
+	case "gluon.contract.GenesisState.orders":
+		if len(x.Orders) == 0 {
 			return protoreflect.ValueOfList(&_GenesisState_3_list{})
 		}
-		listValue := &_GenesisState_3_list{list: &x.OrderList}
+		listValue := &_GenesisState_3_list{list: &x.Orders}
 		return protoreflect.ValueOfList(listValue)
-	case "gluon.contract.GenesisState.sorted_order_list":
-		if len(x.SortedOrderList) == 0 {
+	case "gluon.contract.GenesisState.sorted_orders":
+		if len(x.SortedOrders) == 0 {
 			return protoreflect.ValueOfList(&_GenesisState_4_list{})
 		}
-		listValue := &_GenesisState_4_list{list: &x.SortedOrderList}
-		return protoreflect.ValueOfList(listValue)
-	case "gluon.contract.GenesisState.lazy_contract_list":
-		if len(x.LazyContractList) == 0 {
-			return protoreflect.ValueOfList(&_GenesisState_5_list{})
-		}
-		listValue := &_GenesisState_5_list{list: &x.LazyContractList}
-		return protoreflect.ValueOfList(listValue)
-	case "gluon.contract.GenesisState.lazy_contract_count":
-		value := x.LazyContractCount
-		return protoreflect.ValueOfUint64(value)
-	case "gluon.contract.GenesisState.sorted_lazy_contract_list":
-		if len(x.SortedLazyContractList) == 0 {
-			return protoreflect.ValueOfList(&_GenesisState_7_list{})
-		}
-		listValue := &_GenesisState_7_list{list: &x.SortedLazyContractList}
+		listValue := &_GenesisState_4_list{list: &x.SortedOrders}
 		return protoreflect.ValueOfList(listValue)
 	default:
 		if descriptor.IsExtension() {
@@ -478,26 +310,14 @@ func (x *fastReflection_GenesisState) Set(fd protoreflect.FieldDescriptor, value
 	switch fd.FullName() {
 	case "gluon.contract.GenesisState.params":
 		x.Params = value.Message().Interface().(*Params)
-	case "gluon.contract.GenesisState.port_id":
-		x.PortId = value.Interface().(string)
-	case "gluon.contract.GenesisState.order_list":
+	case "gluon.contract.GenesisState.orders":
 		lv := value.List()
 		clv := lv.(*_GenesisState_3_list)
-		x.OrderList = *clv.list
-	case "gluon.contract.GenesisState.sorted_order_list":
+		x.Orders = *clv.list
+	case "gluon.contract.GenesisState.sorted_orders":
 		lv := value.List()
 		clv := lv.(*_GenesisState_4_list)
-		x.SortedOrderList = *clv.list
-	case "gluon.contract.GenesisState.lazy_contract_list":
-		lv := value.List()
-		clv := lv.(*_GenesisState_5_list)
-		x.LazyContractList = *clv.list
-	case "gluon.contract.GenesisState.lazy_contract_count":
-		x.LazyContractCount = value.Uint()
-	case "gluon.contract.GenesisState.sorted_lazy_contract_list":
-		lv := value.List()
-		clv := lv.(*_GenesisState_7_list)
-		x.SortedLazyContractList = *clv.list
+		x.SortedOrders = *clv.list
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.GenesisState"))
@@ -523,34 +343,18 @@ func (x *fastReflection_GenesisState) Mutable(fd protoreflect.FieldDescriptor) p
 			x.Params = new(Params)
 		}
 		return protoreflect.ValueOfMessage(x.Params.ProtoReflect())
-	case "gluon.contract.GenesisState.order_list":
-		if x.OrderList == nil {
-			x.OrderList = []*Order{}
+	case "gluon.contract.GenesisState.orders":
+		if x.Orders == nil {
+			x.Orders = []*Order{}
 		}
-		value := &_GenesisState_3_list{list: &x.OrderList}
+		value := &_GenesisState_3_list{list: &x.Orders}
 		return protoreflect.ValueOfList(value)
-	case "gluon.contract.GenesisState.sorted_order_list":
-		if x.SortedOrderList == nil {
-			x.SortedOrderList = []*SortedOrder{}
+	case "gluon.contract.GenesisState.sorted_orders":
+		if x.SortedOrders == nil {
+			x.SortedOrders = []*SortedOrder{}
 		}
-		value := &_GenesisState_4_list{list: &x.SortedOrderList}
+		value := &_GenesisState_4_list{list: &x.SortedOrders}
 		return protoreflect.ValueOfList(value)
-	case "gluon.contract.GenesisState.lazy_contract_list":
-		if x.LazyContractList == nil {
-			x.LazyContractList = []*LazyContract{}
-		}
-		value := &_GenesisState_5_list{list: &x.LazyContractList}
-		return protoreflect.ValueOfList(value)
-	case "gluon.contract.GenesisState.sorted_lazy_contract_list":
-		if x.SortedLazyContractList == nil {
-			x.SortedLazyContractList = []*SortedLazyContract{}
-		}
-		value := &_GenesisState_7_list{list: &x.SortedLazyContractList}
-		return protoreflect.ValueOfList(value)
-	case "gluon.contract.GenesisState.port_id":
-		panic(fmt.Errorf("field port_id of message gluon.contract.GenesisState is not mutable"))
-	case "gluon.contract.GenesisState.lazy_contract_count":
-		panic(fmt.Errorf("field lazy_contract_count of message gluon.contract.GenesisState is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.GenesisState"))
@@ -567,22 +371,12 @@ func (x *fastReflection_GenesisState) NewField(fd protoreflect.FieldDescriptor) 
 	case "gluon.contract.GenesisState.params":
 		m := new(Params)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "gluon.contract.GenesisState.port_id":
-		return protoreflect.ValueOfString("")
-	case "gluon.contract.GenesisState.order_list":
+	case "gluon.contract.GenesisState.orders":
 		list := []*Order{}
 		return protoreflect.ValueOfList(&_GenesisState_3_list{list: &list})
-	case "gluon.contract.GenesisState.sorted_order_list":
+	case "gluon.contract.GenesisState.sorted_orders":
 		list := []*SortedOrder{}
 		return protoreflect.ValueOfList(&_GenesisState_4_list{list: &list})
-	case "gluon.contract.GenesisState.lazy_contract_list":
-		list := []*LazyContract{}
-		return protoreflect.ValueOfList(&_GenesisState_5_list{list: &list})
-	case "gluon.contract.GenesisState.lazy_contract_count":
-		return protoreflect.ValueOfUint64(uint64(0))
-	case "gluon.contract.GenesisState.sorted_lazy_contract_list":
-		list := []*SortedLazyContract{}
-		return protoreflect.ValueOfList(&_GenesisState_7_list{list: &list})
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.GenesisState"))
@@ -656,33 +450,14 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 			l = options.Size(x.Params)
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.PortId)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
-		if len(x.OrderList) > 0 {
-			for _, e := range x.OrderList {
+		if len(x.Orders) > 0 {
+			for _, e := range x.Orders {
 				l = options.Size(e)
 				n += 1 + l + runtime.Sov(uint64(l))
 			}
 		}
-		if len(x.SortedOrderList) > 0 {
-			for _, e := range x.SortedOrderList {
-				l = options.Size(e)
-				n += 1 + l + runtime.Sov(uint64(l))
-			}
-		}
-		if len(x.LazyContractList) > 0 {
-			for _, e := range x.LazyContractList {
-				l = options.Size(e)
-				n += 1 + l + runtime.Sov(uint64(l))
-			}
-		}
-		if x.LazyContractCount != 0 {
-			n += 1 + runtime.Sov(uint64(x.LazyContractCount))
-		}
-		if len(x.SortedLazyContractList) > 0 {
-			for _, e := range x.SortedLazyContractList {
+		if len(x.SortedOrders) > 0 {
+			for _, e := range x.SortedOrders {
 				l = options.Size(e)
 				n += 1 + l + runtime.Sov(uint64(l))
 			}
@@ -716,46 +491,9 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if len(x.SortedLazyContractList) > 0 {
-			for iNdEx := len(x.SortedLazyContractList) - 1; iNdEx >= 0; iNdEx-- {
-				encoded, err := options.Marshal(x.SortedLazyContractList[iNdEx])
-				if err != nil {
-					return protoiface.MarshalOutput{
-						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-						Buf:               input.Buf,
-					}, err
-				}
-				i -= len(encoded)
-				copy(dAtA[i:], encoded)
-				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
-				i--
-				dAtA[i] = 0x3a
-			}
-		}
-		if x.LazyContractCount != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.LazyContractCount))
-			i--
-			dAtA[i] = 0x30
-		}
-		if len(x.LazyContractList) > 0 {
-			for iNdEx := len(x.LazyContractList) - 1; iNdEx >= 0; iNdEx-- {
-				encoded, err := options.Marshal(x.LazyContractList[iNdEx])
-				if err != nil {
-					return protoiface.MarshalOutput{
-						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-						Buf:               input.Buf,
-					}, err
-				}
-				i -= len(encoded)
-				copy(dAtA[i:], encoded)
-				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
-				i--
-				dAtA[i] = 0x2a
-			}
-		}
-		if len(x.SortedOrderList) > 0 {
-			for iNdEx := len(x.SortedOrderList) - 1; iNdEx >= 0; iNdEx-- {
-				encoded, err := options.Marshal(x.SortedOrderList[iNdEx])
+		if len(x.SortedOrders) > 0 {
+			for iNdEx := len(x.SortedOrders) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.SortedOrders[iNdEx])
 				if err != nil {
 					return protoiface.MarshalOutput{
 						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -769,9 +507,9 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 				dAtA[i] = 0x22
 			}
 		}
-		if len(x.OrderList) > 0 {
-			for iNdEx := len(x.OrderList) - 1; iNdEx >= 0; iNdEx-- {
-				encoded, err := options.Marshal(x.OrderList[iNdEx])
+		if len(x.Orders) > 0 {
+			for iNdEx := len(x.Orders) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.Orders[iNdEx])
 				if err != nil {
 					return protoiface.MarshalOutput{
 						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -784,13 +522,6 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 				i--
 				dAtA[i] = 0x1a
 			}
-		}
-		if len(x.PortId) > 0 {
-			i -= len(x.PortId)
-			copy(dAtA[i:], x.PortId)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.PortId)))
-			i--
-			dAtA[i] = 0x12
 		}
 		if x.Params != nil {
 			encoded, err := options.Marshal(x.Params)
@@ -891,41 +622,9 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
-			case 2:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field PortId", wireType)
-				}
-				var stringLen uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.PortId = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
 			case 3:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OrderList", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Orders", wireType)
 				}
 				var msglen int
 				for shift := uint(0); ; shift += 7 {
@@ -952,14 +651,14 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.OrderList = append(x.OrderList, &Order{})
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.OrderList[len(x.OrderList)-1]); err != nil {
+				x.Orders = append(x.Orders, &Order{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Orders[len(x.Orders)-1]); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
 			case 4:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field SortedOrderList", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field SortedOrders", wireType)
 				}
 				var msglen int
 				for shift := uint(0); ; shift += 7 {
@@ -986,95 +685,8 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.SortedOrderList = append(x.SortedOrderList, &SortedOrder{})
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.SortedOrderList[len(x.SortedOrderList)-1]); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				iNdEx = postIndex
-			case 5:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field LazyContractList", wireType)
-				}
-				var msglen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					msglen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if msglen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + msglen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.LazyContractList = append(x.LazyContractList, &LazyContract{})
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.LazyContractList[len(x.LazyContractList)-1]); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				iNdEx = postIndex
-			case 6:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field LazyContractCount", wireType)
-				}
-				x.LazyContractCount = 0
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					x.LazyContractCount |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-			case 7:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field SortedLazyContractList", wireType)
-				}
-				var msglen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					msglen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if msglen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + msglen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.SortedLazyContractList = append(x.SortedLazyContractList, &SortedLazyContract{})
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.SortedLazyContractList[len(x.SortedLazyContractList)-1]); err != nil {
+				x.SortedOrders = append(x.SortedOrders, &SortedOrder{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.SortedOrders[len(x.SortedOrders)-1]); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
@@ -1133,13 +745,9 @@ type GenesisState struct {
 	unknownFields protoimpl.UnknownFields
 
 	// params defines all the parameters of the module.
-	Params                 *Params               `protobuf:"bytes,1,opt,name=params,proto3" json:"params,omitempty"`
-	PortId                 string                `protobuf:"bytes,2,opt,name=port_id,json=portId,proto3" json:"port_id,omitempty"`
-	OrderList              []*Order              `protobuf:"bytes,3,rep,name=order_list,json=orderList,proto3" json:"order_list,omitempty"`
-	SortedOrderList        []*SortedOrder        `protobuf:"bytes,4,rep,name=sorted_order_list,json=sortedOrderList,proto3" json:"sorted_order_list,omitempty"`
-	LazyContractList       []*LazyContract       `protobuf:"bytes,5,rep,name=lazy_contract_list,json=lazyContractList,proto3" json:"lazy_contract_list,omitempty"`
-	LazyContractCount      uint64                `protobuf:"varint,6,opt,name=lazy_contract_count,json=lazyContractCount,proto3" json:"lazy_contract_count,omitempty"`
-	SortedLazyContractList []*SortedLazyContract `protobuf:"bytes,7,rep,name=sorted_lazy_contract_list,json=sortedLazyContractList,proto3" json:"sorted_lazy_contract_list,omitempty"`
+	Params       *Params        `protobuf:"bytes,1,opt,name=params,proto3" json:"params,omitempty"`
+	Orders       []*Order       `protobuf:"bytes,3,rep,name=orders,proto3" json:"orders,omitempty"`
+	SortedOrders []*SortedOrder `protobuf:"bytes,4,rep,name=sorted_orders,json=sortedOrders,proto3" json:"sorted_orders,omitempty"`
 }
 
 func (x *GenesisState) Reset() {
@@ -1169,44 +777,16 @@ func (x *GenesisState) GetParams() *Params {
 	return nil
 }
 
-func (x *GenesisState) GetPortId() string {
+func (x *GenesisState) GetOrders() []*Order {
 	if x != nil {
-		return x.PortId
-	}
-	return ""
-}
-
-func (x *GenesisState) GetOrderList() []*Order {
-	if x != nil {
-		return x.OrderList
+		return x.Orders
 	}
 	return nil
 }
 
-func (x *GenesisState) GetSortedOrderList() []*SortedOrder {
+func (x *GenesisState) GetSortedOrders() []*SortedOrder {
 	if x != nil {
-		return x.SortedOrderList
-	}
-	return nil
-}
-
-func (x *GenesisState) GetLazyContractList() []*LazyContract {
-	if x != nil {
-		return x.LazyContractList
-	}
-	return nil
-}
-
-func (x *GenesisState) GetLazyContractCount() uint64 {
-	if x != nil {
-		return x.LazyContractCount
-	}
-	return 0
-}
-
-func (x *GenesisState) GetSortedLazyContractList() []*SortedLazyContract {
-	if x != nil {
-		return x.SortedLazyContractList
+		return x.SortedOrders
 	}
 	return nil
 }
@@ -1218,58 +798,36 @@ var file_gluon_contract_genesis_proto_rawDesc = []byte{
 	0x2f, 0x67, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e,
 	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x1a, 0x11,
 	0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2f, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x1a, 0x22, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
-	0x74, 0x2f, 0x6c, 0x61, 0x7a, 0x79, 0x5f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1a, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e,
-	0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x1a, 0x1b, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
-	0x74, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x29,
-	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x73,
-	0x6f, 0x72, 0x74, 0x65, 0x64, 0x5f, 0x6c, 0x61, 0x7a, 0x79, 0x5f, 0x63, 0x6f, 0x6e, 0x74, 0x72,
-	0x61, 0x63, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x21, 0x67, 0x6c, 0x75, 0x6f, 0x6e,
-	0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x73, 0x6f, 0x72, 0x74, 0x65, 0x64,
-	0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f,
-	0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x22, 0xd4, 0x03, 0x0a, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x53, 0x74,
-	0x61, 0x74, 0x65, 0x12, 0x39, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74,
-	0x72, 0x61, 0x63, 0x74, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f,
-	0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x17,
-	0x0a, 0x07, 0x70, 0x6f, 0x72, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x06, 0x70, 0x6f, 0x72, 0x74, 0x49, 0x64, 0x12, 0x3a, 0x0a, 0x0a, 0x6f, 0x72, 0x64, 0x65, 0x72,
-	0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x67, 0x6c,
-	0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4f, 0x72, 0x64,
-	0x65, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x09, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x4c,
-	0x69, 0x73, 0x74, 0x12, 0x4d, 0x0a, 0x11, 0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x5f, 0x6f, 0x72,
-	0x64, 0x65, 0x72, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b,
-	0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e,
-	0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f,
-	0x00, 0x52, 0x0f, 0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x4c, 0x69,
-	0x73, 0x74, 0x12, 0x50, 0x0a, 0x12, 0x6c, 0x61, 0x7a, 0x79, 0x5f, 0x63, 0x6f, 0x6e, 0x74, 0x72,
-	0x61, 0x63, 0x74, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x05, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c,
-	0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e,
-	0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x42, 0x04, 0xc8, 0xde,
-	0x1f, 0x00, 0x52, 0x10, 0x6c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
-	0x4c, 0x69, 0x73, 0x74, 0x12, 0x2e, 0x0a, 0x13, 0x6c, 0x61, 0x7a, 0x79, 0x5f, 0x63, 0x6f, 0x6e,
-	0x74, 0x72, 0x61, 0x63, 0x74, 0x5f, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28,
-	0x04, 0x52, 0x11, 0x6c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x43,
-	0x6f, 0x75, 0x6e, 0x74, 0x12, 0x63, 0x0a, 0x19, 0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x5f, 0x6c,
-	0x61, 0x7a, 0x79, 0x5f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x5f, 0x6c, 0x69, 0x73,
-	0x74, 0x18, 0x07, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e,
-	0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4c,
-	0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x42, 0x04, 0xc8, 0xde, 0x1f,
-	0x00, 0x52, 0x16, 0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e,
-	0x74, 0x72, 0x61, 0x63, 0x74, 0x4c, 0x69, 0x73, 0x74, 0x42, 0x95, 0x01, 0x0a, 0x12, 0x63, 0x6f,
-	0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
-	0x42, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01,
-	0x5a, 0x18, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f,
-	0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xa2, 0x02, 0x03, 0x47, 0x43, 0x58,
-	0xaa, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
-	0x74, 0xca, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61,
-	0x63, 0x74, 0xe2, 0x02, 0x1a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72,
-	0x61, 0x63, 0x74, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea,
-	0x02, 0x0f, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
-	0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x1a, 0x1a, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
+	0x74, 0x2f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1b, 0x67,
+	0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x70, 0x61,
+	0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x21, 0x67, 0x6c, 0x75, 0x6f,
+	0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x73, 0x6f, 0x72, 0x74, 0x65,
+	0x64, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67,
+	0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x22, 0xc6, 0x01, 0x0a, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x53,
+	0x74, 0x61, 0x74, 0x65, 0x12, 0x39, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e,
+	0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde,
+	0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12,
+	0x33, 0x0a, 0x06, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x15, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
+	0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x06, 0x6f, 0x72,
+	0x64, 0x65, 0x72, 0x73, 0x12, 0x46, 0x0a, 0x0d, 0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x5f, 0x6f,
+	0x72, 0x64, 0x65, 0x72, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x67, 0x6c,
+	0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x53, 0x6f, 0x72,
+	0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0c,
+	0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x42, 0x95, 0x01, 0x0a,
+	0x12, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72,
+	0x61, 0x63, 0x74, 0x42, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x50, 0x72, 0x6f, 0x74,
+	0x6f, 0x50, 0x01, 0x5a, 0x18, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67,
+	0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xa2, 0x02, 0x03,
+	0x47, 0x43, 0x58, 0xaa, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x43, 0x6f, 0x6e, 0x74,
+	0x72, 0x61, 0x63, 0x74, 0xca, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e,
+	0x74, 0x72, 0x61, 0x63, 0x74, 0xe2, 0x02, 0x1a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f,
+	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61,
+	0x74, 0x61, 0xea, 0x02, 0x0f, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x43, 0x6f, 0x6e, 0x74,
+	0x72, 0x61, 0x63, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1286,24 +844,20 @@ func file_gluon_contract_genesis_proto_rawDescGZIP() []byte {
 
 var file_gluon_contract_genesis_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_gluon_contract_genesis_proto_goTypes = []interface{}{
-	(*GenesisState)(nil),       // 0: gluon.contract.GenesisState
-	(*Params)(nil),             // 1: gluon.contract.Params
-	(*Order)(nil),              // 2: gluon.contract.Order
-	(*SortedOrder)(nil),        // 3: gluon.contract.SortedOrder
-	(*LazyContract)(nil),       // 4: gluon.contract.LazyContract
-	(*SortedLazyContract)(nil), // 5: gluon.contract.SortedLazyContract
+	(*GenesisState)(nil), // 0: gluon.contract.GenesisState
+	(*Params)(nil),       // 1: gluon.contract.Params
+	(*Order)(nil),        // 2: gluon.contract.Order
+	(*SortedOrder)(nil),  // 3: gluon.contract.SortedOrder
 }
 var file_gluon_contract_genesis_proto_depIdxs = []int32{
 	1, // 0: gluon.contract.GenesisState.params:type_name -> gluon.contract.Params
-	2, // 1: gluon.contract.GenesisState.order_list:type_name -> gluon.contract.Order
-	3, // 2: gluon.contract.GenesisState.sorted_order_list:type_name -> gluon.contract.SortedOrder
-	4, // 3: gluon.contract.GenesisState.lazy_contract_list:type_name -> gluon.contract.LazyContract
-	5, // 4: gluon.contract.GenesisState.sorted_lazy_contract_list:type_name -> gluon.contract.SortedLazyContract
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	2, // 1: gluon.contract.GenesisState.orders:type_name -> gluon.contract.Order
+	3, // 2: gluon.contract.GenesisState.sorted_orders:type_name -> gluon.contract.SortedOrder
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_gluon_contract_genesis_proto_init() }
@@ -1311,10 +865,8 @@ func file_gluon_contract_genesis_proto_init() {
 	if File_gluon_contract_genesis_proto != nil {
 		return
 	}
-	file_gluon_contract_lazy_contract_proto_init()
 	file_gluon_contract_order_proto_init()
 	file_gluon_contract_params_proto_init()
-	file_gluon_contract_sorted_lazy_contract_proto_init()
 	file_gluon_contract_sorted_order_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_gluon_contract_genesis_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {

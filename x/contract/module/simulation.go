@@ -46,8 +46,7 @@ func (AppModule) GenerateGenesisState(simState *module.SimulationState) {
 	}
 	contractGenesis := types.GenesisState{
 		Params: types.DefaultParams(),
-		PortId: types.PortID,
-		OrderList: []types.Order{
+		Orders: []types.Order{
 			{
 				Id:      "0",
 				Address: sample.AccAddress(),

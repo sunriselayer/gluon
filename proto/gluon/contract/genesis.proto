@@ -2,10 +2,8 @@ syntax = "proto3";
 package gluon.contract;
 
 import "amino/amino.proto";
-import "gluon/contract/lazy_contract.proto";
 import "gluon/contract/order.proto";
 import "gluon/contract/params.proto";
-import "gluon/contract/sorted_lazy_contract.proto";
 import "gluon/contract/sorted_order.proto";
 import "gogoproto/gogo.proto";
 
@@ -18,10 +16,6 @@ message GenesisState {
     (gogoproto.nullable) = false,
     (amino.dont_omitempty) = true
   ];
-  string port_id = 2;
-  repeated Order order_list = 3 [(gogoproto.nullable) = false];
-  repeated SortedOrder sorted_order_list = 4 [(gogoproto.nullable) = false];
-  repeated LazyContract lazy_contract_list = 5 [(gogoproto.nullable) = false];
-  uint64 lazy_contract_count = 6;
-  repeated SortedLazyContract sorted_lazy_contract_list = 7 [(gogoproto.nullable) = false];
+  repeated Order orders = 3 [(gogoproto.nullable) = false];
+  repeated SortedOrder sorted_orders = 4 [(gogoproto.nullable) = false];
 }

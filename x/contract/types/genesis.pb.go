@@ -27,13 +27,9 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 // GenesisState defines the contract module's genesis state.
 type GenesisState struct {
 	// params defines all the parameters of the module.
-	Params                 Params               `protobuf:"bytes,1,opt,name=params,proto3" json:"params"`
-	PortId                 string               `protobuf:"bytes,2,opt,name=port_id,json=portId,proto3" json:"port_id,omitempty"`
-	OrderList              []Order              `protobuf:"bytes,3,rep,name=order_list,json=orderList,proto3" json:"order_list"`
-	SortedOrderList        []SortedOrder        `protobuf:"bytes,4,rep,name=sorted_order_list,json=sortedOrderList,proto3" json:"sorted_order_list"`
-	LazyContractList       []LazyContract       `protobuf:"bytes,5,rep,name=lazy_contract_list,json=lazyContractList,proto3" json:"lazy_contract_list"`
-	LazyContractCount      uint64               `protobuf:"varint,6,opt,name=lazy_contract_count,json=lazyContractCount,proto3" json:"lazy_contract_count,omitempty"`
-	SortedLazyContractList []SortedLazyContract `protobuf:"bytes,7,rep,name=sorted_lazy_contract_list,json=sortedLazyContractList,proto3" json:"sorted_lazy_contract_list"`
+	Params       Params        `protobuf:"bytes,1,opt,name=params,proto3" json:"params"`
+	Orders       []Order       `protobuf:"bytes,3,rep,name=orders,proto3" json:"orders"`
+	SortedOrders []SortedOrder `protobuf:"bytes,4,rep,name=sorted_orders,json=sortedOrders,proto3" json:"sorted_orders"`
 }
 
 func (m *GenesisState) Reset()         { *m = GenesisState{} }
@@ -76,44 +72,16 @@ func (m *GenesisState) GetParams() Params {
 	return Params{}
 }
 
-func (m *GenesisState) GetPortId() string {
+func (m *GenesisState) GetOrders() []Order {
 	if m != nil {
-		return m.PortId
-	}
-	return ""
-}
-
-func (m *GenesisState) GetOrderList() []Order {
-	if m != nil {
-		return m.OrderList
+		return m.Orders
 	}
 	return nil
 }
 
-func (m *GenesisState) GetSortedOrderList() []SortedOrder {
+func (m *GenesisState) GetSortedOrders() []SortedOrder {
 	if m != nil {
-		return m.SortedOrderList
-	}
-	return nil
-}
-
-func (m *GenesisState) GetLazyContractList() []LazyContract {
-	if m != nil {
-		return m.LazyContractList
-	}
-	return nil
-}
-
-func (m *GenesisState) GetLazyContractCount() uint64 {
-	if m != nil {
-		return m.LazyContractCount
-	}
-	return 0
-}
-
-func (m *GenesisState) GetSortedLazyContractList() []SortedLazyContract {
-	if m != nil {
-		return m.SortedLazyContractList
+		return m.SortedOrders
 	}
 	return nil
 }
@@ -125,32 +93,24 @@ func init() {
 func init() { proto.RegisterFile("gluon/contract/genesis.proto", fileDescriptor_68ad30bcc80aa088) }
 
 var fileDescriptor_68ad30bcc80aa088 = []byte{
-	// 393 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x92, 0xc1, 0x4e, 0xea, 0x40,
-	0x14, 0x86, 0x3b, 0x17, 0x6e, 0x09, 0xc3, 0xcd, 0x55, 0xaa, 0x62, 0x2d, 0xa4, 0x56, 0x56, 0xd5,
-	0x45, 0x6b, 0x70, 0xa5, 0x4b, 0x58, 0x18, 0x13, 0x8c, 0xa4, 0xec, 0xdc, 0x34, 0xb5, 0x6d, 0x9a,
-	0x26, 0xa5, 0xd3, 0x74, 0x86, 0x44, 0x78, 0x0a, 0x1f, 0xc3, 0xa5, 0x8f, 0xc1, 0x92, 0x85, 0x0b,
-	0x57, 0xc6, 0xc0, 0xc2, 0xd7, 0x30, 0x9d, 0x29, 0xa1, 0x8c, 0xdd, 0x90, 0x99, 0xf3, 0xff, 0x7c,
-	0xe7, 0x3f, 0xd3, 0x03, 0x3b, 0x41, 0x34, 0x45, 0xb1, 0xe9, 0xa2, 0x98, 0xa4, 0x8e, 0x4b, 0xcc,
-	0xc0, 0x8f, 0x7d, 0x1c, 0x62, 0x23, 0x49, 0x11, 0x41, 0xd2, 0x7f, 0xaa, 0x1a, 0x1b, 0x55, 0x69,
-	0x3a, 0x93, 0x30, 0x46, 0x26, 0xfd, 0x65, 0x16, 0xa5, 0xcb, 0x01, 0x22, 0x67, 0x3e, 0xb3, 0x37,
-	0xb7, 0xdc, 0xa3, 0x70, 0x1e, 0x94, 0x7a, 0x7e, 0x9a, 0x6b, 0x6d, 0x4e, 0x4b, 0x9c, 0xd4, 0x99,
-	0xe4, 0xfd, 0x95, 0x73, 0x4e, 0xc4, 0x28, 0x25, 0xbe, 0x67, 0x97, 0xf5, 0x38, 0x2b, 0xb7, 0x16,
-	0x5b, 0x1d, 0x06, 0x28, 0x40, 0xf4, 0x68, 0x66, 0x27, 0x56, 0xed, 0xbe, 0x57, 0xe0, 0xbf, 0x5b,
-	0x36, 0xf5, 0x98, 0x38, 0xc4, 0x97, 0xae, 0xa1, 0xc8, 0x42, 0xc8, 0x40, 0x03, 0x7a, 0xa3, 0xd7,
-	0x32, 0x76, 0x5f, 0xc1, 0x18, 0x51, 0xb5, 0x5f, 0x5f, 0x7c, 0x9e, 0x0a, 0xaf, 0xdf, 0x6f, 0x17,
-	0xc0, 0xca, 0xff, 0x20, 0x1d, 0xc3, 0x5a, 0x82, 0x52, 0x62, 0x87, 0x9e, 0xfc, 0x47, 0x03, 0x7a,
-	0xdd, 0x12, 0xb3, 0xeb, 0x9d, 0x27, 0xdd, 0x40, 0x48, 0x93, 0xd8, 0x51, 0x88, 0x89, 0x5c, 0xd1,
-	0x2a, 0x7a, 0xa3, 0x77, 0xc4, 0x73, 0x1f, 0x32, 0x47, 0xbf, 0x9a, 0x61, 0xad, 0x3a, 0xb5, 0x0f,
-	0x43, 0x4c, 0xa4, 0x7b, 0xd8, 0x2c, 0x0e, 0xc3, 0x10, 0x55, 0x8a, 0x68, 0xf3, 0x88, 0x31, 0x35,
-	0x16, 0x41, 0x7b, 0x78, 0x5b, 0xa2, 0xb8, 0x11, 0x94, 0x76, 0xde, 0x8f, 0xf1, 0xfe, 0x52, 0x5e,
-	0x87, 0xe7, 0x0d, 0x9d, 0xf9, 0x6c, 0x90, 0x5f, 0x72, 0xe0, 0x7e, 0x54, 0xa8, 0x51, 0xa2, 0x01,
-	0x0f, 0x76, 0x89, 0x2e, 0x9a, 0xc6, 0x44, 0x16, 0x35, 0xa0, 0x57, 0xad, 0x66, 0xd1, 0x3e, 0xc8,
-	0x04, 0xc9, 0x85, 0x27, 0x65, 0x1f, 0x92, 0x05, 0xa9, 0xd1, 0x20, 0xdd, 0xf2, 0xc1, 0x4a, 0xe2,
-	0xb4, 0xf0, 0x2f, 0x25, 0x0b, 0xd5, 0xbf, 0x5c, 0xac, 0x54, 0xb0, 0x5c, 0xa9, 0xe0, 0x6b, 0xa5,
-	0x82, 0x97, 0xb5, 0x2a, 0x2c, 0xd7, 0xaa, 0xf0, 0xb1, 0x56, 0x85, 0xc7, 0x16, 0xdb, 0x94, 0xe7,
-	0xed, 0xae, 0x90, 0x59, 0xe2, 0xe3, 0x27, 0x91, 0xee, 0xc3, 0xd5, 0x4f, 0x00, 0x00, 0x00, 0xff,
-	0xff, 0xe9, 0xd0, 0x22, 0x0f, 0x13, 0x03, 0x00, 0x00,
+	// 265 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x49, 0xcf, 0x29, 0xcd,
+	0xcf, 0xd3, 0x4f, 0xce, 0xcf, 0x2b, 0x29, 0x4a, 0x4c, 0x2e, 0xd1, 0x4f, 0x4f, 0xcd, 0x4b, 0x2d,
+	0xce, 0x2c, 0xd6, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x03, 0xcb, 0xea, 0xc1, 0x64, 0xa5,
+	0x04, 0x13, 0x73, 0x33, 0xf3, 0xf2, 0xf5, 0xc1, 0x24, 0x44, 0x89, 0x94, 0x14, 0x9a, 0x01, 0xf9,
+	0x45, 0x29, 0xa9, 0x45, 0x50, 0x39, 0x69, 0x34, 0xb9, 0x82, 0xc4, 0xa2, 0xc4, 0x5c, 0xa8, 0xd9,
+	0x52, 0x8a, 0x68, 0x92, 0xc5, 0xf9, 0x45, 0x25, 0xa9, 0x29, 0xf1, 0xc8, 0xfa, 0x45, 0xd2, 0xf3,
+	0xd3, 0xf3, 0xc1, 0x4c, 0x7d, 0x10, 0x0b, 0x22, 0xaa, 0x74, 0x8c, 0x91, 0x8b, 0xc7, 0x1d, 0xe2,
+	0xcc, 0xe0, 0x92, 0xc4, 0x92, 0x54, 0x21, 0x4b, 0x2e, 0x36, 0x88, 0xc9, 0x12, 0x8c, 0x0a, 0x8c,
+	0x1a, 0xdc, 0x46, 0x62, 0x7a, 0xa8, 0xce, 0xd6, 0x0b, 0x00, 0xcb, 0x3a, 0x71, 0x9e, 0xb8, 0x27,
+	0xcf, 0xb0, 0xe2, 0xf9, 0x06, 0x2d, 0xc6, 0x20, 0xa8, 0x06, 0x21, 0x63, 0x2e, 0x36, 0xb0, 0x85,
+	0xc5, 0x12, 0xcc, 0x0a, 0xcc, 0x1a, 0xdc, 0x46, 0xa2, 0xe8, 0x5a, 0xfd, 0x41, 0xb2, 0x4e, 0x2c,
+	0x20, 0x9d, 0x41, 0x50, 0xa5, 0x42, 0x6e, 0x5c, 0xbc, 0xc8, 0x8e, 0x2d, 0x96, 0x60, 0x01, 0xeb,
+	0x95, 0x46, 0xd7, 0x1b, 0x0c, 0x56, 0x84, 0x6c, 0x02, 0x4f, 0x31, 0x42, 0xa8, 0xd8, 0xc9, 0xe0,
+	0xc4, 0x23, 0x39, 0xc6, 0x0b, 0x8f, 0xe4, 0x18, 0x1f, 0x3c, 0x92, 0x63, 0x9c, 0xf0, 0x58, 0x8e,
+	0xe1, 0xc2, 0x63, 0x39, 0x86, 0x1b, 0x8f, 0xe5, 0x18, 0xa2, 0xc4, 0x20, 0x61, 0x53, 0x81, 0x08,
+	0x9d, 0x92, 0xca, 0x82, 0xd4, 0xe2, 0x24, 0x36, 0x70, 0x08, 0x18, 0x03, 0x02, 0x00, 0x00, 0xff,
+	0xff, 0x2b, 0x35, 0x01, 0xf8, 0xb6, 0x01, 0x00, 0x00,
 }
 
 func (m *GenesisState) Marshal() (dAtA []byte, err error) {
@@ -173,43 +133,10 @@ func (m *GenesisState) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.SortedLazyContractList) > 0 {
-		for iNdEx := len(m.SortedLazyContractList) - 1; iNdEx >= 0; iNdEx-- {
+	if len(m.SortedOrders) > 0 {
+		for iNdEx := len(m.SortedOrders) - 1; iNdEx >= 0; iNdEx-- {
 			{
-				size, err := m.SortedLazyContractList[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintGenesis(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0x3a
-		}
-	}
-	if m.LazyContractCount != 0 {
-		i = encodeVarintGenesis(dAtA, i, uint64(m.LazyContractCount))
-		i--
-		dAtA[i] = 0x30
-	}
-	if len(m.LazyContractList) > 0 {
-		for iNdEx := len(m.LazyContractList) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.LazyContractList[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintGenesis(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0x2a
-		}
-	}
-	if len(m.SortedOrderList) > 0 {
-		for iNdEx := len(m.SortedOrderList) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.SortedOrderList[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				size, err := m.SortedOrders[iNdEx].MarshalToSizedBuffer(dAtA[:i])
 				if err != nil {
 					return 0, err
 				}
@@ -220,10 +147,10 @@ func (m *GenesisState) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			dAtA[i] = 0x22
 		}
 	}
-	if len(m.OrderList) > 0 {
-		for iNdEx := len(m.OrderList) - 1; iNdEx >= 0; iNdEx-- {
+	if len(m.Orders) > 0 {
+		for iNdEx := len(m.Orders) - 1; iNdEx >= 0; iNdEx-- {
 			{
-				size, err := m.OrderList[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				size, err := m.Orders[iNdEx].MarshalToSizedBuffer(dAtA[:i])
 				if err != nil {
 					return 0, err
 				}
@@ -233,13 +160,6 @@ func (m *GenesisState) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			i--
 			dAtA[i] = 0x1a
 		}
-	}
-	if len(m.PortId) > 0 {
-		i -= len(m.PortId)
-		copy(dAtA[i:], m.PortId)
-		i = encodeVarintGenesis(dAtA, i, uint64(len(m.PortId)))
-		i--
-		dAtA[i] = 0x12
 	}
 	{
 		size, err := m.Params.MarshalToSizedBuffer(dAtA[:i])
@@ -273,33 +193,14 @@ func (m *GenesisState) Size() (n int) {
 	_ = l
 	l = m.Params.Size()
 	n += 1 + l + sovGenesis(uint64(l))
-	l = len(m.PortId)
-	if l > 0 {
-		n += 1 + l + sovGenesis(uint64(l))
-	}
-	if len(m.OrderList) > 0 {
-		for _, e := range m.OrderList {
+	if len(m.Orders) > 0 {
+		for _, e := range m.Orders {
 			l = e.Size()
 			n += 1 + l + sovGenesis(uint64(l))
 		}
 	}
-	if len(m.SortedOrderList) > 0 {
-		for _, e := range m.SortedOrderList {
-			l = e.Size()
-			n += 1 + l + sovGenesis(uint64(l))
-		}
-	}
-	if len(m.LazyContractList) > 0 {
-		for _, e := range m.LazyContractList {
-			l = e.Size()
-			n += 1 + l + sovGenesis(uint64(l))
-		}
-	}
-	if m.LazyContractCount != 0 {
-		n += 1 + sovGenesis(uint64(m.LazyContractCount))
-	}
-	if len(m.SortedLazyContractList) > 0 {
-		for _, e := range m.SortedLazyContractList {
+	if len(m.SortedOrders) > 0 {
+		for _, e := range m.SortedOrders {
 			l = e.Size()
 			n += 1 + l + sovGenesis(uint64(l))
 		}
@@ -375,41 +276,9 @@ func (m *GenesisState) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PortId", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowGenesis
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.PortId = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
 		case 3:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field OrderList", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Orders", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -436,14 +305,14 @@ func (m *GenesisState) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.OrderList = append(m.OrderList, Order{})
-			if err := m.OrderList[len(m.OrderList)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			m.Orders = append(m.Orders, Order{})
+			if err := m.Orders[len(m.Orders)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
 		case 4:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SortedOrderList", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field SortedOrders", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -470,95 +339,8 @@ func (m *GenesisState) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.SortedOrderList = append(m.SortedOrderList, SortedOrder{})
-			if err := m.SortedOrderList[len(m.SortedOrderList)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field LazyContractList", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowGenesis
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.LazyContractList = append(m.LazyContractList, LazyContract{})
-			if err := m.LazyContractList[len(m.LazyContractList)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 6:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field LazyContractCount", wireType)
-			}
-			m.LazyContractCount = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowGenesis
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.LazyContractCount |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 7:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SortedLazyContractList", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowGenesis
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.SortedLazyContractList = append(m.SortedLazyContractList, SortedLazyContract{})
-			if err := m.SortedLazyContractList[len(m.SortedLazyContractList)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			m.SortedOrders = append(m.SortedOrders, SortedOrder{})
+			if err := m.SortedOrders[len(m.SortedOrders)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

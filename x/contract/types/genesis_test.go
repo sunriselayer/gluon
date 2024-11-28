@@ -22,8 +22,7 @@ func TestGenesisState_Validate(t *testing.T) {
 		{
 			desc: "valid genesis state",
 			genState: &types.GenesisState{
-				PortId: types.PortID,
-				OrderList: []types.Order{
+				Orders: []types.Order{
 					{
 						Id: "0",
 					},
@@ -31,7 +30,7 @@ func TestGenesisState_Validate(t *testing.T) {
 						Id: "1",
 					},
 				},
-				SortedOrderList: []types.SortedOrder{
+				SortedOrders: []types.SortedOrder{
 					{
 						Expiry: 0,
 						Id:     "0",
@@ -41,25 +40,6 @@ func TestGenesisState_Validate(t *testing.T) {
 						Id:     "1",
 					},
 				},
-				LazyContractList: []types.LazyContract{
-					{
-						Id: 0,
-					},
-					{
-						Id: 1,
-					},
-				},
-				LazyContractCount: 2,
-				SortedLazyContractList: []types.SortedLazyContract{
-					{
-						Expiry: 0,
-						Id:     0,
-					},
-					{
-						Expiry: 1,
-						Id:     1,
-					},
-				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -67,7 +47,7 @@ func TestGenesisState_Validate(t *testing.T) {
 		{
 			desc: "duplicated order",
 			genState: &types.GenesisState{
-				OrderList: []types.Order{
+				Orders: []types.Order{
 					{
 						Id: "0",
 					},
@@ -81,7 +61,7 @@ func TestGenesisState_Validate(t *testing.T) {
 		{
 			desc: "duplicated sortedOrder",
 			genState: &types.GenesisState{
-				SortedOrderList: []types.SortedOrder{
+				SortedOrders: []types.SortedOrder{
 					{
 						Expiry: 0,
 						Id:     "0",
@@ -89,48 +69,6 @@ func TestGenesisState_Validate(t *testing.T) {
 					{
 						Expiry: 0,
 						Id:     "0",
-					},
-				},
-			},
-			valid: false,
-		},
-		{
-			desc: "duplicated lazyContract",
-			genState: &types.GenesisState{
-				LazyContractList: []types.LazyContract{
-					{
-						Id: 0,
-					},
-					{
-						Id: 0,
-					},
-				},
-			},
-			valid: false,
-		},
-		{
-			desc: "invalid lazyContract count",
-			genState: &types.GenesisState{
-				LazyContractList: []types.LazyContract{
-					{
-						Id: 1,
-					},
-				},
-				LazyContractCount: 0,
-			},
-			valid: false,
-		},
-		{
-			desc: "duplicated sortedLazyContract",
-			genState: &types.GenesisState{
-				SortedLazyContractList: []types.SortedLazyContract{
-					{
-						Expiry: 0,
-						Id:     0,
-					},
-					{
-						Expiry: 0,
-						Id:     0,
 					},
 				},
 			},
