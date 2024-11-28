@@ -18,18 +18,14 @@ func NewOrder(
 	direction OrderDirection,
 	amount sdkmath.Int,
 	limitPrice *sdkmath.LegacyDec,
-	lazyContract bool,
-	allowLazyCounterparty bool,
 ) Order {
 	return Order{
-		Address:               address,
-		DenomBase:             denomBase,
-		DenomQuote:            denomQuote,
-		Direction:             direction,
-		Amount:                amount,
-		LimitPrice:            limitPrice,
-		LazyContract:          lazyContract,
-		AllowLazyCounterparty: allowLazyCounterparty,
+		Address:    address,
+		DenomBase:  denomBase,
+		DenomQuote: denomQuote,
+		Direction:  direction,
+		Amount:     amount,
+		LimitPrice: limitPrice,
 	}
 }
 
@@ -76,10 +72,10 @@ func (buy Order) CrossValidate(sell Order, price sdkmath.LegacyDec, blockTime ti
 		return ErrDenomMismatch
 	}
 
-	if buy.Direction != OrderDirection_BUY {
+	if buy.Direction != OrderDirection_ORDER_DIRECTION_BUY {
 		return ErrInvalidOrderDirection
 	}
-	if sell.Direction != OrderDirection_SELL {
+	if sell.Direction != OrderDirection_ORDER_DIRECTION_SELL {
 		return ErrInvalidOrderDirection
 	}
 
@@ -101,14 +97,6 @@ func (buy Order) CrossValidate(sell Order, price sdkmath.LegacyDec, blockTime ti
 
 	if blockTime.After(sell.Expiry) {
 		return ErrOrderExpired
-	}
-
-	if buy.LazyContract && !sell.AllowLazyCounterparty {
-		return ErrLazyContractNotAllowed
-	}
-
-	if sell.LazyContract && !buy.AllowLazyCounterparty {
-		return ErrLazyContractNotAllowed
 	}
 
 	return nil

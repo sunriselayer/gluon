@@ -47,20 +47,20 @@ func TestOrderMsgServerDelete(t *testing.T) {
 		{
 			desc: "Completed",
 			request: &types.MsgCancelOrder{User: user,
-				Id: strconv.Itoa(0),
+				OrderId: strconv.Itoa(0),
 			},
 		},
 		{
 			desc: "Unauthorized",
 			request: &types.MsgCancelOrder{User: "B",
-				Id: strconv.Itoa(0),
+				OrderId: strconv.Itoa(0),
 			},
 			err: sdkerrors.ErrUnauthorized,
 		},
 		{
 			desc: "KeyNotFound",
 			request: &types.MsgCancelOrder{User: user,
-				Id: strconv.Itoa(100000),
+				OrderId: strconv.Itoa(100000),
 			},
 			err: sdkerrors.ErrKeyNotFound,
 		},
@@ -83,7 +83,7 @@ func TestOrderMsgServerDelete(t *testing.T) {
 			} else {
 				require.NoError(t, err)
 				_, found := k.GetOrder(ctx,
-					tc.request.Id,
+					tc.request.OrderId,
 				)
 				require.False(t, found)
 			}

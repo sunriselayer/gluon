@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-func (k Keeper) SortedOrderAll(ctx context.Context, req *types.QueryAllSortedOrderRequest) (*types.QueryAllSortedOrderResponse, error) {
+func (k Keeper) SortedOrders(ctx context.Context, req *types.QuerySortedOrdersRequest) (*types.QuerySortedOrdersResponse, error) {
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
@@ -38,7 +38,7 @@ func (k Keeper) SortedOrderAll(ctx context.Context, req *types.QueryAllSortedOrd
 		return nil, status.Error(codes.Internal, err.Error())
 	}
 
-	return &types.QueryAllSortedOrderResponse{SortedOrder: sortedOrders, Pagination: pageRes}, nil
+	return &types.QuerySortedOrdersResponse{SortedOrders: sortedOrders, Pagination: pageRes}, nil
 }
 
 func (k Keeper) SortedOrder(ctx context.Context, req *types.QueryGetSortedOrderRequest) (*types.QueryGetSortedOrderResponse, error) {
@@ -55,5 +55,5 @@ func (k Keeper) SortedOrder(ctx context.Context, req *types.QueryGetSortedOrderR
 		return nil, status.Error(codes.NotFound, "not found")
 	}
 
-	return &types.QueryGetSortedOrderResponse{SortedOrder: val}, nil
+	return &types.QueryGetSortedOrderResponse{SortedOrders: val}, nil
 }

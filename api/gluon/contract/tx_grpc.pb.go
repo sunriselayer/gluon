@@ -32,8 +32,11 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
+	// LazyRegisterOrder
 	LazyRegisterOrder(ctx context.Context, in *MsgLazyRegisterOrder, opts ...grpc.CallOption) (*MsgLazyRegisterOrderResponse, error)
+	// CancelOrder
 	CancelOrder(ctx context.Context, in *MsgCancelOrder, opts ...grpc.CallOption) (*MsgCancelOrderResponse, error)
+	// MatchOrder
 	MatchOrder(ctx context.Context, in *MsgMatchOrder, opts ...grpc.CallOption) (*MsgMatchOrderResponse, error)
 }
 
@@ -88,8 +91,11 @@ type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
+	// LazyRegisterOrder
 	LazyRegisterOrder(context.Context, *MsgLazyRegisterOrder) (*MsgLazyRegisterOrderResponse, error)
+	// CancelOrder
 	CancelOrder(context.Context, *MsgCancelOrder) (*MsgCancelOrderResponse, error)
+	// MatchOrder
 	MatchOrder(context.Context, *MsgMatchOrder) (*MsgMatchOrderResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }

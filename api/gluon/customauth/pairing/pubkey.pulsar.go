@@ -1077,6 +1077,8 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Pairing PubKey
+// This is only for adapting PubKey interface of Cosmos SDK
 type PubKey struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1120,6 +1122,7 @@ func (x *PubKey) GetPairingId() uint64 {
 	return 0
 }
 
+// Pairing PubKey
 type PubKeyInternal struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

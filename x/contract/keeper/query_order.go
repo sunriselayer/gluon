@@ -12,7 +12,7 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func (k Keeper) OrderAll(ctx context.Context, req *types.QueryAllOrderRequest) (*types.QueryAllOrderResponse, error) {
+func (k Keeper) Orders(ctx context.Context, req *types.QueryOrdersRequest) (*types.QueryOrdersResponse, error) {
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
@@ -36,7 +36,7 @@ func (k Keeper) OrderAll(ctx context.Context, req *types.QueryAllOrderRequest) (
 		return nil, status.Error(codes.Internal, err.Error())
 	}
 
-	return &types.QueryAllOrderResponse{Order: orders, Pagination: pageRes}, nil
+	return &types.QueryOrdersResponse{Order: orders, Pagination: pageRes}, nil
 }
 
 func (k Keeper) Order(ctx context.Context, req *types.QueryGetOrderRequest) (*types.QueryGetOrderResponse, error) {

@@ -9,22 +9,6 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
-func transferAmount(params types.Params, amount sdkmath.Int, lazyContract bool) sdkmath.Int {
-	if lazyContract {
-		return params.LazyContractMarginRatio.MulInt(amount).RoundInt()
-	}
-
-	return amount
-}
-
-func (k Keeper) transferRecipientAddress(defaultTarget sdk.AccAddress, atLeastOneLazyContract bool) sdk.AccAddress {
-	if atLeastOneLazyContract {
-		return k.AccountKeeper.GetModuleAddress(types.ModuleName)
-	}
-
-	return defaultTarget
-}
-
 func (k Keeper) Contract(
 	ctx sdk.Context,
 	buy types.Order,
@@ -44,22 +28,16 @@ func (k Keeper) Contract(
 		return err
 	}
 
-	params := k.GetParams(ctx)
 	amountBase := amount
 	amountQuote := price.MulInt(amount).RoundInt()
-	amountBaseTransfer := transferAmount(params, amountBase, sell.LazyContract)
-	amountQuoteTransfer := transferAmount(params, amountQuote, buy.LazyContract)
 
-	atLeastOneLazyContract := buy.LazyContract || sell.LazyContract
-
-	if amountQuoteTransfer.IsPositive() {
-		recipient := k.transferRecipientAddress(addressSell, atLeastOneLazyContract)
+	if amountQuote.IsPositive() {
 		err = k.bankKeeper.SendCoins(
 			ctx,
 			addressBuy,
-			recipient,
+			addressSell,
 			sdk.NewCoins(
-				sdk.NewCoin(denomQuote, amountQuoteTransfer),
+				sdk.NewCoin(denomQuote, amountQuote),
 			),
 		)
 		if err != nil {
@@ -67,14 +45,13 @@ func (k Keeper) Contract(
 		}
 	}
 
-	if amountBaseTransfer.IsPositive() {
-		recipient := k.transferRecipientAddress(addressBuy, atLeastOneLazyContract)
+	if amountBase.IsPositive() {
 		err = k.bankKeeper.SendCoins(
 			ctx,
 			addressSell,
-			recipient,
+			addressBuy,
 			sdk.NewCoins(
-				sdk.NewCoin(denomBase, amountBaseTransfer),
+				sdk.NewCoin(denomBase, amountBase),
 			),
 		)
 		if err != nil {
@@ -89,31 +66,6 @@ func (k Keeper) Contract(
 	err = k.AddContractedAmount(ctx, sell.Expiry, sell.Id, amount)
 	if err != nil {
 		return err
-	}
-
-	if atLeastOneLazyContract {
-		expiry := ctx.BlockTime().Add(params.LazyContractPeriod)
-
-		// Check order expiry and contract expiry to prevent from order info garbage collected before the settlement
-		if buy.Expiry.Before(expiry) || sell.Expiry.Before(expiry) {
-			return types.ErrOrderExpireBeforeLazyContract
-		}
-
-		lazyContractId := k.AppendLazyContract(ctx, types.LazyContract{
-			Buyer:               buy.Address,
-			Seller:              sell.Address,
-			DenomBase:           denomBase,
-			DenomQuote:          denomQuote,
-			AmountEscrowBuyer:   amountQuoteTransfer,
-			AmountEscrowSeller:  amountBaseTransfer,
-			AmountPendingBuyer:  amountQuote.Sub(amountQuoteTransfer),
-			AmountPendingSeller: amountBase.Sub(amountBaseTransfer),
-			Expiry:              expiry,
-		})
-		k.SetSortedLazyContract(ctx, types.SortedLazyContract{
-			Expiry: uint64(expiry.UnixMilli()),
-			Id:     lazyContractId,
-		})
 	}
 
 	return nil

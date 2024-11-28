@@ -9,13 +9,11 @@ import (
 var _ sdk.Msg = &MsgLazyRegisterOrder{}
 
 func NewMsgLazyRegisterOrder(
-	id string,
 	order Order,
 	pairingId uint64,
 	signature []byte,
 ) *MsgLazyRegisterOrder {
 	return &MsgLazyRegisterOrder{
-		Id:        id,
 		Order:     order,
 		PairingId: pairingId,
 		Signature: signature,
@@ -38,12 +36,12 @@ var _ sdk.Msg = &MsgCancelOrder{}
 
 func NewMsgCancelOrder(
 	user string,
-	id string,
+	orderId string,
 
 ) *MsgCancelOrder {
 	return &MsgCancelOrder{
-		User: user,
-		Id:   id,
+		User:    user,
+		OrderId: orderId,
 	}
 }
 

@@ -82,7 +82,7 @@ func SimulateMsgCancelOrder(
 		}
 		msg.User = simAccount.Address.String()
 
-		msg.Id = order.Id
+		msg.OrderId = order.Id
 
 		txCtx := simulation.OperationInput{
 			R:               r,

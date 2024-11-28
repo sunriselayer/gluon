@@ -22,6 +22,7 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
+// PacketMetadata
 type PacketMetadata struct {
 	Contract *ContractMetadata `protobuf:"bytes,1,opt,name=contract,proto3" json:"contract,omitempty"`
 }
@@ -66,6 +67,7 @@ func (m *PacketMetadata) GetContract() *ContractMetadata {
 	return nil
 }
 
+// ContractMetadata
 type ContractMetadata struct {
 	LazyContractId uint64 `protobuf:"varint,1,opt,name=lazy_contract_id,json=lazyContractId,proto3" json:"lazy_contract_id,omitempty"`
 }

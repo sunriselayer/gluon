@@ -68,7 +68,7 @@ func SimulateMsgDeletePairing(
 			return simtypes.NoOpMsg(types.ModuleName, sdk.MsgTypeURL(msg), "pairing user not found"), nil, nil
 		}
 		msg.User = simAccount.Address.String()
-		msg.Id = pairing.Id
+		msg.PairingId = pairing.Id
 
 		txCtx := simulation.OperationInput{
 			R:               r,

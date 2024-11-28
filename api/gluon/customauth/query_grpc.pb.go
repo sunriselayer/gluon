@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName     = "/gluon.customauth.Query/Params"
-	Query_Pairing_FullMethodName    = "/gluon.customauth.Query/Pairing"
-	Query_PairingAll_FullMethodName = "/gluon.customauth.Query/PairingAll"
+	Query_Params_FullMethodName   = "/gluon.customauth.Query/Params"
+	Query_Pairing_FullMethodName  = "/gluon.customauth.Query/Pairing"
+	Query_Pairings_FullMethodName = "/gluon.customauth.Query/Pairings"
 )
 
 // QueryClient is the client API for Query service.
@@ -30,9 +30,10 @@ const (
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
-	// Queries a list of Pairing items.
+	// Pairing
 	Pairing(ctx context.Context, in *QueryGetPairingRequest, opts ...grpc.CallOption) (*QueryGetPairingResponse, error)
-	PairingAll(ctx context.Context, in *QueryAllPairingRequest, opts ...grpc.CallOption) (*QueryAllPairingResponse, error)
+	// Pairings
+	Pairings(ctx context.Context, in *QueryPairingsRequest, opts ...grpc.CallOption) (*QueryPairingsResponse, error)
 }
 
 type queryClient struct {
@@ -61,9 +62,9 @@ func (c *queryClient) Pairing(ctx context.Context, in *QueryGetPairingRequest, o
 	return out, nil
 }
 
-func (c *queryClient) PairingAll(ctx context.Context, in *QueryAllPairingRequest, opts ...grpc.CallOption) (*QueryAllPairingResponse, error) {
-	out := new(QueryAllPairingResponse)
-	err := c.cc.Invoke(ctx, Query_PairingAll_FullMethodName, in, out, opts...)
+func (c *queryClient) Pairings(ctx context.Context, in *QueryPairingsRequest, opts ...grpc.CallOption) (*QueryPairingsResponse, error) {
+	out := new(QueryPairingsResponse)
+	err := c.cc.Invoke(ctx, Query_Pairings_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,9 +77,10 @@ func (c *queryClient) PairingAll(ctx context.Context, in *QueryAllPairingRequest
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
-	// Queries a list of Pairing items.
+	// Pairing
 	Pairing(context.Context, *QueryGetPairingRequest) (*QueryGetPairingResponse, error)
-	PairingAll(context.Context, *QueryAllPairingRequest) (*QueryAllPairingResponse, error)
+	// Pairings
+	Pairings(context.Context, *QueryPairingsRequest) (*QueryPairingsResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -92,8 +94,8 @@ func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*Q
 func (UnimplementedQueryServer) Pairing(context.Context, *QueryGetPairingRequest) (*QueryGetPairingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pairing not implemented")
 }
-func (UnimplementedQueryServer) PairingAll(context.Context, *QueryAllPairingRequest) (*QueryAllPairingResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PairingAll not implemented")
+func (UnimplementedQueryServer) Pairings(context.Context, *QueryPairingsRequest) (*QueryPairingsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Pairings not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -144,20 +146,20 @@ func _Query_Pairing_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_PairingAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryAllPairingRequest)
+func _Query_Pairings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryPairingsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).PairingAll(ctx, in)
+		return srv.(QueryServer).Pairings(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_PairingAll_FullMethodName,
+		FullMethod: Query_Pairings_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).PairingAll(ctx, req.(*QueryAllPairingRequest))
+		return srv.(QueryServer).Pairings(ctx, req.(*QueryPairingsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -178,8 +180,8 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Query_Pairing_Handler,
 		},
 		{
-			MethodName: "PairingAll",
-			Handler:    _Query_PairingAll_Handler,
+			MethodName: "Pairings",
+			Handler:    _Query_Pairings_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

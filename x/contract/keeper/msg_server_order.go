@@ -48,7 +48,7 @@ func (k msgServer) CancelOrder(goCtx context.Context, msg *types.MsgCancelOrder)
 	// Check if the value exists
 	valFound, isFound := k.GetOrder(
 		ctx,
-		msg.Id,
+		msg.OrderId,
 	)
 	if !isFound {
 		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, "index not set")

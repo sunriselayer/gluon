@@ -13,7 +13,7 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func (k Keeper) PairingAll(ctx context.Context, req *types.QueryAllPairingRequest) (*types.QueryAllPairingResponse, error) {
+func (k Keeper) Pairings(ctx context.Context, req *types.QueryPairingsRequest) (*types.QueryPairingsResponse, error) {
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
@@ -37,7 +37,7 @@ func (k Keeper) PairingAll(ctx context.Context, req *types.QueryAllPairingReques
 		return nil, status.Error(codes.Internal, err.Error())
 	}
 
-	return &types.QueryAllPairingResponse{Pairing: pairings, Pagination: pageRes}, nil
+	return &types.QueryPairingsResponse{Pairings: pairings, Pagination: pageRes}, nil
 }
 
 func (k Keeper) Pairing(ctx context.Context, req *types.QueryGetPairingRequest) (*types.QueryGetPairingResponse, error) {

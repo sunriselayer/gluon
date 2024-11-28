@@ -1663,25 +1663,25 @@ func (x *fastReflection_QueryGetOrderResponse) ProtoMethods() *protoiface.Method
 }
 
 var (
-	md_QueryAllOrderRequest            protoreflect.MessageDescriptor
-	fd_QueryAllOrderRequest_pagination protoreflect.FieldDescriptor
+	md_QueryOrdersRequest            protoreflect.MessageDescriptor
+	fd_QueryOrdersRequest_pagination protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_contract_query_proto_init()
-	md_QueryAllOrderRequest = File_gluon_contract_query_proto.Messages().ByName("QueryAllOrderRequest")
-	fd_QueryAllOrderRequest_pagination = md_QueryAllOrderRequest.Fields().ByName("pagination")
+	md_QueryOrdersRequest = File_gluon_contract_query_proto.Messages().ByName("QueryOrdersRequest")
+	fd_QueryOrdersRequest_pagination = md_QueryOrdersRequest.Fields().ByName("pagination")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryAllOrderRequest)(nil)
+var _ protoreflect.Message = (*fastReflection_QueryOrdersRequest)(nil)
 
-type fastReflection_QueryAllOrderRequest QueryAllOrderRequest
+type fastReflection_QueryOrdersRequest QueryOrdersRequest
 
-func (x *QueryAllOrderRequest) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryAllOrderRequest)(x)
+func (x *QueryOrdersRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryOrdersRequest)(x)
 }
 
-func (x *QueryAllOrderRequest) slowProtoReflect() protoreflect.Message {
+func (x *QueryOrdersRequest) slowProtoReflect() protoreflect.Message {
 	mi := &file_gluon_contract_query_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1693,43 +1693,43 @@ func (x *QueryAllOrderRequest) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryAllOrderRequest_messageType fastReflection_QueryAllOrderRequest_messageType
-var _ protoreflect.MessageType = fastReflection_QueryAllOrderRequest_messageType{}
+var _fastReflection_QueryOrdersRequest_messageType fastReflection_QueryOrdersRequest_messageType
+var _ protoreflect.MessageType = fastReflection_QueryOrdersRequest_messageType{}
 
-type fastReflection_QueryAllOrderRequest_messageType struct{}
+type fastReflection_QueryOrdersRequest_messageType struct{}
 
-func (x fastReflection_QueryAllOrderRequest_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryAllOrderRequest)(nil)
+func (x fastReflection_QueryOrdersRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryOrdersRequest)(nil)
 }
-func (x fastReflection_QueryAllOrderRequest_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryAllOrderRequest)
+func (x fastReflection_QueryOrdersRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryOrdersRequest)
 }
-func (x fastReflection_QueryAllOrderRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllOrderRequest
+func (x fastReflection_QueryOrdersRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryOrdersRequest
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryAllOrderRequest) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllOrderRequest
+func (x *fastReflection_QueryOrdersRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryOrdersRequest
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryAllOrderRequest) Type() protoreflect.MessageType {
-	return _fastReflection_QueryAllOrderRequest_messageType
+func (x *fastReflection_QueryOrdersRequest) Type() protoreflect.MessageType {
+	return _fastReflection_QueryOrdersRequest_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryAllOrderRequest) New() protoreflect.Message {
-	return new(fastReflection_QueryAllOrderRequest)
+func (x *fastReflection_QueryOrdersRequest) New() protoreflect.Message {
+	return new(fastReflection_QueryOrdersRequest)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryAllOrderRequest) Interface() protoreflect.ProtoMessage {
-	return (*QueryAllOrderRequest)(x)
+func (x *fastReflection_QueryOrdersRequest) Interface() protoreflect.ProtoMessage {
+	return (*QueryOrdersRequest)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -1737,10 +1737,10 @@ func (x *fastReflection_QueryAllOrderRequest) Interface() protoreflect.ProtoMess
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryAllOrderRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_QueryOrdersRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if x.Pagination != nil {
 		value := protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
-		if !f(fd_QueryAllOrderRequest_pagination, value) {
+		if !f(fd_QueryOrdersRequest_pagination, value) {
 			return
 		}
 	}
@@ -1757,15 +1757,15 @@ func (x *fastReflection_QueryAllOrderRequest) Range(f func(protoreflect.FieldDes
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryAllOrderRequest) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QueryOrdersRequest) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllOrderRequest.pagination":
+	case "gluon.contract.QueryOrdersRequest.pagination":
 		return x.Pagination != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllOrderRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryOrdersRequest"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllOrderRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QueryOrdersRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1775,15 +1775,15 @@ func (x *fastReflection_QueryAllOrderRequest) Has(fd protoreflect.FieldDescripto
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllOrderRequest) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QueryOrdersRequest) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllOrderRequest.pagination":
+	case "gluon.contract.QueryOrdersRequest.pagination":
 		x.Pagination = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllOrderRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryOrdersRequest"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllOrderRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QueryOrdersRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1793,16 +1793,16 @@ func (x *fastReflection_QueryAllOrderRequest) Clear(fd protoreflect.FieldDescrip
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryAllOrderRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryOrdersRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.contract.QueryAllOrderRequest.pagination":
+	case "gluon.contract.QueryOrdersRequest.pagination":
 		value := x.Pagination
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllOrderRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryOrdersRequest"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllOrderRequest does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QueryOrdersRequest does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1816,15 +1816,15 @@ func (x *fastReflection_QueryAllOrderRequest) Get(descriptor protoreflect.FieldD
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllOrderRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QueryOrdersRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllOrderRequest.pagination":
+	case "gluon.contract.QueryOrdersRequest.pagination":
 		x.Pagination = value.Message().Interface().(*v1beta1.PageRequest)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllOrderRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryOrdersRequest"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllOrderRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QueryOrdersRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1838,44 +1838,44 @@ func (x *fastReflection_QueryAllOrderRequest) Set(fd protoreflect.FieldDescripto
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllOrderRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryOrdersRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllOrderRequest.pagination":
+	case "gluon.contract.QueryOrdersRequest.pagination":
 		if x.Pagination == nil {
 			x.Pagination = new(v1beta1.PageRequest)
 		}
 		return protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllOrderRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryOrdersRequest"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllOrderRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QueryOrdersRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryAllOrderRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryOrdersRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllOrderRequest.pagination":
+	case "gluon.contract.QueryOrdersRequest.pagination":
 		m := new(v1beta1.PageRequest)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllOrderRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryOrdersRequest"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllOrderRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QueryOrdersRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryAllOrderRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QueryOrdersRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.QueryAllOrderRequest", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.QueryOrdersRequest", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1883,7 +1883,7 @@ func (x *fastReflection_QueryAllOrderRequest) WhichOneof(d protoreflect.OneofDes
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryAllOrderRequest) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QueryOrdersRequest) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -1894,7 +1894,7 @@ func (x *fastReflection_QueryAllOrderRequest) GetUnknown() protoreflect.RawField
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllOrderRequest) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QueryOrdersRequest) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -1906,7 +1906,7 @@ func (x *fastReflection_QueryAllOrderRequest) SetUnknown(fields protoreflect.Raw
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryAllOrderRequest) IsValid() bool {
+func (x *fastReflection_QueryOrdersRequest) IsValid() bool {
 	return x != nil
 }
 
@@ -1916,9 +1916,9 @@ func (x *fastReflection_QueryAllOrderRequest) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryAllOrderRequest) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QueryOrdersRequest) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryAllOrderRequest)
+		x := input.Message.Interface().(*QueryOrdersRequest)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1944,7 +1944,7 @@ func (x *fastReflection_QueryAllOrderRequest) ProtoMethods() *protoiface.Methods
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllOrderRequest)
+		x := input.Message.Interface().(*QueryOrdersRequest)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1988,7 +1988,7 @@ func (x *fastReflection_QueryAllOrderRequest) ProtoMethods() *protoiface.Methods
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllOrderRequest)
+		x := input.Message.Interface().(*QueryOrdersRequest)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -2020,10 +2020,10 @@ func (x *fastReflection_QueryAllOrderRequest) ProtoMethods() *protoiface.Methods
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllOrderRequest: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryOrdersRequest: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllOrderRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryOrdersRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -2097,79 +2097,79 @@ func (x *fastReflection_QueryAllOrderRequest) ProtoMethods() *protoiface.Methods
 	}
 }
 
-var _ protoreflect.List = (*_QueryAllOrderResponse_1_list)(nil)
+var _ protoreflect.List = (*_QueryOrdersResponse_1_list)(nil)
 
-type _QueryAllOrderResponse_1_list struct {
+type _QueryOrdersResponse_1_list struct {
 	list *[]*Order
 }
 
-func (x *_QueryAllOrderResponse_1_list) Len() int {
+func (x *_QueryOrdersResponse_1_list) Len() int {
 	if x.list == nil {
 		return 0
 	}
 	return len(*x.list)
 }
 
-func (x *_QueryAllOrderResponse_1_list) Get(i int) protoreflect.Value {
+func (x *_QueryOrdersResponse_1_list) Get(i int) protoreflect.Value {
 	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
 }
 
-func (x *_QueryAllOrderResponse_1_list) Set(i int, value protoreflect.Value) {
+func (x *_QueryOrdersResponse_1_list) Set(i int, value protoreflect.Value) {
 	valueUnwrapped := value.Message()
 	concreteValue := valueUnwrapped.Interface().(*Order)
 	(*x.list)[i] = concreteValue
 }
 
-func (x *_QueryAllOrderResponse_1_list) Append(value protoreflect.Value) {
+func (x *_QueryOrdersResponse_1_list) Append(value protoreflect.Value) {
 	valueUnwrapped := value.Message()
 	concreteValue := valueUnwrapped.Interface().(*Order)
 	*x.list = append(*x.list, concreteValue)
 }
 
-func (x *_QueryAllOrderResponse_1_list) AppendMutable() protoreflect.Value {
+func (x *_QueryOrdersResponse_1_list) AppendMutable() protoreflect.Value {
 	v := new(Order)
 	*x.list = append(*x.list, v)
 	return protoreflect.ValueOfMessage(v.ProtoReflect())
 }
 
-func (x *_QueryAllOrderResponse_1_list) Truncate(n int) {
+func (x *_QueryOrdersResponse_1_list) Truncate(n int) {
 	for i := n; i < len(*x.list); i++ {
 		(*x.list)[i] = nil
 	}
 	*x.list = (*x.list)[:n]
 }
 
-func (x *_QueryAllOrderResponse_1_list) NewElement() protoreflect.Value {
+func (x *_QueryOrdersResponse_1_list) NewElement() protoreflect.Value {
 	v := new(Order)
 	return protoreflect.ValueOfMessage(v.ProtoReflect())
 }
 
-func (x *_QueryAllOrderResponse_1_list) IsValid() bool {
+func (x *_QueryOrdersResponse_1_list) IsValid() bool {
 	return x.list != nil
 }
 
 var (
-	md_QueryAllOrderResponse            protoreflect.MessageDescriptor
-	fd_QueryAllOrderResponse_order      protoreflect.FieldDescriptor
-	fd_QueryAllOrderResponse_pagination protoreflect.FieldDescriptor
+	md_QueryOrdersResponse            protoreflect.MessageDescriptor
+	fd_QueryOrdersResponse_order      protoreflect.FieldDescriptor
+	fd_QueryOrdersResponse_pagination protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_contract_query_proto_init()
-	md_QueryAllOrderResponse = File_gluon_contract_query_proto.Messages().ByName("QueryAllOrderResponse")
-	fd_QueryAllOrderResponse_order = md_QueryAllOrderResponse.Fields().ByName("order")
-	fd_QueryAllOrderResponse_pagination = md_QueryAllOrderResponse.Fields().ByName("pagination")
+	md_QueryOrdersResponse = File_gluon_contract_query_proto.Messages().ByName("QueryOrdersResponse")
+	fd_QueryOrdersResponse_order = md_QueryOrdersResponse.Fields().ByName("order")
+	fd_QueryOrdersResponse_pagination = md_QueryOrdersResponse.Fields().ByName("pagination")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryAllOrderResponse)(nil)
+var _ protoreflect.Message = (*fastReflection_QueryOrdersResponse)(nil)
 
-type fastReflection_QueryAllOrderResponse QueryAllOrderResponse
+type fastReflection_QueryOrdersResponse QueryOrdersResponse
 
-func (x *QueryAllOrderResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryAllOrderResponse)(x)
+func (x *QueryOrdersResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryOrdersResponse)(x)
 }
 
-func (x *QueryAllOrderResponse) slowProtoReflect() protoreflect.Message {
+func (x *QueryOrdersResponse) slowProtoReflect() protoreflect.Message {
 	mi := &file_gluon_contract_query_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2181,43 +2181,43 @@ func (x *QueryAllOrderResponse) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryAllOrderResponse_messageType fastReflection_QueryAllOrderResponse_messageType
-var _ protoreflect.MessageType = fastReflection_QueryAllOrderResponse_messageType{}
+var _fastReflection_QueryOrdersResponse_messageType fastReflection_QueryOrdersResponse_messageType
+var _ protoreflect.MessageType = fastReflection_QueryOrdersResponse_messageType{}
 
-type fastReflection_QueryAllOrderResponse_messageType struct{}
+type fastReflection_QueryOrdersResponse_messageType struct{}
 
-func (x fastReflection_QueryAllOrderResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryAllOrderResponse)(nil)
+func (x fastReflection_QueryOrdersResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryOrdersResponse)(nil)
 }
-func (x fastReflection_QueryAllOrderResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryAllOrderResponse)
+func (x fastReflection_QueryOrdersResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryOrdersResponse)
 }
-func (x fastReflection_QueryAllOrderResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllOrderResponse
+func (x fastReflection_QueryOrdersResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryOrdersResponse
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryAllOrderResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllOrderResponse
+func (x *fastReflection_QueryOrdersResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryOrdersResponse
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryAllOrderResponse) Type() protoreflect.MessageType {
-	return _fastReflection_QueryAllOrderResponse_messageType
+func (x *fastReflection_QueryOrdersResponse) Type() protoreflect.MessageType {
+	return _fastReflection_QueryOrdersResponse_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryAllOrderResponse) New() protoreflect.Message {
-	return new(fastReflection_QueryAllOrderResponse)
+func (x *fastReflection_QueryOrdersResponse) New() protoreflect.Message {
+	return new(fastReflection_QueryOrdersResponse)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryAllOrderResponse) Interface() protoreflect.ProtoMessage {
-	return (*QueryAllOrderResponse)(x)
+func (x *fastReflection_QueryOrdersResponse) Interface() protoreflect.ProtoMessage {
+	return (*QueryOrdersResponse)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -2225,16 +2225,16 @@ func (x *fastReflection_QueryAllOrderResponse) Interface() protoreflect.ProtoMes
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryAllOrderResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_QueryOrdersResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if len(x.Order) != 0 {
-		value := protoreflect.ValueOfList(&_QueryAllOrderResponse_1_list{list: &x.Order})
-		if !f(fd_QueryAllOrderResponse_order, value) {
+		value := protoreflect.ValueOfList(&_QueryOrdersResponse_1_list{list: &x.Order})
+		if !f(fd_QueryOrdersResponse_order, value) {
 			return
 		}
 	}
 	if x.Pagination != nil {
 		value := protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
-		if !f(fd_QueryAllOrderResponse_pagination, value) {
+		if !f(fd_QueryOrdersResponse_pagination, value) {
 			return
 		}
 	}
@@ -2251,17 +2251,17 @@ func (x *fastReflection_QueryAllOrderResponse) Range(f func(protoreflect.FieldDe
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryAllOrderResponse) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QueryOrdersResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllOrderResponse.order":
+	case "gluon.contract.QueryOrdersResponse.order":
 		return len(x.Order) != 0
-	case "gluon.contract.QueryAllOrderResponse.pagination":
+	case "gluon.contract.QueryOrdersResponse.pagination":
 		return x.Pagination != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryOrdersResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QueryOrdersResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2271,17 +2271,17 @@ func (x *fastReflection_QueryAllOrderResponse) Has(fd protoreflect.FieldDescript
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllOrderResponse) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QueryOrdersResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllOrderResponse.order":
+	case "gluon.contract.QueryOrdersResponse.order":
 		x.Order = nil
-	case "gluon.contract.QueryAllOrderResponse.pagination":
+	case "gluon.contract.QueryOrdersResponse.pagination":
 		x.Pagination = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryOrdersResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QueryOrdersResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2291,22 +2291,22 @@ func (x *fastReflection_QueryAllOrderResponse) Clear(fd protoreflect.FieldDescri
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryAllOrderResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryOrdersResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.contract.QueryAllOrderResponse.order":
+	case "gluon.contract.QueryOrdersResponse.order":
 		if len(x.Order) == 0 {
-			return protoreflect.ValueOfList(&_QueryAllOrderResponse_1_list{})
+			return protoreflect.ValueOfList(&_QueryOrdersResponse_1_list{})
 		}
-		listValue := &_QueryAllOrderResponse_1_list{list: &x.Order}
+		listValue := &_QueryOrdersResponse_1_list{list: &x.Order}
 		return protoreflect.ValueOfList(listValue)
-	case "gluon.contract.QueryAllOrderResponse.pagination":
+	case "gluon.contract.QueryOrdersResponse.pagination":
 		value := x.Pagination
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryOrdersResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllOrderResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QueryOrdersResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -2320,19 +2320,19 @@ func (x *fastReflection_QueryAllOrderResponse) Get(descriptor protoreflect.Field
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllOrderResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QueryOrdersResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllOrderResponse.order":
+	case "gluon.contract.QueryOrdersResponse.order":
 		lv := value.List()
-		clv := lv.(*_QueryAllOrderResponse_1_list)
+		clv := lv.(*_QueryOrdersResponse_1_list)
 		x.Order = *clv.list
-	case "gluon.contract.QueryAllOrderResponse.pagination":
+	case "gluon.contract.QueryOrdersResponse.pagination":
 		x.Pagination = value.Message().Interface().(*v1beta1.PageResponse)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryOrdersResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QueryOrdersResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2346,53 +2346,53 @@ func (x *fastReflection_QueryAllOrderResponse) Set(fd protoreflect.FieldDescript
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllOrderResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryOrdersResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllOrderResponse.order":
+	case "gluon.contract.QueryOrdersResponse.order":
 		if x.Order == nil {
 			x.Order = []*Order{}
 		}
-		value := &_QueryAllOrderResponse_1_list{list: &x.Order}
+		value := &_QueryOrdersResponse_1_list{list: &x.Order}
 		return protoreflect.ValueOfList(value)
-	case "gluon.contract.QueryAllOrderResponse.pagination":
+	case "gluon.contract.QueryOrdersResponse.pagination":
 		if x.Pagination == nil {
 			x.Pagination = new(v1beta1.PageResponse)
 		}
 		return protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryOrdersResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QueryOrdersResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryAllOrderResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryOrdersResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllOrderResponse.order":
+	case "gluon.contract.QueryOrdersResponse.order":
 		list := []*Order{}
-		return protoreflect.ValueOfList(&_QueryAllOrderResponse_1_list{list: &list})
-	case "gluon.contract.QueryAllOrderResponse.pagination":
+		return protoreflect.ValueOfList(&_QueryOrdersResponse_1_list{list: &list})
+	case "gluon.contract.QueryOrdersResponse.pagination":
 		m := new(v1beta1.PageResponse)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryOrdersResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QueryOrdersResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryAllOrderResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QueryOrdersResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.QueryAllOrderResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.QueryOrdersResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -2400,7 +2400,7 @@ func (x *fastReflection_QueryAllOrderResponse) WhichOneof(d protoreflect.OneofDe
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryAllOrderResponse) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QueryOrdersResponse) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -2411,7 +2411,7 @@ func (x *fastReflection_QueryAllOrderResponse) GetUnknown() protoreflect.RawFiel
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllOrderResponse) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QueryOrdersResponse) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -2423,7 +2423,7 @@ func (x *fastReflection_QueryAllOrderResponse) SetUnknown(fields protoreflect.Ra
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryAllOrderResponse) IsValid() bool {
+func (x *fastReflection_QueryOrdersResponse) IsValid() bool {
 	return x != nil
 }
 
@@ -2433,9 +2433,9 @@ func (x *fastReflection_QueryAllOrderResponse) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryAllOrderResponse) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QueryOrdersResponse) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryAllOrderResponse)
+		x := input.Message.Interface().(*QueryOrdersResponse)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -2467,7 +2467,7 @@ func (x *fastReflection_QueryAllOrderResponse) ProtoMethods() *protoiface.Method
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllOrderResponse)
+		x := input.Message.Interface().(*QueryOrdersResponse)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -2527,7 +2527,7 @@ func (x *fastReflection_QueryAllOrderResponse) ProtoMethods() *protoiface.Method
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllOrderResponse)
+		x := input.Message.Interface().(*QueryOrdersResponse)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -2559,10 +2559,10 @@ func (x *fastReflection_QueryAllOrderResponse) ProtoMethods() *protoiface.Method
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllOrderResponse: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryOrdersResponse: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllOrderResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryOrdersResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -3139,14 +3139,14 @@ func (x *fastReflection_QueryGetSortedOrderRequest) ProtoMethods() *protoiface.M
 }
 
 var (
-	md_QueryGetSortedOrderResponse             protoreflect.MessageDescriptor
-	fd_QueryGetSortedOrderResponse_sortedOrder protoreflect.FieldDescriptor
+	md_QueryGetSortedOrderResponse               protoreflect.MessageDescriptor
+	fd_QueryGetSortedOrderResponse_sorted_orders protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_contract_query_proto_init()
 	md_QueryGetSortedOrderResponse = File_gluon_contract_query_proto.Messages().ByName("QueryGetSortedOrderResponse")
-	fd_QueryGetSortedOrderResponse_sortedOrder = md_QueryGetSortedOrderResponse.Fields().ByName("sortedOrder")
+	fd_QueryGetSortedOrderResponse_sorted_orders = md_QueryGetSortedOrderResponse.Fields().ByName("sorted_orders")
 }
 
 var _ protoreflect.Message = (*fastReflection_QueryGetSortedOrderResponse)(nil)
@@ -3214,9 +3214,9 @@ func (x *fastReflection_QueryGetSortedOrderResponse) Interface() protoreflect.Pr
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_QueryGetSortedOrderResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.SortedOrder != nil {
-		value := protoreflect.ValueOfMessage(x.SortedOrder.ProtoReflect())
-		if !f(fd_QueryGetSortedOrderResponse_sortedOrder, value) {
+	if x.SortedOrders != nil {
+		value := protoreflect.ValueOfMessage(x.SortedOrders.ProtoReflect())
+		if !f(fd_QueryGetSortedOrderResponse_sorted_orders, value) {
 			return
 		}
 	}
@@ -3235,8 +3235,8 @@ func (x *fastReflection_QueryGetSortedOrderResponse) Range(f func(protoreflect.F
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_QueryGetSortedOrderResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.contract.QueryGetSortedOrderResponse.sortedOrder":
-		return x.SortedOrder != nil
+	case "gluon.contract.QueryGetSortedOrderResponse.sorted_orders":
+		return x.SortedOrders != nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryGetSortedOrderResponse"))
@@ -3253,8 +3253,8 @@ func (x *fastReflection_QueryGetSortedOrderResponse) Has(fd protoreflect.FieldDe
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryGetSortedOrderResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.contract.QueryGetSortedOrderResponse.sortedOrder":
-		x.SortedOrder = nil
+	case "gluon.contract.QueryGetSortedOrderResponse.sorted_orders":
+		x.SortedOrders = nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryGetSortedOrderResponse"))
@@ -3271,8 +3271,8 @@ func (x *fastReflection_QueryGetSortedOrderResponse) Clear(fd protoreflect.Field
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_QueryGetSortedOrderResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.contract.QueryGetSortedOrderResponse.sortedOrder":
-		value := x.SortedOrder
+	case "gluon.contract.QueryGetSortedOrderResponse.sorted_orders":
+		value := x.SortedOrders
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
@@ -3294,8 +3294,8 @@ func (x *fastReflection_QueryGetSortedOrderResponse) Get(descriptor protoreflect
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryGetSortedOrderResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.contract.QueryGetSortedOrderResponse.sortedOrder":
-		x.SortedOrder = value.Message().Interface().(*SortedOrder)
+	case "gluon.contract.QueryGetSortedOrderResponse.sorted_orders":
+		x.SortedOrders = value.Message().Interface().(*SortedOrder)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryGetSortedOrderResponse"))
@@ -3316,11 +3316,11 @@ func (x *fastReflection_QueryGetSortedOrderResponse) Set(fd protoreflect.FieldDe
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryGetSortedOrderResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.contract.QueryGetSortedOrderResponse.sortedOrder":
-		if x.SortedOrder == nil {
-			x.SortedOrder = new(SortedOrder)
+	case "gluon.contract.QueryGetSortedOrderResponse.sorted_orders":
+		if x.SortedOrders == nil {
+			x.SortedOrders = new(SortedOrder)
 		}
-		return protoreflect.ValueOfMessage(x.SortedOrder.ProtoReflect())
+		return protoreflect.ValueOfMessage(x.SortedOrders.ProtoReflect())
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryGetSortedOrderResponse"))
@@ -3334,7 +3334,7 @@ func (x *fastReflection_QueryGetSortedOrderResponse) Mutable(fd protoreflect.Fie
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_QueryGetSortedOrderResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.contract.QueryGetSortedOrderResponse.sortedOrder":
+	case "gluon.contract.QueryGetSortedOrderResponse.sorted_orders":
 		m := new(SortedOrder)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
@@ -3406,8 +3406,8 @@ func (x *fastReflection_QueryGetSortedOrderResponse) ProtoMethods() *protoiface.
 		var n int
 		var l int
 		_ = l
-		if x.SortedOrder != nil {
-			l = options.Size(x.SortedOrder)
+		if x.SortedOrders != nil {
+			l = options.Size(x.SortedOrders)
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
 		if x.unknownFields != nil {
@@ -3439,8 +3439,8 @@ func (x *fastReflection_QueryGetSortedOrderResponse) ProtoMethods() *protoiface.
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.SortedOrder != nil {
-			encoded, err := options.Marshal(x.SortedOrder)
+		if x.SortedOrders != nil {
+			encoded, err := options.Marshal(x.SortedOrders)
 			if err != nil {
 				return protoiface.MarshalOutput{
 					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -3504,7 +3504,7 @@ func (x *fastReflection_QueryGetSortedOrderResponse) ProtoMethods() *protoiface.
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field SortedOrder", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field SortedOrders", wireType)
 				}
 				var msglen int
 				for shift := uint(0); ; shift += 7 {
@@ -3531,10 +3531,10 @@ func (x *fastReflection_QueryGetSortedOrderResponse) ProtoMethods() *protoiface.
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				if x.SortedOrder == nil {
-					x.SortedOrder = &SortedOrder{}
+				if x.SortedOrders == nil {
+					x.SortedOrders = &SortedOrder{}
 				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.SortedOrder); err != nil {
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.SortedOrders); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
@@ -3574,25 +3574,25 @@ func (x *fastReflection_QueryGetSortedOrderResponse) ProtoMethods() *protoiface.
 }
 
 var (
-	md_QueryAllSortedOrderRequest            protoreflect.MessageDescriptor
-	fd_QueryAllSortedOrderRequest_pagination protoreflect.FieldDescriptor
+	md_QuerySortedOrdersRequest            protoreflect.MessageDescriptor
+	fd_QuerySortedOrdersRequest_pagination protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_contract_query_proto_init()
-	md_QueryAllSortedOrderRequest = File_gluon_contract_query_proto.Messages().ByName("QueryAllSortedOrderRequest")
-	fd_QueryAllSortedOrderRequest_pagination = md_QueryAllSortedOrderRequest.Fields().ByName("pagination")
+	md_QuerySortedOrdersRequest = File_gluon_contract_query_proto.Messages().ByName("QuerySortedOrdersRequest")
+	fd_QuerySortedOrdersRequest_pagination = md_QuerySortedOrdersRequest.Fields().ByName("pagination")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryAllSortedOrderRequest)(nil)
+var _ protoreflect.Message = (*fastReflection_QuerySortedOrdersRequest)(nil)
 
-type fastReflection_QueryAllSortedOrderRequest QueryAllSortedOrderRequest
+type fastReflection_QuerySortedOrdersRequest QuerySortedOrdersRequest
 
-func (x *QueryAllSortedOrderRequest) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryAllSortedOrderRequest)(x)
+func (x *QuerySortedOrdersRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QuerySortedOrdersRequest)(x)
 }
 
-func (x *QueryAllSortedOrderRequest) slowProtoReflect() protoreflect.Message {
+func (x *QuerySortedOrdersRequest) slowProtoReflect() protoreflect.Message {
 	mi := &file_gluon_contract_query_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3604,43 +3604,43 @@ func (x *QueryAllSortedOrderRequest) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryAllSortedOrderRequest_messageType fastReflection_QueryAllSortedOrderRequest_messageType
-var _ protoreflect.MessageType = fastReflection_QueryAllSortedOrderRequest_messageType{}
+var _fastReflection_QuerySortedOrdersRequest_messageType fastReflection_QuerySortedOrdersRequest_messageType
+var _ protoreflect.MessageType = fastReflection_QuerySortedOrdersRequest_messageType{}
 
-type fastReflection_QueryAllSortedOrderRequest_messageType struct{}
+type fastReflection_QuerySortedOrdersRequest_messageType struct{}
 
-func (x fastReflection_QueryAllSortedOrderRequest_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryAllSortedOrderRequest)(nil)
+func (x fastReflection_QuerySortedOrdersRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QuerySortedOrdersRequest)(nil)
 }
-func (x fastReflection_QueryAllSortedOrderRequest_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryAllSortedOrderRequest)
+func (x fastReflection_QuerySortedOrdersRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_QuerySortedOrdersRequest)
 }
-func (x fastReflection_QueryAllSortedOrderRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllSortedOrderRequest
+func (x fastReflection_QuerySortedOrdersRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QuerySortedOrdersRequest
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryAllSortedOrderRequest) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllSortedOrderRequest
+func (x *fastReflection_QuerySortedOrdersRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_QuerySortedOrdersRequest
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryAllSortedOrderRequest) Type() protoreflect.MessageType {
-	return _fastReflection_QueryAllSortedOrderRequest_messageType
+func (x *fastReflection_QuerySortedOrdersRequest) Type() protoreflect.MessageType {
+	return _fastReflection_QuerySortedOrdersRequest_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryAllSortedOrderRequest) New() protoreflect.Message {
-	return new(fastReflection_QueryAllSortedOrderRequest)
+func (x *fastReflection_QuerySortedOrdersRequest) New() protoreflect.Message {
+	return new(fastReflection_QuerySortedOrdersRequest)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryAllSortedOrderRequest) Interface() protoreflect.ProtoMessage {
-	return (*QueryAllSortedOrderRequest)(x)
+func (x *fastReflection_QuerySortedOrdersRequest) Interface() protoreflect.ProtoMessage {
+	return (*QuerySortedOrdersRequest)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -3648,10 +3648,10 @@ func (x *fastReflection_QueryAllSortedOrderRequest) Interface() protoreflect.Pro
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryAllSortedOrderRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_QuerySortedOrdersRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if x.Pagination != nil {
 		value := protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
-		if !f(fd_QueryAllSortedOrderRequest_pagination, value) {
+		if !f(fd_QuerySortedOrdersRequest_pagination, value) {
 			return
 		}
 	}
@@ -3668,15 +3668,15 @@ func (x *fastReflection_QueryAllSortedOrderRequest) Range(f func(protoreflect.Fi
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryAllSortedOrderRequest) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QuerySortedOrdersRequest) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllSortedOrderRequest.pagination":
+	case "gluon.contract.QuerySortedOrdersRequest.pagination":
 		return x.Pagination != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllSortedOrderRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QuerySortedOrdersRequest"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllSortedOrderRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QuerySortedOrdersRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3686,15 +3686,15 @@ func (x *fastReflection_QueryAllSortedOrderRequest) Has(fd protoreflect.FieldDes
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllSortedOrderRequest) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QuerySortedOrdersRequest) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllSortedOrderRequest.pagination":
+	case "gluon.contract.QuerySortedOrdersRequest.pagination":
 		x.Pagination = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllSortedOrderRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QuerySortedOrdersRequest"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllSortedOrderRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QuerySortedOrdersRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3704,16 +3704,16 @@ func (x *fastReflection_QueryAllSortedOrderRequest) Clear(fd protoreflect.FieldD
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryAllSortedOrderRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QuerySortedOrdersRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.contract.QueryAllSortedOrderRequest.pagination":
+	case "gluon.contract.QuerySortedOrdersRequest.pagination":
 		value := x.Pagination
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllSortedOrderRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QuerySortedOrdersRequest"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllSortedOrderRequest does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QuerySortedOrdersRequest does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -3727,15 +3727,15 @@ func (x *fastReflection_QueryAllSortedOrderRequest) Get(descriptor protoreflect.
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllSortedOrderRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QuerySortedOrdersRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllSortedOrderRequest.pagination":
+	case "gluon.contract.QuerySortedOrdersRequest.pagination":
 		x.Pagination = value.Message().Interface().(*v1beta1.PageRequest)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllSortedOrderRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QuerySortedOrdersRequest"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllSortedOrderRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QuerySortedOrdersRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3749,44 +3749,44 @@ func (x *fastReflection_QueryAllSortedOrderRequest) Set(fd protoreflect.FieldDes
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllSortedOrderRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QuerySortedOrdersRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllSortedOrderRequest.pagination":
+	case "gluon.contract.QuerySortedOrdersRequest.pagination":
 		if x.Pagination == nil {
 			x.Pagination = new(v1beta1.PageRequest)
 		}
 		return protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllSortedOrderRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QuerySortedOrdersRequest"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllSortedOrderRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QuerySortedOrdersRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryAllSortedOrderRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QuerySortedOrdersRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllSortedOrderRequest.pagination":
+	case "gluon.contract.QuerySortedOrdersRequest.pagination":
 		m := new(v1beta1.PageRequest)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllSortedOrderRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QuerySortedOrdersRequest"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllSortedOrderRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QuerySortedOrdersRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryAllSortedOrderRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QuerySortedOrdersRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.QueryAllSortedOrderRequest", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.QuerySortedOrdersRequest", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -3794,7 +3794,7 @@ func (x *fastReflection_QueryAllSortedOrderRequest) WhichOneof(d protoreflect.On
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryAllSortedOrderRequest) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QuerySortedOrdersRequest) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -3805,7 +3805,7 @@ func (x *fastReflection_QueryAllSortedOrderRequest) GetUnknown() protoreflect.Ra
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllSortedOrderRequest) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QuerySortedOrdersRequest) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -3817,7 +3817,7 @@ func (x *fastReflection_QueryAllSortedOrderRequest) SetUnknown(fields protorefle
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryAllSortedOrderRequest) IsValid() bool {
+func (x *fastReflection_QuerySortedOrdersRequest) IsValid() bool {
 	return x != nil
 }
 
@@ -3827,9 +3827,9 @@ func (x *fastReflection_QueryAllSortedOrderRequest) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryAllSortedOrderRequest) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QuerySortedOrdersRequest) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryAllSortedOrderRequest)
+		x := input.Message.Interface().(*QuerySortedOrdersRequest)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -3855,7 +3855,7 @@ func (x *fastReflection_QueryAllSortedOrderRequest) ProtoMethods() *protoiface.M
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllSortedOrderRequest)
+		x := input.Message.Interface().(*QuerySortedOrdersRequest)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -3899,7 +3899,7 @@ func (x *fastReflection_QueryAllSortedOrderRequest) ProtoMethods() *protoiface.M
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllSortedOrderRequest)
+		x := input.Message.Interface().(*QuerySortedOrdersRequest)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -3931,10 +3931,10 @@ func (x *fastReflection_QueryAllSortedOrderRequest) ProtoMethods() *protoiface.M
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllSortedOrderRequest: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QuerySortedOrdersRequest: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllSortedOrderRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QuerySortedOrdersRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -4008,79 +4008,79 @@ func (x *fastReflection_QueryAllSortedOrderRequest) ProtoMethods() *protoiface.M
 	}
 }
 
-var _ protoreflect.List = (*_QueryAllSortedOrderResponse_1_list)(nil)
+var _ protoreflect.List = (*_QuerySortedOrdersResponse_1_list)(nil)
 
-type _QueryAllSortedOrderResponse_1_list struct {
+type _QuerySortedOrdersResponse_1_list struct {
 	list *[]*SortedOrder
 }
 
-func (x *_QueryAllSortedOrderResponse_1_list) Len() int {
+func (x *_QuerySortedOrdersResponse_1_list) Len() int {
 	if x.list == nil {
 		return 0
 	}
 	return len(*x.list)
 }
 
-func (x *_QueryAllSortedOrderResponse_1_list) Get(i int) protoreflect.Value {
+func (x *_QuerySortedOrdersResponse_1_list) Get(i int) protoreflect.Value {
 	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
 }
 
-func (x *_QueryAllSortedOrderResponse_1_list) Set(i int, value protoreflect.Value) {
+func (x *_QuerySortedOrdersResponse_1_list) Set(i int, value protoreflect.Value) {
 	valueUnwrapped := value.Message()
 	concreteValue := valueUnwrapped.Interface().(*SortedOrder)
 	(*x.list)[i] = concreteValue
 }
 
-func (x *_QueryAllSortedOrderResponse_1_list) Append(value protoreflect.Value) {
+func (x *_QuerySortedOrdersResponse_1_list) Append(value protoreflect.Value) {
 	valueUnwrapped := value.Message()
 	concreteValue := valueUnwrapped.Interface().(*SortedOrder)
 	*x.list = append(*x.list, concreteValue)
 }
 
-func (x *_QueryAllSortedOrderResponse_1_list) AppendMutable() protoreflect.Value {
+func (x *_QuerySortedOrdersResponse_1_list) AppendMutable() protoreflect.Value {
 	v := new(SortedOrder)
 	*x.list = append(*x.list, v)
 	return protoreflect.ValueOfMessage(v.ProtoReflect())
 }
 
-func (x *_QueryAllSortedOrderResponse_1_list) Truncate(n int) {
+func (x *_QuerySortedOrdersResponse_1_list) Truncate(n int) {
 	for i := n; i < len(*x.list); i++ {
 		(*x.list)[i] = nil
 	}
 	*x.list = (*x.list)[:n]
 }
 
-func (x *_QueryAllSortedOrderResponse_1_list) NewElement() protoreflect.Value {
+func (x *_QuerySortedOrdersResponse_1_list) NewElement() protoreflect.Value {
 	v := new(SortedOrder)
 	return protoreflect.ValueOfMessage(v.ProtoReflect())
 }
 
-func (x *_QueryAllSortedOrderResponse_1_list) IsValid() bool {
+func (x *_QuerySortedOrdersResponse_1_list) IsValid() bool {
 	return x.list != nil
 }
 
 var (
-	md_QueryAllSortedOrderResponse             protoreflect.MessageDescriptor
-	fd_QueryAllSortedOrderResponse_sortedOrder protoreflect.FieldDescriptor
-	fd_QueryAllSortedOrderResponse_pagination  protoreflect.FieldDescriptor
+	md_QuerySortedOrdersResponse               protoreflect.MessageDescriptor
+	fd_QuerySortedOrdersResponse_sorted_orders protoreflect.FieldDescriptor
+	fd_QuerySortedOrdersResponse_pagination    protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_contract_query_proto_init()
-	md_QueryAllSortedOrderResponse = File_gluon_contract_query_proto.Messages().ByName("QueryAllSortedOrderResponse")
-	fd_QueryAllSortedOrderResponse_sortedOrder = md_QueryAllSortedOrderResponse.Fields().ByName("sortedOrder")
-	fd_QueryAllSortedOrderResponse_pagination = md_QueryAllSortedOrderResponse.Fields().ByName("pagination")
+	md_QuerySortedOrdersResponse = File_gluon_contract_query_proto.Messages().ByName("QuerySortedOrdersResponse")
+	fd_QuerySortedOrdersResponse_sorted_orders = md_QuerySortedOrdersResponse.Fields().ByName("sorted_orders")
+	fd_QuerySortedOrdersResponse_pagination = md_QuerySortedOrdersResponse.Fields().ByName("pagination")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryAllSortedOrderResponse)(nil)
+var _ protoreflect.Message = (*fastReflection_QuerySortedOrdersResponse)(nil)
 
-type fastReflection_QueryAllSortedOrderResponse QueryAllSortedOrderResponse
+type fastReflection_QuerySortedOrdersResponse QuerySortedOrdersResponse
 
-func (x *QueryAllSortedOrderResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryAllSortedOrderResponse)(x)
+func (x *QuerySortedOrdersResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QuerySortedOrdersResponse)(x)
 }
 
-func (x *QueryAllSortedOrderResponse) slowProtoReflect() protoreflect.Message {
+func (x *QuerySortedOrdersResponse) slowProtoReflect() protoreflect.Message {
 	mi := &file_gluon_contract_query_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4092,43 +4092,43 @@ func (x *QueryAllSortedOrderResponse) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryAllSortedOrderResponse_messageType fastReflection_QueryAllSortedOrderResponse_messageType
-var _ protoreflect.MessageType = fastReflection_QueryAllSortedOrderResponse_messageType{}
+var _fastReflection_QuerySortedOrdersResponse_messageType fastReflection_QuerySortedOrdersResponse_messageType
+var _ protoreflect.MessageType = fastReflection_QuerySortedOrdersResponse_messageType{}
 
-type fastReflection_QueryAllSortedOrderResponse_messageType struct{}
+type fastReflection_QuerySortedOrdersResponse_messageType struct{}
 
-func (x fastReflection_QueryAllSortedOrderResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryAllSortedOrderResponse)(nil)
+func (x fastReflection_QuerySortedOrdersResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QuerySortedOrdersResponse)(nil)
 }
-func (x fastReflection_QueryAllSortedOrderResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryAllSortedOrderResponse)
+func (x fastReflection_QuerySortedOrdersResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_QuerySortedOrdersResponse)
 }
-func (x fastReflection_QueryAllSortedOrderResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllSortedOrderResponse
+func (x fastReflection_QuerySortedOrdersResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QuerySortedOrdersResponse
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryAllSortedOrderResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllSortedOrderResponse
+func (x *fastReflection_QuerySortedOrdersResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_QuerySortedOrdersResponse
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryAllSortedOrderResponse) Type() protoreflect.MessageType {
-	return _fastReflection_QueryAllSortedOrderResponse_messageType
+func (x *fastReflection_QuerySortedOrdersResponse) Type() protoreflect.MessageType {
+	return _fastReflection_QuerySortedOrdersResponse_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryAllSortedOrderResponse) New() protoreflect.Message {
-	return new(fastReflection_QueryAllSortedOrderResponse)
+func (x *fastReflection_QuerySortedOrdersResponse) New() protoreflect.Message {
+	return new(fastReflection_QuerySortedOrdersResponse)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryAllSortedOrderResponse) Interface() protoreflect.ProtoMessage {
-	return (*QueryAllSortedOrderResponse)(x)
+func (x *fastReflection_QuerySortedOrdersResponse) Interface() protoreflect.ProtoMessage {
+	return (*QuerySortedOrdersResponse)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -4136,16 +4136,16 @@ func (x *fastReflection_QueryAllSortedOrderResponse) Interface() protoreflect.Pr
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryAllSortedOrderResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if len(x.SortedOrder) != 0 {
-		value := protoreflect.ValueOfList(&_QueryAllSortedOrderResponse_1_list{list: &x.SortedOrder})
-		if !f(fd_QueryAllSortedOrderResponse_sortedOrder, value) {
+func (x *fastReflection_QuerySortedOrdersResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if len(x.SortedOrders) != 0 {
+		value := protoreflect.ValueOfList(&_QuerySortedOrdersResponse_1_list{list: &x.SortedOrders})
+		if !f(fd_QuerySortedOrdersResponse_sorted_orders, value) {
 			return
 		}
 	}
 	if x.Pagination != nil {
 		value := protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
-		if !f(fd_QueryAllSortedOrderResponse_pagination, value) {
+		if !f(fd_QuerySortedOrdersResponse_pagination, value) {
 			return
 		}
 	}
@@ -4162,17 +4162,17 @@ func (x *fastReflection_QueryAllSortedOrderResponse) Range(f func(protoreflect.F
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryAllSortedOrderResponse) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QuerySortedOrdersResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllSortedOrderResponse.sortedOrder":
-		return len(x.SortedOrder) != 0
-	case "gluon.contract.QueryAllSortedOrderResponse.pagination":
+	case "gluon.contract.QuerySortedOrdersResponse.sorted_orders":
+		return len(x.SortedOrders) != 0
+	case "gluon.contract.QuerySortedOrdersResponse.pagination":
 		return x.Pagination != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllSortedOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QuerySortedOrdersResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllSortedOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QuerySortedOrdersResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -4182,17 +4182,17 @@ func (x *fastReflection_QueryAllSortedOrderResponse) Has(fd protoreflect.FieldDe
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllSortedOrderResponse) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QuerySortedOrdersResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllSortedOrderResponse.sortedOrder":
-		x.SortedOrder = nil
-	case "gluon.contract.QueryAllSortedOrderResponse.pagination":
+	case "gluon.contract.QuerySortedOrdersResponse.sorted_orders":
+		x.SortedOrders = nil
+	case "gluon.contract.QuerySortedOrdersResponse.pagination":
 		x.Pagination = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllSortedOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QuerySortedOrdersResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllSortedOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QuerySortedOrdersResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -4202,22 +4202,22 @@ func (x *fastReflection_QueryAllSortedOrderResponse) Clear(fd protoreflect.Field
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryAllSortedOrderResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QuerySortedOrdersResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.contract.QueryAllSortedOrderResponse.sortedOrder":
-		if len(x.SortedOrder) == 0 {
-			return protoreflect.ValueOfList(&_QueryAllSortedOrderResponse_1_list{})
+	case "gluon.contract.QuerySortedOrdersResponse.sorted_orders":
+		if len(x.SortedOrders) == 0 {
+			return protoreflect.ValueOfList(&_QuerySortedOrdersResponse_1_list{})
 		}
-		listValue := &_QueryAllSortedOrderResponse_1_list{list: &x.SortedOrder}
+		listValue := &_QuerySortedOrdersResponse_1_list{list: &x.SortedOrders}
 		return protoreflect.ValueOfList(listValue)
-	case "gluon.contract.QueryAllSortedOrderResponse.pagination":
+	case "gluon.contract.QuerySortedOrdersResponse.pagination":
 		value := x.Pagination
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllSortedOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QuerySortedOrdersResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllSortedOrderResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QuerySortedOrdersResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -4231,19 +4231,19 @@ func (x *fastReflection_QueryAllSortedOrderResponse) Get(descriptor protoreflect
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllSortedOrderResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QuerySortedOrdersResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllSortedOrderResponse.sortedOrder":
+	case "gluon.contract.QuerySortedOrdersResponse.sorted_orders":
 		lv := value.List()
-		clv := lv.(*_QueryAllSortedOrderResponse_1_list)
-		x.SortedOrder = *clv.list
-	case "gluon.contract.QueryAllSortedOrderResponse.pagination":
+		clv := lv.(*_QuerySortedOrdersResponse_1_list)
+		x.SortedOrders = *clv.list
+	case "gluon.contract.QuerySortedOrdersResponse.pagination":
 		x.Pagination = value.Message().Interface().(*v1beta1.PageResponse)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllSortedOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QuerySortedOrdersResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllSortedOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QuerySortedOrdersResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -4257,53 +4257,53 @@ func (x *fastReflection_QueryAllSortedOrderResponse) Set(fd protoreflect.FieldDe
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllSortedOrderResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QuerySortedOrdersResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllSortedOrderResponse.sortedOrder":
-		if x.SortedOrder == nil {
-			x.SortedOrder = []*SortedOrder{}
+	case "gluon.contract.QuerySortedOrdersResponse.sorted_orders":
+		if x.SortedOrders == nil {
+			x.SortedOrders = []*SortedOrder{}
 		}
-		value := &_QueryAllSortedOrderResponse_1_list{list: &x.SortedOrder}
+		value := &_QuerySortedOrdersResponse_1_list{list: &x.SortedOrders}
 		return protoreflect.ValueOfList(value)
-	case "gluon.contract.QueryAllSortedOrderResponse.pagination":
+	case "gluon.contract.QuerySortedOrdersResponse.pagination":
 		if x.Pagination == nil {
 			x.Pagination = new(v1beta1.PageResponse)
 		}
 		return protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllSortedOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QuerySortedOrdersResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllSortedOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QuerySortedOrdersResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryAllSortedOrderResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QuerySortedOrdersResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.contract.QueryAllSortedOrderResponse.sortedOrder":
+	case "gluon.contract.QuerySortedOrdersResponse.sorted_orders":
 		list := []*SortedOrder{}
-		return protoreflect.ValueOfList(&_QueryAllSortedOrderResponse_1_list{list: &list})
-	case "gluon.contract.QueryAllSortedOrderResponse.pagination":
+		return protoreflect.ValueOfList(&_QuerySortedOrdersResponse_1_list{list: &list})
+	case "gluon.contract.QuerySortedOrdersResponse.pagination":
 		m := new(v1beta1.PageResponse)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllSortedOrderResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QuerySortedOrdersResponse"))
 		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllSortedOrderResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.contract.QuerySortedOrdersResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryAllSortedOrderResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QuerySortedOrdersResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.QueryAllSortedOrderResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.QuerySortedOrdersResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -4311,7 +4311,7 @@ func (x *fastReflection_QueryAllSortedOrderResponse) WhichOneof(d protoreflect.O
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryAllSortedOrderResponse) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QuerySortedOrdersResponse) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -4322,7 +4322,7 @@ func (x *fastReflection_QueryAllSortedOrderResponse) GetUnknown() protoreflect.R
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllSortedOrderResponse) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QuerySortedOrdersResponse) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -4334,7 +4334,7 @@ func (x *fastReflection_QueryAllSortedOrderResponse) SetUnknown(fields protorefl
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryAllSortedOrderResponse) IsValid() bool {
+func (x *fastReflection_QuerySortedOrdersResponse) IsValid() bool {
 	return x != nil
 }
 
@@ -4344,9 +4344,9 @@ func (x *fastReflection_QueryAllSortedOrderResponse) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryAllSortedOrderResponse) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QuerySortedOrdersResponse) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryAllSortedOrderResponse)
+		x := input.Message.Interface().(*QuerySortedOrdersResponse)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -4358,8 +4358,8 @@ func (x *fastReflection_QueryAllSortedOrderResponse) ProtoMethods() *protoiface.
 		var n int
 		var l int
 		_ = l
-		if len(x.SortedOrder) > 0 {
-			for _, e := range x.SortedOrder {
+		if len(x.SortedOrders) > 0 {
+			for _, e := range x.SortedOrders {
 				l = options.Size(e)
 				n += 1 + l + runtime.Sov(uint64(l))
 			}
@@ -4378,7 +4378,7 @@ func (x *fastReflection_QueryAllSortedOrderResponse) ProtoMethods() *protoiface.
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllSortedOrderResponse)
+		x := input.Message.Interface().(*QuerySortedOrdersResponse)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -4411,9 +4411,9 @@ func (x *fastReflection_QueryAllSortedOrderResponse) ProtoMethods() *protoiface.
 			i--
 			dAtA[i] = 0x12
 		}
-		if len(x.SortedOrder) > 0 {
-			for iNdEx := len(x.SortedOrder) - 1; iNdEx >= 0; iNdEx-- {
-				encoded, err := options.Marshal(x.SortedOrder[iNdEx])
+		if len(x.SortedOrders) > 0 {
+			for iNdEx := len(x.SortedOrders) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.SortedOrders[iNdEx])
 				if err != nil {
 					return protoiface.MarshalOutput{
 						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -4438,7 +4438,7 @@ func (x *fastReflection_QueryAllSortedOrderResponse) ProtoMethods() *protoiface.
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllSortedOrderResponse)
+		x := input.Message.Interface().(*QuerySortedOrdersResponse)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -4470,15 +4470,15 @@ func (x *fastReflection_QueryAllSortedOrderResponse) ProtoMethods() *protoiface.
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllSortedOrderResponse: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QuerySortedOrdersResponse: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllSortedOrderResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QuerySortedOrdersResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field SortedOrder", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field SortedOrders", wireType)
 				}
 				var msglen int
 				for shift := uint(0); ; shift += 7 {
@@ -4505,1855 +4505,8 @@ func (x *fastReflection_QueryAllSortedOrderResponse) ProtoMethods() *protoiface.
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.SortedOrder = append(x.SortedOrder, &SortedOrder{})
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.SortedOrder[len(x.SortedOrder)-1]); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				iNdEx = postIndex
-			case 2:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
-				}
-				var msglen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					msglen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if msglen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + msglen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if x.Pagination == nil {
-					x.Pagination = &v1beta1.PageResponse{}
-				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Pagination); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				iNdEx = postIndex
-			default:
-				iNdEx = preIndex
-				skippy, err := runtime.Skip(dAtA[iNdEx:])
-				if err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				if (skippy < 0) || (iNdEx+skippy) < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if (iNdEx + skippy) > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if !options.DiscardUnknown {
-					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
-				}
-				iNdEx += skippy
-			}
-		}
-
-		if iNdEx > l {
-			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-		}
-		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
-	}
-	return &protoiface.Methods{
-		NoUnkeyedLiterals: struct{}{},
-		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
-		Size:              size,
-		Marshal:           marshal,
-		Unmarshal:         unmarshal,
-		Merge:             nil,
-		CheckInitialized:  nil,
-	}
-}
-
-var (
-	md_QueryGetLazyContractRequest    protoreflect.MessageDescriptor
-	fd_QueryGetLazyContractRequest_id protoreflect.FieldDescriptor
-)
-
-func init() {
-	file_gluon_contract_query_proto_init()
-	md_QueryGetLazyContractRequest = File_gluon_contract_query_proto.Messages().ByName("QueryGetLazyContractRequest")
-	fd_QueryGetLazyContractRequest_id = md_QueryGetLazyContractRequest.Fields().ByName("id")
-}
-
-var _ protoreflect.Message = (*fastReflection_QueryGetLazyContractRequest)(nil)
-
-type fastReflection_QueryGetLazyContractRequest QueryGetLazyContractRequest
-
-func (x *QueryGetLazyContractRequest) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryGetLazyContractRequest)(x)
-}
-
-func (x *QueryGetLazyContractRequest) slowProtoReflect() protoreflect.Message {
-	mi := &file_gluon_contract_query_proto_msgTypes[10]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-var _fastReflection_QueryGetLazyContractRequest_messageType fastReflection_QueryGetLazyContractRequest_messageType
-var _ protoreflect.MessageType = fastReflection_QueryGetLazyContractRequest_messageType{}
-
-type fastReflection_QueryGetLazyContractRequest_messageType struct{}
-
-func (x fastReflection_QueryGetLazyContractRequest_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryGetLazyContractRequest)(nil)
-}
-func (x fastReflection_QueryGetLazyContractRequest_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryGetLazyContractRequest)
-}
-func (x fastReflection_QueryGetLazyContractRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetLazyContractRequest
-}
-
-// Descriptor returns message descriptor, which contains only the protobuf
-// type information for the message.
-func (x *fastReflection_QueryGetLazyContractRequest) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetLazyContractRequest
-}
-
-// Type returns the message type, which encapsulates both Go and protobuf
-// type information. If the Go type information is not needed,
-// it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryGetLazyContractRequest) Type() protoreflect.MessageType {
-	return _fastReflection_QueryGetLazyContractRequest_messageType
-}
-
-// New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryGetLazyContractRequest) New() protoreflect.Message {
-	return new(fastReflection_QueryGetLazyContractRequest)
-}
-
-// Interface unwraps the message reflection interface and
-// returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryGetLazyContractRequest) Interface() protoreflect.ProtoMessage {
-	return (*QueryGetLazyContractRequest)(x)
-}
-
-// Range iterates over every populated field in an undefined order,
-// calling f for each field descriptor and value encountered.
-// Range returns immediately if f returns false.
-// While iterating, mutating operations may only be performed
-// on the current field descriptor.
-func (x *fastReflection_QueryGetLazyContractRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Id != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.Id)
-		if !f(fd_QueryGetLazyContractRequest_id, value) {
-			return
-		}
-	}
-}
-
-// Has reports whether a field is populated.
-//
-// Some fields have the property of nullability where it is possible to
-// distinguish between the default value of a field and whether the field
-// was explicitly populated with the default value. Singular message fields,
-// member fields of a oneof, and proto2 scalar fields are nullable. Such
-// fields are populated only if explicitly set.
-//
-// In other cases (aside from the nullable cases above),
-// a proto3 scalar field is populated if it contains a non-zero value, and
-// a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryGetLazyContractRequest) Has(fd protoreflect.FieldDescriptor) bool {
-	switch fd.FullName() {
-	case "gluon.contract.QueryGetLazyContractRequest.id":
-		return x.Id != uint64(0)
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryGetLazyContractRequest"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryGetLazyContractRequest does not contain field %s", fd.FullName()))
-	}
-}
-
-// Clear clears the field such that a subsequent Has call reports false.
-//
-// Clearing an extension field clears both the extension type and value
-// associated with the given field number.
-//
-// Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetLazyContractRequest) Clear(fd protoreflect.FieldDescriptor) {
-	switch fd.FullName() {
-	case "gluon.contract.QueryGetLazyContractRequest.id":
-		x.Id = uint64(0)
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryGetLazyContractRequest"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryGetLazyContractRequest does not contain field %s", fd.FullName()))
-	}
-}
-
-// Get retrieves the value for a field.
-//
-// For unpopulated scalars, it returns the default value, where
-// the default value of a bytes scalar is guaranteed to be a copy.
-// For unpopulated composite types, it returns an empty, read-only view
-// of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryGetLazyContractRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
-	switch descriptor.FullName() {
-	case "gluon.contract.QueryGetLazyContractRequest.id":
-		value := x.Id
-		return protoreflect.ValueOfUint64(value)
-	default:
-		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryGetLazyContractRequest"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryGetLazyContractRequest does not contain field %s", descriptor.FullName()))
-	}
-}
-
-// Set stores the value for a field.
-//
-// For a field belonging to a oneof, it implicitly clears any other field
-// that may be currently set within the same oneof.
-// For extension fields, it implicitly stores the provided ExtensionType.
-// When setting a composite type, it is unspecified whether the stored value
-// aliases the source's memory in any way. If the composite value is an
-// empty, read-only value, then it panics.
-//
-// Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetLazyContractRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
-	switch fd.FullName() {
-	case "gluon.contract.QueryGetLazyContractRequest.id":
-		x.Id = value.Uint()
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryGetLazyContractRequest"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryGetLazyContractRequest does not contain field %s", fd.FullName()))
-	}
-}
-
-// Mutable returns a mutable reference to a composite type.
-//
-// If the field is unpopulated, it may allocate a composite value.
-// For a field belonging to a oneof, it implicitly clears any other field
-// that may be currently set within the same oneof.
-// For extension fields, it implicitly stores the provided ExtensionType
-// if not already stored.
-// It panics if the field does not contain a composite type.
-//
-// Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetLazyContractRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
-	switch fd.FullName() {
-	case "gluon.contract.QueryGetLazyContractRequest.id":
-		panic(fmt.Errorf("field id of message gluon.contract.QueryGetLazyContractRequest is not mutable"))
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryGetLazyContractRequest"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryGetLazyContractRequest does not contain field %s", fd.FullName()))
-	}
-}
-
-// NewField returns a new value that is assignable to the field
-// for the given descriptor. For scalars, this returns the default value.
-// For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryGetLazyContractRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
-	switch fd.FullName() {
-	case "gluon.contract.QueryGetLazyContractRequest.id":
-		return protoreflect.ValueOfUint64(uint64(0))
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryGetLazyContractRequest"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryGetLazyContractRequest does not contain field %s", fd.FullName()))
-	}
-}
-
-// WhichOneof reports which field within the oneof is populated,
-// returning nil if none are populated.
-// It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryGetLazyContractRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
-	switch d.FullName() {
-	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.QueryGetLazyContractRequest", d.FullName()))
-	}
-	panic("unreachable")
-}
-
-// GetUnknown retrieves the entire list of unknown fields.
-// The caller may only mutate the contents of the RawFields
-// if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryGetLazyContractRequest) GetUnknown() protoreflect.RawFields {
-	return x.unknownFields
-}
-
-// SetUnknown stores an entire list of unknown fields.
-// The raw fields must be syntactically valid according to the wire format.
-// An implementation may panic if this is not the case.
-// Once stored, the caller must not mutate the content of the RawFields.
-// An empty RawFields may be passed to clear the fields.
-//
-// SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetLazyContractRequest) SetUnknown(fields protoreflect.RawFields) {
-	x.unknownFields = fields
-}
-
-// IsValid reports whether the message is valid.
-//
-// An invalid message is an empty, read-only value.
-//
-// An invalid message often corresponds to a nil pointer of the concrete
-// message type, but the details are implementation dependent.
-// Validity is not part of the protobuf data model, and may not
-// be preserved in marshaling or other operations.
-func (x *fastReflection_QueryGetLazyContractRequest) IsValid() bool {
-	return x != nil
-}
-
-// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
-// This method may return nil.
-//
-// The returned methods type is identical to
-// "google.golang.org/protobuf/runtime/protoiface".Methods.
-// Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryGetLazyContractRequest) ProtoMethods() *protoiface.Methods {
-	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryGetLazyContractRequest)
-		if x == nil {
-			return protoiface.SizeOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Size:              0,
-			}
-		}
-		options := runtime.SizeInputToOptions(input)
-		_ = options
-		var n int
-		var l int
-		_ = l
-		if x.Id != 0 {
-			n += 1 + runtime.Sov(uint64(x.Id))
-		}
-		if x.unknownFields != nil {
-			n += len(x.unknownFields)
-		}
-		return protoiface.SizeOutput{
-			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-			Size:              n,
-		}
-	}
-
-	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetLazyContractRequest)
-		if x == nil {
-			return protoiface.MarshalOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Buf:               input.Buf,
-			}, nil
-		}
-		options := runtime.MarshalInputToOptions(input)
-		_ = options
-		size := options.Size(x)
-		dAtA := make([]byte, size)
-		i := len(dAtA)
-		_ = i
-		var l int
-		_ = l
-		if x.unknownFields != nil {
-			i -= len(x.unknownFields)
-			copy(dAtA[i:], x.unknownFields)
-		}
-		if x.Id != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.Id))
-			i--
-			dAtA[i] = 0x8
-		}
-		if input.Buf != nil {
-			input.Buf = append(input.Buf, dAtA...)
-		} else {
-			input.Buf = dAtA
-		}
-		return protoiface.MarshalOutput{
-			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-			Buf:               input.Buf,
-		}, nil
-	}
-	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetLazyContractRequest)
-		if x == nil {
-			return protoiface.UnmarshalOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Flags:             input.Flags,
-			}, nil
-		}
-		options := runtime.UnmarshalInputToOptions(input)
-		_ = options
-		dAtA := input.Buf
-		l := len(dAtA)
-		iNdEx := 0
-		for iNdEx < l {
-			preIndex := iNdEx
-			var wire uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-				}
-				if iNdEx >= l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				wire |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			fieldNum := int32(wire >> 3)
-			wireType := int(wire & 0x7)
-			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetLazyContractRequest: wiretype end group for non-group")
-			}
-			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetLazyContractRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-			}
-			switch fieldNum {
-			case 1:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-				}
-				x.Id = 0
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					x.Id |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-			default:
-				iNdEx = preIndex
-				skippy, err := runtime.Skip(dAtA[iNdEx:])
-				if err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				if (skippy < 0) || (iNdEx+skippy) < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if (iNdEx + skippy) > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if !options.DiscardUnknown {
-					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
-				}
-				iNdEx += skippy
-			}
-		}
-
-		if iNdEx > l {
-			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-		}
-		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
-	}
-	return &protoiface.Methods{
-		NoUnkeyedLiterals: struct{}{},
-		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
-		Size:              size,
-		Marshal:           marshal,
-		Unmarshal:         unmarshal,
-		Merge:             nil,
-		CheckInitialized:  nil,
-	}
-}
-
-var (
-	md_QueryGetLazyContractResponse              protoreflect.MessageDescriptor
-	fd_QueryGetLazyContractResponse_LazyContract protoreflect.FieldDescriptor
-)
-
-func init() {
-	file_gluon_contract_query_proto_init()
-	md_QueryGetLazyContractResponse = File_gluon_contract_query_proto.Messages().ByName("QueryGetLazyContractResponse")
-	fd_QueryGetLazyContractResponse_LazyContract = md_QueryGetLazyContractResponse.Fields().ByName("LazyContract")
-}
-
-var _ protoreflect.Message = (*fastReflection_QueryGetLazyContractResponse)(nil)
-
-type fastReflection_QueryGetLazyContractResponse QueryGetLazyContractResponse
-
-func (x *QueryGetLazyContractResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryGetLazyContractResponse)(x)
-}
-
-func (x *QueryGetLazyContractResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_gluon_contract_query_proto_msgTypes[11]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-var _fastReflection_QueryGetLazyContractResponse_messageType fastReflection_QueryGetLazyContractResponse_messageType
-var _ protoreflect.MessageType = fastReflection_QueryGetLazyContractResponse_messageType{}
-
-type fastReflection_QueryGetLazyContractResponse_messageType struct{}
-
-func (x fastReflection_QueryGetLazyContractResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryGetLazyContractResponse)(nil)
-}
-func (x fastReflection_QueryGetLazyContractResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryGetLazyContractResponse)
-}
-func (x fastReflection_QueryGetLazyContractResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetLazyContractResponse
-}
-
-// Descriptor returns message descriptor, which contains only the protobuf
-// type information for the message.
-func (x *fastReflection_QueryGetLazyContractResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetLazyContractResponse
-}
-
-// Type returns the message type, which encapsulates both Go and protobuf
-// type information. If the Go type information is not needed,
-// it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryGetLazyContractResponse) Type() protoreflect.MessageType {
-	return _fastReflection_QueryGetLazyContractResponse_messageType
-}
-
-// New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryGetLazyContractResponse) New() protoreflect.Message {
-	return new(fastReflection_QueryGetLazyContractResponse)
-}
-
-// Interface unwraps the message reflection interface and
-// returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryGetLazyContractResponse) Interface() protoreflect.ProtoMessage {
-	return (*QueryGetLazyContractResponse)(x)
-}
-
-// Range iterates over every populated field in an undefined order,
-// calling f for each field descriptor and value encountered.
-// Range returns immediately if f returns false.
-// While iterating, mutating operations may only be performed
-// on the current field descriptor.
-func (x *fastReflection_QueryGetLazyContractResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.LazyContract != nil {
-		value := protoreflect.ValueOfMessage(x.LazyContract.ProtoReflect())
-		if !f(fd_QueryGetLazyContractResponse_LazyContract, value) {
-			return
-		}
-	}
-}
-
-// Has reports whether a field is populated.
-//
-// Some fields have the property of nullability where it is possible to
-// distinguish between the default value of a field and whether the field
-// was explicitly populated with the default value. Singular message fields,
-// member fields of a oneof, and proto2 scalar fields are nullable. Such
-// fields are populated only if explicitly set.
-//
-// In other cases (aside from the nullable cases above),
-// a proto3 scalar field is populated if it contains a non-zero value, and
-// a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryGetLazyContractResponse) Has(fd protoreflect.FieldDescriptor) bool {
-	switch fd.FullName() {
-	case "gluon.contract.QueryGetLazyContractResponse.LazyContract":
-		return x.LazyContract != nil
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryGetLazyContractResponse"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryGetLazyContractResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// Clear clears the field such that a subsequent Has call reports false.
-//
-// Clearing an extension field clears both the extension type and value
-// associated with the given field number.
-//
-// Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetLazyContractResponse) Clear(fd protoreflect.FieldDescriptor) {
-	switch fd.FullName() {
-	case "gluon.contract.QueryGetLazyContractResponse.LazyContract":
-		x.LazyContract = nil
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryGetLazyContractResponse"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryGetLazyContractResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// Get retrieves the value for a field.
-//
-// For unpopulated scalars, it returns the default value, where
-// the default value of a bytes scalar is guaranteed to be a copy.
-// For unpopulated composite types, it returns an empty, read-only view
-// of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryGetLazyContractResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
-	switch descriptor.FullName() {
-	case "gluon.contract.QueryGetLazyContractResponse.LazyContract":
-		value := x.LazyContract
-		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	default:
-		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryGetLazyContractResponse"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryGetLazyContractResponse does not contain field %s", descriptor.FullName()))
-	}
-}
-
-// Set stores the value for a field.
-//
-// For a field belonging to a oneof, it implicitly clears any other field
-// that may be currently set within the same oneof.
-// For extension fields, it implicitly stores the provided ExtensionType.
-// When setting a composite type, it is unspecified whether the stored value
-// aliases the source's memory in any way. If the composite value is an
-// empty, read-only value, then it panics.
-//
-// Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetLazyContractResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
-	switch fd.FullName() {
-	case "gluon.contract.QueryGetLazyContractResponse.LazyContract":
-		x.LazyContract = value.Message().Interface().(*LazyContract)
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryGetLazyContractResponse"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryGetLazyContractResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// Mutable returns a mutable reference to a composite type.
-//
-// If the field is unpopulated, it may allocate a composite value.
-// For a field belonging to a oneof, it implicitly clears any other field
-// that may be currently set within the same oneof.
-// For extension fields, it implicitly stores the provided ExtensionType
-// if not already stored.
-// It panics if the field does not contain a composite type.
-//
-// Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetLazyContractResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
-	switch fd.FullName() {
-	case "gluon.contract.QueryGetLazyContractResponse.LazyContract":
-		if x.LazyContract == nil {
-			x.LazyContract = new(LazyContract)
-		}
-		return protoreflect.ValueOfMessage(x.LazyContract.ProtoReflect())
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryGetLazyContractResponse"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryGetLazyContractResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// NewField returns a new value that is assignable to the field
-// for the given descriptor. For scalars, this returns the default value.
-// For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryGetLazyContractResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
-	switch fd.FullName() {
-	case "gluon.contract.QueryGetLazyContractResponse.LazyContract":
-		m := new(LazyContract)
-		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryGetLazyContractResponse"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryGetLazyContractResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// WhichOneof reports which field within the oneof is populated,
-// returning nil if none are populated.
-// It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryGetLazyContractResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
-	switch d.FullName() {
-	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.QueryGetLazyContractResponse", d.FullName()))
-	}
-	panic("unreachable")
-}
-
-// GetUnknown retrieves the entire list of unknown fields.
-// The caller may only mutate the contents of the RawFields
-// if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryGetLazyContractResponse) GetUnknown() protoreflect.RawFields {
-	return x.unknownFields
-}
-
-// SetUnknown stores an entire list of unknown fields.
-// The raw fields must be syntactically valid according to the wire format.
-// An implementation may panic if this is not the case.
-// Once stored, the caller must not mutate the content of the RawFields.
-// An empty RawFields may be passed to clear the fields.
-//
-// SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetLazyContractResponse) SetUnknown(fields protoreflect.RawFields) {
-	x.unknownFields = fields
-}
-
-// IsValid reports whether the message is valid.
-//
-// An invalid message is an empty, read-only value.
-//
-// An invalid message often corresponds to a nil pointer of the concrete
-// message type, but the details are implementation dependent.
-// Validity is not part of the protobuf data model, and may not
-// be preserved in marshaling or other operations.
-func (x *fastReflection_QueryGetLazyContractResponse) IsValid() bool {
-	return x != nil
-}
-
-// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
-// This method may return nil.
-//
-// The returned methods type is identical to
-// "google.golang.org/protobuf/runtime/protoiface".Methods.
-// Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryGetLazyContractResponse) ProtoMethods() *protoiface.Methods {
-	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryGetLazyContractResponse)
-		if x == nil {
-			return protoiface.SizeOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Size:              0,
-			}
-		}
-		options := runtime.SizeInputToOptions(input)
-		_ = options
-		var n int
-		var l int
-		_ = l
-		if x.LazyContract != nil {
-			l = options.Size(x.LazyContract)
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
-		if x.unknownFields != nil {
-			n += len(x.unknownFields)
-		}
-		return protoiface.SizeOutput{
-			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-			Size:              n,
-		}
-	}
-
-	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetLazyContractResponse)
-		if x == nil {
-			return protoiface.MarshalOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Buf:               input.Buf,
-			}, nil
-		}
-		options := runtime.MarshalInputToOptions(input)
-		_ = options
-		size := options.Size(x)
-		dAtA := make([]byte, size)
-		i := len(dAtA)
-		_ = i
-		var l int
-		_ = l
-		if x.unknownFields != nil {
-			i -= len(x.unknownFields)
-			copy(dAtA[i:], x.unknownFields)
-		}
-		if x.LazyContract != nil {
-			encoded, err := options.Marshal(x.LazyContract)
-			if err != nil {
-				return protoiface.MarshalOutput{
-					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-					Buf:               input.Buf,
-				}, err
-			}
-			i -= len(encoded)
-			copy(dAtA[i:], encoded)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
-			i--
-			dAtA[i] = 0xa
-		}
-		if input.Buf != nil {
-			input.Buf = append(input.Buf, dAtA...)
-		} else {
-			input.Buf = dAtA
-		}
-		return protoiface.MarshalOutput{
-			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-			Buf:               input.Buf,
-		}, nil
-	}
-	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetLazyContractResponse)
-		if x == nil {
-			return protoiface.UnmarshalOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Flags:             input.Flags,
-			}, nil
-		}
-		options := runtime.UnmarshalInputToOptions(input)
-		_ = options
-		dAtA := input.Buf
-		l := len(dAtA)
-		iNdEx := 0
-		for iNdEx < l {
-			preIndex := iNdEx
-			var wire uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-				}
-				if iNdEx >= l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				wire |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			fieldNum := int32(wire >> 3)
-			wireType := int(wire & 0x7)
-			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetLazyContractResponse: wiretype end group for non-group")
-			}
-			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetLazyContractResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-			}
-			switch fieldNum {
-			case 1:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field LazyContract", wireType)
-				}
-				var msglen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					msglen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if msglen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + msglen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if x.LazyContract == nil {
-					x.LazyContract = &LazyContract{}
-				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.LazyContract); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				iNdEx = postIndex
-			default:
-				iNdEx = preIndex
-				skippy, err := runtime.Skip(dAtA[iNdEx:])
-				if err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				if (skippy < 0) || (iNdEx+skippy) < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if (iNdEx + skippy) > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if !options.DiscardUnknown {
-					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
-				}
-				iNdEx += skippy
-			}
-		}
-
-		if iNdEx > l {
-			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-		}
-		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
-	}
-	return &protoiface.Methods{
-		NoUnkeyedLiterals: struct{}{},
-		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
-		Size:              size,
-		Marshal:           marshal,
-		Unmarshal:         unmarshal,
-		Merge:             nil,
-		CheckInitialized:  nil,
-	}
-}
-
-var (
-	md_QueryAllLazyContractRequest            protoreflect.MessageDescriptor
-	fd_QueryAllLazyContractRequest_pagination protoreflect.FieldDescriptor
-)
-
-func init() {
-	file_gluon_contract_query_proto_init()
-	md_QueryAllLazyContractRequest = File_gluon_contract_query_proto.Messages().ByName("QueryAllLazyContractRequest")
-	fd_QueryAllLazyContractRequest_pagination = md_QueryAllLazyContractRequest.Fields().ByName("pagination")
-}
-
-var _ protoreflect.Message = (*fastReflection_QueryAllLazyContractRequest)(nil)
-
-type fastReflection_QueryAllLazyContractRequest QueryAllLazyContractRequest
-
-func (x *QueryAllLazyContractRequest) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryAllLazyContractRequest)(x)
-}
-
-func (x *QueryAllLazyContractRequest) slowProtoReflect() protoreflect.Message {
-	mi := &file_gluon_contract_query_proto_msgTypes[12]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-var _fastReflection_QueryAllLazyContractRequest_messageType fastReflection_QueryAllLazyContractRequest_messageType
-var _ protoreflect.MessageType = fastReflection_QueryAllLazyContractRequest_messageType{}
-
-type fastReflection_QueryAllLazyContractRequest_messageType struct{}
-
-func (x fastReflection_QueryAllLazyContractRequest_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryAllLazyContractRequest)(nil)
-}
-func (x fastReflection_QueryAllLazyContractRequest_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryAllLazyContractRequest)
-}
-func (x fastReflection_QueryAllLazyContractRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllLazyContractRequest
-}
-
-// Descriptor returns message descriptor, which contains only the protobuf
-// type information for the message.
-func (x *fastReflection_QueryAllLazyContractRequest) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllLazyContractRequest
-}
-
-// Type returns the message type, which encapsulates both Go and protobuf
-// type information. If the Go type information is not needed,
-// it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryAllLazyContractRequest) Type() protoreflect.MessageType {
-	return _fastReflection_QueryAllLazyContractRequest_messageType
-}
-
-// New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryAllLazyContractRequest) New() protoreflect.Message {
-	return new(fastReflection_QueryAllLazyContractRequest)
-}
-
-// Interface unwraps the message reflection interface and
-// returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryAllLazyContractRequest) Interface() protoreflect.ProtoMessage {
-	return (*QueryAllLazyContractRequest)(x)
-}
-
-// Range iterates over every populated field in an undefined order,
-// calling f for each field descriptor and value encountered.
-// Range returns immediately if f returns false.
-// While iterating, mutating operations may only be performed
-// on the current field descriptor.
-func (x *fastReflection_QueryAllLazyContractRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Pagination != nil {
-		value := protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
-		if !f(fd_QueryAllLazyContractRequest_pagination, value) {
-			return
-		}
-	}
-}
-
-// Has reports whether a field is populated.
-//
-// Some fields have the property of nullability where it is possible to
-// distinguish between the default value of a field and whether the field
-// was explicitly populated with the default value. Singular message fields,
-// member fields of a oneof, and proto2 scalar fields are nullable. Such
-// fields are populated only if explicitly set.
-//
-// In other cases (aside from the nullable cases above),
-// a proto3 scalar field is populated if it contains a non-zero value, and
-// a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryAllLazyContractRequest) Has(fd protoreflect.FieldDescriptor) bool {
-	switch fd.FullName() {
-	case "gluon.contract.QueryAllLazyContractRequest.pagination":
-		return x.Pagination != nil
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllLazyContractRequest"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllLazyContractRequest does not contain field %s", fd.FullName()))
-	}
-}
-
-// Clear clears the field such that a subsequent Has call reports false.
-//
-// Clearing an extension field clears both the extension type and value
-// associated with the given field number.
-//
-// Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllLazyContractRequest) Clear(fd protoreflect.FieldDescriptor) {
-	switch fd.FullName() {
-	case "gluon.contract.QueryAllLazyContractRequest.pagination":
-		x.Pagination = nil
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllLazyContractRequest"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllLazyContractRequest does not contain field %s", fd.FullName()))
-	}
-}
-
-// Get retrieves the value for a field.
-//
-// For unpopulated scalars, it returns the default value, where
-// the default value of a bytes scalar is guaranteed to be a copy.
-// For unpopulated composite types, it returns an empty, read-only view
-// of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryAllLazyContractRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
-	switch descriptor.FullName() {
-	case "gluon.contract.QueryAllLazyContractRequest.pagination":
-		value := x.Pagination
-		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	default:
-		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllLazyContractRequest"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllLazyContractRequest does not contain field %s", descriptor.FullName()))
-	}
-}
-
-// Set stores the value for a field.
-//
-// For a field belonging to a oneof, it implicitly clears any other field
-// that may be currently set within the same oneof.
-// For extension fields, it implicitly stores the provided ExtensionType.
-// When setting a composite type, it is unspecified whether the stored value
-// aliases the source's memory in any way. If the composite value is an
-// empty, read-only value, then it panics.
-//
-// Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllLazyContractRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
-	switch fd.FullName() {
-	case "gluon.contract.QueryAllLazyContractRequest.pagination":
-		x.Pagination = value.Message().Interface().(*v1beta1.PageRequest)
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllLazyContractRequest"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllLazyContractRequest does not contain field %s", fd.FullName()))
-	}
-}
-
-// Mutable returns a mutable reference to a composite type.
-//
-// If the field is unpopulated, it may allocate a composite value.
-// For a field belonging to a oneof, it implicitly clears any other field
-// that may be currently set within the same oneof.
-// For extension fields, it implicitly stores the provided ExtensionType
-// if not already stored.
-// It panics if the field does not contain a composite type.
-//
-// Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllLazyContractRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
-	switch fd.FullName() {
-	case "gluon.contract.QueryAllLazyContractRequest.pagination":
-		if x.Pagination == nil {
-			x.Pagination = new(v1beta1.PageRequest)
-		}
-		return protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllLazyContractRequest"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllLazyContractRequest does not contain field %s", fd.FullName()))
-	}
-}
-
-// NewField returns a new value that is assignable to the field
-// for the given descriptor. For scalars, this returns the default value.
-// For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryAllLazyContractRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
-	switch fd.FullName() {
-	case "gluon.contract.QueryAllLazyContractRequest.pagination":
-		m := new(v1beta1.PageRequest)
-		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllLazyContractRequest"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllLazyContractRequest does not contain field %s", fd.FullName()))
-	}
-}
-
-// WhichOneof reports which field within the oneof is populated,
-// returning nil if none are populated.
-// It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryAllLazyContractRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
-	switch d.FullName() {
-	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.QueryAllLazyContractRequest", d.FullName()))
-	}
-	panic("unreachable")
-}
-
-// GetUnknown retrieves the entire list of unknown fields.
-// The caller may only mutate the contents of the RawFields
-// if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryAllLazyContractRequest) GetUnknown() protoreflect.RawFields {
-	return x.unknownFields
-}
-
-// SetUnknown stores an entire list of unknown fields.
-// The raw fields must be syntactically valid according to the wire format.
-// An implementation may panic if this is not the case.
-// Once stored, the caller must not mutate the content of the RawFields.
-// An empty RawFields may be passed to clear the fields.
-//
-// SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllLazyContractRequest) SetUnknown(fields protoreflect.RawFields) {
-	x.unknownFields = fields
-}
-
-// IsValid reports whether the message is valid.
-//
-// An invalid message is an empty, read-only value.
-//
-// An invalid message often corresponds to a nil pointer of the concrete
-// message type, but the details are implementation dependent.
-// Validity is not part of the protobuf data model, and may not
-// be preserved in marshaling or other operations.
-func (x *fastReflection_QueryAllLazyContractRequest) IsValid() bool {
-	return x != nil
-}
-
-// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
-// This method may return nil.
-//
-// The returned methods type is identical to
-// "google.golang.org/protobuf/runtime/protoiface".Methods.
-// Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryAllLazyContractRequest) ProtoMethods() *protoiface.Methods {
-	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryAllLazyContractRequest)
-		if x == nil {
-			return protoiface.SizeOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Size:              0,
-			}
-		}
-		options := runtime.SizeInputToOptions(input)
-		_ = options
-		var n int
-		var l int
-		_ = l
-		if x.Pagination != nil {
-			l = options.Size(x.Pagination)
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
-		if x.unknownFields != nil {
-			n += len(x.unknownFields)
-		}
-		return protoiface.SizeOutput{
-			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-			Size:              n,
-		}
-	}
-
-	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllLazyContractRequest)
-		if x == nil {
-			return protoiface.MarshalOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Buf:               input.Buf,
-			}, nil
-		}
-		options := runtime.MarshalInputToOptions(input)
-		_ = options
-		size := options.Size(x)
-		dAtA := make([]byte, size)
-		i := len(dAtA)
-		_ = i
-		var l int
-		_ = l
-		if x.unknownFields != nil {
-			i -= len(x.unknownFields)
-			copy(dAtA[i:], x.unknownFields)
-		}
-		if x.Pagination != nil {
-			encoded, err := options.Marshal(x.Pagination)
-			if err != nil {
-				return protoiface.MarshalOutput{
-					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-					Buf:               input.Buf,
-				}, err
-			}
-			i -= len(encoded)
-			copy(dAtA[i:], encoded)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
-			i--
-			dAtA[i] = 0xa
-		}
-		if input.Buf != nil {
-			input.Buf = append(input.Buf, dAtA...)
-		} else {
-			input.Buf = dAtA
-		}
-		return protoiface.MarshalOutput{
-			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-			Buf:               input.Buf,
-		}, nil
-	}
-	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllLazyContractRequest)
-		if x == nil {
-			return protoiface.UnmarshalOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Flags:             input.Flags,
-			}, nil
-		}
-		options := runtime.UnmarshalInputToOptions(input)
-		_ = options
-		dAtA := input.Buf
-		l := len(dAtA)
-		iNdEx := 0
-		for iNdEx < l {
-			preIndex := iNdEx
-			var wire uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-				}
-				if iNdEx >= l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				wire |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			fieldNum := int32(wire >> 3)
-			wireType := int(wire & 0x7)
-			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllLazyContractRequest: wiretype end group for non-group")
-			}
-			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllLazyContractRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-			}
-			switch fieldNum {
-			case 1:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
-				}
-				var msglen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					msglen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if msglen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + msglen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if x.Pagination == nil {
-					x.Pagination = &v1beta1.PageRequest{}
-				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Pagination); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				iNdEx = postIndex
-			default:
-				iNdEx = preIndex
-				skippy, err := runtime.Skip(dAtA[iNdEx:])
-				if err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				if (skippy < 0) || (iNdEx+skippy) < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if (iNdEx + skippy) > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if !options.DiscardUnknown {
-					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
-				}
-				iNdEx += skippy
-			}
-		}
-
-		if iNdEx > l {
-			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-		}
-		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
-	}
-	return &protoiface.Methods{
-		NoUnkeyedLiterals: struct{}{},
-		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
-		Size:              size,
-		Marshal:           marshal,
-		Unmarshal:         unmarshal,
-		Merge:             nil,
-		CheckInitialized:  nil,
-	}
-}
-
-var _ protoreflect.List = (*_QueryAllLazyContractResponse_1_list)(nil)
-
-type _QueryAllLazyContractResponse_1_list struct {
-	list *[]*LazyContract
-}
-
-func (x *_QueryAllLazyContractResponse_1_list) Len() int {
-	if x.list == nil {
-		return 0
-	}
-	return len(*x.list)
-}
-
-func (x *_QueryAllLazyContractResponse_1_list) Get(i int) protoreflect.Value {
-	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
-}
-
-func (x *_QueryAllLazyContractResponse_1_list) Set(i int, value protoreflect.Value) {
-	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*LazyContract)
-	(*x.list)[i] = concreteValue
-}
-
-func (x *_QueryAllLazyContractResponse_1_list) Append(value protoreflect.Value) {
-	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*LazyContract)
-	*x.list = append(*x.list, concreteValue)
-}
-
-func (x *_QueryAllLazyContractResponse_1_list) AppendMutable() protoreflect.Value {
-	v := new(LazyContract)
-	*x.list = append(*x.list, v)
-	return protoreflect.ValueOfMessage(v.ProtoReflect())
-}
-
-func (x *_QueryAllLazyContractResponse_1_list) Truncate(n int) {
-	for i := n; i < len(*x.list); i++ {
-		(*x.list)[i] = nil
-	}
-	*x.list = (*x.list)[:n]
-}
-
-func (x *_QueryAllLazyContractResponse_1_list) NewElement() protoreflect.Value {
-	v := new(LazyContract)
-	return protoreflect.ValueOfMessage(v.ProtoReflect())
-}
-
-func (x *_QueryAllLazyContractResponse_1_list) IsValid() bool {
-	return x.list != nil
-}
-
-var (
-	md_QueryAllLazyContractResponse              protoreflect.MessageDescriptor
-	fd_QueryAllLazyContractResponse_LazyContract protoreflect.FieldDescriptor
-	fd_QueryAllLazyContractResponse_pagination   protoreflect.FieldDescriptor
-)
-
-func init() {
-	file_gluon_contract_query_proto_init()
-	md_QueryAllLazyContractResponse = File_gluon_contract_query_proto.Messages().ByName("QueryAllLazyContractResponse")
-	fd_QueryAllLazyContractResponse_LazyContract = md_QueryAllLazyContractResponse.Fields().ByName("LazyContract")
-	fd_QueryAllLazyContractResponse_pagination = md_QueryAllLazyContractResponse.Fields().ByName("pagination")
-}
-
-var _ protoreflect.Message = (*fastReflection_QueryAllLazyContractResponse)(nil)
-
-type fastReflection_QueryAllLazyContractResponse QueryAllLazyContractResponse
-
-func (x *QueryAllLazyContractResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryAllLazyContractResponse)(x)
-}
-
-func (x *QueryAllLazyContractResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_gluon_contract_query_proto_msgTypes[13]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-var _fastReflection_QueryAllLazyContractResponse_messageType fastReflection_QueryAllLazyContractResponse_messageType
-var _ protoreflect.MessageType = fastReflection_QueryAllLazyContractResponse_messageType{}
-
-type fastReflection_QueryAllLazyContractResponse_messageType struct{}
-
-func (x fastReflection_QueryAllLazyContractResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryAllLazyContractResponse)(nil)
-}
-func (x fastReflection_QueryAllLazyContractResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryAllLazyContractResponse)
-}
-func (x fastReflection_QueryAllLazyContractResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllLazyContractResponse
-}
-
-// Descriptor returns message descriptor, which contains only the protobuf
-// type information for the message.
-func (x *fastReflection_QueryAllLazyContractResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllLazyContractResponse
-}
-
-// Type returns the message type, which encapsulates both Go and protobuf
-// type information. If the Go type information is not needed,
-// it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryAllLazyContractResponse) Type() protoreflect.MessageType {
-	return _fastReflection_QueryAllLazyContractResponse_messageType
-}
-
-// New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryAllLazyContractResponse) New() protoreflect.Message {
-	return new(fastReflection_QueryAllLazyContractResponse)
-}
-
-// Interface unwraps the message reflection interface and
-// returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryAllLazyContractResponse) Interface() protoreflect.ProtoMessage {
-	return (*QueryAllLazyContractResponse)(x)
-}
-
-// Range iterates over every populated field in an undefined order,
-// calling f for each field descriptor and value encountered.
-// Range returns immediately if f returns false.
-// While iterating, mutating operations may only be performed
-// on the current field descriptor.
-func (x *fastReflection_QueryAllLazyContractResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if len(x.LazyContract) != 0 {
-		value := protoreflect.ValueOfList(&_QueryAllLazyContractResponse_1_list{list: &x.LazyContract})
-		if !f(fd_QueryAllLazyContractResponse_LazyContract, value) {
-			return
-		}
-	}
-	if x.Pagination != nil {
-		value := protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
-		if !f(fd_QueryAllLazyContractResponse_pagination, value) {
-			return
-		}
-	}
-}
-
-// Has reports whether a field is populated.
-//
-// Some fields have the property of nullability where it is possible to
-// distinguish between the default value of a field and whether the field
-// was explicitly populated with the default value. Singular message fields,
-// member fields of a oneof, and proto2 scalar fields are nullable. Such
-// fields are populated only if explicitly set.
-//
-// In other cases (aside from the nullable cases above),
-// a proto3 scalar field is populated if it contains a non-zero value, and
-// a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryAllLazyContractResponse) Has(fd protoreflect.FieldDescriptor) bool {
-	switch fd.FullName() {
-	case "gluon.contract.QueryAllLazyContractResponse.LazyContract":
-		return len(x.LazyContract) != 0
-	case "gluon.contract.QueryAllLazyContractResponse.pagination":
-		return x.Pagination != nil
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllLazyContractResponse"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllLazyContractResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// Clear clears the field such that a subsequent Has call reports false.
-//
-// Clearing an extension field clears both the extension type and value
-// associated with the given field number.
-//
-// Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllLazyContractResponse) Clear(fd protoreflect.FieldDescriptor) {
-	switch fd.FullName() {
-	case "gluon.contract.QueryAllLazyContractResponse.LazyContract":
-		x.LazyContract = nil
-	case "gluon.contract.QueryAllLazyContractResponse.pagination":
-		x.Pagination = nil
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllLazyContractResponse"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllLazyContractResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// Get retrieves the value for a field.
-//
-// For unpopulated scalars, it returns the default value, where
-// the default value of a bytes scalar is guaranteed to be a copy.
-// For unpopulated composite types, it returns an empty, read-only view
-// of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryAllLazyContractResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
-	switch descriptor.FullName() {
-	case "gluon.contract.QueryAllLazyContractResponse.LazyContract":
-		if len(x.LazyContract) == 0 {
-			return protoreflect.ValueOfList(&_QueryAllLazyContractResponse_1_list{})
-		}
-		listValue := &_QueryAllLazyContractResponse_1_list{list: &x.LazyContract}
-		return protoreflect.ValueOfList(listValue)
-	case "gluon.contract.QueryAllLazyContractResponse.pagination":
-		value := x.Pagination
-		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	default:
-		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllLazyContractResponse"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllLazyContractResponse does not contain field %s", descriptor.FullName()))
-	}
-}
-
-// Set stores the value for a field.
-//
-// For a field belonging to a oneof, it implicitly clears any other field
-// that may be currently set within the same oneof.
-// For extension fields, it implicitly stores the provided ExtensionType.
-// When setting a composite type, it is unspecified whether the stored value
-// aliases the source's memory in any way. If the composite value is an
-// empty, read-only value, then it panics.
-//
-// Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllLazyContractResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
-	switch fd.FullName() {
-	case "gluon.contract.QueryAllLazyContractResponse.LazyContract":
-		lv := value.List()
-		clv := lv.(*_QueryAllLazyContractResponse_1_list)
-		x.LazyContract = *clv.list
-	case "gluon.contract.QueryAllLazyContractResponse.pagination":
-		x.Pagination = value.Message().Interface().(*v1beta1.PageResponse)
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllLazyContractResponse"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllLazyContractResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// Mutable returns a mutable reference to a composite type.
-//
-// If the field is unpopulated, it may allocate a composite value.
-// For a field belonging to a oneof, it implicitly clears any other field
-// that may be currently set within the same oneof.
-// For extension fields, it implicitly stores the provided ExtensionType
-// if not already stored.
-// It panics if the field does not contain a composite type.
-//
-// Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllLazyContractResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
-	switch fd.FullName() {
-	case "gluon.contract.QueryAllLazyContractResponse.LazyContract":
-		if x.LazyContract == nil {
-			x.LazyContract = []*LazyContract{}
-		}
-		value := &_QueryAllLazyContractResponse_1_list{list: &x.LazyContract}
-		return protoreflect.ValueOfList(value)
-	case "gluon.contract.QueryAllLazyContractResponse.pagination":
-		if x.Pagination == nil {
-			x.Pagination = new(v1beta1.PageResponse)
-		}
-		return protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllLazyContractResponse"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllLazyContractResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// NewField returns a new value that is assignable to the field
-// for the given descriptor. For scalars, this returns the default value.
-// For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryAllLazyContractResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
-	switch fd.FullName() {
-	case "gluon.contract.QueryAllLazyContractResponse.LazyContract":
-		list := []*LazyContract{}
-		return protoreflect.ValueOfList(&_QueryAllLazyContractResponse_1_list{list: &list})
-	case "gluon.contract.QueryAllLazyContractResponse.pagination":
-		m := new(v1beta1.PageResponse)
-		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.contract.QueryAllLazyContractResponse"))
-		}
-		panic(fmt.Errorf("message gluon.contract.QueryAllLazyContractResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// WhichOneof reports which field within the oneof is populated,
-// returning nil if none are populated.
-// It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryAllLazyContractResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
-	switch d.FullName() {
-	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.contract.QueryAllLazyContractResponse", d.FullName()))
-	}
-	panic("unreachable")
-}
-
-// GetUnknown retrieves the entire list of unknown fields.
-// The caller may only mutate the contents of the RawFields
-// if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryAllLazyContractResponse) GetUnknown() protoreflect.RawFields {
-	return x.unknownFields
-}
-
-// SetUnknown stores an entire list of unknown fields.
-// The raw fields must be syntactically valid according to the wire format.
-// An implementation may panic if this is not the case.
-// Once stored, the caller must not mutate the content of the RawFields.
-// An empty RawFields may be passed to clear the fields.
-//
-// SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllLazyContractResponse) SetUnknown(fields protoreflect.RawFields) {
-	x.unknownFields = fields
-}
-
-// IsValid reports whether the message is valid.
-//
-// An invalid message is an empty, read-only value.
-//
-// An invalid message often corresponds to a nil pointer of the concrete
-// message type, but the details are implementation dependent.
-// Validity is not part of the protobuf data model, and may not
-// be preserved in marshaling or other operations.
-func (x *fastReflection_QueryAllLazyContractResponse) IsValid() bool {
-	return x != nil
-}
-
-// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
-// This method may return nil.
-//
-// The returned methods type is identical to
-// "google.golang.org/protobuf/runtime/protoiface".Methods.
-// Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryAllLazyContractResponse) ProtoMethods() *protoiface.Methods {
-	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryAllLazyContractResponse)
-		if x == nil {
-			return protoiface.SizeOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Size:              0,
-			}
-		}
-		options := runtime.SizeInputToOptions(input)
-		_ = options
-		var n int
-		var l int
-		_ = l
-		if len(x.LazyContract) > 0 {
-			for _, e := range x.LazyContract {
-				l = options.Size(e)
-				n += 1 + l + runtime.Sov(uint64(l))
-			}
-		}
-		if x.Pagination != nil {
-			l = options.Size(x.Pagination)
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
-		if x.unknownFields != nil {
-			n += len(x.unknownFields)
-		}
-		return protoiface.SizeOutput{
-			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-			Size:              n,
-		}
-	}
-
-	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllLazyContractResponse)
-		if x == nil {
-			return protoiface.MarshalOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Buf:               input.Buf,
-			}, nil
-		}
-		options := runtime.MarshalInputToOptions(input)
-		_ = options
-		size := options.Size(x)
-		dAtA := make([]byte, size)
-		i := len(dAtA)
-		_ = i
-		var l int
-		_ = l
-		if x.unknownFields != nil {
-			i -= len(x.unknownFields)
-			copy(dAtA[i:], x.unknownFields)
-		}
-		if x.Pagination != nil {
-			encoded, err := options.Marshal(x.Pagination)
-			if err != nil {
-				return protoiface.MarshalOutput{
-					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-					Buf:               input.Buf,
-				}, err
-			}
-			i -= len(encoded)
-			copy(dAtA[i:], encoded)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
-			i--
-			dAtA[i] = 0x12
-		}
-		if len(x.LazyContract) > 0 {
-			for iNdEx := len(x.LazyContract) - 1; iNdEx >= 0; iNdEx-- {
-				encoded, err := options.Marshal(x.LazyContract[iNdEx])
-				if err != nil {
-					return protoiface.MarshalOutput{
-						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-						Buf:               input.Buf,
-					}, err
-				}
-				i -= len(encoded)
-				copy(dAtA[i:], encoded)
-				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
-				i--
-				dAtA[i] = 0xa
-			}
-		}
-		if input.Buf != nil {
-			input.Buf = append(input.Buf, dAtA...)
-		} else {
-			input.Buf = dAtA
-		}
-		return protoiface.MarshalOutput{
-			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-			Buf:               input.Buf,
-		}, nil
-	}
-	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllLazyContractResponse)
-		if x == nil {
-			return protoiface.UnmarshalOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Flags:             input.Flags,
-			}, nil
-		}
-		options := runtime.UnmarshalInputToOptions(input)
-		_ = options
-		dAtA := input.Buf
-		l := len(dAtA)
-		iNdEx := 0
-		for iNdEx < l {
-			preIndex := iNdEx
-			var wire uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-				}
-				if iNdEx >= l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				wire |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			fieldNum := int32(wire >> 3)
-			wireType := int(wire & 0x7)
-			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllLazyContractResponse: wiretype end group for non-group")
-			}
-			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllLazyContractResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-			}
-			switch fieldNum {
-			case 1:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field LazyContract", wireType)
-				}
-				var msglen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					msglen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if msglen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + msglen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.LazyContract = append(x.LazyContract, &LazyContract{})
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.LazyContract[len(x.LazyContract)-1]); err != nil {
+				x.SortedOrders = append(x.SortedOrders, &SortedOrder{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.SortedOrders[len(x.SortedOrders)-1]); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
@@ -6505,6 +4658,7 @@ func (x *QueryParamsResponse) GetParams() *Params {
 	return nil
 }
 
+// QueryGetOrderRequest
 type QueryGetOrderRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -6540,6 +4694,7 @@ func (x *QueryGetOrderRequest) GetId() string {
 	return ""
 }
 
+// QueryGetOrderResponse
 type QueryGetOrderResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -6575,7 +4730,8 @@ func (x *QueryGetOrderResponse) GetOrder() *Order {
 	return nil
 }
 
-type QueryAllOrderRequest struct {
+// QueryOrdersRequest
+type QueryOrdersRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -6583,8 +4739,8 @@ type QueryAllOrderRequest struct {
 	Pagination *v1beta1.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (x *QueryAllOrderRequest) Reset() {
-	*x = QueryAllOrderRequest{}
+func (x *QueryOrdersRequest) Reset() {
+	*x = QueryOrdersRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_gluon_contract_query_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -6592,25 +4748,26 @@ func (x *QueryAllOrderRequest) Reset() {
 	}
 }
 
-func (x *QueryAllOrderRequest) String() string {
+func (x *QueryOrdersRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QueryAllOrderRequest) ProtoMessage() {}
+func (*QueryOrdersRequest) ProtoMessage() {}
 
-// Deprecated: Use QueryAllOrderRequest.ProtoReflect.Descriptor instead.
-func (*QueryAllOrderRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use QueryOrdersRequest.ProtoReflect.Descriptor instead.
+func (*QueryOrdersRequest) Descriptor() ([]byte, []int) {
 	return file_gluon_contract_query_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *QueryAllOrderRequest) GetPagination() *v1beta1.PageRequest {
+func (x *QueryOrdersRequest) GetPagination() *v1beta1.PageRequest {
 	if x != nil {
 		return x.Pagination
 	}
 	return nil
 }
 
-type QueryAllOrderResponse struct {
+// QueryOrdersResponse
+type QueryOrdersResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -6619,8 +4776,8 @@ type QueryAllOrderResponse struct {
 	Pagination *v1beta1.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (x *QueryAllOrderResponse) Reset() {
-	*x = QueryAllOrderResponse{}
+func (x *QueryOrdersResponse) Reset() {
+	*x = QueryOrdersResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_gluon_contract_query_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -6628,31 +4785,32 @@ func (x *QueryAllOrderResponse) Reset() {
 	}
 }
 
-func (x *QueryAllOrderResponse) String() string {
+func (x *QueryOrdersResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QueryAllOrderResponse) ProtoMessage() {}
+func (*QueryOrdersResponse) ProtoMessage() {}
 
-// Deprecated: Use QueryAllOrderResponse.ProtoReflect.Descriptor instead.
-func (*QueryAllOrderResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use QueryOrdersResponse.ProtoReflect.Descriptor instead.
+func (*QueryOrdersResponse) Descriptor() ([]byte, []int) {
 	return file_gluon_contract_query_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *QueryAllOrderResponse) GetOrder() []*Order {
+func (x *QueryOrdersResponse) GetOrder() []*Order {
 	if x != nil {
 		return x.Order
 	}
 	return nil
 }
 
-func (x *QueryAllOrderResponse) GetPagination() *v1beta1.PageResponse {
+func (x *QueryOrdersResponse) GetPagination() *v1beta1.PageResponse {
 	if x != nil {
 		return x.Pagination
 	}
 	return nil
 }
 
+// QueryGetSortedOrderRequest
 type QueryGetSortedOrderRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -6696,12 +4854,13 @@ func (x *QueryGetSortedOrderRequest) GetId() string {
 	return ""
 }
 
+// QueryGetSortedOrderResponse
 type QueryGetSortedOrderResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SortedOrder *SortedOrder `protobuf:"bytes,1,opt,name=sortedOrder,proto3" json:"sortedOrder,omitempty"`
+	SortedOrders *SortedOrder `protobuf:"bytes,1,opt,name=sorted_orders,json=sortedOrders,proto3" json:"sorted_orders,omitempty"`
 }
 
 func (x *QueryGetSortedOrderResponse) Reset() {
@@ -6724,14 +4883,15 @@ func (*QueryGetSortedOrderResponse) Descriptor() ([]byte, []int) {
 	return file_gluon_contract_query_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *QueryGetSortedOrderResponse) GetSortedOrder() *SortedOrder {
+func (x *QueryGetSortedOrderResponse) GetSortedOrders() *SortedOrder {
 	if x != nil {
-		return x.SortedOrder
+		return x.SortedOrders
 	}
 	return nil
 }
 
-type QueryAllSortedOrderRequest struct {
+// QuerySortedOrdersRequest
+type QuerySortedOrdersRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -6739,8 +4899,8 @@ type QueryAllSortedOrderRequest struct {
 	Pagination *v1beta1.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (x *QueryAllSortedOrderRequest) Reset() {
-	*x = QueryAllSortedOrderRequest{}
+func (x *QuerySortedOrdersRequest) Reset() {
+	*x = QuerySortedOrdersRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_gluon_contract_query_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -6748,35 +4908,36 @@ func (x *QueryAllSortedOrderRequest) Reset() {
 	}
 }
 
-func (x *QueryAllSortedOrderRequest) String() string {
+func (x *QuerySortedOrdersRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QueryAllSortedOrderRequest) ProtoMessage() {}
+func (*QuerySortedOrdersRequest) ProtoMessage() {}
 
-// Deprecated: Use QueryAllSortedOrderRequest.ProtoReflect.Descriptor instead.
-func (*QueryAllSortedOrderRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use QuerySortedOrdersRequest.ProtoReflect.Descriptor instead.
+func (*QuerySortedOrdersRequest) Descriptor() ([]byte, []int) {
 	return file_gluon_contract_query_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *QueryAllSortedOrderRequest) GetPagination() *v1beta1.PageRequest {
+func (x *QuerySortedOrdersRequest) GetPagination() *v1beta1.PageRequest {
 	if x != nil {
 		return x.Pagination
 	}
 	return nil
 }
 
-type QueryAllSortedOrderResponse struct {
+// QuerySortedOrdersResponse
+type QuerySortedOrdersResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SortedOrder []*SortedOrder        `protobuf:"bytes,1,rep,name=sortedOrder,proto3" json:"sortedOrder,omitempty"`
-	Pagination  *v1beta1.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	SortedOrders []*SortedOrder        `protobuf:"bytes,1,rep,name=sorted_orders,json=sortedOrders,proto3" json:"sorted_orders,omitempty"`
+	Pagination   *v1beta1.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (x *QueryAllSortedOrderResponse) Reset() {
-	*x = QueryAllSortedOrderResponse{}
+func (x *QuerySortedOrdersResponse) Reset() {
+	*x = QuerySortedOrdersResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_gluon_contract_query_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -6784,173 +4945,25 @@ func (x *QueryAllSortedOrderResponse) Reset() {
 	}
 }
 
-func (x *QueryAllSortedOrderResponse) String() string {
+func (x *QuerySortedOrdersResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QueryAllSortedOrderResponse) ProtoMessage() {}
+func (*QuerySortedOrdersResponse) ProtoMessage() {}
 
-// Deprecated: Use QueryAllSortedOrderResponse.ProtoReflect.Descriptor instead.
-func (*QueryAllSortedOrderResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use QuerySortedOrdersResponse.ProtoReflect.Descriptor instead.
+func (*QuerySortedOrdersResponse) Descriptor() ([]byte, []int) {
 	return file_gluon_contract_query_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *QueryAllSortedOrderResponse) GetSortedOrder() []*SortedOrder {
+func (x *QuerySortedOrdersResponse) GetSortedOrders() []*SortedOrder {
 	if x != nil {
-		return x.SortedOrder
+		return x.SortedOrders
 	}
 	return nil
 }
 
-func (x *QueryAllSortedOrderResponse) GetPagination() *v1beta1.PageResponse {
-	if x != nil {
-		return x.Pagination
-	}
-	return nil
-}
-
-type QueryGetLazyContractRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-}
-
-func (x *QueryGetLazyContractRequest) Reset() {
-	*x = QueryGetLazyContractRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_gluon_contract_query_proto_msgTypes[10]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *QueryGetLazyContractRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryGetLazyContractRequest) ProtoMessage() {}
-
-// Deprecated: Use QueryGetLazyContractRequest.ProtoReflect.Descriptor instead.
-func (*QueryGetLazyContractRequest) Descriptor() ([]byte, []int) {
-	return file_gluon_contract_query_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *QueryGetLazyContractRequest) GetId() uint64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-type QueryGetLazyContractResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	LazyContract *LazyContract `protobuf:"bytes,1,opt,name=LazyContract,proto3" json:"LazyContract,omitempty"`
-}
-
-func (x *QueryGetLazyContractResponse) Reset() {
-	*x = QueryGetLazyContractResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_gluon_contract_query_proto_msgTypes[11]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *QueryGetLazyContractResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryGetLazyContractResponse) ProtoMessage() {}
-
-// Deprecated: Use QueryGetLazyContractResponse.ProtoReflect.Descriptor instead.
-func (*QueryGetLazyContractResponse) Descriptor() ([]byte, []int) {
-	return file_gluon_contract_query_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *QueryGetLazyContractResponse) GetLazyContract() *LazyContract {
-	if x != nil {
-		return x.LazyContract
-	}
-	return nil
-}
-
-type QueryAllLazyContractRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Pagination *v1beta1.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
-}
-
-func (x *QueryAllLazyContractRequest) Reset() {
-	*x = QueryAllLazyContractRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_gluon_contract_query_proto_msgTypes[12]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *QueryAllLazyContractRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryAllLazyContractRequest) ProtoMessage() {}
-
-// Deprecated: Use QueryAllLazyContractRequest.ProtoReflect.Descriptor instead.
-func (*QueryAllLazyContractRequest) Descriptor() ([]byte, []int) {
-	return file_gluon_contract_query_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *QueryAllLazyContractRequest) GetPagination() *v1beta1.PageRequest {
-	if x != nil {
-		return x.Pagination
-	}
-	return nil
-}
-
-type QueryAllLazyContractResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	LazyContract []*LazyContract       `protobuf:"bytes,1,rep,name=LazyContract,proto3" json:"LazyContract,omitempty"`
-	Pagination   *v1beta1.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
-}
-
-func (x *QueryAllLazyContractResponse) Reset() {
-	*x = QueryAllLazyContractResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_gluon_contract_query_proto_msgTypes[13]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *QueryAllLazyContractResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryAllLazyContractResponse) ProtoMessage() {}
-
-// Deprecated: Use QueryAllLazyContractResponse.ProtoReflect.Descriptor instead.
-func (*QueryAllLazyContractResponse) Descriptor() ([]byte, []int) {
-	return file_gluon_contract_query_proto_rawDescGZIP(), []int{13}
-}
-
-func (x *QueryAllLazyContractResponse) GetLazyContract() []*LazyContract {
-	if x != nil {
-		return x.LazyContract
-	}
-	return nil
-}
-
-func (x *QueryAllLazyContractResponse) GetPagination() *v1beta1.PageResponse {
+func (x *QuerySortedOrdersResponse) GetPagination() *v1beta1.PageResponse {
 	if x != nil {
 		return x.Pagination
 	}
@@ -6964,178 +4977,126 @@ var file_gluon_contract_query_proto_rawDesc = []byte{
 	0x2f, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x67, 0x6c,
 	0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x1a, 0x11, 0x61, 0x6d,
 	0x69, 0x6e, 0x6f, 0x2f, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a,
-	0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1c, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70,
-	0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x1a, 0x2a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x62, 0x61, 0x73, 0x65,
-	0x2f, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2f, 0x70,
-	0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a,
-	0x1b, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f,
-	0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1a, 0x67, 0x6c,
-	0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x6f, 0x72, 0x64,
-	0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x21, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f,
-	0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x5f,
-	0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x22, 0x67, 0x6c, 0x75,
-	0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x6c, 0x61, 0x7a, 0x79,
-	0x5f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a,
-	0x29, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f,
-	0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x5f, 0x6c, 0x61, 0x7a, 0x79, 0x5f, 0x63, 0x6f, 0x6e, 0x74,
-	0x72, 0x61, 0x63, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x14, 0x0a, 0x12, 0x51, 0x75,
-	0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x22, 0x50, 0x0a, 0x13, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x39, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d,
-	0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e,
-	0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42,
-	0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61,
-	0x6d, 0x73, 0x22, 0x26, 0x0a, 0x14, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4f, 0x72,
-	0x64, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x4a, 0x0a, 0x15, 0x51, 0x75,
-	0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x31, 0x0a, 0x05, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x15, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72,
-	0x61, 0x63, 0x74, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52,
-	0x05, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x22, 0x5e, 0x0a, 0x14, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41,
-	0x6c, 0x6c, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x46,
-	0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65,
-	0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50,
-	0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69,
-	0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x93, 0x01, 0x0a, 0x15, 0x51, 0x75, 0x65, 0x72, 0x79,
-	0x41, 0x6c, 0x6c, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x31, 0x0a, 0x05, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x15, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
-	0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x05, 0x6f, 0x72,
-	0x64, 0x65, 0x72, 0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
-	0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65,
-	0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x44, 0x0a, 0x1a,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72,
-	0x64, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x65, 0x78,
-	0x70, 0x69, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x65, 0x78, 0x70, 0x69,
-	0x72, 0x79, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02,
-	0x69, 0x64, 0x22, 0x62, 0x0a, 0x1b, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x6f,
-	0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x43, 0x0a, 0x0b, 0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63,
-	0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72,
-	0x64, 0x65, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0b, 0x73, 0x6f, 0x72, 0x74, 0x65,
-	0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x22, 0x64, 0x0a, 0x1a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41,
-	0x6c, 0x6c, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x12, 0x46, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
-	0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62,
-	0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0xab, 0x01, 0x0a,
-	0x1b, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f,
-	0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x43, 0x0a, 0x0b,
-	0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x03, 0x28,
-	0x0b, 0x32, 0x1b, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61,
-	0x63, 0x74, 0x2e, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x04,
-	0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0b, 0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65,
-	0x72, 0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62,
-	0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61,
-	0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a,
-	0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x2d, 0x0a, 0x1b, 0x51, 0x75,
-	0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61,
-	0x63, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x22, 0x66, 0x0a, 0x1c, 0x51, 0x75, 0x65,
-	0x72, 0x79, 0x47, 0x65, 0x74, 0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
-	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x46, 0x0a, 0x0c, 0x4c, 0x61, 0x7a,
-	0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x1c, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
-	0x2e, 0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x42, 0x04, 0xc8,
-	0xde, 0x1f, 0x00, 0x52, 0x0c, 0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
-	0x74, 0x22, 0x65, 0x0a, 0x1b, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x4c, 0x61, 0x7a,
-	0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x12, 0x46, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61,
+	0x2a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x62, 0x61, 0x73, 0x65, 0x2f, 0x71, 0x75, 0x65,
+	0x72, 0x79, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2f, 0x70, 0x61, 0x67, 0x69, 0x6e,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1a, 0x67, 0x6c, 0x75,
+	0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x6f, 0x72, 0x64, 0x65,
+	0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1b, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63,
+	0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x21, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74,
+	0x72, 0x61, 0x63, 0x74, 0x2f, 0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x5f, 0x6f, 0x72, 0x64, 0x65,
+	0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1c, 0x67,
+	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x14, 0x0a, 0x12, 0x51,
+	0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x22, 0x50, 0x0a, 0x13, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x39, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61,
+	0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e,
+	0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
+	0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72,
+	0x61, 0x6d, 0x73, 0x22, 0x26, 0x0a, 0x14, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4f,
+	0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x4a, 0x0a, 0x15, 0x51,
+	0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x31, 0x0a, 0x05, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74,
+	0x72, 0x61, 0x63, 0x74, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00,
+	0x52, 0x05, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x22, 0x5c, 0x0a, 0x12, 0x51, 0x75, 0x65, 0x72, 0x79,
+	0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x46, 0x0a,
+	0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e,
+	0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61,
+	0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x91, 0x01, 0x0a, 0x13, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4f,
+	0x72, 0x64, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x31, 0x0a,
+	0x05, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x67,
+	0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x4f, 0x72,
+	0x64, 0x65, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x05, 0x6f, 0x72, 0x64, 0x65, 0x72,
+	0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61,
 	0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31,
-	0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x0a, 0x70, 0x61,
-	0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0xaf, 0x01, 0x0a, 0x1c, 0x51, 0x75, 0x65,
-	0x72, 0x79, 0x41, 0x6c, 0x6c, 0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
-	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x46, 0x0a, 0x0c, 0x4c, 0x61, 0x7a,
-	0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x1c, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
-	0x2e, 0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x42, 0x04, 0xc8,
-	0xde, 0x1f, 0x00, 0x52, 0x0c, 0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
-	0x74, 0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62,
-	0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61,
-	0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a,
-	0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x32, 0xcd, 0x07, 0x0a, 0x05, 0x51,
-	0x75, 0x65, 0x72, 0x79, 0x12, 0x71, 0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x22,
-	0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x23, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72,
-	0x61, 0x63, 0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1e, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x18, 0x12,
-	0x16, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
-	0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x78, 0x0a, 0x05, 0x4f, 0x72, 0x64, 0x65, 0x72,
-	0x12, 0x24, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
-	0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63,
-	0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74,
-	0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x22, 0x82,
-	0xd3, 0xe4, 0x93, 0x02, 0x1c, 0x12, 0x1a, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f,
-	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2f, 0x7b, 0x69, 0x64,
-	0x7d, 0x12, 0x76, 0x0a, 0x08, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x41, 0x6c, 0x6c, 0x12, 0x24, 0x2e,
+	0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a, 0x70,
+	0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x44, 0x0a, 0x1a, 0x51, 0x75, 0x65,
+	0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x65, 0x78, 0x70, 0x69, 0x72,
+	0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x65, 0x78, 0x70, 0x69, 0x72, 0x79, 0x12,
+	0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22,
+	0x65, 0x0a, 0x1b, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x6f, 0x72, 0x74, 0x65,
+	0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x46,
+	0x0a, 0x0d, 0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f,
+	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64,
+	0x65, 0x72, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0c, 0x73, 0x6f, 0x72, 0x74, 0x65, 0x64,
+	0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x22, 0x62, 0x0a, 0x18, 0x51, 0x75, 0x65, 0x72, 0x79, 0x53,
+	0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x46, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e,
+	0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74,
+	0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x0a,
+	0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0xac, 0x01, 0x0a, 0x19, 0x51,
+	0x75, 0x65, 0x72, 0x79, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x46, 0x0a, 0x0d, 0x73, 0x6f, 0x72, 0x74,
+	0x65, 0x64, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x1b, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
+	0x2e, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x04, 0xc8, 0xde,
+	0x1f, 0x00, 0x52, 0x0c, 0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73,
+	0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61,
+	0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31,
+	0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a, 0x70,
+	0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x32, 0x93, 0x05, 0x0a, 0x05, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x12, 0x71, 0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x22, 0x2e,
 	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x51,
-	0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74,
-	0x72, 0x61, 0x63, 0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x4f, 0x72, 0x64,
-	0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1d, 0x82, 0xd3, 0xe4, 0x93,
-	0x02, 0x17, 0x12, 0x15, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72,
-	0x61, 0x63, 0x74, 0x2f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x9a, 0x01, 0x0a, 0x0b, 0x53, 0x6f,
-	0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x2a, 0x2e, 0x67, 0x6c, 0x75, 0x6f,
-	0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
-	0x47, 0x65, 0x74, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f,
-	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53,
-	0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x32, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2c, 0x12, 0x2a, 0x2f, 0x67, 0x6c, 0x75,
-	0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x73, 0x6f, 0x72, 0x74,
-	0x65, 0x64, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2f, 0x7b, 0x65, 0x78, 0x70, 0x69, 0x72, 0x79,
-	0x7d, 0x2f, 0x7b, 0x69, 0x64, 0x7d, 0x12, 0x8f, 0x01, 0x0a, 0x0e, 0x53, 0x6f, 0x72, 0x74, 0x65,
-	0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x41, 0x6c, 0x6c, 0x12, 0x2a, 0x2e, 0x67, 0x6c, 0x75, 0x6f,
-	0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
-	0x41, 0x6c, 0x6c, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f,
-	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x53,
-	0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x24, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x1e, 0x12, 0x1c, 0x2f, 0x67, 0x6c, 0x75,
-	0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x73, 0x6f, 0x72, 0x74,
-	0x65, 0x64, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x97, 0x01, 0x0a, 0x0c, 0x4c, 0x61, 0x7a,
-	0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x12, 0x2b, 0x2e, 0x67, 0x6c, 0x75, 0x6f,
-	0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
-	0x47, 0x65, 0x74, 0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63,
-	0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74,
-	0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2c, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x26, 0x12, 0x24, 0x2f, 0x67,
-	0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x6c, 0x61,
-	0x7a, 0x79, 0x5f, 0x73, 0x65, 0x74, 0x74, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x2f, 0x7b, 0x69,
-	0x64, 0x7d, 0x12, 0x95, 0x01, 0x0a, 0x0f, 0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72,
-	0x61, 0x63, 0x74, 0x41, 0x6c, 0x6c, 0x12, 0x2b, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63,
-	0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c,
-	0x4c, 0x61, 0x7a, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74,
-	0x72, 0x61, 0x63, 0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x4c, 0x61, 0x7a,
-	0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x22, 0x27, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x21, 0x12, 0x1f, 0x2f, 0x67, 0x6c, 0x75, 0x6f,
-	0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x6c, 0x61, 0x7a, 0x79, 0x5f,
-	0x73, 0x65, 0x74, 0x74, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x42, 0x93, 0x01, 0x0a, 0x12, 0x63,
-	0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
-	0x74, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a,
-	0x18, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e,
-	0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xa2, 0x02, 0x03, 0x47, 0x43, 0x58, 0xaa,
-	0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
-	0xca, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
-	0x74, 0xe2, 0x02, 0x1a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61,
-	0x63, 0x74, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02,
-	0x0f, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x23, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61,
+	0x63, 0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1e, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x18, 0x12, 0x16,
+	0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f,
+	0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x79, 0x0a, 0x05, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12,
+	0x24, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
+	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f,
+	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4f,
+	0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x23, 0x82, 0xd3,
+	0xe4, 0x93, 0x02, 0x1d, 0x12, 0x1b, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e,
+	0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x2f, 0x7b, 0x69, 0x64,
+	0x7d, 0x12, 0x71, 0x0a, 0x06, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x12, 0x22, 0x2e, 0x67, 0x6c,
+	0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x51, 0x75, 0x65,
+	0x72, 0x79, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x23, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74,
+	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1e, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x18, 0x12, 0x16, 0x2f, 0x67,
+	0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x6f, 0x72,
+	0x64, 0x65, 0x72, 0x73, 0x12, 0x9b, 0x01, 0x0a, 0x0b, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f,
+	0x72, 0x64, 0x65, 0x72, 0x12, 0x2a, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e,
+	0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x6f,
+	0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x2b, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
+	0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64,
+	0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x33, 0x82,
+	0xd3, 0xe4, 0x93, 0x02, 0x2d, 0x12, 0x2b, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f,
+	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2f, 0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x5f, 0x6f, 0x72,
+	0x64, 0x65, 0x72, 0x73, 0x2f, 0x7b, 0x65, 0x78, 0x70, 0x69, 0x72, 0x79, 0x7d, 0x2f, 0x7b, 0x69,
+	0x64, 0x7d, 0x12, 0x8a, 0x01, 0x0a, 0x0c, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64,
+	0x65, 0x72, 0x73, 0x12, 0x28, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74,
+	0x72, 0x61, 0x63, 0x74, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64,
+	0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e,
+	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x2e, 0x51,
+	0x75, 0x65, 0x72, 0x79, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x25, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x1f,
+	0x12, 0x1d, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63,
+	0x74, 0x2f, 0x73, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x42,
+	0x93, 0x01, 0x0a, 0x12, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x6f,
+	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x72, 0x6f,
+	0x74, 0x6f, 0x50, 0x01, 0x5a, 0x18, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f,
+	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xa2, 0x02,
+	0x03, 0x47, 0x43, 0x58, 0xaa, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x43, 0x6f, 0x6e,
+	0x74, 0x72, 0x61, 0x63, 0x74, 0xca, 0x02, 0x0e, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x6f,
+	0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0xe2, 0x02, 0x1a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43,
+	0x6f, 0x6e, 0x74, 0x72, 0x61, 0x63, 0x74, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64,
+	0x61, 0x74, 0x61, 0xea, 0x02, 0x0f, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x43, 0x6f, 0x6e,
+	0x74, 0x72, 0x61, 0x63, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -7150,62 +5111,49 @@ func file_gluon_contract_query_proto_rawDescGZIP() []byte {
 	return file_gluon_contract_query_proto_rawDescData
 }
 
-var file_gluon_contract_query_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_gluon_contract_query_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_gluon_contract_query_proto_goTypes = []interface{}{
-	(*QueryParamsRequest)(nil),           // 0: gluon.contract.QueryParamsRequest
-	(*QueryParamsResponse)(nil),          // 1: gluon.contract.QueryParamsResponse
-	(*QueryGetOrderRequest)(nil),         // 2: gluon.contract.QueryGetOrderRequest
-	(*QueryGetOrderResponse)(nil),        // 3: gluon.contract.QueryGetOrderResponse
-	(*QueryAllOrderRequest)(nil),         // 4: gluon.contract.QueryAllOrderRequest
-	(*QueryAllOrderResponse)(nil),        // 5: gluon.contract.QueryAllOrderResponse
-	(*QueryGetSortedOrderRequest)(nil),   // 6: gluon.contract.QueryGetSortedOrderRequest
-	(*QueryGetSortedOrderResponse)(nil),  // 7: gluon.contract.QueryGetSortedOrderResponse
-	(*QueryAllSortedOrderRequest)(nil),   // 8: gluon.contract.QueryAllSortedOrderRequest
-	(*QueryAllSortedOrderResponse)(nil),  // 9: gluon.contract.QueryAllSortedOrderResponse
-	(*QueryGetLazyContractRequest)(nil),  // 10: gluon.contract.QueryGetLazyContractRequest
-	(*QueryGetLazyContractResponse)(nil), // 11: gluon.contract.QueryGetLazyContractResponse
-	(*QueryAllLazyContractRequest)(nil),  // 12: gluon.contract.QueryAllLazyContractRequest
-	(*QueryAllLazyContractResponse)(nil), // 13: gluon.contract.QueryAllLazyContractResponse
-	(*Params)(nil),                       // 14: gluon.contract.Params
-	(*Order)(nil),                        // 15: gluon.contract.Order
-	(*v1beta1.PageRequest)(nil),          // 16: cosmos.base.query.v1beta1.PageRequest
-	(*v1beta1.PageResponse)(nil),         // 17: cosmos.base.query.v1beta1.PageResponse
-	(*SortedOrder)(nil),                  // 18: gluon.contract.SortedOrder
-	(*LazyContract)(nil),                 // 19: gluon.contract.LazyContract
+	(*QueryParamsRequest)(nil),          // 0: gluon.contract.QueryParamsRequest
+	(*QueryParamsResponse)(nil),         // 1: gluon.contract.QueryParamsResponse
+	(*QueryGetOrderRequest)(nil),        // 2: gluon.contract.QueryGetOrderRequest
+	(*QueryGetOrderResponse)(nil),       // 3: gluon.contract.QueryGetOrderResponse
+	(*QueryOrdersRequest)(nil),          // 4: gluon.contract.QueryOrdersRequest
+	(*QueryOrdersResponse)(nil),         // 5: gluon.contract.QueryOrdersResponse
+	(*QueryGetSortedOrderRequest)(nil),  // 6: gluon.contract.QueryGetSortedOrderRequest
+	(*QueryGetSortedOrderResponse)(nil), // 7: gluon.contract.QueryGetSortedOrderResponse
+	(*QuerySortedOrdersRequest)(nil),    // 8: gluon.contract.QuerySortedOrdersRequest
+	(*QuerySortedOrdersResponse)(nil),   // 9: gluon.contract.QuerySortedOrdersResponse
+	(*Params)(nil),                      // 10: gluon.contract.Params
+	(*Order)(nil),                       // 11: gluon.contract.Order
+	(*v1beta1.PageRequest)(nil),         // 12: cosmos.base.query.v1beta1.PageRequest
+	(*v1beta1.PageResponse)(nil),        // 13: cosmos.base.query.v1beta1.PageResponse
+	(*SortedOrder)(nil),                 // 14: gluon.contract.SortedOrder
 }
 var file_gluon_contract_query_proto_depIdxs = []int32{
-	14, // 0: gluon.contract.QueryParamsResponse.params:type_name -> gluon.contract.Params
-	15, // 1: gluon.contract.QueryGetOrderResponse.order:type_name -> gluon.contract.Order
-	16, // 2: gluon.contract.QueryAllOrderRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
-	15, // 3: gluon.contract.QueryAllOrderResponse.order:type_name -> gluon.contract.Order
-	17, // 4: gluon.contract.QueryAllOrderResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
-	18, // 5: gluon.contract.QueryGetSortedOrderResponse.sortedOrder:type_name -> gluon.contract.SortedOrder
-	16, // 6: gluon.contract.QueryAllSortedOrderRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
-	18, // 7: gluon.contract.QueryAllSortedOrderResponse.sortedOrder:type_name -> gluon.contract.SortedOrder
-	17, // 8: gluon.contract.QueryAllSortedOrderResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
-	19, // 9: gluon.contract.QueryGetLazyContractResponse.LazyContract:type_name -> gluon.contract.LazyContract
-	16, // 10: gluon.contract.QueryAllLazyContractRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
-	19, // 11: gluon.contract.QueryAllLazyContractResponse.LazyContract:type_name -> gluon.contract.LazyContract
-	17, // 12: gluon.contract.QueryAllLazyContractResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
-	0,  // 13: gluon.contract.Query.Params:input_type -> gluon.contract.QueryParamsRequest
-	2,  // 14: gluon.contract.Query.Order:input_type -> gluon.contract.QueryGetOrderRequest
-	4,  // 15: gluon.contract.Query.OrderAll:input_type -> gluon.contract.QueryAllOrderRequest
-	6,  // 16: gluon.contract.Query.SortedOrder:input_type -> gluon.contract.QueryGetSortedOrderRequest
-	8,  // 17: gluon.contract.Query.SortedOrderAll:input_type -> gluon.contract.QueryAllSortedOrderRequest
-	10, // 18: gluon.contract.Query.LazyContract:input_type -> gluon.contract.QueryGetLazyContractRequest
-	12, // 19: gluon.contract.Query.LazyContractAll:input_type -> gluon.contract.QueryAllLazyContractRequest
-	1,  // 20: gluon.contract.Query.Params:output_type -> gluon.contract.QueryParamsResponse
-	3,  // 21: gluon.contract.Query.Order:output_type -> gluon.contract.QueryGetOrderResponse
-	5,  // 22: gluon.contract.Query.OrderAll:output_type -> gluon.contract.QueryAllOrderResponse
-	7,  // 23: gluon.contract.Query.SortedOrder:output_type -> gluon.contract.QueryGetSortedOrderResponse
-	9,  // 24: gluon.contract.Query.SortedOrderAll:output_type -> gluon.contract.QueryAllSortedOrderResponse
-	11, // 25: gluon.contract.Query.LazyContract:output_type -> gluon.contract.QueryGetLazyContractResponse
-	13, // 26: gluon.contract.Query.LazyContractAll:output_type -> gluon.contract.QueryAllLazyContractResponse
-	20, // [20:27] is the sub-list for method output_type
-	13, // [13:20] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	10, // 0: gluon.contract.QueryParamsResponse.params:type_name -> gluon.contract.Params
+	11, // 1: gluon.contract.QueryGetOrderResponse.order:type_name -> gluon.contract.Order
+	12, // 2: gluon.contract.QueryOrdersRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
+	11, // 3: gluon.contract.QueryOrdersResponse.order:type_name -> gluon.contract.Order
+	13, // 4: gluon.contract.QueryOrdersResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
+	14, // 5: gluon.contract.QueryGetSortedOrderResponse.sorted_orders:type_name -> gluon.contract.SortedOrder
+	12, // 6: gluon.contract.QuerySortedOrdersRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
+	14, // 7: gluon.contract.QuerySortedOrdersResponse.sorted_orders:type_name -> gluon.contract.SortedOrder
+	13, // 8: gluon.contract.QuerySortedOrdersResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
+	0,  // 9: gluon.contract.Query.Params:input_type -> gluon.contract.QueryParamsRequest
+	2,  // 10: gluon.contract.Query.Order:input_type -> gluon.contract.QueryGetOrderRequest
+	4,  // 11: gluon.contract.Query.Orders:input_type -> gluon.contract.QueryOrdersRequest
+	6,  // 12: gluon.contract.Query.SortedOrder:input_type -> gluon.contract.QueryGetSortedOrderRequest
+	8,  // 13: gluon.contract.Query.SortedOrders:input_type -> gluon.contract.QuerySortedOrdersRequest
+	1,  // 14: gluon.contract.Query.Params:output_type -> gluon.contract.QueryParamsResponse
+	3,  // 15: gluon.contract.Query.Order:output_type -> gluon.contract.QueryGetOrderResponse
+	5,  // 16: gluon.contract.Query.Orders:output_type -> gluon.contract.QueryOrdersResponse
+	7,  // 17: gluon.contract.Query.SortedOrder:output_type -> gluon.contract.QueryGetSortedOrderResponse
+	9,  // 18: gluon.contract.Query.SortedOrders:output_type -> gluon.contract.QuerySortedOrdersResponse
+	14, // [14:19] is the sub-list for method output_type
+	9,  // [9:14] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_gluon_contract_query_proto_init() }
@@ -7213,11 +5161,9 @@ func file_gluon_contract_query_proto_init() {
 	if File_gluon_contract_query_proto != nil {
 		return
 	}
-	file_gluon_contract_params_proto_init()
 	file_gluon_contract_order_proto_init()
+	file_gluon_contract_params_proto_init()
 	file_gluon_contract_sorted_order_proto_init()
-	file_gluon_contract_lazy_contract_proto_init()
-	file_gluon_contract_sorted_lazy_contract_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_gluon_contract_query_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryParamsRequest); i {
@@ -7268,7 +5214,7 @@ func file_gluon_contract_query_proto_init() {
 			}
 		}
 		file_gluon_contract_query_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryAllOrderRequest); i {
+			switch v := v.(*QueryOrdersRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -7280,7 +5226,7 @@ func file_gluon_contract_query_proto_init() {
 			}
 		}
 		file_gluon_contract_query_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryAllOrderResponse); i {
+			switch v := v.(*QueryOrdersResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -7316,7 +5262,7 @@ func file_gluon_contract_query_proto_init() {
 			}
 		}
 		file_gluon_contract_query_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryAllSortedOrderRequest); i {
+			switch v := v.(*QuerySortedOrdersRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -7328,55 +5274,7 @@ func file_gluon_contract_query_proto_init() {
 			}
 		}
 		file_gluon_contract_query_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryAllSortedOrderResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_gluon_contract_query_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetLazyContractRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_gluon_contract_query_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetLazyContractResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_gluon_contract_query_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryAllLazyContractRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_gluon_contract_query_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryAllLazyContractResponse); i {
+			switch v := v.(*QuerySortedOrdersResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -7394,7 +5292,7 @@ func file_gluon_contract_query_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_gluon_contract_query_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   14,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

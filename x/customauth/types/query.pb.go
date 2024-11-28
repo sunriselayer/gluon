@@ -114,6 +114,7 @@ func (m *QueryParamsResponse) GetParams() Params {
 	return Params{}
 }
 
+// QueryGetPairingRequest
 type QueryGetPairingRequest struct {
 	Address string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
 	Id      uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
@@ -166,8 +167,9 @@ func (m *QueryGetPairingRequest) GetId() uint64 {
 	return 0
 }
 
+// QueryGetPairingResponse
 type QueryGetPairingResponse struct {
-	Pairing Pairing `protobuf:"bytes,1,opt,name=Pairing,proto3" json:"Pairing"`
+	Pairing Pairing `protobuf:"bytes,1,opt,name=pairing,proto3" json:"pairing"`
 }
 
 func (m *QueryGetPairingResponse) Reset()         { *m = QueryGetPairingResponse{} }
@@ -210,23 +212,24 @@ func (m *QueryGetPairingResponse) GetPairing() Pairing {
 	return Pairing{}
 }
 
-type QueryAllPairingRequest struct {
+// QueryPairingsRequest
+type QueryPairingsRequest struct {
 	Address    string             `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
 	Pagination *query.PageRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (m *QueryAllPairingRequest) Reset()         { *m = QueryAllPairingRequest{} }
-func (m *QueryAllPairingRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryAllPairingRequest) ProtoMessage()    {}
-func (*QueryAllPairingRequest) Descriptor() ([]byte, []int) {
+func (m *QueryPairingsRequest) Reset()         { *m = QueryPairingsRequest{} }
+func (m *QueryPairingsRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryPairingsRequest) ProtoMessage()    {}
+func (*QueryPairingsRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_f6375fdd3ac5d9df, []int{4}
 }
-func (m *QueryAllPairingRequest) XXX_Unmarshal(b []byte) error {
+func (m *QueryPairingsRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryAllPairingRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryPairingsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryAllPairingRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryPairingsRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -236,49 +239,50 @@ func (m *QueryAllPairingRequest) XXX_Marshal(b []byte, deterministic bool) ([]by
 		return b[:n], nil
 	}
 }
-func (m *QueryAllPairingRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryAllPairingRequest.Merge(m, src)
+func (m *QueryPairingsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryPairingsRequest.Merge(m, src)
 }
-func (m *QueryAllPairingRequest) XXX_Size() int {
+func (m *QueryPairingsRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryAllPairingRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryAllPairingRequest.DiscardUnknown(m)
+func (m *QueryPairingsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryPairingsRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryAllPairingRequest proto.InternalMessageInfo
+var xxx_messageInfo_QueryPairingsRequest proto.InternalMessageInfo
 
-func (m *QueryAllPairingRequest) GetAddress() string {
+func (m *QueryPairingsRequest) GetAddress() string {
 	if m != nil {
 		return m.Address
 	}
 	return ""
 }
 
-func (m *QueryAllPairingRequest) GetPagination() *query.PageRequest {
+func (m *QueryPairingsRequest) GetPagination() *query.PageRequest {
 	if m != nil {
 		return m.Pagination
 	}
 	return nil
 }
 
-type QueryAllPairingResponse struct {
-	Pairing    []Pairing           `protobuf:"bytes,1,rep,name=Pairing,proto3" json:"Pairing"`
+// QueryPairingsResponse
+type QueryPairingsResponse struct {
+	Pairings   []Pairing           `protobuf:"bytes,1,rep,name=pairings,proto3" json:"pairings"`
 	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (m *QueryAllPairingResponse) Reset()         { *m = QueryAllPairingResponse{} }
-func (m *QueryAllPairingResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryAllPairingResponse) ProtoMessage()    {}
-func (*QueryAllPairingResponse) Descriptor() ([]byte, []int) {
+func (m *QueryPairingsResponse) Reset()         { *m = QueryPairingsResponse{} }
+func (m *QueryPairingsResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryPairingsResponse) ProtoMessage()    {}
+func (*QueryPairingsResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_f6375fdd3ac5d9df, []int{5}
 }
-func (m *QueryAllPairingResponse) XXX_Unmarshal(b []byte) error {
+func (m *QueryPairingsResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryAllPairingResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryPairingsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryAllPairingResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryPairingsResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -288,26 +292,26 @@ func (m *QueryAllPairingResponse) XXX_Marshal(b []byte, deterministic bool) ([]b
 		return b[:n], nil
 	}
 }
-func (m *QueryAllPairingResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryAllPairingResponse.Merge(m, src)
+func (m *QueryPairingsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryPairingsResponse.Merge(m, src)
 }
-func (m *QueryAllPairingResponse) XXX_Size() int {
+func (m *QueryPairingsResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryAllPairingResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryAllPairingResponse.DiscardUnknown(m)
+func (m *QueryPairingsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryPairingsResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryAllPairingResponse proto.InternalMessageInfo
+var xxx_messageInfo_QueryPairingsResponse proto.InternalMessageInfo
 
-func (m *QueryAllPairingResponse) GetPairing() []Pairing {
+func (m *QueryPairingsResponse) GetPairings() []Pairing {
 	if m != nil {
-		return m.Pairing
+		return m.Pairings
 	}
 	return nil
 }
 
-func (m *QueryAllPairingResponse) GetPagination() *query.PageResponse {
+func (m *QueryPairingsResponse) GetPagination() *query.PageResponse {
 	if m != nil {
 		return m.Pagination
 	}
@@ -319,47 +323,47 @@ func init() {
 	proto.RegisterType((*QueryParamsResponse)(nil), "gluon.customauth.QueryParamsResponse")
 	proto.RegisterType((*QueryGetPairingRequest)(nil), "gluon.customauth.QueryGetPairingRequest")
 	proto.RegisterType((*QueryGetPairingResponse)(nil), "gluon.customauth.QueryGetPairingResponse")
-	proto.RegisterType((*QueryAllPairingRequest)(nil), "gluon.customauth.QueryAllPairingRequest")
-	proto.RegisterType((*QueryAllPairingResponse)(nil), "gluon.customauth.QueryAllPairingResponse")
+	proto.RegisterType((*QueryPairingsRequest)(nil), "gluon.customauth.QueryPairingsRequest")
+	proto.RegisterType((*QueryPairingsResponse)(nil), "gluon.customauth.QueryPairingsResponse")
 }
 
 func init() { proto.RegisterFile("gluon/customauth/query.proto", fileDescriptor_f6375fdd3ac5d9df) }
 
 var fileDescriptor_f6375fdd3ac5d9df = []byte{
-	// 514 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x94, 0x41, 0x6f, 0xd3, 0x30,
-	0x14, 0xc7, 0xeb, 0x6e, 0x74, 0x9a, 0x27, 0x21, 0x30, 0x13, 0x84, 0x68, 0x84, 0x2a, 0x30, 0x28,
-	0x45, 0x8a, 0x59, 0x39, 0x21, 0x4e, 0xeb, 0x81, 0x5d, 0x4b, 0xc4, 0x89, 0x9b, 0xbb, 0x58, 0xc6,
-	0x52, 0x6a, 0x67, 0xb1, 0x03, 0x8c, 0x69, 0x17, 0x3e, 0x00, 0x9a, 0xc4, 0x99, 0x1b, 0x07, 0x8e,
-	0x7c, 0x8c, 0x1d, 0x27, 0x71, 0xe1, 0x84, 0x50, 0x8b, 0xc4, 0xd7, 0x40, 0xb5, 0x5d, 0x56, 0x48,
-	0xa2, 0x76, 0x97, 0xc8, 0xf1, 0x7b, 0xef, 0xff, 0x7e, 0xf6, 0xff, 0x25, 0x70, 0x8b, 0xa5, 0x85,
-	0x14, 0x78, 0xbf, 0x50, 0x5a, 0x8e, 0x48, 0xa1, 0x5f, 0xe1, 0x83, 0x82, 0xe6, 0x87, 0x51, 0x96,
-	0x4b, 0x2d, 0xd1, 0x15, 0x13, 0x8d, 0xce, 0xa3, 0xfe, 0x55, 0x32, 0xe2, 0x42, 0x62, 0xf3, 0xb4,
-	0x49, 0xfe, 0x26, 0x93, 0x4c, 0x9a, 0x25, 0x9e, 0xae, 0xdc, 0xee, 0x16, 0x93, 0x92, 0xa5, 0x14,
-	0x93, 0x8c, 0x63, 0x22, 0x84, 0xd4, 0x44, 0x73, 0x29, 0x94, 0x8b, 0x76, 0xf7, 0xa5, 0x1a, 0x49,
-	0x85, 0x87, 0x44, 0x51, 0xdb, 0x11, 0xbf, 0xde, 0x19, 0x52, 0x4d, 0x76, 0x70, 0x46, 0x18, 0x17,
-	0x26, 0xd9, 0xe5, 0xde, 0x2a, 0x21, 0x66, 0x24, 0x27, 0xa3, 0x99, 0x54, 0x50, 0x11, 0xe6, 0x39,
-	0x17, 0xcc, 0xc6, 0xc3, 0x4d, 0x88, 0x9e, 0x4f, 0x1b, 0x0c, 0x4c, 0x51, 0x4c, 0x0f, 0x0a, 0xaa,
-	0x74, 0x18, 0xc3, 0x6b, 0xff, 0xec, 0xaa, 0x4c, 0x0a, 0x45, 0xd1, 0x53, 0xd8, 0xb2, 0xe2, 0x1e,
-	0x68, 0x83, 0xce, 0x46, 0xcf, 0x8b, 0xfe, 0xbf, 0x81, 0xc8, 0x56, 0xf4, 0xd7, 0x4f, 0x7f, 0xdc,
-	0x6e, 0x7c, 0xf9, 0xfd, 0xb5, 0x0b, 0x62, 0x57, 0x12, 0xf6, 0xe1, 0x75, 0xa3, 0xb9, 0x47, 0xf5,
-	0xc0, 0x22, 0xb8, 0x6e, 0xc8, 0x83, 0x6b, 0x24, 0x49, 0x72, 0xaa, 0xac, 0xee, 0x7a, 0x3c, 0x7b,
-	0x45, 0x97, 0x61, 0x93, 0x27, 0x5e, 0xb3, 0x0d, 0x3a, 0xab, 0x71, 0x93, 0x27, 0xe1, 0x0b, 0x78,
-	0xa3, 0xa4, 0xe1, 0xd8, 0x9e, 0xc0, 0x35, 0xb7, 0xe5, 0xe0, 0x6e, 0x56, 0xc1, 0x99, 0x84, 0xfe,
-	0xea, 0x94, 0x2e, 0x9e, 0xe5, 0x87, 0xef, 0x1c, 0xd9, 0x6e, 0x9a, 0x2e, 0x4d, 0xf6, 0x0c, 0xc2,
-	0x73, 0x2b, 0x0c, 0xe1, 0x46, 0xef, 0x5e, 0x64, 0x7d, 0x8b, 0xa6, 0xbe, 0x45, 0x76, 0x52, 0x9c,
-	0x6f, 0xd1, 0x80, 0x30, 0xea, 0x54, 0xe3, 0xb9, 0xca, 0xf0, 0x13, 0x70, 0x47, 0x9a, 0x6f, 0x5e,
-	0x75, 0xa4, 0x95, 0x8b, 0x1c, 0x09, 0xed, 0x55, 0xe0, 0xdd, 0x5f, 0x88, 0x67, 0xfb, 0xce, 0xf3,
-	0xf5, 0x3e, 0xaf, 0xc0, 0x4b, 0x86, 0x0f, 0xbd, 0x81, 0x2d, 0x6b, 0x2e, 0xba, 0x5b, 0xc6, 0x28,
-	0xcf, 0x90, 0xbf, 0xbd, 0x20, 0xcb, 0x36, 0x0b, 0xdb, 0xef, 0xbf, 0xfd, 0xfa, 0xd8, 0xf4, 0x91,
-	0x87, 0x6b, 0x06, 0x19, 0x9d, 0x80, 0xbf, 0xf7, 0x80, 0x3a, 0x35, 0xa2, 0xa5, 0xa1, 0xf2, 0x1f,
-	0x2c, 0x91, 0xe9, 0x10, 0x1e, 0x19, 0x84, 0x2e, 0xea, 0xe0, 0xba, 0x8f, 0x05, 0x1f, 0x39, 0xdf,
-	0x8f, 0xf1, 0x11, 0x4f, 0x8e, 0xd1, 0x07, 0x00, 0xa1, 0x53, 0xd9, 0x4d, 0xd3, 0x5a, 0xaa, 0xd2,
-	0x40, 0xd5, 0x52, 0x95, 0xdd, 0x0f, 0x1f, 0x1a, 0xaa, 0x6d, 0x74, 0x67, 0x09, 0xaa, 0x7e, 0xef,
-	0x74, 0x1c, 0x80, 0xb3, 0x71, 0x00, 0x7e, 0x8e, 0x03, 0x70, 0x32, 0x09, 0x1a, 0x67, 0x93, 0xa0,
-	0xf1, 0x7d, 0x12, 0x34, 0x5e, 0x7a, 0xb6, 0xfa, 0xed, 0x7c, 0xbd, 0x3e, 0xcc, 0xa8, 0x1a, 0xb6,
-	0xcc, 0x1f, 0xe0, 0xf1, 0x9f, 0x00, 0x00, 0x00, 0xff, 0xff, 0xd7, 0x24, 0xe0, 0xab, 0xe5, 0x04,
-	0x00, 0x00,
+	// 523 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x93, 0xbf, 0x6f, 0xd3, 0x40,
+	0x14, 0xc7, 0x73, 0x69, 0x49, 0xda, 0xab, 0x84, 0xe0, 0x08, 0x60, 0xac, 0x62, 0x22, 0xab, 0xa4,
+	0x69, 0x41, 0x3e, 0x25, 0x4c, 0x88, 0x2d, 0x03, 0x5d, 0x83, 0xc5, 0xc4, 0x76, 0xa9, 0x4f, 0xe6,
+	0xa4, 0xc6, 0xe7, 0xfa, 0xce, 0xd0, 0xaa, 0xea, 0xc2, 0xc6, 0x06, 0x62, 0x46, 0x62, 0x64, 0xe4,
+	0xcf, 0xe8, 0x58, 0x89, 0x85, 0x09, 0xa1, 0x04, 0x89, 0x7f, 0x03, 0xf9, 0xee, 0xa5, 0x4d, 0xeb,
+	0x44, 0xc9, 0x62, 0xd9, 0x7e, 0x3f, 0xbe, 0x9f, 0x77, 0xdf, 0x77, 0x78, 0x33, 0x3e, 0xc8, 0x65,
+	0x42, 0xf7, 0x73, 0xa5, 0xe5, 0x90, 0xe5, 0xfa, 0x2d, 0x3d, 0xcc, 0x79, 0x76, 0x1c, 0xa4, 0x99,
+	0xd4, 0x92, 0xdc, 0x32, 0xd1, 0xe0, 0x32, 0xea, 0xde, 0x66, 0x43, 0x91, 0x48, 0x6a, 0x9e, 0x36,
+	0xc9, 0xdd, 0xdd, 0x97, 0x6a, 0x28, 0x15, 0x1d, 0x30, 0xc5, 0x6d, 0x35, 0x7d, 0xd7, 0x19, 0x70,
+	0xcd, 0x3a, 0x34, 0x65, 0xb1, 0x48, 0x98, 0x16, 0x32, 0x81, 0x5c, 0xaf, 0x24, 0x97, 0x32, 0x91,
+	0x89, 0x24, 0x86, 0xf8, 0xc3, 0x19, 0xf1, 0x8c, 0x0d, 0x15, 0x84, 0x1b, 0xb1, 0x8c, 0xa5, 0x79,
+	0xa5, 0xc5, 0x1b, 0xfc, 0xdd, 0x8c, 0xa5, 0x8c, 0x0f, 0x38, 0x65, 0xa9, 0xa0, 0x2c, 0x49, 0xa4,
+	0x36, 0x8a, 0x50, 0xe3, 0x37, 0x30, 0x79, 0x55, 0x40, 0xf5, 0x4d, 0xa3, 0x90, 0x1f, 0xe6, 0x5c,
+	0x69, 0x3f, 0xc4, 0x77, 0xae, 0xfc, 0x55, 0xa9, 0x4c, 0x14, 0x27, 0x2f, 0x70, 0xcd, 0x0a, 0x3a,
+	0xa8, 0x89, 0xda, 0x1b, 0x5d, 0x27, 0xb8, 0x7e, 0x02, 0x81, 0xad, 0xe8, 0xad, 0x9f, 0xfd, 0x7e,
+	0x54, 0xf9, 0xfe, 0xef, 0xc7, 0x2e, 0x0a, 0xa1, 0xc4, 0xef, 0xe1, 0x7b, 0xa6, 0xe7, 0x1e, 0xd7,
+	0x7d, 0x3b, 0x15, 0xa8, 0x11, 0x07, 0xd7, 0x59, 0x14, 0x65, 0x5c, 0xd9, 0xbe, 0xeb, 0xe1, 0xe4,
+	0x93, 0xdc, 0xc4, 0x55, 0x11, 0x39, 0xd5, 0x26, 0x6a, 0xaf, 0x86, 0x55, 0x11, 0xf9, 0xaf, 0xf1,
+	0xfd, 0x52, 0x0f, 0x60, 0x7b, 0x8e, 0xeb, 0x70, 0x58, 0x00, 0xf7, 0x60, 0x16, 0x9c, 0x49, 0xe8,
+	0xad, 0x16, 0x74, 0xe1, 0x24, 0xdf, 0x3f, 0xc2, 0x0d, 0x98, 0xd6, 0x7c, 0xab, 0xc5, 0x5c, 0x2f,
+	0x31, 0xbe, 0x34, 0xcf, 0xf0, 0x6d, 0x74, 0x5b, 0x81, 0x75, 0x3a, 0x28, 0x9c, 0x0e, 0xec, 0x9e,
+	0x80, 0xd3, 0x41, 0x9f, 0xc5, 0x1c, 0xba, 0x86, 0x53, 0x95, 0xfe, 0x57, 0x84, 0xef, 0x5e, 0x93,
+	0xbe, 0x38, 0xea, 0x35, 0xc0, 0x2b, 0xc4, 0x57, 0x96, 0x99, 0xe7, 0xa2, 0x80, 0xec, 0xcd, 0xc0,
+	0xdb, 0x5e, 0x88, 0x67, 0x95, 0xa7, 0xf9, 0xba, 0xdf, 0x56, 0xf0, 0x0d, 0xc3, 0x47, 0xde, 0xe3,
+	0x9a, 0xb5, 0x96, 0x6c, 0x95, 0x39, 0xca, 0x1b, 0xe4, 0x3e, 0x5e, 0x90, 0x65, 0xc5, 0xfc, 0xe6,
+	0x87, 0x9f, 0x7f, 0xbf, 0x54, 0x5d, 0xe2, 0xd0, 0x39, 0xab, 0x4d, 0x3e, 0x23, 0x5c, 0x87, 0x39,
+	0x49, 0x7b, 0x4e, 0xd3, 0xd2, 0x4a, 0xb9, 0x3b, 0x4b, 0x64, 0x02, 0x42, 0xc7, 0x20, 0x3c, 0x21,
+	0x3b, 0x74, 0xde, 0xed, 0x53, 0xf4, 0x04, 0x8c, 0x3f, 0xa5, 0x27, 0x22, 0x3a, 0x25, 0x1f, 0x11,
+	0x5e, 0x9b, 0x38, 0x46, 0x5a, 0x73, 0x27, 0xbd, 0xb2, 0x4d, 0xee, 0xf6, 0xc2, 0x3c, 0x00, 0x7a,
+	0x6a, 0x80, 0x5a, 0x64, 0x6b, 0x19, 0xa0, 0x5e, 0xf7, 0x6c, 0xe4, 0xa1, 0xf3, 0x91, 0x87, 0xfe,
+	0x8c, 0x3c, 0xf4, 0x69, 0xec, 0x55, 0xce, 0xc7, 0x5e, 0xe5, 0xd7, 0xd8, 0xab, 0xbc, 0x71, 0x6c,
+	0xf9, 0xd1, 0x74, 0x03, 0x7d, 0x9c, 0x72, 0x35, 0xa8, 0x99, 0xbb, 0xff, 0xec, 0x7f, 0x00, 0x00,
+	0x00, 0xff, 0xff, 0x06, 0xbc, 0xc7, 0x28, 0xdf, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -376,9 +380,10 @@ const _ = grpc.SupportPackageIsVersion4
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
-	// Queries a list of Pairing items.
+	// Pairing
 	Pairing(ctx context.Context, in *QueryGetPairingRequest, opts ...grpc.CallOption) (*QueryGetPairingResponse, error)
-	PairingAll(ctx context.Context, in *QueryAllPairingRequest, opts ...grpc.CallOption) (*QueryAllPairingResponse, error)
+	// Pairings
+	Pairings(ctx context.Context, in *QueryPairingsRequest, opts ...grpc.CallOption) (*QueryPairingsResponse, error)
 }
 
 type queryClient struct {
@@ -407,9 +412,9 @@ func (c *queryClient) Pairing(ctx context.Context, in *QueryGetPairingRequest, o
 	return out, nil
 }
 
-func (c *queryClient) PairingAll(ctx context.Context, in *QueryAllPairingRequest, opts ...grpc.CallOption) (*QueryAllPairingResponse, error) {
-	out := new(QueryAllPairingResponse)
-	err := c.cc.Invoke(ctx, "/gluon.customauth.Query/PairingAll", in, out, opts...)
+func (c *queryClient) Pairings(ctx context.Context, in *QueryPairingsRequest, opts ...grpc.CallOption) (*QueryPairingsResponse, error) {
+	out := new(QueryPairingsResponse)
+	err := c.cc.Invoke(ctx, "/gluon.customauth.Query/Pairings", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -420,9 +425,10 @@ func (c *queryClient) PairingAll(ctx context.Context, in *QueryAllPairingRequest
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
-	// Queries a list of Pairing items.
+	// Pairing
 	Pairing(context.Context, *QueryGetPairingRequest) (*QueryGetPairingResponse, error)
-	PairingAll(context.Context, *QueryAllPairingRequest) (*QueryAllPairingResponse, error)
+	// Pairings
+	Pairings(context.Context, *QueryPairingsRequest) (*QueryPairingsResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -435,8 +441,8 @@ func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryParamsReq
 func (*UnimplementedQueryServer) Pairing(ctx context.Context, req *QueryGetPairingRequest) (*QueryGetPairingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pairing not implemented")
 }
-func (*UnimplementedQueryServer) PairingAll(ctx context.Context, req *QueryAllPairingRequest) (*QueryAllPairingResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PairingAll not implemented")
+func (*UnimplementedQueryServer) Pairings(ctx context.Context, req *QueryPairingsRequest) (*QueryPairingsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Pairings not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -479,20 +485,20 @@ func _Query_Pairing_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_PairingAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryAllPairingRequest)
+func _Query_Pairings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryPairingsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).PairingAll(ctx, in)
+		return srv.(QueryServer).Pairings(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gluon.customauth.Query/PairingAll",
+		FullMethod: "/gluon.customauth.Query/Pairings",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).PairingAll(ctx, req.(*QueryAllPairingRequest))
+		return srv.(QueryServer).Pairings(ctx, req.(*QueryPairingsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -511,8 +517,8 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Query_Pairing_Handler,
 		},
 		{
-			MethodName: "PairingAll",
-			Handler:    _Query_PairingAll_Handler,
+			MethodName: "Pairings",
+			Handler:    _Query_Pairings_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -643,7 +649,7 @@ func (m *QueryGetPairingResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryAllPairingRequest) Marshal() (dAtA []byte, err error) {
+func (m *QueryPairingsRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -653,12 +659,12 @@ func (m *QueryAllPairingRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryAllPairingRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryPairingsRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryAllPairingRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryPairingsRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -685,7 +691,7 @@ func (m *QueryAllPairingRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryAllPairingResponse) Marshal() (dAtA []byte, err error) {
+func (m *QueryPairingsResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -695,12 +701,12 @@ func (m *QueryAllPairingResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryAllPairingResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryPairingsResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryAllPairingResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryPairingsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -717,10 +723,10 @@ func (m *QueryAllPairingResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 		i--
 		dAtA[i] = 0x12
 	}
-	if len(m.Pairing) > 0 {
-		for iNdEx := len(m.Pairing) - 1; iNdEx >= 0; iNdEx-- {
+	if len(m.Pairings) > 0 {
+		for iNdEx := len(m.Pairings) - 1; iNdEx >= 0; iNdEx-- {
 			{
-				size, err := m.Pairing[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				size, err := m.Pairings[iNdEx].MarshalToSizedBuffer(dAtA[:i])
 				if err != nil {
 					return 0, err
 				}
@@ -792,7 +798,7 @@ func (m *QueryGetPairingResponse) Size() (n int) {
 	return n
 }
 
-func (m *QueryAllPairingRequest) Size() (n int) {
+func (m *QueryPairingsRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -809,14 +815,14 @@ func (m *QueryAllPairingRequest) Size() (n int) {
 	return n
 }
 
-func (m *QueryAllPairingResponse) Size() (n int) {
+func (m *QueryPairingsResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if len(m.Pairing) > 0 {
-		for _, e := range m.Pairing {
+	if len(m.Pairings) > 0 {
+		for _, e := range m.Pairings {
 			l = e.Size()
 			n += 1 + l + sovQuery(uint64(l))
 		}
@@ -1151,7 +1157,7 @@ func (m *QueryGetPairingResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryAllPairingRequest) Unmarshal(dAtA []byte) error {
+func (m *QueryPairingsRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1174,10 +1180,10 @@ func (m *QueryAllPairingRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryAllPairingRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryPairingsRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryAllPairingRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryPairingsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1269,7 +1275,7 @@ func (m *QueryAllPairingRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryAllPairingResponse) Unmarshal(dAtA []byte) error {
+func (m *QueryPairingsResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1292,15 +1298,15 @@ func (m *QueryAllPairingResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryAllPairingResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryPairingsResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryAllPairingResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryPairingsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Pairing", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Pairings", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -1327,8 +1333,8 @@ func (m *QueryAllPairingResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Pairing = append(m.Pairing, Pairing{})
-			if err := m.Pairing[len(m.Pairing)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			m.Pairings = append(m.Pairings, Pairing{})
+			if err := m.Pairings[len(m.Pairings)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

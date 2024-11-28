@@ -22,6 +22,7 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
+// Operator PubKey
 type PubKey struct {
 	User []byte `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 }

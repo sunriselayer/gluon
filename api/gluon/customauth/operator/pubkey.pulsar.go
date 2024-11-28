@@ -447,6 +447,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Operator PubKey
 type PubKey struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

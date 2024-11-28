@@ -19,13 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName          = "/gluon.contract.Query/Params"
-	Query_Order_FullMethodName           = "/gluon.contract.Query/Order"
-	Query_OrderAll_FullMethodName        = "/gluon.contract.Query/OrderAll"
-	Query_SortedOrder_FullMethodName     = "/gluon.contract.Query/SortedOrder"
-	Query_SortedOrderAll_FullMethodName  = "/gluon.contract.Query/SortedOrderAll"
-	Query_LazyContract_FullMethodName    = "/gluon.contract.Query/LazyContract"
-	Query_LazyContractAll_FullMethodName = "/gluon.contract.Query/LazyContractAll"
+	Query_Params_FullMethodName       = "/gluon.contract.Query/Params"
+	Query_Order_FullMethodName        = "/gluon.contract.Query/Order"
+	Query_Orders_FullMethodName       = "/gluon.contract.Query/Orders"
+	Query_SortedOrder_FullMethodName  = "/gluon.contract.Query/SortedOrder"
+	Query_SortedOrders_FullMethodName = "/gluon.contract.Query/SortedOrders"
 )
 
 // QueryClient is the client API for Query service.
@@ -34,15 +32,14 @@ const (
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
-	// Queries a list of Order items.
+	// Order
 	Order(ctx context.Context, in *QueryGetOrderRequest, opts ...grpc.CallOption) (*QueryGetOrderResponse, error)
-	OrderAll(ctx context.Context, in *QueryAllOrderRequest, opts ...grpc.CallOption) (*QueryAllOrderResponse, error)
-	// Queries a list of SortedOrder items.
+	// Orders
+	Orders(ctx context.Context, in *QueryOrdersRequest, opts ...grpc.CallOption) (*QueryOrdersResponse, error)
+	// SortedOrder
 	SortedOrder(ctx context.Context, in *QueryGetSortedOrderRequest, opts ...grpc.CallOption) (*QueryGetSortedOrderResponse, error)
-	SortedOrderAll(ctx context.Context, in *QueryAllSortedOrderRequest, opts ...grpc.CallOption) (*QueryAllSortedOrderResponse, error)
-	// Queries a list of LazyContract items.
-	LazyContract(ctx context.Context, in *QueryGetLazyContractRequest, opts ...grpc.CallOption) (*QueryGetLazyContractResponse, error)
-	LazyContractAll(ctx context.Context, in *QueryAllLazyContractRequest, opts ...grpc.CallOption) (*QueryAllLazyContractResponse, error)
+	// SortedOrders
+	SortedOrders(ctx context.Context, in *QuerySortedOrdersRequest, opts ...grpc.CallOption) (*QuerySortedOrdersResponse, error)
 }
 
 type queryClient struct {
@@ -71,9 +68,9 @@ func (c *queryClient) Order(ctx context.Context, in *QueryGetOrderRequest, opts 
 	return out, nil
 }
 
-func (c *queryClient) OrderAll(ctx context.Context, in *QueryAllOrderRequest, opts ...grpc.CallOption) (*QueryAllOrderResponse, error) {
-	out := new(QueryAllOrderResponse)
-	err := c.cc.Invoke(ctx, Query_OrderAll_FullMethodName, in, out, opts...)
+func (c *queryClient) Orders(ctx context.Context, in *QueryOrdersRequest, opts ...grpc.CallOption) (*QueryOrdersResponse, error) {
+	out := new(QueryOrdersResponse)
+	err := c.cc.Invoke(ctx, Query_Orders_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -89,27 +86,9 @@ func (c *queryClient) SortedOrder(ctx context.Context, in *QueryGetSortedOrderRe
 	return out, nil
 }
 
-func (c *queryClient) SortedOrderAll(ctx context.Context, in *QueryAllSortedOrderRequest, opts ...grpc.CallOption) (*QueryAllSortedOrderResponse, error) {
-	out := new(QueryAllSortedOrderResponse)
-	err := c.cc.Invoke(ctx, Query_SortedOrderAll_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *queryClient) LazyContract(ctx context.Context, in *QueryGetLazyContractRequest, opts ...grpc.CallOption) (*QueryGetLazyContractResponse, error) {
-	out := new(QueryGetLazyContractResponse)
-	err := c.cc.Invoke(ctx, Query_LazyContract_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *queryClient) LazyContractAll(ctx context.Context, in *QueryAllLazyContractRequest, opts ...grpc.CallOption) (*QueryAllLazyContractResponse, error) {
-	out := new(QueryAllLazyContractResponse)
-	err := c.cc.Invoke(ctx, Query_LazyContractAll_FullMethodName, in, out, opts...)
+func (c *queryClient) SortedOrders(ctx context.Context, in *QuerySortedOrdersRequest, opts ...grpc.CallOption) (*QuerySortedOrdersResponse, error) {
+	out := new(QuerySortedOrdersResponse)
+	err := c.cc.Invoke(ctx, Query_SortedOrders_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -122,15 +101,14 @@ func (c *queryClient) LazyContractAll(ctx context.Context, in *QueryAllLazyContr
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
-	// Queries a list of Order items.
+	// Order
 	Order(context.Context, *QueryGetOrderRequest) (*QueryGetOrderResponse, error)
-	OrderAll(context.Context, *QueryAllOrderRequest) (*QueryAllOrderResponse, error)
-	// Queries a list of SortedOrder items.
+	// Orders
+	Orders(context.Context, *QueryOrdersRequest) (*QueryOrdersResponse, error)
+	// SortedOrder
 	SortedOrder(context.Context, *QueryGetSortedOrderRequest) (*QueryGetSortedOrderResponse, error)
-	SortedOrderAll(context.Context, *QueryAllSortedOrderRequest) (*QueryAllSortedOrderResponse, error)
-	// Queries a list of LazyContract items.
-	LazyContract(context.Context, *QueryGetLazyContractRequest) (*QueryGetLazyContractResponse, error)
-	LazyContractAll(context.Context, *QueryAllLazyContractRequest) (*QueryAllLazyContractResponse, error)
+	// SortedOrders
+	SortedOrders(context.Context, *QuerySortedOrdersRequest) (*QuerySortedOrdersResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -144,20 +122,14 @@ func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*Q
 func (UnimplementedQueryServer) Order(context.Context, *QueryGetOrderRequest) (*QueryGetOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Order not implemented")
 }
-func (UnimplementedQueryServer) OrderAll(context.Context, *QueryAllOrderRequest) (*QueryAllOrderResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method OrderAll not implemented")
+func (UnimplementedQueryServer) Orders(context.Context, *QueryOrdersRequest) (*QueryOrdersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Orders not implemented")
 }
 func (UnimplementedQueryServer) SortedOrder(context.Context, *QueryGetSortedOrderRequest) (*QueryGetSortedOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SortedOrder not implemented")
 }
-func (UnimplementedQueryServer) SortedOrderAll(context.Context, *QueryAllSortedOrderRequest) (*QueryAllSortedOrderResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SortedOrderAll not implemented")
-}
-func (UnimplementedQueryServer) LazyContract(context.Context, *QueryGetLazyContractRequest) (*QueryGetLazyContractResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LazyContract not implemented")
-}
-func (UnimplementedQueryServer) LazyContractAll(context.Context, *QueryAllLazyContractRequest) (*QueryAllLazyContractResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LazyContractAll not implemented")
+func (UnimplementedQueryServer) SortedOrders(context.Context, *QuerySortedOrdersRequest) (*QuerySortedOrdersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SortedOrders not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -208,20 +180,20 @@ func _Query_Order_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_OrderAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryAllOrderRequest)
+func _Query_Orders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryOrdersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).OrderAll(ctx, in)
+		return srv.(QueryServer).Orders(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_OrderAll_FullMethodName,
+		FullMethod: Query_Orders_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).OrderAll(ctx, req.(*QueryAllOrderRequest))
+		return srv.(QueryServer).Orders(ctx, req.(*QueryOrdersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -244,56 +216,20 @@ func _Query_SortedOrder_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_SortedOrderAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryAllSortedOrderRequest)
+func _Query_SortedOrders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QuerySortedOrdersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).SortedOrderAll(ctx, in)
+		return srv.(QueryServer).SortedOrders(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_SortedOrderAll_FullMethodName,
+		FullMethod: Query_SortedOrders_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).SortedOrderAll(ctx, req.(*QueryAllSortedOrderRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Query_LazyContract_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetLazyContractRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).LazyContract(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Query_LazyContract_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).LazyContract(ctx, req.(*QueryGetLazyContractRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Query_LazyContractAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryAllLazyContractRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).LazyContractAll(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Query_LazyContractAll_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).LazyContractAll(ctx, req.(*QueryAllLazyContractRequest))
+		return srv.(QueryServer).SortedOrders(ctx, req.(*QuerySortedOrdersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -314,24 +250,16 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Query_Order_Handler,
 		},
 		{
-			MethodName: "OrderAll",
-			Handler:    _Query_OrderAll_Handler,
+			MethodName: "Orders",
+			Handler:    _Query_Orders_Handler,
 		},
 		{
 			MethodName: "SortedOrder",
 			Handler:    _Query_SortedOrder_Handler,
 		},
 		{
-			MethodName: "SortedOrderAll",
-			Handler:    _Query_SortedOrderAll_Handler,
-		},
-		{
-			MethodName: "LazyContract",
-			Handler:    _Query_LazyContract_Handler,
-		},
-		{
-			MethodName: "LazyContractAll",
-			Handler:    _Query_LazyContractAll_Handler,
+			MethodName: "SortedOrders",
+			Handler:    _Query_SortedOrders_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

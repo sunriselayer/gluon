@@ -18,7 +18,7 @@ func TestPairingMsgServerCreate(t *testing.T) {
 	for i := 0; i < 5; i++ {
 		resp, err := srv.CreatePairing(wctx, &types.MsgCreatePairing{User: user})
 		require.NoError(t, err)
-		require.Equal(t, i, int(resp.Id))
+		require.Equal(t, i, int(resp.PairingId))
 	}
 }
 
@@ -41,7 +41,7 @@ func TestPairingMsgServerDelete(t *testing.T) {
 		},
 		{
 			desc:    "KeyNotFound",
-			request: &types.MsgDeletePairing{User: user, Id: 10},
+			request: &types.MsgDeletePairing{User: user, PairingId: 10},
 			err:     sdkerrors.ErrKeyNotFound,
 		},
 	}

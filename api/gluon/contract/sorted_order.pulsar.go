@@ -614,6 +614,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// SortedOrder
 type SortedOrder struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

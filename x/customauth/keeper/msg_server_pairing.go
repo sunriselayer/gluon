@@ -36,7 +36,7 @@ func (k msgServer) CreatePairing(goCtx context.Context, msg *types.MsgCreatePair
 	}
 
 	return &types.MsgCreatePairingResponse{
-		Id: id,
+		PairingId: id,
 	}, nil
 }
 
@@ -44,9 +44,9 @@ func (k msgServer) DeletePairing(goCtx context.Context, msg *types.MsgDeletePair
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	// Checks that the element exists
-	val, found := k.GetPairing(ctx, msg.User, msg.Id)
+	val, found := k.GetPairing(ctx, msg.User, msg.PairingId)
 	if !found {
-		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("key %d doesn't exist", msg.Id))
+		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("key %d doesn't exist", msg.PairingId))
 	}
 
 	// Checks if the msg user is the same as the current owner
@@ -54,7 +54,7 @@ func (k msgServer) DeletePairing(goCtx context.Context, msg *types.MsgDeletePair
 		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
 	}
 
-	k.RemovePairing(ctx, msg.User, msg.Id)
+	k.RemovePairing(ctx, msg.User, msg.PairingId)
 
 	return &types.MsgDeletePairingResponse{}, nil
 }

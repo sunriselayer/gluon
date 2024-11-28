@@ -114,6 +114,7 @@ func (m *QueryParamsResponse) GetParams() Params {
 	return Params{}
 }
 
+// QueryGetOrderRequest
 type QueryGetOrderRequest struct {
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 }
@@ -158,6 +159,7 @@ func (m *QueryGetOrderRequest) GetId() string {
 	return ""
 }
 
+// QueryGetOrderResponse
 type QueryGetOrderResponse struct {
 	Order Order `protobuf:"bytes,1,opt,name=order,proto3" json:"order"`
 }
@@ -202,22 +204,23 @@ func (m *QueryGetOrderResponse) GetOrder() Order {
 	return Order{}
 }
 
-type QueryAllOrderRequest struct {
+// QueryOrdersRequest
+type QueryOrdersRequest struct {
 	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (m *QueryAllOrderRequest) Reset()         { *m = QueryAllOrderRequest{} }
-func (m *QueryAllOrderRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryAllOrderRequest) ProtoMessage()    {}
-func (*QueryAllOrderRequest) Descriptor() ([]byte, []int) {
+func (m *QueryOrdersRequest) Reset()         { *m = QueryOrdersRequest{} }
+func (m *QueryOrdersRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryOrdersRequest) ProtoMessage()    {}
+func (*QueryOrdersRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6b5a0b042300b082, []int{4}
 }
-func (m *QueryAllOrderRequest) XXX_Unmarshal(b []byte) error {
+func (m *QueryOrdersRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryAllOrderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryOrdersRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryAllOrderRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryOrdersRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -227,42 +230,43 @@ func (m *QueryAllOrderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte
 		return b[:n], nil
 	}
 }
-func (m *QueryAllOrderRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryAllOrderRequest.Merge(m, src)
+func (m *QueryOrdersRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryOrdersRequest.Merge(m, src)
 }
-func (m *QueryAllOrderRequest) XXX_Size() int {
+func (m *QueryOrdersRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryAllOrderRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryAllOrderRequest.DiscardUnknown(m)
+func (m *QueryOrdersRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryOrdersRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryAllOrderRequest proto.InternalMessageInfo
+var xxx_messageInfo_QueryOrdersRequest proto.InternalMessageInfo
 
-func (m *QueryAllOrderRequest) GetPagination() *query.PageRequest {
+func (m *QueryOrdersRequest) GetPagination() *query.PageRequest {
 	if m != nil {
 		return m.Pagination
 	}
 	return nil
 }
 
-type QueryAllOrderResponse struct {
+// QueryOrdersResponse
+type QueryOrdersResponse struct {
 	Order      []Order             `protobuf:"bytes,1,rep,name=order,proto3" json:"order"`
 	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (m *QueryAllOrderResponse) Reset()         { *m = QueryAllOrderResponse{} }
-func (m *QueryAllOrderResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryAllOrderResponse) ProtoMessage()    {}
-func (*QueryAllOrderResponse) Descriptor() ([]byte, []int) {
+func (m *QueryOrdersResponse) Reset()         { *m = QueryOrdersResponse{} }
+func (m *QueryOrdersResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryOrdersResponse) ProtoMessage()    {}
+func (*QueryOrdersResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6b5a0b042300b082, []int{5}
 }
-func (m *QueryAllOrderResponse) XXX_Unmarshal(b []byte) error {
+func (m *QueryOrdersResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryAllOrderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryOrdersResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryAllOrderResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryOrdersResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -272,32 +276,33 @@ func (m *QueryAllOrderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byt
 		return b[:n], nil
 	}
 }
-func (m *QueryAllOrderResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryAllOrderResponse.Merge(m, src)
+func (m *QueryOrdersResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryOrdersResponse.Merge(m, src)
 }
-func (m *QueryAllOrderResponse) XXX_Size() int {
+func (m *QueryOrdersResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryAllOrderResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryAllOrderResponse.DiscardUnknown(m)
+func (m *QueryOrdersResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryOrdersResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryAllOrderResponse proto.InternalMessageInfo
+var xxx_messageInfo_QueryOrdersResponse proto.InternalMessageInfo
 
-func (m *QueryAllOrderResponse) GetOrder() []Order {
+func (m *QueryOrdersResponse) GetOrder() []Order {
 	if m != nil {
 		return m.Order
 	}
 	return nil
 }
 
-func (m *QueryAllOrderResponse) GetPagination() *query.PageResponse {
+func (m *QueryOrdersResponse) GetPagination() *query.PageResponse {
 	if m != nil {
 		return m.Pagination
 	}
 	return nil
 }
 
+// QueryGetSortedOrderRequest
 type QueryGetSortedOrderRequest struct {
 	Expiry uint64 `protobuf:"varint,1,opt,name=expiry,proto3" json:"expiry,omitempty"`
 	Id     string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
@@ -350,8 +355,9 @@ func (m *QueryGetSortedOrderRequest) GetId() string {
 	return ""
 }
 
+// QueryGetSortedOrderResponse
 type QueryGetSortedOrderResponse struct {
-	SortedOrder SortedOrder `protobuf:"bytes,1,opt,name=sortedOrder,proto3" json:"sortedOrder"`
+	SortedOrders SortedOrder `protobuf:"bytes,1,opt,name=sorted_orders,json=sortedOrders,proto3" json:"sorted_orders"`
 }
 
 func (m *QueryGetSortedOrderResponse) Reset()         { *m = QueryGetSortedOrderResponse{} }
@@ -387,29 +393,30 @@ func (m *QueryGetSortedOrderResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_QueryGetSortedOrderResponse proto.InternalMessageInfo
 
-func (m *QueryGetSortedOrderResponse) GetSortedOrder() SortedOrder {
+func (m *QueryGetSortedOrderResponse) GetSortedOrders() SortedOrder {
 	if m != nil {
-		return m.SortedOrder
+		return m.SortedOrders
 	}
 	return SortedOrder{}
 }
 
-type QueryAllSortedOrderRequest struct {
+// QuerySortedOrdersRequest
+type QuerySortedOrdersRequest struct {
 	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (m *QueryAllSortedOrderRequest) Reset()         { *m = QueryAllSortedOrderRequest{} }
-func (m *QueryAllSortedOrderRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryAllSortedOrderRequest) ProtoMessage()    {}
-func (*QueryAllSortedOrderRequest) Descriptor() ([]byte, []int) {
+func (m *QuerySortedOrdersRequest) Reset()         { *m = QuerySortedOrdersRequest{} }
+func (m *QuerySortedOrdersRequest) String() string { return proto.CompactTextString(m) }
+func (*QuerySortedOrdersRequest) ProtoMessage()    {}
+func (*QuerySortedOrdersRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6b5a0b042300b082, []int{8}
 }
-func (m *QueryAllSortedOrderRequest) XXX_Unmarshal(b []byte) error {
+func (m *QuerySortedOrdersRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryAllSortedOrderRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QuerySortedOrdersRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryAllSortedOrderRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QuerySortedOrdersRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -419,226 +426,43 @@ func (m *QueryAllSortedOrderRequest) XXX_Marshal(b []byte, deterministic bool) (
 		return b[:n], nil
 	}
 }
-func (m *QueryAllSortedOrderRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryAllSortedOrderRequest.Merge(m, src)
+func (m *QuerySortedOrdersRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QuerySortedOrdersRequest.Merge(m, src)
 }
-func (m *QueryAllSortedOrderRequest) XXX_Size() int {
+func (m *QuerySortedOrdersRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryAllSortedOrderRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryAllSortedOrderRequest.DiscardUnknown(m)
+func (m *QuerySortedOrdersRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QuerySortedOrdersRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryAllSortedOrderRequest proto.InternalMessageInfo
+var xxx_messageInfo_QuerySortedOrdersRequest proto.InternalMessageInfo
 
-func (m *QueryAllSortedOrderRequest) GetPagination() *query.PageRequest {
+func (m *QuerySortedOrdersRequest) GetPagination() *query.PageRequest {
 	if m != nil {
 		return m.Pagination
 	}
 	return nil
 }
 
-type QueryAllSortedOrderResponse struct {
-	SortedOrder []SortedOrder       `protobuf:"bytes,1,rep,name=sortedOrder,proto3" json:"sortedOrder"`
-	Pagination  *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
-}
-
-func (m *QueryAllSortedOrderResponse) Reset()         { *m = QueryAllSortedOrderResponse{} }
-func (m *QueryAllSortedOrderResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryAllSortedOrderResponse) ProtoMessage()    {}
-func (*QueryAllSortedOrderResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6b5a0b042300b082, []int{9}
-}
-func (m *QueryAllSortedOrderResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *QueryAllSortedOrderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_QueryAllSortedOrderResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *QueryAllSortedOrderResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryAllSortedOrderResponse.Merge(m, src)
-}
-func (m *QueryAllSortedOrderResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *QueryAllSortedOrderResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryAllSortedOrderResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_QueryAllSortedOrderResponse proto.InternalMessageInfo
-
-func (m *QueryAllSortedOrderResponse) GetSortedOrder() []SortedOrder {
-	if m != nil {
-		return m.SortedOrder
-	}
-	return nil
-}
-
-func (m *QueryAllSortedOrderResponse) GetPagination() *query.PageResponse {
-	if m != nil {
-		return m.Pagination
-	}
-	return nil
-}
-
-type QueryGetLazyContractRequest struct {
-	Id uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-}
-
-func (m *QueryGetLazyContractRequest) Reset()         { *m = QueryGetLazyContractRequest{} }
-func (m *QueryGetLazyContractRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryGetLazyContractRequest) ProtoMessage()    {}
-func (*QueryGetLazyContractRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6b5a0b042300b082, []int{10}
-}
-func (m *QueryGetLazyContractRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *QueryGetLazyContractRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_QueryGetLazyContractRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *QueryGetLazyContractRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetLazyContractRequest.Merge(m, src)
-}
-func (m *QueryGetLazyContractRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *QueryGetLazyContractRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetLazyContractRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_QueryGetLazyContractRequest proto.InternalMessageInfo
-
-func (m *QueryGetLazyContractRequest) GetId() uint64 {
-	if m != nil {
-		return m.Id
-	}
-	return 0
-}
-
-type QueryGetLazyContractResponse struct {
-	LazyContract LazyContract `protobuf:"bytes,1,opt,name=LazyContract,proto3" json:"LazyContract"`
-}
-
-func (m *QueryGetLazyContractResponse) Reset()         { *m = QueryGetLazyContractResponse{} }
-func (m *QueryGetLazyContractResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryGetLazyContractResponse) ProtoMessage()    {}
-func (*QueryGetLazyContractResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6b5a0b042300b082, []int{11}
-}
-func (m *QueryGetLazyContractResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *QueryGetLazyContractResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_QueryGetLazyContractResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *QueryGetLazyContractResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetLazyContractResponse.Merge(m, src)
-}
-func (m *QueryGetLazyContractResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *QueryGetLazyContractResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetLazyContractResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_QueryGetLazyContractResponse proto.InternalMessageInfo
-
-func (m *QueryGetLazyContractResponse) GetLazyContract() LazyContract {
-	if m != nil {
-		return m.LazyContract
-	}
-	return LazyContract{}
-}
-
-type QueryAllLazyContractRequest struct {
-	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
-}
-
-func (m *QueryAllLazyContractRequest) Reset()         { *m = QueryAllLazyContractRequest{} }
-func (m *QueryAllLazyContractRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryAllLazyContractRequest) ProtoMessage()    {}
-func (*QueryAllLazyContractRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6b5a0b042300b082, []int{12}
-}
-func (m *QueryAllLazyContractRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *QueryAllLazyContractRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_QueryAllLazyContractRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *QueryAllLazyContractRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryAllLazyContractRequest.Merge(m, src)
-}
-func (m *QueryAllLazyContractRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *QueryAllLazyContractRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryAllLazyContractRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_QueryAllLazyContractRequest proto.InternalMessageInfo
-
-func (m *QueryAllLazyContractRequest) GetPagination() *query.PageRequest {
-	if m != nil {
-		return m.Pagination
-	}
-	return nil
-}
-
-type QueryAllLazyContractResponse struct {
-	LazyContract []LazyContract      `protobuf:"bytes,1,rep,name=LazyContract,proto3" json:"LazyContract"`
+// QuerySortedOrdersResponse
+type QuerySortedOrdersResponse struct {
+	SortedOrders []SortedOrder       `protobuf:"bytes,1,rep,name=sorted_orders,json=sortedOrders,proto3" json:"sorted_orders"`
 	Pagination   *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
-func (m *QueryAllLazyContractResponse) Reset()         { *m = QueryAllLazyContractResponse{} }
-func (m *QueryAllLazyContractResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryAllLazyContractResponse) ProtoMessage()    {}
-func (*QueryAllLazyContractResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6b5a0b042300b082, []int{13}
+func (m *QuerySortedOrdersResponse) Reset()         { *m = QuerySortedOrdersResponse{} }
+func (m *QuerySortedOrdersResponse) String() string { return proto.CompactTextString(m) }
+func (*QuerySortedOrdersResponse) ProtoMessage()    {}
+func (*QuerySortedOrdersResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_6b5a0b042300b082, []int{9}
 }
-func (m *QueryAllLazyContractResponse) XXX_Unmarshal(b []byte) error {
+func (m *QuerySortedOrdersResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryAllLazyContractResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QuerySortedOrdersResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryAllLazyContractResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QuerySortedOrdersResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -648,26 +472,26 @@ func (m *QueryAllLazyContractResponse) XXX_Marshal(b []byte, deterministic bool)
 		return b[:n], nil
 	}
 }
-func (m *QueryAllLazyContractResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryAllLazyContractResponse.Merge(m, src)
+func (m *QuerySortedOrdersResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QuerySortedOrdersResponse.Merge(m, src)
 }
-func (m *QueryAllLazyContractResponse) XXX_Size() int {
+func (m *QuerySortedOrdersResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryAllLazyContractResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryAllLazyContractResponse.DiscardUnknown(m)
+func (m *QuerySortedOrdersResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QuerySortedOrdersResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryAllLazyContractResponse proto.InternalMessageInfo
+var xxx_messageInfo_QuerySortedOrdersResponse proto.InternalMessageInfo
 
-func (m *QueryAllLazyContractResponse) GetLazyContract() []LazyContract {
+func (m *QuerySortedOrdersResponse) GetSortedOrders() []SortedOrder {
 	if m != nil {
-		return m.LazyContract
+		return m.SortedOrders
 	}
 	return nil
 }
 
-func (m *QueryAllLazyContractResponse) GetPagination() *query.PageResponse {
+func (m *QuerySortedOrdersResponse) GetPagination() *query.PageResponse {
 	if m != nil {
 		return m.Pagination
 	}
@@ -679,71 +503,58 @@ func init() {
 	proto.RegisterType((*QueryParamsResponse)(nil), "gluon.contract.QueryParamsResponse")
 	proto.RegisterType((*QueryGetOrderRequest)(nil), "gluon.contract.QueryGetOrderRequest")
 	proto.RegisterType((*QueryGetOrderResponse)(nil), "gluon.contract.QueryGetOrderResponse")
-	proto.RegisterType((*QueryAllOrderRequest)(nil), "gluon.contract.QueryAllOrderRequest")
-	proto.RegisterType((*QueryAllOrderResponse)(nil), "gluon.contract.QueryAllOrderResponse")
+	proto.RegisterType((*QueryOrdersRequest)(nil), "gluon.contract.QueryOrdersRequest")
+	proto.RegisterType((*QueryOrdersResponse)(nil), "gluon.contract.QueryOrdersResponse")
 	proto.RegisterType((*QueryGetSortedOrderRequest)(nil), "gluon.contract.QueryGetSortedOrderRequest")
 	proto.RegisterType((*QueryGetSortedOrderResponse)(nil), "gluon.contract.QueryGetSortedOrderResponse")
-	proto.RegisterType((*QueryAllSortedOrderRequest)(nil), "gluon.contract.QueryAllSortedOrderRequest")
-	proto.RegisterType((*QueryAllSortedOrderResponse)(nil), "gluon.contract.QueryAllSortedOrderResponse")
-	proto.RegisterType((*QueryGetLazyContractRequest)(nil), "gluon.contract.QueryGetLazyContractRequest")
-	proto.RegisterType((*QueryGetLazyContractResponse)(nil), "gluon.contract.QueryGetLazyContractResponse")
-	proto.RegisterType((*QueryAllLazyContractRequest)(nil), "gluon.contract.QueryAllLazyContractRequest")
-	proto.RegisterType((*QueryAllLazyContractResponse)(nil), "gluon.contract.QueryAllLazyContractResponse")
+	proto.RegisterType((*QuerySortedOrdersRequest)(nil), "gluon.contract.QuerySortedOrdersRequest")
+	proto.RegisterType((*QuerySortedOrdersResponse)(nil), "gluon.contract.QuerySortedOrdersResponse")
 }
 
 func init() { proto.RegisterFile("gluon/contract/query.proto", fileDescriptor_6b5a0b042300b082) }
 
 var fileDescriptor_6b5a0b042300b082 = []byte{
-	// 776 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x56, 0x41, 0x4f, 0xd4, 0x40,
-	0x14, 0xde, 0x2e, 0xb0, 0xca, 0x60, 0x30, 0x8e, 0xb0, 0x92, 0xb2, 0x16, 0x19, 0x11, 0x74, 0xc5,
-	0x8e, 0xe0, 0xc9, 0x23, 0x60, 0x20, 0x31, 0x26, 0xe2, 0x7a, 0xf3, 0x20, 0xe9, 0xb2, 0x63, 0xd3,
-	0xa4, 0xdb, 0x29, 0x6d, 0x21, 0x2c, 0x84, 0x8b, 0x7f, 0x40, 0x13, 0x62, 0x4c, 0xfc, 0x05, 0x26,
-	0x1e, 0xf4, 0x67, 0x70, 0x31, 0x21, 0xf1, 0xe2, 0xc9, 0x18, 0x30, 0xf1, 0x6f, 0x98, 0xce, 0xbc,
-	0x75, 0xdb, 0xee, 0x14, 0x56, 0xb3, 0x97, 0xcd, 0x76, 0xe6, 0x7b, 0xef, 0xfb, 0xbe, 0xf7, 0x3a,
-	0x6f, 0x8a, 0x74, 0xdb, 0xdd, 0xe6, 0x1e, 0xdd, 0xe4, 0x5e, 0x14, 0x58, 0x9b, 0x11, 0xdd, 0xda,
-	0x66, 0x41, 0xcb, 0xf4, 0x03, 0x1e, 0x71, 0x3c, 0x2a, 0xf6, 0xcc, 0xf6, 0x9e, 0x7e, 0xc5, 0x6a,
-	0x3a, 0x1e, 0xa7, 0xe2, 0x57, 0x42, 0xf4, 0x31, 0x9b, 0xdb, 0x5c, 0xfc, 0xa5, 0xf1, 0x3f, 0x58,
-	0xad, 0xd8, 0x9c, 0xdb, 0x2e, 0xa3, 0x96, 0xef, 0x50, 0xcb, 0xf3, 0x78, 0x64, 0x45, 0x0e, 0xf7,
-	0x42, 0xd8, 0xad, 0x6e, 0xf2, 0xb0, 0xc9, 0x43, 0x5a, 0xb7, 0x42, 0x26, 0xf9, 0xe8, 0xce, 0x42,
-	0x9d, 0x45, 0xd6, 0x02, 0xf5, 0x2d, 0xdb, 0xf1, 0x04, 0x18, 0xb0, 0x93, 0x19, 0x79, 0xbe, 0x15,
-	0x58, 0xcd, 0x76, 0xa2, 0xac, 0x76, 0x1e, 0x34, 0x58, 0x00, 0x7b, 0xd3, 0x99, 0xbd, 0x90, 0x07,
-	0x11, 0x6b, 0x6c, 0x24, 0x21, 0x24, 0x03, 0x71, 0xad, 0xbd, 0xd6, 0x46, 0xfb, 0x09, 0x30, 0x77,
-	0xd4, 0x69, 0x14, 0x50, 0x32, 0x86, 0xf0, 0xb3, 0xd8, 0xcc, 0xba, 0x90, 0x58, 0x63, 0x5b, 0xdb,
-	0x2c, 0x8c, 0xc8, 0x3a, 0xba, 0x9a, 0x5a, 0x0d, 0x7d, 0xee, 0x85, 0x0c, 0x3f, 0x44, 0x25, 0x69,
-	0x65, 0x42, 0xbb, 0xa1, 0xdd, 0x1e, 0x59, 0x2c, 0x9b, 0xe9, 0x5a, 0x9b, 0x12, 0xbf, 0x3c, 0x7c,
-	0xf4, 0x63, 0xaa, 0xf0, 0xf1, 0xf7, 0x97, 0xaa, 0x56, 0x83, 0x00, 0x32, 0x8b, 0xc6, 0x44, 0xc6,
-	0x35, 0x16, 0x3d, 0x8d, 0xdd, 0x00, 0x13, 0x1e, 0x45, 0x45, 0xa7, 0x21, 0xd2, 0x0d, 0xd7, 0x8a,
-	0x4e, 0x83, 0x3c, 0x46, 0xe3, 0x19, 0x1c, 0x70, 0x2f, 0xa0, 0x21, 0x51, 0x06, 0xa0, 0x1e, 0xcf,
-	0x52, 0x0b, 0xf4, 0xf2, 0x60, 0xcc, 0x5c, 0x93, 0x48, 0xf2, 0x12, 0x38, 0x97, 0x5c, 0x37, 0xc5,
-	0xb9, 0x8a, 0x50, 0xa7, 0x65, 0x90, 0x6f, 0xd6, 0x94, 0xfd, 0x35, 0xe3, 0xfe, 0x9a, 0xf2, 0x7d,
-	0x82, 0xfe, 0x9a, 0xeb, 0x96, 0xcd, 0x20, 0xb6, 0x96, 0x88, 0x24, 0x87, 0x1a, 0x88, 0xed, 0x10,
-	0x74, 0x8b, 0x1d, 0xe8, 0x4d, 0x2c, 0x5e, 0x4b, 0x89, 0x2a, 0x0a, 0x51, 0x73, 0xe7, 0x8a, 0x92,
-	0x7c, 0x29, 0x55, 0x8f, 0x90, 0xde, 0xae, 0xe0, 0x73, 0xd1, 0xf7, 0x94, 0xf7, 0x32, 0x2a, 0xb1,
-	0x5d, 0xdf, 0x09, 0x5a, 0xc2, 0xf7, 0x60, 0x0d, 0x9e, 0xa0, 0x0f, 0xc5, 0xbf, 0x7d, 0xa8, 0xa3,
-	0x49, 0x65, 0x16, 0x30, 0xb8, 0x82, 0x46, 0xc2, 0xce, 0x32, 0xd4, 0x70, 0x32, 0x6b, 0x33, 0x11,
-	0x09, 0x66, 0x93, 0x51, 0xa4, 0x01, 0x4a, 0x97, 0x5c, 0x57, 0xa1, 0xb4, 0x5f, 0x5d, 0xfa, 0xa4,
-	0x81, 0x95, 0x2c, 0x4d, 0x9e, 0x95, 0x81, 0x7f, 0xb7, 0xd2, 0xbf, 0xee, 0xdd, 0xeb, 0xd4, 0xfd,
-	0x89, 0xb5, 0xd7, 0x5a, 0x01, 0xfe, 0xee, 0xe3, 0x32, 0x28, 0xda, 0xf4, 0x0a, 0x55, 0xd4, 0x70,
-	0x30, 0xb7, 0x8a, 0x2e, 0x25, 0xd7, 0xa1, 0x8c, 0x95, 0xac, 0xbb, 0x24, 0x06, 0xec, 0xa5, 0xe2,
-	0x08, 0xeb, 0xd4, 0x50, 0x25, 0xab, 0x5f, 0xbd, 0xfa, 0xac, 0x81, 0x9f, 0x2e, 0x9e, 0x5c, 0x3f,
-	0x03, 0xff, 0xe3, 0xa7, 0x6f, 0xfd, 0x5a, 0xfc, 0x7a, 0x01, 0x0d, 0x09, 0xc5, 0x78, 0x0b, 0x95,
-	0xe4, 0xf8, 0xc3, 0x24, 0x2b, 0xa7, 0x7b, 0xc2, 0xea, 0x37, 0xcf, 0xc4, 0x48, 0x22, 0x62, 0xbc,
-	0xfe, 0xf6, 0xeb, 0xb0, 0x38, 0x81, 0xcb, 0x54, 0x79, 0xa1, 0xe0, 0x5d, 0x34, 0x24, 0x5f, 0xbf,
-	0x19, 0x65, 0xb6, 0xcc, 0xac, 0xd5, 0x6f, 0x9d, 0x83, 0x02, 0x56, 0x22, 0x58, 0x2b, 0x58, 0xa7,
-	0xaa, 0x9b, 0x8a, 0xee, 0x3b, 0x8d, 0x03, 0xbc, 0x83, 0x2e, 0x8a, 0xa0, 0x25, 0xd7, 0xcd, 0x21,
-	0xcf, 0x0c, 0xdd, 0x1c, 0xf2, 0xec, 0xe4, 0x24, 0xd7, 0x05, 0xf9, 0x35, 0x3c, 0xae, 0x24, 0xc7,
-	0x1f, 0x34, 0x34, 0x92, 0x38, 0x8a, 0xb8, 0x9a, 0x67, 0xa9, 0x7b, 0xa0, 0xe8, 0x77, 0x7b, 0xc2,
-	0x82, 0x8e, 0x45, 0xa1, 0x63, 0x1e, 0x57, 0xe9, 0x19, 0x57, 0x32, 0xdd, 0x97, 0xd3, 0xf3, 0x40,
-	0x16, 0xe5, 0x8d, 0x86, 0x46, 0x13, 0xb9, 0xe2, 0xda, 0x54, 0xf3, 0x5c, 0xf7, 0xac, 0x4f, 0x3d,
-	0xb5, 0xc8, 0x8c, 0xd0, 0x67, 0xe0, 0xca, 0x59, 0xfa, 0xf0, 0x7b, 0x2d, 0x7d, 0x5e, 0x70, 0x6e,
-	0x0d, 0x14, 0xa7, 0x5a, 0x9f, 0xef, 0x0d, 0x0c, 0x8a, 0xe6, 0x85, 0xa2, 0x59, 0x3c, 0x43, 0x55,
-	0x5f, 0x28, 0x21, 0x8b, 0x22, 0x97, 0x35, 0x99, 0x17, 0xc9, 0x5a, 0xbd, 0xd3, 0xd0, 0xe5, 0x64,
-	0x9a, 0xb8, 0x58, 0xb9, 0x05, 0xe8, 0x5d, 0x5c, 0xce, 0xdc, 0x20, 0x73, 0x42, 0xdc, 0x34, 0x9e,
-	0x3a, 0x47, 0xdc, 0xf2, 0xfd, 0xa3, 0x13, 0x43, 0x3b, 0x3e, 0x31, 0xb4, 0x9f, 0x27, 0x86, 0xf6,
-	0xf6, 0xd4, 0x28, 0x1c, 0x9f, 0x1a, 0x85, 0xef, 0xa7, 0x46, 0xe1, 0x45, 0x59, 0x46, 0xee, 0x76,
-	0x62, 0xa3, 0x96, 0xcf, 0xc2, 0x7a, 0x49, 0x7c, 0x48, 0x3d, 0xf8, 0x13, 0x00, 0x00, 0xff, 0xff,
-	0xfb, 0x84, 0xb4, 0xa0, 0x94, 0x0a, 0x00, 0x00,
+	// 636 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x55, 0x4f, 0x6b, 0x13, 0x4f,
+	0x18, 0xce, 0xa6, 0x4d, 0xa0, 0xd3, 0xfe, 0x0a, 0xbf, 0x31, 0x0d, 0x71, 0x63, 0xb7, 0xba, 0xb5,
+	0xb5, 0xa6, 0xb8, 0x63, 0xda, 0x93, 0xd7, 0x20, 0x2d, 0x78, 0x31, 0xae, 0x37, 0x11, 0x64, 0x92,
+	0x0c, 0xcb, 0x42, 0xb3, 0xb3, 0xd9, 0xd9, 0x48, 0x43, 0xe9, 0xc5, 0xa3, 0x27, 0xa5, 0x47, 0xbf,
+	0x80, 0x07, 0x0f, 0x7e, 0x8c, 0x1e, 0x0b, 0x5e, 0x3c, 0x89, 0x24, 0x82, 0x5f, 0x43, 0x76, 0xe6,
+	0x8d, 0xd9, 0xdd, 0x6c, 0xd2, 0x20, 0xbd, 0x94, 0xed, 0xbc, 0x7f, 0x9e, 0xe7, 0x79, 0x9f, 0x79,
+	0x27, 0x48, 0x77, 0x4e, 0xfa, 0xdc, 0x23, 0x6d, 0xee, 0x85, 0x01, 0x6d, 0x87, 0xa4, 0xd7, 0x67,
+	0xc1, 0xc0, 0xf2, 0x03, 0x1e, 0x72, 0xbc, 0x2e, 0x63, 0xd6, 0x38, 0xa6, 0xff, 0x4f, 0xbb, 0xae,
+	0xc7, 0x89, 0xfc, 0xab, 0x52, 0xf4, 0x5a, 0x9b, 0x8b, 0x2e, 0x17, 0xa4, 0x45, 0x05, 0x53, 0xb5,
+	0xe4, 0x6d, 0xbd, 0xc5, 0x42, 0x5a, 0x27, 0x3e, 0x75, 0x5c, 0x8f, 0x86, 0x2e, 0xf7, 0x20, 0x37,
+	0x0d, 0xc5, 0x83, 0x0e, 0x0b, 0x20, 0x56, 0x4d, 0xc5, 0x7c, 0x1a, 0xd0, 0xae, 0x80, 0xe0, 0xbd,
+	0x54, 0x50, 0xf0, 0x20, 0x64, 0x9d, 0x37, 0xf1, 0xfa, 0x92, 0xc3, 0x1d, 0x2e, 0x3f, 0x49, 0xf4,
+	0x05, 0xa7, 0x77, 0x1c, 0xce, 0x9d, 0x13, 0x46, 0xa8, 0xef, 0x12, 0xea, 0x79, 0x3c, 0x94, 0x74,
+	0xa0, 0xad, 0x59, 0x42, 0xf8, 0x45, 0xc4, 0xb8, 0x29, 0xb1, 0x6c, 0xd6, 0xeb, 0x33, 0x11, 0x9a,
+	0x4d, 0x74, 0x2b, 0x71, 0x2a, 0x7c, 0xee, 0x09, 0x86, 0x9f, 0xa0, 0xa2, 0xe2, 0x54, 0xd1, 0xee,
+	0x6a, 0x7b, 0xab, 0x07, 0x65, 0x2b, 0x39, 0x1c, 0x4b, 0xe5, 0x37, 0x56, 0x2e, 0x7f, 0x6c, 0xe5,
+	0x3e, 0xff, 0xfe, 0x5a, 0xd3, 0x6c, 0x28, 0x30, 0x77, 0x51, 0x49, 0x76, 0x3c, 0x66, 0xe1, 0xf3,
+	0x88, 0x32, 0x20, 0xe1, 0x75, 0x94, 0x77, 0x3b, 0xb2, 0xdd, 0x8a, 0x9d, 0x77, 0x3b, 0xe6, 0x33,
+	0xb4, 0x91, 0xca, 0x03, 0xec, 0x3a, 0x2a, 0x48, 0xad, 0x00, 0xbd, 0x91, 0x86, 0x96, 0xd9, 0x8d,
+	0xe5, 0x08, 0xd9, 0x56, 0x99, 0xe6, 0x6b, 0xd0, 0x26, 0x43, 0x63, 0x6d, 0xf8, 0x08, 0xa1, 0x89,
+	0x2b, 0xd0, 0x6d, 0xd7, 0x52, 0x16, 0x5a, 0x91, 0x85, 0x96, 0xb2, 0x1f, 0x2c, 0xb4, 0x9a, 0xd4,
+	0x61, 0x50, 0x6b, 0xc7, 0x2a, 0xcd, 0x8f, 0x1a, 0x0c, 0x69, 0xdc, 0x7e, 0x9a, 0xe8, 0xd2, 0x62,
+	0x44, 0xf1, 0x71, 0x82, 0x52, 0x5e, 0x52, 0x7a, 0x70, 0x2d, 0x25, 0x85, 0x97, 0xe0, 0xf4, 0x14,
+	0xe9, 0xe3, 0xe9, 0xbd, 0x94, 0xf7, 0x23, 0x31, 0xeb, 0x32, 0x2a, 0xb2, 0x53, 0xdf, 0x0d, 0x06,
+	0x52, 0xf5, 0xb2, 0x0d, 0xff, 0x81, 0x07, 0xf9, 0xbf, 0x1e, 0x30, 0x54, 0xcd, 0xec, 0x02, 0x02,
+	0x8f, 0xd0, 0x7f, 0xf1, 0xcb, 0x37, 0xbe, 0x0c, 0xd5, 0xb4, 0xd0, 0x58, 0x2d, 0xc8, 0x5d, 0x13,
+	0x93, 0x23, 0x61, 0xb6, 0x50, 0x45, 0xc2, 0xc4, 0xf2, 0x6e, 0xdc, 0xa4, 0x2f, 0x1a, 0xba, 0x9d,
+	0x01, 0x32, 0x5b, 0xc9, 0xd2, 0x3f, 0x28, 0xb9, 0x31, 0xff, 0x0e, 0x2e, 0x0a, 0xa8, 0x20, 0xe9,
+	0xe2, 0x1e, 0x2a, 0xaa, 0x65, 0xc2, 0x66, 0x9a, 0xcd, 0xf4, 0xbe, 0xea, 0xdb, 0x73, 0x73, 0x14,
+	0x90, 0x69, 0xbc, 0xfb, 0xf6, 0xeb, 0x22, 0x5f, 0xc1, 0x65, 0x92, 0xf9, 0xce, 0xe0, 0x01, 0x2a,
+	0x48, 0x3d, 0xf8, 0x7e, 0x66, 0xb7, 0xd4, 0xe6, 0xea, 0x3b, 0xd7, 0x64, 0x01, 0xea, 0xb6, 0x44,
+	0xdd, 0xc4, 0x55, 0x92, 0xf5, 0xf2, 0x09, 0x72, 0xe6, 0x76, 0xce, 0x23, 0xb5, 0x30, 0xca, 0x6c,
+	0xb5, 0x89, 0xcb, 0x31, 0x43, 0x6d, 0xd2, 0xdb, 0xd9, 0x6a, 0x15, 0x2e, 0xfe, 0xa4, 0xa1, 0xd5,
+	0x98, 0xaf, 0xb8, 0x36, 0x4b, 0xce, 0xf4, 0x22, 0xe9, 0xfb, 0x0b, 0xe5, 0x02, 0x91, 0x43, 0x49,
+	0xe4, 0x11, 0xde, 0x27, 0x73, 0x5e, 0x70, 0x41, 0xce, 0xd4, 0x32, 0x9e, 0xab, 0x81, 0xbc, 0xd7,
+	0xd0, 0x5a, 0xfc, 0xca, 0xe2, 0xbd, 0x4c, 0xc8, 0x8c, 0xd5, 0xd1, 0x1f, 0x2e, 0x90, 0x09, 0xd4,
+	0x76, 0x24, 0xb5, 0x2d, 0xbc, 0x39, 0x97, 0x5a, 0xe3, 0xf1, 0xe5, 0xd0, 0xd0, 0xae, 0x86, 0x86,
+	0xf6, 0x73, 0x68, 0x68, 0x1f, 0x46, 0x46, 0xee, 0x6a, 0x64, 0xe4, 0xbe, 0x8f, 0x8c, 0xdc, 0xab,
+	0xb2, 0xaa, 0x3b, 0x9d, 0x54, 0x86, 0x03, 0x9f, 0x89, 0x56, 0x51, 0xfe, 0xb8, 0x1c, 0xfe, 0x09,
+	0x00, 0x00, 0xff, 0xff, 0x14, 0x3a, 0x90, 0x9b, 0x59, 0x07, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -760,15 +571,14 @@ const _ = grpc.SupportPackageIsVersion4
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
-	// Queries a list of Order items.
+	// Order
 	Order(ctx context.Context, in *QueryGetOrderRequest, opts ...grpc.CallOption) (*QueryGetOrderResponse, error)
-	OrderAll(ctx context.Context, in *QueryAllOrderRequest, opts ...grpc.CallOption) (*QueryAllOrderResponse, error)
-	// Queries a list of SortedOrder items.
+	// Orders
+	Orders(ctx context.Context, in *QueryOrdersRequest, opts ...grpc.CallOption) (*QueryOrdersResponse, error)
+	// SortedOrder
 	SortedOrder(ctx context.Context, in *QueryGetSortedOrderRequest, opts ...grpc.CallOption) (*QueryGetSortedOrderResponse, error)
-	SortedOrderAll(ctx context.Context, in *QueryAllSortedOrderRequest, opts ...grpc.CallOption) (*QueryAllSortedOrderResponse, error)
-	// Queries a list of LazyContract items.
-	LazyContract(ctx context.Context, in *QueryGetLazyContractRequest, opts ...grpc.CallOption) (*QueryGetLazyContractResponse, error)
-	LazyContractAll(ctx context.Context, in *QueryAllLazyContractRequest, opts ...grpc.CallOption) (*QueryAllLazyContractResponse, error)
+	// SortedOrders
+	SortedOrders(ctx context.Context, in *QuerySortedOrdersRequest, opts ...grpc.CallOption) (*QuerySortedOrdersResponse, error)
 }
 
 type queryClient struct {
@@ -797,9 +607,9 @@ func (c *queryClient) Order(ctx context.Context, in *QueryGetOrderRequest, opts 
 	return out, nil
 }
 
-func (c *queryClient) OrderAll(ctx context.Context, in *QueryAllOrderRequest, opts ...grpc.CallOption) (*QueryAllOrderResponse, error) {
-	out := new(QueryAllOrderResponse)
-	err := c.cc.Invoke(ctx, "/gluon.contract.Query/OrderAll", in, out, opts...)
+func (c *queryClient) Orders(ctx context.Context, in *QueryOrdersRequest, opts ...grpc.CallOption) (*QueryOrdersResponse, error) {
+	out := new(QueryOrdersResponse)
+	err := c.cc.Invoke(ctx, "/gluon.contract.Query/Orders", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -815,27 +625,9 @@ func (c *queryClient) SortedOrder(ctx context.Context, in *QueryGetSortedOrderRe
 	return out, nil
 }
 
-func (c *queryClient) SortedOrderAll(ctx context.Context, in *QueryAllSortedOrderRequest, opts ...grpc.CallOption) (*QueryAllSortedOrderResponse, error) {
-	out := new(QueryAllSortedOrderResponse)
-	err := c.cc.Invoke(ctx, "/gluon.contract.Query/SortedOrderAll", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *queryClient) LazyContract(ctx context.Context, in *QueryGetLazyContractRequest, opts ...grpc.CallOption) (*QueryGetLazyContractResponse, error) {
-	out := new(QueryGetLazyContractResponse)
-	err := c.cc.Invoke(ctx, "/gluon.contract.Query/LazyContract", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *queryClient) LazyContractAll(ctx context.Context, in *QueryAllLazyContractRequest, opts ...grpc.CallOption) (*QueryAllLazyContractResponse, error) {
-	out := new(QueryAllLazyContractResponse)
-	err := c.cc.Invoke(ctx, "/gluon.contract.Query/LazyContractAll", in, out, opts...)
+func (c *queryClient) SortedOrders(ctx context.Context, in *QuerySortedOrdersRequest, opts ...grpc.CallOption) (*QuerySortedOrdersResponse, error) {
+	out := new(QuerySortedOrdersResponse)
+	err := c.cc.Invoke(ctx, "/gluon.contract.Query/SortedOrders", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -846,15 +638,14 @@ func (c *queryClient) LazyContractAll(ctx context.Context, in *QueryAllLazyContr
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
-	// Queries a list of Order items.
+	// Order
 	Order(context.Context, *QueryGetOrderRequest) (*QueryGetOrderResponse, error)
-	OrderAll(context.Context, *QueryAllOrderRequest) (*QueryAllOrderResponse, error)
-	// Queries a list of SortedOrder items.
+	// Orders
+	Orders(context.Context, *QueryOrdersRequest) (*QueryOrdersResponse, error)
+	// SortedOrder
 	SortedOrder(context.Context, *QueryGetSortedOrderRequest) (*QueryGetSortedOrderResponse, error)
-	SortedOrderAll(context.Context, *QueryAllSortedOrderRequest) (*QueryAllSortedOrderResponse, error)
-	// Queries a list of LazyContract items.
-	LazyContract(context.Context, *QueryGetLazyContractRequest) (*QueryGetLazyContractResponse, error)
-	LazyContractAll(context.Context, *QueryAllLazyContractRequest) (*QueryAllLazyContractResponse, error)
+	// SortedOrders
+	SortedOrders(context.Context, *QuerySortedOrdersRequest) (*QuerySortedOrdersResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -867,20 +658,14 @@ func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryParamsReq
 func (*UnimplementedQueryServer) Order(ctx context.Context, req *QueryGetOrderRequest) (*QueryGetOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Order not implemented")
 }
-func (*UnimplementedQueryServer) OrderAll(ctx context.Context, req *QueryAllOrderRequest) (*QueryAllOrderResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method OrderAll not implemented")
+func (*UnimplementedQueryServer) Orders(ctx context.Context, req *QueryOrdersRequest) (*QueryOrdersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Orders not implemented")
 }
 func (*UnimplementedQueryServer) SortedOrder(ctx context.Context, req *QueryGetSortedOrderRequest) (*QueryGetSortedOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SortedOrder not implemented")
 }
-func (*UnimplementedQueryServer) SortedOrderAll(ctx context.Context, req *QueryAllSortedOrderRequest) (*QueryAllSortedOrderResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SortedOrderAll not implemented")
-}
-func (*UnimplementedQueryServer) LazyContract(ctx context.Context, req *QueryGetLazyContractRequest) (*QueryGetLazyContractResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LazyContract not implemented")
-}
-func (*UnimplementedQueryServer) LazyContractAll(ctx context.Context, req *QueryAllLazyContractRequest) (*QueryAllLazyContractResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LazyContractAll not implemented")
+func (*UnimplementedQueryServer) SortedOrders(ctx context.Context, req *QuerySortedOrdersRequest) (*QuerySortedOrdersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SortedOrders not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -923,20 +708,20 @@ func _Query_Order_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_OrderAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryAllOrderRequest)
+func _Query_Orders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryOrdersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).OrderAll(ctx, in)
+		return srv.(QueryServer).Orders(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gluon.contract.Query/OrderAll",
+		FullMethod: "/gluon.contract.Query/Orders",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).OrderAll(ctx, req.(*QueryAllOrderRequest))
+		return srv.(QueryServer).Orders(ctx, req.(*QueryOrdersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -959,56 +744,20 @@ func _Query_SortedOrder_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_SortedOrderAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryAllSortedOrderRequest)
+func _Query_SortedOrders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QuerySortedOrdersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).SortedOrderAll(ctx, in)
+		return srv.(QueryServer).SortedOrders(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/gluon.contract.Query/SortedOrderAll",
+		FullMethod: "/gluon.contract.Query/SortedOrders",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).SortedOrderAll(ctx, req.(*QueryAllSortedOrderRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Query_LazyContract_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetLazyContractRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).LazyContract(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/gluon.contract.Query/LazyContract",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).LazyContract(ctx, req.(*QueryGetLazyContractRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Query_LazyContractAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryAllLazyContractRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).LazyContractAll(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/gluon.contract.Query/LazyContractAll",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).LazyContractAll(ctx, req.(*QueryAllLazyContractRequest))
+		return srv.(QueryServer).SortedOrders(ctx, req.(*QuerySortedOrdersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1027,24 +776,16 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Query_Order_Handler,
 		},
 		{
-			MethodName: "OrderAll",
-			Handler:    _Query_OrderAll_Handler,
+			MethodName: "Orders",
+			Handler:    _Query_Orders_Handler,
 		},
 		{
 			MethodName: "SortedOrder",
 			Handler:    _Query_SortedOrder_Handler,
 		},
 		{
-			MethodName: "SortedOrderAll",
-			Handler:    _Query_SortedOrderAll_Handler,
-		},
-		{
-			MethodName: "LazyContract",
-			Handler:    _Query_LazyContract_Handler,
-		},
-		{
-			MethodName: "LazyContractAll",
-			Handler:    _Query_LazyContractAll_Handler,
+			MethodName: "SortedOrders",
+			Handler:    _Query_SortedOrders_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -1170,7 +911,7 @@ func (m *QueryGetOrderResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryAllOrderRequest) Marshal() (dAtA []byte, err error) {
+func (m *QueryOrdersRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1180,12 +921,12 @@ func (m *QueryAllOrderRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryAllOrderRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryOrdersRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryAllOrderRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryOrdersRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1205,7 +946,7 @@ func (m *QueryAllOrderRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryAllOrderResponse) Marshal() (dAtA []byte, err error) {
+func (m *QueryOrdersResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1215,12 +956,12 @@ func (m *QueryAllOrderResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryAllOrderResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryOrdersResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryAllOrderResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryOrdersResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1310,7 +1051,7 @@ func (m *QueryGetSortedOrderResponse) MarshalToSizedBuffer(dAtA []byte) (int, er
 	var l int
 	_ = l
 	{
-		size, err := m.SortedOrder.MarshalToSizedBuffer(dAtA[:i])
+		size, err := m.SortedOrders.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
 			return 0, err
 		}
@@ -1322,7 +1063,7 @@ func (m *QueryGetSortedOrderResponse) MarshalToSizedBuffer(dAtA []byte) (int, er
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryAllSortedOrderRequest) Marshal() (dAtA []byte, err error) {
+func (m *QuerySortedOrdersRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1332,12 +1073,12 @@ func (m *QueryAllSortedOrderRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryAllSortedOrderRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QuerySortedOrdersRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryAllSortedOrderRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QuerySortedOrdersRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1357,7 +1098,7 @@ func (m *QueryAllSortedOrderRequest) MarshalToSizedBuffer(dAtA []byte) (int, err
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryAllSortedOrderResponse) Marshal() (dAtA []byte, err error) {
+func (m *QuerySortedOrdersResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1367,12 +1108,12 @@ func (m *QueryAllSortedOrderResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryAllSortedOrderResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QuerySortedOrdersResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryAllSortedOrderResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QuerySortedOrdersResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1389,155 +1130,10 @@ func (m *QueryAllSortedOrderResponse) MarshalToSizedBuffer(dAtA []byte) (int, er
 		i--
 		dAtA[i] = 0x12
 	}
-	if len(m.SortedOrder) > 0 {
-		for iNdEx := len(m.SortedOrder) - 1; iNdEx >= 0; iNdEx-- {
+	if len(m.SortedOrders) > 0 {
+		for iNdEx := len(m.SortedOrders) - 1; iNdEx >= 0; iNdEx-- {
 			{
-				size, err := m.SortedOrder[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintQuery(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0xa
-		}
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *QueryGetLazyContractRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *QueryGetLazyContractRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *QueryGetLazyContractRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.Id != 0 {
-		i = encodeVarintQuery(dAtA, i, uint64(m.Id))
-		i--
-		dAtA[i] = 0x8
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *QueryGetLazyContractResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *QueryGetLazyContractResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *QueryGetLazyContractResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	{
-		size, err := m.LazyContract.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintQuery(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0xa
-	return len(dAtA) - i, nil
-}
-
-func (m *QueryAllLazyContractRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *QueryAllLazyContractRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *QueryAllLazyContractRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.Pagination != nil {
-		{
-			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintQuery(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *QueryAllLazyContractResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *QueryAllLazyContractResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *QueryAllLazyContractResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.Pagination != nil {
-		{
-			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintQuery(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.LazyContract) > 0 {
-		for iNdEx := len(m.LazyContract) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.LazyContract[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				size, err := m.SortedOrders[iNdEx].MarshalToSizedBuffer(dAtA[:i])
 				if err != nil {
 					return 0, err
 				}
@@ -1606,7 +1202,7 @@ func (m *QueryGetOrderResponse) Size() (n int) {
 	return n
 }
 
-func (m *QueryAllOrderRequest) Size() (n int) {
+func (m *QueryOrdersRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1619,7 +1215,7 @@ func (m *QueryAllOrderRequest) Size() (n int) {
 	return n
 }
 
-func (m *QueryAllOrderResponse) Size() (n int) {
+func (m *QueryOrdersResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1660,12 +1256,12 @@ func (m *QueryGetSortedOrderResponse) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = m.SortedOrder.Size()
+	l = m.SortedOrders.Size()
 	n += 1 + l + sovQuery(uint64(l))
 	return n
 }
 
-func (m *QueryAllSortedOrderRequest) Size() (n int) {
+func (m *QuerySortedOrdersRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1678,69 +1274,14 @@ func (m *QueryAllSortedOrderRequest) Size() (n int) {
 	return n
 }
 
-func (m *QueryAllSortedOrderResponse) Size() (n int) {
+func (m *QuerySortedOrdersResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if len(m.SortedOrder) > 0 {
-		for _, e := range m.SortedOrder {
-			l = e.Size()
-			n += 1 + l + sovQuery(uint64(l))
-		}
-	}
-	if m.Pagination != nil {
-		l = m.Pagination.Size()
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	return n
-}
-
-func (m *QueryGetLazyContractRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Id != 0 {
-		n += 1 + sovQuery(uint64(m.Id))
-	}
-	return n
-}
-
-func (m *QueryGetLazyContractResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = m.LazyContract.Size()
-	n += 1 + l + sovQuery(uint64(l))
-	return n
-}
-
-func (m *QueryAllLazyContractRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Pagination != nil {
-		l = m.Pagination.Size()
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	return n
-}
-
-func (m *QueryAllLazyContractResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if len(m.LazyContract) > 0 {
-		for _, e := range m.LazyContract {
+	if len(m.SortedOrders) > 0 {
+		for _, e := range m.SortedOrders {
 			l = e.Size()
 			n += 1 + l + sovQuery(uint64(l))
 		}
@@ -2056,7 +1597,7 @@ func (m *QueryGetOrderResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryAllOrderRequest) Unmarshal(dAtA []byte) error {
+func (m *QueryOrdersRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2079,10 +1620,10 @@ func (m *QueryAllOrderRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryAllOrderRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryOrdersRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryAllOrderRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryOrdersRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -2142,7 +1683,7 @@ func (m *QueryAllOrderRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryAllOrderResponse) Unmarshal(dAtA []byte) error {
+func (m *QueryOrdersResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2165,10 +1706,10 @@ func (m *QueryAllOrderResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryAllOrderResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryOrdersResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryAllOrderResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryOrdersResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -2394,7 +1935,7 @@ func (m *QueryGetSortedOrderResponse) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SortedOrder", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field SortedOrders", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -2421,7 +1962,7 @@ func (m *QueryGetSortedOrderResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.SortedOrder.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.SortedOrders.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -2446,7 +1987,7 @@ func (m *QueryGetSortedOrderResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryAllSortedOrderRequest) Unmarshal(dAtA []byte) error {
+func (m *QuerySortedOrdersRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2469,10 +2010,10 @@ func (m *QueryAllSortedOrderRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryAllSortedOrderRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QuerySortedOrdersRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryAllSortedOrderRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QuerySortedOrdersRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -2532,7 +2073,7 @@ func (m *QueryAllSortedOrderRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryAllSortedOrderResponse) Unmarshal(dAtA []byte) error {
+func (m *QuerySortedOrdersResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2555,15 +2096,15 @@ func (m *QueryAllSortedOrderResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryAllSortedOrderResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QuerySortedOrdersResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryAllSortedOrderResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QuerySortedOrdersResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SortedOrder", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field SortedOrders", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -2590,366 +2131,8 @@ func (m *QueryAllSortedOrderResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.SortedOrder = append(m.SortedOrder, SortedOrder{})
-			if err := m.SortedOrder[len(m.SortedOrder)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Pagination == nil {
-				m.Pagination = &query.PageResponse{}
-			}
-			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipQuery(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *QueryGetLazyContractRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowQuery
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetLazyContractRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetLazyContractRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-			}
-			m.Id = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Id |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		default:
-			iNdEx = preIndex
-			skippy, err := skipQuery(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *QueryGetLazyContractResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowQuery
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetLazyContractResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetLazyContractResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field LazyContract", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.LazyContract.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipQuery(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *QueryAllLazyContractRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowQuery
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: QueryAllLazyContractRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryAllLazyContractRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Pagination == nil {
-				m.Pagination = &query.PageRequest{}
-			}
-			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipQuery(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *QueryAllLazyContractResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowQuery
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: QueryAllLazyContractResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryAllLazyContractResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field LazyContract", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.LazyContract = append(m.LazyContract, LazyContract{})
-			if err := m.LazyContract[len(m.LazyContract)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			m.SortedOrders = append(m.SortedOrders, SortedOrder{})
+			if err := m.SortedOrders[len(m.SortedOrders)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

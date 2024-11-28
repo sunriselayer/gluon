@@ -26,6 +26,7 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
+// SortedOrder
 type SortedOrder struct {
 	Expiry           uint64                `protobuf:"varint,1,opt,name=expiry,proto3" json:"expiry,omitempty"`
 	Id               string                `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`

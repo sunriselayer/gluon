@@ -654,6 +654,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Pairing
 type Pairing struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

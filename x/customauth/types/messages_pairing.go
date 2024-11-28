@@ -27,10 +27,10 @@ func (msg *MsgCreatePairing) ValidateBasic() error {
 
 var _ sdk.Msg = &MsgDeletePairing{}
 
-func NewMsgDeletePairing(user string, id uint64) *MsgDeletePairing {
+func NewMsgDeletePairing(user string, pairingId uint64) *MsgDeletePairing {
 	return &MsgDeletePairing{
-		Id:   id,
-		User: user,
+		PairingId: pairingId,
+		User:      user,
 	}
 }
 

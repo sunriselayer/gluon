@@ -28,6 +28,7 @@ var _ = time.Kitchen
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
+// Pairing
 type Pairing struct {
 	Id        uint64    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Address   string    `protobuf:"bytes,2,opt,name=address,proto3" json:"address,omitempty"`

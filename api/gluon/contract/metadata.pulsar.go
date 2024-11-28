@@ -864,6 +864,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// PacketMetadata
 type PacketMetadata struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -899,6 +900,7 @@ func (x *PacketMetadata) GetContract() *ContractMetadata {
 	return nil
 }
 
+// ContractMetadata
 type ContractMetadata struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
