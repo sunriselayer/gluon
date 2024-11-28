@@ -50,7 +50,6 @@ message MsgUpdateParamsResponse {}
 // MsgLazyRegisterOrder
 message MsgLazyRegisterOrder {
   option (cosmos.msg.v1.signer) = "order";
-  option (amino.name) = "gluon/x/contract/MsgLazyRegisterOrder";
 
   Order order = 1 [
     (gogoproto.nullable) = false,
@@ -66,7 +65,6 @@ message MsgLazyRegisterOrderResponse {}
 // MsgCancelOrder
 message MsgCancelOrder {
   option (cosmos.msg.v1.signer) = "user";
-  option (amino.name) = "gluon/x/contract/MsgCancelOrder";
 
   string user = 1;
   string order_id = 2;
@@ -79,7 +77,6 @@ message MsgCancelOrderResponse {}
 message MsgMatchOrder {
   option (cosmos.msg.v1.signer) = "address_buy";
   option (cosmos.msg.v1.signer) = "address_sell";
-  option (amino.name) = "gluon/x/contract/MsgMatchOrder";
 
   string address_buy = 1;
   string address_sell = 2;

@@ -47,7 +47,6 @@ message MsgUpdateParamsResponse {}
 // MsgCreatePairing
 message MsgCreatePairing {
   option (cosmos.msg.v1.signer) = "user";
-  option (amino.name) = "gluon/x/customauth/MsgCreatePairing";
 
   string user = 1;
   google.protobuf.Any public_key = 2 [(gogoproto.nullable) = false];
@@ -61,7 +60,6 @@ message MsgCreatePairingResponse {
 // MsgDeletePairing
 message MsgDeletePairing {
   option (cosmos.msg.v1.signer) = "user";
-  option (amino.name) = "gluon/x/customauth/MsgDeletePairing";
 
   string user = 1;
   uint64 pairing_id = 2;
