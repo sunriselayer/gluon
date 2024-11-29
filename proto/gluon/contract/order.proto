@@ -34,11 +34,7 @@ message Order {
     (gogoproto.nullable) = false
   ];
   // Empty means market order
-  string limit_price = 7 [
-    (cosmos_proto.scalar) = "cosmos.Dec",
-    (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
-    (gogoproto.nullable) = true
-  ];
+  string limit_price = 7;
   // Required due to off-chain matching & on-chain contract settlement
   google.protobuf.Timestamp expiry = 8 [
     (gogoproto.nullable) = false,

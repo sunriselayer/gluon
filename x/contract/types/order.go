@@ -25,7 +25,7 @@ func NewOrder(
 		DenomQuote: denomQuote,
 		Direction:  direction,
 		Amount:     amount,
-		LimitPrice: limitPrice,
+		LimitPrice: limitPrice.String(),
 	}
 }
 
@@ -45,7 +45,18 @@ func (order Order) ValidateBasic() error {
 	}
 
 	if !order.Amount.IsPositive() {
-		return errorsmod.Wrap(ErrNotPositiveAmount, "amount must be positive")
+		return errorsmod.Wrapf(ErrNotPositive, "amount: %s", order.Amount.String())
+	}
+
+	if len(order.LimitPrice) > 0 {
+		limitPrice, err := sdkmath.LegacyNewDecFromStr(order.LimitPrice)
+		if err != nil {
+			return err
+		}
+
+		if !limitPrice.IsPositive() {
+			return errorsmod.Wrapf(ErrNotPositive, "price: %s", limitPrice.String())
+		}
 	}
 
 	return nil
@@ -79,16 +90,35 @@ func (buy Order) CrossValidate(sell Order, price sdkmath.LegacyDec, blockTime ti
 		return ErrInvalidOrderDirection
 	}
 
-	if buy.LimitPrice == nil && sell.LimitPrice == nil {
+	var buyLimitPrice *sdkmath.LegacyDec
+	var sellLimitPrice *sdkmath.LegacyDec
+
+	if len(buy.LimitPrice) > 0 {
+		limitPrice, err := sdkmath.LegacyNewDecFromStr(buy.LimitPrice)
+		if err != nil {
+			return err
+		}
+		buyLimitPrice = &limitPrice
+	}
+
+	if len(sell.LimitPrice) > 0 {
+		limitPrice, err := sdkmath.LegacyNewDecFromStr(sell.LimitPrice)
+		if err != nil {
+			return err
+		}
+		sellLimitPrice = &limitPrice
+	}
+
+	if buyLimitPrice == nil && sellLimitPrice == nil {
 		return ErrBothMarketPriceOrder
 	}
 
-	if buy.LimitPrice != nil && price.GT(*buy.LimitPrice) {
-		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, buy limit price: %s", price.String(), buy.LimitPrice.String())
+	if buyLimitPrice != nil && price.GT(*buyLimitPrice) {
+		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, buy limit price: %s", price.String(), buyLimitPrice.String())
 	}
 
-	if sell.LimitPrice != nil && price.LT(*sell.LimitPrice) {
-		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, sell limit price: %s", price.String(), sell.LimitPrice.String())
+	if sellLimitPrice != nil && price.LT(*sellLimitPrice) {
+		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, sell limit price: %s", price.String(), sellLimitPrice.String())
 	}
 
 	if blockTime.After(buy.Expiry) {

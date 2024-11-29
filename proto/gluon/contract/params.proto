@@ -1,23 +1,11 @@
 syntax = "proto3";
 package gluon.contract;
 
-import "cosmos_proto/cosmos.proto";
 import "gogoproto/gogo.proto";
-import "google/protobuf/duration.proto";
 
 option go_package = "gluon/x/contract/types";
 
 // Params defines the parameters for the module.
 message Params {
   option (gogoproto.equal) = true;
-
-  google.protobuf.Duration lazy_contract_period = 1 [
-    (gogoproto.nullable) = false,
-    (gogoproto.stdduration) = true
-  ];
-  string lazy_contract_margin_ratio = 2 [
-    (cosmos_proto.scalar) = "cosmos.Dec",
-    (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
-    (gogoproto.nullable) = true
-  ];
 }

@@ -5,6 +5,7 @@ import (
 
 	"gluon/x/contract/types"
 
+	sdkmath "cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -21,7 +22,12 @@ func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (
 		return nil, types.ErrOrderNotFound
 	}
 
-	err := buy.CrossValidate(sell, msg.Price, ctx.BlockTime())
+	price, err := sdkmath.LegacyNewDecFromStr(msg.Price)
+	if err != nil {
+		return nil, err
+	}
+
+	err = buy.CrossValidate(sell, price, ctx.BlockTime())
 	if err != nil {
 		return nil, err
 	}
@@ -36,7 +42,7 @@ func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (
 		return nil, err
 	}
 
-	err = k.Contract(ctx, buy, sell, msg.Amount, msg.Price)
+	err = k.Contract(ctx, buy, sell, msg.Amount, price)
 	if err != nil {
 		return nil, err
 	}
