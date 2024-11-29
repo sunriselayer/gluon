@@ -453,6 +453,7 @@ type PubKey struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// Address binary
 	User []byte `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 }
 

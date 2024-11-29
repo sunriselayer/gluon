@@ -1084,6 +1084,7 @@ type PubKey struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// Address binary
 	User      []byte `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	PairingId uint64 `protobuf:"varint,2,opt,name=pairing_id,json=pairingId,proto3" json:"pairing_id,omitempty"`
 }
@@ -1128,6 +1129,7 @@ type PubKeyInternal struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// Address binary
 	User              []byte     `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	PairingPublicKey  *anypb.Any `protobuf:"bytes,2,opt,name=pairing_public_key,json=pairingPublicKey,proto3" json:"pairing_public_key,omitempty"`
 	OperatorPublicKey *anypb.Any `protobuf:"bytes,3,opt,name=operator_public_key,json=operatorPublicKey,proto3" json:"operator_public_key,omitempty"`

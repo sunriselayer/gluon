@@ -9,12 +9,14 @@ option go_package = "gluon/x/customauth/types/pairing";
 // Pairing PubKey
 // This is only for adapting PubKey interface of Cosmos SDK
 message PubKey {
+  // Address binary
   bytes user = 1;
   uint64 pairing_id = 2;
 }
 
 // Pairing PubKey
 message PubKeyInternal {
+  // Address binary
   bytes user = 1;
   google.protobuf.Any pairing_public_key = 2 [(gogoproto.nullable) = false];
   google.protobuf.Any operator_public_key = 3 [(gogoproto.nullable) = false];

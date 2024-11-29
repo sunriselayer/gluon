@@ -27,6 +27,7 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 // Pairing PubKey
 // This is only for adapting PubKey interface of Cosmos SDK
 type PubKey struct {
+	// Address binary
 	User      []byte `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	PairingId uint64 `protobuf:"varint,2,opt,name=pairing_id,json=pairingId,proto3" json:"pairing_id,omitempty"`
 }
@@ -80,6 +81,7 @@ func (m *PubKey) GetPairingId() uint64 {
 
 // Pairing PubKey
 type PubKeyInternal struct {
+	// Address binary
 	User              []byte    `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	PairingPublicKey  types.Any `protobuf:"bytes,2,opt,name=pairing_public_key,json=pairingPublicKey,proto3" json:"pairing_public_key"`
 	OperatorPublicKey types.Any `protobuf:"bytes,3,opt,name=operator_public_key,json=operatorPublicKey,proto3" json:"operator_public_key"`
