@@ -1,7 +1,6 @@
 syntax = "proto3";
 package gluon.contract;
 
-import "amino/amino.proto";
 import "cosmos/msg/v1/msg.proto";
 import "cosmos_proto/cosmos.proto";
 import "gogoproto/gogo.proto";
@@ -32,15 +31,13 @@ message Order {
   string amount = 6 [
     (cosmos_proto.scalar) = "cosmos.Int",
     (gogoproto.customtype) = "cosmossdk.io/math.Int",
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
+    (gogoproto.nullable) = false
   ];
   // Empty means market order
   string limit_price = 7 [
     (cosmos_proto.scalar) = "cosmos.Dec",
     (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
-    (gogoproto.nullable) = true,
-    (amino.dont_omitempty) = true
+    (gogoproto.nullable) = true
   ];
   // Required due to off-chain matching & on-chain contract settlement
   google.protobuf.Timestamp expiry = 8 [

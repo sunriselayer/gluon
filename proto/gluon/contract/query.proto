@@ -1,11 +1,9 @@
 syntax = "proto3";
 package gluon.contract;
 
-import "amino/amino.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "gluon/contract/order.proto";
 import "gluon/contract/params.proto";
-import "gluon/contract/sorted_order.proto";
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 
@@ -26,15 +24,6 @@ service Query {
   rpc Orders(QueryOrdersRequest) returns (QueryOrdersResponse) {
     option (google.api.http).get = "/gluon/contract/orders";
   }
-
-  // SortedOrder
-  rpc SortedOrder(QueryGetSortedOrderRequest) returns (QueryGetSortedOrderResponse) {
-    option (google.api.http).get = "/gluon/contract/sorted_orders/{expiry}/{id}";
-  }
-  // SortedOrders
-  rpc SortedOrders(QuerySortedOrdersRequest) returns (QuerySortedOrdersResponse) {
-    option (google.api.http).get = "/gluon/contract/sorted_orders";
-  }
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.
@@ -43,10 +32,7 @@ message QueryParamsRequest {}
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
   // params holds all the parameters of this module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+  Params params = 1 [(gogoproto.nullable) = false];
 }
 
 // QueryGetOrderRequest
@@ -67,27 +53,5 @@ message QueryOrdersRequest {
 // QueryOrdersResponse
 message QueryOrdersResponse {
   repeated Order order = 1 [(gogoproto.nullable) = false];
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
-}
-
-// QueryGetSortedOrderRequest
-message QueryGetSortedOrderRequest {
-  uint64 expiry = 1;
-  string id = 2;
-}
-
-// QueryGetSortedOrderResponse
-message QueryGetSortedOrderResponse {
-  SortedOrder sorted_orders = 1 [(gogoproto.nullable) = false];
-}
-
-// QuerySortedOrdersRequest
-message QuerySortedOrdersRequest {
-  cosmos.base.query.v1beta1.PageRequest pagination = 1;
-}
-
-// QuerySortedOrdersResponse
-message QuerySortedOrdersResponse {
-  repeated SortedOrder sorted_orders = 1 [(gogoproto.nullable) = false];
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
