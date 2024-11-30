@@ -11,6 +11,13 @@ import (
 	_ "gluon/x/customauth/module" // import for side-effects
 	customauthmoduletypes "gluon/x/customauth/types"
 
+	perpmodulev1 "gluon/api/gluon/perp/module"
+	spotmodulev1 "gluon/api/gluon/spot/module"
+	_ "gluon/x/perp/module" // import for side-effects
+	perpmoduletypes "gluon/x/perp/types"
+	_ "gluon/x/spot/module" // import for side-effects
+	spotmoduletypes "gluon/x/spot/types"
+
 	runtimev1alpha1 "cosmossdk.io/api/cosmos/app/runtime/v1alpha1"
 	appv1alpha1 "cosmossdk.io/api/cosmos/app/v1alpha1"
 	authmodulev1 "cosmossdk.io/api/cosmos/auth/module/v1"
@@ -60,10 +67,7 @@ import (
 	ibctransfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
 	ibcexported "github.com/cosmos/ibc-go/v8/modules/core/exported"
 	"google.golang.org/protobuf/types/known/durationpb"
-	spotmodulev1 "gluon/api/gluon/spot/module"
-_ "gluon/x/spot/module" // import for side-effects
-spotmoduletypes "gluon/x/spot/types"
-// this line is used by starport scaffolding # stargate/app/moduleImport
+	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
 var (
@@ -103,7 +107,8 @@ var (
 		contractmoduletypes.ModuleName,
 		customauthmoduletypes.ModuleName,
 		spotmoduletypes.ModuleName,
-// this line is used by starport scaffolding # stargate/app/initGenesis
+		perpmoduletypes.ModuleName,
+		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
 	// During begin block slashing happens after distr.BeginBlocker so that
@@ -130,7 +135,8 @@ var (
 		contractmoduletypes.ModuleName,
 		customauthmoduletypes.ModuleName,
 		spotmoduletypes.ModuleName,
-// this line is used by starport scaffolding # stargate/app/beginBlockers
+		perpmoduletypes.ModuleName,
+		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
 	endBlockers = []string{
@@ -151,7 +157,8 @@ var (
 		contractmoduletypes.ModuleName,
 		customauthmoduletypes.ModuleName,
 		spotmoduletypes.ModuleName,
-// this line is used by starport scaffolding # stargate/app/endBlockers
+		perpmoduletypes.ModuleName,
+		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
 	preBlockers = []string{
@@ -319,7 +326,11 @@ var (
 				Name:   spotmoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&spotmodulev1.Module{}),
 			},
-// this line is used by starport scaffolding # stargate/app/moduleConfig
+			{
+				Name:   perpmoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&perpmodulev1.Module{}),
+			},
+			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},
 	})
 )

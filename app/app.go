@@ -80,8 +80,10 @@ import (
 	customauthmodulekeeper "gluon/x/customauth/keeper"
 	customauthmoduletypes "gluon/x/customauth/types"
 
+	perpmodulekeeper "gluon/x/perp/keeper"
 	spotmodulekeeper "gluon/x/spot/keeper"
-// this line is used by starport scaffolding # stargate/app/moduleImport
+
+	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	"gluon/docs"
 
@@ -150,8 +152,9 @@ type App struct {
 
 	ContractKeeper   contractmodulekeeper.Keeper
 	CustomauthKeeper customauthmodulekeeper.Keeper
-	SpotKeeper spotmodulekeeper.Keeper
-// this line is used by starport scaffolding # stargate/app/keeperDeclaration
+	SpotKeeper       spotmodulekeeper.Keeper
+	PerpKeeper       perpmodulekeeper.Keeper
+	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// simulation manager
 	sm *module.SimulationManager
@@ -257,6 +260,7 @@ func New(
 		&app.ContractKeeper,
 		&app.CustomauthKeeper,
 		&app.SpotKeeper,
+		&app.PerpKeeper,
 		// this line is used by starport scaffolding # stargate/app/keeperDefinition
 	); err != nil {
 		panic(err)

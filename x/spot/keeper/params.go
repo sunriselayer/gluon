@@ -5,9 +5,8 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/runtime"
 
-    "gluon/x/spot/types"
+	"gluon/x/spot/types"
 )
-
 
 // GetParams get all parameters as types.Params
 func (k Keeper) GetParams(ctx context.Context) (params types.Params) {

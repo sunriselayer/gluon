@@ -6,9 +6,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-    keepertest "gluon/testutil/keeper"
-    "gluon/x/spot/types"
-    "gluon/x/spot/keeper"
+	keepertest "gluon/testutil/keeper"
+	"gluon/x/spot/keeper"
+	"gluon/x/spot/types"
 )
 
 func setupMsgServer(t testing.TB) (keeper.Keeper, types.MsgServer, context.Context) {

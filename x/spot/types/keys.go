@@ -9,16 +9,12 @@ const (
 
 	// MemStoreKey defines the in-memory store key
 	MemStoreKey = "mem_spot"
-
-    
 )
 
 var (
 	ParamsKey = []byte("p_spot")
 )
 
-
-
 func KeyPrefix(p string) []byte {
-    return []byte(p)
+	return []byte(p)
 }
