@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             (unknown)
-// source: gluon/customauth/query.proto
+// source: gluon/spot/query.proto
 
-package customauth
+package spot
 
 import (
 	context "context"
@@ -19,9 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Query_Params_FullMethodName   = "/gluon.customauth.Query/Params"
-	Query_Pairing_FullMethodName  = "/gluon.customauth.Query/Pairing"
-	Query_Pairings_FullMethodName = "/gluon.customauth.Query/Pairings"
+	Query_Params_FullMethodName = "/gluon.spot.Query/Params"
 )
 
 // QueryClient is the client API for Query service.
@@ -32,10 +30,6 @@ const (
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
-	// Pairing
-	Pairing(ctx context.Context, in *QueryGetPairingRequest, opts ...grpc.CallOption) (*QueryGetPairingResponse, error)
-	// Pairings
-	Pairings(ctx context.Context, in *QueryPairingsRequest, opts ...grpc.CallOption) (*QueryPairingsResponse, error)
 }
 
 type queryClient struct {
@@ -56,26 +50,6 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
-func (c *queryClient) Pairing(ctx context.Context, in *QueryGetPairingRequest, opts ...grpc.CallOption) (*QueryGetPairingResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QueryGetPairingResponse)
-	err := c.cc.Invoke(ctx, Query_Pairing_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *queryClient) Pairings(ctx context.Context, in *QueryPairingsRequest, opts ...grpc.CallOption) (*QueryPairingsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QueryPairingsResponse)
-	err := c.cc.Invoke(ctx, Query_Pairings_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility.
@@ -84,10 +58,6 @@ func (c *queryClient) Pairings(ctx context.Context, in *QueryPairingsRequest, op
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
-	// Pairing
-	Pairing(context.Context, *QueryGetPairingRequest) (*QueryGetPairingResponse, error)
-	// Pairings
-	Pairings(context.Context, *QueryPairingsRequest) (*QueryPairingsResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -100,12 +70,6 @@ type UnimplementedQueryServer struct{}
 
 func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
-}
-func (UnimplementedQueryServer) Pairing(context.Context, *QueryGetPairingRequest) (*QueryGetPairingResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Pairing not implemented")
-}
-func (UnimplementedQueryServer) Pairings(context.Context, *QueryPairingsRequest) (*QueryPairingsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Pairings not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 func (UnimplementedQueryServer) testEmbeddedByValue()               {}
@@ -146,62 +110,18 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_Pairing_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetPairingRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).Pairing(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Query_Pairing_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).Pairing(ctx, req.(*QueryGetPairingRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Query_Pairings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryPairingsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).Pairings(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Query_Pairings_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).Pairings(ctx, req.(*QueryPairingsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Query_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "gluon.customauth.Query",
+	ServiceName: "gluon.spot.Query",
 	HandlerType: (*QueryServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Params",
 			Handler:    _Query_Params_Handler,
 		},
-		{
-			MethodName: "Pairing",
-			Handler:    _Query_Pairing_Handler,
-		},
-		{
-			MethodName: "Pairings",
-			Handler:    _Query_Pairings_Handler,
-		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "gluon/customauth/query.proto",
+	Metadata: "gluon/spot/query.proto",
 }

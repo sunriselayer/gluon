@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             (unknown)
-// source: gluon/customauth/tx.proto
+// source: gluon/spot/tx.proto
 
-package customauth
+package spot
 
 import (
 	context "context"
@@ -19,9 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Msg_UpdateParams_FullMethodName  = "/gluon.customauth.Msg/UpdateParams"
-	Msg_CreatePairing_FullMethodName = "/gluon.customauth.Msg/CreatePairing"
-	Msg_DeletePairing_FullMethodName = "/gluon.customauth.Msg/DeletePairing"
+	Msg_UpdateParams_FullMethodName = "/gluon.spot.Msg/UpdateParams"
 )
 
 // MsgClient is the client API for Msg service.
@@ -33,10 +31,6 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
-	// CreatePairing
-	CreatePairing(ctx context.Context, in *MsgCreatePairing, opts ...grpc.CallOption) (*MsgCreatePairingResponse, error)
-	// DeletePairing
-	DeletePairing(ctx context.Context, in *MsgDeletePairing, opts ...grpc.CallOption) (*MsgDeletePairingResponse, error)
 }
 
 type msgClient struct {
@@ -57,26 +51,6 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 	return out, nil
 }
 
-func (c *msgClient) CreatePairing(ctx context.Context, in *MsgCreatePairing, opts ...grpc.CallOption) (*MsgCreatePairingResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(MsgCreatePairingResponse)
-	err := c.cc.Invoke(ctx, Msg_CreatePairing_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *msgClient) DeletePairing(ctx context.Context, in *MsgDeletePairing, opts ...grpc.CallOption) (*MsgDeletePairingResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(MsgDeletePairingResponse)
-	err := c.cc.Invoke(ctx, Msg_DeletePairing_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility.
@@ -86,10 +60,6 @@ type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
-	// CreatePairing
-	CreatePairing(context.Context, *MsgCreatePairing) (*MsgCreatePairingResponse, error)
-	// DeletePairing
-	DeletePairing(context.Context, *MsgDeletePairing) (*MsgDeletePairingResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -102,12 +72,6 @@ type UnimplementedMsgServer struct{}
 
 func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
-}
-func (UnimplementedMsgServer) CreatePairing(context.Context, *MsgCreatePairing) (*MsgCreatePairingResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreatePairing not implemented")
-}
-func (UnimplementedMsgServer) DeletePairing(context.Context, *MsgDeletePairing) (*MsgDeletePairingResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeletePairing not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 func (UnimplementedMsgServer) testEmbeddedByValue()             {}
@@ -148,62 +112,18 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_CreatePairing_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgCreatePairing)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).CreatePairing(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Msg_CreatePairing_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).CreatePairing(ctx, req.(*MsgCreatePairing))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Msg_DeletePairing_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgDeletePairing)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).DeletePairing(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Msg_DeletePairing_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).DeletePairing(ctx, req.(*MsgDeletePairing))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Msg_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "gluon.customauth.Msg",
+	ServiceName: "gluon.spot.Msg",
 	HandlerType: (*MsgServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "UpdateParams",
 			Handler:    _Msg_UpdateParams_Handler,
 		},
-		{
-			MethodName: "CreatePairing",
-			Handler:    _Msg_CreatePairing_Handler,
-		},
-		{
-			MethodName: "DeletePairing",
-			Handler:    _Msg_DeletePairing_Handler,
-		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "gluon/customauth/tx.proto",
+	Metadata: "gluon/spot/tx.proto",
 }

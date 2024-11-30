@@ -60,7 +60,10 @@ import (
 	ibctransfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
 	ibcexported "github.com/cosmos/ibc-go/v8/modules/core/exported"
 	"google.golang.org/protobuf/types/known/durationpb"
-	// this line is used by starport scaffolding # stargate/app/moduleImport
+	spotmodulev1 "gluon/api/gluon/spot/module"
+_ "gluon/x/spot/module" // import for side-effects
+spotmoduletypes "gluon/x/spot/types"
+// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
 var (
@@ -99,7 +102,8 @@ var (
 		// chain modules
 		contractmoduletypes.ModuleName,
 		customauthmoduletypes.ModuleName,
-		// this line is used by starport scaffolding # stargate/app/initGenesis
+		spotmoduletypes.ModuleName,
+// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
 	// During begin block slashing happens after distr.BeginBlocker so that
@@ -125,7 +129,8 @@ var (
 		// chain modules
 		contractmoduletypes.ModuleName,
 		customauthmoduletypes.ModuleName,
-		// this line is used by starport scaffolding # stargate/app/beginBlockers
+		spotmoduletypes.ModuleName,
+// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
 	endBlockers = []string{
@@ -145,7 +150,8 @@ var (
 		// chain modules
 		contractmoduletypes.ModuleName,
 		customauthmoduletypes.ModuleName,
-		// this line is used by starport scaffolding # stargate/app/endBlockers
+		spotmoduletypes.ModuleName,
+// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
 	preBlockers = []string{
@@ -309,7 +315,11 @@ var (
 				Name:   customauthmoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&customauthmodulev1.Module{}),
 			},
-			// this line is used by starport scaffolding # stargate/app/moduleConfig
+			{
+				Name:   spotmoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&spotmodulev1.Module{}),
+			},
+// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},
 	})
 )
