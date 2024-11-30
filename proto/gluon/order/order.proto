@@ -19,7 +19,6 @@ enum OrderDirection {
 }
 
 // Order
-// Encoded binary will be used as a signing message.
 message Order {
   option (cosmos.msg.v1.signer) = "address";
 

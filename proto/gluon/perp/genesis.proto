@@ -1,17 +1,13 @@
 syntax = "proto3";
 package gluon.perp;
 
-import "amino/amino.proto";
-import "gogoproto/gogo.proto";
 import "gluon/perp/params.proto";
+import "gogoproto/gogo.proto";
 
 option go_package = "gluon/x/perp/types";
 
 // GenesisState defines the perp module's genesis state.
 message GenesisState {
   // params defines all the parameters of the module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+  Params params = 1 [(gogoproto.nullable) = false];
 }

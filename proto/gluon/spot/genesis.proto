@@ -1,17 +1,13 @@
 syntax = "proto3";
 package gluon.spot;
 
-import "amino/amino.proto";
-import "gogoproto/gogo.proto";
 import "gluon/spot/params.proto";
+import "gogoproto/gogo.proto";
 
 option go_package = "gluon/x/spot/types";
 
 // GenesisState defines the spot module's genesis state.
 message GenesisState {
   // params defines all the parameters of the module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+  Params params = 1 [(gogoproto.nullable) = false];
 }

@@ -1,0 +1,19 @@
+syntax = "proto3";
+package gluon.perp;
+
+import "cosmos/base/v1beta1/coin.proto";
+import "cosmos/msg/v1/msg.proto";
+import "gluon/order/order.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "gluon/x/perp/types";
+
+// PerpOrder
+// Encoded binary of Any of PerpOrder will be sign message.
+message PerpOrder {
+  option (cosmos.msg.v1.signer) = "order";
+
+  gluon.order.Order order = 1 [(gogoproto.nullable) = false];
+  bool isolated_margin = 2;
+  cosmos.base.v1beta1.Coin margin = 3 [(gogoproto.nullable) = false];
+}
