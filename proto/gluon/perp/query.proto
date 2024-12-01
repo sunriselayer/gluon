@@ -4,6 +4,7 @@ package gluon.perp;
 
 import "amino/amino.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
+import "gluon/perp/cross_margin.proto";
 import "gluon/perp/params.proto";
 import "gluon/perp/position.proto";
 import "gluon/perp/position_price_quantity.proto";
@@ -37,6 +38,11 @@ service Query {
   // PositionPriceQuantities
   rpc PositionPriceQuantities(QueryPositionPriceQuantitiesRequest) returns (QueryPositionPriceQuantitiesResponse) {
     option (google.api.http).get = "/gluon/perp/position_price_quantities/{owner}/{position_order_hash}";
+  }
+
+  // CrossMargin
+  rpc CrossMargin(QueryCrossMarginRequest) returns (QueryCrossMarginResponse) {
+    option (google.api.http).get = "/gluon/perp/cross_margins/{owner}";
   }
 }
 
@@ -98,4 +104,14 @@ message QueryPositionPriceQuantitiesRequest {
 message QueryPositionPriceQuantitiesResponse {
   repeated PositionPriceQuantity position_price_quantity = 1 [(gogoproto.nullable) = false];
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryCrossMarginRequest
+message QueryCrossMarginRequest {
+  string owner = 1;
+}
+
+// QueryCrossMarginResponse
+message QueryCrossMarginResponse {
+  CrossMargin cross_margin = 1 [(gogoproto.nullable) = false];
 }

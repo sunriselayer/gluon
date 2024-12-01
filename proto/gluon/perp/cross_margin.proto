@@ -1,0 +1,16 @@
+syntax = "proto3";
+package gluon.perp;
+
+import "cosmos/base/v1beta1/coin.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "gluon/x/perp/types";
+
+// CrossMargin
+message CrossMargin {
+  string owner = 1;
+  repeated cosmos.base.v1beta1.Coin assets = 2 [
+    (gogoproto.nullable) = false,
+    (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"
+  ];
+}

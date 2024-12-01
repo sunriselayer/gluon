@@ -18,6 +18,10 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 	for _, elem := range genState.PositionPriceQuantities {
 		k.SetPositionPriceQuantity(ctx, elem)
 	}
+	// Set all the crossMargin
+	for _, elem := range genState.CrossMargins {
+		k.SetCrossMargin(ctx, elem)
+	}
 	// this line is used by starport scaffolding # genesis/module/init
 	if err := k.SetParams(ctx, genState.Params); err != nil {
 		panic(err)
@@ -31,6 +35,7 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 
 	genesis.Positions = k.GetAllPosition(ctx)
 	genesis.PositionPriceQuantities = k.GetAllPositionPriceQuantity(ctx)
+	genesis.CrossMargins = k.GetAllCrossMargin(ctx)
 	// this line is used by starport scaffolding # genesis/module/export
 
 	return genesis

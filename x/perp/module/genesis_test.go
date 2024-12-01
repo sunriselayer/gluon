@@ -37,6 +37,14 @@ func TestGenesis(t *testing.T) {
 				Price:             "1",
 			},
 		},
+		CrossMargins: []types.CrossMargin{
+			{
+				Owner: "0",
+			},
+			{
+				Owner: "1",
+			},
+		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -50,5 +58,6 @@ func TestGenesis(t *testing.T) {
 
 	require.ElementsMatch(t, genesisState.Positions, got.Positions)
 	require.ElementsMatch(t, genesisState.PositionPriceQuantities, got.PositionPriceQuantities)
+	require.ElementsMatch(t, genesisState.CrossMargins, got.CrossMargins)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

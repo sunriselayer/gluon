@@ -45,6 +45,14 @@ func TestGenesisState_Validate(t *testing.T) {
 						Price:             "1",
 					},
 				},
+				CrossMargins: []types.CrossMargin{
+					{
+						Owner: "0",
+					},
+					{
+						Owner: "1",
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -78,6 +86,20 @@ func TestGenesisState_Validate(t *testing.T) {
 						Owner:             "0",
 						PositionOrderHash: "0",
 						Price:             "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated crossMargin",
+			genState: &types.GenesisState{
+				CrossMargins: []types.CrossMargin{
+					{
+						Owner: "0",
+					},
+					{
+						Owner: "0",
 					},
 				},
 			},

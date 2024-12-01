@@ -40,6 +40,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Shows a position-price-quantity",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}, {ProtoField: "positionOrderHash"}, {ProtoField: "price"}},
 				},
+				{
+					RpcMethod:      "CrossMargin",
+					Use:            "show-cross-margin [owner]",
+					Short:          "Shows a cross-margin",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}},
+				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},

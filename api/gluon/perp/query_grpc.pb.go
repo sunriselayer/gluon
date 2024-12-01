@@ -24,6 +24,7 @@ const (
 	Query_Positions_FullMethodName               = "/gluon.perp.Query/Positions"
 	Query_PositionPriceQuantity_FullMethodName   = "/gluon.perp.Query/PositionPriceQuantity"
 	Query_PositionPriceQuantities_FullMethodName = "/gluon.perp.Query/PositionPriceQuantities"
+	Query_CrossMargin_FullMethodName             = "/gluon.perp.Query/CrossMargin"
 )
 
 // QueryClient is the client API for Query service.
@@ -42,6 +43,8 @@ type QueryClient interface {
 	PositionPriceQuantity(ctx context.Context, in *QueryPositionPriceQuantityRequest, opts ...grpc.CallOption) (*QueryPositionPriceQuantityResponse, error)
 	// PositionPriceQuantities
 	PositionPriceQuantities(ctx context.Context, in *QueryPositionPriceQuantitiesRequest, opts ...grpc.CallOption) (*QueryPositionPriceQuantitiesResponse, error)
+	// CrossMargin
+	CrossMargin(ctx context.Context, in *QueryCrossMarginRequest, opts ...grpc.CallOption) (*QueryCrossMarginResponse, error)
 }
 
 type queryClient struct {
@@ -102,6 +105,16 @@ func (c *queryClient) PositionPriceQuantities(ctx context.Context, in *QueryPosi
 	return out, nil
 }
 
+func (c *queryClient) CrossMargin(ctx context.Context, in *QueryCrossMarginRequest, opts ...grpc.CallOption) (*QueryCrossMarginResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(QueryCrossMarginResponse)
+	err := c.cc.Invoke(ctx, Query_CrossMargin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility.
@@ -118,6 +131,8 @@ type QueryServer interface {
 	PositionPriceQuantity(context.Context, *QueryPositionPriceQuantityRequest) (*QueryPositionPriceQuantityResponse, error)
 	// PositionPriceQuantities
 	PositionPriceQuantities(context.Context, *QueryPositionPriceQuantitiesRequest) (*QueryPositionPriceQuantitiesResponse, error)
+	// CrossMargin
+	CrossMargin(context.Context, *QueryCrossMarginRequest) (*QueryCrossMarginResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -142,6 +157,9 @@ func (UnimplementedQueryServer) PositionPriceQuantity(context.Context, *QueryPos
 }
 func (UnimplementedQueryServer) PositionPriceQuantities(context.Context, *QueryPositionPriceQuantitiesRequest) (*QueryPositionPriceQuantitiesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PositionPriceQuantities not implemented")
+}
+func (UnimplementedQueryServer) CrossMargin(context.Context, *QueryCrossMarginRequest) (*QueryCrossMarginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CrossMargin not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 func (UnimplementedQueryServer) testEmbeddedByValue()               {}
@@ -254,6 +272,24 @@ func _Query_PositionPriceQuantities_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_CrossMargin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryCrossMarginRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).CrossMargin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_CrossMargin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).CrossMargin(ctx, req.(*QueryCrossMarginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -280,6 +316,10 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PositionPriceQuantities",
 			Handler:    _Query_PositionPriceQuantities_Handler,
+		},
+		{
+			MethodName: "CrossMargin",
+			Handler:    _Query_CrossMargin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
