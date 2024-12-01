@@ -43,7 +43,7 @@ func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (
 		return nil, err
 	}
 
-	err = types.CrossValidateBasic(buyPerp, sellPerp, price, ctx.BlockTime())
+	err = types.PerpOrderCrossValidateBasic(buyPerp, sellPerp, price, ctx.BlockTime())
 	if err != nil {
 		return nil, err
 	}

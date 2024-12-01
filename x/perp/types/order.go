@@ -13,11 +13,14 @@ import (
 
 type PerpOrder interface {
 	ordertypes.OrderBody
-
-	GetLimitPrice() *sdkmath.LegacyDec
 }
 
-func CrossValidateBasic(buy PerpOrder, sell PerpOrder, price sdkmath.LegacyDec, blockTime time.Time) error {
+func PerpOrderCrossValidateBasic(buy PerpOrder, sell PerpOrder, price sdkmath.LegacyDec, blockTime time.Time) error {
+	err := ordertypes.OrderBodyCrossValidateBasic(buy, sell, price, blockTime)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -30,23 +33,11 @@ func (order PerpPositionCreateOrder) ValidateBasic() error {
 	if err != nil {
 		return err
 	}
-	return nil
-}
-
-func (order PerpPositionCreateOrder) GetAddress() sdk.AccAddress {
-	val, err := sdk.AccAddressFromBech32(order.Address)
+	err = order.Margin.Validate()
 	if err != nil {
-		return nil
+		return err
 	}
-	return val
-}
-
-func (order PerpPositionCreateOrder) GetAmount() sdkmath.Int {
-	return order.Amount
-}
-
-func (order PerpPositionCreateOrder) GetExpiry() time.Time {
-	return order.Expiry
+	return nil
 }
 
 func (order PerpPositionCreateOrder) PackAny() (codectypes.Any, error) {
@@ -55,17 +46,6 @@ func (order PerpPositionCreateOrder) PackAny() (codectypes.Any, error) {
 		return codectypes.Any{}, err
 	}
 	return *val, nil
-}
-
-func (order PerpPositionCreateOrder) GetLimitPrice() *sdkmath.LegacyDec {
-	if len(order.LimitPrice) == 0 {
-		return nil
-	}
-	val, err := sdkmath.LegacyNewDecFromStr(order.LimitPrice)
-	if err != nil {
-		return nil
-	}
-	return &val
 }
 
 // PerpPositionCancelOrder
@@ -108,18 +88,6 @@ func (order PerpPositionCancelOrder) GetAmount() sdkmath.Int {
 	return order.Amount
 }
 
-// func (order PerpPositionCancelOrder) GetExpiry() time.Time {
-// 	return order.Expiry
-// }
-
-func (order PerpPositionCancelOrder) PackAny() (codectypes.Any, error) {
-	val, err := codectypes.NewAnyWithValue(&order)
-	if err != nil {
-		return codectypes.Any{}, err
-	}
-	return *val, nil
-}
-
 func (order PerpPositionCancelOrder) GetLimitPrice() *sdkmath.LegacyDec {
 	if len(order.LimitPriceString) == 0 {
 		return nil
@@ -129,4 +97,12 @@ func (order PerpPositionCancelOrder) GetLimitPrice() *sdkmath.LegacyDec {
 		return nil
 	}
 	return &val
+}
+
+func (order PerpPositionCancelOrder) PackAny() (codectypes.Any, error) {
+	val, err := codectypes.NewAnyWithValue(&order)
+	if err != nil {
+		return codectypes.Any{}, err
+	}
+	return *val, nil
 }

@@ -17,11 +17,11 @@ func (k Keeper) Swap(
 	denomBase := buy.DenomBase
 	denomQuote := buy.DenomQuote
 
-	addressBuy, err := sdk.AccAddressFromBech32(buy.Address)
+	addressBuy, err := sdk.AccAddressFromBech32(buy.AddressString)
 	if err != nil {
 		return err
 	}
-	addressSell, err := sdk.AccAddressFromBech32(sell.Address)
+	addressSell, err := sdk.AccAddressFromBech32(sell.AddressString)
 	if err != nil {
 		return err
 	}

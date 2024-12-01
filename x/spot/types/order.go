@@ -5,36 +5,24 @@ import (
 
 	sdkmath "cosmossdk.io/math"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
-	sdk "github.com/cosmos/cosmos-sdk/types"
 
 	ordertypes "gluon/x/order/types"
 )
 
-var _ ordertypes.OrderBody = &SpotOrder{}
-
-func (order SpotOrder) ValidateBasic() error {
-	err := order.BaseOrder.ValidateBasic()
+func PerpOrderCrossValidateBasic(buy SpotOrder, sell SpotOrder, price sdkmath.LegacyDec, blockTime time.Time) error {
+	err := ordertypes.OrderBodyCrossValidateBasic(&buy, &sell, price, blockTime)
 	if err != nil {
 		return err
 	}
+	err = ordertypes.OrderInterfaceCrossValidateBasic(buy.BaseOrder, sell.BaseOrder, price, blockTime)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
-func (order SpotOrder) GetAddress() sdk.AccAddress {
-	val, err := sdk.AccAddressFromBech32(order.Address)
-	if err != nil {
-		return nil
-	}
-	return val
-}
-
-func (order SpotOrder) GetAmount() sdkmath.Int {
-	return order.Amount
-}
-
-func (order SpotOrder) GetExpiry() time.Time {
-	return order.Expiry
-}
+var _ ordertypes.OrderBody = &SpotOrder{}
 
 func (order SpotOrder) PackAny() (codectypes.Any, error) {
 	val, err := codectypes.NewAnyWithValue(&order)
