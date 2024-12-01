@@ -16,7 +16,7 @@ type PerpOrder interface {
 }
 
 func PerpOrderCrossValidateBasic(buy PerpOrder, sell PerpOrder, price sdkmath.LegacyDec, blockTime time.Time) error {
-	err := ordertypes.OrderBodyCrossValidateBasic(buy, sell, price, blockTime)
+	err := ordertypes.OrderInterfaceCrossValidateBasic(buy, sell, price, blockTime)
 	if err != nil {
 		return err
 	}

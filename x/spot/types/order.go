@@ -9,12 +9,8 @@ import (
 	ordertypes "gluon/x/order/types"
 )
 
-func PerpOrderCrossValidateBasic(buy SpotOrder, sell SpotOrder, price sdkmath.LegacyDec, blockTime time.Time) error {
-	err := ordertypes.OrderBodyCrossValidateBasic(&buy, &sell, price, blockTime)
-	if err != nil {
-		return err
-	}
-	err = ordertypes.OrderInterfaceCrossValidateBasic(buy.BaseOrder, sell.BaseOrder, price, blockTime)
+func SpotOrderCrossValidateBasic(buy SpotOrder, sell SpotOrder, price sdkmath.LegacyDec, blockTime time.Time) error {
+	err := ordertypes.BaseOrderCrossValidateBasic(buy.BaseOrder, sell.BaseOrder, price, blockTime)
 	if err != nil {
 		return err
 	}

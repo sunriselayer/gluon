@@ -1,11 +1,33 @@
 package types
 
 import (
+	"time"
+
 	sdkmath "cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
 	errorsmod "cosmossdk.io/errors"
 )
+
+func BaseOrderCrossValidateBasic(buy BaseOrder, sell BaseOrder, price sdkmath.LegacyDec, blockTime time.Time) error {
+	err := OrderInterfaceCrossValidateBasic(&buy, &sell, price, blockTime)
+	if err != nil {
+		return err
+	}
+
+	if buy.DenomBase != sell.DenomBase || buy.DenomQuote != sell.DenomQuote {
+		return ErrDenomMismatch
+	}
+
+	if buy.Direction != OrderDirection_ORDER_DIRECTION_BUY {
+		return ErrInvalidOrderDirection
+	}
+	if sell.Direction != OrderDirection_ORDER_DIRECTION_SELL {
+		return ErrInvalidOrderDirection
+	}
+
+	return nil
+}
 
 var _ OrderI = &BaseOrder{}
 

@@ -3,6 +3,7 @@ package types
 import (
 	"time"
 
+	errorsmod "cosmossdk.io/errors"
 	sdkmath "cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
@@ -19,16 +20,32 @@ type OrderI interface {
 	GetExpiry() time.Time
 }
 
-func OrderInterfaceCrossValidateBasic(buy BaseOrder, sell BaseOrder, price sdkmath.LegacyDec, blockTime time.Time) error {
-	if buy.DenomBase != sell.DenomBase || buy.DenomQuote != sell.DenomQuote {
-		return ErrDenomMismatch
+func OrderInterfaceCrossValidateBasic(buy OrderI, sell OrderI, price sdkmath.LegacyDec, blockTime time.Time) error {
+	if buy.GetAddress().Equals(sell.GetAddress()) {
+		return ErrSameAddress
 	}
 
-	if buy.Direction != OrderDirection_ORDER_DIRECTION_BUY {
-		return ErrInvalidOrderDirection
+	buyLimitPrice := buy.GetLimitPrice()
+	sellLimitPrice := sell.GetLimitPrice()
+
+	if buyLimitPrice == nil && sellLimitPrice == nil {
+		return ErrBothMarketPriceOrder
 	}
-	if sell.Direction != OrderDirection_ORDER_DIRECTION_SELL {
-		return ErrInvalidOrderDirection
+
+	if buyLimitPrice != nil && price.GT(*buyLimitPrice) {
+		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, buy limit price: %s", price.String(), buyLimitPrice.String())
+	}
+
+	if sellLimitPrice != nil && price.LT(*sellLimitPrice) {
+		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, sell limit price: %s", price.String(), sellLimitPrice.String())
+	}
+
+	if blockTime.After(buy.GetExpiry()) {
+		return ErrOrderExpired
+	}
+
+	if blockTime.After(sell.GetExpiry()) {
+		return ErrOrderExpired
 	}
 
 	return nil

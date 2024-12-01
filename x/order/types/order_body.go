@@ -1,10 +1,6 @@
 package types
 
 import (
-	"time"
-
-	sdkmath "cosmossdk.io/math"
-
 	errorsmod "cosmossdk.io/errors"
 
 	"crypto/sha256"
@@ -63,35 +59,4 @@ func GetOrderHash(orderAny codectypes.Any) (string, error) {
 	orderHash := hasher.Sum(nil)
 
 	return hex.EncodeToString(orderHash), nil
-}
-
-func OrderBodyCrossValidateBasic(buy OrderBody, sell OrderBody, price sdkmath.LegacyDec, blockTime time.Time) error {
-	if buy.GetAddress().Equals(sell.GetAddress()) {
-		return ErrSameAddress
-	}
-
-	buyLimitPrice := buy.GetLimitPrice()
-	sellLimitPrice := sell.GetLimitPrice()
-
-	if buyLimitPrice == nil && sellLimitPrice == nil {
-		return ErrBothMarketPriceOrder
-	}
-
-	if buyLimitPrice != nil && price.GT(*buyLimitPrice) {
-		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, buy limit price: %s", price.String(), buyLimitPrice.String())
-	}
-
-	if sellLimitPrice != nil && price.LT(*sellLimitPrice) {
-		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, sell limit price: %s", price.String(), sellLimitPrice.String())
-	}
-
-	if blockTime.After(buy.GetExpiry()) {
-		return ErrOrderExpired
-	}
-
-	if blockTime.After(sell.GetExpiry()) {
-		return ErrOrderExpired
-	}
-
-	return nil
 }
