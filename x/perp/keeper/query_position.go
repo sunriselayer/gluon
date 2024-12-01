@@ -21,7 +21,7 @@ func (k Keeper) Positions(ctx context.Context, req *types.QueryPositionsRequest)
 	var positions []types.Position
 
 	store := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	positionStore := prefix.NewStore(store, types.PositionKeyPrefix(req.Owner))
+	positionStore := prefix.NewStore(store, types.PositionKeyPrefixByOwner(req.Owner))
 
 	pageRes, err := query.Paginate(positionStore, req.Pagination, func(key []byte, value []byte) error {
 		var position types.Position

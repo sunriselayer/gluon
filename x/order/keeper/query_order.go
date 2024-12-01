@@ -20,7 +20,7 @@ func (k Keeper) Orders(ctx context.Context, req *types.QueryOrdersRequest) (*typ
 	var orders []types.Order
 
 	store := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	orderStore := prefix.NewStore(store, types.KeyPrefix(types.OrderKeyPrefix))
+	orderStore := prefix.NewStore(store, types.OrderKeyPrefixByOwner(req.Owner))
 
 	pageRes, err := query.Paginate(orderStore, req.Pagination, func(key []byte, value []byte) error {
 		var order types.Order
@@ -46,6 +46,7 @@ func (k Keeper) Order(ctx context.Context, req *types.QueryOrderRequest) (*types
 
 	val, found := k.GetOrder(
 		ctx,
+		req.Owner,
 		req.Hash,
 	)
 	if !found {

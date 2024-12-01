@@ -13,10 +13,11 @@ import (
 )
 
 var (
-	md_SortedOrder            protoreflect.MessageDescriptor
-	fd_SortedOrder_seconds    protoreflect.FieldDescriptor
-	fd_SortedOrder_nanos      protoreflect.FieldDescriptor
-	fd_SortedOrder_order_hash protoreflect.FieldDescriptor
+	md_SortedOrder             protoreflect.MessageDescriptor
+	fd_SortedOrder_seconds     protoreflect.FieldDescriptor
+	fd_SortedOrder_nanos       protoreflect.FieldDescriptor
+	fd_SortedOrder_order_owner protoreflect.FieldDescriptor
+	fd_SortedOrder_order_hash  protoreflect.FieldDescriptor
 )
 
 func init() {
@@ -24,6 +25,7 @@ func init() {
 	md_SortedOrder = File_gluon_order_sorted_order_proto.Messages().ByName("SortedOrder")
 	fd_SortedOrder_seconds = md_SortedOrder.Fields().ByName("seconds")
 	fd_SortedOrder_nanos = md_SortedOrder.Fields().ByName("nanos")
+	fd_SortedOrder_order_owner = md_SortedOrder.Fields().ByName("order_owner")
 	fd_SortedOrder_order_hash = md_SortedOrder.Fields().ByName("order_hash")
 }
 
@@ -104,6 +106,12 @@ func (x *fastReflection_SortedOrder) Range(f func(protoreflect.FieldDescriptor, 
 			return
 		}
 	}
+	if x.OrderOwner != "" {
+		value := protoreflect.ValueOfString(x.OrderOwner)
+		if !f(fd_SortedOrder_order_owner, value) {
+			return
+		}
+	}
 	if x.OrderHash != "" {
 		value := protoreflect.ValueOfString(x.OrderHash)
 		if !f(fd_SortedOrder_order_hash, value) {
@@ -129,6 +137,8 @@ func (x *fastReflection_SortedOrder) Has(fd protoreflect.FieldDescriptor) bool {
 		return x.Seconds != uint64(0)
 	case "gluon.order.SortedOrder.nanos":
 		return x.Nanos != uint32(0)
+	case "gluon.order.SortedOrder.order_owner":
+		return x.OrderOwner != ""
 	case "gluon.order.SortedOrder.order_hash":
 		return x.OrderHash != ""
 	default:
@@ -151,6 +161,8 @@ func (x *fastReflection_SortedOrder) Clear(fd protoreflect.FieldDescriptor) {
 		x.Seconds = uint64(0)
 	case "gluon.order.SortedOrder.nanos":
 		x.Nanos = uint32(0)
+	case "gluon.order.SortedOrder.order_owner":
+		x.OrderOwner = ""
 	case "gluon.order.SortedOrder.order_hash":
 		x.OrderHash = ""
 	default:
@@ -175,6 +187,9 @@ func (x *fastReflection_SortedOrder) Get(descriptor protoreflect.FieldDescriptor
 	case "gluon.order.SortedOrder.nanos":
 		value := x.Nanos
 		return protoreflect.ValueOfUint32(value)
+	case "gluon.order.SortedOrder.order_owner":
+		value := x.OrderOwner
+		return protoreflect.ValueOfString(value)
 	case "gluon.order.SortedOrder.order_hash":
 		value := x.OrderHash
 		return protoreflect.ValueOfString(value)
@@ -202,6 +217,8 @@ func (x *fastReflection_SortedOrder) Set(fd protoreflect.FieldDescriptor, value 
 		x.Seconds = value.Uint()
 	case "gluon.order.SortedOrder.nanos":
 		x.Nanos = uint32(value.Uint())
+	case "gluon.order.SortedOrder.order_owner":
+		x.OrderOwner = value.Interface().(string)
 	case "gluon.order.SortedOrder.order_hash":
 		x.OrderHash = value.Interface().(string)
 	default:
@@ -228,6 +245,8 @@ func (x *fastReflection_SortedOrder) Mutable(fd protoreflect.FieldDescriptor) pr
 		panic(fmt.Errorf("field seconds of message gluon.order.SortedOrder is not mutable"))
 	case "gluon.order.SortedOrder.nanos":
 		panic(fmt.Errorf("field nanos of message gluon.order.SortedOrder is not mutable"))
+	case "gluon.order.SortedOrder.order_owner":
+		panic(fmt.Errorf("field order_owner of message gluon.order.SortedOrder is not mutable"))
 	case "gluon.order.SortedOrder.order_hash":
 		panic(fmt.Errorf("field order_hash of message gluon.order.SortedOrder is not mutable"))
 	default:
@@ -247,6 +266,8 @@ func (x *fastReflection_SortedOrder) NewField(fd protoreflect.FieldDescriptor) p
 		return protoreflect.ValueOfUint64(uint64(0))
 	case "gluon.order.SortedOrder.nanos":
 		return protoreflect.ValueOfUint32(uint32(0))
+	case "gluon.order.SortedOrder.order_owner":
+		return protoreflect.ValueOfString("")
 	case "gluon.order.SortedOrder.order_hash":
 		return protoreflect.ValueOfString("")
 	default:
@@ -324,6 +345,10 @@ func (x *fastReflection_SortedOrder) ProtoMethods() *protoiface.Methods {
 		if x.Nanos != 0 {
 			n += 1 + runtime.Sov(uint64(x.Nanos))
 		}
+		l = len(x.OrderOwner)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		l = len(x.OrderHash)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
@@ -361,6 +386,13 @@ func (x *fastReflection_SortedOrder) ProtoMethods() *protoiface.Methods {
 			i -= len(x.OrderHash)
 			copy(dAtA[i:], x.OrderHash)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.OrderHash)))
+			i--
+			dAtA[i] = 0x22
+		}
+		if len(x.OrderOwner) > 0 {
+			i -= len(x.OrderOwner)
+			copy(dAtA[i:], x.OrderOwner)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.OrderOwner)))
 			i--
 			dAtA[i] = 0x1a
 		}
@@ -463,6 +495,38 @@ func (x *fastReflection_SortedOrder) ProtoMethods() *protoiface.Methods {
 				}
 			case 3:
 				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OrderOwner", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.OrderOwner = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 4:
+				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OrderHash", wireType)
 				}
 				var stringLen uint64
@@ -548,9 +612,10 @@ type SortedOrder struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Seconds   uint64 `protobuf:"varint,1,opt,name=seconds,proto3" json:"seconds,omitempty"`
-	Nanos     uint32 `protobuf:"varint,2,opt,name=nanos,proto3" json:"nanos,omitempty"`
-	OrderHash string `protobuf:"bytes,3,opt,name=order_hash,json=orderHash,proto3" json:"order_hash,omitempty"`
+	Seconds    uint64 `protobuf:"varint,1,opt,name=seconds,proto3" json:"seconds,omitempty"`
+	Nanos      uint32 `protobuf:"varint,2,opt,name=nanos,proto3" json:"nanos,omitempty"`
+	OrderOwner string `protobuf:"bytes,3,opt,name=order_owner,json=orderOwner,proto3" json:"order_owner,omitempty"`
+	OrderHash  string `protobuf:"bytes,4,opt,name=order_hash,json=orderHash,proto3" json:"order_hash,omitempty"`
 }
 
 func (x *SortedOrder) Reset() {
@@ -587,6 +652,13 @@ func (x *SortedOrder) GetNanos() uint32 {
 	return 0
 }
 
+func (x *SortedOrder) GetOrderOwner() string {
+	if x != nil {
+		return x.OrderOwner
+	}
+	return ""
+}
+
 func (x *SortedOrder) GetOrderHash() string {
 	if x != nil {
 		return x.OrderHash
@@ -599,22 +671,24 @@ var File_gluon_order_sorted_order_proto protoreflect.FileDescriptor
 var file_gluon_order_sorted_order_proto_rawDesc = []byte{
 	0x0a, 0x1e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2f, 0x73, 0x6f,
 	0x72, 0x74, 0x65, 0x64, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x12, 0x0b, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x22, 0x5c, 0x0a,
+	0x12, 0x0b, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x22, 0x7d, 0x0a,
 	0x0b, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x18, 0x0a, 0x07,
 	0x73, 0x65, 0x63, 0x6f, 0x6e, 0x64, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x07, 0x73,
 	0x65, 0x63, 0x6f, 0x6e, 0x64, 0x73, 0x12, 0x14, 0x0a, 0x05, 0x6e, 0x61, 0x6e, 0x6f, 0x73, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x05, 0x6e, 0x61, 0x6e, 0x6f, 0x73, 0x12, 0x1d, 0x0a, 0x0a,
-	0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x68, 0x61, 0x73, 0x68, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x09, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x48, 0x61, 0x73, 0x68, 0x42, 0x87, 0x01, 0x0a, 0x0f,
-	0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x42,
-	0x10, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x74,
-	0x6f, 0x50, 0x01, 0x5a, 0x15, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67,
-	0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0xa2, 0x02, 0x03, 0x47, 0x4f, 0x58,
-	0xaa, 0x02, 0x0b, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0xca, 0x02,
-	0x0b, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x4f, 0x72, 0x64, 0x65, 0x72, 0xe2, 0x02, 0x17, 0x47,
-	0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65,
-	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0c, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a,
-	0x4f, 0x72, 0x64, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x05, 0x6e, 0x61, 0x6e, 0x6f, 0x73, 0x12, 0x1f, 0x0a, 0x0b,
+	0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0a, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x4f, 0x77, 0x6e, 0x65, 0x72, 0x12, 0x1d, 0x0a,
+	0x0a, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x68, 0x61, 0x73, 0x68, 0x18, 0x04, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x09, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x48, 0x61, 0x73, 0x68, 0x42, 0x87, 0x01, 0x0a,
+	0x0f, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72,
+	0x42, 0x10, 0x53, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x50, 0x72, 0x6f,
+	0x74, 0x6f, 0x50, 0x01, 0x5a, 0x15, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f,
+	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0xa2, 0x02, 0x03, 0x47, 0x4f,
+	0x58, 0xaa, 0x02, 0x0b, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0xca,
+	0x02, 0x0b, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x4f, 0x72, 0x64, 0x65, 0x72, 0xe2, 0x02, 0x17,
+	0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x5c, 0x47, 0x50, 0x42, 0x4d,
+	0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0c, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a,
+	0x3a, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

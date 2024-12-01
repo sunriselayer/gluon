@@ -8,5 +8,6 @@ option go_package = "gluon/x/order/types";
 message SortedOrder {
   uint64 seconds = 1;
   uint32 nanos = 2;
-  string order_hash = 3;
+  string order_owner = 3;
+  string order_hash = 4;
 }

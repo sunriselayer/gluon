@@ -28,16 +28,16 @@ func SimulateMsgLazyRegisterOrder(
 
 		// i := r.Int()
 		msg := &types.MsgLazyRegisterOrder{
+			User: simAccount.Address.String(),
 			// Order: types.Order{
 			// 	Id:      strconv.Itoa(i),
-			// 	Address: simAccount.Address.String(),
 			// },
 		}
 
 		// TODO
 		hash, _ := types.GetOrderHash(msg.Order)
 
-		_, found := k.GetOrder(ctx, hash)
+		_, found := k.GetOrder(ctx, msg.User, hash)
 		if found {
 			return simtypes.NoOpMsg(types.ModuleName, sdk.MsgTypeURL(msg), "Order already exist"), nil, nil
 		}

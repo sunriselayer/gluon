@@ -20,11 +20,11 @@ service Query {
 
   // Order
   rpc Order(QueryOrderRequest) returns (QueryOrderResponse) {
-    option (google.api.http).get = "/gluon/order/orders/{hash}";
+    option (google.api.http).get = "/gluon/order/orders/{owner}/{hash}";
   }
   // Orders
   rpc Orders(QueryOrdersRequest) returns (QueryOrdersResponse) {
-    option (google.api.http).get = "/gluon/order/orders";
+    option (google.api.http).get = "/gluon/order/orders/{owner}";
   }
 }
 
@@ -42,7 +42,8 @@ message QueryParamsResponse {
 
 // QueryOrderRequest
 message QueryOrderRequest {
-  string hash = 1;
+  string owner = 1;
+  string hash = 2;
 }
 
 // QueryOrderResponse
@@ -52,7 +53,8 @@ message QueryOrderResponse {
 
 // QueryOrdersRequest
 message QueryOrdersRequest {
-  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+  string owner = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
 }
 
 // QueryOrdersResponse

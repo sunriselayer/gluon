@@ -6,9 +6,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
-func (k Keeper) GetOrderAndBody(ctx sdk.Context, orderHash string) (types.Order, types.OrderBody, error) {
+func (k Keeper) GetOrderAndBody(ctx sdk.Context, orderOwner string, orderHash string) (types.Order, types.OrderBody, error) {
 
-	order, found := k.GetOrder(ctx, orderHash)
+	order, found := k.GetOrder(ctx, orderOwner, orderHash)
 	if !found {
 		return types.Order{}, nil, types.ErrOrderNotFound
 	}

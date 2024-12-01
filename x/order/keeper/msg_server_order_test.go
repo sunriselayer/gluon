@@ -32,6 +32,7 @@ func TestOrderMsgServerCreate(t *testing.T) {
 		_, err = srv.LazyRegisterOrder(ctx, expected)
 		require.NoError(t, err)
 		rst, found := k.GetOrder(ctx,
+			user,
 			hash,
 		)
 		require.True(t, found)
@@ -84,6 +85,7 @@ func TestOrderMsgServerDelete(t *testing.T) {
 			} else {
 				require.NoError(t, err)
 				_, found := k.GetOrder(ctx,
+					tc.request.User,
 					tc.request.OrderHash,
 				)
 				require.False(t, found)

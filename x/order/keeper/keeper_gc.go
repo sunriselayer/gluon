@@ -47,7 +47,7 @@ func (k Keeper) GarbageCollectOrder(ctx sdk.Context) error {
 		}
 
 		store.Delete(iterator.Key())
-		k.RemoveOrder(ctx, val.OrderHash)
+		k.RemoveOrder(ctx, val.OrderOwner, val.OrderHash)
 	}
 
 	return nil

@@ -18,15 +18,16 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:     "Shows the parameters of the module",
 				},
 				{
-					RpcMethod: "PositionAll",
-					Use:       "list-position",
-					Short:     "List all position",
+					RpcMethod:      "PositionAll",
+					Use:            "list-position [owner]",
+					Short:          "List all position",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}},
 				},
 				{
 					RpcMethod:      "Position",
-					Use:            "show-position [id]",
+					Use:            "show-position [owner] [id]",
 					Short:          "Shows a position by id",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}, {ProtoField: "id"}},
 				},
 				// this line is used by ignite scaffolding # autocli/query
 			},

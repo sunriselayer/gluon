@@ -25,6 +25,7 @@ func (k msgServer) LazyRegisterOrder(goCtx context.Context, msg *types.MsgLazyRe
 	// Check if the value already exists
 	_, isFound := k.GetOrder(
 		ctx,
+		msg.User,
 		hash,
 	)
 	if isFound {
@@ -83,6 +84,7 @@ func (k msgServer) CancelOrder(goCtx context.Context, msg *types.MsgCancelOrder)
 	// Check if the value exists
 	valFound, isFound := k.GetOrder(
 		ctx,
+		msg.User,
 		msg.OrderHash,
 	)
 	if !isFound {

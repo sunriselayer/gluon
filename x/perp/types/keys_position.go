@@ -13,8 +13,8 @@ const (
 )
 
 // PositionKeyPrefix
-func PositionKeyPrefix(
+func PositionKeyPrefixByOwner(
 	owner string,
 ) []byte {
-	return KeyPrefix(fmt.Sprintf("%s%s", PositionKey, owner))
+	return KeyPrefix(fmt.Sprintf("%s%s/", PositionKey, owner))
 }

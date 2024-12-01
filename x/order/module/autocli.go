@@ -18,15 +18,16 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:     "Shows the parameters of the module",
 				},
 				{
-					RpcMethod: "Orders",
-					Use:       "list-order",
-					Short:     "List all order",
+					RpcMethod:      "Orders",
+					Use:            "list-order [owner]",
+					Short:          "List all order",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}},
 				},
 				{
 					RpcMethod:      "Order",
-					Use:            "show-order [hash]",
+					Use:            "show-order [owner] [hash]",
 					Short:          "Shows a order",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "hash"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}, {ProtoField: "hash"}},
 				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
