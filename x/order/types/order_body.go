@@ -19,7 +19,7 @@ import (
 
 type OrderBody interface {
 	proto.Message
-	Validate() error
+	ValidateBasic() error
 	GetAddress() sdk.AccAddress
 	// Amount of DenomBase
 	GetAmount() sdkmath.Int

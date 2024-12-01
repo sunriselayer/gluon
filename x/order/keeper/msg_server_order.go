@@ -44,7 +44,7 @@ func (k msgServer) LazyRegisterOrder(goCtx context.Context, msg *types.MsgLazyRe
 	if err != nil {
 		return nil, err
 	}
-	err = orderBody.Validate()
+	err = orderBody.ValidateBasic()
 	if err != nil {
 		return nil, err
 	}

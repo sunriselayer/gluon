@@ -82,6 +82,7 @@ import (
 	ordermoduletypes "gluon/x/order/types"
 
 	perpmodulekeeper "gluon/x/perp/keeper"
+	perpmoduletypes "gluon/x/perp/types"
 
 	spotmodulekeeper "gluon/x/spot/keeper"
 	spotmoduletypes "gluon/x/spot/types"
@@ -327,7 +328,7 @@ func New(
 			case *ordermoduletypes.MsgLazyRegisterOrder:
 			case *ordermoduletypes.MsgCancelOrder:
 			case *spotmoduletypes.MsgMatchOrder:
-			// TODO: perp
+			case *perpmoduletypes.MsgMatchOrder:
 			case *customauthmoduletypes.MsgCreatePairing:
 			case *customauthmoduletypes.MsgDeletePairing:
 				return true

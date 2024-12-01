@@ -12,8 +12,8 @@ import (
 
 var _ ordertypes.OrderBody = &SpotOrder{}
 
-func (order SpotOrder) Validate() error {
-	err := order.BaseOrder.Validate()
+func (order SpotOrder) ValidateBasic() error {
+	err := order.BaseOrder.ValidateBasic()
 	if err != nil {
 		return err
 	}

@@ -715,6 +715,7 @@ type Order struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// To allow client to know the index of Order before MsgLazyRegister completion, hash is used.
 	Hash             string     `protobuf:"bytes,1,opt,name=hash,proto3" json:"hash,omitempty"`
 	Owner            string     `protobuf:"bytes,2,opt,name=owner,proto3" json:"owner,omitempty"`
 	Body             *anypb.Any `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`

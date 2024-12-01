@@ -24,12 +24,16 @@ func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (
 		return nil, err
 	}
 
-	buySpot, ok := buyBody.(*types.PerpPositionCreateOrder)
+	var buyPerp types.PerpOrder
+	var sellPerp types.PerpOrder
+	var ok bool
+
+	buyPerp, ok = buyBody.(*types.PerpPositionCreateOrder)
 	if !ok {
 		return nil, errorsmod.Wrapf(types.ErrInvalidOrderType, "OrderHashBuy: %s", buy.Hash)
 	}
 
-	sellSpot, ok := sellBody.(*types.PerpPositionCreateOrder)
+	sellPerp, ok = sellBody.(*types.PerpPositionCreateOrder)
 	if !ok {
 		return nil, errorsmod.Wrapf(types.ErrInvalidOrderType, "OrderHashSell: %s", sell.Hash)
 	}
@@ -39,22 +43,22 @@ func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (
 		return nil, err
 	}
 
-	err = buySpot.CrossValidate(sellSpot.BaseOrder, price, ctx.BlockTime())
+	err = types.CrossValidateBasic(buyPerp, sellPerp, price, ctx.BlockTime())
 	if err != nil {
 		return nil, err
 	}
 
-	err = ordertypes.ValidateOrderContractAmount(buySpot.Amount, buy.ContractedAmount, msg.Amount)
+	err = ordertypes.ValidateOrderContractAmount(buyPerp.GetAmount(), buy.ContractedAmount, msg.Amount)
 	if err != nil {
 		return nil, err
 	}
 
-	err = ordertypes.ValidateOrderContractAmount(sellSpot.Amount, sell.ContractedAmount, msg.Amount)
+	err = ordertypes.ValidateOrderContractAmount(sellPerp.GetAmount(), sell.ContractedAmount, msg.Amount)
 	if err != nil {
 		return nil, err
 	}
 
-	err = k.CreatePosition(ctx)
+	err = k.CreatePosition(ctx, buyPerp, sellPerp, msg.Amount, price)
 	if err != nil {
 		return nil, err
 	}

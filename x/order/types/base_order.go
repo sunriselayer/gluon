@@ -9,27 +9,7 @@ import (
 	errorsmod "cosmossdk.io/errors"
 )
 
-func NewBaseOrder(
-	address string,
-	nonce uint64,
-	denomBase string,
-	denomQuote string,
-	direction OrderDirection,
-	amount sdkmath.Int,
-	limitPrice *sdkmath.LegacyDec,
-) BaseOrder {
-	return BaseOrder{
-		Address:    address,
-		Nonce:      nonce,
-		DenomBase:  denomBase,
-		DenomQuote: denomQuote,
-		Direction:  direction,
-		Amount:     amount,
-		LimitPrice: limitPrice.String(),
-	}
-}
-
-func (order BaseOrder) Validate() error {
+func (order BaseOrder) ValidateBasic() error {
 	var err error
 
 	_, err = sdk.AccAddressFromBech32(order.Address)
@@ -63,7 +43,7 @@ func (order BaseOrder) Validate() error {
 	return nil
 }
 
-func (buy BaseOrder) CrossValidate(sell BaseOrder, price sdkmath.LegacyDec, blockTime time.Time) error {
+func CrossValidateBasic(buy BaseOrder, sell BaseOrder, price sdkmath.LegacyDec, blockTime time.Time) error {
 	if buy.Address == sell.Address {
 		return ErrSameAddress
 	}

@@ -2,25 +2,44 @@ syntax = "proto3";
 package gluon.perp;
 
 import "cosmos/base/v1beta1/coin.proto";
+import "cosmos_proto/cosmos.proto";
 import "gluon/order/base_order.proto";
 import "gogoproto/gogo.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "gluon/x/perp/types";
 
 // PerpPositionCreateOrder
 message PerpPositionCreateOrder {
-  gluon.order.BaseOrder base = 1 [
+  // For avoiding order hash conflict
+  uint64 nonce = 1;
+  gluon.order.BaseOrder base = 2 [
     (gogoproto.nullable) = false,
     (gogoproto.embed) = true
   ];
-  bool isolated_margin = 2;
-  cosmos.base.v1beta1.Coin margin = 3 [(gogoproto.nullable) = false];
+  bool isolated_margin = 3;
+  cosmos.base.v1beta1.Coin margin = 4 [(gogoproto.nullable) = false];
 }
 
 // PerpPositionCancelOrder
 message PerpPositionCancelOrder {
-  gluon.order.BaseOrder base = 1 [
+  // For avoiding order hash conflict
+  uint64 nonce = 1;
+  string address = 2 [
+    (cosmos_proto.scalar) = "cosmos.AddressString",
+    (gogoproto.customname) = "AddressString"
+  ];
+  uint64 position_id = 3;
+  string amount = 4 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
+  // Empty means market order
+  string limit_price = 5 [(gogoproto.customname) = "LimitPriceString"];
+  // Required to prevent operator from utilizing old order
+  google.protobuf.Timestamp expiry = 6 [
     (gogoproto.nullable) = false,
-    (gogoproto.embed) = true
+    (gogoproto.stdtime) = true
   ];
 }

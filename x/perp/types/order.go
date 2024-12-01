@@ -3,6 +3,7 @@ package types
 import (
 	"time"
 
+	errorsmod "cosmossdk.io/errors"
 	sdkmath "cosmossdk.io/math"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -10,12 +11,22 @@ import (
 	ordertypes "gluon/x/order/types"
 )
 
+type PerpOrder interface {
+	ordertypes.OrderBody
+
+	GetLimitPrice() *sdkmath.LegacyDec
+}
+
+func CrossValidateBasic(buy PerpOrder, sell PerpOrder, price sdkmath.LegacyDec, blockTime time.Time) error {
+	return nil
+}
+
 // PerpPositionCreateOrder
 
-var _ ordertypes.OrderBody = &PerpPositionCreateOrder{}
+var _ PerpOrder = &PerpPositionCreateOrder{}
 
-func (order PerpPositionCreateOrder) Validate() error {
-	err := order.BaseOrder.Validate()
+func (order PerpPositionCreateOrder) ValidateBasic() error {
+	err := order.BaseOrder.ValidateBasic()
 	if err != nil {
 		return err
 	}
@@ -46,20 +57,47 @@ func (order PerpPositionCreateOrder) PackAny() (codectypes.Any, error) {
 	return *val, nil
 }
 
+func (order PerpPositionCreateOrder) GetLimitPrice() *sdkmath.LegacyDec {
+	if len(order.LimitPrice) == 0 {
+		return nil
+	}
+	val, err := sdkmath.LegacyNewDecFromStr(order.LimitPrice)
+	if err != nil {
+		return nil
+	}
+	return &val
+}
+
 // PerpPositionCancelOrder
 
-var _ ordertypes.OrderBody = &PerpPositionCancelOrder{}
+var _ PerpOrder = &PerpPositionCancelOrder{}
 
-func (order PerpPositionCancelOrder) Validate() error {
-	err := order.BaseOrder.Validate()
+func (order PerpPositionCancelOrder) ValidateBasic() error {
+	_, err := sdk.AccAddressFromBech32(order.AddressString)
 	if err != nil {
 		return err
 	}
+
+	if !order.Amount.IsPositive() {
+		return errorsmod.Wrapf(ordertypes.ErrNotPositive, "amount: %s", order.Amount.String())
+	}
+
+	if len(order.LimitPriceString) > 0 {
+		limitPrice, err := sdkmath.LegacyNewDecFromStr(order.LimitPriceString)
+		if err != nil {
+			return err
+		}
+
+		if !limitPrice.IsPositive() {
+			return errorsmod.Wrapf(ordertypes.ErrNotPositive, "price: %s", limitPrice.String())
+		}
+	}
+
 	return nil
 }
 
 func (order PerpPositionCancelOrder) GetAddress() sdk.AccAddress {
-	val, err := sdk.AccAddressFromBech32(order.Address)
+	val, err := sdk.AccAddressFromBech32(order.AddressString)
 	if err != nil {
 		return nil
 	}
@@ -70,9 +108,9 @@ func (order PerpPositionCancelOrder) GetAmount() sdkmath.Int {
 	return order.Amount
 }
 
-func (order PerpPositionCancelOrder) GetExpiry() time.Time {
-	return order.Expiry
-}
+// func (order PerpPositionCancelOrder) GetExpiry() time.Time {
+// 	return order.Expiry
+// }
 
 func (order PerpPositionCancelOrder) PackAny() (codectypes.Any, error) {
 	val, err := codectypes.NewAnyWithValue(&order)
@@ -80,4 +118,15 @@ func (order PerpPositionCancelOrder) PackAny() (codectypes.Any, error) {
 		return codectypes.Any{}, err
 	}
 	return *val, nil
+}
+
+func (order PerpPositionCancelOrder) GetLimitPrice() *sdkmath.LegacyDec {
+	if len(order.LimitPriceString) == 0 {
+		return nil
+	}
+	val, err := sdkmath.LegacyNewDecFromStr(order.LimitPriceString)
+	if err != nil {
+		return nil
+	}
+	return &val
 }
