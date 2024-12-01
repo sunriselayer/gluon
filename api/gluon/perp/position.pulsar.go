@@ -15,14 +15,15 @@ import (
 )
 
 var (
-	md_Position                 protoreflect.MessageDescriptor
-	fd_Position_owner           protoreflect.FieldDescriptor
-	fd_Position_order_hash      protoreflect.FieldDescriptor
-	fd_Position_denom_base      protoreflect.FieldDescriptor
-	fd_Position_denom_quote     protoreflect.FieldDescriptor
-	fd_Position_direction       protoreflect.FieldDescriptor
-	fd_Position_isolated_margin protoreflect.FieldDescriptor
-	fd_Position_amount          protoreflect.FieldDescriptor
+	md_Position                        protoreflect.MessageDescriptor
+	fd_Position_owner                  protoreflect.FieldDescriptor
+	fd_Position_order_hash             protoreflect.FieldDescriptor
+	fd_Position_denom_base             protoreflect.FieldDescriptor
+	fd_Position_denom_quote            protoreflect.FieldDescriptor
+	fd_Position_direction              protoreflect.FieldDescriptor
+	fd_Position_amount                 protoreflect.FieldDescriptor
+	fd_Position_isolated_margin        protoreflect.FieldDescriptor
+	fd_Position_isolated_margin_amount protoreflect.FieldDescriptor
 )
 
 func init() {
@@ -33,8 +34,9 @@ func init() {
 	fd_Position_denom_base = md_Position.Fields().ByName("denom_base")
 	fd_Position_denom_quote = md_Position.Fields().ByName("denom_quote")
 	fd_Position_direction = md_Position.Fields().ByName("direction")
-	fd_Position_isolated_margin = md_Position.Fields().ByName("isolated_margin")
 	fd_Position_amount = md_Position.Fields().ByName("amount")
+	fd_Position_isolated_margin = md_Position.Fields().ByName("isolated_margin")
+	fd_Position_isolated_margin_amount = md_Position.Fields().ByName("isolated_margin_amount")
 }
 
 var _ protoreflect.Message = (*fastReflection_Position)(nil)
@@ -132,15 +134,21 @@ func (x *fastReflection_Position) Range(f func(protoreflect.FieldDescriptor, pro
 			return
 		}
 	}
+	if x.Amount != "" {
+		value := protoreflect.ValueOfString(x.Amount)
+		if !f(fd_Position_amount, value) {
+			return
+		}
+	}
 	if x.IsolatedMargin != false {
 		value := protoreflect.ValueOfBool(x.IsolatedMargin)
 		if !f(fd_Position_isolated_margin, value) {
 			return
 		}
 	}
-	if x.Amount != "" {
-		value := protoreflect.ValueOfString(x.Amount)
-		if !f(fd_Position_amount, value) {
+	if x.IsolatedMarginAmount != "" {
+		value := protoreflect.ValueOfString(x.IsolatedMarginAmount)
+		if !f(fd_Position_isolated_margin_amount, value) {
 			return
 		}
 	}
@@ -169,10 +177,12 @@ func (x *fastReflection_Position) Has(fd protoreflect.FieldDescriptor) bool {
 		return x.DenomQuote != ""
 	case "gluon.perp.Position.direction":
 		return x.Direction != 0
-	case "gluon.perp.Position.isolated_margin":
-		return x.IsolatedMargin != false
 	case "gluon.perp.Position.amount":
 		return x.Amount != ""
+	case "gluon.perp.Position.isolated_margin":
+		return x.IsolatedMargin != false
+	case "gluon.perp.Position.isolated_margin_amount":
+		return x.IsolatedMarginAmount != ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.Position"))
@@ -199,10 +209,12 @@ func (x *fastReflection_Position) Clear(fd protoreflect.FieldDescriptor) {
 		x.DenomQuote = ""
 	case "gluon.perp.Position.direction":
 		x.Direction = 0
-	case "gluon.perp.Position.isolated_margin":
-		x.IsolatedMargin = false
 	case "gluon.perp.Position.amount":
 		x.Amount = ""
+	case "gluon.perp.Position.isolated_margin":
+		x.IsolatedMargin = false
+	case "gluon.perp.Position.isolated_margin_amount":
+		x.IsolatedMarginAmount = ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.Position"))
@@ -234,11 +246,14 @@ func (x *fastReflection_Position) Get(descriptor protoreflect.FieldDescriptor) p
 	case "gluon.perp.Position.direction":
 		value := x.Direction
 		return protoreflect.ValueOfEnum((protoreflect.EnumNumber)(value))
+	case "gluon.perp.Position.amount":
+		value := x.Amount
+		return protoreflect.ValueOfString(value)
 	case "gluon.perp.Position.isolated_margin":
 		value := x.IsolatedMargin
 		return protoreflect.ValueOfBool(value)
-	case "gluon.perp.Position.amount":
-		value := x.Amount
+	case "gluon.perp.Position.isolated_margin_amount":
+		value := x.IsolatedMarginAmount
 		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
@@ -270,10 +285,12 @@ func (x *fastReflection_Position) Set(fd protoreflect.FieldDescriptor, value pro
 		x.DenomQuote = value.Interface().(string)
 	case "gluon.perp.Position.direction":
 		x.Direction = (PositionDirection)(value.Enum())
-	case "gluon.perp.Position.isolated_margin":
-		x.IsolatedMargin = value.Bool()
 	case "gluon.perp.Position.amount":
 		x.Amount = value.Interface().(string)
+	case "gluon.perp.Position.isolated_margin":
+		x.IsolatedMargin = value.Bool()
+	case "gluon.perp.Position.isolated_margin_amount":
+		x.IsolatedMarginAmount = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.Position"))
@@ -304,10 +321,12 @@ func (x *fastReflection_Position) Mutable(fd protoreflect.FieldDescriptor) proto
 		panic(fmt.Errorf("field denom_quote of message gluon.perp.Position is not mutable"))
 	case "gluon.perp.Position.direction":
 		panic(fmt.Errorf("field direction of message gluon.perp.Position is not mutable"))
-	case "gluon.perp.Position.isolated_margin":
-		panic(fmt.Errorf("field isolated_margin of message gluon.perp.Position is not mutable"))
 	case "gluon.perp.Position.amount":
 		panic(fmt.Errorf("field amount of message gluon.perp.Position is not mutable"))
+	case "gluon.perp.Position.isolated_margin":
+		panic(fmt.Errorf("field isolated_margin of message gluon.perp.Position is not mutable"))
+	case "gluon.perp.Position.isolated_margin_amount":
+		panic(fmt.Errorf("field isolated_margin_amount of message gluon.perp.Position is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.Position"))
@@ -331,9 +350,11 @@ func (x *fastReflection_Position) NewField(fd protoreflect.FieldDescriptor) prot
 		return protoreflect.ValueOfString("")
 	case "gluon.perp.Position.direction":
 		return protoreflect.ValueOfEnum(0)
+	case "gluon.perp.Position.amount":
+		return protoreflect.ValueOfString("")
 	case "gluon.perp.Position.isolated_margin":
 		return protoreflect.ValueOfBool(false)
-	case "gluon.perp.Position.amount":
+	case "gluon.perp.Position.isolated_margin_amount":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
@@ -423,10 +444,14 @@ func (x *fastReflection_Position) ProtoMethods() *protoiface.Methods {
 		if x.Direction != 0 {
 			n += 1 + runtime.Sov(uint64(x.Direction))
 		}
+		l = len(x.Amount)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.IsolatedMargin {
 			n += 2
 		}
-		l = len(x.Amount)
+		l = len(x.IsolatedMarginAmount)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -459,12 +484,12 @@ func (x *fastReflection_Position) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if len(x.Amount) > 0 {
-			i -= len(x.Amount)
-			copy(dAtA[i:], x.Amount)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Amount)))
+		if len(x.IsolatedMarginAmount) > 0 {
+			i -= len(x.IsolatedMarginAmount)
+			copy(dAtA[i:], x.IsolatedMarginAmount)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.IsolatedMarginAmount)))
 			i--
-			dAtA[i] = 0x3a
+			dAtA[i] = 0x42
 		}
 		if x.IsolatedMargin {
 			i--
@@ -474,7 +499,14 @@ func (x *fastReflection_Position) ProtoMethods() *protoiface.Methods {
 				dAtA[i] = 0
 			}
 			i--
-			dAtA[i] = 0x30
+			dAtA[i] = 0x38
+		}
+		if len(x.Amount) > 0 {
+			i -= len(x.Amount)
+			copy(dAtA[i:], x.Amount)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Amount)))
+			i--
+			dAtA[i] = 0x32
 		}
 		if x.Direction != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.Direction))
@@ -706,26 +738,6 @@ func (x *fastReflection_Position) ProtoMethods() *protoiface.Methods {
 					}
 				}
 			case 6:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field IsolatedMargin", wireType)
-				}
-				var v int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					v |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				x.IsolatedMargin = bool(v != 0)
-			case 7:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Amount", wireType)
 				}
@@ -756,6 +768,58 @@ func (x *fastReflection_Position) ProtoMethods() *protoiface.Methods {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
 				x.Amount = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 7:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field IsolatedMargin", wireType)
+				}
+				var v int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					v |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				x.IsolatedMargin = bool(v != 0)
+			case 8:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field IsolatedMarginAmount", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.IsolatedMarginAmount = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
@@ -864,13 +928,14 @@ type Position struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Owner          string            `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
-	OrderHash      string            `protobuf:"bytes,2,opt,name=order_hash,json=orderHash,proto3" json:"order_hash,omitempty"`
-	DenomBase      string            `protobuf:"bytes,3,opt,name=denom_base,json=denomBase,proto3" json:"denom_base,omitempty"`
-	DenomQuote     string            `protobuf:"bytes,4,opt,name=denom_quote,json=denomQuote,proto3" json:"denom_quote,omitempty"`
-	Direction      PositionDirection `protobuf:"varint,5,opt,name=direction,proto3,enum=gluon.perp.PositionDirection" json:"direction,omitempty"`
-	IsolatedMargin bool              `protobuf:"varint,6,opt,name=isolated_margin,json=isolatedMargin,proto3" json:"isolated_margin,omitempty"`
-	Amount         string            `protobuf:"bytes,7,opt,name=amount,proto3" json:"amount,omitempty"`
+	Owner                string            `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
+	OrderHash            string            `protobuf:"bytes,2,opt,name=order_hash,json=orderHash,proto3" json:"order_hash,omitempty"`
+	DenomBase            string            `protobuf:"bytes,3,opt,name=denom_base,json=denomBase,proto3" json:"denom_base,omitempty"`
+	DenomQuote           string            `protobuf:"bytes,4,opt,name=denom_quote,json=denomQuote,proto3" json:"denom_quote,omitempty"`
+	Direction            PositionDirection `protobuf:"varint,5,opt,name=direction,proto3,enum=gluon.perp.PositionDirection" json:"direction,omitempty"`
+	Amount               string            `protobuf:"bytes,6,opt,name=amount,proto3" json:"amount,omitempty"`
+	IsolatedMargin       bool              `protobuf:"varint,7,opt,name=isolated_margin,json=isolatedMargin,proto3" json:"isolated_margin,omitempty"`
+	IsolatedMarginAmount string            `protobuf:"bytes,8,opt,name=isolated_margin_amount,json=isolatedMarginAmount,proto3" json:"isolated_margin_amount,omitempty"`
 }
 
 func (x *Position) Reset() {
@@ -928,6 +993,13 @@ func (x *Position) GetDirection() PositionDirection {
 	return PositionDirection_POSITION_DIRECTION_UNSPECIFIED
 }
 
+func (x *Position) GetAmount() string {
+	if x != nil {
+		return x.Amount
+	}
+	return ""
+}
+
 func (x *Position) GetIsolatedMargin() bool {
 	if x != nil {
 		return x.IsolatedMargin
@@ -935,9 +1007,9 @@ func (x *Position) GetIsolatedMargin() bool {
 	return false
 }
 
-func (x *Position) GetAmount() string {
+func (x *Position) GetIsolatedMarginAmount() string {
 	if x != nil {
-		return x.Amount
+		return x.IsolatedMarginAmount
 	}
 	return ""
 }
@@ -950,7 +1022,7 @@ var file_gluon_perp_position_proto_rawDesc = []byte{
 	0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x1a, 0x19, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5f,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f,
-	0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xaa, 0x02, 0x0a, 0x08, 0x50, 0x6f, 0x73,
+	0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x8d, 0x03, 0x0a, 0x08, 0x50, 0x6f, 0x73,
 	0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x14, 0x0a, 0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x12, 0x1d, 0x0a, 0x0a, 0x6f,
 	0x72, 0x64, 0x65, 0x72, 0x5f, 0x68, 0x61, 0x73, 0x68, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
@@ -962,30 +1034,36 @@ var file_gluon_perp_position_proto_rawDesc = []byte{
 	0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1d, 0x2e,
 	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x2e, 0x50, 0x6f, 0x73, 0x69, 0x74,
 	0x69, 0x6f, 0x6e, 0x44, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x09, 0x64, 0x69,
-	0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x27, 0x0a, 0x0f, 0x69, 0x73, 0x6f, 0x6c, 0x61,
-	0x74, 0x65, 0x64, 0x5f, 0x6d, 0x61, 0x72, 0x67, 0x69, 0x6e, 0x18, 0x06, 0x20, 0x01, 0x28, 0x08,
-	0x52, 0x0e, 0x69, 0x73, 0x6f, 0x6c, 0x61, 0x74, 0x65, 0x64, 0x4d, 0x61, 0x72, 0x67, 0x69, 0x6e,
-	0x12, 0x43, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09,
-	0x42, 0x2b, 0xc8, 0xde, 0x1f, 0x00, 0xda, 0xde, 0x1f, 0x15, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
-	0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e, 0x49, 0x6e, 0x74, 0xd2,
-	0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x49, 0x6e, 0x74, 0x52, 0x06, 0x61,
-	0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x2a, 0x72, 0x0a, 0x11, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f,
-	0x6e, 0x44, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x22, 0x0a, 0x1e, 0x50, 0x4f,
-	0x53, 0x49, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x44, 0x49, 0x52, 0x45, 0x43, 0x54, 0x49, 0x4f, 0x4e,
-	0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10, 0x00, 0x12, 0x1b,
-	0x0a, 0x17, 0x50, 0x4f, 0x53, 0x49, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x44, 0x49, 0x52, 0x45, 0x43,
-	0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x4c, 0x4f, 0x4e, 0x47, 0x10, 0x01, 0x12, 0x1c, 0x0a, 0x18, 0x50,
-	0x4f, 0x53, 0x49, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x44, 0x49, 0x52, 0x45, 0x43, 0x54, 0x49, 0x4f,
-	0x4e, 0x5f, 0x53, 0x48, 0x4f, 0x52, 0x54, 0x10, 0x02, 0x42, 0x7e, 0x0a, 0x0e, 0x63, 0x6f, 0x6d,
-	0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x42, 0x0d, 0x50, 0x6f, 0x73,
-	0x69, 0x74, 0x69, 0x6f, 0x6e, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x14, 0x67, 0x6c,
-	0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x70, 0x65,
-	0x72, 0x70, 0xa2, 0x02, 0x03, 0x47, 0x50, 0x58, 0xaa, 0x02, 0x0a, 0x47, 0x6c, 0x75, 0x6f, 0x6e,
-	0x2e, 0x50, 0x65, 0x72, 0x70, 0xca, 0x02, 0x0a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x50, 0x65,
-	0x72, 0x70, 0xe2, 0x02, 0x16, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x50, 0x65, 0x72, 0x70, 0x5c,
-	0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0b, 0x47, 0x6c,
-	0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x50, 0x65, 0x72, 0x70, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x43, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e,
+	0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x42, 0x2b, 0xc8, 0xde, 0x1f, 0x00, 0xda, 0xde, 0x1f,
+	0x15, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61,
+	0x74, 0x68, 0x2e, 0x49, 0x6e, 0x74, 0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x2e, 0x49, 0x6e, 0x74, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x27, 0x0a, 0x0f,
+	0x69, 0x73, 0x6f, 0x6c, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x6d, 0x61, 0x72, 0x67, 0x69, 0x6e, 0x18,
+	0x07, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0e, 0x69, 0x73, 0x6f, 0x6c, 0x61, 0x74, 0x65, 0x64, 0x4d,
+	0x61, 0x72, 0x67, 0x69, 0x6e, 0x12, 0x61, 0x0a, 0x16, 0x69, 0x73, 0x6f, 0x6c, 0x61, 0x74, 0x65,
+	0x64, 0x5f, 0x6d, 0x61, 0x72, 0x67, 0x69, 0x6e, 0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18,
+	0x08, 0x20, 0x01, 0x28, 0x09, 0x42, 0x2b, 0xc8, 0xde, 0x1f, 0x00, 0xda, 0xde, 0x1f, 0x15, 0x63,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68,
+	0x2e, 0x49, 0x6e, 0x74, 0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x49,
+	0x6e, 0x74, 0x52, 0x14, 0x69, 0x73, 0x6f, 0x6c, 0x61, 0x74, 0x65, 0x64, 0x4d, 0x61, 0x72, 0x67,
+	0x69, 0x6e, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x2a, 0x72, 0x0a, 0x11, 0x50, 0x6f, 0x73, 0x69,
+	0x74, 0x69, 0x6f, 0x6e, 0x44, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x22, 0x0a,
+	0x1e, 0x50, 0x4f, 0x53, 0x49, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x44, 0x49, 0x52, 0x45, 0x43, 0x54,
+	0x49, 0x4f, 0x4e, 0x5f, 0x55, 0x4e, 0x53, 0x50, 0x45, 0x43, 0x49, 0x46, 0x49, 0x45, 0x44, 0x10,
+	0x00, 0x12, 0x1b, 0x0a, 0x17, 0x50, 0x4f, 0x53, 0x49, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x44, 0x49,
+	0x52, 0x45, 0x43, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x4c, 0x4f, 0x4e, 0x47, 0x10, 0x01, 0x12, 0x1c,
+	0x0a, 0x18, 0x50, 0x4f, 0x53, 0x49, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x44, 0x49, 0x52, 0x45, 0x43,
+	0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x53, 0x48, 0x4f, 0x52, 0x54, 0x10, 0x02, 0x42, 0x7e, 0x0a, 0x0e,
+	0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x42, 0x0d,
+	0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a,
+	0x14, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e,
+	0x2f, 0x70, 0x65, 0x72, 0x70, 0xa2, 0x02, 0x03, 0x47, 0x50, 0x58, 0xaa, 0x02, 0x0a, 0x47, 0x6c,
+	0x75, 0x6f, 0x6e, 0x2e, 0x50, 0x65, 0x72, 0x70, 0xca, 0x02, 0x0a, 0x47, 0x6c, 0x75, 0x6f, 0x6e,
+	0x5c, 0x50, 0x65, 0x72, 0x70, 0xe2, 0x02, 0x16, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x50, 0x65,
+	0x72, 0x70, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02,
+	0x0b, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x50, 0x65, 0x72, 0x70, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

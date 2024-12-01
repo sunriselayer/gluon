@@ -23,8 +23,13 @@ message Position {
   string denom_base = 3;
   string denom_quote = 4;
   PositionDirection direction = 5;
-  bool isolated_margin = 6;
-  string amount = 7 [
+  string amount = 6 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
+  bool isolated_margin = 7;
+  string isolated_margin_amount = 8 [
     (cosmos_proto.scalar) = "cosmos.Int",
     (gogoproto.customtype) = "cosmossdk.io/math.Int",
     (gogoproto.nullable) = false

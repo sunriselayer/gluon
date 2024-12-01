@@ -1,17 +1,29 @@
 package keeper
 
 import (
-	"fmt"
+	"context"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	types "gluon/x/perp/types"
+	"gluon/x/perp/types"
 )
 
-func (k Keeper) GetCrossMarginAddress(ctx sdk.Context, positionOwner string) sdk.AccAddress {
-	return k.accountKeeper.GetModuleAddress(fmt.Sprintf("%s/margin/%s", types.ModuleName, positionOwner))
-}
+func (k Keeper) AddCrossMargin(ctx context.Context, owner string, asset sdk.Coin) sdk.Coins {
+	crossMargin, found := k.GetCrossMargin(ctx, owner)
 
-func (k Keeper) GetIsolatedMarginAddress(ctx sdk.Context, positionOwner string, positionId uint64) sdk.AccAddress {
-	return k.accountKeeper.GetModuleAddress(fmt.Sprintf("%s/margin/%s/%d", types.ModuleName, positionOwner, positionId))
+	if found {
+		crossMargin.Assets = crossMargin.Assets.Add(asset)
+		k.SetCrossMargin(ctx, crossMargin)
+
+		return crossMargin.Assets
+	}
+
+	crossMargin = types.CrossMargin{
+		Owner:  owner,
+		Assets: sdk.NewCoins(asset),
+	}
+
+	k.SetCrossMargin(ctx, crossMargin)
+
+	return crossMargin.Assets
 }

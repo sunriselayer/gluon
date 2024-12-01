@@ -73,13 +73,34 @@ func (k Keeper) CreateUpdatePosition(
 		return ordertypes.ErrInvalidOrderDirection
 	}
 
+	// Transfer margin
+	owner, err := sdk.AccAddressFromBech32(order.AddressString)
+	if err != nil {
+		return err
+	}
+
+	coins := sdk.NewCoins(sdk.NewCoin(order.DenomQuote, order.MarginAmount))
+
+	err = k.bankKeeper.SendCoinsFromAccountToModule(ctx, owner, types.GetMarginAddressModule(), coins)
+	if err != nil {
+		return err
+	}
+
+	isolatedMarginAmount := sdkmath.ZeroInt()
+	if order.IsolatedMargin {
+		isolatedMarginAmount = order.MarginAmount
+	}
+
+	// Store
 	k.SetPosition(ctx, types.Position{
-		Owner:          order.AddressString,
-		OrderHash:      orderHash,
-		DenomBase:      order.DenomBase,
-		DenomQuote:     order.DenomQuote,
-		Direction:      direction,
-		IsolatedMargin: order.IsolatedMargin,
+		Owner:                order.AddressString,
+		OrderHash:            orderHash,
+		DenomBase:            order.DenomBase,
+		DenomQuote:           order.DenomQuote,
+		Direction:            direction,
+		Amount:               quantity,
+		IsolatedMargin:       order.IsolatedMargin,
+		IsolatedMarginAmount: isolatedMarginAmount,
 	})
 	k.SetPositionPriceQuantity(ctx, types.PositionPriceQuantity{
 		Owner:             order.AddressString,
@@ -87,26 +108,6 @@ func (k Keeper) CreateUpdatePosition(
 		Price:             price.String(),
 		Quantity:          quantity,
 	})
-
-	owner, err := sdk.AccAddressFromBech32(order.AddressString)
-	if err != nil {
-		return err
-	}
-
-	// Transfer margin
-	var marginAddressModule string
-	if order.IsolatedMargin {
-		marginAddressModule = types.GetIsolatedMarginAddressModule(order.AddressString, orderHash)
-	} else {
-		marginAddressModule = types.GetCrossMarginAddressModule(order.AddressString)
-	}
-
-	coins := sdk.NewCoins(sdk.NewCoin(order.DenomQuote, order.MarginAmount))
-
-	err = k.bankKeeper.SendCoinsFromAccountToModule(ctx, owner, marginAddressModule, coins)
-	if err != nil {
-		return err
-	}
 
 	return nil
 }
@@ -135,7 +136,7 @@ func (k Keeper) CancelPosition(
 
 	pnl := price.MulInt(quantity).TruncateInt()
 
-	// Process PositionPriceQuantit
+	// Process PositionPriceQuantity
 	err = k.iteratePositionPriceQuantityByOwnerAndPositionOrderHash(ctx, order.AddressString, order.PositionOrderHash, func(val types.PositionPriceQuantity) (finish bool, err error) {
 		var sub sdkmath.Int
 		if quantity.GT(val.Quantity) {
@@ -169,21 +170,27 @@ func (k Keeper) CancelPosition(
 	}
 
 	// Transfer PnL
-	var marginAddressModule string
 	if position.IsolatedMargin {
-		marginAddressModule = types.GetIsolatedMarginAddressModule(order.AddressString, order.PositionOrderHash)
+		position.IsolatedMarginAmount = position.IsolatedMarginAmount.Add(pnl)
 	} else {
-		marginAddressModule = types.GetCrossMarginAddressModule(order.AddressString)
+		coin := sdk.NewCoin(position.DenomQuote, pnl)
+		margins := k.AddCrossMargin(ctx, order.AddressString, coin)
+		if margins.IsAnyNegative() {
+			// TODO: emit event
+		}
 	}
 
 	// Process Position
 	if deleteLater {
 		if position.IsolatedMargin {
-			coins := k.bankKeeper.SpendableCoins(ctx, k.accountKeeper.GetModuleAddress(marginAddressModule))
-
-			err = k.bankKeeper.SendCoinsFromAccountToModule(ctx, owner, marginAddressModule, coins)
-			if err != nil {
-				return err
+			if position.IsolatedMarginAmount.IsPositive() {
+				coins := sdk.NewCoins(sdk.NewCoin(position.DenomQuote, position.IsolatedMarginAmount))
+				err = k.bankKeeper.SendCoinsFromModuleToAccount(ctx, types.GetMarginAddressModule(), owner, coins)
+				if err != nil {
+					return err
+				}
+			} else {
+				// TODO: emit event
 			}
 		}
 		k.RemovePosition(ctx, order.AddressString, order.PositionOrderHash)
