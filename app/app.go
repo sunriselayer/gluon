@@ -75,17 +75,16 @@ import (
 	ibctransferkeeper "github.com/cosmos/ibc-go/v8/modules/apps/transfer/keeper"
 	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
 
-	contractmodulekeeper "gluon/x/contract/keeper"
-	contractmoduletypes "gluon/x/contract/types"
-
 	customauthmodulekeeper "gluon/x/customauth/keeper"
 	customauthmoduletypes "gluon/x/customauth/types"
 
 	ordermodulekeeper "gluon/x/order/keeper"
+	ordermoduletypes "gluon/x/order/types"
 
 	perpmodulekeeper "gluon/x/perp/keeper"
 
 	spotmodulekeeper "gluon/x/spot/keeper"
+	spotmoduletypes "gluon/x/spot/types"
 
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
@@ -154,7 +153,6 @@ type App struct {
 	ScopedICAHostKeeper       capabilitykeeper.ScopedKeeper
 	ScopedKeepers             map[string]capabilitykeeper.ScopedKeeper
 
-	ContractKeeper   contractmodulekeeper.Keeper
 	CustomauthKeeper customauthmodulekeeper.Keeper
 	OrderKeeper      ordermodulekeeper.Keeper
 	SpotKeeper       spotmodulekeeper.Keeper
@@ -262,7 +260,6 @@ func New(
 		&app.NFTKeeper,
 		&app.GroupKeeper,
 		&app.CircuitBreakerKeeper,
-		&app.ContractKeeper,
 		&app.CustomauthKeeper,
 		&app.OrderKeeper,
 		&app.SpotKeeper,
@@ -327,9 +324,10 @@ func New(
 		app.txConfig.TxEncoder(),
 		func(msg sdk.Msg) bool {
 			switch msg.(type) {
-			case *contractmoduletypes.MsgLazyRegisterOrder:
-			case *contractmoduletypes.MsgCancelOrder:
-			case *contractmoduletypes.MsgMatchOrder:
+			case *ordermoduletypes.MsgLazyRegisterOrder:
+			case *ordermoduletypes.MsgCancelOrder:
+			case *spotmoduletypes.MsgMatchOrder:
+			// TODO: perp
 			case *customauthmoduletypes.MsgCreatePairing:
 			case *customauthmoduletypes.MsgDeletePairing:
 				return true

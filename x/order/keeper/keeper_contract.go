@@ -2,7 +2,7 @@ package keeper
 
 import (
 	"context"
-	"gluon/x/contract/types"
+	"gluon/x/order/types"
 
 	sdkmath "cosmossdk.io/math"
 )

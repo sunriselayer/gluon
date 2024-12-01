@@ -3,10 +3,6 @@ package app
 import (
 	"time"
 
-	contractmodulev1 "gluon/api/gluon/contract/module"
-	_ "gluon/x/contract/module" // import for side-effects
-	contractmoduletypes "gluon/x/contract/types"
-
 	customauthmodulev1 "gluon/api/gluon/customauth/module"
 	_ "gluon/x/customauth/module" // import for side-effects
 	customauthmoduletypes "gluon/x/customauth/types"
@@ -109,11 +105,10 @@ var (
 		consensustypes.ModuleName,
 		circuittypes.ModuleName,
 		// chain modules
-		contractmoduletypes.ModuleName,
 		customauthmoduletypes.ModuleName,
+		ordermoduletypes.ModuleName,
 		spotmoduletypes.ModuleName,
 		perpmoduletypes.ModuleName,
-		ordermoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -138,7 +133,6 @@ var (
 		icatypes.ModuleName,
 		ibcfeetypes.ModuleName,
 		// chain modules
-		contractmoduletypes.ModuleName,
 		customauthmoduletypes.ModuleName,
 		ordermoduletypes.ModuleName,
 		spotmoduletypes.ModuleName,
@@ -161,7 +155,6 @@ var (
 		icatypes.ModuleName,
 		ibcfeetypes.ModuleName,
 		// chain modules
-		contractmoduletypes.ModuleName,
 		customauthmoduletypes.ModuleName,
 		ordermoduletypes.ModuleName,
 		spotmoduletypes.ModuleName,
@@ -186,7 +179,6 @@ var (
 		{Account: ibctransfertypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner}},
 		{Account: ibcfeetypes.ModuleName},
 		{Account: icatypes.ModuleName},
-		{Account: contractmoduletypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner, authtypes.Staking}},
 		// this line is used by starport scaffolding # stargate/app/maccPerms
 	}
 
@@ -321,10 +313,6 @@ var (
 			{
 				Name:   circuittypes.ModuleName,
 				Config: appconfig.WrapAny(&circuitmodulev1.Module{}),
-			},
-			{
-				Name:   contractmoduletypes.ModuleName,
-				Config: appconfig.WrapAny(&contractmodulev1.Module{}),
 			},
 			{
 				Name:   customauthmoduletypes.ModuleName,
