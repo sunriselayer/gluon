@@ -30,7 +30,7 @@ func PositionKey(
 	return key
 }
 
-// PositionKeyPrefix
+// PositionKeyPrefixByOwner
 func PositionKeyPrefixByOwner(
 	owner string,
 ) []byte {

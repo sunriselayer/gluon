@@ -1,6 +1,9 @@
 package types
 
-import "encoding/binary"
+import (
+	"encoding/binary"
+	"fmt"
+)
 
 var _ binary.ByteOrder
 
@@ -30,4 +33,12 @@ func PositionPriceQuantityKey(
 	key = append(key, []byte("/")...)
 
 	return key
+}
+
+// PositionPriceQuantityKeyPrefixByOwnerAndPositionOrderHash
+func PositionPriceQuantityKeyPrefixByOwnerAndPositionOrderHash(
+	owner string,
+	positionOrderHash string,
+) []byte {
+	return KeyPrefix(fmt.Sprintf("%s%s/%s/", PositionPriceQuantityKeyPrefix, owner, positionOrderHash))
 }

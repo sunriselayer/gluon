@@ -79,3 +79,20 @@ func (k Keeper) GetAllPositionPriceQuantity(ctx context.Context) (list []types.P
 
 	return
 }
+
+// GetPositionPriceQuantity returns all positionPriceQuantity
+func (k Keeper) GetPositionPriceQuantitiesByOwnerAndPositionOrderHash(ctx context.Context, owner string, positionOrderHash string) (list []types.PositionPriceQuantity) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.PositionPriceQuantityKeyPrefixByOwnerAndPositionOrderHash(owner, positionOrderHash))
+	iterator := storetypes.KVStorePrefixIterator(store, []byte{})
+
+	defer iterator.Close()
+
+	for ; iterator.Valid(); iterator.Next() {
+		var val types.PositionPriceQuantity
+		k.cdc.MustUnmarshal(iterator.Value(), &val)
+		list = append(list, val)
+	}
+
+	return
+}
