@@ -1,6 +1,9 @@
 syntax = "proto3";
 package gluon.perp;
 
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+
 option go_package = "gluon/x/perp/types";
 
 // PositionDirection
@@ -21,4 +24,9 @@ message Position {
   string denom_quote = 4;
   PositionDirection direction = 5;
   bool isolated_margin = 6;
+  string amount = 7 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
 }

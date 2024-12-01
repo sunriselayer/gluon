@@ -14,24 +14,24 @@ import (
 func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (*types.MsgMatchOrderResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	buy, buyBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.OrderHashBuy)
+	buy, buyBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.BuyerOrderHash)
 	if err != nil {
 		return nil, err
 	}
 
-	sell, sellBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.OrderHashSell)
+	sell, sellBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.SellerOrderHash)
 	if err != nil {
 		return nil, err
 	}
 
 	buySpot, ok := buyBody.(*types.SpotOrder)
 	if !ok {
-		return nil, errorsmod.Wrapf(types.ErrInvalidOrderType, "OrderHashBuy: %s", buy.Hash)
+		return nil, errorsmod.Wrapf(types.ErrInvalidOrderType, "BuyerOrderHash: %s", msg.BuyerOrderHash)
 	}
 
 	sellSpot, ok := sellBody.(*types.SpotOrder)
 	if !ok {
-		return nil, errorsmod.Wrapf(types.ErrInvalidOrderType, "OrderHashSell: %s", sell.Hash)
+		return nil, errorsmod.Wrapf(types.ErrInvalidOrderType, "SellerOrderHash: %s", msg.SellerOrderHash)
 	}
 
 	price, err := sdkmath.LegacyNewDecFromStr(msg.Price)
@@ -44,26 +44,26 @@ func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (
 		return nil, err
 	}
 
-	err = ordertypes.ValidateOrderContractAmount(buySpot.Amount, buy.ContractedAmount, msg.Amount)
+	err = ordertypes.ValidateOrderContractAmount(buySpot.Amount, buy.ContractedAmount, msg.Quantity)
 	if err != nil {
 		return nil, err
 	}
 
-	err = ordertypes.ValidateOrderContractAmount(sellSpot.Amount, sell.ContractedAmount, msg.Amount)
+	err = ordertypes.ValidateOrderContractAmount(sellSpot.Amount, sell.ContractedAmount, msg.Quantity)
 	if err != nil {
 		return nil, err
 	}
 
-	err = k.Swap(ctx, *buySpot, *sellSpot, msg.Amount, price)
+	err = k.Swap(ctx, *buySpot, *sellSpot, msg.Quantity, price)
 	if err != nil {
 		return nil, err
 	}
 
-	err = k.orderKeeper.AddContractedAmount(ctx, buy.Hash, msg.Amount)
+	err = k.orderKeeper.AddContractedAmount(ctx, buy.Hash, msg.Quantity)
 	if err != nil {
 		return nil, err
 	}
-	err = k.orderKeeper.AddContractedAmount(ctx, sell.Hash, msg.Amount)
+	err = k.orderKeeper.AddContractedAmount(ctx, sell.Hash, msg.Quantity)
 	if err != nil {
 		return nil, err
 	}

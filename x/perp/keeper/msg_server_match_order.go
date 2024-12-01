@@ -21,22 +21,22 @@ func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (
 		return nil, err
 	}
 
-	long, longBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.OrderHashBuy)
+	long, longBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.BuyerOrderHash)
 	if err != nil {
 		return nil, err
 	}
-	short, shortBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.OrderHashSell)
+	short, shortBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.SellerOrderHash)
 	if err != nil {
 		return nil, err
 	}
 
 	longPerp, longDenomBase, longDenomQuote, longDirection, err := k.GetOrderBodyDenomsDirection(ctx, longBody)
 	if err != nil {
-		return nil, errorsmod.Wrapf(err, "OrderHashBuy: %s", long.Hash)
+		return nil, errorsmod.Wrapf(err, "BuyerOrderHash: %s", msg.BuyerOrderHash)
 	}
 	shortPerp, shortDenomBase, shortDenomQuote, shortDirection, err := k.GetOrderBodyDenomsDirection(ctx, shortBody)
 	if err != nil {
-		return nil, errorsmod.Wrapf(err, "OrderHashSell: %s", short.Hash)
+		return nil, errorsmod.Wrapf(err, "SellerOrderHash: %s", msg.SellerOrderHash)
 	}
 
 	// Denom and Direction
@@ -56,30 +56,30 @@ func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (
 		return nil, err
 	}
 
-	err = ordertypes.ValidateOrderContractAmount(longPerp.GetAmount(), long.ContractedAmount, msg.Amount)
+	err = ordertypes.ValidateOrderContractAmount(longPerp.GetAmount(), long.ContractedAmount, msg.Quantity)
 	if err != nil {
 		return nil, err
 	}
-	err = ordertypes.ValidateOrderContractAmount(shortPerp.GetAmount(), short.ContractedAmount, msg.Amount)
+	err = ordertypes.ValidateOrderContractAmount(shortPerp.GetAmount(), short.ContractedAmount, msg.Quantity)
 	if err != nil {
 		return nil, err
 	}
 
 	// Create or Cancel
-	err = k.CreateUpdateCancelPosition(ctx, msg.OrderHashBuy, longPerp, msg.Amount, price)
+	err = k.CreateUpdateCancelPosition(ctx, msg.BuyerOrderHash, longPerp, price, msg.Quantity)
 	if err != nil {
 		return nil, err
 	}
-	err = k.CreateUpdateCancelPosition(ctx, msg.OrderHashSell, shortPerp, msg.Amount, price)
+	err = k.CreateUpdateCancelPosition(ctx, msg.SellerOrderHash, shortPerp, price, msg.Quantity)
 	if err != nil {
 		return nil, err
 	}
 
-	err = k.orderKeeper.AddContractedAmount(ctx, long.Hash, msg.Amount)
+	err = k.orderKeeper.AddContractedAmount(ctx, long.Hash, msg.Quantity)
 	if err != nil {
 		return nil, err
 	}
-	err = k.orderKeeper.AddContractedAmount(ctx, short.Hash, msg.Amount)
+	err = k.orderKeeper.AddContractedAmount(ctx, short.Hash, msg.Quantity)
 	if err != nil {
 		return nil, err
 	}

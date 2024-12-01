@@ -14,14 +14,14 @@ func (k Keeper) CreateUpdateCancelPosition(
 	ctx sdk.Context,
 	orderHash string,
 	order types.PerpOrder,
-	amount sdkmath.Int,
 	price sdkmath.LegacyDec,
+	quantity sdkmath.Int,
 ) error {
 	switch order := order.(type) {
 	case *types.PerpPositionCreateOrder:
-		return k.CreateUpdatePosition(ctx, orderHash, *order, amount, price)
+		return k.CreateUpdatePosition(ctx, orderHash, *order, price, quantity)
 	case *types.PerpPositionCancelOrder:
-		return k.CancelPosition(ctx, *order, amount, price)
+		return k.CancelPosition(ctx, *order, price, quantity)
 	default:
 		return types.ErrInvalidOrderType
 	}
@@ -31,9 +31,19 @@ func (k Keeper) CreateUpdatePosition(
 	ctx sdk.Context,
 	orderHash string,
 	order types.PerpPositionCreateOrder,
-	amount sdkmath.Int,
 	price sdkmath.LegacyDec,
+	quantity sdkmath.Int,
 ) error {
+	position, found := k.GetPosition(ctx, order.AddressString, orderHash)
+	if found {
+		// Update
+		position.Amount = position.Amount.Add(quantity)
+		k.SetPosition(ctx, position)
+
+		// No need for margin transfer
+		return nil
+	}
+	// Create
 	var direction types.PositionDirection
 	switch order.Direction {
 	case ordertypes.OrderDirection_ORDER_DIRECTION_BUY:
@@ -78,8 +88,8 @@ func (k Keeper) CreateUpdatePosition(
 func (k Keeper) CancelPosition(
 	ctx sdk.Context,
 	order types.PerpPositionCancelOrder,
-	amount sdkmath.Int,
 	price sdkmath.LegacyDec,
+	quantity sdkmath.Int,
 ) error {
 	position, found := k.GetPosition(ctx, order.AddressString, order.PositionOrderHash)
 	if !found {
@@ -91,12 +101,9 @@ func (k Keeper) CancelPosition(
 		return err
 	}
 
-	// TODO
-	remainingAmount := sdkmath.ZeroInt()
-
-	if amount.GT(remainingAmount) {
+	if quantity.GT(position.Amount) {
 		return types.ErrPositionCancelAmountExceed
-	} else if amount.LT(remainingAmount) {
+	} else if quantity.LT(position.Amount) {
 
 	} else {
 		k.RemovePosition(ctx, order.AddressString, order.PositionOrderHash)

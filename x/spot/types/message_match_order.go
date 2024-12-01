@@ -14,19 +14,19 @@ var _ sdk.Msg = &MsgMatchOrder{}
 
 func NewMsgMatchOrder(
 	buyer string,
+	buyerOrderHash string,
 	seller string,
-	orderHashBuy string,
-	orderHashSell string,
-	amount sdkmath.Int,
+	sellerOrderHash string,
+	quantity sdkmath.Int,
 	price string,
 ) *MsgMatchOrder {
 	return &MsgMatchOrder{
-		Buyer:         buyer,
-		Seller:        seller,
-		OrderHashBuy:  orderHashBuy,
-		OrderHashSell: orderHashSell,
-		Amount:        amount,
-		Price:         price,
+		Buyer:           buyer,
+		BuyerOrderHash:  buyerOrderHash,
+		Seller:          seller,
+		SellerOrderHash: sellerOrderHash,
+		Quantity:        quantity,
+		Price:           price,
 	}
 }
 
@@ -41,16 +41,12 @@ func (msg *MsgMatchOrder) ValidateBasic() error {
 		return err
 	}
 
-	if len(msg.OrderHashBuy) == 0 {
+	if len(msg.BuyerOrderHash) == 0 {
 		return ordertypes.ErrEmptyOrderHash
 	}
 
-	if len(msg.OrderHashSell) == 0 {
+	if len(msg.SellerOrderHash) == 0 {
 		return ordertypes.ErrEmptyOrderHash
-	}
-
-	if !msg.Amount.IsPositive() {
-		return errorsmod.Wrapf(ordertypes.ErrNotPositive, "Amount: %s", msg.Amount.String())
 	}
 
 	price, err := sdkmath.LegacyNewDecFromStr(msg.Price)
@@ -60,6 +56,10 @@ func (msg *MsgMatchOrder) ValidateBasic() error {
 
 	if !price.IsPositive() {
 		return errorsmod.Wrapf(ordertypes.ErrNotPositive, "Price: %s", price.String())
+	}
+
+	if !msg.Quantity.IsPositive() {
+		return errorsmod.Wrapf(ordertypes.ErrNotPositive, "Quantity: %s", msg.Quantity.String())
 	}
 
 	return nil
