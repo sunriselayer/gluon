@@ -7,6 +7,8 @@ import (
 	sdkmath "cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
+	// sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+
 	ordertypes "gluon/x/order/types"
 	"gluon/x/perp/types"
 )
@@ -14,60 +16,70 @@ import (
 func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (*types.MsgMatchOrderResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	buy, buyBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.OrderHashBuy)
-	if err != nil {
-		return nil, err
-	}
-
-	sell, sellBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.OrderHashSell)
-	if err != nil {
-		return nil, err
-	}
-
-	var buyPerp types.PerpOrder
-	var sellPerp types.PerpOrder
-	var ok bool
-
-	buyPerp, ok = buyBody.(*types.PerpPositionCreateOrder)
-	if !ok {
-		return nil, errorsmod.Wrapf(types.ErrInvalidOrderType, "OrderHashBuy: %s", buy.Hash)
-	}
-
-	sellPerp, ok = sellBody.(*types.PerpPositionCreateOrder)
-	if !ok {
-		return nil, errorsmod.Wrapf(types.ErrInvalidOrderType, "OrderHashSell: %s", sell.Hash)
-	}
-
 	price, err := sdkmath.LegacyNewDecFromStr(msg.Price)
 	if err != nil {
 		return nil, err
 	}
 
-	err = types.PerpOrderCrossValidateBasic(buyPerp, sellPerp, price, ctx.BlockTime())
+	long, longBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.OrderHashBuy)
+	if err != nil {
+		return nil, err
+	}
+	short, shortBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.OrderHashSell)
 	if err != nil {
 		return nil, err
 	}
 
-	err = ordertypes.ValidateOrderContractAmount(buyPerp.GetAmount(), buy.ContractedAmount, msg.Amount)
+	longPerp, longDenomBase, longDenomQuote, longDirection, err := k.GetOrderBodyDenomsDirection(ctx, longBody)
+	if err != nil {
+		return nil, errorsmod.Wrapf(err, "OrderHashBuy: %s", long.Hash)
+	}
+	shortPerp, shortDenomBase, shortDenomQuote, shortDirection, err := k.GetOrderBodyDenomsDirection(ctx, shortBody)
+	if err != nil {
+		return nil, errorsmod.Wrapf(err, "OrderHashSell: %s", short.Hash)
+	}
+
+	// Denom and Direction
+	if longDenomBase != shortDenomBase || longDenomQuote != shortDenomQuote {
+		return nil, ordertypes.ErrDenomMismatch
+	}
+	if longDirection != ordertypes.OrderDirection_ORDER_DIRECTION_BUY {
+		return nil, ordertypes.ErrInvalidOrderDirection
+	}
+	if shortDirection != ordertypes.OrderDirection_ORDER_DIRECTION_SELL {
+		return nil, ordertypes.ErrInvalidOrderDirection
+	}
+
+	// Cross validate
+	err = types.PerpOrderCrossValidateBasic(longPerp, shortPerp, price, ctx.BlockTime())
 	if err != nil {
 		return nil, err
 	}
 
-	err = ordertypes.ValidateOrderContractAmount(sellPerp.GetAmount(), sell.ContractedAmount, msg.Amount)
+	err = ordertypes.ValidateOrderContractAmount(longPerp.GetAmount(), long.ContractedAmount, msg.Amount)
+	if err != nil {
+		return nil, err
+	}
+	err = ordertypes.ValidateOrderContractAmount(shortPerp.GetAmount(), short.ContractedAmount, msg.Amount)
 	if err != nil {
 		return nil, err
 	}
 
-	err = k.CreatePosition(ctx, buyPerp, sellPerp, msg.Amount, price)
+	// Create or Cancel
+	err = k.CreateUpdateCancelPosition(ctx, longPerp, msg.Amount, price)
+	if err != nil {
+		return nil, err
+	}
+	err = k.CreateUpdateCancelPosition(ctx, shortPerp, msg.Amount, price)
 	if err != nil {
 		return nil, err
 	}
 
-	err = k.orderKeeper.AddContractedAmount(ctx, buy.Hash, msg.Amount)
+	err = k.orderKeeper.AddContractedAmount(ctx, long.Hash, msg.Amount)
 	if err != nil {
 		return nil, err
 	}
-	err = k.orderKeeper.AddContractedAmount(ctx, sell.Hash, msg.Amount)
+	err = k.orderKeeper.AddContractedAmount(ctx, short.Hash, msg.Amount)
 	if err != nil {
 		return nil, err
 	}

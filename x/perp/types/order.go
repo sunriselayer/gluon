@@ -37,6 +37,9 @@ func (order PerpPositionCreateOrder) ValidateBasic() error {
 	if err != nil {
 		return err
 	}
+	if order.IsolatedMargin && order.Margin.IsZero() {
+		return errorsmod.Wrap(ErrInvalidMargin, "isolated margin must not be zero")
+	}
 	return nil
 }
 

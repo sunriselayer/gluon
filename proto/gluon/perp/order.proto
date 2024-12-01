@@ -1,7 +1,6 @@
 syntax = "proto3";
 package gluon.perp;
 
-import "cosmos/base/v1beta1/coin.proto";
 import "cosmos_proto/cosmos.proto";
 import "gluon/order/base_order.proto";
 import "gogoproto/gogo.proto";
@@ -18,7 +17,12 @@ message PerpPositionCreateOrder {
     (gogoproto.embed) = true
   ];
   bool isolated_margin = 3;
-  cosmos.base.v1beta1.Coin margin = 4 [(gogoproto.nullable) = false];
+  // Zero margin is only accepted for cross margin
+  string margin_amount = 4 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
 }
 
 // PerpPositionCancelOrder

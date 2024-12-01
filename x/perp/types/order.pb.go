@@ -36,8 +36,9 @@ type PerpPositionCreateOrder struct {
 	// For avoiding order hash conflict
 	Nonce           uint64 `protobuf:"varint,1,opt,name=nonce,proto3" json:"nonce,omitempty"`
 	types.BaseOrder `protobuf:"bytes,2,opt,name=base,proto3,embedded=base" json:"base"`
-	IsolatedMargin  bool        `protobuf:"varint,3,opt,name=isolated_margin,json=isolatedMargin,proto3" json:"isolated_margin,omitempty"`
-	Margin          types1.Coin `protobuf:"bytes,4,opt,name=margin,proto3" json:"margin"`
+	IsolatedMargin  bool `protobuf:"varint,3,opt,name=isolated_margin,json=isolatedMargin,proto3" json:"isolated_margin,omitempty"`
+	// Zero margin is only accepted for cross margin
+	Margin types1.Coin `protobuf:"bytes,4,opt,name=margin,proto3" json:"margin"`
 }
 
 func (m *PerpPositionCreateOrder) Reset()         { *m = PerpPositionCreateOrder{} }
