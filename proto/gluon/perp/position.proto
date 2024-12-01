@@ -3,8 +3,22 @@ package gluon.perp;
 
 option go_package = "gluon/x/perp/types";
 
+// PositionDirection
+enum PositionDirection {
+  // Unspecified
+  POSITION_DIRECTION_UNSPECIFIED = 0;
+  // Long
+  POSITION_DIRECTION_LONG = 1;
+  // Short
+  POSITION_DIRECTION_SHORT = 2;
+}
+
 // Position
 message Position {
   string owner = 1;
   uint64 id = 2;
+  string denom_base = 3;
+  string denom_quote = 4;
+  PositionDirection direction = 5;
+  bool isolated_margin = 6;
 }

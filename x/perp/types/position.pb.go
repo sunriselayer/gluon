@@ -22,10 +22,46 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
+// PositionDirection
+type PositionDirection int32
+
+const (
+	// Unspecified
+	PositionDirection_POSITION_DIRECTION_UNSPECIFIED PositionDirection = 0
+	// Long
+	PositionDirection_POSITION_DIRECTION_LONG PositionDirection = 1
+	// Short
+	PositionDirection_POSITION_DIRECTION_SHORT PositionDirection = 2
+)
+
+var PositionDirection_name = map[int32]string{
+	0: "POSITION_DIRECTION_UNSPECIFIED",
+	1: "POSITION_DIRECTION_LONG",
+	2: "POSITION_DIRECTION_SHORT",
+}
+
+var PositionDirection_value = map[string]int32{
+	"POSITION_DIRECTION_UNSPECIFIED": 0,
+	"POSITION_DIRECTION_LONG":        1,
+	"POSITION_DIRECTION_SHORT":       2,
+}
+
+func (x PositionDirection) String() string {
+	return proto.EnumName(PositionDirection_name, int32(x))
+}
+
+func (PositionDirection) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_022a6b4781bcc3ba, []int{0}
+}
+
 // Position
 type Position struct {
-	Owner string `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
-	Id    uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+	Owner          string            `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
+	Id             uint64            `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+	DenomBase      string            `protobuf:"bytes,3,opt,name=denom_base,json=denomBase,proto3" json:"denom_base,omitempty"`
+	DenomQuote     string            `protobuf:"bytes,4,opt,name=denom_quote,json=denomQuote,proto3" json:"denom_quote,omitempty"`
+	Direction      PositionDirection `protobuf:"varint,5,opt,name=direction,proto3,enum=gluon.perp.PositionDirection" json:"direction,omitempty"`
+	IsolatedMargin bool              `protobuf:"varint,6,opt,name=isolated_margin,json=isolatedMargin,proto3" json:"isolated_margin,omitempty"`
 }
 
 func (m *Position) Reset()         { *m = Position{} }
@@ -75,23 +111,63 @@ func (m *Position) GetId() uint64 {
 	return 0
 }
 
+func (m *Position) GetDenomBase() string {
+	if m != nil {
+		return m.DenomBase
+	}
+	return ""
+}
+
+func (m *Position) GetDenomQuote() string {
+	if m != nil {
+		return m.DenomQuote
+	}
+	return ""
+}
+
+func (m *Position) GetDirection() PositionDirection {
+	if m != nil {
+		return m.Direction
+	}
+	return PositionDirection_POSITION_DIRECTION_UNSPECIFIED
+}
+
+func (m *Position) GetIsolatedMargin() bool {
+	if m != nil {
+		return m.IsolatedMargin
+	}
+	return false
+}
+
 func init() {
+	proto.RegisterEnum("gluon.perp.PositionDirection", PositionDirection_name, PositionDirection_value)
 	proto.RegisterType((*Position)(nil), "gluon.perp.Position")
 }
 
 func init() { proto.RegisterFile("gluon/perp/position.proto", fileDescriptor_022a6b4781bcc3ba) }
 
 var fileDescriptor_022a6b4781bcc3ba = []byte{
-	// 143 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4c, 0xcf, 0x29, 0xcd,
-	0xcf, 0xd3, 0x2f, 0x48, 0x2d, 0x2a, 0xd0, 0x2f, 0xc8, 0x2f, 0xce, 0x2c, 0xc9, 0xcc, 0xcf, 0xd3,
-	0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x02, 0x4b, 0xe9, 0x81, 0xa4, 0x94, 0x0c, 0xb8, 0x38,
-	0x02, 0xa0, 0xb2, 0x42, 0x22, 0x5c, 0xac, 0xf9, 0xe5, 0x79, 0xa9, 0x45, 0x12, 0x8c, 0x0a, 0x8c,
-	0x1a, 0x9c, 0x41, 0x10, 0x8e, 0x10, 0x1f, 0x17, 0x53, 0x66, 0x8a, 0x04, 0x93, 0x02, 0xa3, 0x06,
-	0x4b, 0x10, 0x53, 0x66, 0x8a, 0x93, 0xce, 0x89, 0x47, 0x72, 0x8c, 0x17, 0x1e, 0xc9, 0x31, 0x3e,
-	0x78, 0x24, 0xc7, 0x38, 0xe1, 0xb1, 0x1c, 0xc3, 0x85, 0xc7, 0x72, 0x0c, 0x37, 0x1e, 0xcb, 0x31,
-	0x44, 0x09, 0x41, 0xac, 0xac, 0x80, 0x58, 0x5a, 0x52, 0x59, 0x90, 0x5a, 0x9c, 0xc4, 0x06, 0xb6,
-	0xd2, 0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0x63, 0xe7, 0x27, 0xf9, 0x8f, 0x00, 0x00, 0x00,
+	// 317 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x91, 0x4f, 0x4b, 0xfb, 0x30,
+	0x18, 0xc7, 0x9b, 0xfe, 0xb6, 0xb1, 0x3d, 0x3f, 0x98, 0x33, 0x08, 0x46, 0x74, 0xb1, 0xec, 0x62,
+	0x11, 0xe9, 0x40, 0x8f, 0xde, 0xf6, 0x47, 0x2d, 0xe8, 0x3a, 0xb3, 0x79, 0xf1, 0x32, 0x3a, 0x1b,
+	0x46, 0x60, 0x6b, 0x6a, 0xda, 0xa1, 0xbe, 0x0b, 0x5f, 0x96, 0xc7, 0x9d, 0xc4, 0xa3, 0xac, 0x6f,
+	0x44, 0x9a, 0x5a, 0x76, 0x70, 0xb7, 0xe4, 0xfb, 0xf9, 0x24, 0xcf, 0x03, 0x5f, 0x38, 0x98, 0xcd,
+	0x97, 0x32, 0x6c, 0x47, 0x5c, 0x45, 0xed, 0x48, 0xc6, 0x22, 0x11, 0x32, 0x74, 0x22, 0x25, 0x13,
+	0x89, 0x41, 0x23, 0x27, 0x43, 0xad, 0x4f, 0x04, 0xd5, 0xe1, 0x2f, 0xc6, 0x7b, 0x50, 0x96, 0x2f,
+	0x21, 0x57, 0x04, 0x59, 0xc8, 0xae, 0xb1, 0xfc, 0x82, 0xeb, 0x60, 0x8a, 0x80, 0x98, 0x16, 0xb2,
+	0x4b, 0xcc, 0x14, 0x01, 0x6e, 0x02, 0x04, 0x3c, 0x94, 0x8b, 0xc9, 0xd4, 0x8f, 0x39, 0xf9, 0xa7,
+	0xd5, 0x9a, 0x4e, 0x3a, 0x7e, 0xcc, 0xf1, 0x31, 0xfc, 0xcf, 0xf1, 0xf3, 0x52, 0x26, 0x9c, 0x94,
+	0x34, 0xcf, 0x5f, 0xdc, 0x67, 0x09, 0xbe, 0x84, 0x5a, 0x20, 0x14, 0x7f, 0xca, 0x46, 0x92, 0xb2,
+	0x85, 0xec, 0xfa, 0x79, 0xd3, 0xd9, 0xac, 0xe4, 0x14, 0xeb, 0xf4, 0x0a, 0x89, 0x6d, 0x7c, 0x7c,
+	0x02, 0x3b, 0x22, 0x96, 0x73, 0x3f, 0xe1, 0xc1, 0x64, 0xe1, 0xab, 0x99, 0x08, 0x49, 0xc5, 0x42,
+	0x76, 0x95, 0xd5, 0x8b, 0xf8, 0x4e, 0xa7, 0xa7, 0x0a, 0x76, 0xff, 0x7c, 0x84, 0x5b, 0x40, 0x87,
+	0xde, 0xc8, 0x1d, 0xbb, 0xde, 0x60, 0xd2, 0x73, 0x59, 0xbf, 0xab, 0x4f, 0x0f, 0x83, 0xd1, 0xb0,
+	0xdf, 0x75, 0xaf, 0xdc, 0x7e, 0xaf, 0x61, 0xe0, 0x43, 0xd8, 0xdf, 0xe2, 0xdc, 0x7a, 0x83, 0xeb,
+	0x06, 0xc2, 0x47, 0x40, 0xb6, 0xc0, 0xd1, 0x8d, 0xc7, 0xc6, 0x0d, 0xb3, 0x73, 0xf6, 0xb1, 0xa6,
+	0x68, 0xb5, 0xa6, 0xe8, 0x7b, 0x4d, 0xd1, 0x7b, 0x4a, 0x8d, 0x55, 0x4a, 0x8d, 0xaf, 0x94, 0x1a,
+	0x8f, 0x38, 0x6f, 0xe3, 0x35, 0xef, 0x23, 0x79, 0x8b, 0x78, 0x3c, 0xad, 0xe8, 0x36, 0x2e, 0x7e,
+	0x02, 0x00, 0x00, 0xff, 0xff, 0x7e, 0x68, 0x61, 0x03, 0xaa, 0x01, 0x00, 0x00,
 }
 
 func (m *Position) Marshal() (dAtA []byte, err error) {
@@ -114,6 +190,35 @@ func (m *Position) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.IsolatedMargin {
+		i--
+		if m.IsolatedMargin {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x30
+	}
+	if m.Direction != 0 {
+		i = encodeVarintPosition(dAtA, i, uint64(m.Direction))
+		i--
+		dAtA[i] = 0x28
+	}
+	if len(m.DenomQuote) > 0 {
+		i -= len(m.DenomQuote)
+		copy(dAtA[i:], m.DenomQuote)
+		i = encodeVarintPosition(dAtA, i, uint64(len(m.DenomQuote)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.DenomBase) > 0 {
+		i -= len(m.DenomBase)
+		copy(dAtA[i:], m.DenomBase)
+		i = encodeVarintPosition(dAtA, i, uint64(len(m.DenomBase)))
+		i--
+		dAtA[i] = 0x1a
+	}
 	if m.Id != 0 {
 		i = encodeVarintPosition(dAtA, i, uint64(m.Id))
 		i--
@@ -152,6 +257,20 @@ func (m *Position) Size() (n int) {
 	}
 	if m.Id != 0 {
 		n += 1 + sovPosition(uint64(m.Id))
+	}
+	l = len(m.DenomBase)
+	if l > 0 {
+		n += 1 + l + sovPosition(uint64(l))
+	}
+	l = len(m.DenomQuote)
+	if l > 0 {
+		n += 1 + l + sovPosition(uint64(l))
+	}
+	if m.Direction != 0 {
+		n += 1 + sovPosition(uint64(m.Direction))
+	}
+	if m.IsolatedMargin {
+		n += 2
 	}
 	return n
 }
@@ -242,6 +361,109 @@ func (m *Position) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DenomBase", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosition
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosition
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosition
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.DenomBase = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DenomQuote", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosition
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthPosition
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthPosition
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.DenomQuote = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Direction", wireType)
+			}
+			m.Direction = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosition
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Direction |= PositionDirection(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 6:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field IsolatedMargin", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosition
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.IsolatedMargin = bool(v != 0)
 		default:
 			iNdEx = preIndex
 			skippy, err := skipPosition(dAtA[iNdEx:])
