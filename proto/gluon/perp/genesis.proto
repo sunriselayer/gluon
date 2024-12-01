@@ -1,13 +1,19 @@
 syntax = "proto3";
+
 package gluon.perp;
 
 import "gluon/perp/params.proto";
 import "gogoproto/gogo.proto";
+import "gluon/perp/position.proto";
 
 option go_package = "gluon/x/perp/types";
 
 // GenesisState defines the perp module's genesis state.
 message GenesisState {
+  
   // params defines all the parameters of the module.
-  Params params = 1 [(gogoproto.nullable) = false];
+           Params   params        = 1 [(gogoproto.nullable) = false];
+  repeated Position positionList  = 2 [(gogoproto.nullable) = false];
+           uint64   positionCount = 3;
 }
+

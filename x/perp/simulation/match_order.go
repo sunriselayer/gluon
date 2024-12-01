@@ -3,11 +3,12 @@ package simulation
 import (
 	"math/rand"
 
+	"gluon/x/perp/keeper"
+	"gluon/x/perp/types"
+
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
-	"gluon/x/perp/keeper"
-	"gluon/x/perp/types"
 )
 
 func SimulateMsgMatchOrder(

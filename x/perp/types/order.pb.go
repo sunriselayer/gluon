@@ -5,13 +5,14 @@ package types
 
 import (
 	fmt "fmt"
-	types1 "github.com/cosmos/cosmos-sdk/types"
-	_ "github.com/cosmos/gogoproto/gogoproto"
-	proto "github.com/cosmos/gogoproto/proto"
 	types "gluon/x/order/types"
 	io "io"
 	math "math"
 	math_bits "math/bits"
+
+	types1 "github.com/cosmos/cosmos-sdk/types"
+	_ "github.com/cosmos/gogoproto/gogoproto"
+	proto "github.com/cosmos/gogoproto/proto"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.

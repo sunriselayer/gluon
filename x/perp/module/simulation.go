@@ -23,7 +23,7 @@ var (
 )
 
 const (
-opWeightMsgMatchOrder = "op_weight_msg_match_order"
+	opWeightMsgMatchOrder = "op_weight_msg_match_order"
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgMatchOrder int = 100
 
@@ -70,13 +70,13 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.WeightedProposalMsg {
 	return []simtypes.WeightedProposalMsg{
 		simulation.NewWeightedProposalMsg(
-	opWeightMsgMatchOrder,
-	defaultWeightMsgMatchOrder,
-	func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-		perpsimulation.SimulateMsgMatchOrder(am.accountKeeper, am.bankKeeper, am.keeper)
-		return nil
-	},
-),
-// this line is used by starport scaffolding # simapp/module/OpMsg
+			opWeightMsgMatchOrder,
+			defaultWeightMsgMatchOrder,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				perpsimulation.SimulateMsgMatchOrder(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		// this line is used by starport scaffolding # simapp/module/OpMsg
 	}
 }
