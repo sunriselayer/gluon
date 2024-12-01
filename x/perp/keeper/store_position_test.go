@@ -24,7 +24,7 @@ func TestPositionGet(t *testing.T) {
 	keeper, ctx := keepertest.PerpKeeper(t)
 	items := createNPosition(keeper, ctx, 10)
 	for _, item := range items {
-		got, found := keeper.GetPosition(ctx, item.Id)
+		got, found := keeper.GetPosition(ctx, item.Owner, item.Id)
 		require.True(t, found)
 		require.Equal(t,
 			nullify.Fill(&item),
@@ -37,8 +37,8 @@ func TestPositionRemove(t *testing.T) {
 	keeper, ctx := keepertest.PerpKeeper(t)
 	items := createNPosition(keeper, ctx, 10)
 	for _, item := range items {
-		keeper.RemovePosition(ctx, item.Id)
-		_, found := keeper.GetPosition(ctx, item.Id)
+		keeper.RemovePosition(ctx, item.Owner, item.Id)
+		_, found := keeper.GetPosition(ctx, item.Owner, item.Id)
 		require.False(t, found)
 	}
 }

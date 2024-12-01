@@ -5,11 +5,10 @@ package types
 
 import (
 	fmt "fmt"
+	proto "github.com/cosmos/gogoproto/proto"
 	io "io"
 	math "math"
 	math_bits "math/bits"
-
-	proto "github.com/cosmos/gogoproto/proto"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -23,9 +22,10 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
+// Position
 type Position struct {
-	Id    uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Owner string `protobuf:"bytes,2,opt,name=owner,proto3" json:"owner,omitempty"`
+	Owner string `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
+	Id    uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
 }
 
 func (m *Position) Reset()         { *m = Position{} }
@@ -61,18 +61,18 @@ func (m *Position) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Position proto.InternalMessageInfo
 
-func (m *Position) GetId() uint64 {
-	if m != nil {
-		return m.Id
-	}
-	return 0
-}
-
 func (m *Position) GetOwner() string {
 	if m != nil {
 		return m.Owner
 	}
 	return ""
+}
+
+func (m *Position) GetId() uint64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
 }
 
 func init() {
@@ -86,12 +86,12 @@ var fileDescriptor_022a6b4781bcc3ba = []byte{
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4c, 0xcf, 0x29, 0xcd,
 	0xcf, 0xd3, 0x2f, 0x48, 0x2d, 0x2a, 0xd0, 0x2f, 0xc8, 0x2f, 0xce, 0x2c, 0xc9, 0xcc, 0xcf, 0xd3,
 	0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x02, 0x4b, 0xe9, 0x81, 0xa4, 0x94, 0x0c, 0xb8, 0x38,
-	0x02, 0xa0, 0xb2, 0x42, 0x7c, 0x5c, 0x4c, 0x99, 0x29, 0x12, 0x8c, 0x0a, 0x8c, 0x1a, 0x2c, 0x41,
-	0x4c, 0x99, 0x29, 0x42, 0x22, 0x5c, 0xac, 0xf9, 0xe5, 0x79, 0xa9, 0x45, 0x12, 0x4c, 0x0a, 0x8c,
-	0x1a, 0x9c, 0x41, 0x10, 0x8e, 0x93, 0xce, 0x89, 0x47, 0x72, 0x8c, 0x17, 0x1e, 0xc9, 0x31, 0x3e,
+	0x02, 0xa0, 0xb2, 0x42, 0x22, 0x5c, 0xac, 0xf9, 0xe5, 0x79, 0xa9, 0x45, 0x12, 0x8c, 0x0a, 0x8c,
+	0x1a, 0x9c, 0x41, 0x10, 0x8e, 0x10, 0x1f, 0x17, 0x53, 0x66, 0x8a, 0x04, 0x93, 0x02, 0xa3, 0x06,
+	0x4b, 0x10, 0x53, 0x66, 0x8a, 0x93, 0xce, 0x89, 0x47, 0x72, 0x8c, 0x17, 0x1e, 0xc9, 0x31, 0x3e,
 	0x78, 0x24, 0xc7, 0x38, 0xe1, 0xb1, 0x1c, 0xc3, 0x85, 0xc7, 0x72, 0x0c, 0x37, 0x1e, 0xcb, 0x31,
 	0x44, 0x09, 0x41, 0xac, 0xac, 0x80, 0x58, 0x5a, 0x52, 0x59, 0x90, 0x5a, 0x9c, 0xc4, 0x06, 0xb6,
-	0xd2, 0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0x2b, 0xd3, 0x44, 0xdb, 0x8f, 0x00, 0x00, 0x00,
+	0xd2, 0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0x63, 0xe7, 0x27, 0xf9, 0x8f, 0x00, 0x00, 0x00,
 }
 
 func (m *Position) Marshal() (dAtA []byte, err error) {
@@ -114,17 +114,17 @@ func (m *Position) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.Id != 0 {
+		i = encodeVarintPosition(dAtA, i, uint64(m.Id))
+		i--
+		dAtA[i] = 0x10
+	}
 	if len(m.Owner) > 0 {
 		i -= len(m.Owner)
 		copy(dAtA[i:], m.Owner)
 		i = encodeVarintPosition(dAtA, i, uint64(len(m.Owner)))
 		i--
-		dAtA[i] = 0x12
-	}
-	if m.Id != 0 {
-		i = encodeVarintPosition(dAtA, i, uint64(m.Id))
-		i--
-		dAtA[i] = 0x8
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -146,12 +146,12 @@ func (m *Position) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Id != 0 {
-		n += 1 + sovPosition(uint64(m.Id))
-	}
 	l = len(m.Owner)
 	if l > 0 {
 		n += 1 + l + sovPosition(uint64(l))
+	}
+	if m.Id != 0 {
+		n += 1 + sovPosition(uint64(m.Id))
 	}
 	return n
 }
@@ -192,25 +192,6 @@ func (m *Position) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-			}
-			m.Id = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPosition
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Id |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 2:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Owner", wireType)
 			}
@@ -242,6 +223,25 @@ func (m *Position) Unmarshal(dAtA []byte) error {
 			}
 			m.Owner = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			m.Id = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPosition
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Id |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipPosition(dAtA[iNdEx:])

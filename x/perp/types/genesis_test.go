@@ -23,7 +23,7 @@ func TestGenesisState_Validate(t *testing.T) {
 			desc: "valid genesis state",
 			genState: &types.GenesisState{
 
-				PositionList: []types.Position{
+				Positions: []types.Position{
 					{
 						Id: 0,
 					},
@@ -39,7 +39,7 @@ func TestGenesisState_Validate(t *testing.T) {
 		{
 			desc: "duplicated position",
 			genState: &types.GenesisState{
-				PositionList: []types.Position{
+				Positions: []types.Position{
 					{
 						Id: 0,
 					},
@@ -53,7 +53,7 @@ func TestGenesisState_Validate(t *testing.T) {
 		{
 			desc: "invalid position count",
 			genState: &types.GenesisState{
-				PositionList: []types.Position{
+				Positions: []types.Position{
 					{
 						Id: 1,
 					},

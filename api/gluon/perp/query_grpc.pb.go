@@ -8,7 +8,6 @@ package perp
 
 import (
 	context "context"
-
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Query_Params_FullMethodName      = "/gluon.perp.Query/Params"
-	Query_Position_FullMethodName    = "/gluon.perp.Query/Position"
-	Query_PositionAll_FullMethodName = "/gluon.perp.Query/PositionAll"
+	Query_Params_FullMethodName    = "/gluon.perp.Query/Params"
+	Query_Position_FullMethodName  = "/gluon.perp.Query/Position"
+	Query_Positions_FullMethodName = "/gluon.perp.Query/Positions"
 )
 
 // QueryClient is the client API for Query service.
@@ -33,9 +32,10 @@ const (
 type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
-	// Queries a list of Position items.
+	// Position
 	Position(ctx context.Context, in *QueryGetPositionRequest, opts ...grpc.CallOption) (*QueryGetPositionResponse, error)
-	PositionAll(ctx context.Context, in *QueryAllPositionRequest, opts ...grpc.CallOption) (*QueryAllPositionResponse, error)
+	// Positions
+	Positions(ctx context.Context, in *QueryPositionsRequest, opts ...grpc.CallOption) (*QueryPositionsResponse, error)
 }
 
 type queryClient struct {
@@ -66,10 +66,10 @@ func (c *queryClient) Position(ctx context.Context, in *QueryGetPositionRequest,
 	return out, nil
 }
 
-func (c *queryClient) PositionAll(ctx context.Context, in *QueryAllPositionRequest, opts ...grpc.CallOption) (*QueryAllPositionResponse, error) {
+func (c *queryClient) Positions(ctx context.Context, in *QueryPositionsRequest, opts ...grpc.CallOption) (*QueryPositionsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QueryAllPositionResponse)
-	err := c.cc.Invoke(ctx, Query_PositionAll_FullMethodName, in, out, cOpts...)
+	out := new(QueryPositionsResponse)
+	err := c.cc.Invoke(ctx, Query_Positions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -84,9 +84,10 @@ func (c *queryClient) PositionAll(ctx context.Context, in *QueryAllPositionReque
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
-	// Queries a list of Position items.
+	// Position
 	Position(context.Context, *QueryGetPositionRequest) (*QueryGetPositionResponse, error)
-	PositionAll(context.Context, *QueryAllPositionRequest) (*QueryAllPositionResponse, error)
+	// Positions
+	Positions(context.Context, *QueryPositionsRequest) (*QueryPositionsResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -103,8 +104,8 @@ func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*Q
 func (UnimplementedQueryServer) Position(context.Context, *QueryGetPositionRequest) (*QueryGetPositionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Position not implemented")
 }
-func (UnimplementedQueryServer) PositionAll(context.Context, *QueryAllPositionRequest) (*QueryAllPositionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PositionAll not implemented")
+func (UnimplementedQueryServer) Positions(context.Context, *QueryPositionsRequest) (*QueryPositionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Positions not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 func (UnimplementedQueryServer) testEmbeddedByValue()               {}
@@ -163,20 +164,20 @@ func _Query_Position_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_PositionAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryAllPositionRequest)
+func _Query_Positions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryPositionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).PositionAll(ctx, in)
+		return srv.(QueryServer).Positions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_PositionAll_FullMethodName,
+		FullMethod: Query_Positions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).PositionAll(ctx, req.(*QueryAllPositionRequest))
+		return srv.(QueryServer).Positions(ctx, req.(*QueryPositionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -197,8 +198,8 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Query_Position_Handler,
 		},
 		{
-			MethodName: "PositionAll",
-			Handler:    _Query_PositionAll_Handler,
+			MethodName: "Positions",
+			Handler:    _Query_Positions_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

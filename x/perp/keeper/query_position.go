@@ -13,7 +13,7 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func (k Keeper) PositionAll(ctx context.Context, req *types.QueryAllPositionRequest) (*types.QueryAllPositionResponse, error) {
+func (k Keeper) Positions(ctx context.Context, req *types.QueryPositionsRequest) (*types.QueryPositionsResponse, error) {
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
@@ -21,7 +21,7 @@ func (k Keeper) PositionAll(ctx context.Context, req *types.QueryAllPositionRequ
 	var positions []types.Position
 
 	store := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	positionStore := prefix.NewStore(store, types.KeyPrefix(types.PositionKey))
+	positionStore := prefix.NewStore(store, types.PositionKeyPrefix(req.Owner))
 
 	pageRes, err := query.Paginate(positionStore, req.Pagination, func(key []byte, value []byte) error {
 		var position types.Position
@@ -37,7 +37,7 @@ func (k Keeper) PositionAll(ctx context.Context, req *types.QueryAllPositionRequ
 		return nil, status.Error(codes.Internal, err.Error())
 	}
 
-	return &types.QueryAllPositionResponse{Position: positions, Pagination: pageRes}, nil
+	return &types.QueryPositionsResponse{Positions: positions, Pagination: pageRes}, nil
 }
 
 func (k Keeper) Position(ctx context.Context, req *types.QueryGetPositionRequest) (*types.QueryGetPositionResponse, error) {
@@ -45,7 +45,7 @@ func (k Keeper) Position(ctx context.Context, req *types.QueryGetPositionRequest
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
 
-	position, found := k.GetPosition(ctx, req.Id)
+	position, found := k.GetPosition(ctx, req.Owner, req.Id)
 	if !found {
 		return nil, sdkerrors.ErrKeyNotFound
 	}

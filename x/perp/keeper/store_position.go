@@ -51,7 +51,7 @@ func (k Keeper) AppendPosition(
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PositionKey))
 	appendedValue := k.cdc.MustMarshal(&position)
-	store.Set(GetPositionIDBytes(position.Id), appendedValue)
+	store.Set(GetPositionIDBytes(position.Owner, position.Id), appendedValue)
 
 	// Update position count
 	k.SetPositionCount(ctx, count+1)
@@ -64,14 +64,14 @@ func (k Keeper) SetPosition(ctx context.Context, position types.Position) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PositionKey))
 	b := k.cdc.MustMarshal(&position)
-	store.Set(GetPositionIDBytes(position.Id), b)
+	store.Set(GetPositionIDBytes(position.Owner, position.Id), b)
 }
 
 // GetPosition returns a position from its id
-func (k Keeper) GetPosition(ctx context.Context, id uint64) (val types.Position, found bool) {
+func (k Keeper) GetPosition(ctx context.Context, owner string, id uint64) (val types.Position, found bool) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PositionKey))
-	b := store.Get(GetPositionIDBytes(id))
+	b := store.Get(GetPositionIDBytes(owner, id))
 	if b == nil {
 		return val, false
 	}
@@ -80,10 +80,10 @@ func (k Keeper) GetPosition(ctx context.Context, id uint64) (val types.Position,
 }
 
 // RemovePosition removes a position from the store
-func (k Keeper) RemovePosition(ctx context.Context, id uint64) {
+func (k Keeper) RemovePosition(ctx context.Context, owner string, id uint64) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PositionKey))
-	store.Delete(GetPositionIDBytes(id))
+	store.Delete(GetPositionIDBytes(owner, id))
 }
 
 // GetAllPosition returns all position
@@ -104,8 +104,13 @@ func (k Keeper) GetAllPosition(ctx context.Context) (list []types.Position) {
 }
 
 // GetPositionIDBytes returns the byte representation of the ID
-func GetPositionIDBytes(id uint64) []byte {
+func GetPositionIDBytes(
+	owner string,
+	id uint64,
+) []byte {
 	bz := types.KeyPrefix(types.PositionKey)
+	bz = append(bz, []byte("/")...)
+	bz = append(bz, []byte(owner)...)
 	bz = append(bz, []byte("/")...)
 	bz = binary.BigEndian.AppendUint64(bz, id)
 	return bz

@@ -3,8 +3,8 @@ package gluon.perp;
 
 option go_package = "gluon/x/perp/types";
 
+// Position
 message Position {
-  uint64 id = 1;
-  string owner = 2; 
-  
+  string owner = 1;
+  uint64 id = 2;
 }

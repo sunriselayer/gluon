@@ -10,7 +10,7 @@ const DefaultIndex uint64 = 1
 // DefaultGenesis returns the default genesis state
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{
-		PositionList: []Position{},
+		Positions: []Position{},
 		// this line is used by starport scaffolding # genesis/types/default
 		Params: DefaultParams(),
 	}
@@ -22,7 +22,7 @@ func (gs GenesisState) Validate() error {
 	// Check for duplicated ID in position
 	positionIdMap := make(map[uint64]bool)
 	positionCount := gs.GetPositionCount()
-	for _, elem := range gs.PositionList {
+	for _, elem := range gs.Positions {
 		if _, ok := positionIdMap[elem.Id]; ok {
 			return fmt.Errorf("duplicated id for position")
 		}
