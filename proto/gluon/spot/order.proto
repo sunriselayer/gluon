@@ -1,8 +1,7 @@
 syntax = "proto3";
 package gluon.spot;
 
-import "cosmos/msg/v1/msg.proto";
-import "gluon/order/order.proto";
+import "gluon/order/base_order.proto";
 import "gogoproto/gogo.proto";
 
 option go_package = "gluon/x/spot/types";
@@ -10,7 +9,8 @@ option go_package = "gluon/x/spot/types";
 // SpotOrder
 // Encoded binary of Any of SpotOrder will be sign message.
 message SpotOrder {
-  option (cosmos.msg.v1.signer) = "order";
-
-  gluon.order.Order order = 1 [(gogoproto.nullable) = false];
+  gluon.order.BaseOrder base = 1 [
+    (gogoproto.nullable) = false,
+    (gogoproto.embed) = true
+  ];
 }

@@ -2,7 +2,6 @@
 package spot
 
 import (
-	_ "cosmossdk.io/api/cosmos/msg/v1"
 	fmt "fmt"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
 	_ "github.com/cosmos/gogoproto/gogoproto"
@@ -16,14 +15,14 @@ import (
 )
 
 var (
-	md_SpotOrder       protoreflect.MessageDescriptor
-	fd_SpotOrder_order protoreflect.FieldDescriptor
+	md_SpotOrder      protoreflect.MessageDescriptor
+	fd_SpotOrder_base protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_spot_order_proto_init()
 	md_SpotOrder = File_gluon_spot_order_proto.Messages().ByName("SpotOrder")
-	fd_SpotOrder_order = md_SpotOrder.Fields().ByName("order")
+	fd_SpotOrder_base = md_SpotOrder.Fields().ByName("base")
 }
 
 var _ protoreflect.Message = (*fastReflection_SpotOrder)(nil)
@@ -91,9 +90,9 @@ func (x *fastReflection_SpotOrder) Interface() protoreflect.ProtoMessage {
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_SpotOrder) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Order != nil {
-		value := protoreflect.ValueOfMessage(x.Order.ProtoReflect())
-		if !f(fd_SpotOrder_order, value) {
+	if x.Base != nil {
+		value := protoreflect.ValueOfMessage(x.Base.ProtoReflect())
+		if !f(fd_SpotOrder_base, value) {
 			return
 		}
 	}
@@ -112,8 +111,8 @@ func (x *fastReflection_SpotOrder) Range(f func(protoreflect.FieldDescriptor, pr
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_SpotOrder) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.spot.SpotOrder.order":
-		return x.Order != nil
+	case "gluon.spot.SpotOrder.base":
+		return x.Base != nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.spot.SpotOrder"))
@@ -130,8 +129,8 @@ func (x *fastReflection_SpotOrder) Has(fd protoreflect.FieldDescriptor) bool {
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_SpotOrder) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.spot.SpotOrder.order":
-		x.Order = nil
+	case "gluon.spot.SpotOrder.base":
+		x.Base = nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.spot.SpotOrder"))
@@ -148,8 +147,8 @@ func (x *fastReflection_SpotOrder) Clear(fd protoreflect.FieldDescriptor) {
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_SpotOrder) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.spot.SpotOrder.order":
-		value := x.Order
+	case "gluon.spot.SpotOrder.base":
+		value := x.Base
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
@@ -171,8 +170,8 @@ func (x *fastReflection_SpotOrder) Get(descriptor protoreflect.FieldDescriptor) 
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_SpotOrder) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.spot.SpotOrder.order":
-		x.Order = value.Message().Interface().(*order.Order)
+	case "gluon.spot.SpotOrder.base":
+		x.Base = value.Message().Interface().(*order.BaseOrder)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.spot.SpotOrder"))
@@ -193,11 +192,11 @@ func (x *fastReflection_SpotOrder) Set(fd protoreflect.FieldDescriptor, value pr
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_SpotOrder) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.spot.SpotOrder.order":
-		if x.Order == nil {
-			x.Order = new(order.Order)
+	case "gluon.spot.SpotOrder.base":
+		if x.Base == nil {
+			x.Base = new(order.BaseOrder)
 		}
-		return protoreflect.ValueOfMessage(x.Order.ProtoReflect())
+		return protoreflect.ValueOfMessage(x.Base.ProtoReflect())
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.spot.SpotOrder"))
@@ -211,8 +210,8 @@ func (x *fastReflection_SpotOrder) Mutable(fd protoreflect.FieldDescriptor) prot
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_SpotOrder) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.spot.SpotOrder.order":
-		m := new(order.Order)
+	case "gluon.spot.SpotOrder.base":
+		m := new(order.BaseOrder)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
@@ -283,8 +282,8 @@ func (x *fastReflection_SpotOrder) ProtoMethods() *protoiface.Methods {
 		var n int
 		var l int
 		_ = l
-		if x.Order != nil {
-			l = options.Size(x.Order)
+		if x.Base != nil {
+			l = options.Size(x.Base)
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
 		if x.unknownFields != nil {
@@ -316,8 +315,8 @@ func (x *fastReflection_SpotOrder) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.Order != nil {
-			encoded, err := options.Marshal(x.Order)
+		if x.Base != nil {
+			encoded, err := options.Marshal(x.Base)
 			if err != nil {
 				return protoiface.MarshalOutput{
 					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -381,7 +380,7 @@ func (x *fastReflection_SpotOrder) ProtoMethods() *protoiface.Methods {
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Order", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Base", wireType)
 				}
 				var msglen int
 				for shift := uint(0); ; shift += 7 {
@@ -408,10 +407,10 @@ func (x *fastReflection_SpotOrder) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				if x.Order == nil {
-					x.Order = &order.Order{}
+				if x.Base == nil {
+					x.Base = &order.BaseOrder{}
 				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Order); err != nil {
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Base); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
@@ -470,7 +469,7 @@ type SpotOrder struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Order *order.Order `protobuf:"bytes,1,opt,name=order,proto3" json:"order,omitempty"`
+	Base *order.BaseOrder `protobuf:"bytes,1,opt,name=base,proto3" json:"base,omitempty"`
 }
 
 func (x *SpotOrder) Reset() {
@@ -493,9 +492,9 @@ func (*SpotOrder) Descriptor() ([]byte, []int) {
 	return file_gluon_spot_order_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *SpotOrder) GetOrder() *order.Order {
+func (x *SpotOrder) GetBase() *order.BaseOrder {
 	if x != nil {
-		return x.Order
+		return x.Base
 	}
 	return nil
 }
@@ -505,24 +504,22 @@ var File_gluon_spot_order_proto protoreflect.FileDescriptor
 var file_gluon_spot_order_proto_rawDesc = []byte{
 	0x0a, 0x16, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x73, 0x70, 0x6f, 0x74, 0x2f, 0x6f, 0x72, 0x64,
 	0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0a, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e,
-	0x73, 0x70, 0x6f, 0x74, 0x1a, 0x17, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6d, 0x73, 0x67,
-	0x2f, 0x76, 0x31, 0x2f, 0x6d, 0x73, 0x67, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x17, 0x67,
-	0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2f, 0x6f, 0x72, 0x64, 0x65, 0x72,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x47, 0x0a, 0x09,
-	0x53, 0x70, 0x6f, 0x74, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x2e, 0x0a, 0x05, 0x6f, 0x72, 0x64,
-	0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e,
-	0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x04, 0xc8, 0xde,
-	0x1f, 0x00, 0x52, 0x05, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x3a, 0x0a, 0x82, 0xe7, 0xb0, 0x2a, 0x05,
-	0x6f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x7b, 0x0a, 0x0e, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75,
-	0x6f, 0x6e, 0x2e, 0x73, 0x70, 0x6f, 0x74, 0x42, 0x0a, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x50, 0x72,
-	0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x14, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69,
-	0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x73, 0x70, 0x6f, 0x74, 0xa2, 0x02, 0x03, 0x47, 0x53,
-	0x58, 0xaa, 0x02, 0x0a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x53, 0x70, 0x6f, 0x74, 0xca, 0x02,
-	0x0a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x53, 0x70, 0x6f, 0x74, 0xe2, 0x02, 0x16, 0x47, 0x6c,
-	0x75, 0x6f, 0x6e, 0x5c, 0x53, 0x70, 0x6f, 0x74, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61,
-	0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0b, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x53, 0x70,
-	0x6f, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x70, 0x6f, 0x74, 0x1a, 0x1c, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x6f, 0x72, 0x64, 0x65,
+	0x72, 0x2f, 0x62, 0x61, 0x73, 0x65, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f,
+	0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x41, 0x0a, 0x09, 0x53, 0x70, 0x6f, 0x74,
+	0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x34, 0x0a, 0x04, 0x62, 0x61, 0x73, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x6f, 0x72, 0x64, 0x65,
+	0x72, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x08, 0xc8, 0xde, 0x1f,
+	0x00, 0xd0, 0xde, 0x1f, 0x01, 0x52, 0x04, 0x62, 0x61, 0x73, 0x65, 0x42, 0x7b, 0x0a, 0x0e, 0x63,
+	0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x73, 0x70, 0x6f, 0x74, 0x42, 0x0a, 0x4f,
+	0x72, 0x64, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x14, 0x67, 0x6c, 0x75,
+	0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x73, 0x70, 0x6f,
+	0x74, 0xa2, 0x02, 0x03, 0x47, 0x53, 0x58, 0xaa, 0x02, 0x0a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e,
+	0x53, 0x70, 0x6f, 0x74, 0xca, 0x02, 0x0a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x53, 0x70, 0x6f,
+	0x74, 0xe2, 0x02, 0x16, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x53, 0x70, 0x6f, 0x74, 0x5c, 0x47,
+	0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0b, 0x47, 0x6c, 0x75,
+	0x6f, 0x6e, 0x3a, 0x3a, 0x53, 0x70, 0x6f, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -539,11 +536,11 @@ func file_gluon_spot_order_proto_rawDescGZIP() []byte {
 
 var file_gluon_spot_order_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_gluon_spot_order_proto_goTypes = []interface{}{
-	(*SpotOrder)(nil),   // 0: gluon.spot.SpotOrder
-	(*order.Order)(nil), // 1: gluon.order.Order
+	(*SpotOrder)(nil),       // 0: gluon.spot.SpotOrder
+	(*order.BaseOrder)(nil), // 1: gluon.order.BaseOrder
 }
 var file_gluon_spot_order_proto_depIdxs = []int32{
-	1, // 0: gluon.spot.SpotOrder.order:type_name -> gluon.order.Order
+	1, // 0: gluon.spot.SpotOrder.base:type_name -> gluon.order.BaseOrder
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

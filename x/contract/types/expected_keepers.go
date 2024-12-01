@@ -25,12 +25,6 @@ type BankKeeper interface {
 	SendCoinsFromModuleToAccount(ctx context.Context, senderModule string, recipientAddr sdk.AccAddress, amt sdk.Coins) error
 }
 
-// ParamSubspace defines the expected Subspace interface for parameters.
-type ParamSubspace interface {
-	Get(context.Context, []byte, interface{})
-	Set(context.Context, []byte, interface{})
-}
-
 type CustomAuthKeeper interface {
 	GetPairing(ctx context.Context, address string, id uint64) (val customauthtypes.Pairing, found bool)
 	GetPairingPubKey(ctx context.Context, pairing customauthtypes.Pairing) (cryptotypes.PubKey, error)
