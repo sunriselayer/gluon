@@ -3,10 +3,9 @@ package types
 import (
 	"testing"
 
-	"gluon/testutil/sample"
-
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/stretchr/testify/require"
+	"gluon/testutil/sample"
 )
 
 func TestMsgMatchOrder_ValidateBasic(t *testing.T) {

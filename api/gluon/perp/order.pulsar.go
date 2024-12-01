@@ -16,29 +16,29 @@ import (
 )
 
 var (
-	md_PerpOrder                 protoreflect.MessageDescriptor
-	fd_PerpOrder_base            protoreflect.FieldDescriptor
-	fd_PerpOrder_isolated_margin protoreflect.FieldDescriptor
-	fd_PerpOrder_margin          protoreflect.FieldDescriptor
+	md_PerpPositionCreateOrder                 protoreflect.MessageDescriptor
+	fd_PerpPositionCreateOrder_base            protoreflect.FieldDescriptor
+	fd_PerpPositionCreateOrder_isolated_margin protoreflect.FieldDescriptor
+	fd_PerpPositionCreateOrder_margin          protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_perp_order_proto_init()
-	md_PerpOrder = File_gluon_perp_order_proto.Messages().ByName("PerpOrder")
-	fd_PerpOrder_base = md_PerpOrder.Fields().ByName("base")
-	fd_PerpOrder_isolated_margin = md_PerpOrder.Fields().ByName("isolated_margin")
-	fd_PerpOrder_margin = md_PerpOrder.Fields().ByName("margin")
+	md_PerpPositionCreateOrder = File_gluon_perp_order_proto.Messages().ByName("PerpPositionCreateOrder")
+	fd_PerpPositionCreateOrder_base = md_PerpPositionCreateOrder.Fields().ByName("base")
+	fd_PerpPositionCreateOrder_isolated_margin = md_PerpPositionCreateOrder.Fields().ByName("isolated_margin")
+	fd_PerpPositionCreateOrder_margin = md_PerpPositionCreateOrder.Fields().ByName("margin")
 }
 
-var _ protoreflect.Message = (*fastReflection_PerpOrder)(nil)
+var _ protoreflect.Message = (*fastReflection_PerpPositionCreateOrder)(nil)
 
-type fastReflection_PerpOrder PerpOrder
+type fastReflection_PerpPositionCreateOrder PerpPositionCreateOrder
 
-func (x *PerpOrder) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_PerpOrder)(x)
+func (x *PerpPositionCreateOrder) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_PerpPositionCreateOrder)(x)
 }
 
-func (x *PerpOrder) slowProtoReflect() protoreflect.Message {
+func (x *PerpPositionCreateOrder) slowProtoReflect() protoreflect.Message {
 	mi := &file_gluon_perp_order_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -50,43 +50,43 @@ func (x *PerpOrder) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_PerpOrder_messageType fastReflection_PerpOrder_messageType
-var _ protoreflect.MessageType = fastReflection_PerpOrder_messageType{}
+var _fastReflection_PerpPositionCreateOrder_messageType fastReflection_PerpPositionCreateOrder_messageType
+var _ protoreflect.MessageType = fastReflection_PerpPositionCreateOrder_messageType{}
 
-type fastReflection_PerpOrder_messageType struct{}
+type fastReflection_PerpPositionCreateOrder_messageType struct{}
 
-func (x fastReflection_PerpOrder_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_PerpOrder)(nil)
+func (x fastReflection_PerpPositionCreateOrder_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_PerpPositionCreateOrder)(nil)
 }
-func (x fastReflection_PerpOrder_messageType) New() protoreflect.Message {
-	return new(fastReflection_PerpOrder)
+func (x fastReflection_PerpPositionCreateOrder_messageType) New() protoreflect.Message {
+	return new(fastReflection_PerpPositionCreateOrder)
 }
-func (x fastReflection_PerpOrder_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_PerpOrder
+func (x fastReflection_PerpPositionCreateOrder_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_PerpPositionCreateOrder
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_PerpOrder) Descriptor() protoreflect.MessageDescriptor {
-	return md_PerpOrder
+func (x *fastReflection_PerpPositionCreateOrder) Descriptor() protoreflect.MessageDescriptor {
+	return md_PerpPositionCreateOrder
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_PerpOrder) Type() protoreflect.MessageType {
-	return _fastReflection_PerpOrder_messageType
+func (x *fastReflection_PerpPositionCreateOrder) Type() protoreflect.MessageType {
+	return _fastReflection_PerpPositionCreateOrder_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_PerpOrder) New() protoreflect.Message {
-	return new(fastReflection_PerpOrder)
+func (x *fastReflection_PerpPositionCreateOrder) New() protoreflect.Message {
+	return new(fastReflection_PerpPositionCreateOrder)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_PerpOrder) Interface() protoreflect.ProtoMessage {
-	return (*PerpOrder)(x)
+func (x *fastReflection_PerpPositionCreateOrder) Interface() protoreflect.ProtoMessage {
+	return (*PerpPositionCreateOrder)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -94,22 +94,22 @@ func (x *fastReflection_PerpOrder) Interface() protoreflect.ProtoMessage {
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_PerpOrder) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_PerpPositionCreateOrder) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if x.Base != nil {
 		value := protoreflect.ValueOfMessage(x.Base.ProtoReflect())
-		if !f(fd_PerpOrder_base, value) {
+		if !f(fd_PerpPositionCreateOrder_base, value) {
 			return
 		}
 	}
 	if x.IsolatedMargin != false {
 		value := protoreflect.ValueOfBool(x.IsolatedMargin)
-		if !f(fd_PerpOrder_isolated_margin, value) {
+		if !f(fd_PerpPositionCreateOrder_isolated_margin, value) {
 			return
 		}
 	}
 	if x.Margin != nil {
 		value := protoreflect.ValueOfMessage(x.Margin.ProtoReflect())
-		if !f(fd_PerpOrder_margin, value) {
+		if !f(fd_PerpPositionCreateOrder_margin, value) {
 			return
 		}
 	}
@@ -126,19 +126,19 @@ func (x *fastReflection_PerpOrder) Range(f func(protoreflect.FieldDescriptor, pr
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_PerpOrder) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_PerpPositionCreateOrder) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.perp.PerpOrder.base":
+	case "gluon.perp.PerpPositionCreateOrder.base":
 		return x.Base != nil
-	case "gluon.perp.PerpOrder.isolated_margin":
+	case "gluon.perp.PerpPositionCreateOrder.isolated_margin":
 		return x.IsolatedMargin != false
-	case "gluon.perp.PerpOrder.margin":
+	case "gluon.perp.PerpPositionCreateOrder.margin":
 		return x.Margin != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpPositionCreateOrder"))
 		}
-		panic(fmt.Errorf("message gluon.perp.PerpOrder does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.perp.PerpPositionCreateOrder does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -148,19 +148,19 @@ func (x *fastReflection_PerpOrder) Has(fd protoreflect.FieldDescriptor) bool {
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_PerpOrder) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_PerpPositionCreateOrder) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.perp.PerpOrder.base":
+	case "gluon.perp.PerpPositionCreateOrder.base":
 		x.Base = nil
-	case "gluon.perp.PerpOrder.isolated_margin":
+	case "gluon.perp.PerpPositionCreateOrder.isolated_margin":
 		x.IsolatedMargin = false
-	case "gluon.perp.PerpOrder.margin":
+	case "gluon.perp.PerpPositionCreateOrder.margin":
 		x.Margin = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpPositionCreateOrder"))
 		}
-		panic(fmt.Errorf("message gluon.perp.PerpOrder does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.perp.PerpPositionCreateOrder does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -170,22 +170,22 @@ func (x *fastReflection_PerpOrder) Clear(fd protoreflect.FieldDescriptor) {
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_PerpOrder) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_PerpPositionCreateOrder) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.perp.PerpOrder.base":
+	case "gluon.perp.PerpPositionCreateOrder.base":
 		value := x.Base
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "gluon.perp.PerpOrder.isolated_margin":
+	case "gluon.perp.PerpPositionCreateOrder.isolated_margin":
 		value := x.IsolatedMargin
 		return protoreflect.ValueOfBool(value)
-	case "gluon.perp.PerpOrder.margin":
+	case "gluon.perp.PerpPositionCreateOrder.margin":
 		value := x.Margin
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpPositionCreateOrder"))
 		}
-		panic(fmt.Errorf("message gluon.perp.PerpOrder does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message gluon.perp.PerpPositionCreateOrder does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -199,19 +199,19 @@ func (x *fastReflection_PerpOrder) Get(descriptor protoreflect.FieldDescriptor) 
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_PerpOrder) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_PerpPositionCreateOrder) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.perp.PerpOrder.base":
+	case "gluon.perp.PerpPositionCreateOrder.base":
 		x.Base = value.Message().Interface().(*order.BaseOrder)
-	case "gluon.perp.PerpOrder.isolated_margin":
+	case "gluon.perp.PerpPositionCreateOrder.isolated_margin":
 		x.IsolatedMargin = value.Bool()
-	case "gluon.perp.PerpOrder.margin":
+	case "gluon.perp.PerpPositionCreateOrder.margin":
 		x.Margin = value.Message().Interface().(*v1beta1.Coin)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpPositionCreateOrder"))
 		}
-		panic(fmt.Errorf("message gluon.perp.PerpOrder does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.perp.PerpPositionCreateOrder does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -225,56 +225,56 @@ func (x *fastReflection_PerpOrder) Set(fd protoreflect.FieldDescriptor, value pr
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_PerpOrder) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_PerpPositionCreateOrder) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.perp.PerpOrder.base":
+	case "gluon.perp.PerpPositionCreateOrder.base":
 		if x.Base == nil {
 			x.Base = new(order.BaseOrder)
 		}
 		return protoreflect.ValueOfMessage(x.Base.ProtoReflect())
-	case "gluon.perp.PerpOrder.margin":
+	case "gluon.perp.PerpPositionCreateOrder.margin":
 		if x.Margin == nil {
 			x.Margin = new(v1beta1.Coin)
 		}
 		return protoreflect.ValueOfMessage(x.Margin.ProtoReflect())
-	case "gluon.perp.PerpOrder.isolated_margin":
-		panic(fmt.Errorf("field isolated_margin of message gluon.perp.PerpOrder is not mutable"))
+	case "gluon.perp.PerpPositionCreateOrder.isolated_margin":
+		panic(fmt.Errorf("field isolated_margin of message gluon.perp.PerpPositionCreateOrder is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpPositionCreateOrder"))
 		}
-		panic(fmt.Errorf("message gluon.perp.PerpOrder does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.perp.PerpPositionCreateOrder does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_PerpOrder) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_PerpPositionCreateOrder) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.perp.PerpOrder.base":
+	case "gluon.perp.PerpPositionCreateOrder.base":
 		m := new(order.BaseOrder)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "gluon.perp.PerpOrder.isolated_margin":
+	case "gluon.perp.PerpPositionCreateOrder.isolated_margin":
 		return protoreflect.ValueOfBool(false)
-	case "gluon.perp.PerpOrder.margin":
+	case "gluon.perp.PerpPositionCreateOrder.margin":
 		m := new(v1beta1.Coin)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpOrder"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpPositionCreateOrder"))
 		}
-		panic(fmt.Errorf("message gluon.perp.PerpOrder does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.perp.PerpPositionCreateOrder does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_PerpOrder) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_PerpPositionCreateOrder) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.perp.PerpOrder", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in gluon.perp.PerpPositionCreateOrder", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -282,7 +282,7 @@ func (x *fastReflection_PerpOrder) WhichOneof(d protoreflect.OneofDescriptor) pr
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_PerpOrder) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_PerpPositionCreateOrder) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -293,7 +293,7 @@ func (x *fastReflection_PerpOrder) GetUnknown() protoreflect.RawFields {
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_PerpOrder) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_PerpPositionCreateOrder) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -305,7 +305,7 @@ func (x *fastReflection_PerpOrder) SetUnknown(fields protoreflect.RawFields) {
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_PerpOrder) IsValid() bool {
+func (x *fastReflection_PerpPositionCreateOrder) IsValid() bool {
 	return x != nil
 }
 
@@ -315,9 +315,9 @@ func (x *fastReflection_PerpOrder) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_PerpOrder) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_PerpPositionCreateOrder) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*PerpOrder)
+		x := input.Message.Interface().(*PerpPositionCreateOrder)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -350,7 +350,7 @@ func (x *fastReflection_PerpOrder) ProtoMethods() *protoiface.Methods {
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*PerpOrder)
+		x := input.Message.Interface().(*PerpPositionCreateOrder)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -418,7 +418,7 @@ func (x *fastReflection_PerpOrder) ProtoMethods() *protoiface.Methods {
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*PerpOrder)
+		x := input.Message.Interface().(*PerpPositionCreateOrder)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -450,10 +450,10 @@ func (x *fastReflection_PerpOrder) ProtoMethods() *protoiface.Methods {
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: PerpOrder: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: PerpPositionCreateOrder: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: PerpOrder: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: PerpPositionCreateOrder: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -583,6 +583,441 @@ func (x *fastReflection_PerpOrder) ProtoMethods() *protoiface.Methods {
 	}
 }
 
+var (
+	md_PerpPositionCancelOrder      protoreflect.MessageDescriptor
+	fd_PerpPositionCancelOrder_base protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_gluon_perp_order_proto_init()
+	md_PerpPositionCancelOrder = File_gluon_perp_order_proto.Messages().ByName("PerpPositionCancelOrder")
+	fd_PerpPositionCancelOrder_base = md_PerpPositionCancelOrder.Fields().ByName("base")
+}
+
+var _ protoreflect.Message = (*fastReflection_PerpPositionCancelOrder)(nil)
+
+type fastReflection_PerpPositionCancelOrder PerpPositionCancelOrder
+
+func (x *PerpPositionCancelOrder) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_PerpPositionCancelOrder)(x)
+}
+
+func (x *PerpPositionCancelOrder) slowProtoReflect() protoreflect.Message {
+	mi := &file_gluon_perp_order_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_PerpPositionCancelOrder_messageType fastReflection_PerpPositionCancelOrder_messageType
+var _ protoreflect.MessageType = fastReflection_PerpPositionCancelOrder_messageType{}
+
+type fastReflection_PerpPositionCancelOrder_messageType struct{}
+
+func (x fastReflection_PerpPositionCancelOrder_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_PerpPositionCancelOrder)(nil)
+}
+func (x fastReflection_PerpPositionCancelOrder_messageType) New() protoreflect.Message {
+	return new(fastReflection_PerpPositionCancelOrder)
+}
+func (x fastReflection_PerpPositionCancelOrder_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_PerpPositionCancelOrder
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_PerpPositionCancelOrder) Descriptor() protoreflect.MessageDescriptor {
+	return md_PerpPositionCancelOrder
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_PerpPositionCancelOrder) Type() protoreflect.MessageType {
+	return _fastReflection_PerpPositionCancelOrder_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_PerpPositionCancelOrder) New() protoreflect.Message {
+	return new(fastReflection_PerpPositionCancelOrder)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_PerpPositionCancelOrder) Interface() protoreflect.ProtoMessage {
+	return (*PerpPositionCancelOrder)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_PerpPositionCancelOrder) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Base != nil {
+		value := protoreflect.ValueOfMessage(x.Base.ProtoReflect())
+		if !f(fd_PerpPositionCancelOrder_base, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_PerpPositionCancelOrder) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "gluon.perp.PerpPositionCancelOrder.base":
+		return x.Base != nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpPositionCancelOrder"))
+		}
+		panic(fmt.Errorf("message gluon.perp.PerpPositionCancelOrder does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_PerpPositionCancelOrder) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "gluon.perp.PerpPositionCancelOrder.base":
+		x.Base = nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpPositionCancelOrder"))
+		}
+		panic(fmt.Errorf("message gluon.perp.PerpPositionCancelOrder does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_PerpPositionCancelOrder) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "gluon.perp.PerpPositionCancelOrder.base":
+		value := x.Base
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpPositionCancelOrder"))
+		}
+		panic(fmt.Errorf("message gluon.perp.PerpPositionCancelOrder does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_PerpPositionCancelOrder) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "gluon.perp.PerpPositionCancelOrder.base":
+		x.Base = value.Message().Interface().(*order.BaseOrder)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpPositionCancelOrder"))
+		}
+		panic(fmt.Errorf("message gluon.perp.PerpPositionCancelOrder does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_PerpPositionCancelOrder) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "gluon.perp.PerpPositionCancelOrder.base":
+		if x.Base == nil {
+			x.Base = new(order.BaseOrder)
+		}
+		return protoreflect.ValueOfMessage(x.Base.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpPositionCancelOrder"))
+		}
+		panic(fmt.Errorf("message gluon.perp.PerpPositionCancelOrder does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_PerpPositionCancelOrder) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "gluon.perp.PerpPositionCancelOrder.base":
+		m := new(order.BaseOrder)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.PerpPositionCancelOrder"))
+		}
+		panic(fmt.Errorf("message gluon.perp.PerpPositionCancelOrder does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_PerpPositionCancelOrder) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in gluon.perp.PerpPositionCancelOrder", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_PerpPositionCancelOrder) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_PerpPositionCancelOrder) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_PerpPositionCancelOrder) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_PerpPositionCancelOrder) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*PerpPositionCancelOrder)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.Base != nil {
+			l = options.Size(x.Base)
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*PerpPositionCancelOrder)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.Base != nil {
+			encoded, err := options.Marshal(x.Base)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*PerpPositionCancelOrder)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: PerpPositionCancelOrder: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: PerpPositionCancelOrder: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Base", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.Base == nil {
+					x.Base = &order.BaseOrder{}
+				}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Base); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
 // Code generated by protoc-gen-go. DO NOT EDIT.
 // versions:
 // 	protoc-gen-go v1.27.0
@@ -596,9 +1031,8 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// PerpOrder
-// Encoded binary of Any of PerpOrder will be sign message.
-type PerpOrder struct {
+// PerpPositionCreateOrder
+type PerpPositionCreateOrder struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -608,8 +1042,8 @@ type PerpOrder struct {
 	Margin         *v1beta1.Coin    `protobuf:"bytes,3,opt,name=margin,proto3" json:"margin,omitempty"`
 }
 
-func (x *PerpOrder) Reset() {
-	*x = PerpOrder{}
+func (x *PerpPositionCreateOrder) Reset() {
+	*x = PerpPositionCreateOrder{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_gluon_perp_order_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -617,34 +1051,70 @@ func (x *PerpOrder) Reset() {
 	}
 }
 
-func (x *PerpOrder) String() string {
+func (x *PerpPositionCreateOrder) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PerpOrder) ProtoMessage() {}
+func (*PerpPositionCreateOrder) ProtoMessage() {}
 
-// Deprecated: Use PerpOrder.ProtoReflect.Descriptor instead.
-func (*PerpOrder) Descriptor() ([]byte, []int) {
+// Deprecated: Use PerpPositionCreateOrder.ProtoReflect.Descriptor instead.
+func (*PerpPositionCreateOrder) Descriptor() ([]byte, []int) {
 	return file_gluon_perp_order_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *PerpOrder) GetBase() *order.BaseOrder {
+func (x *PerpPositionCreateOrder) GetBase() *order.BaseOrder {
 	if x != nil {
 		return x.Base
 	}
 	return nil
 }
 
-func (x *PerpOrder) GetIsolatedMargin() bool {
+func (x *PerpPositionCreateOrder) GetIsolatedMargin() bool {
 	if x != nil {
 		return x.IsolatedMargin
 	}
 	return false
 }
 
-func (x *PerpOrder) GetMargin() *v1beta1.Coin {
+func (x *PerpPositionCreateOrder) GetMargin() *v1beta1.Coin {
 	if x != nil {
 		return x.Margin
+	}
+	return nil
+}
+
+// PerpPositionCancelOrder
+type PerpPositionCancelOrder struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Base *order.BaseOrder `protobuf:"bytes,1,opt,name=base,proto3" json:"base,omitempty"`
+}
+
+func (x *PerpPositionCancelOrder) Reset() {
+	*x = PerpPositionCancelOrder{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_gluon_perp_order_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PerpPositionCancelOrder) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PerpPositionCancelOrder) ProtoMessage() {}
+
+// Deprecated: Use PerpPositionCancelOrder.ProtoReflect.Descriptor instead.
+func (*PerpPositionCancelOrder) Descriptor() ([]byte, []int) {
+	return file_gluon_perp_order_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *PerpPositionCancelOrder) GetBase() *order.BaseOrder {
+	if x != nil {
+		return x.Base
 	}
 	return nil
 }
@@ -659,26 +1129,32 @@ var file_gluon_perp_order_proto_rawDesc = []byte{
 	0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1c, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x6f, 0x72, 0x64, 0x65,
 	0x72, 0x2f, 0x62, 0x61, 0x73, 0x65, 0x5f, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f,
-	0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xa3, 0x01, 0x0a, 0x09, 0x50, 0x65, 0x72,
-	0x70, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x34, 0x0a, 0x04, 0x62, 0x61, 0x73, 0x65, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x6f, 0x72, 0x64,
-	0x65, 0x72, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x08, 0xc8, 0xde,
-	0x1f, 0x00, 0xd0, 0xde, 0x1f, 0x01, 0x52, 0x04, 0x62, 0x61, 0x73, 0x65, 0x12, 0x27, 0x0a, 0x0f,
-	0x69, 0x73, 0x6f, 0x6c, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x6d, 0x61, 0x72, 0x67, 0x69, 0x6e, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0e, 0x69, 0x73, 0x6f, 0x6c, 0x61, 0x74, 0x65, 0x64, 0x4d,
-	0x61, 0x72, 0x67, 0x69, 0x6e, 0x12, 0x37, 0x0a, 0x06, 0x6d, 0x61, 0x72, 0x67, 0x69, 0x6e, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62,
-	0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e,
-	0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x06, 0x6d, 0x61, 0x72, 0x67, 0x69, 0x6e, 0x42, 0x7b,
-	0x0a, 0x0e, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70,
-	0x42, 0x0a, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x14,
-	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f,
-	0x70, 0x65, 0x72, 0x70, 0xa2, 0x02, 0x03, 0x47, 0x50, 0x58, 0xaa, 0x02, 0x0a, 0x47, 0x6c, 0x75,
-	0x6f, 0x6e, 0x2e, 0x50, 0x65, 0x72, 0x70, 0xca, 0x02, 0x0a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c,
-	0x50, 0x65, 0x72, 0x70, 0xe2, 0x02, 0x16, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x50, 0x65, 0x72,
-	0x70, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0b,
-	0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x50, 0x65, 0x72, 0x70, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xb1, 0x01, 0x0a, 0x17, 0x50, 0x65, 0x72,
+	0x70, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4f,
+	0x72, 0x64, 0x65, 0x72, 0x12, 0x34, 0x0a, 0x04, 0x62, 0x61, 0x73, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x6f, 0x72, 0x64, 0x65, 0x72,
+	0x2e, 0x42, 0x61, 0x73, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x08, 0xc8, 0xde, 0x1f, 0x00,
+	0xd0, 0xde, 0x1f, 0x01, 0x52, 0x04, 0x62, 0x61, 0x73, 0x65, 0x12, 0x27, 0x0a, 0x0f, 0x69, 0x73,
+	0x6f, 0x6c, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x6d, 0x61, 0x72, 0x67, 0x69, 0x6e, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x08, 0x52, 0x0e, 0x69, 0x73, 0x6f, 0x6c, 0x61, 0x74, 0x65, 0x64, 0x4d, 0x61, 0x72,
+	0x67, 0x69, 0x6e, 0x12, 0x37, 0x0a, 0x06, 0x6d, 0x61, 0x72, 0x67, 0x69, 0x6e, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73,
+	0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x04,
+	0xc8, 0xde, 0x1f, 0x00, 0x52, 0x06, 0x6d, 0x61, 0x72, 0x67, 0x69, 0x6e, 0x22, 0x4f, 0x0a, 0x17,
+	0x50, 0x65, 0x72, 0x70, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x61, 0x6e, 0x63,
+	0x65, 0x6c, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x34, 0x0a, 0x04, 0x62, 0x61, 0x73, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x6f, 0x72,
+	0x64, 0x65, 0x72, 0x2e, 0x42, 0x61, 0x73, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x08, 0xc8,
+	0xde, 0x1f, 0x00, 0xd0, 0xde, 0x1f, 0x01, 0x52, 0x04, 0x62, 0x61, 0x73, 0x65, 0x42, 0x7b, 0x0a,
+	0x0e, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x42,
+	0x0a, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x14, 0x67,
+	0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x70,
+	0x65, 0x72, 0x70, 0xa2, 0x02, 0x03, 0x47, 0x50, 0x58, 0xaa, 0x02, 0x0a, 0x47, 0x6c, 0x75, 0x6f,
+	0x6e, 0x2e, 0x50, 0x65, 0x72, 0x70, 0xca, 0x02, 0x0a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x50,
+	0x65, 0x72, 0x70, 0xe2, 0x02, 0x16, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x50, 0x65, 0x72, 0x70,
+	0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0b, 0x47,
+	0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x50, 0x65, 0x72, 0x70, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -693,20 +1169,22 @@ func file_gluon_perp_order_proto_rawDescGZIP() []byte {
 	return file_gluon_perp_order_proto_rawDescData
 }
 
-var file_gluon_perp_order_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_gluon_perp_order_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_gluon_perp_order_proto_goTypes = []interface{}{
-	(*PerpOrder)(nil),       // 0: gluon.perp.PerpOrder
-	(*order.BaseOrder)(nil), // 1: gluon.order.BaseOrder
-	(*v1beta1.Coin)(nil),    // 2: cosmos.base.v1beta1.Coin
+	(*PerpPositionCreateOrder)(nil), // 0: gluon.perp.PerpPositionCreateOrder
+	(*PerpPositionCancelOrder)(nil), // 1: gluon.perp.PerpPositionCancelOrder
+	(*order.BaseOrder)(nil),         // 2: gluon.order.BaseOrder
+	(*v1beta1.Coin)(nil),            // 3: cosmos.base.v1beta1.Coin
 }
 var file_gluon_perp_order_proto_depIdxs = []int32{
-	1, // 0: gluon.perp.PerpOrder.base:type_name -> gluon.order.BaseOrder
-	2, // 1: gluon.perp.PerpOrder.margin:type_name -> cosmos.base.v1beta1.Coin
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	2, // 0: gluon.perp.PerpPositionCreateOrder.base:type_name -> gluon.order.BaseOrder
+	3, // 1: gluon.perp.PerpPositionCreateOrder.margin:type_name -> cosmos.base.v1beta1.Coin
+	2, // 2: gluon.perp.PerpPositionCancelOrder.base:type_name -> gluon.order.BaseOrder
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_gluon_perp_order_proto_init() }
@@ -716,7 +1194,19 @@ func file_gluon_perp_order_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_gluon_perp_order_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PerpOrder); i {
+			switch v := v.(*PerpPositionCreateOrder); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_gluon_perp_order_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PerpPositionCancelOrder); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -734,7 +1224,7 @@ func file_gluon_perp_order_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_gluon_perp_order_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

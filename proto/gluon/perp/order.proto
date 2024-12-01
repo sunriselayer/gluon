@@ -7,13 +7,20 @@ import "gogoproto/gogo.proto";
 
 option go_package = "gluon/x/perp/types";
 
-// PerpOrder
-// Encoded binary of Any of PerpOrder will be sign message.
-message PerpOrder {
+// PerpPositionCreateOrder
+message PerpPositionCreateOrder {
   gluon.order.BaseOrder base = 1 [
     (gogoproto.nullable) = false,
     (gogoproto.embed) = true
   ];
   bool isolated_margin = 2;
   cosmos.base.v1beta1.Coin margin = 3 [(gogoproto.nullable) = false];
+}
+
+// PerpPositionCancelOrder
+message PerpPositionCancelOrder {
+  gluon.order.BaseOrder base = 1 [
+    (gogoproto.nullable) = false,
+    (gogoproto.embed) = true
+  ];
 }

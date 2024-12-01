@@ -10,8 +10,14 @@ import (
 )
 
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
-	registry.RegisterImplementations((*ordertypes.OrderBody)(nil), &PerpOrder{})
+	registry.RegisterImplementations((*ordertypes.OrderBody)(nil),
+		&PerpPositionCreateOrder{},
+		&PerpPositionCancelOrder{},
+	)
 
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgMatchOrder{},
+	)
 	// this line is used by starport scaffolding # 3
 
 	registry.RegisterImplementations((*sdk.Msg)(nil),

@@ -29,9 +29,13 @@ func NewBaseOrder(
 	}
 }
 
-func (order BaseOrder) ValidateBasic() error {
+func (order BaseOrder) Validate() error {
 	var err error
 
+	_, err = sdk.AccAddressFromBech32(order.Address)
+	if err != nil {
+		return err
+	}
 	err = sdk.ValidateDenom(order.DenomBase)
 	if err != nil {
 		return err

@@ -1,11 +1,11 @@
 syntax = "proto3";
+
 package gluon.perp;
 
-import "amino/amino.proto";
 import "cosmos/msg/v1/msg.proto";
 import "cosmos_proto/cosmos.proto";
-import "gogoproto/gogo.proto";
 import "gluon/perp/params.proto";
+import "gogoproto/gogo.proto";
 
 option go_package = "gluon/x/perp/types";
 
@@ -16,25 +16,43 @@ service Msg {
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
   rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
+  // MatchOrder
+  rpc MatchOrder(MsgMatchOrder) returns (MsgMatchOrderResponse);
 }
 
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
   option (cosmos.msg.v1.signer) = "authority";
-  option (amino.name) = "gluon/x/perp/MsgUpdateParams";
 
   // authority is the address that controls the module (defaults to x/gov unless overwritten).
   string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
   // params defines the module parameters to update.
-  //
+
   // NOTE: All parameters must be supplied.
-  Params params = 2 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+  Params params = 2 [(gogoproto.nullable) = false];
 }
 
 // MsgUpdateParamsResponse defines the response structure for executing a
 // MsgUpdateParams message.
 message MsgUpdateParamsResponse {}
+
+// MsgMatchOrder
+message MsgMatchOrder {
+  option (cosmos.msg.v1.signer) = "buyer";
+  option (cosmos.msg.v1.signer) = "seller";
+
+  string buyer = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string seller = 2 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string order_hash_buy = 3;
+  string order_hash_sell = 4;
+  string amount = 5 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
+  string price = 6;
+}
+
+// MsgMatchOrderResponse
+message MsgMatchOrderResponse {}

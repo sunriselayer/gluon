@@ -13,7 +13,7 @@ import (
 var _ ordertypes.OrderBody = &SpotOrder{}
 
 func (order SpotOrder) Validate() error {
-	_, err := sdk.AccAddressFromBech32(order.Address)
+	err := order.BaseOrder.Validate()
 	if err != nil {
 		return err
 	}
