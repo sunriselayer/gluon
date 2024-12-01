@@ -77,10 +77,14 @@ import (
 
 	contractmodulekeeper "gluon/x/contract/keeper"
 	contractmoduletypes "gluon/x/contract/types"
+
 	customauthmodulekeeper "gluon/x/customauth/keeper"
 	customauthmoduletypes "gluon/x/customauth/types"
 
+	ordermodulekeeper "gluon/x/order/keeper"
+
 	perpmodulekeeper "gluon/x/perp/keeper"
+
 	spotmodulekeeper "gluon/x/spot/keeper"
 
 	// this line is used by starport scaffolding # stargate/app/moduleImport
@@ -152,6 +156,7 @@ type App struct {
 
 	ContractKeeper   contractmodulekeeper.Keeper
 	CustomauthKeeper customauthmodulekeeper.Keeper
+	OrderKeeper      ordermodulekeeper.Keeper
 	SpotKeeper       spotmodulekeeper.Keeper
 	PerpKeeper       perpmodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
@@ -259,6 +264,7 @@ func New(
 		&app.CircuitBreakerKeeper,
 		&app.ContractKeeper,
 		&app.CustomauthKeeper,
+		&app.OrderKeeper,
 		&app.SpotKeeper,
 		&app.PerpKeeper,
 		// this line is used by starport scaffolding # stargate/app/keeperDefinition

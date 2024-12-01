@@ -11,10 +11,15 @@ import (
 	_ "gluon/x/customauth/module" // import for side-effects
 	customauthmoduletypes "gluon/x/customauth/types"
 
+	ordermodulev1 "gluon/api/gluon/order/module"
+	_ "gluon/x/order/module" // import for side-effects
+	ordermoduletypes "gluon/x/order/types"
+
 	perpmodulev1 "gluon/api/gluon/perp/module"
-	spotmodulev1 "gluon/api/gluon/spot/module"
 	_ "gluon/x/perp/module" // import for side-effects
 	perpmoduletypes "gluon/x/perp/types"
+
+	spotmodulev1 "gluon/api/gluon/spot/module"
 	_ "gluon/x/spot/module" // import for side-effects
 	spotmoduletypes "gluon/x/spot/types"
 
@@ -108,6 +113,7 @@ var (
 		customauthmoduletypes.ModuleName,
 		spotmoduletypes.ModuleName,
 		perpmoduletypes.ModuleName,
+		ordermoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -134,6 +140,7 @@ var (
 		// chain modules
 		contractmoduletypes.ModuleName,
 		customauthmoduletypes.ModuleName,
+		ordermoduletypes.ModuleName,
 		spotmoduletypes.ModuleName,
 		perpmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
@@ -156,6 +163,7 @@ var (
 		// chain modules
 		contractmoduletypes.ModuleName,
 		customauthmoduletypes.ModuleName,
+		ordermoduletypes.ModuleName,
 		spotmoduletypes.ModuleName,
 		perpmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
@@ -321,6 +329,10 @@ var (
 			{
 				Name:   customauthmoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&customauthmodulev1.Module{}),
+			},
+			{
+				Name:   ordermoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&ordermodulev1.Module{}),
 			},
 			{
 				Name:   spotmoduletypes.ModuleName,

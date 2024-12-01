@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package gluon.order;
+
+import "amino/amino.proto";
+import "gluon/order/order.proto";
+import "gluon/order/params.proto";
+import "gluon/order/sorted_order.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "gluon/x/order/types";
+
+// GenesisState defines the order module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+  repeated Order orders = 2 [(gogoproto.nullable) = false];
+  repeated SortedOrder sorted_orders = 3 [(gogoproto.nullable) = false];
+}

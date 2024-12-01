@@ -1,0 +1,12 @@
+syntax = "proto3";
+package gluon.order;
+
+option go_package = "gluon/x/order/types";
+
+// SortedOrder
+// Sorted by [seconds]/[nanos]/[order_hash]
+message SortedOrder {
+  uint64 seconds = 1;
+  uint32 nanos = 2;
+  string order_hash = 3;
+}
