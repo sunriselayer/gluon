@@ -6,6 +6,7 @@ import "amino/amino.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "gluon/perp/params.proto";
 import "gluon/perp/position.proto";
+import "gluon/perp/position_price_quantity.proto";
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 
@@ -22,9 +23,20 @@ service Query {
   rpc Position(QueryPositionRequest) returns (QueryPositionResponse) {
     option (google.api.http).get = "/gluon/perp/positions/{owner}/{order_hash}";
   }
+
   // Positions
   rpc Positions(QueryPositionsRequest) returns (QueryPositionsResponse) {
     option (google.api.http).get = "/gluon/perp/positions/{owner}";
+  }
+
+  // PositionPriceQuantity
+  rpc PositionPriceQuantity(QueryPositionPriceQuantityRequest) returns (QueryPositionPriceQuantityResponse) {
+    option (google.api.http).get = "/gluon/perp/position_price_quantities/{owner}/{position_order_hash}/{price}";
+  }
+
+  // PositionPriceQuantities
+  rpc PositionPriceQuantities(QueryPositionPriceQuantitiesRequest) returns (QueryPositionPriceQuantitiesResponse) {
+    option (google.api.http).get = "/gluon/perp/position_price_quantities/{owner}/{position_order_hash}";
   }
 }
 
@@ -60,5 +72,30 @@ message QueryPositionsRequest {
 // QueryPositionsResponse
 message QueryPositionsResponse {
   repeated Position positions = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryPositionPriceQuantityRequest
+message QueryPositionPriceQuantityRequest {
+  string owner = 1;
+  string position_order_hash = 2;
+  string price = 3;
+}
+
+// QueryPositionPriceQuantityResponse
+message QueryPositionPriceQuantityResponse {
+  PositionPriceQuantity position_price_quantity = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryPositionPriceQuantitiesRequest
+message QueryPositionPriceQuantitiesRequest {
+  string owner = 1;
+  string position_order_hash = 2;
+  cosmos.base.query.v1beta1.PageRequest pagination = 3;
+}
+
+// QueryPositionPriceQuantitiesResponse
+message QueryPositionPriceQuantitiesResponse {
+  repeated PositionPriceQuantity position_price_quantity = 1 [(gogoproto.nullable) = false];
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }

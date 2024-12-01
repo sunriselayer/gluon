@@ -4,6 +4,7 @@ package gluon.perp;
 
 import "gluon/perp/params.proto";
 import "gluon/perp/position.proto";
+import "gluon/perp/position_price_quantity.proto";
 import "gogoproto/gogo.proto";
 
 option go_package = "gluon/x/perp/types";
@@ -13,4 +14,5 @@ message GenesisState {
   // params defines all the parameters of the module.
   Params params = 1 [(gogoproto.nullable) = false];
   repeated Position positions = 2 [(gogoproto.nullable) = false];
+  repeated PositionPriceQuantity position_price_quantities = 3 [(gogoproto.nullable) = false];
 }

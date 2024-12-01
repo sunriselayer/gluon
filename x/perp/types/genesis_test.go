@@ -33,6 +33,18 @@ func TestGenesisState_Validate(t *testing.T) {
 						OrderHash: "1",
 					},
 				},
+				PositionPriceQuantities: []types.PositionPriceQuantity{
+					{
+						Owner:             "0",
+						PositionOrderHash: "0",
+						Price:             "0",
+					},
+					{
+						Owner:             "1",
+						PositionOrderHash: "1",
+						Price:             "1",
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -48,6 +60,24 @@ func TestGenesisState_Validate(t *testing.T) {
 					{
 						Owner:     "0",
 						OrderHash: "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated positionPriceQuantity",
+			genState: &types.GenesisState{
+				PositionPriceQuantities: []types.PositionPriceQuantity{
+					{
+						Owner:             "0",
+						PositionOrderHash: "0",
+						Price:             "0",
+					},
+					{
+						Owner:             "0",
+						PositionOrderHash: "0",
+						Price:             "0",
 					},
 				},
 			},

@@ -25,6 +25,18 @@ func TestGenesis(t *testing.T) {
 				OrderHash: "1",
 			},
 		},
+		PositionPriceQuantities: []types.PositionPriceQuantity{
+			{
+				Owner:             "0",
+				PositionOrderHash: "0",
+				Price:             "0",
+			},
+			{
+				Owner:             "1",
+				PositionOrderHash: "1",
+				Price:             "1",
+			},
+		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -37,5 +49,6 @@ func TestGenesis(t *testing.T) {
 	nullify.Fill(got)
 
 	require.ElementsMatch(t, genesisState.Positions, got.Positions)
+	require.ElementsMatch(t, genesisState.PositionPriceQuantities, got.PositionPriceQuantities)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

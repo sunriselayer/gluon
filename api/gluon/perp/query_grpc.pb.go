@@ -19,9 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Query_Params_FullMethodName    = "/gluon.perp.Query/Params"
-	Query_Position_FullMethodName  = "/gluon.perp.Query/Position"
-	Query_Positions_FullMethodName = "/gluon.perp.Query/Positions"
+	Query_Params_FullMethodName                  = "/gluon.perp.Query/Params"
+	Query_Position_FullMethodName                = "/gluon.perp.Query/Position"
+	Query_Positions_FullMethodName               = "/gluon.perp.Query/Positions"
+	Query_PositionPriceQuantity_FullMethodName   = "/gluon.perp.Query/PositionPriceQuantity"
+	Query_PositionPriceQuantities_FullMethodName = "/gluon.perp.Query/PositionPriceQuantities"
 )
 
 // QueryClient is the client API for Query service.
@@ -36,6 +38,10 @@ type QueryClient interface {
 	Position(ctx context.Context, in *QueryPositionRequest, opts ...grpc.CallOption) (*QueryPositionResponse, error)
 	// Positions
 	Positions(ctx context.Context, in *QueryPositionsRequest, opts ...grpc.CallOption) (*QueryPositionsResponse, error)
+	// PositionPriceQuantity
+	PositionPriceQuantity(ctx context.Context, in *QueryPositionPriceQuantityRequest, opts ...grpc.CallOption) (*QueryPositionPriceQuantityResponse, error)
+	// PositionPriceQuantities
+	PositionPriceQuantities(ctx context.Context, in *QueryPositionPriceQuantitiesRequest, opts ...grpc.CallOption) (*QueryPositionPriceQuantitiesResponse, error)
 }
 
 type queryClient struct {
@@ -76,6 +82,26 @@ func (c *queryClient) Positions(ctx context.Context, in *QueryPositionsRequest, 
 	return out, nil
 }
 
+func (c *queryClient) PositionPriceQuantity(ctx context.Context, in *QueryPositionPriceQuantityRequest, opts ...grpc.CallOption) (*QueryPositionPriceQuantityResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(QueryPositionPriceQuantityResponse)
+	err := c.cc.Invoke(ctx, Query_PositionPriceQuantity_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) PositionPriceQuantities(ctx context.Context, in *QueryPositionPriceQuantitiesRequest, opts ...grpc.CallOption) (*QueryPositionPriceQuantitiesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(QueryPositionPriceQuantitiesResponse)
+	err := c.cc.Invoke(ctx, Query_PositionPriceQuantities_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility.
@@ -88,6 +114,10 @@ type QueryServer interface {
 	Position(context.Context, *QueryPositionRequest) (*QueryPositionResponse, error)
 	// Positions
 	Positions(context.Context, *QueryPositionsRequest) (*QueryPositionsResponse, error)
+	// PositionPriceQuantity
+	PositionPriceQuantity(context.Context, *QueryPositionPriceQuantityRequest) (*QueryPositionPriceQuantityResponse, error)
+	// PositionPriceQuantities
+	PositionPriceQuantities(context.Context, *QueryPositionPriceQuantitiesRequest) (*QueryPositionPriceQuantitiesResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -106,6 +136,12 @@ func (UnimplementedQueryServer) Position(context.Context, *QueryPositionRequest)
 }
 func (UnimplementedQueryServer) Positions(context.Context, *QueryPositionsRequest) (*QueryPositionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Positions not implemented")
+}
+func (UnimplementedQueryServer) PositionPriceQuantity(context.Context, *QueryPositionPriceQuantityRequest) (*QueryPositionPriceQuantityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PositionPriceQuantity not implemented")
+}
+func (UnimplementedQueryServer) PositionPriceQuantities(context.Context, *QueryPositionPriceQuantitiesRequest) (*QueryPositionPriceQuantitiesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PositionPriceQuantities not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 func (UnimplementedQueryServer) testEmbeddedByValue()               {}
@@ -182,6 +218,42 @@ func _Query_Positions_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_PositionPriceQuantity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryPositionPriceQuantityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).PositionPriceQuantity(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_PositionPriceQuantity_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).PositionPriceQuantity(ctx, req.(*QueryPositionPriceQuantityRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_PositionPriceQuantities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryPositionPriceQuantitiesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).PositionPriceQuantities(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_PositionPriceQuantities_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).PositionPriceQuantities(ctx, req.(*QueryPositionPriceQuantitiesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -200,6 +272,14 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Positions",
 			Handler:    _Query_Positions_Handler,
+		},
+		{
+			MethodName: "PositionPriceQuantity",
+			Handler:    _Query_PositionPriceQuantity_Handler,
+		},
+		{
+			MethodName: "PositionPriceQuantities",
+			Handler:    _Query_PositionPriceQuantities_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

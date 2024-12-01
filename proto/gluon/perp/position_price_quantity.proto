@@ -1,0 +1,19 @@
+syntax = "proto3";
+package gluon.perp;
+
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "gluon/x/perp/types";
+
+// PositionPriceQuantity
+message PositionPriceQuantity {
+  string owner = 1;
+  string position_order_hash = 2;
+  string price = 3;
+  string quantity = 4 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
+}

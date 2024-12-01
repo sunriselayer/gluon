@@ -29,6 +29,17 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Shows a position by id",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}, {ProtoField: "order_hash"}},
 				},
+				{
+					RpcMethod: "PositionPriceQuantityAll",
+					Use:       "list-position-price-quantity",
+					Short:     "List all position-price-quantity",
+				},
+				{
+					RpcMethod:      "PositionPriceQuantity",
+					Use:            "show-position-price-quantity [id]",
+					Short:          "Shows a position-price-quantity",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}, {ProtoField: "positionOrderHash"}, {ProtoField: "price"}},
+				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},
