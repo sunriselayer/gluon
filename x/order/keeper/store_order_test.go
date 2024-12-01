@@ -5,11 +5,12 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/stretchr/testify/require"
 	keepertest "gluon/testutil/keeper"
 	"gluon/testutil/nullify"
 	"gluon/x/order/keeper"
 	"gluon/x/order/types"
+
+	"github.com/stretchr/testify/require"
 )
 
 // Prevent strconv unused error

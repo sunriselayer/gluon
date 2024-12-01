@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-    keepertest "gluon/testutil/keeper"
-    "gluon/x/order/types"
+	keepertest "gluon/testutil/keeper"
+	"gluon/x/order/types"
 )
 
 func TestGetParams(t *testing.T) {

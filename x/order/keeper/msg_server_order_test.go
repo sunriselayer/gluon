@@ -7,10 +7,11 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/stretchr/testify/require"
 
-	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	keepertest "gluon/testutil/keeper"
 	"gluon/x/order/keeper"
 	"gluon/x/order/types"
+
+	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 )
 
 // Prevent strconv unused error

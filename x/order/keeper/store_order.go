@@ -3,10 +3,11 @@ package keeper
 import (
 	"context"
 
+	"gluon/x/order/types"
+
 	"cosmossdk.io/store/prefix"
 	storetypes "cosmossdk.io/store/types"
 	"github.com/cosmos/cosmos-sdk/runtime"
-	"gluon/x/order/types"
 )
 
 // SetOrder set a specific order in the store from its index

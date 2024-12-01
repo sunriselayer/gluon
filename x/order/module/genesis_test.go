@@ -3,11 +3,12 @@ package order_test
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
 	keepertest "gluon/testutil/keeper"
 	"gluon/testutil/nullify"
 	order "gluon/x/order/module"
 	"gluon/x/order/types"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestGenesis(t *testing.T) {

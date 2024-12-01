@@ -6,7 +6,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 
-    "gluon/x/order/types"
+	"gluon/x/order/types"
 )
 
 func TestMsgUpdateParams(t *testing.T) {

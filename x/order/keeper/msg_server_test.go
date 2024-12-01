@@ -6,9 +6,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-    keepertest "gluon/testutil/keeper"
-    "gluon/x/order/types"
-    "gluon/x/order/keeper"
+	keepertest "gluon/testutil/keeper"
+	"gluon/x/order/keeper"
+	"gluon/x/order/types"
 )
 
 func setupMsgServer(t testing.TB) (keeper.Keeper, types.MsgServer, context.Context) {
