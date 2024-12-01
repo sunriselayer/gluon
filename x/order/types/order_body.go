@@ -24,7 +24,7 @@ type OrderBody interface {
 	// Amount of DenomBase
 	GetAmount() sdkmath.Int
 	GetExpiry() time.Time
-	PackAny() codectypes.Any
+	PackAny() (codectypes.Any, error)
 }
 
 func UnpackOrderAny(cdc codec.BinaryCodec, orderAny codectypes.Any) (OrderBody, error) {
@@ -37,7 +37,10 @@ func UnpackOrderAny(cdc codec.BinaryCodec, orderAny codectypes.Any) (OrderBody, 
 }
 
 func GetOrderSignMessage(order OrderBody) ([]byte, error) {
-	orderAny := order.PackAny()
+	orderAny, err := order.PackAny()
+	if err != nil {
+		return nil, err
+	}
 	bz, err := orderAny.Marshal()
 	if err != nil {
 		return nil, err

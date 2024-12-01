@@ -18,13 +18,13 @@ func TestMsgMatchOrder_ValidateBasic(t *testing.T) {
 		{
 			name: "invalid address",
 			msg: MsgMatchOrder{
-				Creator: "invalid_address",
+				AddressBuy: "invalid_address",
 			},
 			err: sdkerrors.ErrInvalidAddress,
 		}, {
 			name: "valid address",
 			msg: MsgMatchOrder{
-				Creator: sample.AccAddress(),
+				AddressBuy: sample.AccAddress(),
 			},
 		},
 	}

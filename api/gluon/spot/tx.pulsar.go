@@ -2,19 +2,17 @@
 package spot
 
 import (
-	fmt "fmt"
-	io "io"
-	reflect "reflect"
-	sync "sync"
-
-	_ "cosmossdk.io/api/amino"
 	_ "cosmossdk.io/api/cosmos/msg/v1"
+	fmt "fmt"
 	_ "github.com/cosmos/cosmos-proto"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	io "io"
+	reflect "reflect"
+	sync "sync"
 )
 
 var (
@@ -873,14 +871,24 @@ func (x *fastReflection_MsgUpdateParamsResponse) ProtoMethods() *protoiface.Meth
 }
 
 var (
-	md_MsgMatchOrder         protoreflect.MessageDescriptor
-	fd_MsgMatchOrder_creator protoreflect.FieldDescriptor
+	md_MsgMatchOrder                 protoreflect.MessageDescriptor
+	fd_MsgMatchOrder_address_buy     protoreflect.FieldDescriptor
+	fd_MsgMatchOrder_address_sell    protoreflect.FieldDescriptor
+	fd_MsgMatchOrder_order_hash_buy  protoreflect.FieldDescriptor
+	fd_MsgMatchOrder_order_hash_sell protoreflect.FieldDescriptor
+	fd_MsgMatchOrder_amount          protoreflect.FieldDescriptor
+	fd_MsgMatchOrder_price           protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_spot_tx_proto_init()
 	md_MsgMatchOrder = File_gluon_spot_tx_proto.Messages().ByName("MsgMatchOrder")
-	fd_MsgMatchOrder_creator = md_MsgMatchOrder.Fields().ByName("creator")
+	fd_MsgMatchOrder_address_buy = md_MsgMatchOrder.Fields().ByName("address_buy")
+	fd_MsgMatchOrder_address_sell = md_MsgMatchOrder.Fields().ByName("address_sell")
+	fd_MsgMatchOrder_order_hash_buy = md_MsgMatchOrder.Fields().ByName("order_hash_buy")
+	fd_MsgMatchOrder_order_hash_sell = md_MsgMatchOrder.Fields().ByName("order_hash_sell")
+	fd_MsgMatchOrder_amount = md_MsgMatchOrder.Fields().ByName("amount")
+	fd_MsgMatchOrder_price = md_MsgMatchOrder.Fields().ByName("price")
 }
 
 var _ protoreflect.Message = (*fastReflection_MsgMatchOrder)(nil)
@@ -948,9 +956,39 @@ func (x *fastReflection_MsgMatchOrder) Interface() protoreflect.ProtoMessage {
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_MsgMatchOrder) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Creator != "" {
-		value := protoreflect.ValueOfString(x.Creator)
-		if !f(fd_MsgMatchOrder_creator, value) {
+	if x.AddressBuy != "" {
+		value := protoreflect.ValueOfString(x.AddressBuy)
+		if !f(fd_MsgMatchOrder_address_buy, value) {
+			return
+		}
+	}
+	if x.AddressSell != "" {
+		value := protoreflect.ValueOfString(x.AddressSell)
+		if !f(fd_MsgMatchOrder_address_sell, value) {
+			return
+		}
+	}
+	if x.OrderHashBuy != "" {
+		value := protoreflect.ValueOfString(x.OrderHashBuy)
+		if !f(fd_MsgMatchOrder_order_hash_buy, value) {
+			return
+		}
+	}
+	if x.OrderHashSell != "" {
+		value := protoreflect.ValueOfString(x.OrderHashSell)
+		if !f(fd_MsgMatchOrder_order_hash_sell, value) {
+			return
+		}
+	}
+	if x.Amount != "" {
+		value := protoreflect.ValueOfString(x.Amount)
+		if !f(fd_MsgMatchOrder_amount, value) {
+			return
+		}
+	}
+	if x.Price != "" {
+		value := protoreflect.ValueOfString(x.Price)
+		if !f(fd_MsgMatchOrder_price, value) {
 			return
 		}
 	}
@@ -969,8 +1007,18 @@ func (x *fastReflection_MsgMatchOrder) Range(f func(protoreflect.FieldDescriptor
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_MsgMatchOrder) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.spot.MsgMatchOrder.creator":
-		return x.Creator != ""
+	case "gluon.spot.MsgMatchOrder.address_buy":
+		return x.AddressBuy != ""
+	case "gluon.spot.MsgMatchOrder.address_sell":
+		return x.AddressSell != ""
+	case "gluon.spot.MsgMatchOrder.order_hash_buy":
+		return x.OrderHashBuy != ""
+	case "gluon.spot.MsgMatchOrder.order_hash_sell":
+		return x.OrderHashSell != ""
+	case "gluon.spot.MsgMatchOrder.amount":
+		return x.Amount != ""
+	case "gluon.spot.MsgMatchOrder.price":
+		return x.Price != ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.spot.MsgMatchOrder"))
@@ -987,8 +1035,18 @@ func (x *fastReflection_MsgMatchOrder) Has(fd protoreflect.FieldDescriptor) bool
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgMatchOrder) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.spot.MsgMatchOrder.creator":
-		x.Creator = ""
+	case "gluon.spot.MsgMatchOrder.address_buy":
+		x.AddressBuy = ""
+	case "gluon.spot.MsgMatchOrder.address_sell":
+		x.AddressSell = ""
+	case "gluon.spot.MsgMatchOrder.order_hash_buy":
+		x.OrderHashBuy = ""
+	case "gluon.spot.MsgMatchOrder.order_hash_sell":
+		x.OrderHashSell = ""
+	case "gluon.spot.MsgMatchOrder.amount":
+		x.Amount = ""
+	case "gluon.spot.MsgMatchOrder.price":
+		x.Price = ""
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.spot.MsgMatchOrder"))
@@ -1005,8 +1063,23 @@ func (x *fastReflection_MsgMatchOrder) Clear(fd protoreflect.FieldDescriptor) {
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_MsgMatchOrder) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.spot.MsgMatchOrder.creator":
-		value := x.Creator
+	case "gluon.spot.MsgMatchOrder.address_buy":
+		value := x.AddressBuy
+		return protoreflect.ValueOfString(value)
+	case "gluon.spot.MsgMatchOrder.address_sell":
+		value := x.AddressSell
+		return protoreflect.ValueOfString(value)
+	case "gluon.spot.MsgMatchOrder.order_hash_buy":
+		value := x.OrderHashBuy
+		return protoreflect.ValueOfString(value)
+	case "gluon.spot.MsgMatchOrder.order_hash_sell":
+		value := x.OrderHashSell
+		return protoreflect.ValueOfString(value)
+	case "gluon.spot.MsgMatchOrder.amount":
+		value := x.Amount
+		return protoreflect.ValueOfString(value)
+	case "gluon.spot.MsgMatchOrder.price":
+		value := x.Price
 		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
@@ -1028,8 +1101,18 @@ func (x *fastReflection_MsgMatchOrder) Get(descriptor protoreflect.FieldDescript
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgMatchOrder) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.spot.MsgMatchOrder.creator":
-		x.Creator = value.Interface().(string)
+	case "gluon.spot.MsgMatchOrder.address_buy":
+		x.AddressBuy = value.Interface().(string)
+	case "gluon.spot.MsgMatchOrder.address_sell":
+		x.AddressSell = value.Interface().(string)
+	case "gluon.spot.MsgMatchOrder.order_hash_buy":
+		x.OrderHashBuy = value.Interface().(string)
+	case "gluon.spot.MsgMatchOrder.order_hash_sell":
+		x.OrderHashSell = value.Interface().(string)
+	case "gluon.spot.MsgMatchOrder.amount":
+		x.Amount = value.Interface().(string)
+	case "gluon.spot.MsgMatchOrder.price":
+		x.Price = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.spot.MsgMatchOrder"))
@@ -1050,8 +1133,18 @@ func (x *fastReflection_MsgMatchOrder) Set(fd protoreflect.FieldDescriptor, valu
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgMatchOrder) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.spot.MsgMatchOrder.creator":
-		panic(fmt.Errorf("field creator of message gluon.spot.MsgMatchOrder is not mutable"))
+	case "gluon.spot.MsgMatchOrder.address_buy":
+		panic(fmt.Errorf("field address_buy of message gluon.spot.MsgMatchOrder is not mutable"))
+	case "gluon.spot.MsgMatchOrder.address_sell":
+		panic(fmt.Errorf("field address_sell of message gluon.spot.MsgMatchOrder is not mutable"))
+	case "gluon.spot.MsgMatchOrder.order_hash_buy":
+		panic(fmt.Errorf("field order_hash_buy of message gluon.spot.MsgMatchOrder is not mutable"))
+	case "gluon.spot.MsgMatchOrder.order_hash_sell":
+		panic(fmt.Errorf("field order_hash_sell of message gluon.spot.MsgMatchOrder is not mutable"))
+	case "gluon.spot.MsgMatchOrder.amount":
+		panic(fmt.Errorf("field amount of message gluon.spot.MsgMatchOrder is not mutable"))
+	case "gluon.spot.MsgMatchOrder.price":
+		panic(fmt.Errorf("field price of message gluon.spot.MsgMatchOrder is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.spot.MsgMatchOrder"))
@@ -1065,7 +1158,17 @@ func (x *fastReflection_MsgMatchOrder) Mutable(fd protoreflect.FieldDescriptor) 
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_MsgMatchOrder) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.spot.MsgMatchOrder.creator":
+	case "gluon.spot.MsgMatchOrder.address_buy":
+		return protoreflect.ValueOfString("")
+	case "gluon.spot.MsgMatchOrder.address_sell":
+		return protoreflect.ValueOfString("")
+	case "gluon.spot.MsgMatchOrder.order_hash_buy":
+		return protoreflect.ValueOfString("")
+	case "gluon.spot.MsgMatchOrder.order_hash_sell":
+		return protoreflect.ValueOfString("")
+	case "gluon.spot.MsgMatchOrder.amount":
+		return protoreflect.ValueOfString("")
+	case "gluon.spot.MsgMatchOrder.price":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
@@ -1136,7 +1239,27 @@ func (x *fastReflection_MsgMatchOrder) ProtoMethods() *protoiface.Methods {
 		var n int
 		var l int
 		_ = l
-		l = len(x.Creator)
+		l = len(x.AddressBuy)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.AddressSell)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.OrderHashBuy)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.OrderHashSell)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Amount)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Price)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -1169,10 +1292,45 @@ func (x *fastReflection_MsgMatchOrder) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if len(x.Creator) > 0 {
-			i -= len(x.Creator)
-			copy(dAtA[i:], x.Creator)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creator)))
+		if len(x.Price) > 0 {
+			i -= len(x.Price)
+			copy(dAtA[i:], x.Price)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Price)))
+			i--
+			dAtA[i] = 0x32
+		}
+		if len(x.Amount) > 0 {
+			i -= len(x.Amount)
+			copy(dAtA[i:], x.Amount)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Amount)))
+			i--
+			dAtA[i] = 0x2a
+		}
+		if len(x.OrderHashSell) > 0 {
+			i -= len(x.OrderHashSell)
+			copy(dAtA[i:], x.OrderHashSell)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.OrderHashSell)))
+			i--
+			dAtA[i] = 0x22
+		}
+		if len(x.OrderHashBuy) > 0 {
+			i -= len(x.OrderHashBuy)
+			copy(dAtA[i:], x.OrderHashBuy)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.OrderHashBuy)))
+			i--
+			dAtA[i] = 0x1a
+		}
+		if len(x.AddressSell) > 0 {
+			i -= len(x.AddressSell)
+			copy(dAtA[i:], x.AddressSell)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.AddressSell)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if len(x.AddressBuy) > 0 {
+			i -= len(x.AddressBuy)
+			copy(dAtA[i:], x.AddressBuy)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.AddressBuy)))
 			i--
 			dAtA[i] = 0xa
 		}
@@ -1227,7 +1385,7 @@ func (x *fastReflection_MsgMatchOrder) ProtoMethods() *protoiface.Methods {
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AddressBuy", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -1255,7 +1413,167 @@ func (x *fastReflection_MsgMatchOrder) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.Creator = string(dAtA[iNdEx:postIndex])
+				x.AddressBuy = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AddressSell", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.AddressSell = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 3:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OrderHashBuy", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.OrderHashBuy = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 4:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OrderHashSell", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.OrderHashSell = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 5:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Amount", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Amount = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 6:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Price", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Price = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
@@ -1735,12 +2053,18 @@ func (*MsgUpdateParamsResponse) Descriptor() ([]byte, []int) {
 	return file_gluon_spot_tx_proto_rawDescGZIP(), []int{1}
 }
 
+// MsgMatchOrder
 type MsgMatchOrder struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	AddressBuy    string `protobuf:"bytes,1,opt,name=address_buy,json=addressBuy,proto3" json:"address_buy,omitempty"`
+	AddressSell   string `protobuf:"bytes,2,opt,name=address_sell,json=addressSell,proto3" json:"address_sell,omitempty"`
+	OrderHashBuy  string `protobuf:"bytes,3,opt,name=order_hash_buy,json=orderHashBuy,proto3" json:"order_hash_buy,omitempty"`
+	OrderHashSell string `protobuf:"bytes,4,opt,name=order_hash_sell,json=orderHashSell,proto3" json:"order_hash_sell,omitempty"`
+	Amount        string `protobuf:"bytes,5,opt,name=amount,proto3" json:"amount,omitempty"`
+	Price         string `protobuf:"bytes,6,opt,name=price,proto3" json:"price,omitempty"`
 }
 
 func (x *MsgMatchOrder) Reset() {
@@ -1763,13 +2087,49 @@ func (*MsgMatchOrder) Descriptor() ([]byte, []int) {
 	return file_gluon_spot_tx_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *MsgMatchOrder) GetCreator() string {
+func (x *MsgMatchOrder) GetAddressBuy() string {
 	if x != nil {
-		return x.Creator
+		return x.AddressBuy
 	}
 	return ""
 }
 
+func (x *MsgMatchOrder) GetAddressSell() string {
+	if x != nil {
+		return x.AddressSell
+	}
+	return ""
+}
+
+func (x *MsgMatchOrder) GetOrderHashBuy() string {
+	if x != nil {
+		return x.OrderHashBuy
+	}
+	return ""
+}
+
+func (x *MsgMatchOrder) GetOrderHashSell() string {
+	if x != nil {
+		return x.OrderHashSell
+	}
+	return ""
+}
+
+func (x *MsgMatchOrder) GetAmount() string {
+	if x != nil {
+		return x.Amount
+	}
+	return ""
+}
+
+func (x *MsgMatchOrder) GetPrice() string {
+	if x != nil {
+		return x.Price
+	}
+	return ""
+}
+
+// MsgMatchOrderResponse
 type MsgMatchOrderResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1801,30 +2161,41 @@ var File_gluon_spot_tx_proto protoreflect.FileDescriptor
 var file_gluon_spot_tx_proto_rawDesc = []byte{
 	0x0a, 0x13, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x73, 0x70, 0x6f, 0x74, 0x2f, 0x74, 0x78, 0x2e,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0a, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x73, 0x70, 0x6f,
-	0x74, 0x1a, 0x11, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2f, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x17, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6d, 0x73, 0x67,
-	0x2f, 0x76, 0x31, 0x2f, 0x6d, 0x73, 0x67, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x19, 0x63,
-	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63, 0x6f, 0x73, 0x6d,
-	0x6f, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x17,
-	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x73, 0x70, 0x6f, 0x74, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d,
-	0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xb1, 0x01, 0x0a, 0x0f, 0x4d, 0x73, 0x67, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x36, 0x0a, 0x09, 0x61,
-	0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18,
-	0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65,
-	0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72,
-	0x69, 0x74, 0x79, 0x12, 0x35, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x73, 0x70, 0x6f, 0x74,
-	0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0,
-	0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x3a, 0x2f, 0x82, 0xe7, 0xb0, 0x2a,
-	0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x8a, 0xe7, 0xb0, 0x2a, 0x1c, 0x67,
-	0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x78, 0x2f, 0x73, 0x70, 0x6f, 0x74, 0x2f, 0x4d, 0x73, 0x67, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x22, 0x19, 0x0a, 0x17, 0x4d,
-	0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x37, 0x0a, 0x0d, 0x4d, 0x73, 0x67, 0x4d, 0x61, 0x74,
-	0x63, 0x68, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74,
-	0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f,
-	0x72, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22,
+	0x74, 0x1a, 0x17, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6d, 0x73, 0x67, 0x2f, 0x76, 0x31,
+	0x2f, 0x6d, 0x73, 0x67, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x19, 0x63, 0x6f, 0x73, 0x6d,
+	0x6f, 0x73, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x17, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x73, 0x70, 0x6f,
+	0x74, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14,
+	0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x22, 0x8b, 0x01, 0x0a, 0x0f, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x36, 0x0a, 0x09, 0x61, 0x75, 0x74, 0x68,
+	0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d,
+	0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53,
+	0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79,
+	0x12, 0x30, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x12, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x73, 0x70, 0x6f, 0x74, 0x2e, 0x50, 0x61,
+	0x72, 0x61, 0x6d, 0x73, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61,
+	0x6d, 0x73, 0x3a, 0x0e, 0x82, 0xe7, 0xb0, 0x2a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69,
+	0x74, 0x79, 0x22, 0x19, 0x0a, 0x17, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50,
+	0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x9f, 0x02,
+	0x0a, 0x0d, 0x4d, 0x73, 0x67, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12,
+	0x1f, 0x0a, 0x0b, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x5f, 0x62, 0x75, 0x79, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x42, 0x75, 0x79,
+	0x12, 0x21, 0x0a, 0x0c, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x5f, 0x73, 0x65, 0x6c, 0x6c,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53,
+	0x65, 0x6c, 0x6c, 0x12, 0x24, 0x0a, 0x0e, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x68, 0x61, 0x73,
+	0x68, 0x5f, 0x62, 0x75, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6f, 0x72, 0x64,
+	0x65, 0x72, 0x48, 0x61, 0x73, 0x68, 0x42, 0x75, 0x79, 0x12, 0x26, 0x0a, 0x0f, 0x6f, 0x72, 0x64,
+	0x65, 0x72, 0x5f, 0x68, 0x61, 0x73, 0x68, 0x5f, 0x73, 0x65, 0x6c, 0x6c, 0x18, 0x04, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0d, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x48, 0x61, 0x73, 0x68, 0x53, 0x65, 0x6c,
+	0x6c, 0x12, 0x43, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x2b, 0xc8, 0xde, 0x1f, 0x00, 0xda, 0xde, 0x1f, 0x15, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
+	0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x6d, 0x61, 0x74, 0x68, 0x2e, 0x49, 0x6e, 0x74,
+	0xd2, 0xb4, 0x2d, 0x0a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x49, 0x6e, 0x74, 0x52, 0x06,
+	0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x18,
+	0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x3a, 0x21, 0x82, 0xe7,
+	0xb0, 0x2a, 0x0b, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x5f, 0x62, 0x75, 0x79, 0x82, 0xe7,
+	0xb0, 0x2a, 0x0c, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x5f, 0x73, 0x65, 0x6c, 0x6c, 0x22,
 	0x17, 0x0a, 0x15, 0x4d, 0x73, 0x67, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4f, 0x72, 0x64, 0x65, 0x72,
 	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xaa, 0x01, 0x0a, 0x03, 0x4d, 0x73, 0x67,
 	0x12, 0x50, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
