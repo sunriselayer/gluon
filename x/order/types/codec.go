@@ -8,6 +8,8 @@ import (
 )
 
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
+	registry.RegisterInterface("gluon.order.OrderBody", (*OrderBody)(nil))
+
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgLazyRegisterOrder{},
 		&MsgCancelOrder{},
