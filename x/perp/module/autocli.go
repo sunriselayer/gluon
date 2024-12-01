@@ -25,9 +25,9 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod:      "Position",
-					Use:            "show-position [owner] [id]",
+					Use:            "show-position [owner] [order_hash]",
 					Short:          "Shows a position by id",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}, {ProtoField: "id"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}, {ProtoField: "order_hash"}},
 				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
@@ -39,12 +39,6 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				{
 					RpcMethod: "UpdateParams",
 					Skip:      true, // skipped because authority gated
-				},
-				{
-					RpcMethod:      "MatchOrder",
-					Use:            "match-order",
-					Short:          "Send a match-order tx",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},

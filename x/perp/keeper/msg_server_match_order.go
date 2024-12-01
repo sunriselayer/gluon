@@ -66,11 +66,11 @@ func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (
 	}
 
 	// Create or Cancel
-	err = k.CreateUpdateCancelPosition(ctx, longPerp, msg.Amount, price)
+	err = k.CreateUpdateCancelPosition(ctx, msg.OrderHashBuy, longPerp, msg.Amount, price)
 	if err != nil {
 		return nil, err
 	}
-	err = k.CreateUpdateCancelPosition(ctx, shortPerp, msg.Amount, price)
+	err = k.CreateUpdateCancelPosition(ctx, msg.OrderHashSell, shortPerp, msg.Amount, price)
 	if err != nil {
 		return nil, err
 	}

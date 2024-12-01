@@ -16,7 +16,7 @@ enum PositionDirection {
 // Position
 message Position {
   string owner = 1;
-  uint64 id = 2;
+  string order_hash = 2;
   string denom_base = 3;
   string denom_quote = 4;
   PositionDirection direction = 5;

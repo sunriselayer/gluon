@@ -40,15 +40,15 @@ func (k Keeper) Positions(ctx context.Context, req *types.QueryPositionsRequest)
 	return &types.QueryPositionsResponse{Positions: positions, Pagination: pageRes}, nil
 }
 
-func (k Keeper) Position(ctx context.Context, req *types.QueryGetPositionRequest) (*types.QueryGetPositionResponse, error) {
+func (k Keeper) Position(ctx context.Context, req *types.QueryPositionRequest) (*types.QueryPositionResponse, error) {
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
 
-	position, found := k.GetPosition(ctx, req.Owner, req.Id)
+	position, found := k.GetPosition(ctx, req.Owner, req.OrderHash)
 	if !found {
 		return nil, sdkerrors.ErrKeyNotFound
 	}
 
-	return &types.QueryGetPositionResponse{Position: position}, nil
+	return &types.QueryPositionResponse{Position: position}, nil
 }

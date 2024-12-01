@@ -33,12 +33,12 @@ func (order PerpPositionCreateOrder) ValidateBasic() error {
 	if err != nil {
 		return err
 	}
-	err = order.Margin.Validate()
-	if err != nil {
-		return err
+
+	if order.MarginAmount.IsNegative() {
+		return errorsmod.Wrap(ErrInvalidMargin, "margin amount must not be negative")
 	}
-	if order.IsolatedMargin && order.Margin.IsZero() {
-		return errorsmod.Wrap(ErrInvalidMargin, "isolated margin must not be zero")
+	if order.IsolatedMargin && order.MarginAmount.IsZero() {
+		return errorsmod.Wrap(ErrInvalidMargin, "isolated margin amount must not be zero")
 	}
 	return nil
 }

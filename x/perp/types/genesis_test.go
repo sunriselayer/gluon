@@ -25,13 +25,14 @@ func TestGenesisState_Validate(t *testing.T) {
 
 				Positions: []types.Position{
 					{
-						Id: 0,
+						Owner:     "0",
+						OrderHash: "0",
 					},
 					{
-						Id: 1,
+						Owner:     "1",
+						OrderHash: "1",
 					},
 				},
-				PositionCount: 2,
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -41,24 +42,14 @@ func TestGenesisState_Validate(t *testing.T) {
 			genState: &types.GenesisState{
 				Positions: []types.Position{
 					{
-						Id: 0,
+						Owner:     "0",
+						OrderHash: "0",
 					},
 					{
-						Id: 0,
+						Owner:     "0",
+						OrderHash: "0",
 					},
 				},
-			},
-			valid: false,
-		},
-		{
-			desc: "invalid position count",
-			genState: &types.GenesisState{
-				Positions: []types.Position{
-					{
-						Id: 1,
-					},
-				},
-				PositionCount: 0,
 			},
 			valid: false,
 		},

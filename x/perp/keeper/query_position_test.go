@@ -1,9 +1,9 @@
 package keeper_test
 
 import (
+	"strconv"
 	"testing"
 
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc/codes"
@@ -14,29 +14,41 @@ import (
 	"gluon/x/perp/types"
 )
 
+// Prevent strconv unused error
+var _ = strconv.IntSize
+
 func TestPositionQuerySingle(t *testing.T) {
 	keeper, ctx := keepertest.PerpKeeper(t)
 	msgs := createNPosition(keeper, ctx, 2)
 	tests := []struct {
 		desc     string
-		request  *types.QueryGetPositionRequest
-		response *types.QueryGetPositionResponse
+		request  *types.QueryPositionRequest
+		response *types.QueryPositionResponse
 		err      error
 	}{
 		{
-			desc:     "First",
-			request:  &types.QueryGetPositionRequest{Id: msgs[0].Id},
-			response: &types.QueryGetPositionResponse{Position: msgs[0]},
+			desc: "First",
+			request: &types.QueryPositionRequest{
+				Owner:     msgs[0].Owner,
+				OrderHash: msgs[0].OrderHash,
+			},
+			response: &types.QueryPositionResponse{Position: msgs[0]},
 		},
 		{
-			desc:     "Second",
-			request:  &types.QueryGetPositionRequest{Id: msgs[1].Id},
-			response: &types.QueryGetPositionResponse{Position: msgs[1]},
+			desc: "Second",
+			request: &types.QueryPositionRequest{
+				Owner:     msgs[1].Owner,
+				OrderHash: msgs[1].OrderHash,
+			},
+			response: &types.QueryPositionResponse{Position: msgs[1]},
 		},
 		{
-			desc:    "KeyNotFound",
-			request: &types.QueryGetPositionRequest{Id: uint64(len(msgs))},
-			err:     sdkerrors.ErrKeyNotFound,
+			desc: "KeyNotFound",
+			request: &types.QueryPositionRequest{
+				Owner:     strconv.Itoa(100000),
+				OrderHash: strconv.Itoa(100000),
+			},
+			err: status.Error(codes.NotFound, "not found"),
 		},
 		{
 			desc: "InvalidRequest",
@@ -65,7 +77,6 @@ func TestPositionQueryPaginated(t *testing.T) {
 
 	request := func(next []byte, offset, limit uint64, total bool) *types.QueryPositionsRequest {
 		return &types.QueryPositionsRequest{
-			Owner: "",
 			Pagination: &query.PageRequest{
 				Key:        next,
 				Offset:     offset,

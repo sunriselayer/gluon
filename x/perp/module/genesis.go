@@ -14,8 +14,6 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 		k.SetPosition(ctx, elem)
 	}
 
-	// Set position count
-	k.SetPositionCount(ctx, genState.PositionCount)
 	// this line is used by starport scaffolding # genesis/module/init
 	if err := k.SetParams(ctx, genState.Params); err != nil {
 		panic(err)
@@ -28,7 +26,6 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	genesis.Params = k.GetParams(ctx)
 
 	genesis.Positions = k.GetAllPosition(ctx)
-	genesis.PositionCount = k.GetPositionCount(ctx)
 	// this line is used by starport scaffolding # genesis/module/export
 
 	return genesis

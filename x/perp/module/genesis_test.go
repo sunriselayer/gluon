@@ -17,13 +17,14 @@ func TestGenesis(t *testing.T) {
 
 		Positions: []types.Position{
 			{
-				Id: 0,
+				Owner:     "0",
+				OrderHash: "0",
 			},
 			{
-				Id: 1,
+				Owner:     "1",
+				OrderHash: "1",
 			},
 		},
-		PositionCount: 2,
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -36,6 +37,5 @@ func TestGenesis(t *testing.T) {
 	nullify.Fill(got)
 
 	require.ElementsMatch(t, genesisState.Positions, got.Positions)
-	require.Equal(t, genesisState.PositionCount, got.PositionCount)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

@@ -808,27 +808,27 @@ func (x *fastReflection_QueryParamsResponse) ProtoMethods() *protoiface.Methods 
 }
 
 var (
-	md_QueryGetPositionRequest       protoreflect.MessageDescriptor
-	fd_QueryGetPositionRequest_owner protoreflect.FieldDescriptor
-	fd_QueryGetPositionRequest_id    protoreflect.FieldDescriptor
+	md_QueryPositionRequest            protoreflect.MessageDescriptor
+	fd_QueryPositionRequest_owner      protoreflect.FieldDescriptor
+	fd_QueryPositionRequest_order_hash protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_perp_query_proto_init()
-	md_QueryGetPositionRequest = File_gluon_perp_query_proto.Messages().ByName("QueryGetPositionRequest")
-	fd_QueryGetPositionRequest_owner = md_QueryGetPositionRequest.Fields().ByName("owner")
-	fd_QueryGetPositionRequest_id = md_QueryGetPositionRequest.Fields().ByName("id")
+	md_QueryPositionRequest = File_gluon_perp_query_proto.Messages().ByName("QueryPositionRequest")
+	fd_QueryPositionRequest_owner = md_QueryPositionRequest.Fields().ByName("owner")
+	fd_QueryPositionRequest_order_hash = md_QueryPositionRequest.Fields().ByName("order_hash")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryGetPositionRequest)(nil)
+var _ protoreflect.Message = (*fastReflection_QueryPositionRequest)(nil)
 
-type fastReflection_QueryGetPositionRequest QueryGetPositionRequest
+type fastReflection_QueryPositionRequest QueryPositionRequest
 
-func (x *QueryGetPositionRequest) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryGetPositionRequest)(x)
+func (x *QueryPositionRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryPositionRequest)(x)
 }
 
-func (x *QueryGetPositionRequest) slowProtoReflect() protoreflect.Message {
+func (x *QueryPositionRequest) slowProtoReflect() protoreflect.Message {
 	mi := &file_gluon_perp_query_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -840,43 +840,43 @@ func (x *QueryGetPositionRequest) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryGetPositionRequest_messageType fastReflection_QueryGetPositionRequest_messageType
-var _ protoreflect.MessageType = fastReflection_QueryGetPositionRequest_messageType{}
+var _fastReflection_QueryPositionRequest_messageType fastReflection_QueryPositionRequest_messageType
+var _ protoreflect.MessageType = fastReflection_QueryPositionRequest_messageType{}
 
-type fastReflection_QueryGetPositionRequest_messageType struct{}
+type fastReflection_QueryPositionRequest_messageType struct{}
 
-func (x fastReflection_QueryGetPositionRequest_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryGetPositionRequest)(nil)
+func (x fastReflection_QueryPositionRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryPositionRequest)(nil)
 }
-func (x fastReflection_QueryGetPositionRequest_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryGetPositionRequest)
+func (x fastReflection_QueryPositionRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryPositionRequest)
 }
-func (x fastReflection_QueryGetPositionRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetPositionRequest
+func (x fastReflection_QueryPositionRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryPositionRequest
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryGetPositionRequest) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetPositionRequest
+func (x *fastReflection_QueryPositionRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryPositionRequest
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryGetPositionRequest) Type() protoreflect.MessageType {
-	return _fastReflection_QueryGetPositionRequest_messageType
+func (x *fastReflection_QueryPositionRequest) Type() protoreflect.MessageType {
+	return _fastReflection_QueryPositionRequest_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryGetPositionRequest) New() protoreflect.Message {
-	return new(fastReflection_QueryGetPositionRequest)
+func (x *fastReflection_QueryPositionRequest) New() protoreflect.Message {
+	return new(fastReflection_QueryPositionRequest)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryGetPositionRequest) Interface() protoreflect.ProtoMessage {
-	return (*QueryGetPositionRequest)(x)
+func (x *fastReflection_QueryPositionRequest) Interface() protoreflect.ProtoMessage {
+	return (*QueryPositionRequest)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -884,16 +884,16 @@ func (x *fastReflection_QueryGetPositionRequest) Interface() protoreflect.ProtoM
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryGetPositionRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_QueryPositionRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if x.Owner != "" {
 		value := protoreflect.ValueOfString(x.Owner)
-		if !f(fd_QueryGetPositionRequest_owner, value) {
+		if !f(fd_QueryPositionRequest_owner, value) {
 			return
 		}
 	}
-	if x.Id != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.Id)
-		if !f(fd_QueryGetPositionRequest_id, value) {
+	if x.OrderHash != "" {
+		value := protoreflect.ValueOfString(x.OrderHash)
+		if !f(fd_QueryPositionRequest_order_hash, value) {
 			return
 		}
 	}
@@ -910,17 +910,17 @@ func (x *fastReflection_QueryGetPositionRequest) Range(f func(protoreflect.Field
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryGetPositionRequest) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QueryPositionRequest) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.perp.QueryGetPositionRequest.owner":
+	case "gluon.perp.QueryPositionRequest.owner":
 		return x.Owner != ""
-	case "gluon.perp.QueryGetPositionRequest.id":
-		return x.Id != uint64(0)
+	case "gluon.perp.QueryPositionRequest.order_hash":
+		return x.OrderHash != ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryGetPositionRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryPositionRequest"))
 		}
-		panic(fmt.Errorf("message gluon.perp.QueryGetPositionRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.perp.QueryPositionRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -930,17 +930,17 @@ func (x *fastReflection_QueryGetPositionRequest) Has(fd protoreflect.FieldDescri
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetPositionRequest) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QueryPositionRequest) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.perp.QueryGetPositionRequest.owner":
+	case "gluon.perp.QueryPositionRequest.owner":
 		x.Owner = ""
-	case "gluon.perp.QueryGetPositionRequest.id":
-		x.Id = uint64(0)
+	case "gluon.perp.QueryPositionRequest.order_hash":
+		x.OrderHash = ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryGetPositionRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryPositionRequest"))
 		}
-		panic(fmt.Errorf("message gluon.perp.QueryGetPositionRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.perp.QueryPositionRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -950,19 +950,19 @@ func (x *fastReflection_QueryGetPositionRequest) Clear(fd protoreflect.FieldDesc
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryGetPositionRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryPositionRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.perp.QueryGetPositionRequest.owner":
+	case "gluon.perp.QueryPositionRequest.owner":
 		value := x.Owner
 		return protoreflect.ValueOfString(value)
-	case "gluon.perp.QueryGetPositionRequest.id":
-		value := x.Id
-		return protoreflect.ValueOfUint64(value)
+	case "gluon.perp.QueryPositionRequest.order_hash":
+		value := x.OrderHash
+		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryGetPositionRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryPositionRequest"))
 		}
-		panic(fmt.Errorf("message gluon.perp.QueryGetPositionRequest does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message gluon.perp.QueryPositionRequest does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -976,17 +976,17 @@ func (x *fastReflection_QueryGetPositionRequest) Get(descriptor protoreflect.Fie
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetPositionRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QueryPositionRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.perp.QueryGetPositionRequest.owner":
+	case "gluon.perp.QueryPositionRequest.owner":
 		x.Owner = value.Interface().(string)
-	case "gluon.perp.QueryGetPositionRequest.id":
-		x.Id = value.Uint()
+	case "gluon.perp.QueryPositionRequest.order_hash":
+		x.OrderHash = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryGetPositionRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryPositionRequest"))
 		}
-		panic(fmt.Errorf("message gluon.perp.QueryGetPositionRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.perp.QueryPositionRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1000,44 +1000,44 @@ func (x *fastReflection_QueryGetPositionRequest) Set(fd protoreflect.FieldDescri
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetPositionRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryPositionRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.perp.QueryGetPositionRequest.owner":
-		panic(fmt.Errorf("field owner of message gluon.perp.QueryGetPositionRequest is not mutable"))
-	case "gluon.perp.QueryGetPositionRequest.id":
-		panic(fmt.Errorf("field id of message gluon.perp.QueryGetPositionRequest is not mutable"))
+	case "gluon.perp.QueryPositionRequest.owner":
+		panic(fmt.Errorf("field owner of message gluon.perp.QueryPositionRequest is not mutable"))
+	case "gluon.perp.QueryPositionRequest.order_hash":
+		panic(fmt.Errorf("field order_hash of message gluon.perp.QueryPositionRequest is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryGetPositionRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryPositionRequest"))
 		}
-		panic(fmt.Errorf("message gluon.perp.QueryGetPositionRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.perp.QueryPositionRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryGetPositionRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryPositionRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.perp.QueryGetPositionRequest.owner":
+	case "gluon.perp.QueryPositionRequest.owner":
 		return protoreflect.ValueOfString("")
-	case "gluon.perp.QueryGetPositionRequest.id":
-		return protoreflect.ValueOfUint64(uint64(0))
+	case "gluon.perp.QueryPositionRequest.order_hash":
+		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryGetPositionRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryPositionRequest"))
 		}
-		panic(fmt.Errorf("message gluon.perp.QueryGetPositionRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.perp.QueryPositionRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryGetPositionRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QueryPositionRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.perp.QueryGetPositionRequest", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in gluon.perp.QueryPositionRequest", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1045,7 +1045,7 @@ func (x *fastReflection_QueryGetPositionRequest) WhichOneof(d protoreflect.Oneof
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryGetPositionRequest) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QueryPositionRequest) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -1056,7 +1056,7 @@ func (x *fastReflection_QueryGetPositionRequest) GetUnknown() protoreflect.RawFi
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetPositionRequest) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QueryPositionRequest) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -1068,7 +1068,7 @@ func (x *fastReflection_QueryGetPositionRequest) SetUnknown(fields protoreflect.
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryGetPositionRequest) IsValid() bool {
+func (x *fastReflection_QueryPositionRequest) IsValid() bool {
 	return x != nil
 }
 
@@ -1078,9 +1078,9 @@ func (x *fastReflection_QueryGetPositionRequest) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryGetPositionRequest) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QueryPositionRequest) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryGetPositionRequest)
+		x := input.Message.Interface().(*QueryPositionRequest)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1096,8 +1096,9 @@ func (x *fastReflection_QueryGetPositionRequest) ProtoMethods() *protoiface.Meth
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		if x.Id != 0 {
-			n += 1 + runtime.Sov(uint64(x.Id))
+		l = len(x.OrderHash)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
 		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
@@ -1109,7 +1110,7 @@ func (x *fastReflection_QueryGetPositionRequest) ProtoMethods() *protoiface.Meth
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetPositionRequest)
+		x := input.Message.Interface().(*QueryPositionRequest)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1128,10 +1129,12 @@ func (x *fastReflection_QueryGetPositionRequest) ProtoMethods() *protoiface.Meth
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.Id != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.Id))
+		if len(x.OrderHash) > 0 {
+			i -= len(x.OrderHash)
+			copy(dAtA[i:], x.OrderHash)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.OrderHash)))
 			i--
-			dAtA[i] = 0x10
+			dAtA[i] = 0x12
 		}
 		if len(x.Owner) > 0 {
 			i -= len(x.Owner)
@@ -1151,7 +1154,7 @@ func (x *fastReflection_QueryGetPositionRequest) ProtoMethods() *protoiface.Meth
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetPositionRequest)
+		x := input.Message.Interface().(*QueryPositionRequest)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1183,10 +1186,10 @@ func (x *fastReflection_QueryGetPositionRequest) ProtoMethods() *protoiface.Meth
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetPositionRequest: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryPositionRequest: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetPositionRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryPositionRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -1222,10 +1225,10 @@ func (x *fastReflection_QueryGetPositionRequest) ProtoMethods() *protoiface.Meth
 				x.Owner = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 2:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OrderHash", wireType)
 				}
-				x.Id = 0
+				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -1235,11 +1238,24 @@ func (x *fastReflection_QueryGetPositionRequest) ProtoMethods() *protoiface.Meth
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					x.Id |= uint64(b&0x7F) << shift
+					stringLen |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.OrderHash = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -1276,25 +1292,25 @@ func (x *fastReflection_QueryGetPositionRequest) ProtoMethods() *protoiface.Meth
 }
 
 var (
-	md_QueryGetPositionResponse          protoreflect.MessageDescriptor
-	fd_QueryGetPositionResponse_position protoreflect.FieldDescriptor
+	md_QueryPositionResponse          protoreflect.MessageDescriptor
+	fd_QueryPositionResponse_position protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_perp_query_proto_init()
-	md_QueryGetPositionResponse = File_gluon_perp_query_proto.Messages().ByName("QueryGetPositionResponse")
-	fd_QueryGetPositionResponse_position = md_QueryGetPositionResponse.Fields().ByName("position")
+	md_QueryPositionResponse = File_gluon_perp_query_proto.Messages().ByName("QueryPositionResponse")
+	fd_QueryPositionResponse_position = md_QueryPositionResponse.Fields().ByName("position")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryGetPositionResponse)(nil)
+var _ protoreflect.Message = (*fastReflection_QueryPositionResponse)(nil)
 
-type fastReflection_QueryGetPositionResponse QueryGetPositionResponse
+type fastReflection_QueryPositionResponse QueryPositionResponse
 
-func (x *QueryGetPositionResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryGetPositionResponse)(x)
+func (x *QueryPositionResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryPositionResponse)(x)
 }
 
-func (x *QueryGetPositionResponse) slowProtoReflect() protoreflect.Message {
+func (x *QueryPositionResponse) slowProtoReflect() protoreflect.Message {
 	mi := &file_gluon_perp_query_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1306,43 +1322,43 @@ func (x *QueryGetPositionResponse) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryGetPositionResponse_messageType fastReflection_QueryGetPositionResponse_messageType
-var _ protoreflect.MessageType = fastReflection_QueryGetPositionResponse_messageType{}
+var _fastReflection_QueryPositionResponse_messageType fastReflection_QueryPositionResponse_messageType
+var _ protoreflect.MessageType = fastReflection_QueryPositionResponse_messageType{}
 
-type fastReflection_QueryGetPositionResponse_messageType struct{}
+type fastReflection_QueryPositionResponse_messageType struct{}
 
-func (x fastReflection_QueryGetPositionResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryGetPositionResponse)(nil)
+func (x fastReflection_QueryPositionResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryPositionResponse)(nil)
 }
-func (x fastReflection_QueryGetPositionResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryGetPositionResponse)
+func (x fastReflection_QueryPositionResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryPositionResponse)
 }
-func (x fastReflection_QueryGetPositionResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetPositionResponse
+func (x fastReflection_QueryPositionResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryPositionResponse
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryGetPositionResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetPositionResponse
+func (x *fastReflection_QueryPositionResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryPositionResponse
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryGetPositionResponse) Type() protoreflect.MessageType {
-	return _fastReflection_QueryGetPositionResponse_messageType
+func (x *fastReflection_QueryPositionResponse) Type() protoreflect.MessageType {
+	return _fastReflection_QueryPositionResponse_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryGetPositionResponse) New() protoreflect.Message {
-	return new(fastReflection_QueryGetPositionResponse)
+func (x *fastReflection_QueryPositionResponse) New() protoreflect.Message {
+	return new(fastReflection_QueryPositionResponse)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryGetPositionResponse) Interface() protoreflect.ProtoMessage {
-	return (*QueryGetPositionResponse)(x)
+func (x *fastReflection_QueryPositionResponse) Interface() protoreflect.ProtoMessage {
+	return (*QueryPositionResponse)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -1350,10 +1366,10 @@ func (x *fastReflection_QueryGetPositionResponse) Interface() protoreflect.Proto
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryGetPositionResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_QueryPositionResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if x.Position != nil {
 		value := protoreflect.ValueOfMessage(x.Position.ProtoReflect())
-		if !f(fd_QueryGetPositionResponse_position, value) {
+		if !f(fd_QueryPositionResponse_position, value) {
 			return
 		}
 	}
@@ -1370,15 +1386,15 @@ func (x *fastReflection_QueryGetPositionResponse) Range(f func(protoreflect.Fiel
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryGetPositionResponse) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QueryPositionResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.perp.QueryGetPositionResponse.position":
+	case "gluon.perp.QueryPositionResponse.position":
 		return x.Position != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryGetPositionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryPositionResponse"))
 		}
-		panic(fmt.Errorf("message gluon.perp.QueryGetPositionResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.perp.QueryPositionResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1388,15 +1404,15 @@ func (x *fastReflection_QueryGetPositionResponse) Has(fd protoreflect.FieldDescr
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetPositionResponse) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QueryPositionResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.perp.QueryGetPositionResponse.position":
+	case "gluon.perp.QueryPositionResponse.position":
 		x.Position = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryGetPositionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryPositionResponse"))
 		}
-		panic(fmt.Errorf("message gluon.perp.QueryGetPositionResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.perp.QueryPositionResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1406,16 +1422,16 @@ func (x *fastReflection_QueryGetPositionResponse) Clear(fd protoreflect.FieldDes
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryGetPositionResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryPositionResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.perp.QueryGetPositionResponse.position":
+	case "gluon.perp.QueryPositionResponse.position":
 		value := x.Position
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryGetPositionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryPositionResponse"))
 		}
-		panic(fmt.Errorf("message gluon.perp.QueryGetPositionResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message gluon.perp.QueryPositionResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1429,15 +1445,15 @@ func (x *fastReflection_QueryGetPositionResponse) Get(descriptor protoreflect.Fi
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetPositionResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QueryPositionResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.perp.QueryGetPositionResponse.position":
+	case "gluon.perp.QueryPositionResponse.position":
 		x.Position = value.Message().Interface().(*Position)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryGetPositionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryPositionResponse"))
 		}
-		panic(fmt.Errorf("message gluon.perp.QueryGetPositionResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.perp.QueryPositionResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1451,44 +1467,44 @@ func (x *fastReflection_QueryGetPositionResponse) Set(fd protoreflect.FieldDescr
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetPositionResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryPositionResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.perp.QueryGetPositionResponse.position":
+	case "gluon.perp.QueryPositionResponse.position":
 		if x.Position == nil {
 			x.Position = new(Position)
 		}
 		return protoreflect.ValueOfMessage(x.Position.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryGetPositionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryPositionResponse"))
 		}
-		panic(fmt.Errorf("message gluon.perp.QueryGetPositionResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.perp.QueryPositionResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryGetPositionResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryPositionResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.perp.QueryGetPositionResponse.position":
+	case "gluon.perp.QueryPositionResponse.position":
 		m := new(Position)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryGetPositionResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.QueryPositionResponse"))
 		}
-		panic(fmt.Errorf("message gluon.perp.QueryGetPositionResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.perp.QueryPositionResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryGetPositionResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QueryPositionResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.perp.QueryGetPositionResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in gluon.perp.QueryPositionResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1496,7 +1512,7 @@ func (x *fastReflection_QueryGetPositionResponse) WhichOneof(d protoreflect.Oneo
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryGetPositionResponse) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QueryPositionResponse) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -1507,7 +1523,7 @@ func (x *fastReflection_QueryGetPositionResponse) GetUnknown() protoreflect.RawF
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetPositionResponse) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QueryPositionResponse) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -1519,7 +1535,7 @@ func (x *fastReflection_QueryGetPositionResponse) SetUnknown(fields protoreflect
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryGetPositionResponse) IsValid() bool {
+func (x *fastReflection_QueryPositionResponse) IsValid() bool {
 	return x != nil
 }
 
@@ -1529,9 +1545,9 @@ func (x *fastReflection_QueryGetPositionResponse) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryGetPositionResponse) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QueryPositionResponse) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryGetPositionResponse)
+		x := input.Message.Interface().(*QueryPositionResponse)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1557,7 +1573,7 @@ func (x *fastReflection_QueryGetPositionResponse) ProtoMethods() *protoiface.Met
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetPositionResponse)
+		x := input.Message.Interface().(*QueryPositionResponse)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1601,7 +1617,7 @@ func (x *fastReflection_QueryGetPositionResponse) ProtoMethods() *protoiface.Met
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetPositionResponse)
+		x := input.Message.Interface().(*QueryPositionResponse)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1633,10 +1649,10 @@ func (x *fastReflection_QueryGetPositionResponse) ProtoMethods() *protoiface.Met
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetPositionResponse: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryPositionResponse: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetPositionResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryPositionResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -2859,18 +2875,18 @@ func (x *QueryParamsResponse) GetParams() *Params {
 	return nil
 }
 
-// QueryGetPositionRequest
-type QueryGetPositionRequest struct {
+// QueryPositionRequest
+type QueryPositionRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Owner string `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
-	Id    uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+	Owner     string `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
+	OrderHash string `protobuf:"bytes,2,opt,name=order_hash,json=orderHash,proto3" json:"order_hash,omitempty"`
 }
 
-func (x *QueryGetPositionRequest) Reset() {
-	*x = QueryGetPositionRequest{}
+func (x *QueryPositionRequest) Reset() {
+	*x = QueryPositionRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_gluon_perp_query_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2878,33 +2894,33 @@ func (x *QueryGetPositionRequest) Reset() {
 	}
 }
 
-func (x *QueryGetPositionRequest) String() string {
+func (x *QueryPositionRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QueryGetPositionRequest) ProtoMessage() {}
+func (*QueryPositionRequest) ProtoMessage() {}
 
-// Deprecated: Use QueryGetPositionRequest.ProtoReflect.Descriptor instead.
-func (*QueryGetPositionRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use QueryPositionRequest.ProtoReflect.Descriptor instead.
+func (*QueryPositionRequest) Descriptor() ([]byte, []int) {
 	return file_gluon_perp_query_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *QueryGetPositionRequest) GetOwner() string {
+func (x *QueryPositionRequest) GetOwner() string {
 	if x != nil {
 		return x.Owner
 	}
 	return ""
 }
 
-func (x *QueryGetPositionRequest) GetId() uint64 {
+func (x *QueryPositionRequest) GetOrderHash() string {
 	if x != nil {
-		return x.Id
+		return x.OrderHash
 	}
-	return 0
+	return ""
 }
 
-// QueryGetPositionResponse
-type QueryGetPositionResponse struct {
+// QueryPositionResponse
+type QueryPositionResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -2912,8 +2928,8 @@ type QueryGetPositionResponse struct {
 	Position *Position `protobuf:"bytes,1,opt,name=position,proto3" json:"position,omitempty"`
 }
 
-func (x *QueryGetPositionResponse) Reset() {
-	*x = QueryGetPositionResponse{}
+func (x *QueryPositionResponse) Reset() {
+	*x = QueryPositionResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_gluon_perp_query_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2921,18 +2937,18 @@ func (x *QueryGetPositionResponse) Reset() {
 	}
 }
 
-func (x *QueryGetPositionResponse) String() string {
+func (x *QueryPositionResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QueryGetPositionResponse) ProtoMessage() {}
+func (*QueryPositionResponse) ProtoMessage() {}
 
-// Deprecated: Use QueryGetPositionResponse.ProtoReflect.Descriptor instead.
-func (*QueryGetPositionResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use QueryPositionResponse.ProtoReflect.Descriptor instead.
+func (*QueryPositionResponse) Descriptor() ([]byte, []int) {
 	return file_gluon_perp_query_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *QueryGetPositionResponse) GetPosition() *Position {
+func (x *QueryPositionResponse) GetPosition() *Position {
 	if x != nil {
 		return x.Position
 	}
@@ -3049,64 +3065,65 @@ var file_gluon_perp_query_proto_rawDesc = []byte{
 	0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e,
 	0x2e, 0x70, 0x65, 0x72, 0x70, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde,
 	0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x22,
-	0x3f, 0x0a, 0x17, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x50, 0x6f, 0x73, 0x69, 0x74,
-	0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x6f, 0x77,
-	0x6e, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72,
-	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64,
-	0x22, 0x52, 0x0a, 0x18, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x50, 0x6f, 0x73, 0x69,
-	0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x08,
-	0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14,
-	0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x2e, 0x50, 0x6f, 0x73, 0x69,
-	0x74, 0x69, 0x6f, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x08, 0x70, 0x6f, 0x73, 0x69,
-	0x74, 0x69, 0x6f, 0x6e, 0x22, 0x75, 0x0a, 0x15, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x6f, 0x73,
-	0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a,
-	0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x77,
-	0x6e, 0x65, 0x72, 0x12, 0x46, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
-	0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65,
-	0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52,
-	0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x9b, 0x01, 0x0a, 0x16,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x38, 0x0a, 0x09, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69,
-	0x6f, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x67, 0x6c, 0x75, 0x6f,
-	0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x2e, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x42,
-	0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x09, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73,
-	0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61,
-	0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31,
-	0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a, 0x70,
-	0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x32, 0xed, 0x02, 0x0a, 0x05, 0x51, 0x75,
-	0x65, 0x72, 0x79, 0x12, 0x65, 0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x1e, 0x2e,
-	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
-	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e,
-	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
-	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1a,
-	0x82, 0xd3, 0xe4, 0x93, 0x02, 0x14, 0x12, 0x12, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x70,
-	0x65, 0x72, 0x70, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x81, 0x01, 0x0a, 0x08, 0x50,
-	0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x23, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e,
-	0x70, 0x65, 0x72, 0x70, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x50, 0x6f, 0x73,
-	0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x67,
-	0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47,
-	0x65, 0x74, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x2a, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x24, 0x12, 0x22, 0x2f, 0x67, 0x6c, 0x75,
-	0x6f, 0x6e, 0x2f, 0x70, 0x65, 0x72, 0x70, 0x2f, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e,
-	0x73, 0x2f, 0x7b, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x7d, 0x2f, 0x7b, 0x69, 0x64, 0x7d, 0x12, 0x79,
-	0x0a, 0x09, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x21, 0x2e, 0x67, 0x6c,
-	0x75, 0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x6f,
-	0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22,
-	0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x2e, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x25, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x1f, 0x12, 0x1d, 0x2f, 0x67, 0x6c, 0x75,
-	0x6f, 0x6e, 0x2f, 0x70, 0x65, 0x72, 0x70, 0x2f, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e,
-	0x73, 0x2f, 0x7b, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x7d, 0x42, 0x7b, 0x0a, 0x0e, 0x63, 0x6f, 0x6d,
-	0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x42, 0x0a, 0x51, 0x75, 0x65,
-	0x72, 0x79, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x14, 0x67, 0x6c, 0x75, 0x6f, 0x6e,
-	0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x70, 0x65, 0x72, 0x70, 0xa2,
-	0x02, 0x03, 0x47, 0x50, 0x58, 0xaa, 0x02, 0x0a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x50, 0x65,
-	0x72, 0x70, 0xca, 0x02, 0x0a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x50, 0x65, 0x72, 0x70, 0xe2,
-	0x02, 0x16, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x50, 0x65, 0x72, 0x70, 0x5c, 0x47, 0x50, 0x42,
-	0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0b, 0x47, 0x6c, 0x75, 0x6f, 0x6e,
-	0x3a, 0x3a, 0x50, 0x65, 0x72, 0x70, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x4b, 0x0a, 0x14, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x12, 0x1d, 0x0a,
+	0x0a, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x5f, 0x68, 0x61, 0x73, 0x68, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x09, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x48, 0x61, 0x73, 0x68, 0x22, 0x4f, 0x0a, 0x15,
+	0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x08, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f,
+	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e,
+	0x70, 0x65, 0x72, 0x70, 0x2e, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x04, 0xc8,
+	0xde, 0x1f, 0x00, 0x52, 0x08, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x75, 0x0a,
+	0x15, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x12, 0x46, 0x0a, 0x0a,
+	0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71,
+	0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67,
+	0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x22, 0x9b, 0x01, 0x0a, 0x16, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x6f,
+	0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x38, 0x0a, 0x09, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x14, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x2e,
+	0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x09,
+	0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67,
+	0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e,
+	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72,
+	0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x32, 0xef, 0x02, 0x0a, 0x05, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x65, 0x0a, 0x06,
+	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x1e, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70,
+	0x65, 0x72, 0x70, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70,
+	0x65, 0x72, 0x70, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1a, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x14, 0x12,
+	0x12, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x70, 0x65, 0x72, 0x70, 0x2f, 0x70, 0x61, 0x72,
+	0x61, 0x6d, 0x73, 0x12, 0x83, 0x01, 0x0a, 0x08, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e,
+	0x12, 0x20, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x2e, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x21, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x2e,
+	0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x32, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2c, 0x12, 0x2a, 0x2f,
+	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x70, 0x65, 0x72, 0x70, 0x2f, 0x70, 0x6f, 0x73, 0x69, 0x74,
+	0x69, 0x6f, 0x6e, 0x73, 0x2f, 0x7b, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x7d, 0x2f, 0x7b, 0x6f, 0x72,
+	0x64, 0x65, 0x72, 0x5f, 0x68, 0x61, 0x73, 0x68, 0x7d, 0x12, 0x79, 0x0a, 0x09, 0x50, 0x6f, 0x73,
+	0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x21, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70,
+	0x65, 0x72, 0x70, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f,
+	0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x67, 0x6c, 0x75, 0x6f,
+	0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x6f, 0x73, 0x69,
+	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x25, 0x82,
+	0xd3, 0xe4, 0x93, 0x02, 0x1f, 0x12, 0x1d, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x70, 0x65,
+	0x72, 0x70, 0x2f, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2f, 0x7b, 0x6f, 0x77,
+	0x6e, 0x65, 0x72, 0x7d, 0x42, 0x7b, 0x0a, 0x0e, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f,
+	0x6e, 0x2e, 0x70, 0x65, 0x72, 0x70, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x72, 0x6f,
+	0x74, 0x6f, 0x50, 0x01, 0x5a, 0x14, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f,
+	0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x70, 0x65, 0x72, 0x70, 0xa2, 0x02, 0x03, 0x47, 0x50, 0x58,
+	0xaa, 0x02, 0x0a, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x50, 0x65, 0x72, 0x70, 0xca, 0x02, 0x0a,
+	0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x50, 0x65, 0x72, 0x70, 0xe2, 0x02, 0x16, 0x47, 0x6c, 0x75,
+	0x6f, 0x6e, 0x5c, 0x50, 0x65, 0x72, 0x70, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64,
+	0x61, 0x74, 0x61, 0xea, 0x02, 0x0b, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x50, 0x65, 0x72,
+	0x70, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -3123,28 +3140,28 @@ func file_gluon_perp_query_proto_rawDescGZIP() []byte {
 
 var file_gluon_perp_query_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_gluon_perp_query_proto_goTypes = []interface{}{
-	(*QueryParamsRequest)(nil),       // 0: gluon.perp.QueryParamsRequest
-	(*QueryParamsResponse)(nil),      // 1: gluon.perp.QueryParamsResponse
-	(*QueryGetPositionRequest)(nil),  // 2: gluon.perp.QueryGetPositionRequest
-	(*QueryGetPositionResponse)(nil), // 3: gluon.perp.QueryGetPositionResponse
-	(*QueryPositionsRequest)(nil),    // 4: gluon.perp.QueryPositionsRequest
-	(*QueryPositionsResponse)(nil),   // 5: gluon.perp.QueryPositionsResponse
-	(*Params)(nil),                   // 6: gluon.perp.Params
-	(*Position)(nil),                 // 7: gluon.perp.Position
-	(*v1beta1.PageRequest)(nil),      // 8: cosmos.base.query.v1beta1.PageRequest
-	(*v1beta1.PageResponse)(nil),     // 9: cosmos.base.query.v1beta1.PageResponse
+	(*QueryParamsRequest)(nil),     // 0: gluon.perp.QueryParamsRequest
+	(*QueryParamsResponse)(nil),    // 1: gluon.perp.QueryParamsResponse
+	(*QueryPositionRequest)(nil),   // 2: gluon.perp.QueryPositionRequest
+	(*QueryPositionResponse)(nil),  // 3: gluon.perp.QueryPositionResponse
+	(*QueryPositionsRequest)(nil),  // 4: gluon.perp.QueryPositionsRequest
+	(*QueryPositionsResponse)(nil), // 5: gluon.perp.QueryPositionsResponse
+	(*Params)(nil),                 // 6: gluon.perp.Params
+	(*Position)(nil),               // 7: gluon.perp.Position
+	(*v1beta1.PageRequest)(nil),    // 8: cosmos.base.query.v1beta1.PageRequest
+	(*v1beta1.PageResponse)(nil),   // 9: cosmos.base.query.v1beta1.PageResponse
 }
 var file_gluon_perp_query_proto_depIdxs = []int32{
 	6, // 0: gluon.perp.QueryParamsResponse.params:type_name -> gluon.perp.Params
-	7, // 1: gluon.perp.QueryGetPositionResponse.position:type_name -> gluon.perp.Position
+	7, // 1: gluon.perp.QueryPositionResponse.position:type_name -> gluon.perp.Position
 	8, // 2: gluon.perp.QueryPositionsRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
 	7, // 3: gluon.perp.QueryPositionsResponse.positions:type_name -> gluon.perp.Position
 	9, // 4: gluon.perp.QueryPositionsResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
 	0, // 5: gluon.perp.Query.Params:input_type -> gluon.perp.QueryParamsRequest
-	2, // 6: gluon.perp.Query.Position:input_type -> gluon.perp.QueryGetPositionRequest
+	2, // 6: gluon.perp.Query.Position:input_type -> gluon.perp.QueryPositionRequest
 	4, // 7: gluon.perp.Query.Positions:input_type -> gluon.perp.QueryPositionsRequest
 	1, // 8: gluon.perp.Query.Params:output_type -> gluon.perp.QueryParamsResponse
-	3, // 9: gluon.perp.Query.Position:output_type -> gluon.perp.QueryGetPositionResponse
+	3, // 9: gluon.perp.Query.Position:output_type -> gluon.perp.QueryPositionResponse
 	5, // 10: gluon.perp.Query.Positions:output_type -> gluon.perp.QueryPositionsResponse
 	8, // [8:11] is the sub-list for method output_type
 	5, // [5:8] is the sub-list for method input_type
@@ -3186,7 +3203,7 @@ func file_gluon_perp_query_proto_init() {
 			}
 		}
 		file_gluon_perp_query_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetPositionRequest); i {
+			switch v := v.(*QueryPositionRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3198,7 +3215,7 @@ func file_gluon_perp_query_proto_init() {
 			}
 		}
 		file_gluon_perp_query_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetPositionResponse); i {
+			switch v := v.(*QueryPositionResponse); i {
 			case 0:
 				return &v.state
 			case 1:

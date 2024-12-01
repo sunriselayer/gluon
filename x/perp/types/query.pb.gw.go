@@ -52,7 +52,7 @@ func local_request_Query_Params_0(ctx context.Context, marshaler runtime.Marshal
 }
 
 func request_Query_Position_0(ctx context.Context, marshaler runtime.Marshaler, client QueryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq QueryGetPositionRequest
+	var protoReq QueryPositionRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -73,15 +73,15 @@ func request_Query_Position_0(ctx context.Context, marshaler runtime.Marshaler, 
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "owner", err)
 	}
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["order_hash"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "order_hash")
 	}
 
-	protoReq.Id, err = runtime.Uint64(val)
+	protoReq.OrderHash, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "order_hash", err)
 	}
 
 	msg, err := client.Position(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -90,7 +90,7 @@ func request_Query_Position_0(ctx context.Context, marshaler runtime.Marshaler, 
 }
 
 func local_request_Query_Position_0(ctx context.Context, marshaler runtime.Marshaler, server QueryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq QueryGetPositionRequest
+	var protoReq QueryPositionRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -111,15 +111,15 @@ func local_request_Query_Position_0(ctx context.Context, marshaler runtime.Marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "owner", err)
 	}
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["order_hash"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "order_hash")
 	}
 
-	protoReq.Id, err = runtime.Uint64(val)
+	protoReq.OrderHash, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "order_hash", err)
 	}
 
 	msg, err := server.Position(ctx, &protoReq)
@@ -381,7 +381,7 @@ func RegisterQueryHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 var (
 	pattern_Query_Params_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"gluon", "perp", "params"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_Position_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"gluon", "perp", "positions", "owner", "id"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_Position_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"gluon", "perp", "positions", "owner", "order_hash"}, "", runtime.AssumeColonVerbOpt(false)))
 
 	pattern_Query_Positions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"gluon", "perp", "positions", "owner"}, "", runtime.AssumeColonVerbOpt(false)))
 )

@@ -19,8 +19,8 @@ service Query {
   }
 
   // Position
-  rpc Position(QueryGetPositionRequest) returns (QueryGetPositionResponse) {
-    option (google.api.http).get = "/gluon/perp/positions/{owner}/{id}";
+  rpc Position(QueryPositionRequest) returns (QueryPositionResponse) {
+    option (google.api.http).get = "/gluon/perp/positions/{owner}/{order_hash}";
   }
   // Positions
   rpc Positions(QueryPositionsRequest) returns (QueryPositionsResponse) {
@@ -40,14 +40,14 @@ message QueryParamsResponse {
   ];
 }
 
-// QueryGetPositionRequest
-message QueryGetPositionRequest {
+// QueryPositionRequest
+message QueryPositionRequest {
   string owner = 1;
-  uint64 id = 2;
+  string order_hash = 2;
 }
 
-// QueryGetPositionResponse
-message QueryGetPositionResponse {
+// QueryPositionResponse
+message QueryPositionResponse {
   Position position = 1 [(gogoproto.nullable) = false];
 }
 

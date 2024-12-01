@@ -33,7 +33,7 @@ type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
 	// Position
-	Position(ctx context.Context, in *QueryGetPositionRequest, opts ...grpc.CallOption) (*QueryGetPositionResponse, error)
+	Position(ctx context.Context, in *QueryPositionRequest, opts ...grpc.CallOption) (*QueryPositionResponse, error)
 	// Positions
 	Positions(ctx context.Context, in *QueryPositionsRequest, opts ...grpc.CallOption) (*QueryPositionsResponse, error)
 }
@@ -56,9 +56,9 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
-func (c *queryClient) Position(ctx context.Context, in *QueryGetPositionRequest, opts ...grpc.CallOption) (*QueryGetPositionResponse, error) {
+func (c *queryClient) Position(ctx context.Context, in *QueryPositionRequest, opts ...grpc.CallOption) (*QueryPositionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QueryGetPositionResponse)
+	out := new(QueryPositionResponse)
 	err := c.cc.Invoke(ctx, Query_Position_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -85,7 +85,7 @@ type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
 	// Position
-	Position(context.Context, *QueryGetPositionRequest) (*QueryGetPositionResponse, error)
+	Position(context.Context, *QueryPositionRequest) (*QueryPositionResponse, error)
 	// Positions
 	Positions(context.Context, *QueryPositionsRequest) (*QueryPositionsResponse, error)
 	mustEmbedUnimplementedQueryServer()
@@ -101,7 +101,7 @@ type UnimplementedQueryServer struct{}
 func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
 }
-func (UnimplementedQueryServer) Position(context.Context, *QueryGetPositionRequest) (*QueryGetPositionResponse, error) {
+func (UnimplementedQueryServer) Position(context.Context, *QueryPositionRequest) (*QueryPositionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Position not implemented")
 }
 func (UnimplementedQueryServer) Positions(context.Context, *QueryPositionsRequest) (*QueryPositionsResponse, error) {
@@ -147,7 +147,7 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 }
 
 func _Query_Position_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetPositionRequest)
+	in := new(QueryPositionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -159,7 +159,7 @@ func _Query_Position_Handler(srv interface{}, ctx context.Context, dec func(inte
 		FullMethod: Query_Position_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).Position(ctx, req.(*QueryGetPositionRequest))
+		return srv.(QueryServer).Position(ctx, req.(*QueryPositionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

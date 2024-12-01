@@ -33,7 +33,7 @@ message PerpPositionCancelOrder {
     (cosmos_proto.scalar) = "cosmos.AddressString",
     (gogoproto.customname) = "AddressString"
   ];
-  uint64 position_id = 3;
+  string position_order_hash = 3;
   string amount = 4 [
     (cosmos_proto.scalar) = "cosmos.Int",
     (gogoproto.customtype) = "cosmossdk.io/math.Int",

@@ -12,13 +12,14 @@ import (
 
 func (k Keeper) CreateUpdateCancelPosition(
 	ctx sdk.Context,
+	orderHash string,
 	order types.PerpOrder,
 	amount sdkmath.Int,
 	price sdkmath.LegacyDec,
 ) error {
 	switch order := order.(type) {
 	case *types.PerpPositionCreateOrder:
-		return k.CreateUpdatePosition(ctx, *order, amount, price)
+		return k.CreateUpdatePosition(ctx, orderHash, *order, amount, price)
 	case *types.PerpPositionCancelOrder:
 		return k.CancelPosition(ctx, *order, amount, price)
 	default:
@@ -28,6 +29,7 @@ func (k Keeper) CreateUpdateCancelPosition(
 
 func (k Keeper) CreateUpdatePosition(
 	ctx sdk.Context,
+	orderHash string,
 	order types.PerpPositionCreateOrder,
 	amount sdkmath.Int,
 	price sdkmath.LegacyDec,
@@ -42,8 +44,9 @@ func (k Keeper) CreateUpdatePosition(
 		return ordertypes.ErrInvalidOrderDirection
 	}
 
-	positionId := k.AppendPosition(ctx, types.Position{
+	k.SetPosition(ctx, types.Position{
 		Owner:          order.AddressString,
+		OrderHash:      orderHash,
 		DenomBase:      order.DenomBase,
 		DenomQuote:     order.DenomQuote,
 		Direction:      direction,
@@ -57,12 +60,12 @@ func (k Keeper) CreateUpdatePosition(
 
 	var marginAddressModule string
 	if order.IsolatedMargin {
-		marginAddressModule = types.GetIsolatedMarginAddressModule(order.AddressString, positionId)
+		marginAddressModule = types.GetIsolatedMarginAddressModule(order.AddressString, orderHash)
 	} else {
 		marginAddressModule = types.GetCrossMarginAddressModule(order.AddressString)
 	}
 
-	coins := sdk.NewCoins(sdk.NewCoin(order.DenomQuote, order.Margin.Amount))
+	coins := sdk.NewCoins(sdk.NewCoin(order.DenomQuote, order.MarginAmount))
 
 	err = k.bankKeeper.SendCoinsFromAccountToModule(ctx, owner, marginAddressModule, coins)
 	if err != nil {
@@ -78,9 +81,9 @@ func (k Keeper) CancelPosition(
 	amount sdkmath.Int,
 	price sdkmath.LegacyDec,
 ) error {
-	position, found := k.GetPosition(ctx, order.AddressString, order.PositionId)
+	position, found := k.GetPosition(ctx, order.AddressString, order.PositionOrderHash)
 	if !found {
-		return errorsmod.Wrapf(sdkerrors.ErrNotFound, "position id: %d", order.PositionId)
+		return errorsmod.Wrapf(sdkerrors.ErrNotFound, "position owner: %s, order hash: %s", position.Owner, position.OrderHash)
 	}
 
 	owner, err := sdk.AccAddressFromBech32(order.AddressString)
@@ -96,10 +99,10 @@ func (k Keeper) CancelPosition(
 	} else if amount.LT(remainingAmount) {
 
 	} else {
-		k.RemovePosition(ctx, order.AddressString, order.PositionId)
+		k.RemovePosition(ctx, order.AddressString, order.PositionOrderHash)
 
 		if position.IsolatedMargin {
-			marginAddressModule := types.GetIsolatedMarginAddressModule(order.AddressString, order.PositionId)
+			marginAddressModule := types.GetIsolatedMarginAddressModule(order.AddressString, order.PositionOrderHash)
 			coins := k.bankKeeper.SpendableCoins(ctx, k.accountKeeper.GetModuleAddress(marginAddressModule))
 
 			err := k.bankKeeper.SendCoinsFromAccountToModule(ctx, owner, marginAddressModule, coins)

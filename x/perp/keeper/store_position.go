@@ -2,7 +2,6 @@ package keeper
 
 import (
 	"context"
-	"encoding/binary"
 
 	"gluon/x/perp/types"
 
@@ -11,85 +10,56 @@ import (
 	"github.com/cosmos/cosmos-sdk/runtime"
 )
 
-// GetPositionCount get the total number of position
-func (k Keeper) GetPositionCount(ctx context.Context) uint64 {
-	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, []byte{})
-	byteKey := types.KeyPrefix(types.PositionCountKey)
-	bz := store.Get(byteKey)
-
-	// Count doesn't exist: no element
-	if bz == nil {
-		return 0
-	}
-
-	// Parse bytes
-	return binary.BigEndian.Uint64(bz)
-}
-
-// SetPositionCount set the total number of position
-func (k Keeper) SetPositionCount(ctx context.Context, count uint64) {
-	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, []byte{})
-	byteKey := types.KeyPrefix(types.PositionCountKey)
-	bz := make([]byte, 8)
-	binary.BigEndian.PutUint64(bz, count)
-	store.Set(byteKey, bz)
-}
-
-// AppendPosition appends a position in the store with a new id and update the count
-func (k Keeper) AppendPosition(
-	ctx context.Context,
-	position types.Position,
-) uint64 {
-	// Create the position
-	count := k.GetPositionCount(ctx)
-
-	// Set the ID of the appended value
-	position.Id = count
-
-	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PositionKey))
-	appendedValue := k.cdc.MustMarshal(&position)
-	store.Set(GetPositionIDBytes(position.Owner, position.Id), appendedValue)
-
-	// Update position count
-	k.SetPositionCount(ctx, count+1)
-
-	return count
-}
-
-// SetPosition set a specific position in the store
+// SetPosition set a specific position in the store from its index
 func (k Keeper) SetPosition(ctx context.Context, position types.Position) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PositionKey))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PositionKeyPrefix))
 	b := k.cdc.MustMarshal(&position)
-	store.Set(GetPositionIDBytes(position.Owner, position.Id), b)
+	store.Set(types.PositionKey(
+		position.Owner,
+		position.OrderHash,
+	), b)
 }
 
-// GetPosition returns a position from its id
-func (k Keeper) GetPosition(ctx context.Context, owner string, id uint64) (val types.Position, found bool) {
+// GetPosition returns a position from its index
+func (k Keeper) GetPosition(
+	ctx context.Context,
+	owner string,
+	orderHash string,
+) (val types.Position, found bool) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PositionKey))
-	b := store.Get(GetPositionIDBytes(owner, id))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PositionKeyPrefix))
+
+	b := store.Get(types.PositionKey(
+		owner,
+		orderHash,
+	))
 	if b == nil {
 		return val, false
 	}
+
 	k.cdc.MustUnmarshal(b, &val)
 	return val, true
 }
 
 // RemovePosition removes a position from the store
-func (k Keeper) RemovePosition(ctx context.Context, owner string, id uint64) {
+func (k Keeper) RemovePosition(
+	ctx context.Context,
+	owner string,
+	orderHash string,
+) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PositionKey))
-	store.Delete(GetPositionIDBytes(owner, id))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PositionKeyPrefix))
+	store.Delete(types.PositionKey(
+		owner,
+		orderHash,
+	))
 }
 
 // GetAllPosition returns all position
 func (k Keeper) GetAllPosition(ctx context.Context) (list []types.Position) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
-	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PositionKey))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PositionKeyPrefix))
 	iterator := storetypes.KVStorePrefixIterator(store, []byte{})
 
 	defer iterator.Close()
@@ -101,17 +71,4 @@ func (k Keeper) GetAllPosition(ctx context.Context) (list []types.Position) {
 	}
 
 	return
-}
-
-// GetPositionIDBytes returns the byte representation of the ID
-func GetPositionIDBytes(
-	owner string,
-	id uint64,
-) []byte {
-	bz := types.KeyPrefix(types.PositionKey)
-	bz = append(bz, []byte("/")...)
-	bz = append(bz, []byte(owner)...)
-	bz = append(bz, []byte("/")...)
-	bz = binary.BigEndian.AppendUint64(bz, id)
-	return bz
 }

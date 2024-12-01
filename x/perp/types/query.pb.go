@@ -114,24 +114,24 @@ func (m *QueryParamsResponse) GetParams() Params {
 	return Params{}
 }
 
-// QueryGetPositionRequest
-type QueryGetPositionRequest struct {
-	Owner string `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
-	Id    uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+// QueryPositionRequest
+type QueryPositionRequest struct {
+	Owner     string `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
+	OrderHash string `protobuf:"bytes,2,opt,name=order_hash,json=orderHash,proto3" json:"order_hash,omitempty"`
 }
 
-func (m *QueryGetPositionRequest) Reset()         { *m = QueryGetPositionRequest{} }
-func (m *QueryGetPositionRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryGetPositionRequest) ProtoMessage()    {}
-func (*QueryGetPositionRequest) Descriptor() ([]byte, []int) {
+func (m *QueryPositionRequest) Reset()         { *m = QueryPositionRequest{} }
+func (m *QueryPositionRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryPositionRequest) ProtoMessage()    {}
+func (*QueryPositionRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_811d04d9c292960c, []int{2}
 }
-func (m *QueryGetPositionRequest) XXX_Unmarshal(b []byte) error {
+func (m *QueryPositionRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryGetPositionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryPositionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryGetPositionRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryPositionRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -141,49 +141,49 @@ func (m *QueryGetPositionRequest) XXX_Marshal(b []byte, deterministic bool) ([]b
 		return b[:n], nil
 	}
 }
-func (m *QueryGetPositionRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetPositionRequest.Merge(m, src)
+func (m *QueryPositionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryPositionRequest.Merge(m, src)
 }
-func (m *QueryGetPositionRequest) XXX_Size() int {
+func (m *QueryPositionRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryGetPositionRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetPositionRequest.DiscardUnknown(m)
+func (m *QueryPositionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryPositionRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryGetPositionRequest proto.InternalMessageInfo
+var xxx_messageInfo_QueryPositionRequest proto.InternalMessageInfo
 
-func (m *QueryGetPositionRequest) GetOwner() string {
+func (m *QueryPositionRequest) GetOwner() string {
 	if m != nil {
 		return m.Owner
 	}
 	return ""
 }
 
-func (m *QueryGetPositionRequest) GetId() uint64 {
+func (m *QueryPositionRequest) GetOrderHash() string {
 	if m != nil {
-		return m.Id
+		return m.OrderHash
 	}
-	return 0
+	return ""
 }
 
-// QueryGetPositionResponse
-type QueryGetPositionResponse struct {
+// QueryPositionResponse
+type QueryPositionResponse struct {
 	Position Position `protobuf:"bytes,1,opt,name=position,proto3" json:"position"`
 }
 
-func (m *QueryGetPositionResponse) Reset()         { *m = QueryGetPositionResponse{} }
-func (m *QueryGetPositionResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryGetPositionResponse) ProtoMessage()    {}
-func (*QueryGetPositionResponse) Descriptor() ([]byte, []int) {
+func (m *QueryPositionResponse) Reset()         { *m = QueryPositionResponse{} }
+func (m *QueryPositionResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryPositionResponse) ProtoMessage()    {}
+func (*QueryPositionResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_811d04d9c292960c, []int{3}
 }
-func (m *QueryGetPositionResponse) XXX_Unmarshal(b []byte) error {
+func (m *QueryPositionResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryGetPositionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryPositionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryGetPositionResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryPositionResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -193,19 +193,19 @@ func (m *QueryGetPositionResponse) XXX_Marshal(b []byte, deterministic bool) ([]
 		return b[:n], nil
 	}
 }
-func (m *QueryGetPositionResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryGetPositionResponse.Merge(m, src)
+func (m *QueryPositionResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryPositionResponse.Merge(m, src)
 }
-func (m *QueryGetPositionResponse) XXX_Size() int {
+func (m *QueryPositionResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryGetPositionResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryGetPositionResponse.DiscardUnknown(m)
+func (m *QueryPositionResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryPositionResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryGetPositionResponse proto.InternalMessageInfo
+var xxx_messageInfo_QueryPositionResponse proto.InternalMessageInfo
 
-func (m *QueryGetPositionResponse) GetPosition() Position {
+func (m *QueryPositionResponse) GetPosition() Position {
 	if m != nil {
 		return m.Position
 	}
@@ -321,8 +321,8 @@ func (m *QueryPositionsResponse) GetPagination() *query.PageResponse {
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "gluon.perp.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "gluon.perp.QueryParamsResponse")
-	proto.RegisterType((*QueryGetPositionRequest)(nil), "gluon.perp.QueryGetPositionRequest")
-	proto.RegisterType((*QueryGetPositionResponse)(nil), "gluon.perp.QueryGetPositionResponse")
+	proto.RegisterType((*QueryPositionRequest)(nil), "gluon.perp.QueryPositionRequest")
+	proto.RegisterType((*QueryPositionResponse)(nil), "gluon.perp.QueryPositionResponse")
 	proto.RegisterType((*QueryPositionsRequest)(nil), "gluon.perp.QueryPositionsRequest")
 	proto.RegisterType((*QueryPositionsResponse)(nil), "gluon.perp.QueryPositionsResponse")
 }
@@ -330,40 +330,39 @@ func init() {
 func init() { proto.RegisterFile("gluon/perp/query.proto", fileDescriptor_811d04d9c292960c) }
 
 var fileDescriptor_811d04d9c292960c = []byte{
-	// 513 bytes of a gzipped FileDescriptorProto
+	// 512 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x93, 0xcd, 0x6e, 0xd3, 0x40,
-	0x10, 0xc7, 0xb3, 0xa6, 0x8d, 0x9a, 0xa9, 0x84, 0xc4, 0x60, 0xda, 0x60, 0x81, 0x53, 0x96, 0x02,
-	0x55, 0x84, 0xbc, 0x6a, 0x10, 0x88, 0x1b, 0x52, 0x0e, 0xf4, 0xc2, 0x21, 0xf8, 0xc8, 0x6d, 0x43,
-	0x56, 0x96, 0xa5, 0xc6, 0xeb, 0x7a, 0x1d, 0x20, 0xaa, 0x7a, 0x80, 0x27, 0x40, 0xe2, 0xc8, 0x0b,
-	0x70, 0xe4, 0x31, 0x7a, 0xac, 0xc4, 0x85, 0x13, 0x42, 0x09, 0x12, 0x27, 0xde, 0x01, 0x79, 0x77,
-	0xd3, 0xb8, 0x75, 0xeb, 0x5e, 0xac, 0xf5, 0x7c, 0xfd, 0x7f, 0xb3, 0x33, 0x0b, 0x1b, 0xd1, 0xfe,
-	0x44, 0x26, 0x2c, 0x15, 0x59, 0xca, 0x0e, 0x26, 0x22, 0x9b, 0x06, 0x69, 0x26, 0x73, 0x89, 0xa0,
-	0xed, 0x41, 0x61, 0xf7, 0x6e, 0xf0, 0x71, 0x9c, 0x48, 0xa6, 0xbf, 0xc6, 0xed, 0x75, 0xdf, 0x4a,
-	0x35, 0x96, 0x8a, 0x0d, 0xb9, 0x12, 0x26, 0x8f, 0xbd, 0xdb, 0x1d, 0x8a, 0x9c, 0xef, 0xb2, 0x94,
-	0x47, 0x71, 0xc2, 0xf3, 0xb8, 0xc8, 0xd6, 0xb1, 0x9b, 0x25, 0x89, 0x94, 0x67, 0x7c, 0xac, 0xac,
-	0xe3, 0x76, 0xd9, 0x21, 0x55, 0x5c, 0xca, 0x71, 0x23, 0x19, 0x49, 0x7d, 0x64, 0xc5, 0xc9, 0x5a,
-	0xef, 0x44, 0x52, 0x46, 0xfb, 0x82, 0xf1, 0x34, 0x66, 0x3c, 0x49, 0x64, 0xae, 0x65, 0x6c, 0x39,
-	0xea, 0x02, 0xbe, 0x2e, 0x48, 0x06, 0x5a, 0x23, 0x14, 0x07, 0x13, 0xa1, 0x72, 0xfa, 0x0a, 0x6e,
-	0x9e, 0xb1, 0xaa, 0x54, 0x26, 0x4a, 0xe0, 0x53, 0x68, 0x1a, 0x96, 0x36, 0xd9, 0x22, 0x3b, 0xeb,
-	0x3d, 0x0c, 0x96, 0x0d, 0x07, 0x26, 0xb6, 0xdf, 0x3a, 0xfe, 0xd5, 0x69, 0x7c, 0xfb, 0xfb, 0xbd,
-	0x4b, 0x42, 0x1b, 0x4c, 0x5f, 0xc0, 0xa6, 0xae, 0xb6, 0x27, 0xf2, 0x81, 0x25, 0xb6, 0x42, 0xe8,
-	0xc2, 0xaa, 0x7c, 0x9f, 0x88, 0x4c, 0x17, 0x6c, 0x85, 0xe6, 0x07, 0xaf, 0x83, 0x13, 0x8f, 0xda,
-	0xce, 0x16, 0xd9, 0x59, 0x09, 0x9d, 0x78, 0x44, 0x43, 0x68, 0x57, 0x0b, 0x58, 0xa6, 0x67, 0xb0,
-	0xb6, 0xb8, 0x06, 0x4b, 0xe5, 0x9e, 0xa1, 0xb2, 0xbe, 0xfe, 0x4a, 0xc1, 0x15, 0x9e, 0xc6, 0xd2,
-	0x09, 0xdc, 0x32, 0x2d, 0x5a, 0x83, 0xaa, 0x47, 0x7a, 0x09, 0xb0, 0x9c, 0x91, 0x46, 0x5b, 0xef,
-	0x3d, 0x0c, 0xcc, 0x40, 0x83, 0x62, 0xa0, 0x81, 0x59, 0x04, 0x3b, 0xd0, 0x60, 0xc0, 0x23, 0x61,
-	0x2b, 0x86, 0xa5, 0x4c, 0xfa, 0x95, 0xc0, 0xc6, 0x79, 0x5d, 0xdb, 0xc9, 0x73, 0x68, 0x2d, 0xe8,
-	0x8a, 0x0b, 0xbe, 0x76, 0x45, 0x2b, 0xcb, 0x60, 0xdc, 0xbb, 0x00, 0xee, 0xd1, 0x95, 0x70, 0x46,
-	0xb6, 0x4c, 0xd7, 0xfb, 0xe7, 0xc0, 0xaa, 0xa6, 0x43, 0x01, 0x4d, 0x33, 0x50, 0xf4, 0xcb, 0x0c,
-	0xd5, 0x5d, 0xf1, 0x3a, 0x97, 0xfa, 0x8d, 0x00, 0xf5, 0x3e, 0xfd, 0xf8, 0xf3, 0xc5, 0x71, 0x11,
-	0x59, 0x65, 0xa7, 0xf1, 0x23, 0x81, 0xb5, 0x45, 0x5f, 0x78, 0xbf, 0x52, 0xa9, 0xba, 0x31, 0xde,
-	0x76, 0x7d, 0x90, 0xd5, 0xec, 0x6a, 0xcd, 0x6d, 0xa4, 0xec, 0x82, 0xe7, 0xa2, 0xd8, 0xa1, 0x1e,
-	0xea, 0x11, 0x3b, 0x8c, 0x47, 0x47, 0x38, 0x85, 0xd6, 0xe9, 0x30, 0xf0, 0x5e, 0xb5, 0x9b, 0x73,
-	0x0b, 0xe2, 0xd1, 0xba, 0x10, 0xab, 0xff, 0x40, 0xeb, 0x77, 0xf0, 0x6e, 0xad, 0x7e, 0xff, 0xf1,
-	0xf1, 0xcc, 0x27, 0x27, 0x33, 0x9f, 0xfc, 0x9e, 0xf9, 0xe4, 0xf3, 0xdc, 0x6f, 0x9c, 0xcc, 0xfd,
-	0xc6, 0xcf, 0xb9, 0xdf, 0x78, 0x83, 0x26, 0xef, 0x83, 0xc9, 0xcc, 0xa7, 0xa9, 0x50, 0xc3, 0xa6,
-	0x7e, 0xb2, 0x4f, 0xfe, 0x07, 0x00, 0x00, 0xff, 0xff, 0x55, 0x4a, 0x59, 0x14, 0x7f, 0x04, 0x00,
-	0x00,
+	0x10, 0xc7, 0xe3, 0x40, 0xa3, 0x7a, 0x7a, 0x62, 0x30, 0xa5, 0x58, 0xd4, 0x29, 0x2b, 0xf1, 0xa1,
+	0xa8, 0xda, 0x55, 0x83, 0x40, 0x9c, 0x73, 0x00, 0x24, 0x90, 0x28, 0x3e, 0x72, 0x41, 0x1b, 0x58,
+	0x39, 0x96, 0x1a, 0xef, 0xd6, 0xeb, 0x00, 0x51, 0xd5, 0x0b, 0xbc, 0x00, 0x12, 0x47, 0x5e, 0x80,
+	0x23, 0x8f, 0xd1, 0x63, 0x25, 0x2e, 0x9c, 0x10, 0x4a, 0x90, 0x38, 0xf2, 0x0a, 0xc8, 0xbb, 0x9b,
+	0xc4, 0x49, 0xda, 0xf4, 0x62, 0xad, 0xe7, 0xeb, 0xff, 0x9b, 0x9d, 0x59, 0xd8, 0x4c, 0x0e, 0x06,
+	0x32, 0x63, 0x4a, 0xe4, 0x8a, 0x1d, 0x0e, 0x44, 0x3e, 0xa4, 0x2a, 0x97, 0x85, 0x44, 0x30, 0x76,
+	0x5a, 0xda, 0xc3, 0x2b, 0xbc, 0x9f, 0x66, 0x92, 0x99, 0xaf, 0x75, 0x87, 0xad, 0x37, 0x52, 0xf7,
+	0xa5, 0x66, 0x5d, 0xae, 0x85, 0xcd, 0x63, 0xef, 0xf6, 0xba, 0xa2, 0xe0, 0x7b, 0x4c, 0xf1, 0x24,
+	0xcd, 0x78, 0x91, 0x96, 0xd9, 0x26, 0xf6, 0x7a, 0x45, 0x42, 0xf1, 0x9c, 0xf7, 0xb5, 0x73, 0xdc,
+	0xa8, 0x3a, 0xa4, 0x4e, 0x2b, 0x39, 0x41, 0x22, 0x13, 0x69, 0x8e, 0xac, 0x3c, 0x39, 0xeb, 0xcd,
+	0x44, 0xca, 0xe4, 0x40, 0x30, 0xae, 0x52, 0xc6, 0xb3, 0x4c, 0x16, 0x46, 0xc6, 0x95, 0x23, 0x01,
+	0xe0, 0xcb, 0x92, 0x64, 0xdf, 0x68, 0xc4, 0xe2, 0x70, 0x20, 0x74, 0x41, 0x9e, 0xc3, 0xd5, 0x39,
+	0xab, 0x56, 0x32, 0xd3, 0x02, 0x1f, 0x40, 0xc3, 0xb2, 0x6c, 0x79, 0x3b, 0xde, 0xbd, 0x8d, 0x36,
+	0xd2, 0x59, 0xc3, 0xd4, 0xc6, 0x76, 0xfc, 0x93, 0x5f, 0xcd, 0xda, 0xb7, 0xbf, 0xdf, 0x5b, 0x5e,
+	0xec, 0x82, 0xc9, 0x33, 0x08, 0x6c, 0x35, 0x87, 0xeb, 0x54, 0x30, 0x80, 0x35, 0xf9, 0x3e, 0x13,
+	0xb9, 0xa9, 0xe6, 0xc7, 0xf6, 0x07, 0xb7, 0x01, 0x64, 0xfe, 0x56, 0xe4, 0xaf, 0x7b, 0x5c, 0xf7,
+	0xb6, 0xea, 0xc6, 0xe5, 0x1b, 0xcb, 0x53, 0xae, 0x7b, 0xe4, 0x05, 0x5c, 0x5b, 0x28, 0xe6, 0xe0,
+	0x1e, 0xc2, 0xfa, 0xe4, 0x3e, 0x1c, 0x5e, 0x30, 0x87, 0xe7, 0x7c, 0x9d, 0xcb, 0x25, 0x60, 0x3c,
+	0x8d, 0x25, 0x83, 0x85, 0x82, 0x7a, 0x35, 0xde, 0x63, 0x80, 0xd9, 0xb0, 0x0c, 0xde, 0x46, 0xfb,
+	0x0e, 0xb5, 0x93, 0xa5, 0xe5, 0x64, 0xa9, 0xdd, 0x08, 0x37, 0x59, 0xba, 0xcf, 0x13, 0xe1, 0x2a,
+	0xc6, 0x95, 0x4c, 0xf2, 0xd5, 0x83, 0xcd, 0x45, 0x5d, 0xd7, 0xc9, 0x23, 0xf0, 0x27, 0x74, 0xe5,
+	0x4d, 0x5f, 0xba, 0xa0, 0x95, 0x59, 0x30, 0x3e, 0x39, 0x03, 0xee, 0xee, 0x85, 0x70, 0x56, 0xb6,
+	0x4a, 0xd7, 0xfe, 0x57, 0x87, 0x35, 0x43, 0x87, 0x02, 0x1a, 0x76, 0xb2, 0x18, 0x55, 0x19, 0x96,
+	0x97, 0x26, 0x6c, 0x9e, 0xeb, 0xb7, 0x02, 0x24, 0xfc, 0xf8, 0xe3, 0xcf, 0x97, 0x7a, 0x80, 0xc8,
+	0x96, 0x96, 0x1b, 0x3f, 0x79, 0xb0, 0x3e, 0xe9, 0x0b, 0x77, 0x96, 0x2b, 0xcd, 0xaf, 0x4e, 0x78,
+	0x6b, 0x45, 0x84, 0x53, 0x6b, 0x1b, 0xb5, 0x5d, 0x6c, 0xb1, 0x33, 0x5e, 0x8c, 0x66, 0x47, 0x66,
+	0x9c, 0xc7, 0xec, 0x68, 0xb6, 0x6c, 0xc7, 0x38, 0x04, 0x7f, 0x3a, 0x0e, 0x3c, 0x5f, 0x63, 0xda,
+	0x32, 0x59, 0x15, 0xe2, 0x38, 0x6e, 0x1b, 0x8e, 0x26, 0x6e, 0xaf, 0xe4, 0xe8, 0xec, 0x9e, 0x8c,
+	0x22, 0xef, 0x74, 0x14, 0x79, 0xbf, 0x47, 0x91, 0xf7, 0x79, 0x1c, 0xd5, 0x4e, 0xc7, 0x51, 0xed,
+	0xe7, 0x38, 0xaa, 0xbd, 0x42, 0x9b, 0xf7, 0xc1, 0x66, 0x16, 0x43, 0x25, 0x74, 0xb7, 0x61, 0x5e,
+	0xef, 0xfd, 0xff, 0x01, 0x00, 0x00, 0xff, 0xff, 0xfe, 0x7c, 0xdc, 0x83, 0x8a, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -381,7 +380,7 @@ type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
 	// Position
-	Position(ctx context.Context, in *QueryGetPositionRequest, opts ...grpc.CallOption) (*QueryGetPositionResponse, error)
+	Position(ctx context.Context, in *QueryPositionRequest, opts ...grpc.CallOption) (*QueryPositionResponse, error)
 	// Positions
 	Positions(ctx context.Context, in *QueryPositionsRequest, opts ...grpc.CallOption) (*QueryPositionsResponse, error)
 }
@@ -403,8 +402,8 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
-func (c *queryClient) Position(ctx context.Context, in *QueryGetPositionRequest, opts ...grpc.CallOption) (*QueryGetPositionResponse, error) {
-	out := new(QueryGetPositionResponse)
+func (c *queryClient) Position(ctx context.Context, in *QueryPositionRequest, opts ...grpc.CallOption) (*QueryPositionResponse, error) {
+	out := new(QueryPositionResponse)
 	err := c.cc.Invoke(ctx, "/gluon.perp.Query/Position", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -426,7 +425,7 @@ type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
 	// Position
-	Position(context.Context, *QueryGetPositionRequest) (*QueryGetPositionResponse, error)
+	Position(context.Context, *QueryPositionRequest) (*QueryPositionResponse, error)
 	// Positions
 	Positions(context.Context, *QueryPositionsRequest) (*QueryPositionsResponse, error)
 }
@@ -438,7 +437,7 @@ type UnimplementedQueryServer struct {
 func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
 }
-func (*UnimplementedQueryServer) Position(ctx context.Context, req *QueryGetPositionRequest) (*QueryGetPositionResponse, error) {
+func (*UnimplementedQueryServer) Position(ctx context.Context, req *QueryPositionRequest) (*QueryPositionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Position not implemented")
 }
 func (*UnimplementedQueryServer) Positions(ctx context.Context, req *QueryPositionsRequest) (*QueryPositionsResponse, error) {
@@ -468,7 +467,7 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 }
 
 func _Query_Position_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetPositionRequest)
+	in := new(QueryPositionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -480,7 +479,7 @@ func _Query_Position_Handler(srv interface{}, ctx context.Context, dec func(inte
 		FullMethod: "/gluon.perp.Query/Position",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).Position(ctx, req.(*QueryGetPositionRequest))
+		return srv.(QueryServer).Position(ctx, req.(*QueryPositionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -581,7 +580,7 @@ func (m *QueryParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryGetPositionRequest) Marshal() (dAtA []byte, err error) {
+func (m *QueryPositionRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -591,20 +590,22 @@ func (m *QueryGetPositionRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryGetPositionRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryPositionRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryGetPositionRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryPositionRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.Id != 0 {
-		i = encodeVarintQuery(dAtA, i, uint64(m.Id))
+	if len(m.OrderHash) > 0 {
+		i -= len(m.OrderHash)
+		copy(dAtA[i:], m.OrderHash)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.OrderHash)))
 		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0x12
 	}
 	if len(m.Owner) > 0 {
 		i -= len(m.Owner)
@@ -616,7 +617,7 @@ func (m *QueryGetPositionRequest) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryGetPositionResponse) Marshal() (dAtA []byte, err error) {
+func (m *QueryPositionResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -626,12 +627,12 @@ func (m *QueryGetPositionResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryGetPositionResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryPositionResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryGetPositionResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryPositionResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -771,7 +772,7 @@ func (m *QueryParamsResponse) Size() (n int) {
 	return n
 }
 
-func (m *QueryGetPositionRequest) Size() (n int) {
+func (m *QueryPositionRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -781,13 +782,14 @@ func (m *QueryGetPositionRequest) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovQuery(uint64(l))
 	}
-	if m.Id != 0 {
-		n += 1 + sovQuery(uint64(m.Id))
+	l = len(m.OrderHash)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
 	}
 	return n
 }
 
-func (m *QueryGetPositionResponse) Size() (n int) {
+func (m *QueryPositionResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -973,7 +975,7 @@ func (m *QueryParamsResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryGetPositionRequest) Unmarshal(dAtA []byte) error {
+func (m *QueryPositionRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -996,10 +998,10 @@ func (m *QueryGetPositionRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetPositionRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryPositionRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetPositionRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryPositionRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1035,10 +1037,10 @@ func (m *QueryGetPositionRequest) Unmarshal(dAtA []byte) error {
 			m.Owner = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OrderHash", wireType)
 			}
-			m.Id = 0
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowQuery
@@ -1048,11 +1050,24 @@ func (m *QueryGetPositionRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= uint64(b&0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OrderHash = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipQuery(dAtA[iNdEx:])
@@ -1074,7 +1089,7 @@ func (m *QueryGetPositionRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryGetPositionResponse) Unmarshal(dAtA []byte) error {
+func (m *QueryPositionResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1097,10 +1112,10 @@ func (m *QueryGetPositionResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryGetPositionResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryPositionResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryGetPositionResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryPositionResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:

@@ -20,9 +20,9 @@ func (k Keeper) GetOrderBodyDenomsDirection(ctx context.Context, orderBody order
 		return
 	case *types.PerpPositionCancelOrder:
 		perpOrder = orderBody
-		position, found := k.GetPosition(ctx, orderBody.AddressString, orderBody.PositionId)
+		position, found := k.GetPosition(ctx, orderBody.AddressString, orderBody.PositionOrderHash)
 		if !found {
-			err = errorsmod.Wrapf(sdkerrors.ErrNotFound, "position id: %d", orderBody.PositionId)
+			err = errorsmod.Wrapf(sdkerrors.ErrNotFound, "position owner:%s, order hash: %s", orderBody.AddressString, orderBody.PositionOrderHash)
 			return
 		}
 		denomBase = position.DenomBase
