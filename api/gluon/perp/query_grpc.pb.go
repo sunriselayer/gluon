@@ -25,6 +25,8 @@ const (
 	Query_PositionPriceQuantity_FullMethodName   = "/gluon.perp.Query/PositionPriceQuantity"
 	Query_PositionPriceQuantities_FullMethodName = "/gluon.perp.Query/PositionPriceQuantities"
 	Query_CrossMargin_FullMethodName             = "/gluon.perp.Query/CrossMargin"
+	Query_FundingRate_FullMethodName             = "/gluon.perp.Query/FundingRate"
+	Query_FundingRates_FullMethodName            = "/gluon.perp.Query/FundingRates"
 )
 
 // QueryClient is the client API for Query service.
@@ -45,6 +47,10 @@ type QueryClient interface {
 	PositionPriceQuantities(ctx context.Context, in *QueryPositionPriceQuantitiesRequest, opts ...grpc.CallOption) (*QueryPositionPriceQuantitiesResponse, error)
 	// CrossMargin
 	CrossMargin(ctx context.Context, in *QueryCrossMarginRequest, opts ...grpc.CallOption) (*QueryCrossMarginResponse, error)
+	// FundingRate
+	FundingRate(ctx context.Context, in *QueryFundingRateRequest, opts ...grpc.CallOption) (*QueryFundingRateResponse, error)
+	// FundingRates
+	FundingRates(ctx context.Context, in *QueryFundingRatesRequest, opts ...grpc.CallOption) (*QueryFundingRatesResponse, error)
 }
 
 type queryClient struct {
@@ -115,6 +121,26 @@ func (c *queryClient) CrossMargin(ctx context.Context, in *QueryCrossMarginReque
 	return out, nil
 }
 
+func (c *queryClient) FundingRate(ctx context.Context, in *QueryFundingRateRequest, opts ...grpc.CallOption) (*QueryFundingRateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(QueryFundingRateResponse)
+	err := c.cc.Invoke(ctx, Query_FundingRate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) FundingRates(ctx context.Context, in *QueryFundingRatesRequest, opts ...grpc.CallOption) (*QueryFundingRatesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(QueryFundingRatesResponse)
+	err := c.cc.Invoke(ctx, Query_FundingRates_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility.
@@ -133,6 +159,10 @@ type QueryServer interface {
 	PositionPriceQuantities(context.Context, *QueryPositionPriceQuantitiesRequest) (*QueryPositionPriceQuantitiesResponse, error)
 	// CrossMargin
 	CrossMargin(context.Context, *QueryCrossMarginRequest) (*QueryCrossMarginResponse, error)
+	// FundingRate
+	FundingRate(context.Context, *QueryFundingRateRequest) (*QueryFundingRateResponse, error)
+	// FundingRates
+	FundingRates(context.Context, *QueryFundingRatesRequest) (*QueryFundingRatesResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -160,6 +190,12 @@ func (UnimplementedQueryServer) PositionPriceQuantities(context.Context, *QueryP
 }
 func (UnimplementedQueryServer) CrossMargin(context.Context, *QueryCrossMarginRequest) (*QueryCrossMarginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CrossMargin not implemented")
+}
+func (UnimplementedQueryServer) FundingRate(context.Context, *QueryFundingRateRequest) (*QueryFundingRateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FundingRate not implemented")
+}
+func (UnimplementedQueryServer) FundingRates(context.Context, *QueryFundingRatesRequest) (*QueryFundingRatesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FundingRates not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 func (UnimplementedQueryServer) testEmbeddedByValue()               {}
@@ -290,6 +326,42 @@ func _Query_CrossMargin_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_FundingRate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryFundingRateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).FundingRate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_FundingRate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).FundingRate(ctx, req.(*QueryFundingRateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_FundingRates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryFundingRatesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).FundingRates(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_FundingRates_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).FundingRates(ctx, req.(*QueryFundingRatesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -320,6 +392,14 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CrossMargin",
 			Handler:    _Query_CrossMargin_Handler,
+		},
+		{
+			MethodName: "FundingRate",
+			Handler:    _Query_FundingRate_Handler,
+		},
+		{
+			MethodName: "FundingRates",
+			Handler:    _Query_FundingRates_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

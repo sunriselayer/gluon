@@ -1,0 +1,20 @@
+syntax = "proto3";
+package gluon.perp;
+
+import "gogoproto/gogo.proto";
+import "google/protobuf/duration.proto";
+
+option go_package = "gluon/x/perp/types";
+
+// FundingRate
+message FundingRate {
+  string denom_base = 1;
+  string denom_quote = 2;
+  uint64 seconds = 3;
+  uint32 nanos = 4;
+  google.protobuf.Duration interval = 5 [
+    (gogoproto.nullable) = false,
+    (gogoproto.stdduration) = true
+  ];
+  string rate = 6;
+}

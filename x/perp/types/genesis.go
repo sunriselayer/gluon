@@ -13,6 +13,7 @@ func DefaultGenesis() *GenesisState {
 		Positions:               []Position{},
 		PositionPriceQuantities: []PositionPriceQuantity{},
 		CrossMargins:            []CrossMargin{},
+		FundingRates:            []FundingRate{},
 		// this line is used by starport scaffolding # genesis/types/default
 		Params: DefaultParams(),
 	}
@@ -50,6 +51,16 @@ func (gs GenesisState) Validate() error {
 			return fmt.Errorf("duplicated index for crossMargin")
 		}
 		crossMarginIndexMap[index] = struct{}{}
+	}
+	// Check for duplicated index in fundingRate
+	fundingRateIndexMap := make(map[string]struct{})
+
+	for _, elem := range gs.FundingRates {
+		index := string(FundingRateKey(elem.DenomBase, elem.DenomQuote, elem.Seconds, elem.Nanos))
+		if _, ok := fundingRateIndexMap[index]; ok {
+			return fmt.Errorf("duplicated index for fundingRate")
+		}
+		fundingRateIndexMap[index] = struct{}{}
 	}
 	// this line is used by starport scaffolding # genesis/types/validate
 

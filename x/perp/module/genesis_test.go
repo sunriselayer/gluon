@@ -45,6 +45,20 @@ func TestGenesis(t *testing.T) {
 				Owner: "1",
 			},
 		},
+		FundingRates: []types.FundingRate{
+			{
+				DenomBase:  "0",
+				DenomQuote: "0",
+				Seconds:    0,
+				Nanos:      0,
+			},
+			{
+				DenomBase:  "1",
+				DenomQuote: "1",
+				Seconds:    1,
+				Nanos:      1,
+			},
+		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -59,5 +73,6 @@ func TestGenesis(t *testing.T) {
 	require.ElementsMatch(t, genesisState.Positions, got.Positions)
 	require.ElementsMatch(t, genesisState.PositionPriceQuantities, got.PositionPriceQuantities)
 	require.ElementsMatch(t, genesisState.CrossMargins, got.CrossMargins)
+	require.ElementsMatch(t, genesisState.FundingRates, got.FundingRates)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

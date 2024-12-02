@@ -30,7 +30,7 @@ func OrderKey(
 	return key
 }
 
-// OrderKeyPrefix
+// OrderKeyPrefixByOwner
 func OrderKeyPrefixByOwner(
 	owner string,
 ) []byte {

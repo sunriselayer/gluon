@@ -46,6 +46,17 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Shows a cross-margin",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}},
 				},
+				{
+					RpcMethod: "FundingRateAll",
+					Use:       "list-funding-rate",
+					Short:     "List all funding-rate",
+				},
+				{
+					RpcMethod:      "FundingRate",
+					Use:            "show-funding-rate [id]",
+					Short:          "Shows a funding-rate",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "denomBase"}, {ProtoField: "denomQuote"}, {ProtoField: "seconds"}, {ProtoField: "nanos"}},
+				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},

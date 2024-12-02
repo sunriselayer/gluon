@@ -5,6 +5,7 @@ package gluon.perp;
 import "amino/amino.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "gluon/perp/cross_margin.proto";
+import "gluon/perp/funding_rate.proto";
 import "gluon/perp/params.proto";
 import "gluon/perp/position.proto";
 import "gluon/perp/position_price_quantity.proto";
@@ -43,6 +44,15 @@ service Query {
   // CrossMargin
   rpc CrossMargin(QueryCrossMarginRequest) returns (QueryCrossMarginResponse) {
     option (google.api.http).get = "/gluon/perp/cross_margins/{owner}";
+  }
+
+  // FundingRate
+  rpc FundingRate(QueryFundingRateRequest) returns (QueryFundingRateResponse) {
+    option (google.api.http).get = "/gluon/perp/funding_rates/{seconds}/{nanos}";
+  }
+  // FundingRates
+  rpc FundingRates(QueryFundingRatesRequest) returns (QueryFundingRatesResponse) {
+    option (google.api.http).get = "/gluon/perp/funding_rates";
   }
 }
 
@@ -114,4 +124,30 @@ message QueryCrossMarginRequest {
 // QueryCrossMarginResponse
 message QueryCrossMarginResponse {
   CrossMargin cross_margin = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryFundingRateRequest
+message QueryFundingRateRequest {
+  string denom_base = 1;
+  string denom_quote = 2;
+  uint64 seconds = 3;
+  uint32 nanos = 4;
+}
+
+// QueryFundingRateResponse
+message QueryFundingRateResponse {
+  FundingRate funding_rate = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryFundingRatesRequest
+message QueryFundingRatesRequest {
+  string denom_base = 1;
+  string denom_quote = 2;
+  cosmos.base.query.v1beta1.PageRequest pagination = 3;
+}
+
+// QueryFundingRatesResponse
+message QueryFundingRatesResponse {
+  repeated FundingRate funding_rates = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }

@@ -53,6 +53,20 @@ func TestGenesisState_Validate(t *testing.T) {
 						Owner: "1",
 					},
 				},
+				FundingRates: []types.FundingRate{
+					{
+						DenomBase:  "0",
+						DenomQuote: "0",
+						Seconds:    0,
+						Nanos:      0,
+					},
+					{
+						DenomBase:  "1",
+						DenomQuote: "1",
+						Seconds:    1,
+						Nanos:      1,
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -100,6 +114,26 @@ func TestGenesisState_Validate(t *testing.T) {
 					},
 					{
 						Owner: "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated fundingRate",
+			genState: &types.GenesisState{
+				FundingRates: []types.FundingRate{
+					{
+						DenomBase:  "0",
+						DenomQuote: "0",
+						Seconds:    0,
+						Nanos:      0,
+					},
+					{
+						DenomBase:  "0",
+						DenomQuote: "0",
+						Seconds:    0,
+						Nanos:      0,
 					},
 				},
 			},
