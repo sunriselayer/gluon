@@ -17,4 +17,5 @@ message FundingRate {
     (gogoproto.stdduration) = true
   ];
   string rate = 6;
+  string price = 7;
 }

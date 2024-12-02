@@ -84,3 +84,34 @@ func (k Keeper) GetAllFundingRate(ctx context.Context) (list []types.FundingRate
 
 	return
 }
+
+// Original
+
+func (k Keeper) GetFundingRatesByPositionReverseIterator(ctx context.Context, denomBase string, denomQuote string) storetypes.Iterator {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.FundingRateKeyPrefixByDenoms(denomBase, denomQuote))
+	iterator := storetypes.KVStoreReversePrefixIterator(store, []byte{})
+
+	return iterator
+}
+
+func (k Keeper) GetFundingRatesByPositionReverse(ctx context.Context, position types.Position) []types.FundingRate {
+	var fundingRates []types.FundingRate
+	iterator := k.GetFundingRatesByPositionReverseIterator(ctx, position.DenomBase, position.DenomQuote)
+	defer iterator.Close()
+
+	for ; iterator.Valid(); iterator.Next() {
+		var fundingRate types.FundingRate
+		k.cdc.MustUnmarshal(iterator.Value(), &fundingRate)
+
+		// At least one element will be appended because if-statement is after this
+		fundingRates = append(fundingRates, fundingRate)
+
+		fundingRateTime := fundingRate.GetTime()
+		if fundingRateTime.Before(position.FundingFeeResetAt) || fundingRateTime.Equal(position.FundingFeeResetAt) {
+			break
+		}
+	}
+
+	return fundingRates
+}

@@ -3,6 +3,7 @@ package gluon.perp;
 
 import "cosmos_proto/cosmos.proto";
 import "gogoproto/gogo.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "gluon/x/perp/types";
 
@@ -33,5 +34,9 @@ message Position {
     (cosmos_proto.scalar) = "cosmos.Int",
     (gogoproto.customtype) = "cosmossdk.io/math.Int",
     (gogoproto.nullable) = false
+  ];
+  google.protobuf.Timestamp funding_fee_reset_at = 9 [
+    (gogoproto.nullable) = false,
+    (gogoproto.stdtime) = true
   ];
 }

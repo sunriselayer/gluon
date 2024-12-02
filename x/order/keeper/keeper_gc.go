@@ -10,8 +10,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/runtime"
 
 	"gluon/x/order/types"
-
-	gogo "github.com/gogo/protobuf/types"
 )
 
 func (k Keeper) GarbageCollect(goCtx context.Context) error {
@@ -37,12 +35,7 @@ func (k Keeper) GarbageCollectOrder(ctx sdk.Context) error {
 		var val types.SortedOrder
 		k.cdc.MustUnmarshal(iterator.Value(), &val)
 
-		timestamp, err := gogo.TimestampProto(ctx.BlockTime())
-		if err != nil {
-			return err
-		}
-
-		if uint64(timestamp.Seconds) <= val.Seconds && uint32(timestamp.Nanos) < val.Nanos {
+		if ctx.BlockTime().Before(val.GetTime()) {
 			break
 		}
 

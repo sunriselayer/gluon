@@ -40,6 +40,7 @@ func (k Keeper) CreateUpdatePosition(
 	position, found := k.GetPosition(ctx, order.AddressString, orderHash)
 	if found {
 		// Update
+		position = k.DeductFundingFee(ctx, position)
 
 		// Add Position Amount
 		position.Amount = position.Amount.Add(quantity)
@@ -62,7 +63,17 @@ func (k Keeper) CreateUpdatePosition(
 		// No need for margin transfer
 		return nil
 	}
-	// Create
+
+	return k.CreatePosition(ctx, orderHash, order, price, quantity)
+}
+
+func (k Keeper) CreatePosition(
+	ctx sdk.Context,
+	orderHash string,
+	order types.PerpPositionCreateOrder,
+	price sdkmath.LegacyDec,
+	quantity sdkmath.Int,
+) error {
 	var direction types.PositionDirection
 	switch order.Direction {
 	case ordertypes.OrderDirection_ORDER_DIRECTION_BUY:
@@ -101,6 +112,7 @@ func (k Keeper) CreateUpdatePosition(
 		Amount:               quantity,
 		IsolatedMargin:       order.IsolatedMargin,
 		IsolatedMarginAmount: isolatedMarginAmount,
+		FundingFeeResetAt:    ctx.BlockTime(),
 	})
 	k.SetPositionPriceQuantity(ctx, types.PositionPriceQuantity{
 		Owner:             order.AddressString,
@@ -122,6 +134,7 @@ func (k Keeper) CancelPosition(
 	if !found {
 		return errorsmod.Wrapf(sdkerrors.ErrNotFound, "position owner: %s, order hash: %s", position.Owner, position.OrderHash)
 	}
+	position = k.DeductFundingFee(ctx, position)
 
 	owner, err := sdk.AccAddressFromBech32(order.AddressString)
 	if err != nil {
@@ -136,7 +149,7 @@ func (k Keeper) CancelPosition(
 
 	pnl := price.MulInt(quantity).TruncateInt()
 
-	// Process PositionPriceQuantity
+	// Process PositionPriceQuantity and get PnL
 	err = k.iteratePositionPriceQuantityByOwnerAndPositionOrderHash(ctx, order.AddressString, order.PositionOrderHash, func(val types.PositionPriceQuantity) (finish bool, err error) {
 		var sub sdkmath.Int
 		if quantity.GT(val.Quantity) {
@@ -194,6 +207,7 @@ func (k Keeper) CancelPosition(
 			}
 		}
 		k.RemovePosition(ctx, order.AddressString, order.PositionOrderHash)
+		// TODO: Delete PositionPriceQuantity
 	} else {
 		position.Amount = position.Amount.Sub(quantity)
 		k.SetPosition(ctx, position)
@@ -208,7 +222,10 @@ func (k Keeper) iteratePositionPriceQuantityByOwnerAndPositionOrderHash(ctx cont
 	defer iterator.Close()
 	for ; iterator.Valid(); iterator.Next() {
 		var priceQuantity types.PositionPriceQuantity
-		k.cdc.MustUnmarshal(iterator.Value(), &priceQuantity)
+		err := k.cdc.Unmarshal(iterator.Value(), &priceQuantity)
+		if err != nil {
+			return err
+		}
 
 		finish, err := callback(priceQuantity)
 		if err != nil {
