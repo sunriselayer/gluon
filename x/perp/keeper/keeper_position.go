@@ -207,7 +207,6 @@ func (k Keeper) CancelPosition(
 			}
 		}
 		k.RemovePosition(ctx, order.AddressString, order.PositionOrderHash)
-		// TODO: Delete PositionPriceQuantity
 	} else {
 		position.Amount = position.Amount.Sub(quantity)
 		k.SetPosition(ctx, position)
