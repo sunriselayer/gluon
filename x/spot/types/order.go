@@ -20,6 +20,10 @@ func SpotOrderCrossValidateBasic(buy SpotOrder, sell SpotOrder, price sdkmath.Le
 
 var _ ordertypes.OrderBody = &SpotOrder{}
 
+func (order SpotOrder) GetBaseOrder() ordertypes.BaseOrder {
+	return order.BaseOrder
+}
+
 func (order SpotOrder) PackAny() (codectypes.Any, error) {
 	val, err := codectypes.NewAnyWithValue(&order)
 	if err != nil {

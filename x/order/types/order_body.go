@@ -1,19 +1,35 @@
 package types
 
 import (
-	errorsmod "cosmossdk.io/errors"
-
 	"crypto/sha256"
 	"encoding/hex"
+	"time"
 
+	errorsmod "cosmossdk.io/errors"
+	sdkmath "cosmossdk.io/math"
 	"github.com/cosmos/cosmos-sdk/codec"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
+	"github.com/cosmos/gogoproto/proto"
 )
 
 type OrderBody interface {
-	OrderI
+	proto.Message
+	GetBaseOrder() BaseOrder
+	ValidateBasic() error
 	PackAny() (codectypes.Any, error)
+}
+
+func OrderInterfaceCrossValidateBasic(buy OrderBody, sell OrderBody, price sdkmath.LegacyDec, blockTime time.Time) error {
+	return BaseOrderCrossValidateBasic(buy.GetBaseOrder(), sell.GetBaseOrder(), price, blockTime)
+}
+
+func ValidateOrderContractAmount(orderAmount sdkmath.Int, orderContractedAmount sdkmath.Int, additionalContractAmount sdkmath.Int) error {
+	if orderContractedAmount.Add(additionalContractAmount).GT(orderAmount) {
+		return ErrContractAmountExceed
+	}
+
+	return nil
 }
 
 func UnpackOrderAny(cdc codec.BinaryCodec, orderAny codectypes.Any) (OrderBody, error) {

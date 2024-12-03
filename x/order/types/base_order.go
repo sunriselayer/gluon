@@ -51,12 +51,6 @@ func BaseOrderCrossValidateBasic(buy BaseOrder, sell BaseOrder, price sdkmath.Le
 	return nil
 }
 
-var _ OrderI = &BaseOrder{}
-
-func (order BaseOrder) GetBaseOrder() BaseOrder {
-	return order
-}
-
 func (order BaseOrder) ValidateBasic() error {
 	var err error
 

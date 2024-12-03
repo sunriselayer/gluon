@@ -27,6 +27,10 @@ func PerpOrderCrossValidateBasic(buy PerpOrder, sell PerpOrder, price sdkmath.Le
 
 var _ PerpOrder = &PerpPositionCreateOrder{}
 
+func (order PerpPositionCreateOrder) GetBaseOrder() ordertypes.BaseOrder {
+	return order.BaseOrder
+}
+
 func (order PerpPositionCreateOrder) ValidateBasic() error {
 	err := order.BaseOrder.ValidateBasic()
 	if err != nil {
@@ -53,6 +57,10 @@ func (order PerpPositionCreateOrder) PackAny() (codectypes.Any, error) {
 // PerpPositionCancelOrder
 
 var _ PerpOrder = &PerpPositionCancelOrder{}
+
+func (order PerpPositionCancelOrder) GetBaseOrder() ordertypes.BaseOrder {
+	return order.BaseOrder
+}
 
 func (order PerpPositionCancelOrder) ValidateBasic() error {
 	err := order.BaseOrder.ValidateBasic()
