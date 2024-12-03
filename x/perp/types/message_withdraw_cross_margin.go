@@ -8,9 +8,10 @@ import (
 
 var _ sdk.Msg = &MsgWithdrawCrossMargin{}
 
-func NewMsgWithdrawCrossMargin(user string) *MsgWithdrawCrossMargin {
+func NewMsgWithdrawCrossMargin(user string, assets sdk.Coins) *MsgWithdrawCrossMargin {
 	return &MsgWithdrawCrossMargin{
-		User: user,
+		User:   user,
+		Assets: assets,
 	}
 }
 
@@ -19,5 +20,10 @@ func (msg *MsgWithdrawCrossMargin) ValidateBasic() error {
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid user address (%s)", err)
 	}
+	err = msg.Assets.Validate()
+	if err != nil {
+		return err
+	}
+
 	return nil
 }

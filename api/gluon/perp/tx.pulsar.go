@@ -2,18 +2,18 @@
 package perp
 
 import (
-	fmt "fmt"
-	io "io"
-	reflect "reflect"
-	sync "sync"
-
+	v1beta1 "cosmossdk.io/api/cosmos/base/v1beta1"
 	_ "cosmossdk.io/api/cosmos/msg/v1"
+	fmt "fmt"
 	_ "github.com/cosmos/cosmos-proto"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	io "io"
+	reflect "reflect"
+	sync "sync"
 )
 
 var (
@@ -1967,15 +1967,68 @@ func (x *fastReflection_MsgMatchOrderResponse) ProtoMethods() *protoiface.Method
 	}
 }
 
+var _ protoreflect.List = (*_MsgDepositCrossMargin_2_list)(nil)
+
+type _MsgDepositCrossMargin_2_list struct {
+	list *[]*v1beta1.Coin
+}
+
+func (x *_MsgDepositCrossMargin_2_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_MsgDepositCrossMargin_2_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_MsgDepositCrossMargin_2_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*v1beta1.Coin)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_MsgDepositCrossMargin_2_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*v1beta1.Coin)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_MsgDepositCrossMargin_2_list) AppendMutable() protoreflect.Value {
+	v := new(v1beta1.Coin)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_MsgDepositCrossMargin_2_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_MsgDepositCrossMargin_2_list) NewElement() protoreflect.Value {
+	v := new(v1beta1.Coin)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_MsgDepositCrossMargin_2_list) IsValid() bool {
+	return x.list != nil
+}
+
 var (
-	md_MsgDepositCrossMargin      protoreflect.MessageDescriptor
-	fd_MsgDepositCrossMargin_user protoreflect.FieldDescriptor
+	md_MsgDepositCrossMargin        protoreflect.MessageDescriptor
+	fd_MsgDepositCrossMargin_user   protoreflect.FieldDescriptor
+	fd_MsgDepositCrossMargin_assets protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_perp_tx_proto_init()
 	md_MsgDepositCrossMargin = File_gluon_perp_tx_proto.Messages().ByName("MsgDepositCrossMargin")
 	fd_MsgDepositCrossMargin_user = md_MsgDepositCrossMargin.Fields().ByName("user")
+	fd_MsgDepositCrossMargin_assets = md_MsgDepositCrossMargin.Fields().ByName("assets")
 }
 
 var _ protoreflect.Message = (*fastReflection_MsgDepositCrossMargin)(nil)
@@ -2049,6 +2102,12 @@ func (x *fastReflection_MsgDepositCrossMargin) Range(f func(protoreflect.FieldDe
 			return
 		}
 	}
+	if len(x.Assets) != 0 {
+		value := protoreflect.ValueOfList(&_MsgDepositCrossMargin_2_list{list: &x.Assets})
+		if !f(fd_MsgDepositCrossMargin_assets, value) {
+			return
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -2066,6 +2125,8 @@ func (x *fastReflection_MsgDepositCrossMargin) Has(fd protoreflect.FieldDescript
 	switch fd.FullName() {
 	case "gluon.perp.MsgDepositCrossMargin.user":
 		return x.User != ""
+	case "gluon.perp.MsgDepositCrossMargin.assets":
+		return len(x.Assets) != 0
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.MsgDepositCrossMargin"))
@@ -2084,6 +2145,8 @@ func (x *fastReflection_MsgDepositCrossMargin) Clear(fd protoreflect.FieldDescri
 	switch fd.FullName() {
 	case "gluon.perp.MsgDepositCrossMargin.user":
 		x.User = ""
+	case "gluon.perp.MsgDepositCrossMargin.assets":
+		x.Assets = nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.MsgDepositCrossMargin"))
@@ -2103,6 +2166,12 @@ func (x *fastReflection_MsgDepositCrossMargin) Get(descriptor protoreflect.Field
 	case "gluon.perp.MsgDepositCrossMargin.user":
 		value := x.User
 		return protoreflect.ValueOfString(value)
+	case "gluon.perp.MsgDepositCrossMargin.assets":
+		if len(x.Assets) == 0 {
+			return protoreflect.ValueOfList(&_MsgDepositCrossMargin_2_list{})
+		}
+		listValue := &_MsgDepositCrossMargin_2_list{list: &x.Assets}
+		return protoreflect.ValueOfList(listValue)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.MsgDepositCrossMargin"))
@@ -2125,6 +2194,10 @@ func (x *fastReflection_MsgDepositCrossMargin) Set(fd protoreflect.FieldDescript
 	switch fd.FullName() {
 	case "gluon.perp.MsgDepositCrossMargin.user":
 		x.User = value.Interface().(string)
+	case "gluon.perp.MsgDepositCrossMargin.assets":
+		lv := value.List()
+		clv := lv.(*_MsgDepositCrossMargin_2_list)
+		x.Assets = *clv.list
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.MsgDepositCrossMargin"))
@@ -2145,6 +2218,12 @@ func (x *fastReflection_MsgDepositCrossMargin) Set(fd protoreflect.FieldDescript
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgDepositCrossMargin) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "gluon.perp.MsgDepositCrossMargin.assets":
+		if x.Assets == nil {
+			x.Assets = []*v1beta1.Coin{}
+		}
+		value := &_MsgDepositCrossMargin_2_list{list: &x.Assets}
+		return protoreflect.ValueOfList(value)
 	case "gluon.perp.MsgDepositCrossMargin.user":
 		panic(fmt.Errorf("field user of message gluon.perp.MsgDepositCrossMargin is not mutable"))
 	default:
@@ -2162,6 +2241,9 @@ func (x *fastReflection_MsgDepositCrossMargin) NewField(fd protoreflect.FieldDes
 	switch fd.FullName() {
 	case "gluon.perp.MsgDepositCrossMargin.user":
 		return protoreflect.ValueOfString("")
+	case "gluon.perp.MsgDepositCrossMargin.assets":
+		list := []*v1beta1.Coin{}
+		return protoreflect.ValueOfList(&_MsgDepositCrossMargin_2_list{list: &list})
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.MsgDepositCrossMargin"))
@@ -2235,6 +2317,12 @@ func (x *fastReflection_MsgDepositCrossMargin) ProtoMethods() *protoiface.Method
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
+		if len(x.Assets) > 0 {
+			for _, e := range x.Assets {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -2263,6 +2351,22 @@ func (x *fastReflection_MsgDepositCrossMargin) ProtoMethods() *protoiface.Method
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.Assets) > 0 {
+			for iNdEx := len(x.Assets) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.Assets[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x12
+			}
 		}
 		if len(x.User) > 0 {
 			i -= len(x.User)
@@ -2351,6 +2455,40 @@ func (x *fastReflection_MsgDepositCrossMargin) ProtoMethods() *protoiface.Method
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
 				x.User = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Assets", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Assets = append(x.Assets, &v1beta1.Coin{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Assets[len(x.Assets)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
 				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
@@ -2743,15 +2881,68 @@ func (x *fastReflection_MsgDepositCrossMarginResponse) ProtoMethods() *protoifac
 	}
 }
 
+var _ protoreflect.List = (*_MsgWithdrawCrossMargin_2_list)(nil)
+
+type _MsgWithdrawCrossMargin_2_list struct {
+	list *[]*v1beta1.Coin
+}
+
+func (x *_MsgWithdrawCrossMargin_2_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_MsgWithdrawCrossMargin_2_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_MsgWithdrawCrossMargin_2_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*v1beta1.Coin)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_MsgWithdrawCrossMargin_2_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*v1beta1.Coin)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_MsgWithdrawCrossMargin_2_list) AppendMutable() protoreflect.Value {
+	v := new(v1beta1.Coin)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_MsgWithdrawCrossMargin_2_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_MsgWithdrawCrossMargin_2_list) NewElement() protoreflect.Value {
+	v := new(v1beta1.Coin)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_MsgWithdrawCrossMargin_2_list) IsValid() bool {
+	return x.list != nil
+}
+
 var (
-	md_MsgWithdrawCrossMargin      protoreflect.MessageDescriptor
-	fd_MsgWithdrawCrossMargin_user protoreflect.FieldDescriptor
+	md_MsgWithdrawCrossMargin        protoreflect.MessageDescriptor
+	fd_MsgWithdrawCrossMargin_user   protoreflect.FieldDescriptor
+	fd_MsgWithdrawCrossMargin_assets protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_perp_tx_proto_init()
 	md_MsgWithdrawCrossMargin = File_gluon_perp_tx_proto.Messages().ByName("MsgWithdrawCrossMargin")
 	fd_MsgWithdrawCrossMargin_user = md_MsgWithdrawCrossMargin.Fields().ByName("user")
+	fd_MsgWithdrawCrossMargin_assets = md_MsgWithdrawCrossMargin.Fields().ByName("assets")
 }
 
 var _ protoreflect.Message = (*fastReflection_MsgWithdrawCrossMargin)(nil)
@@ -2825,6 +3016,12 @@ func (x *fastReflection_MsgWithdrawCrossMargin) Range(f func(protoreflect.FieldD
 			return
 		}
 	}
+	if len(x.Assets) != 0 {
+		value := protoreflect.ValueOfList(&_MsgWithdrawCrossMargin_2_list{list: &x.Assets})
+		if !f(fd_MsgWithdrawCrossMargin_assets, value) {
+			return
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -2842,6 +3039,8 @@ func (x *fastReflection_MsgWithdrawCrossMargin) Has(fd protoreflect.FieldDescrip
 	switch fd.FullName() {
 	case "gluon.perp.MsgWithdrawCrossMargin.user":
 		return x.User != ""
+	case "gluon.perp.MsgWithdrawCrossMargin.assets":
+		return len(x.Assets) != 0
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.MsgWithdrawCrossMargin"))
@@ -2860,6 +3059,8 @@ func (x *fastReflection_MsgWithdrawCrossMargin) Clear(fd protoreflect.FieldDescr
 	switch fd.FullName() {
 	case "gluon.perp.MsgWithdrawCrossMargin.user":
 		x.User = ""
+	case "gluon.perp.MsgWithdrawCrossMargin.assets":
+		x.Assets = nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.MsgWithdrawCrossMargin"))
@@ -2879,6 +3080,12 @@ func (x *fastReflection_MsgWithdrawCrossMargin) Get(descriptor protoreflect.Fiel
 	case "gluon.perp.MsgWithdrawCrossMargin.user":
 		value := x.User
 		return protoreflect.ValueOfString(value)
+	case "gluon.perp.MsgWithdrawCrossMargin.assets":
+		if len(x.Assets) == 0 {
+			return protoreflect.ValueOfList(&_MsgWithdrawCrossMargin_2_list{})
+		}
+		listValue := &_MsgWithdrawCrossMargin_2_list{list: &x.Assets}
+		return protoreflect.ValueOfList(listValue)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.MsgWithdrawCrossMargin"))
@@ -2901,6 +3108,10 @@ func (x *fastReflection_MsgWithdrawCrossMargin) Set(fd protoreflect.FieldDescrip
 	switch fd.FullName() {
 	case "gluon.perp.MsgWithdrawCrossMargin.user":
 		x.User = value.Interface().(string)
+	case "gluon.perp.MsgWithdrawCrossMargin.assets":
+		lv := value.List()
+		clv := lv.(*_MsgWithdrawCrossMargin_2_list)
+		x.Assets = *clv.list
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.MsgWithdrawCrossMargin"))
@@ -2921,6 +3132,12 @@ func (x *fastReflection_MsgWithdrawCrossMargin) Set(fd protoreflect.FieldDescrip
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgWithdrawCrossMargin) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "gluon.perp.MsgWithdrawCrossMargin.assets":
+		if x.Assets == nil {
+			x.Assets = []*v1beta1.Coin{}
+		}
+		value := &_MsgWithdrawCrossMargin_2_list{list: &x.Assets}
+		return protoreflect.ValueOfList(value)
 	case "gluon.perp.MsgWithdrawCrossMargin.user":
 		panic(fmt.Errorf("field user of message gluon.perp.MsgWithdrawCrossMargin is not mutable"))
 	default:
@@ -2938,6 +3155,9 @@ func (x *fastReflection_MsgWithdrawCrossMargin) NewField(fd protoreflect.FieldDe
 	switch fd.FullName() {
 	case "gluon.perp.MsgWithdrawCrossMargin.user":
 		return protoreflect.ValueOfString("")
+	case "gluon.perp.MsgWithdrawCrossMargin.assets":
+		list := []*v1beta1.Coin{}
+		return protoreflect.ValueOfList(&_MsgWithdrawCrossMargin_2_list{list: &list})
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.perp.MsgWithdrawCrossMargin"))
@@ -3011,6 +3231,12 @@ func (x *fastReflection_MsgWithdrawCrossMargin) ProtoMethods() *protoiface.Metho
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
+		if len(x.Assets) > 0 {
+			for _, e := range x.Assets {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -3039,6 +3265,22 @@ func (x *fastReflection_MsgWithdrawCrossMargin) ProtoMethods() *protoiface.Metho
 		if x.unknownFields != nil {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.Assets) > 0 {
+			for iNdEx := len(x.Assets) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.Assets[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x12
+			}
 		}
 		if len(x.User) > 0 {
 			i -= len(x.User)
@@ -3127,6 +3369,40 @@ func (x *fastReflection_MsgWithdrawCrossMargin) ProtoMethods() *protoiface.Metho
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
 				x.User = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Assets", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Assets = append(x.Assets, &v1beta1.Coin{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Assets[len(x.Assets)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
 				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
@@ -3709,12 +3985,14 @@ func (*MsgMatchOrderResponse) Descriptor() ([]byte, []int) {
 	return file_gluon_perp_tx_proto_rawDescGZIP(), []int{3}
 }
 
+// MsgDepositCrossMargin
 type MsgDepositCrossMargin struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	User string `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	User   string          `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	Assets []*v1beta1.Coin `protobuf:"bytes,2,rep,name=assets,proto3" json:"assets,omitempty"`
 }
 
 func (x *MsgDepositCrossMargin) Reset() {
@@ -3744,6 +4022,14 @@ func (x *MsgDepositCrossMargin) GetUser() string {
 	return ""
 }
 
+func (x *MsgDepositCrossMargin) GetAssets() []*v1beta1.Coin {
+	if x != nil {
+		return x.Assets
+	}
+	return nil
+}
+
+// MsgDepositCrossMarginResponse
 type MsgDepositCrossMarginResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3770,12 +4056,14 @@ func (*MsgDepositCrossMarginResponse) Descriptor() ([]byte, []int) {
 	return file_gluon_perp_tx_proto_rawDescGZIP(), []int{5}
 }
 
+// MsgWithdrawCrossMargin
 type MsgWithdrawCrossMargin struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	User string `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	User   string          `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	Assets []*v1beta1.Coin `protobuf:"bytes,2,rep,name=assets,proto3" json:"assets,omitempty"`
 }
 
 func (x *MsgWithdrawCrossMargin) Reset() {
@@ -3805,6 +4093,14 @@ func (x *MsgWithdrawCrossMargin) GetUser() string {
 	return ""
 }
 
+func (x *MsgWithdrawCrossMargin) GetAssets() []*v1beta1.Coin {
+	if x != nil {
+		return x.Assets
+	}
+	return nil
+}
+
+// MsgWithdrawCrossMarginResponse
 type MsgWithdrawCrossMarginResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3836,7 +4132,9 @@ var File_gluon_perp_tx_proto protoreflect.FileDescriptor
 var file_gluon_perp_tx_proto_rawDesc = []byte{
 	0x0a, 0x13, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x70, 0x65, 0x72, 0x70, 0x2f, 0x74, 0x78, 0x2e,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0a, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x70, 0x65, 0x72,
-	0x70, 0x1a, 0x17, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6d, 0x73, 0x67, 0x2f, 0x76, 0x31,
+	0x70, 0x1a, 0x1e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x62, 0x61, 0x73, 0x65, 0x2f, 0x76,
+	0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2f, 0x63, 0x6f, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x1a, 0x17, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6d, 0x73, 0x67, 0x2f, 0x76, 0x31,
 	0x2f, 0x6d, 0x73, 0x67, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x19, 0x63, 0x6f, 0x73, 0x6d,
 	0x6f, 0x73, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x17, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x70, 0x65, 0x72,
@@ -3874,15 +4172,31 @@ var file_gluon_perp_tx_proto_rawDesc = []byte{
 	0x61, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x3a, 0x15, 0x82, 0xe7, 0xb0, 0x2a, 0x05, 0x62, 0x75, 0x79,
 	0x65, 0x72, 0x82, 0xe7, 0xb0, 0x2a, 0x06, 0x73, 0x65, 0x6c, 0x6c, 0x65, 0x72, 0x22, 0x17, 0x0a,
 	0x15, 0x4d, 0x73, 0x67, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x36, 0x0a, 0x15, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x70,
-	0x6f, 0x73, 0x69, 0x74, 0x43, 0x72, 0x6f, 0x73, 0x73, 0x4d, 0x61, 0x72, 0x67, 0x69, 0x6e, 0x12,
-	0x12, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x75,
-	0x73, 0x65, 0x72, 0x3a, 0x09, 0x82, 0xe7, 0xb0, 0x2a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x1f,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xb5, 0x01, 0x0a, 0x15, 0x4d, 0x73, 0x67, 0x44, 0x65,
+	0x70, 0x6f, 0x73, 0x69, 0x74, 0x43, 0x72, 0x6f, 0x73, 0x73, 0x4d, 0x61, 0x72, 0x67, 0x69, 0x6e,
+	0x12, 0x2c, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18,
+	0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65,
+	0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x12, 0x63,
+	0x0a, 0x06, 0x61, 0x73, 0x73, 0x65, 0x74, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x19,
+	0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62,
+	0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x42, 0x30, 0xc8, 0xde, 0x1f, 0x00, 0xaa,
+	0xdf, 0x1f, 0x28, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x6f,
+	0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2d, 0x73, 0x64, 0x6b, 0x2f,
+	0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x73, 0x52, 0x06, 0x61, 0x73, 0x73,
+	0x65, 0x74, 0x73, 0x3a, 0x09, 0x82, 0xe7, 0xb0, 0x2a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x1f,
 	0x0a, 0x1d, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x43, 0x72, 0x6f, 0x73,
 	0x73, 0x4d, 0x61, 0x72, 0x67, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
-	0x37, 0x0a, 0x16, 0x4d, 0x73, 0x67, 0x57, 0x69, 0x74, 0x68, 0x64, 0x72, 0x61, 0x77, 0x43, 0x72,
-	0x6f, 0x73, 0x73, 0x4d, 0x61, 0x72, 0x67, 0x69, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x75, 0x73, 0x65,
-	0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x3a, 0x09, 0x82,
+	0xb6, 0x01, 0x0a, 0x16, 0x4d, 0x73, 0x67, 0x57, 0x69, 0x74, 0x68, 0x64, 0x72, 0x61, 0x77, 0x43,
+	0x72, 0x6f, 0x73, 0x73, 0x4d, 0x61, 0x72, 0x67, 0x69, 0x6e, 0x12, 0x2c, 0x0a, 0x04, 0x75, 0x73,
+	0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f,
+	0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69,
+	0x6e, 0x67, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x12, 0x63, 0x0a, 0x06, 0x61, 0x73, 0x73, 0x65,
+	0x74, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
+	0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43,
+	0x6f, 0x69, 0x6e, 0x42, 0x30, 0xc8, 0xde, 0x1f, 0x00, 0xaa, 0xdf, 0x1f, 0x28, 0x67, 0x69, 0x74,
+	0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x63,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2d, 0x73, 0x64, 0x6b, 0x2f, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e,
+	0x43, 0x6f, 0x69, 0x6e, 0x73, 0x52, 0x06, 0x61, 0x73, 0x73, 0x65, 0x74, 0x73, 0x3a, 0x09, 0x82,
 	0xe7, 0xb0, 0x2a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x20, 0x0a, 0x1e, 0x4d, 0x73, 0x67, 0x57,
 	0x69, 0x74, 0x68, 0x64, 0x72, 0x61, 0x77, 0x43, 0x72, 0x6f, 0x73, 0x73, 0x4d, 0x61, 0x72, 0x67,
 	0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xf5, 0x02, 0x0a, 0x03, 0x4d,
@@ -3943,22 +4257,25 @@ var file_gluon_perp_tx_proto_goTypes = []interface{}{
 	(*MsgWithdrawCrossMargin)(nil),         // 6: gluon.perp.MsgWithdrawCrossMargin
 	(*MsgWithdrawCrossMarginResponse)(nil), // 7: gluon.perp.MsgWithdrawCrossMarginResponse
 	(*Params)(nil),                         // 8: gluon.perp.Params
+	(*v1beta1.Coin)(nil),                   // 9: cosmos.base.v1beta1.Coin
 }
 var file_gluon_perp_tx_proto_depIdxs = []int32{
 	8, // 0: gluon.perp.MsgUpdateParams.params:type_name -> gluon.perp.Params
-	0, // 1: gluon.perp.Msg.UpdateParams:input_type -> gluon.perp.MsgUpdateParams
-	2, // 2: gluon.perp.Msg.MatchOrder:input_type -> gluon.perp.MsgMatchOrder
-	4, // 3: gluon.perp.Msg.DepositCrossMargin:input_type -> gluon.perp.MsgDepositCrossMargin
-	6, // 4: gluon.perp.Msg.WithdrawCrossMargin:input_type -> gluon.perp.MsgWithdrawCrossMargin
-	1, // 5: gluon.perp.Msg.UpdateParams:output_type -> gluon.perp.MsgUpdateParamsResponse
-	3, // 6: gluon.perp.Msg.MatchOrder:output_type -> gluon.perp.MsgMatchOrderResponse
-	5, // 7: gluon.perp.Msg.DepositCrossMargin:output_type -> gluon.perp.MsgDepositCrossMarginResponse
-	7, // 8: gluon.perp.Msg.WithdrawCrossMargin:output_type -> gluon.perp.MsgWithdrawCrossMarginResponse
-	5, // [5:9] is the sub-list for method output_type
-	1, // [1:5] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	9, // 1: gluon.perp.MsgDepositCrossMargin.assets:type_name -> cosmos.base.v1beta1.Coin
+	9, // 2: gluon.perp.MsgWithdrawCrossMargin.assets:type_name -> cosmos.base.v1beta1.Coin
+	0, // 3: gluon.perp.Msg.UpdateParams:input_type -> gluon.perp.MsgUpdateParams
+	2, // 4: gluon.perp.Msg.MatchOrder:input_type -> gluon.perp.MsgMatchOrder
+	4, // 5: gluon.perp.Msg.DepositCrossMargin:input_type -> gluon.perp.MsgDepositCrossMargin
+	6, // 6: gluon.perp.Msg.WithdrawCrossMargin:input_type -> gluon.perp.MsgWithdrawCrossMargin
+	1, // 7: gluon.perp.Msg.UpdateParams:output_type -> gluon.perp.MsgUpdateParamsResponse
+	3, // 8: gluon.perp.Msg.MatchOrder:output_type -> gluon.perp.MsgMatchOrderResponse
+	5, // 9: gluon.perp.Msg.DepositCrossMargin:output_type -> gluon.perp.MsgDepositCrossMarginResponse
+	7, // 10: gluon.perp.Msg.WithdrawCrossMargin:output_type -> gluon.perp.MsgWithdrawCrossMarginResponse
+	7, // [7:11] is the sub-list for method output_type
+	3, // [3:7] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_gluon_perp_tx_proto_init() }

@@ -8,7 +8,6 @@ package perp
 
 import (
 	context "context"
-
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -37,7 +36,9 @@ type MsgClient interface {
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
 	// MatchOrder
 	MatchOrder(ctx context.Context, in *MsgMatchOrder, opts ...grpc.CallOption) (*MsgMatchOrderResponse, error)
+	// DepositCrossMargin
 	DepositCrossMargin(ctx context.Context, in *MsgDepositCrossMargin, opts ...grpc.CallOption) (*MsgDepositCrossMarginResponse, error)
+	// WithdrawCrossMargin
 	WithdrawCrossMargin(ctx context.Context, in *MsgWithdrawCrossMargin, opts ...grpc.CallOption) (*MsgWithdrawCrossMarginResponse, error)
 }
 
@@ -100,7 +101,9 @@ type MsgServer interface {
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
 	// MatchOrder
 	MatchOrder(context.Context, *MsgMatchOrder) (*MsgMatchOrderResponse, error)
+	// DepositCrossMargin
 	DepositCrossMargin(context.Context, *MsgDepositCrossMargin) (*MsgDepositCrossMarginResponse, error)
+	// WithdrawCrossMargin
 	WithdrawCrossMargin(context.Context, *MsgWithdrawCrossMargin) (*MsgWithdrawCrossMarginResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
