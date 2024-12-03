@@ -29,3 +29,31 @@ func (k Keeper) AddCrossMargin(ctx context.Context, owner string, asset sdk.Coin
 
 	return crossMargin.Assets
 }
+
+func (k Keeper) depositMargin(ctx context.Context, user string, assets sdk.Coins) error {
+	address, err := sdk.AccAddressFromBech32(user)
+	if err != nil {
+		return err
+	}
+
+	err = k.bankKeeper.SendCoinsFromAccountToModule(ctx, address, types.GetMarginAddressModule(), assets)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (k Keeper) withdrawMargin(ctx context.Context, user string, assets sdk.Coins) error {
+	address, err := sdk.AccAddressFromBech32(user)
+	if err != nil {
+		return err
+	}
+
+	err = k.bankKeeper.SendCoinsFromModuleToAccount(ctx, types.GetMarginAddressModule(), address, assets)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
