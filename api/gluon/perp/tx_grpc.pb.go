@@ -8,6 +8,7 @@ package perp
 
 import (
 	context "context"
+
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -19,8 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Msg_UpdateParams_FullMethodName = "/gluon.perp.Msg/UpdateParams"
-	Msg_MatchOrder_FullMethodName   = "/gluon.perp.Msg/MatchOrder"
+	Msg_UpdateParams_FullMethodName        = "/gluon.perp.Msg/UpdateParams"
+	Msg_MatchOrder_FullMethodName          = "/gluon.perp.Msg/MatchOrder"
+	Msg_DepositCrossMargin_FullMethodName  = "/gluon.perp.Msg/DepositCrossMargin"
+	Msg_WithdrawCrossMargin_FullMethodName = "/gluon.perp.Msg/WithdrawCrossMargin"
 )
 
 // MsgClient is the client API for Msg service.
@@ -34,6 +37,8 @@ type MsgClient interface {
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
 	// MatchOrder
 	MatchOrder(ctx context.Context, in *MsgMatchOrder, opts ...grpc.CallOption) (*MsgMatchOrderResponse, error)
+	DepositCrossMargin(ctx context.Context, in *MsgDepositCrossMargin, opts ...grpc.CallOption) (*MsgDepositCrossMarginResponse, error)
+	WithdrawCrossMargin(ctx context.Context, in *MsgWithdrawCrossMargin, opts ...grpc.CallOption) (*MsgWithdrawCrossMarginResponse, error)
 }
 
 type msgClient struct {
@@ -64,6 +69,26 @@ func (c *msgClient) MatchOrder(ctx context.Context, in *MsgMatchOrder, opts ...g
 	return out, nil
 }
 
+func (c *msgClient) DepositCrossMargin(ctx context.Context, in *MsgDepositCrossMargin, opts ...grpc.CallOption) (*MsgDepositCrossMarginResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MsgDepositCrossMarginResponse)
+	err := c.cc.Invoke(ctx, Msg_DepositCrossMargin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) WithdrawCrossMargin(ctx context.Context, in *MsgWithdrawCrossMargin, opts ...grpc.CallOption) (*MsgWithdrawCrossMarginResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MsgWithdrawCrossMarginResponse)
+	err := c.cc.Invoke(ctx, Msg_WithdrawCrossMargin_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility.
@@ -75,6 +100,8 @@ type MsgServer interface {
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
 	// MatchOrder
 	MatchOrder(context.Context, *MsgMatchOrder) (*MsgMatchOrderResponse, error)
+	DepositCrossMargin(context.Context, *MsgDepositCrossMargin) (*MsgDepositCrossMarginResponse, error)
+	WithdrawCrossMargin(context.Context, *MsgWithdrawCrossMargin) (*MsgWithdrawCrossMarginResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -90,6 +117,12 @@ func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*
 }
 func (UnimplementedMsgServer) MatchOrder(context.Context, *MsgMatchOrder) (*MsgMatchOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MatchOrder not implemented")
+}
+func (UnimplementedMsgServer) DepositCrossMargin(context.Context, *MsgDepositCrossMargin) (*MsgDepositCrossMarginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DepositCrossMargin not implemented")
+}
+func (UnimplementedMsgServer) WithdrawCrossMargin(context.Context, *MsgWithdrawCrossMargin) (*MsgWithdrawCrossMarginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WithdrawCrossMargin not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 func (UnimplementedMsgServer) testEmbeddedByValue()             {}
@@ -148,6 +181,42 @@ func _Msg_MatchOrder_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_DepositCrossMargin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDepositCrossMargin)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).DepositCrossMargin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_DepositCrossMargin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).DepositCrossMargin(ctx, req.(*MsgDepositCrossMargin))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_WithdrawCrossMargin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgWithdrawCrossMargin)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).WithdrawCrossMargin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_WithdrawCrossMargin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).WithdrawCrossMargin(ctx, req.(*MsgWithdrawCrossMargin))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -162,6 +231,14 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MatchOrder",
 			Handler:    _Msg_MatchOrder_Handler,
+		},
+		{
+			MethodName: "DepositCrossMargin",
+			Handler:    _Msg_DepositCrossMargin_Handler,
+		},
+		{
+			MethodName: "WithdrawCrossMargin",
+			Handler:    _Msg_WithdrawCrossMargin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -27,6 +27,14 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgMatchOrder int = 100
 
+	opWeightMsgDepositCrossMargin = "op_weight_msg_deposit_cross_margin"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgDepositCrossMargin int = 100
+
+	opWeightMsgWithdrawCrossMargin = "op_weight_msg_withdraw_cross_margin"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgWithdrawCrossMargin int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -61,6 +69,28 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		perpsimulation.SimulateMsgMatchOrder(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
+	var weightMsgDepositCrossMargin int
+	simState.AppParams.GetOrGenerate(opWeightMsgDepositCrossMargin, &weightMsgDepositCrossMargin, nil,
+		func(_ *rand.Rand) {
+			weightMsgDepositCrossMargin = defaultWeightMsgDepositCrossMargin
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgDepositCrossMargin,
+		perpsimulation.SimulateMsgDepositCrossMargin(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgWithdrawCrossMargin int
+	simState.AppParams.GetOrGenerate(opWeightMsgWithdrawCrossMargin, &weightMsgWithdrawCrossMargin, nil,
+		func(_ *rand.Rand) {
+			weightMsgWithdrawCrossMargin = defaultWeightMsgWithdrawCrossMargin
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgWithdrawCrossMargin,
+		perpsimulation.SimulateMsgWithdrawCrossMargin(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
 	// this line is used by starport scaffolding # simapp/module/operation
 
 	return operations
@@ -74,6 +104,22 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			defaultWeightMsgMatchOrder,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
 				perpsimulation.SimulateMsgMatchOrder(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgDepositCrossMargin,
+			defaultWeightMsgDepositCrossMargin,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				perpsimulation.SimulateMsgDepositCrossMargin(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgWithdrawCrossMargin,
+			defaultWeightMsgWithdrawCrossMargin,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				perpsimulation.SimulateMsgWithdrawCrossMargin(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),

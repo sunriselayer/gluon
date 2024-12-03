@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package gluon.perp;
 
+import "cosmos/base/v1beta1/coin.proto";
 import "cosmos/msg/v1/msg.proto";
 import "cosmos_proto/cosmos.proto";
 import "gluon/perp/params.proto";
@@ -16,8 +17,13 @@ service Msg {
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
   rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
+
   // MatchOrder
   rpc MatchOrder(MsgMatchOrder) returns (MsgMatchOrderResponse);
+  // DepositCrossMargin
+  rpc DepositCrossMargin(MsgDepositCrossMargin) returns (MsgDepositCrossMarginResponse);
+  // WithdrawCrossMargin
+  rpc WithdrawCrossMargin(MsgWithdrawCrossMargin) returns (MsgWithdrawCrossMarginResponse);
 }
 
 // MsgUpdateParams is the Msg/UpdateParams request type.
@@ -41,7 +47,6 @@ message MsgUpdateParamsResponse {}
 message MsgMatchOrder {
   option (cosmos.msg.v1.signer) = "buyer";
   option (cosmos.msg.v1.signer) = "seller";
-
   string buyer = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
   string buyer_order_hash = 2;
   string seller = 3 [(cosmos_proto.scalar) = "cosmos.AddressString"];
@@ -56,3 +61,29 @@ message MsgMatchOrder {
 
 // MsgMatchOrderResponse
 message MsgMatchOrderResponse {}
+
+// MsgDepositCrossMargin
+message MsgDepositCrossMargin {
+  option (cosmos.msg.v1.signer) = "user";
+  string user = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  repeated cosmos.base.v1beta1.Coin assets = 2 [
+    (gogoproto.nullable) = false,
+    (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"
+  ];
+}
+
+// MsgDepositCrossMarginResponse
+message MsgDepositCrossMarginResponse {}
+
+// MsgWithdrawCrossMargin
+message MsgWithdrawCrossMargin {
+  option (cosmos.msg.v1.signer) = "user";
+  string user = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  repeated cosmos.base.v1beta1.Coin assets = 2 [
+    (gogoproto.nullable) = false,
+    (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"
+  ];
+}
+
+// MsgWithdrawCrossMarginResponse
+message MsgWithdrawCrossMarginResponse {}
