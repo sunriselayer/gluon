@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package gluon.perp;
 
-import "amino/amino.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "gluon/perp/cross_margin.proto";
 import "gluon/perp/funding_rate.proto";
@@ -33,26 +32,26 @@ service Query {
 
   // PositionPriceQuantity
   rpc PositionPriceQuantity(QueryPositionPriceQuantityRequest) returns (QueryPositionPriceQuantityResponse) {
-    option (google.api.http).get = "/gluon/perp/position_price_quantities/{owner}/{position_order_hash}/{price}";
+    option (google.api.http).get = "/gluon/perp/position-price-quantities/{owner}/{position_order_hash}/{price}";
   }
 
   // PositionPriceQuantities
   rpc PositionPriceQuantities(QueryPositionPriceQuantitiesRequest) returns (QueryPositionPriceQuantitiesResponse) {
-    option (google.api.http).get = "/gluon/perp/position_price_quantities/{owner}/{position_order_hash}";
+    option (google.api.http).get = "/gluon/perp/position-price-quantities/{owner}/{position_order_hash}";
   }
 
   // CrossMargin
   rpc CrossMargin(QueryCrossMarginRequest) returns (QueryCrossMarginResponse) {
-    option (google.api.http).get = "/gluon/perp/cross_margins/{owner}";
+    option (google.api.http).get = "/gluon/perp/cross-margins/{owner}";
   }
 
   // FundingRate
   rpc FundingRate(QueryFundingRateRequest) returns (QueryFundingRateResponse) {
-    option (google.api.http).get = "/gluon/perp/funding_rates/{seconds}/{nanos}";
+    option (google.api.http).get = "/gluon/perp/funding-rates/{seconds}/{nanos}";
   }
   // FundingRates
   rpc FundingRates(QueryFundingRatesRequest) returns (QueryFundingRatesResponse) {
-    option (google.api.http).get = "/gluon/perp/funding_rates";
+    option (google.api.http).get = "/gluon/perp/funding-rates";
   }
 }
 
@@ -62,10 +61,7 @@ message QueryParamsRequest {}
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
   // params holds all the parameters of this module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+  Params params = 1 [(gogoproto.nullable) = false];
 }
 
 // QueryPositionRequest
