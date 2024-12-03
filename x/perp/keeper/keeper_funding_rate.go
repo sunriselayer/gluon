@@ -12,8 +12,9 @@ func (k Keeper) DeductFundingFee(ctx context.Context, position types.Position) t
 	fundingRates := k.GetFundingRatesByPositionReverse(ctx, position)
 	fee := types.GetFundingFee(position, fundingRates)
 
-	if position.IsolatedMargin {
-		position.IsolatedMarginAmount = position.IsolatedMarginAmount.Sub(fee.Amount)
+	if position.IsolatedMargin != nil {
+		subtracted := position.IsolatedMargin.Sub(fee.Amount)
+		position.IsolatedMargin = &subtracted
 	} else {
 		fee.Amount = fee.Amount.Neg()
 		k.AddCrossMargin(ctx, position.Owner, fee)

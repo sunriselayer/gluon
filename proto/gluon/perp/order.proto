@@ -13,7 +13,7 @@ message PerpPositionCreateOrder {
     (gogoproto.nullable) = false,
     (gogoproto.embed) = true
   ];
-  bool isolated_margin = 2;
+  bool is_isolated_margin = 2;
   // Zero margin is only accepted for cross margin
   string margin_amount = 3 [
     (cosmos_proto.scalar) = "cosmos.Int",

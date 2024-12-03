@@ -85,34 +85,36 @@ func (k Keeper) CreatePosition(
 	}
 
 	// Transfer margin
-	owner, err := sdk.AccAddressFromBech32(order.AddressString)
-	if err != nil {
-		return err
+	if order.MarginAmount.IsPositive() {
+		owner, err := sdk.AccAddressFromBech32(order.AddressString)
+		if err != nil {
+			return err
+		}
+
+		coins := sdk.NewCoins(sdk.NewCoin(order.DenomQuote, order.MarginAmount))
+
+		err = k.bankKeeper.SendCoinsFromAccountToModule(ctx, owner, types.GetMarginAddressModule(), coins)
+		if err != nil {
+			return err
+		}
 	}
-
-	coins := sdk.NewCoins(sdk.NewCoin(order.DenomQuote, order.MarginAmount))
-
-	err = k.bankKeeper.SendCoinsFromAccountToModule(ctx, owner, types.GetMarginAddressModule(), coins)
-	if err != nil {
-		return err
-	}
-
-	isolatedMarginAmount := sdkmath.ZeroInt()
-	if order.IsolatedMargin {
-		isolatedMarginAmount = order.MarginAmount
+	var isolatedMargin *sdkmath.Int
+	if order.IsIsolatedMargin {
+		isolatedMargin = &order.MarginAmount
+	} else {
+		k.AddCrossMargin(ctx, order.AddressString, sdk.NewCoin(order.DenomQuote, order.MarginAmount))
 	}
 
 	// Store
 	k.SetPosition(ctx, types.Position{
-		Owner:                order.AddressString,
-		OrderHash:            orderHash,
-		DenomBase:            order.DenomBase,
-		DenomQuote:           order.DenomQuote,
-		Direction:            direction,
-		Amount:               quantity,
-		IsolatedMargin:       order.IsolatedMargin,
-		IsolatedMarginAmount: isolatedMarginAmount,
-		FundingFeeResetAt:    ctx.BlockTime(),
+		Owner:             order.AddressString,
+		OrderHash:         orderHash,
+		DenomBase:         order.DenomBase,
+		DenomQuote:        order.DenomQuote,
+		Direction:         direction,
+		Amount:            quantity,
+		IsolatedMargin:    isolatedMargin,
+		FundingFeeResetAt: ctx.BlockTime(),
 	})
 	k.SetPositionPriceQuantity(ctx, types.PositionPriceQuantity{
 		Owner:             order.AddressString,
@@ -195,8 +197,9 @@ func (k Keeper) CancelPosition(
 	}
 
 	// Transfer PnL
-	if position.IsolatedMargin {
-		position.IsolatedMarginAmount = position.IsolatedMarginAmount.Add(pnl)
+	if position.IsolatedMargin != nil {
+		added := position.IsolatedMargin.Add(pnl)
+		position.IsolatedMargin = &added
 	} else {
 		coin := sdk.NewCoin(position.DenomQuote, pnl)
 		margins := k.AddCrossMargin(ctx, order.AddressString, coin)
@@ -207,9 +210,9 @@ func (k Keeper) CancelPosition(
 
 	// Process Position
 	if deleteLater {
-		if position.IsolatedMargin {
-			if position.IsolatedMarginAmount.IsPositive() {
-				coins := sdk.NewCoins(sdk.NewCoin(position.DenomQuote, position.IsolatedMarginAmount))
+		if position.IsolatedMargin != nil {
+			if position.IsolatedMargin.IsPositive() {
+				coins := sdk.NewCoins(sdk.NewCoin(position.DenomQuote, *position.IsolatedMargin))
 				err = k.bankKeeper.SendCoinsFromModuleToAccount(ctx, types.GetMarginAddressModule(), owner, coins)
 				if err != nil {
 					return err

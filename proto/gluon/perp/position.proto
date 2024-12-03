@@ -29,13 +29,13 @@ message Position {
     (gogoproto.customtype) = "cosmossdk.io/math.Int",
     (gogoproto.nullable) = false
   ];
-  bool isolated_margin = 7;
-  string isolated_margin_amount = 8 [
+  // Amount of DenomQuote
+  string isolated_margin = 7 [
     (cosmos_proto.scalar) = "cosmos.Int",
     (gogoproto.customtype) = "cosmossdk.io/math.Int",
-    (gogoproto.nullable) = false
+    (gogoproto.nullable) = true
   ];
-  google.protobuf.Timestamp funding_fee_reset_at = 9 [
+  google.protobuf.Timestamp funding_fee_reset_at = 8 [
     (gogoproto.nullable) = false,
     (gogoproto.stdtime) = true
   ];

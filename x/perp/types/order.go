@@ -40,7 +40,7 @@ func (order PerpPositionCreateOrder) ValidateBasic() error {
 	if order.MarginAmount.IsNegative() {
 		return errorsmod.Wrap(ErrInvalidMargin, "margin amount must not be negative")
 	}
-	if order.IsolatedMargin && order.MarginAmount.IsZero() {
+	if order.IsIsolatedMargin && order.MarginAmount.IsZero() {
 		return errorsmod.Wrap(ErrInvalidMargin, "isolated margin amount must not be zero")
 	}
 	return nil
