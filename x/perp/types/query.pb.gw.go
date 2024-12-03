@@ -976,15 +976,15 @@ var (
 
 	pattern_Query_Positions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"gluon", "perp", "positions", "owner"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_PositionPriceQuantity_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"gluon", "perp", "position_price_quantities", "owner", "position_order_hash", "price"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_PositionPriceQuantity_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"gluon", "perp", "position-price-quantities", "owner", "position_order_hash", "price"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_PositionPriceQuantities_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"gluon", "perp", "position_price_quantities", "owner", "position_order_hash"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_PositionPriceQuantities_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"gluon", "perp", "position-price-quantities", "owner", "position_order_hash"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_CrossMargin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"gluon", "perp", "cross_margins", "owner"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_CrossMargin_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"gluon", "perp", "cross-margins", "owner"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_FundingRate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"gluon", "perp", "funding_rates", "seconds", "nanos"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_FundingRate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"gluon", "perp", "funding-rates", "seconds", "nanos"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_FundingRates_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"gluon", "perp", "funding_rates"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_FundingRates_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"gluon", "perp", "funding-rates"}, "", runtime.AssumeColonVerbOpt(false)))
 )
 
 var (
