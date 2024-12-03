@@ -9,9 +9,7 @@ option go_package = "gluon/x/spot/types";
 // SpotOrder
 // Encoded binary of Any of SpotOrder will be sign message.
 message SpotOrder {
-  // For avoiding order hash conflict
-  uint64 nonce = 1;
-  gluon.order.BaseOrder base = 2 [
+  gluon.order.BaseOrder base = 1 [
     (gogoproto.nullable) = false,
     (gogoproto.embed) = true
   ];

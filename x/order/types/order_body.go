@@ -44,7 +44,7 @@ func VerifyOrderSignature(orderBody OrderBody, pubKey cryptotypes.PubKey, signat
 	}
 
 	if !pubKey.VerifySignature(signMsg, signature) {
-		return errorsmod.Wrapf(ErrInvalidSignature, "address: %s", orderBody.GetAddress().String())
+		return errorsmod.Wrapf(ErrInvalidSignature, "address: %s", orderBody.GetBaseOrder().AddressString)
 	}
 	return nil
 }

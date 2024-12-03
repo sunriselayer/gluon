@@ -10,9 +10,8 @@ import (
 )
 
 func BaseOrderCrossValidateBasic(buy BaseOrder, sell BaseOrder, price sdkmath.LegacyDec, blockTime time.Time) error {
-	err := OrderInterfaceCrossValidateBasic(&buy, &sell, price, blockTime)
-	if err != nil {
-		return err
+	if buy.GetAddress().Equals(sell.GetAddress()) {
+		return ErrSameAddress
 	}
 
 	if buy.DenomBase != sell.DenomBase || buy.DenomQuote != sell.DenomQuote {
@@ -26,10 +25,37 @@ func BaseOrderCrossValidateBasic(buy BaseOrder, sell BaseOrder, price sdkmath.Le
 		return ErrInvalidOrderDirection
 	}
 
+	buyLimitPrice := buy.GetLimitPrice()
+	sellLimitPrice := sell.GetLimitPrice()
+
+	if buyLimitPrice == nil && sellLimitPrice == nil {
+		return ErrBothMarketPriceOrder
+	}
+
+	if buyLimitPrice != nil && price.GT(*buyLimitPrice) {
+		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, buy limit price: %s", price.String(), buyLimitPrice.String())
+	}
+
+	if sellLimitPrice != nil && price.LT(*sellLimitPrice) {
+		return errorsmod.Wrapf(ErrPriceMismatch, "price: %s, sell limit price: %s", price.String(), sellLimitPrice.String())
+	}
+
+	if blockTime.After(buy.GetExpiry()) {
+		return ErrOrderExpired
+	}
+
+	if blockTime.After(sell.GetExpiry()) {
+		return ErrOrderExpired
+	}
+
 	return nil
 }
 
 var _ OrderI = &BaseOrder{}
+
+func (order BaseOrder) GetBaseOrder() BaseOrder {
+	return order
+}
 
 func (order BaseOrder) ValidateBasic() error {
 	var err error
@@ -71,10 +97,6 @@ func (order BaseOrder) GetAddress() sdk.AccAddress {
 		return nil
 	}
 	return val
-}
-
-func (order BaseOrder) GetAmount() sdkmath.Int {
-	return order.Amount
 }
 
 func (order BaseOrder) GetLimitPrice() *sdkmath.LegacyDec {

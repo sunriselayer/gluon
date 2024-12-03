@@ -134,6 +134,18 @@ func (k Keeper) CancelPosition(
 	if !found {
 		return errorsmod.Wrapf(sdkerrors.ErrNotFound, "position owner: %s, order hash: %s", position.Owner, position.OrderHash)
 	}
+	switch order.Direction {
+	case ordertypes.OrderDirection_ORDER_DIRECTION_BUY:
+		if position.Direction != types.PositionDirection_POSITION_DIRECTION_LONG {
+			return errorsmod.Wrapf(ordertypes.ErrInvalidOrderDirection, "position direction: %s", position.Direction.String())
+		}
+	case ordertypes.OrderDirection_ORDER_DIRECTION_SELL:
+		if position.Direction != types.PositionDirection_POSITION_DIRECTION_SHORT {
+			return errorsmod.Wrapf(ordertypes.ErrInvalidOrderDirection, "position direction: %s", position.Direction.String())
+		}
+	default:
+		return ordertypes.ErrInvalidOrderDirection
+	}
 	position = k.DeductFundingFee(ctx, position)
 
 	owner, err := sdk.AccAddressFromBech32(order.AddressString)

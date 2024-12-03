@@ -23,18 +23,20 @@ message BaseOrder {
     (cosmos_proto.scalar) = "cosmos.AddressString",
     (gogoproto.customname) = "AddressString"
   ];
-  string denom_base = 2;
-  string denom_quote = 3;
-  OrderDirection direction = 4;
-  string amount = 5 [
+  // For avoiding order hash conflict
+  uint64 nonce = 2;
+  string denom_base = 3;
+  string denom_quote = 4;
+  OrderDirection direction = 5;
+  string amount = 6 [
     (cosmos_proto.scalar) = "cosmos.Int",
     (gogoproto.customtype) = "cosmossdk.io/math.Int",
     (gogoproto.nullable) = false
   ];
   // Empty means market order
-  string limit_price = 6 [(gogoproto.customname) = "LimitPriceString"];
+  string limit_price = 7 [(gogoproto.customname) = "LimitPriceString"];
   // Required to prevent operator from utilizing old order
-  google.protobuf.Timestamp expiry = 7 [
+  google.protobuf.Timestamp expiry = 8 [
     (gogoproto.nullable) = false,
     (gogoproto.stdtime) = true
   ];

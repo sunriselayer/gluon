@@ -56,11 +56,11 @@ func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (
 		return nil, err
 	}
 
-	err = ordertypes.ValidateOrderContractAmount(longPerp.GetAmount(), long.ContractedAmount, msg.Quantity)
+	err = ordertypes.ValidateOrderContractAmount(longPerp.GetBaseOrder().Amount, long.ContractedAmount, msg.Quantity)
 	if err != nil {
 		return nil, err
 	}
-	err = ordertypes.ValidateOrderContractAmount(shortPerp.GetAmount(), short.ContractedAmount, msg.Quantity)
+	err = ordertypes.ValidateOrderContractAmount(shortPerp.GetBaseOrder().Amount, short.ContractedAmount, msg.Quantity)
 	if err != nil {
 		return nil, err
 	}

@@ -64,7 +64,11 @@ func (k msgServer) LazyRegisterOrder(goCtx context.Context, msg *types.MsgLazyRe
 		},
 	)
 
-	expiry := orderBody.GetExpiry()
+	expiry := orderBody.GetBaseOrder().Expiry
+	if expiry.Before(ctx.BlockTime()) {
+		return nil, types.ErrOrderExpired
+	}
+
 	timestamp, err := gogo.TimestampProto(expiry)
 	if err != nil {
 		return nil, err
@@ -88,7 +92,7 @@ func (k msgServer) CancelOrder(goCtx context.Context, msg *types.MsgCancelOrder)
 		msg.OrderHash,
 	)
 	if !isFound {
-		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
+		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, "order not found")
 	}
 
 	// Checks if the msg user is the same as the current owner

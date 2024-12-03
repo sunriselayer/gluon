@@ -6,7 +6,6 @@ import (
 	errorsmod "cosmossdk.io/errors"
 	sdkmath "cosmossdk.io/math"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
-	sdk "github.com/cosmos/cosmos-sdk/types"
 
 	ordertypes "gluon/x/order/types"
 )
@@ -56,50 +55,15 @@ func (order PerpPositionCreateOrder) PackAny() (codectypes.Any, error) {
 var _ PerpOrder = &PerpPositionCancelOrder{}
 
 func (order PerpPositionCancelOrder) ValidateBasic() error {
-	_, err := sdk.AccAddressFromBech32(order.AddressString)
+	err := order.BaseOrder.ValidateBasic()
 	if err != nil {
 		return err
 	}
-
-	if !order.Amount.IsPositive() {
-		return errorsmod.Wrapf(ordertypes.ErrNotPositive, "amount: %s", order.Amount.String())
-	}
-
-	if len(order.LimitPriceString) > 0 {
-		limitPrice, err := sdkmath.LegacyNewDecFromStr(order.LimitPriceString)
-		if err != nil {
-			return err
-		}
-
-		if !limitPrice.IsPositive() {
-			return errorsmod.Wrapf(ordertypes.ErrNotPositive, "price: %s", limitPrice.String())
-		}
+	if len(order.PositionOrderHash) == 0 {
+		return errorsmod.Wrap(ordertypes.ErrEmptyOrderHash, "position order hash must not be empty")
 	}
 
 	return nil
-}
-
-func (order PerpPositionCancelOrder) GetAddress() sdk.AccAddress {
-	val, err := sdk.AccAddressFromBech32(order.AddressString)
-	if err != nil {
-		return nil
-	}
-	return val
-}
-
-func (order PerpPositionCancelOrder) GetAmount() sdkmath.Int {
-	return order.Amount
-}
-
-func (order PerpPositionCancelOrder) GetLimitPrice() *sdkmath.LegacyDec {
-	if len(order.LimitPriceString) == 0 {
-		return nil
-	}
-	val, err := sdkmath.LegacyNewDecFromStr(order.LimitPriceString)
-	if err != nil {
-		return nil
-	}
-	return &val
 }
 
 func (order PerpPositionCancelOrder) PackAny() (codectypes.Any, error) {
