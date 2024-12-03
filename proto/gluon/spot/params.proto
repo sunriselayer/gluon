@@ -1,15 +1,11 @@
 syntax = "proto3";
 package gluon.spot;
 
-import "amino/amino.proto";
 import "gogoproto/gogo.proto";
 
 option go_package = "gluon/x/spot/types";
 
 // Params defines the parameters for the module.
 message Params {
-  option (amino.name) = "gluon/x/spot/Params";
   option (gogoproto.equal) = true;
-
-  
 }
