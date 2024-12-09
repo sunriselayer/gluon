@@ -1,24 +1,42 @@
 package keeper_test
 
 import (
+	"strconv"
 	"testing"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/stretchr/testify/require"
 
+	keepertest "gluon/testutil/keeper"
+	"gluon/x/customauth/keeper"
 	"gluon/x/customauth/types"
+
+	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 )
 
-func TestPairingMsgServerCreate(t *testing.T) {
-	_, srv, ctx := setupMsgServer(t)
-	wctx := sdk.UnwrapSDKContext(ctx)
+// Prevent strconv unused error
+var _ = strconv.IntSize
 
+func TestPairingMsgServerCreate(t *testing.T) {
+	k, ctx := keepertest.CustomauthKeeper(t)
+	srv := keeper.NewMsgServerImpl(k)
 	user := "A"
 	for i := 0; i < 5; i++ {
-		resp, err := srv.CreatePairing(wctx, &types.MsgCreatePairing{User: user})
+		pairingAny := codectypes.Any{}
+		hash, err := k.GetPairingIndex(pairingAny)
 		require.NoError(t, err)
-		require.Equal(t, i, int(resp.PairingId))
+		expected := &types.MsgCreatePairing{
+			User:      user,
+			PublicKey: pairingAny,
+		}
+		_, err = srv.CreatePairing(ctx, expected)
+		require.NoError(t, err)
+		rst, found := k.GetPairing(ctx,
+			user,
+			hash,
+		)
+		require.True(t, found)
+		require.Equal(t, expected.User, rst.Owner)
 	}
 }
 
@@ -31,32 +49,46 @@ func TestPairingMsgServerDelete(t *testing.T) {
 		err     error
 	}{
 		{
-			desc:    "Completed",
-			request: &types.MsgDeletePairing{User: user},
+			desc: "Completed",
+			request: &types.MsgDeletePairing{User: user,
+				PairingIndex: strconv.Itoa(0),
+			},
 		},
 		{
-			desc:    "Unauthorized",
-			request: &types.MsgDeletePairing{User: "B"},
-			err:     sdkerrors.ErrUnauthorized,
+			desc: "Unauthorized",
+			request: &types.MsgDeletePairing{User: "B",
+				PairingIndex: strconv.Itoa(0),
+			},
+			err: sdkerrors.ErrUnauthorized,
 		},
 		{
-			desc:    "KeyNotFound",
-			request: &types.MsgDeletePairing{User: user, PairingId: 10},
-			err:     sdkerrors.ErrKeyNotFound,
+			desc: "KeyNotFound",
+			request: &types.MsgDeletePairing{User: user,
+				PairingIndex: strconv.Itoa(100000),
+			},
+			err: sdkerrors.ErrKeyNotFound,
 		},
 	}
 	for _, tc := range tests {
 		t.Run(tc.desc, func(t *testing.T) {
-			_, srv, ctx := setupMsgServer(t)
-			wctx := sdk.UnwrapSDKContext(ctx)
+			k, ctx := keepertest.CustomauthKeeper(t)
+			srv := keeper.NewMsgServerImpl(k)
 
-			_, err := srv.CreatePairing(wctx, &types.MsgCreatePairing{User: user})
+			_, err := srv.CreatePairing(ctx, &types.MsgCreatePairing{
+				User: user,
+				// Hash: strconv.Itoa(0),
+			})
 			require.NoError(t, err)
-			_, err = srv.DeletePairing(wctx, tc.request)
+			_, err = srv.DeletePairing(ctx, tc.request)
 			if tc.err != nil {
 				require.ErrorIs(t, err, tc.err)
 			} else {
 				require.NoError(t, err)
+				_, found := k.GetPairing(ctx,
+					tc.request.User,
+					tc.request.PairingIndex,
+				)
+				require.False(t, found)
 			}
 		})
 	}

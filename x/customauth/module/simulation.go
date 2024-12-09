@@ -46,17 +46,16 @@ func (AppModule) GenerateGenesisState(simState *module.SimulationState) {
 	}
 	customauthGenesis := types.GenesisState{
 		Params: types.DefaultParams(),
-		PairingList: []types.Pairing{
+		Pairings: []types.Pairing{
 			{
-				Id:      0,
-				Address: sample.AccAddress(),
+				Owner: sample.AccAddress(),
+				Index: "0",
 			},
 			{
-				Id:      1,
-				Address: sample.AccAddress(),
+				Owner: sample.AccAddress(),
+				Index: "1",
 			},
 		},
-		PairingCount: 2,
 		// this line is used by starport scaffolding # simapp/module/genesisState
 	}
 	simState.GenState[types.ModuleName] = simState.Cdc.MustMarshalJSON(&customauthGenesis)

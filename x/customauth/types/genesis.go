@@ -10,7 +10,7 @@ const DefaultIndex uint64 = 1
 // DefaultGenesis returns the default genesis state
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{
-		PairingList: []Pairing{},
+		Pairings: []Pairing{},
 		// this line is used by starport scaffolding # genesis/types/default
 		Params: DefaultParams(),
 	}
@@ -20,16 +20,12 @@ func DefaultGenesis() *GenesisState {
 // failure.
 func (gs GenesisState) Validate() error {
 	// Check for duplicated ID in pairing
-	pairingIdMap := make(map[uint64]bool)
-	pairingCount := gs.GetPairingCount()
-	for _, elem := range gs.PairingList {
-		if _, ok := pairingIdMap[elem.Id]; ok {
-			return fmt.Errorf("duplicated id for pairing")
+	pairingIdMap := make(map[string]bool)
+	for _, elem := range gs.Pairings {
+		if _, ok := pairingIdMap[elem.Index]; ok {
+			return fmt.Errorf("duplicated index for pairing")
 		}
-		if elem.Id >= pairingCount {
-			return fmt.Errorf("pairing id should be lower or equal than the last id")
-		}
-		pairingIdMap[elem.Id] = true
+		pairingIdMap[elem.Index] = true
 	}
 	// this line is used by starport scaffolding # genesis/types/validate
 

@@ -9,9 +9,9 @@ option go_package = "gluon/x/order/types";
 
 // Order
 message Order {
+  string owner = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
   // To allow client to know the index of Order before MsgLazyRegister completion, hash is used.
-  string hash = 1;
-  string owner = 2 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string hash = 2;
   google.protobuf.Any body = 3 [(gogoproto.nullable) = false];
   bool cancelled = 4;
   string contracted_amount = 5 [

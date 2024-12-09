@@ -15,15 +15,14 @@ func TestGenesis(t *testing.T) {
 	genesisState := types.GenesisState{
 		Params: types.DefaultParams(),
 
-		PairingList: []types.Pairing{
+		Pairings: []types.Pairing{
 			{
-				Id: 0,
+				Index: "0",
 			},
 			{
-				Id: 1,
+				Index: "1",
 			},
 		},
-		PairingCount: 2,
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -35,7 +34,6 @@ func TestGenesis(t *testing.T) {
 	nullify.Fill(&genesisState)
 	nullify.Fill(got)
 
-	require.ElementsMatch(t, genesisState.PairingList, got.PairingList)
-	require.Equal(t, genesisState.PairingCount, got.PairingCount)
+	require.ElementsMatch(t, genesisState.Pairings, got.Pairings)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

@@ -11,6 +11,5 @@ option go_package = "gluon/x/customauth/types";
 message GenesisState {
   // params defines all the parameters of the module.
   Params params = 1 [(gogoproto.nullable) = false];
-  repeated Pairing pairing_list = 2 [(gogoproto.nullable) = false];
-  uint64 pairing_count = 3;
+  repeated Pairing pairings = 2 [(gogoproto.nullable) = false];
 }

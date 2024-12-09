@@ -17,8 +17,8 @@ import (
 
 var (
 	md_Order                   protoreflect.MessageDescriptor
-	fd_Order_hash              protoreflect.FieldDescriptor
 	fd_Order_owner             protoreflect.FieldDescriptor
+	fd_Order_hash              protoreflect.FieldDescriptor
 	fd_Order_body              protoreflect.FieldDescriptor
 	fd_Order_cancelled         protoreflect.FieldDescriptor
 	fd_Order_contracted_amount protoreflect.FieldDescriptor
@@ -27,8 +27,8 @@ var (
 func init() {
 	file_gluon_order_order_proto_init()
 	md_Order = File_gluon_order_order_proto.Messages().ByName("Order")
-	fd_Order_hash = md_Order.Fields().ByName("hash")
 	fd_Order_owner = md_Order.Fields().ByName("owner")
+	fd_Order_hash = md_Order.Fields().ByName("hash")
 	fd_Order_body = md_Order.Fields().ByName("body")
 	fd_Order_cancelled = md_Order.Fields().ByName("cancelled")
 	fd_Order_contracted_amount = md_Order.Fields().ByName("contracted_amount")
@@ -99,15 +99,15 @@ func (x *fastReflection_Order) Interface() protoreflect.ProtoMessage {
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_Order) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Hash != "" {
-		value := protoreflect.ValueOfString(x.Hash)
-		if !f(fd_Order_hash, value) {
-			return
-		}
-	}
 	if x.Owner != "" {
 		value := protoreflect.ValueOfString(x.Owner)
 		if !f(fd_Order_owner, value) {
+			return
+		}
+	}
+	if x.Hash != "" {
+		value := protoreflect.ValueOfString(x.Hash)
+		if !f(fd_Order_hash, value) {
 			return
 		}
 	}
@@ -144,10 +144,10 @@ func (x *fastReflection_Order) Range(f func(protoreflect.FieldDescriptor, protor
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_Order) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.order.Order.hash":
-		return x.Hash != ""
 	case "gluon.order.Order.owner":
 		return x.Owner != ""
+	case "gluon.order.Order.hash":
+		return x.Hash != ""
 	case "gluon.order.Order.body":
 		return x.Body != nil
 	case "gluon.order.Order.cancelled":
@@ -170,10 +170,10 @@ func (x *fastReflection_Order) Has(fd protoreflect.FieldDescriptor) bool {
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_Order) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.order.Order.hash":
-		x.Hash = ""
 	case "gluon.order.Order.owner":
 		x.Owner = ""
+	case "gluon.order.Order.hash":
+		x.Hash = ""
 	case "gluon.order.Order.body":
 		x.Body = nil
 	case "gluon.order.Order.cancelled":
@@ -196,11 +196,11 @@ func (x *fastReflection_Order) Clear(fd protoreflect.FieldDescriptor) {
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_Order) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.order.Order.hash":
-		value := x.Hash
-		return protoreflect.ValueOfString(value)
 	case "gluon.order.Order.owner":
 		value := x.Owner
+		return protoreflect.ValueOfString(value)
+	case "gluon.order.Order.hash":
+		value := x.Hash
 		return protoreflect.ValueOfString(value)
 	case "gluon.order.Order.body":
 		value := x.Body
@@ -231,10 +231,10 @@ func (x *fastReflection_Order) Get(descriptor protoreflect.FieldDescriptor) prot
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_Order) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.order.Order.hash":
-		x.Hash = value.Interface().(string)
 	case "gluon.order.Order.owner":
 		x.Owner = value.Interface().(string)
+	case "gluon.order.Order.hash":
+		x.Hash = value.Interface().(string)
 	case "gluon.order.Order.body":
 		x.Body = value.Message().Interface().(*anypb.Any)
 	case "gluon.order.Order.cancelled":
@@ -266,10 +266,10 @@ func (x *fastReflection_Order) Mutable(fd protoreflect.FieldDescriptor) protoref
 			x.Body = new(anypb.Any)
 		}
 		return protoreflect.ValueOfMessage(x.Body.ProtoReflect())
-	case "gluon.order.Order.hash":
-		panic(fmt.Errorf("field hash of message gluon.order.Order is not mutable"))
 	case "gluon.order.Order.owner":
 		panic(fmt.Errorf("field owner of message gluon.order.Order is not mutable"))
+	case "gluon.order.Order.hash":
+		panic(fmt.Errorf("field hash of message gluon.order.Order is not mutable"))
 	case "gluon.order.Order.cancelled":
 		panic(fmt.Errorf("field cancelled of message gluon.order.Order is not mutable"))
 	case "gluon.order.Order.contracted_amount":
@@ -287,9 +287,9 @@ func (x *fastReflection_Order) Mutable(fd protoreflect.FieldDescriptor) protoref
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_Order) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.order.Order.hash":
-		return protoreflect.ValueOfString("")
 	case "gluon.order.Order.owner":
+		return protoreflect.ValueOfString("")
+	case "gluon.order.Order.hash":
 		return protoreflect.ValueOfString("")
 	case "gluon.order.Order.body":
 		m := new(anypb.Any)
@@ -367,11 +367,11 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 		var n int
 		var l int
 		_ = l
-		l = len(x.Hash)
+		l = len(x.Owner)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.Owner)
+		l = len(x.Hash)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -446,17 +446,17 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 			i--
 			dAtA[i] = 0x1a
 		}
-		if len(x.Owner) > 0 {
-			i -= len(x.Owner)
-			copy(dAtA[i:], x.Owner)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Owner)))
-			i--
-			dAtA[i] = 0x12
-		}
 		if len(x.Hash) > 0 {
 			i -= len(x.Hash)
 			copy(dAtA[i:], x.Hash)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Hash)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if len(x.Owner) > 0 {
+			i -= len(x.Owner)
+			copy(dAtA[i:], x.Owner)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Owner)))
 			i--
 			dAtA[i] = 0xa
 		}
@@ -511,38 +511,6 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Hash", wireType)
-				}
-				var stringLen uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.Hash = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
-			case 2:
-				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Owner", wireType)
 				}
 				var stringLen uint64
@@ -572,6 +540,38 @@ func (x *fastReflection_Order) ProtoMethods() *protoiface.Methods {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
 				x.Owner = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Hash", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Hash = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 3:
 				if wireType != 2 {
@@ -715,9 +715,9 @@ type Order struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	Owner string `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
 	// To allow client to know the index of Order before MsgLazyRegister completion, hash is used.
-	Hash             string     `protobuf:"bytes,1,opt,name=hash,proto3" json:"hash,omitempty"`
-	Owner            string     `protobuf:"bytes,2,opt,name=owner,proto3" json:"owner,omitempty"`
+	Hash             string     `protobuf:"bytes,2,opt,name=hash,proto3" json:"hash,omitempty"`
 	Body             *anypb.Any `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
 	Cancelled        bool       `protobuf:"varint,4,opt,name=cancelled,proto3" json:"cancelled,omitempty"`
 	ContractedAmount string     `protobuf:"bytes,5,opt,name=contracted_amount,json=contractedAmount,proto3" json:"contracted_amount,omitempty"`
@@ -743,16 +743,16 @@ func (*Order) Descriptor() ([]byte, []int) {
 	return file_gluon_order_order_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Order) GetHash() string {
+func (x *Order) GetOwner() string {
 	if x != nil {
-		return x.Hash
+		return x.Owner
 	}
 	return ""
 }
 
-func (x *Order) GetOwner() string {
+func (x *Order) GetHash() string {
 	if x != nil {
-		return x.Owner
+		return x.Hash
 	}
 	return ""
 }
@@ -788,11 +788,11 @@ var file_gluon_order_order_proto_rawDesc = []byte{
 	0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67,
 	0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x19, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x61, 0x6e, 0x79, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x22, 0xf3, 0x01, 0x0a, 0x05, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x12, 0x0a, 0x04,
-	0x68, 0x61, 0x73, 0x68, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x68, 0x61, 0x73, 0x68,
-	0x12, 0x2e, 0x0a, 0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42,
-	0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72,
-	0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72,
+	0x74, 0x6f, 0x22, 0xf3, 0x01, 0x0a, 0x05, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x2e, 0x0a, 0x05,
+	0x6f, 0x77, 0x6e, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d,
+	0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53,
+	0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x12, 0x12, 0x0a, 0x04,
+	0x68, 0x61, 0x73, 0x68, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x68, 0x61, 0x73, 0x68,
 	0x12, 0x2e, 0x0a, 0x04, 0x62, 0x6f, 0x64, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14,
 	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
 	0x2e, 0x41, 0x6e, 0x79, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x04, 0x62, 0x6f, 0x64, 0x79,

@@ -807,27 +807,27 @@ func (x *fastReflection_QueryParamsResponse) ProtoMethods() *protoiface.Methods 
 }
 
 var (
-	md_QueryGetPairingRequest         protoreflect.MessageDescriptor
-	fd_QueryGetPairingRequest_address protoreflect.FieldDescriptor
-	fd_QueryGetPairingRequest_id      protoreflect.FieldDescriptor
+	md_QueryPairingRequest       protoreflect.MessageDescriptor
+	fd_QueryPairingRequest_owner protoreflect.FieldDescriptor
+	fd_QueryPairingRequest_index protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_customauth_query_proto_init()
-	md_QueryGetPairingRequest = File_gluon_customauth_query_proto.Messages().ByName("QueryGetPairingRequest")
-	fd_QueryGetPairingRequest_address = md_QueryGetPairingRequest.Fields().ByName("address")
-	fd_QueryGetPairingRequest_id = md_QueryGetPairingRequest.Fields().ByName("id")
+	md_QueryPairingRequest = File_gluon_customauth_query_proto.Messages().ByName("QueryPairingRequest")
+	fd_QueryPairingRequest_owner = md_QueryPairingRequest.Fields().ByName("owner")
+	fd_QueryPairingRequest_index = md_QueryPairingRequest.Fields().ByName("index")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryGetPairingRequest)(nil)
+var _ protoreflect.Message = (*fastReflection_QueryPairingRequest)(nil)
 
-type fastReflection_QueryGetPairingRequest QueryGetPairingRequest
+type fastReflection_QueryPairingRequest QueryPairingRequest
 
-func (x *QueryGetPairingRequest) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryGetPairingRequest)(x)
+func (x *QueryPairingRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryPairingRequest)(x)
 }
 
-func (x *QueryGetPairingRequest) slowProtoReflect() protoreflect.Message {
+func (x *QueryPairingRequest) slowProtoReflect() protoreflect.Message {
 	mi := &file_gluon_customauth_query_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -839,43 +839,43 @@ func (x *QueryGetPairingRequest) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryGetPairingRequest_messageType fastReflection_QueryGetPairingRequest_messageType
-var _ protoreflect.MessageType = fastReflection_QueryGetPairingRequest_messageType{}
+var _fastReflection_QueryPairingRequest_messageType fastReflection_QueryPairingRequest_messageType
+var _ protoreflect.MessageType = fastReflection_QueryPairingRequest_messageType{}
 
-type fastReflection_QueryGetPairingRequest_messageType struct{}
+type fastReflection_QueryPairingRequest_messageType struct{}
 
-func (x fastReflection_QueryGetPairingRequest_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryGetPairingRequest)(nil)
+func (x fastReflection_QueryPairingRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryPairingRequest)(nil)
 }
-func (x fastReflection_QueryGetPairingRequest_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryGetPairingRequest)
+func (x fastReflection_QueryPairingRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryPairingRequest)
 }
-func (x fastReflection_QueryGetPairingRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetPairingRequest
+func (x fastReflection_QueryPairingRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryPairingRequest
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryGetPairingRequest) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetPairingRequest
+func (x *fastReflection_QueryPairingRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryPairingRequest
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryGetPairingRequest) Type() protoreflect.MessageType {
-	return _fastReflection_QueryGetPairingRequest_messageType
+func (x *fastReflection_QueryPairingRequest) Type() protoreflect.MessageType {
+	return _fastReflection_QueryPairingRequest_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryGetPairingRequest) New() protoreflect.Message {
-	return new(fastReflection_QueryGetPairingRequest)
+func (x *fastReflection_QueryPairingRequest) New() protoreflect.Message {
+	return new(fastReflection_QueryPairingRequest)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryGetPairingRequest) Interface() protoreflect.ProtoMessage {
-	return (*QueryGetPairingRequest)(x)
+func (x *fastReflection_QueryPairingRequest) Interface() protoreflect.ProtoMessage {
+	return (*QueryPairingRequest)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -883,16 +883,16 @@ func (x *fastReflection_QueryGetPairingRequest) Interface() protoreflect.ProtoMe
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryGetPairingRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Address != "" {
-		value := protoreflect.ValueOfString(x.Address)
-		if !f(fd_QueryGetPairingRequest_address, value) {
+func (x *fastReflection_QueryPairingRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Owner != "" {
+		value := protoreflect.ValueOfString(x.Owner)
+		if !f(fd_QueryPairingRequest_owner, value) {
 			return
 		}
 	}
-	if x.Id != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.Id)
-		if !f(fd_QueryGetPairingRequest_id, value) {
+	if x.Index != "" {
+		value := protoreflect.ValueOfString(x.Index)
+		if !f(fd_QueryPairingRequest_index, value) {
 			return
 		}
 	}
@@ -909,17 +909,17 @@ func (x *fastReflection_QueryGetPairingRequest) Range(f func(protoreflect.FieldD
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryGetPairingRequest) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QueryPairingRequest) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.customauth.QueryGetPairingRequest.address":
-		return x.Address != ""
-	case "gluon.customauth.QueryGetPairingRequest.id":
-		return x.Id != uint64(0)
+	case "gluon.customauth.QueryPairingRequest.owner":
+		return x.Owner != ""
+	case "gluon.customauth.QueryPairingRequest.index":
+		return x.Index != ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryGetPairingRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryPairingRequest"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.QueryGetPairingRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.QueryPairingRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -929,17 +929,17 @@ func (x *fastReflection_QueryGetPairingRequest) Has(fd protoreflect.FieldDescrip
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetPairingRequest) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QueryPairingRequest) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.customauth.QueryGetPairingRequest.address":
-		x.Address = ""
-	case "gluon.customauth.QueryGetPairingRequest.id":
-		x.Id = uint64(0)
+	case "gluon.customauth.QueryPairingRequest.owner":
+		x.Owner = ""
+	case "gluon.customauth.QueryPairingRequest.index":
+		x.Index = ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryGetPairingRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryPairingRequest"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.QueryGetPairingRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.QueryPairingRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -949,19 +949,19 @@ func (x *fastReflection_QueryGetPairingRequest) Clear(fd protoreflect.FieldDescr
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryGetPairingRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryPairingRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.customauth.QueryGetPairingRequest.address":
-		value := x.Address
+	case "gluon.customauth.QueryPairingRequest.owner":
+		value := x.Owner
 		return protoreflect.ValueOfString(value)
-	case "gluon.customauth.QueryGetPairingRequest.id":
-		value := x.Id
-		return protoreflect.ValueOfUint64(value)
+	case "gluon.customauth.QueryPairingRequest.index":
+		value := x.Index
+		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryGetPairingRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryPairingRequest"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.QueryGetPairingRequest does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.QueryPairingRequest does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -975,17 +975,17 @@ func (x *fastReflection_QueryGetPairingRequest) Get(descriptor protoreflect.Fiel
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetPairingRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QueryPairingRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.customauth.QueryGetPairingRequest.address":
-		x.Address = value.Interface().(string)
-	case "gluon.customauth.QueryGetPairingRequest.id":
-		x.Id = value.Uint()
+	case "gluon.customauth.QueryPairingRequest.owner":
+		x.Owner = value.Interface().(string)
+	case "gluon.customauth.QueryPairingRequest.index":
+		x.Index = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryGetPairingRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryPairingRequest"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.QueryGetPairingRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.QueryPairingRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -999,44 +999,44 @@ func (x *fastReflection_QueryGetPairingRequest) Set(fd protoreflect.FieldDescrip
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetPairingRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryPairingRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.customauth.QueryGetPairingRequest.address":
-		panic(fmt.Errorf("field address of message gluon.customauth.QueryGetPairingRequest is not mutable"))
-	case "gluon.customauth.QueryGetPairingRequest.id":
-		panic(fmt.Errorf("field id of message gluon.customauth.QueryGetPairingRequest is not mutable"))
+	case "gluon.customauth.QueryPairingRequest.owner":
+		panic(fmt.Errorf("field owner of message gluon.customauth.QueryPairingRequest is not mutable"))
+	case "gluon.customauth.QueryPairingRequest.index":
+		panic(fmt.Errorf("field index of message gluon.customauth.QueryPairingRequest is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryGetPairingRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryPairingRequest"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.QueryGetPairingRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.QueryPairingRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryGetPairingRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryPairingRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.customauth.QueryGetPairingRequest.address":
+	case "gluon.customauth.QueryPairingRequest.owner":
 		return protoreflect.ValueOfString("")
-	case "gluon.customauth.QueryGetPairingRequest.id":
-		return protoreflect.ValueOfUint64(uint64(0))
+	case "gluon.customauth.QueryPairingRequest.index":
+		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryGetPairingRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryPairingRequest"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.QueryGetPairingRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.QueryPairingRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryGetPairingRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QueryPairingRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.customauth.QueryGetPairingRequest", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in gluon.customauth.QueryPairingRequest", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1044,7 +1044,7 @@ func (x *fastReflection_QueryGetPairingRequest) WhichOneof(d protoreflect.OneofD
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryGetPairingRequest) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QueryPairingRequest) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -1055,7 +1055,7 @@ func (x *fastReflection_QueryGetPairingRequest) GetUnknown() protoreflect.RawFie
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetPairingRequest) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QueryPairingRequest) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -1067,7 +1067,7 @@ func (x *fastReflection_QueryGetPairingRequest) SetUnknown(fields protoreflect.R
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryGetPairingRequest) IsValid() bool {
+func (x *fastReflection_QueryPairingRequest) IsValid() bool {
 	return x != nil
 }
 
@@ -1077,9 +1077,9 @@ func (x *fastReflection_QueryGetPairingRequest) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryGetPairingRequest) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QueryPairingRequest) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryGetPairingRequest)
+		x := input.Message.Interface().(*QueryPairingRequest)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1091,12 +1091,13 @@ func (x *fastReflection_QueryGetPairingRequest) ProtoMethods() *protoiface.Metho
 		var n int
 		var l int
 		_ = l
-		l = len(x.Address)
+		l = len(x.Owner)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		if x.Id != 0 {
-			n += 1 + runtime.Sov(uint64(x.Id))
+		l = len(x.Index)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
 		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
@@ -1108,7 +1109,7 @@ func (x *fastReflection_QueryGetPairingRequest) ProtoMethods() *protoiface.Metho
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetPairingRequest)
+		x := input.Message.Interface().(*QueryPairingRequest)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1127,15 +1128,17 @@ func (x *fastReflection_QueryGetPairingRequest) ProtoMethods() *protoiface.Metho
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.Id != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.Id))
+		if len(x.Index) > 0 {
+			i -= len(x.Index)
+			copy(dAtA[i:], x.Index)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Index)))
 			i--
-			dAtA[i] = 0x10
+			dAtA[i] = 0x12
 		}
-		if len(x.Address) > 0 {
-			i -= len(x.Address)
-			copy(dAtA[i:], x.Address)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Address)))
+		if len(x.Owner) > 0 {
+			i -= len(x.Owner)
+			copy(dAtA[i:], x.Owner)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Owner)))
 			i--
 			dAtA[i] = 0xa
 		}
@@ -1150,7 +1153,7 @@ func (x *fastReflection_QueryGetPairingRequest) ProtoMethods() *protoiface.Metho
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetPairingRequest)
+		x := input.Message.Interface().(*QueryPairingRequest)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1182,15 +1185,15 @@ func (x *fastReflection_QueryGetPairingRequest) ProtoMethods() *protoiface.Metho
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetPairingRequest: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryPairingRequest: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetPairingRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryPairingRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Owner", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -1218,13 +1221,13 @@ func (x *fastReflection_QueryGetPairingRequest) ProtoMethods() *protoiface.Metho
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.Address = string(dAtA[iNdEx:postIndex])
+				x.Owner = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 2:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
 				}
-				x.Id = 0
+				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -1234,11 +1237,24 @@ func (x *fastReflection_QueryGetPairingRequest) ProtoMethods() *protoiface.Metho
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					x.Id |= uint64(b&0x7F) << shift
+					stringLen |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Index = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -1275,25 +1291,25 @@ func (x *fastReflection_QueryGetPairingRequest) ProtoMethods() *protoiface.Metho
 }
 
 var (
-	md_QueryGetPairingResponse         protoreflect.MessageDescriptor
-	fd_QueryGetPairingResponse_pairing protoreflect.FieldDescriptor
+	md_QueryPairingResponse         protoreflect.MessageDescriptor
+	fd_QueryPairingResponse_pairing protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_customauth_query_proto_init()
-	md_QueryGetPairingResponse = File_gluon_customauth_query_proto.Messages().ByName("QueryGetPairingResponse")
-	fd_QueryGetPairingResponse_pairing = md_QueryGetPairingResponse.Fields().ByName("pairing")
+	md_QueryPairingResponse = File_gluon_customauth_query_proto.Messages().ByName("QueryPairingResponse")
+	fd_QueryPairingResponse_pairing = md_QueryPairingResponse.Fields().ByName("pairing")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryGetPairingResponse)(nil)
+var _ protoreflect.Message = (*fastReflection_QueryPairingResponse)(nil)
 
-type fastReflection_QueryGetPairingResponse QueryGetPairingResponse
+type fastReflection_QueryPairingResponse QueryPairingResponse
 
-func (x *QueryGetPairingResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryGetPairingResponse)(x)
+func (x *QueryPairingResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryPairingResponse)(x)
 }
 
-func (x *QueryGetPairingResponse) slowProtoReflect() protoreflect.Message {
+func (x *QueryPairingResponse) slowProtoReflect() protoreflect.Message {
 	mi := &file_gluon_customauth_query_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1305,43 +1321,43 @@ func (x *QueryGetPairingResponse) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryGetPairingResponse_messageType fastReflection_QueryGetPairingResponse_messageType
-var _ protoreflect.MessageType = fastReflection_QueryGetPairingResponse_messageType{}
+var _fastReflection_QueryPairingResponse_messageType fastReflection_QueryPairingResponse_messageType
+var _ protoreflect.MessageType = fastReflection_QueryPairingResponse_messageType{}
 
-type fastReflection_QueryGetPairingResponse_messageType struct{}
+type fastReflection_QueryPairingResponse_messageType struct{}
 
-func (x fastReflection_QueryGetPairingResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryGetPairingResponse)(nil)
+func (x fastReflection_QueryPairingResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryPairingResponse)(nil)
 }
-func (x fastReflection_QueryGetPairingResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryGetPairingResponse)
+func (x fastReflection_QueryPairingResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryPairingResponse)
 }
-func (x fastReflection_QueryGetPairingResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetPairingResponse
+func (x fastReflection_QueryPairingResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryPairingResponse
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryGetPairingResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetPairingResponse
+func (x *fastReflection_QueryPairingResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryPairingResponse
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryGetPairingResponse) Type() protoreflect.MessageType {
-	return _fastReflection_QueryGetPairingResponse_messageType
+func (x *fastReflection_QueryPairingResponse) Type() protoreflect.MessageType {
+	return _fastReflection_QueryPairingResponse_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryGetPairingResponse) New() protoreflect.Message {
-	return new(fastReflection_QueryGetPairingResponse)
+func (x *fastReflection_QueryPairingResponse) New() protoreflect.Message {
+	return new(fastReflection_QueryPairingResponse)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryGetPairingResponse) Interface() protoreflect.ProtoMessage {
-	return (*QueryGetPairingResponse)(x)
+func (x *fastReflection_QueryPairingResponse) Interface() protoreflect.ProtoMessage {
+	return (*QueryPairingResponse)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -1349,10 +1365,10 @@ func (x *fastReflection_QueryGetPairingResponse) Interface() protoreflect.ProtoM
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryGetPairingResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_QueryPairingResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if x.Pairing != nil {
 		value := protoreflect.ValueOfMessage(x.Pairing.ProtoReflect())
-		if !f(fd_QueryGetPairingResponse_pairing, value) {
+		if !f(fd_QueryPairingResponse_pairing, value) {
 			return
 		}
 	}
@@ -1369,15 +1385,15 @@ func (x *fastReflection_QueryGetPairingResponse) Range(f func(protoreflect.Field
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryGetPairingResponse) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QueryPairingResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.customauth.QueryGetPairingResponse.pairing":
+	case "gluon.customauth.QueryPairingResponse.pairing":
 		return x.Pairing != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryGetPairingResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryPairingResponse"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.QueryGetPairingResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.QueryPairingResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1387,15 +1403,15 @@ func (x *fastReflection_QueryGetPairingResponse) Has(fd protoreflect.FieldDescri
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetPairingResponse) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QueryPairingResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.customauth.QueryGetPairingResponse.pairing":
+	case "gluon.customauth.QueryPairingResponse.pairing":
 		x.Pairing = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryGetPairingResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryPairingResponse"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.QueryGetPairingResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.QueryPairingResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1405,16 +1421,16 @@ func (x *fastReflection_QueryGetPairingResponse) Clear(fd protoreflect.FieldDesc
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryGetPairingResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryPairingResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.customauth.QueryGetPairingResponse.pairing":
+	case "gluon.customauth.QueryPairingResponse.pairing":
 		value := x.Pairing
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryGetPairingResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryPairingResponse"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.QueryGetPairingResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.QueryPairingResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1428,15 +1444,15 @@ func (x *fastReflection_QueryGetPairingResponse) Get(descriptor protoreflect.Fie
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetPairingResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QueryPairingResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.customauth.QueryGetPairingResponse.pairing":
+	case "gluon.customauth.QueryPairingResponse.pairing":
 		x.Pairing = value.Message().Interface().(*Pairing)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryGetPairingResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryPairingResponse"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.QueryGetPairingResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.QueryPairingResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1450,44 +1466,44 @@ func (x *fastReflection_QueryGetPairingResponse) Set(fd protoreflect.FieldDescri
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetPairingResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryPairingResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.customauth.QueryGetPairingResponse.pairing":
+	case "gluon.customauth.QueryPairingResponse.pairing":
 		if x.Pairing == nil {
 			x.Pairing = new(Pairing)
 		}
 		return protoreflect.ValueOfMessage(x.Pairing.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryGetPairingResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryPairingResponse"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.QueryGetPairingResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.QueryPairingResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryGetPairingResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryPairingResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.customauth.QueryGetPairingResponse.pairing":
+	case "gluon.customauth.QueryPairingResponse.pairing":
 		m := new(Pairing)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryGetPairingResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryPairingResponse"))
 		}
-		panic(fmt.Errorf("message gluon.customauth.QueryGetPairingResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message gluon.customauth.QueryPairingResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryGetPairingResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QueryPairingResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in gluon.customauth.QueryGetPairingResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in gluon.customauth.QueryPairingResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1495,7 +1511,7 @@ func (x *fastReflection_QueryGetPairingResponse) WhichOneof(d protoreflect.Oneof
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryGetPairingResponse) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QueryPairingResponse) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -1506,7 +1522,7 @@ func (x *fastReflection_QueryGetPairingResponse) GetUnknown() protoreflect.RawFi
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetPairingResponse) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QueryPairingResponse) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -1518,7 +1534,7 @@ func (x *fastReflection_QueryGetPairingResponse) SetUnknown(fields protoreflect.
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryGetPairingResponse) IsValid() bool {
+func (x *fastReflection_QueryPairingResponse) IsValid() bool {
 	return x != nil
 }
 
@@ -1528,9 +1544,9 @@ func (x *fastReflection_QueryGetPairingResponse) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryGetPairingResponse) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QueryPairingResponse) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryGetPairingResponse)
+		x := input.Message.Interface().(*QueryPairingResponse)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1556,7 +1572,7 @@ func (x *fastReflection_QueryGetPairingResponse) ProtoMethods() *protoiface.Meth
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetPairingResponse)
+		x := input.Message.Interface().(*QueryPairingResponse)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1600,7 +1616,7 @@ func (x *fastReflection_QueryGetPairingResponse) ProtoMethods() *protoiface.Meth
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetPairingResponse)
+		x := input.Message.Interface().(*QueryPairingResponse)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1632,10 +1648,10 @@ func (x *fastReflection_QueryGetPairingResponse) ProtoMethods() *protoiface.Meth
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetPairingResponse: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryPairingResponse: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetPairingResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryPairingResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -1711,14 +1727,14 @@ func (x *fastReflection_QueryGetPairingResponse) ProtoMethods() *protoiface.Meth
 
 var (
 	md_QueryPairingsRequest            protoreflect.MessageDescriptor
-	fd_QueryPairingsRequest_address    protoreflect.FieldDescriptor
+	fd_QueryPairingsRequest_owner      protoreflect.FieldDescriptor
 	fd_QueryPairingsRequest_pagination protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_customauth_query_proto_init()
 	md_QueryPairingsRequest = File_gluon_customauth_query_proto.Messages().ByName("QueryPairingsRequest")
-	fd_QueryPairingsRequest_address = md_QueryPairingsRequest.Fields().ByName("address")
+	fd_QueryPairingsRequest_owner = md_QueryPairingsRequest.Fields().ByName("owner")
 	fd_QueryPairingsRequest_pagination = md_QueryPairingsRequest.Fields().ByName("pagination")
 }
 
@@ -1787,9 +1803,9 @@ func (x *fastReflection_QueryPairingsRequest) Interface() protoreflect.ProtoMess
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_QueryPairingsRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Address != "" {
-		value := protoreflect.ValueOfString(x.Address)
-		if !f(fd_QueryPairingsRequest_address, value) {
+	if x.Owner != "" {
+		value := protoreflect.ValueOfString(x.Owner)
+		if !f(fd_QueryPairingsRequest_owner, value) {
 			return
 		}
 	}
@@ -1814,8 +1830,8 @@ func (x *fastReflection_QueryPairingsRequest) Range(f func(protoreflect.FieldDes
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_QueryPairingsRequest) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "gluon.customauth.QueryPairingsRequest.address":
-		return x.Address != ""
+	case "gluon.customauth.QueryPairingsRequest.owner":
+		return x.Owner != ""
 	case "gluon.customauth.QueryPairingsRequest.pagination":
 		return x.Pagination != nil
 	default:
@@ -1834,8 +1850,8 @@ func (x *fastReflection_QueryPairingsRequest) Has(fd protoreflect.FieldDescripto
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryPairingsRequest) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "gluon.customauth.QueryPairingsRequest.address":
-		x.Address = ""
+	case "gluon.customauth.QueryPairingsRequest.owner":
+		x.Owner = ""
 	case "gluon.customauth.QueryPairingsRequest.pagination":
 		x.Pagination = nil
 	default:
@@ -1854,8 +1870,8 @@ func (x *fastReflection_QueryPairingsRequest) Clear(fd protoreflect.FieldDescrip
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_QueryPairingsRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "gluon.customauth.QueryPairingsRequest.address":
-		value := x.Address
+	case "gluon.customauth.QueryPairingsRequest.owner":
+		value := x.Owner
 		return protoreflect.ValueOfString(value)
 	case "gluon.customauth.QueryPairingsRequest.pagination":
 		value := x.Pagination
@@ -1880,8 +1896,8 @@ func (x *fastReflection_QueryPairingsRequest) Get(descriptor protoreflect.FieldD
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryPairingsRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "gluon.customauth.QueryPairingsRequest.address":
-		x.Address = value.Interface().(string)
+	case "gluon.customauth.QueryPairingsRequest.owner":
+		x.Owner = value.Interface().(string)
 	case "gluon.customauth.QueryPairingsRequest.pagination":
 		x.Pagination = value.Message().Interface().(*v1beta1.PageRequest)
 	default:
@@ -1909,8 +1925,8 @@ func (x *fastReflection_QueryPairingsRequest) Mutable(fd protoreflect.FieldDescr
 			x.Pagination = new(v1beta1.PageRequest)
 		}
 		return protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
-	case "gluon.customauth.QueryPairingsRequest.address":
-		panic(fmt.Errorf("field address of message gluon.customauth.QueryPairingsRequest is not mutable"))
+	case "gluon.customauth.QueryPairingsRequest.owner":
+		panic(fmt.Errorf("field owner of message gluon.customauth.QueryPairingsRequest is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.QueryPairingsRequest"))
@@ -1924,7 +1940,7 @@ func (x *fastReflection_QueryPairingsRequest) Mutable(fd protoreflect.FieldDescr
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_QueryPairingsRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "gluon.customauth.QueryPairingsRequest.address":
+	case "gluon.customauth.QueryPairingsRequest.owner":
 		return protoreflect.ValueOfString("")
 	case "gluon.customauth.QueryPairingsRequest.pagination":
 		m := new(v1beta1.PageRequest)
@@ -1998,7 +2014,7 @@ func (x *fastReflection_QueryPairingsRequest) ProtoMethods() *protoiface.Methods
 		var n int
 		var l int
 		_ = l
-		l = len(x.Address)
+		l = len(x.Owner)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -2049,10 +2065,10 @@ func (x *fastReflection_QueryPairingsRequest) ProtoMethods() *protoiface.Methods
 			i--
 			dAtA[i] = 0x12
 		}
-		if len(x.Address) > 0 {
-			i -= len(x.Address)
-			copy(dAtA[i:], x.Address)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Address)))
+		if len(x.Owner) > 0 {
+			i -= len(x.Owner)
+			copy(dAtA[i:], x.Owner)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Owner)))
 			i--
 			dAtA[i] = 0xa
 		}
@@ -2107,7 +2123,7 @@ func (x *fastReflection_QueryPairingsRequest) ProtoMethods() *protoiface.Methods
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Owner", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -2135,7 +2151,7 @@ func (x *fastReflection_QueryPairingsRequest) ProtoMethods() *protoiface.Methods
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.Address = string(dAtA[iNdEx:postIndex])
+				x.Owner = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 2:
 				if wireType != 2 {
@@ -2858,18 +2874,18 @@ func (x *QueryParamsResponse) GetParams() *Params {
 	return nil
 }
 
-// QueryGetPairingRequest
-type QueryGetPairingRequest struct {
+// QueryPairingRequest
+type QueryPairingRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Address string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
-	Id      uint64 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+	Owner string `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
+	Index string `protobuf:"bytes,2,opt,name=index,proto3" json:"index,omitempty"`
 }
 
-func (x *QueryGetPairingRequest) Reset() {
-	*x = QueryGetPairingRequest{}
+func (x *QueryPairingRequest) Reset() {
+	*x = QueryPairingRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_gluon_customauth_query_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2877,33 +2893,33 @@ func (x *QueryGetPairingRequest) Reset() {
 	}
 }
 
-func (x *QueryGetPairingRequest) String() string {
+func (x *QueryPairingRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QueryGetPairingRequest) ProtoMessage() {}
+func (*QueryPairingRequest) ProtoMessage() {}
 
-// Deprecated: Use QueryGetPairingRequest.ProtoReflect.Descriptor instead.
-func (*QueryGetPairingRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use QueryPairingRequest.ProtoReflect.Descriptor instead.
+func (*QueryPairingRequest) Descriptor() ([]byte, []int) {
 	return file_gluon_customauth_query_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *QueryGetPairingRequest) GetAddress() string {
+func (x *QueryPairingRequest) GetOwner() string {
 	if x != nil {
-		return x.Address
+		return x.Owner
 	}
 	return ""
 }
 
-func (x *QueryGetPairingRequest) GetId() uint64 {
+func (x *QueryPairingRequest) GetIndex() string {
 	if x != nil {
-		return x.Id
+		return x.Index
 	}
-	return 0
+	return ""
 }
 
-// QueryGetPairingResponse
-type QueryGetPairingResponse struct {
+// QueryPairingResponse
+type QueryPairingResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -2911,8 +2927,8 @@ type QueryGetPairingResponse struct {
 	Pairing *Pairing `protobuf:"bytes,1,opt,name=pairing,proto3" json:"pairing,omitempty"`
 }
 
-func (x *QueryGetPairingResponse) Reset() {
-	*x = QueryGetPairingResponse{}
+func (x *QueryPairingResponse) Reset() {
+	*x = QueryPairingResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_gluon_customauth_query_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2920,18 +2936,18 @@ func (x *QueryGetPairingResponse) Reset() {
 	}
 }
 
-func (x *QueryGetPairingResponse) String() string {
+func (x *QueryPairingResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QueryGetPairingResponse) ProtoMessage() {}
+func (*QueryPairingResponse) ProtoMessage() {}
 
-// Deprecated: Use QueryGetPairingResponse.ProtoReflect.Descriptor instead.
-func (*QueryGetPairingResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use QueryPairingResponse.ProtoReflect.Descriptor instead.
+func (*QueryPairingResponse) Descriptor() ([]byte, []int) {
 	return file_gluon_customauth_query_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *QueryGetPairingResponse) GetPairing() *Pairing {
+func (x *QueryPairingResponse) GetPairing() *Pairing {
 	if x != nil {
 		return x.Pairing
 	}
@@ -2944,7 +2960,7 @@ type QueryPairingsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Address    string               `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
+	Owner      string               `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
 	Pagination *v1beta1.PageRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 }
 
@@ -2968,9 +2984,9 @@ func (*QueryPairingsRequest) Descriptor() ([]byte, []int) {
 	return file_gluon_customauth_query_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *QueryPairingsRequest) GetAddress() string {
+func (x *QueryPairingsRequest) GetOwner() string {
 	if x != nil {
-		return x.Address
+		return x.Owner
 	}
 	return ""
 }
@@ -3048,71 +3064,70 @@ var file_gluon_customauth_query_proto_rawDesc = []byte{
 	0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x67,
 	0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e,
 	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x06, 0x70, 0x61,
-	0x72, 0x61, 0x6d, 0x73, 0x22, 0x42, 0x0a, 0x16, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74,
-	0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18,
-	0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x22, 0x54, 0x0a, 0x17, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x47, 0x65, 0x74, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x39, 0x0a, 0x07, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73,
-	0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x42,
-	0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x07, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x22, 0x78,
-	0x0a, 0x14, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x73, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73,
-	0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
-	0x12, 0x46, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61,
-	0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31,
-	0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x0a, 0x70, 0x61,
-	0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x9d, 0x01, 0x0a, 0x15, 0x51, 0x75, 0x65,
-	0x72, 0x79, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x3b, 0x0a, 0x08, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x73, 0x18, 0x01,
-	0x20, 0x03, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73,
-	0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x42,
-	0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x08, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x73, 0x12,
-	0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73,
-	0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e,
-	0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a, 0x70, 0x61,
-	0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x32, 0xa0, 0x03, 0x0a, 0x05, 0x51, 0x75, 0x65,
-	0x72, 0x79, 0x12, 0x77, 0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x24, 0x2e, 0x67,
+	0x72, 0x61, 0x6d, 0x73, 0x22, 0x41, 0x0a, 0x13, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x69,
+	0x72, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x6f,
+	0x77, 0x6e, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x77, 0x6e, 0x65,
+	0x72, 0x12, 0x14, 0x0a, 0x05, 0x69, 0x6e, 0x64, 0x65, 0x78, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x05, 0x69, 0x6e, 0x64, 0x65, 0x78, 0x22, 0x51, 0x0a, 0x14, 0x51, 0x75, 0x65, 0x72, 0x79,
+	0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x39, 0x0a, 0x07, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x19, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61,
+	0x75, 0x74, 0x68, 0x2e, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x42, 0x04, 0xc8, 0xde, 0x1f,
+	0x00, 0x52, 0x07, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x22, 0x74, 0x0a, 0x14, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x05, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x12, 0x46, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69,
+	0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x63,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79,
+	0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x22, 0x9d, 0x01, 0x0a, 0x15, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e,
+	0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3b, 0x0a, 0x08, 0x70, 0x61,
+	0x69, 0x72, 0x69, 0x6e, 0x67, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67,
 	0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x25, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f,
-	0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d,
-	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x20, 0x82, 0xd3, 0xe4, 0x93, 0x02,
-	0x1a, 0x12, 0x18, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d,
-	0x61, 0x75, 0x74, 0x68, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x91, 0x01, 0x0a, 0x07,
-	0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x12, 0x28, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e,
+	0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x08, 0x70,
+	0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x73, 0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x63, 0x6f,
+	0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e,
+	0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x32, 0x99, 0x03, 0x0a, 0x05, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x77, 0x0a, 0x06, 0x50, 0x61,
+	0x72, 0x61, 0x6d, 0x73, 0x12, 0x24, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73,
+	0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72,
+	0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x67, 0x6c, 0x75,
+	0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x20, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x1a, 0x12, 0x18, 0x2f, 0x67, 0x6c, 0x75, 0x6f,
+	0x6e, 0x2f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2f, 0x70, 0x61, 0x72,
+	0x61, 0x6d, 0x73, 0x12, 0x8c, 0x01, 0x0a, 0x07, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x12,
+	0x25, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75,
+	0x74, 0x68, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x26, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63,
+	0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50,
+	0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x32,
+	0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2c, 0x12, 0x2a, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63,
+	0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2f, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e,
+	0x67, 0x73, 0x2f, 0x7b, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x7d, 0x2f, 0x7b, 0x69, 0x6e, 0x64, 0x65,
+	0x78, 0x7d, 0x12, 0x87, 0x01, 0x0a, 0x08, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x73, 0x12,
+	0x26, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75,
+	0x74, 0x68, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x73,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e,
 	0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
-	0x47, 0x65, 0x74, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x1a, 0x29, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d,
-	0x61, 0x75, 0x74, 0x68, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x50, 0x61, 0x69,
-	0x72, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x31, 0x82, 0xd3,
-	0xe4, 0x93, 0x02, 0x2b, 0x12, 0x29, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x75, 0x73,
-	0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2f, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x73,
-	0x2f, 0x7b, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x7d, 0x2f, 0x7b, 0x69, 0x64, 0x7d, 0x12,
-	0x89, 0x01, 0x0a, 0x08, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x73, 0x12, 0x26, 0x2e, 0x67,
-	0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x73, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73,
-	0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x69,
-	0x72, 0x69, 0x6e, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2c, 0x82,
-	0xd3, 0xe4, 0x93, 0x02, 0x26, 0x12, 0x24, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x75,
-	0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2f, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67,
-	0x73, 0x2f, 0x7b, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x7d, 0x42, 0x9f, 0x01, 0x0a, 0x14,
-	0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d,
-	0x61, 0x75, 0x74, 0x68, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x50, 0x01, 0x5a, 0x1a, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c,
-	0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0xa2, 0x02,
-	0x03, 0x47, 0x43, 0x58, 0xaa, 0x02, 0x10, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x43, 0x75, 0x73,
-	0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0xca, 0x02, 0x10, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c,
-	0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0xe2, 0x02, 0x1c, 0x47, 0x6c, 0x75,
-	0x6f, 0x6e, 0x5c, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x5c, 0x47, 0x50,
-	0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x11, 0x47, 0x6c, 0x75, 0x6f,
-	0x6e, 0x3a, 0x3a, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x2a, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x24, 0x12, 0x22, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e,
+	0x2f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2f, 0x70, 0x61, 0x69, 0x72,
+	0x69, 0x6e, 0x67, 0x73, 0x2f, 0x7b, 0x6f, 0x77, 0x6e, 0x65, 0x72, 0x7d, 0x42, 0x9f, 0x01, 0x0a,
+	0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f,
+	0x6d, 0x61, 0x75, 0x74, 0x68, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x72, 0x6f, 0x74,
+	0x6f, 0x50, 0x01, 0x5a, 0x1a, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67,
+	0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0xa2,
+	0x02, 0x03, 0x47, 0x43, 0x58, 0xaa, 0x02, 0x10, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x43, 0x75,
+	0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0xca, 0x02, 0x10, 0x47, 0x6c, 0x75, 0x6f, 0x6e,
+	0x5c, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0xe2, 0x02, 0x1c, 0x47, 0x6c,
+	0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x5c, 0x47,
+	0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x11, 0x47, 0x6c, 0x75,
+	0x6f, 0x6e, 0x3a, 0x3a, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -3129,28 +3144,28 @@ func file_gluon_customauth_query_proto_rawDescGZIP() []byte {
 
 var file_gluon_customauth_query_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_gluon_customauth_query_proto_goTypes = []interface{}{
-	(*QueryParamsRequest)(nil),      // 0: gluon.customauth.QueryParamsRequest
-	(*QueryParamsResponse)(nil),     // 1: gluon.customauth.QueryParamsResponse
-	(*QueryGetPairingRequest)(nil),  // 2: gluon.customauth.QueryGetPairingRequest
-	(*QueryGetPairingResponse)(nil), // 3: gluon.customauth.QueryGetPairingResponse
-	(*QueryPairingsRequest)(nil),    // 4: gluon.customauth.QueryPairingsRequest
-	(*QueryPairingsResponse)(nil),   // 5: gluon.customauth.QueryPairingsResponse
-	(*Params)(nil),                  // 6: gluon.customauth.Params
-	(*Pairing)(nil),                 // 7: gluon.customauth.Pairing
-	(*v1beta1.PageRequest)(nil),     // 8: cosmos.base.query.v1beta1.PageRequest
-	(*v1beta1.PageResponse)(nil),    // 9: cosmos.base.query.v1beta1.PageResponse
+	(*QueryParamsRequest)(nil),    // 0: gluon.customauth.QueryParamsRequest
+	(*QueryParamsResponse)(nil),   // 1: gluon.customauth.QueryParamsResponse
+	(*QueryPairingRequest)(nil),   // 2: gluon.customauth.QueryPairingRequest
+	(*QueryPairingResponse)(nil),  // 3: gluon.customauth.QueryPairingResponse
+	(*QueryPairingsRequest)(nil),  // 4: gluon.customauth.QueryPairingsRequest
+	(*QueryPairingsResponse)(nil), // 5: gluon.customauth.QueryPairingsResponse
+	(*Params)(nil),                // 6: gluon.customauth.Params
+	(*Pairing)(nil),               // 7: gluon.customauth.Pairing
+	(*v1beta1.PageRequest)(nil),   // 8: cosmos.base.query.v1beta1.PageRequest
+	(*v1beta1.PageResponse)(nil),  // 9: cosmos.base.query.v1beta1.PageResponse
 }
 var file_gluon_customauth_query_proto_depIdxs = []int32{
 	6, // 0: gluon.customauth.QueryParamsResponse.params:type_name -> gluon.customauth.Params
-	7, // 1: gluon.customauth.QueryGetPairingResponse.pairing:type_name -> gluon.customauth.Pairing
+	7, // 1: gluon.customauth.QueryPairingResponse.pairing:type_name -> gluon.customauth.Pairing
 	8, // 2: gluon.customauth.QueryPairingsRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
 	7, // 3: gluon.customauth.QueryPairingsResponse.pairings:type_name -> gluon.customauth.Pairing
 	9, // 4: gluon.customauth.QueryPairingsResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
 	0, // 5: gluon.customauth.Query.Params:input_type -> gluon.customauth.QueryParamsRequest
-	2, // 6: gluon.customauth.Query.Pairing:input_type -> gluon.customauth.QueryGetPairingRequest
+	2, // 6: gluon.customauth.Query.Pairing:input_type -> gluon.customauth.QueryPairingRequest
 	4, // 7: gluon.customauth.Query.Pairings:input_type -> gluon.customauth.QueryPairingsRequest
 	1, // 8: gluon.customauth.Query.Params:output_type -> gluon.customauth.QueryParamsResponse
-	3, // 9: gluon.customauth.Query.Pairing:output_type -> gluon.customauth.QueryGetPairingResponse
+	3, // 9: gluon.customauth.Query.Pairing:output_type -> gluon.customauth.QueryPairingResponse
 	5, // 10: gluon.customauth.Query.Pairings:output_type -> gluon.customauth.QueryPairingsResponse
 	8, // [8:11] is the sub-list for method output_type
 	5, // [5:8] is the sub-list for method input_type
@@ -3192,7 +3207,7 @@ func file_gluon_customauth_query_proto_init() {
 			}
 		}
 		file_gluon_customauth_query_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetPairingRequest); i {
+			switch v := v.(*QueryPairingRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3204,7 +3219,7 @@ func file_gluon_customauth_query_proto_init() {
 			}
 		}
 		file_gluon_customauth_query_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetPairingResponse); i {
+			switch v := v.(*QueryPairingResponse); i {
 			case 0:
 				return &v.state
 			case 1:

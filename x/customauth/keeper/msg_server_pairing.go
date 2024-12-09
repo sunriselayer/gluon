@@ -22,21 +22,21 @@ func (k msgServer) CreatePairing(goCtx context.Context, msg *types.MsgCreatePair
 		return nil, err
 	}
 
+	index := ""
+
 	var pairing = types.Pairing{
-		Address:   msg.User,
+		Owner:     msg.User,
+		Index:     index,
 		PublicKey: msg.PublicKey,
 	}
 
-	id, err := k.AppendPairing(
+	k.SetPairing(
 		ctx,
 		pairing,
 	)
-	if err != nil {
-		return nil, err
-	}
 
 	return &types.MsgCreatePairingResponse{
-		PairingId: id,
+		PairingIndex: index,
 	}, nil
 }
 
@@ -44,17 +44,17 @@ func (k msgServer) DeletePairing(goCtx context.Context, msg *types.MsgDeletePair
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	// Checks that the element exists
-	val, found := k.GetPairing(ctx, msg.User, msg.PairingId)
+	val, found := k.GetPairing(ctx, msg.User, msg.PairingIndex)
 	if !found {
-		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("key %d doesn't exist", msg.PairingId))
+		return nil, errorsmod.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("pairing of address %s, index %s doesn't exist", msg.User, msg.PairingIndex))
 	}
 
 	// Checks if the msg user is the same as the current owner
-	if msg.User != val.Address {
+	if msg.User != val.Owner {
 		return nil, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
 	}
 
-	k.RemovePairing(ctx, msg.User, msg.PairingId)
+	k.RemovePairing(ctx, msg.User, msg.PairingIndex)
 
 	return &types.MsgDeletePairingResponse{}, nil
 }

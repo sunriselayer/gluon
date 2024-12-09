@@ -1,9 +1,9 @@
 package keeper_test
 
 import (
+	"strconv"
 	"testing"
 
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc/codes"
@@ -14,29 +14,38 @@ import (
 	"gluon/x/customauth/types"
 )
 
+// Prevent strconv unused error
+var _ = strconv.IntSize
+
 func TestPairingQuerySingle(t *testing.T) {
 	keeper, ctx := keepertest.CustomauthKeeper(t)
 	msgs := createNPairing(keeper, ctx, 2)
 	tests := []struct {
 		desc     string
-		request  *types.QueryGetPairingRequest
-		response *types.QueryGetPairingResponse
+		request  *types.QueryPairingRequest
+		response *types.QueryPairingResponse
 		err      error
 	}{
 		{
-			desc:     "First",
-			request:  &types.QueryGetPairingRequest{Id: msgs[0].Id},
-			response: &types.QueryGetPairingResponse{Pairing: msgs[0]},
+			desc: "First",
+			request: &types.QueryPairingRequest{
+				Index: msgs[0].Index,
+			},
+			response: &types.QueryPairingResponse{Pairing: msgs[0]},
 		},
 		{
-			desc:     "Second",
-			request:  &types.QueryGetPairingRequest{Id: msgs[1].Id},
-			response: &types.QueryGetPairingResponse{Pairing: msgs[1]},
+			desc: "Second",
+			request: &types.QueryPairingRequest{
+				Index: msgs[1].Index,
+			},
+			response: &types.QueryPairingResponse{Pairing: msgs[1]},
 		},
 		{
-			desc:    "KeyNotFound",
-			request: &types.QueryGetPairingRequest{Id: uint64(len(msgs))},
-			err:     sdkerrors.ErrKeyNotFound,
+			desc: "KeyNotFound",
+			request: &types.QueryPairingRequest{
+				Index: strconv.Itoa(100000),
+			},
+			err: status.Error(codes.NotFound, "not found"),
 		},
 		{
 			desc: "InvalidRequest",

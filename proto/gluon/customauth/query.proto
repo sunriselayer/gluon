@@ -17,12 +17,12 @@ service Query {
   }
 
   // Pairing
-  rpc Pairing(QueryGetPairingRequest) returns (QueryGetPairingResponse) {
-    option (google.api.http).get = "/gluon/customauth/pairings/{address}/{id}";
+  rpc Pairing(QueryPairingRequest) returns (QueryPairingResponse) {
+    option (google.api.http).get = "/gluon/customauth/pairings/{owner}/{index}";
   }
   // Pairings
   rpc Pairings(QueryPairingsRequest) returns (QueryPairingsResponse) {
-    option (google.api.http).get = "/gluon/customauth/pairings/{address}";
+    option (google.api.http).get = "/gluon/customauth/pairings/{owner}";
   }
 }
 
@@ -35,20 +35,20 @@ message QueryParamsResponse {
   Params params = 1 [(gogoproto.nullable) = false];
 }
 
-// QueryGetPairingRequest
-message QueryGetPairingRequest {
-  string address = 1;
-  uint64 id = 2;
+// QueryPairingRequest
+message QueryPairingRequest {
+  string owner = 1;
+  string index = 2;
 }
 
-// QueryGetPairingResponse
-message QueryGetPairingResponse {
+// QueryPairingResponse
+message QueryPairingResponse {
   Pairing pairing = 1 [(gogoproto.nullable) = false];
 }
 
 // QueryPairingsRequest
 message QueryPairingsRequest {
-  string address = 1;
+  string owner = 1;
   cosmos.base.query.v1beta1.PageRequest pagination = 2;
 }
 

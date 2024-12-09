@@ -33,7 +33,7 @@ type QueryClient interface {
 	// Parameters queries the parameters of the module.
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
 	// Pairing
-	Pairing(ctx context.Context, in *QueryGetPairingRequest, opts ...grpc.CallOption) (*QueryGetPairingResponse, error)
+	Pairing(ctx context.Context, in *QueryPairingRequest, opts ...grpc.CallOption) (*QueryPairingResponse, error)
 	// Pairings
 	Pairings(ctx context.Context, in *QueryPairingsRequest, opts ...grpc.CallOption) (*QueryPairingsResponse, error)
 }
@@ -56,9 +56,9 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
-func (c *queryClient) Pairing(ctx context.Context, in *QueryGetPairingRequest, opts ...grpc.CallOption) (*QueryGetPairingResponse, error) {
+func (c *queryClient) Pairing(ctx context.Context, in *QueryPairingRequest, opts ...grpc.CallOption) (*QueryPairingResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QueryGetPairingResponse)
+	out := new(QueryPairingResponse)
 	err := c.cc.Invoke(ctx, Query_Pairing_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -85,7 +85,7 @@ type QueryServer interface {
 	// Parameters queries the parameters of the module.
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
 	// Pairing
-	Pairing(context.Context, *QueryGetPairingRequest) (*QueryGetPairingResponse, error)
+	Pairing(context.Context, *QueryPairingRequest) (*QueryPairingResponse, error)
 	// Pairings
 	Pairings(context.Context, *QueryPairingsRequest) (*QueryPairingsResponse, error)
 	mustEmbedUnimplementedQueryServer()
@@ -101,7 +101,7 @@ type UnimplementedQueryServer struct{}
 func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
 }
-func (UnimplementedQueryServer) Pairing(context.Context, *QueryGetPairingRequest) (*QueryGetPairingResponse, error) {
+func (UnimplementedQueryServer) Pairing(context.Context, *QueryPairingRequest) (*QueryPairingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pairing not implemented")
 }
 func (UnimplementedQueryServer) Pairings(context.Context, *QueryPairingsRequest) (*QueryPairingsResponse, error) {
@@ -147,7 +147,7 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 }
 
 func _Query_Pairing_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryGetPairingRequest)
+	in := new(QueryPairingRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -159,7 +159,7 @@ func _Query_Pairing_Handler(srv interface{}, ctx context.Context, dec func(inter
 		FullMethod: Query_Pairing_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).Pairing(ctx, req.(*QueryGetPairingRequest))
+		return srv.(QueryServer).Pairing(ctx, req.(*QueryPairingRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

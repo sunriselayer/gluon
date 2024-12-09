@@ -58,7 +58,7 @@ func SimulateMsgDeletePairing(
 			found      = false
 		)
 		for _, obj := range allPairing {
-			simAccount, found = FindAccount(accs, obj.Address)
+			simAccount, found = FindAccount(accs, obj.Owner)
 			if found {
 				pairing = obj
 				break
@@ -68,7 +68,7 @@ func SimulateMsgDeletePairing(
 			return simtypes.NoOpMsg(types.ModuleName, sdk.MsgTypeURL(msg), "pairing user not found"), nil, nil
 		}
 		msg.User = simAccount.Address.String()
-		msg.PairingId = pairing.Id
+		msg.PairingIndex = pairing.Index
 
 		txCtx := simulation.OperationInput{
 			R:               r,

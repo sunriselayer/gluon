@@ -65,18 +65,16 @@ func (x *_GenesisState_2_list) IsValid() bool {
 }
 
 var (
-	md_GenesisState               protoreflect.MessageDescriptor
-	fd_GenesisState_params        protoreflect.FieldDescriptor
-	fd_GenesisState_pairing_list  protoreflect.FieldDescriptor
-	fd_GenesisState_pairing_count protoreflect.FieldDescriptor
+	md_GenesisState          protoreflect.MessageDescriptor
+	fd_GenesisState_params   protoreflect.FieldDescriptor
+	fd_GenesisState_pairings protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_gluon_customauth_genesis_proto_init()
 	md_GenesisState = File_gluon_customauth_genesis_proto.Messages().ByName("GenesisState")
 	fd_GenesisState_params = md_GenesisState.Fields().ByName("params")
-	fd_GenesisState_pairing_list = md_GenesisState.Fields().ByName("pairing_list")
-	fd_GenesisState_pairing_count = md_GenesisState.Fields().ByName("pairing_count")
+	fd_GenesisState_pairings = md_GenesisState.Fields().ByName("pairings")
 }
 
 var _ protoreflect.Message = (*fastReflection_GenesisState)(nil)
@@ -150,15 +148,9 @@ func (x *fastReflection_GenesisState) Range(f func(protoreflect.FieldDescriptor,
 			return
 		}
 	}
-	if len(x.PairingList) != 0 {
-		value := protoreflect.ValueOfList(&_GenesisState_2_list{list: &x.PairingList})
-		if !f(fd_GenesisState_pairing_list, value) {
-			return
-		}
-	}
-	if x.PairingCount != uint64(0) {
-		value := protoreflect.ValueOfUint64(x.PairingCount)
-		if !f(fd_GenesisState_pairing_count, value) {
+	if len(x.Pairings) != 0 {
+		value := protoreflect.ValueOfList(&_GenesisState_2_list{list: &x.Pairings})
+		if !f(fd_GenesisState_pairings, value) {
 			return
 		}
 	}
@@ -179,10 +171,8 @@ func (x *fastReflection_GenesisState) Has(fd protoreflect.FieldDescriptor) bool 
 	switch fd.FullName() {
 	case "gluon.customauth.GenesisState.params":
 		return x.Params != nil
-	case "gluon.customauth.GenesisState.pairing_list":
-		return len(x.PairingList) != 0
-	case "gluon.customauth.GenesisState.pairing_count":
-		return x.PairingCount != uint64(0)
+	case "gluon.customauth.GenesisState.pairings":
+		return len(x.Pairings) != 0
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.GenesisState"))
@@ -201,10 +191,8 @@ func (x *fastReflection_GenesisState) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
 	case "gluon.customauth.GenesisState.params":
 		x.Params = nil
-	case "gluon.customauth.GenesisState.pairing_list":
-		x.PairingList = nil
-	case "gluon.customauth.GenesisState.pairing_count":
-		x.PairingCount = uint64(0)
+	case "gluon.customauth.GenesisState.pairings":
+		x.Pairings = nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.GenesisState"))
@@ -224,15 +212,12 @@ func (x *fastReflection_GenesisState) Get(descriptor protoreflect.FieldDescripto
 	case "gluon.customauth.GenesisState.params":
 		value := x.Params
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "gluon.customauth.GenesisState.pairing_list":
-		if len(x.PairingList) == 0 {
+	case "gluon.customauth.GenesisState.pairings":
+		if len(x.Pairings) == 0 {
 			return protoreflect.ValueOfList(&_GenesisState_2_list{})
 		}
-		listValue := &_GenesisState_2_list{list: &x.PairingList}
+		listValue := &_GenesisState_2_list{list: &x.Pairings}
 		return protoreflect.ValueOfList(listValue)
-	case "gluon.customauth.GenesisState.pairing_count":
-		value := x.PairingCount
-		return protoreflect.ValueOfUint64(value)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.GenesisState"))
@@ -255,12 +240,10 @@ func (x *fastReflection_GenesisState) Set(fd protoreflect.FieldDescriptor, value
 	switch fd.FullName() {
 	case "gluon.customauth.GenesisState.params":
 		x.Params = value.Message().Interface().(*Params)
-	case "gluon.customauth.GenesisState.pairing_list":
+	case "gluon.customauth.GenesisState.pairings":
 		lv := value.List()
 		clv := lv.(*_GenesisState_2_list)
-		x.PairingList = *clv.list
-	case "gluon.customauth.GenesisState.pairing_count":
-		x.PairingCount = value.Uint()
+		x.Pairings = *clv.list
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.GenesisState"))
@@ -286,14 +269,12 @@ func (x *fastReflection_GenesisState) Mutable(fd protoreflect.FieldDescriptor) p
 			x.Params = new(Params)
 		}
 		return protoreflect.ValueOfMessage(x.Params.ProtoReflect())
-	case "gluon.customauth.GenesisState.pairing_list":
-		if x.PairingList == nil {
-			x.PairingList = []*Pairing{}
+	case "gluon.customauth.GenesisState.pairings":
+		if x.Pairings == nil {
+			x.Pairings = []*Pairing{}
 		}
-		value := &_GenesisState_2_list{list: &x.PairingList}
+		value := &_GenesisState_2_list{list: &x.Pairings}
 		return protoreflect.ValueOfList(value)
-	case "gluon.customauth.GenesisState.pairing_count":
-		panic(fmt.Errorf("field pairing_count of message gluon.customauth.GenesisState is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.GenesisState"))
@@ -310,11 +291,9 @@ func (x *fastReflection_GenesisState) NewField(fd protoreflect.FieldDescriptor) 
 	case "gluon.customauth.GenesisState.params":
 		m := new(Params)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "gluon.customauth.GenesisState.pairing_list":
+	case "gluon.customauth.GenesisState.pairings":
 		list := []*Pairing{}
 		return protoreflect.ValueOfList(&_GenesisState_2_list{list: &list})
-	case "gluon.customauth.GenesisState.pairing_count":
-		return protoreflect.ValueOfUint64(uint64(0))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: gluon.customauth.GenesisState"))
@@ -388,14 +367,11 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 			l = options.Size(x.Params)
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		if len(x.PairingList) > 0 {
-			for _, e := range x.PairingList {
+		if len(x.Pairings) > 0 {
+			for _, e := range x.Pairings {
 				l = options.Size(e)
 				n += 1 + l + runtime.Sov(uint64(l))
 			}
-		}
-		if x.PairingCount != 0 {
-			n += 1 + runtime.Sov(uint64(x.PairingCount))
 		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
@@ -426,14 +402,9 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.PairingCount != 0 {
-			i = runtime.EncodeVarint(dAtA, i, uint64(x.PairingCount))
-			i--
-			dAtA[i] = 0x18
-		}
-		if len(x.PairingList) > 0 {
-			for iNdEx := len(x.PairingList) - 1; iNdEx >= 0; iNdEx-- {
-				encoded, err := options.Marshal(x.PairingList[iNdEx])
+		if len(x.Pairings) > 0 {
+			for iNdEx := len(x.Pairings) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.Pairings[iNdEx])
 				if err != nil {
 					return protoiface.MarshalOutput{
 						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -548,7 +519,7 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 				iNdEx = postIndex
 			case 2:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field PairingList", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Pairings", wireType)
 				}
 				var msglen int
 				for shift := uint(0); ; shift += 7 {
@@ -575,30 +546,11 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.PairingList = append(x.PairingList, &Pairing{})
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.PairingList[len(x.PairingList)-1]); err != nil {
+				x.Pairings = append(x.Pairings, &Pairing{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Pairings[len(x.Pairings)-1]); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
-			case 3:
-				if wireType != 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field PairingCount", wireType)
-				}
-				x.PairingCount = 0
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					x.PairingCount |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -654,9 +606,8 @@ type GenesisState struct {
 	unknownFields protoimpl.UnknownFields
 
 	// params defines all the parameters of the module.
-	Params       *Params    `protobuf:"bytes,1,opt,name=params,proto3" json:"params,omitempty"`
-	PairingList  []*Pairing `protobuf:"bytes,2,rep,name=pairing_list,json=pairingList,proto3" json:"pairing_list,omitempty"`
-	PairingCount uint64     `protobuf:"varint,3,opt,name=pairing_count,json=pairingCount,proto3" json:"pairing_count,omitempty"`
+	Params   *Params    `protobuf:"bytes,1,opt,name=params,proto3" json:"params,omitempty"`
+	Pairings []*Pairing `protobuf:"bytes,2,rep,name=pairings,proto3" json:"pairings,omitempty"`
 }
 
 func (x *GenesisState) Reset() {
@@ -686,18 +637,11 @@ func (x *GenesisState) GetParams() *Params {
 	return nil
 }
 
-func (x *GenesisState) GetPairingList() []*Pairing {
+func (x *GenesisState) GetPairings() []*Pairing {
 	if x != nil {
-		return x.PairingList
+		return x.Pairings
 	}
 	return nil
-}
-
-func (x *GenesisState) GetPairingCount() uint64 {
-	if x != nil {
-		return x.PairingCount
-	}
-	return 0
 }
 
 var File_gluon_customauth_genesis_proto protoreflect.FileDescriptor
@@ -711,29 +655,26 @@ var file_gluon_customauth_genesis_proto_rawDesc = []byte{
 	0x74, 0x6f, 0x1a, 0x1d, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d,
 	0x61, 0x75, 0x74, 0x68, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x1a, 0x14, 0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67,
-	0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xaf, 0x01, 0x0a, 0x0c, 0x47, 0x65, 0x6e, 0x65,
+	0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x83, 0x01, 0x0a, 0x0c, 0x47, 0x65, 0x6e, 0x65,
 	0x73, 0x69, 0x73, 0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x36, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61,
 	0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e,
 	0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x50, 0x61, 0x72, 0x61,
 	0x6d, 0x73, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73,
-	0x12, 0x42, 0x0a, 0x0c, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x5f, 0x6c, 0x69, 0x73, 0x74,
-	0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63,
-	0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e,
-	0x67, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0b, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67,
-	0x4c, 0x69, 0x73, 0x74, 0x12, 0x23, 0x0a, 0x0d, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x5f,
-	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0c, 0x70, 0x61, 0x69,
-	0x72, 0x69, 0x6e, 0x67, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0xa1, 0x01, 0x0a, 0x14, 0x63, 0x6f,
-	0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75,
-	0x74, 0x68, 0x42, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x50, 0x01, 0x5a, 0x1a, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6c,
-	0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0xa2, 0x02,
-	0x03, 0x47, 0x43, 0x58, 0xaa, 0x02, 0x10, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x43, 0x75, 0x73,
-	0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0xca, 0x02, 0x10, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c,
-	0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0xe2, 0x02, 0x1c, 0x47, 0x6c, 0x75,
-	0x6f, 0x6e, 0x5c, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x5c, 0x47, 0x50,
-	0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x11, 0x47, 0x6c, 0x75, 0x6f,
-	0x6e, 0x3a, 0x3a, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x12, 0x3b, 0x0a, 0x08, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x73, 0x18, 0x02, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74, 0x6f,
+	0x6d, 0x61, 0x75, 0x74, 0x68, 0x2e, 0x50, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x42, 0x04, 0xc8,
+	0xde, 0x1f, 0x00, 0x52, 0x08, 0x70, 0x61, 0x69, 0x72, 0x69, 0x6e, 0x67, 0x73, 0x42, 0xa1, 0x01,
+	0x0a, 0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2e, 0x63, 0x75, 0x73, 0x74,
+	0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0x42, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x50,
+	0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x1a, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x61, 0x70,
+	0x69, 0x2f, 0x67, 0x6c, 0x75, 0x6f, 0x6e, 0x2f, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75,
+	0x74, 0x68, 0xa2, 0x02, 0x03, 0x47, 0x43, 0x58, 0xaa, 0x02, 0x10, 0x47, 0x6c, 0x75, 0x6f, 0x6e,
+	0x2e, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0xca, 0x02, 0x10, 0x47, 0x6c,
+	0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74, 0x68, 0xe2, 0x02,
+	0x1c, 0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x5c, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74,
+	0x68, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x11,
+	0x47, 0x6c, 0x75, 0x6f, 0x6e, 0x3a, 0x3a, 0x43, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x61, 0x75, 0x74,
+	0x68, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -756,7 +697,7 @@ var file_gluon_customauth_genesis_proto_goTypes = []interface{}{
 }
 var file_gluon_customauth_genesis_proto_depIdxs = []int32{
 	1, // 0: gluon.customauth.GenesisState.params:type_name -> gluon.customauth.Params
-	2, // 1: gluon.customauth.GenesisState.pairing_list:type_name -> gluon.customauth.Pairing
+	2, // 1: gluon.customauth.GenesisState.pairings:type_name -> gluon.customauth.Pairing
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name

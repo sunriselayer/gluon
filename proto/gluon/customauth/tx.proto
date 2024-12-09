@@ -49,7 +49,7 @@ message MsgCreatePairing {
 
 // MsgCreatePairingResponse
 message MsgCreatePairingResponse {
-  uint64 pairing_id = 1;
+  string pairing_index = 1;
 }
 
 // MsgDeletePairing
@@ -57,7 +57,7 @@ message MsgDeletePairing {
   option (cosmos.msg.v1.signer) = "user";
 
   string user = 1;
-  uint64 pairing_id = 2;
+  string pairing_index = 2;
 }
 
 // MsgDeletePairingResponse
