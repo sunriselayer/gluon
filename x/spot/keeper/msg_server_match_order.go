@@ -14,12 +14,12 @@ import (
 func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (*types.MsgMatchOrderResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	buy, buyBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.BuyerOrderHash)
+	buy, buyBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.Buyer, msg.BuyerOrderHash)
 	if err != nil {
 		return nil, err
 	}
 
-	sell, sellBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.SellerOrderHash)
+	sell, sellBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.Seller, msg.SellerOrderHash)
 	if err != nil {
 		return nil, err
 	}
@@ -59,11 +59,11 @@ func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (
 		return nil, err
 	}
 
-	err = k.orderKeeper.AddContractedAmount(ctx, buy.Hash, msg.Quantity)
+	err = k.orderKeeper.AddContractedAmount(ctx, buy.Owner, buy.Hash, msg.Quantity)
 	if err != nil {
 		return nil, err
 	}
-	err = k.orderKeeper.AddContractedAmount(ctx, sell.Hash, msg.Quantity)
+	err = k.orderKeeper.AddContractedAmount(ctx, sell.Owner, sell.Hash, msg.Quantity)
 	if err != nil {
 		return nil, err
 	}

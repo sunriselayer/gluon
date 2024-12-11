@@ -18,9 +18,9 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:     "Shows the parameters of the module",
 				},
 				{
-					RpcMethod:      "PositionAll",
-					Use:            "list-position [owner]",
-					Short:          "List all position",
+					RpcMethod:      "Positions",
+					Use:            "list-positions [owner]",
+					Short:          "List all positions",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}},
 				},
 				{
@@ -30,15 +30,15 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}, {ProtoField: "order_hash"}},
 				},
 				{
-					RpcMethod: "PositionPriceQuantityAll",
-					Use:       "list-position-price-quantity",
-					Short:     "List all position-price-quantity",
+					RpcMethod: "PositionPriceQuantities",
+					Use:       "list-position-price-quantities",
+					Short:     "List all position-price-quantities",
 				},
 				{
 					RpcMethod:      "PositionPriceQuantity",
 					Use:            "show-position-price-quantity [id]",
 					Short:          "Shows a position-price-quantity",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}, {ProtoField: "positionOrderHash"}, {ProtoField: "price"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}, {ProtoField: "position_order_hash"}, {ProtoField: "price"}},
 				},
 				{
 					RpcMethod:      "CrossMargin",
@@ -47,15 +47,15 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}},
 				},
 				{
-					RpcMethod: "FundingRateAll",
-					Use:       "list-funding-rate",
-					Short:     "List all funding-rate",
+					RpcMethod: "FundingRates",
+					Use:       "list-funding-rates",
+					Short:     "List all funding-rates",
 				},
 				{
 					RpcMethod:      "FundingRate",
 					Use:            "show-funding-rate [id]",
 					Short:          "Shows a funding-rate",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "denomBase"}, {ProtoField: "denomQuote"}, {ProtoField: "seconds"}, {ProtoField: "nanos"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "denom_base"}, {ProtoField: "denom_quote"}, {ProtoField: "seconds"}, {ProtoField: "nanos"}},
 				},
 				// this line is used by ignite scaffolding # autocli/query
 			},

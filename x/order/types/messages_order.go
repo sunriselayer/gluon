@@ -13,14 +13,14 @@ var _ sdk.Msg = &MsgLazyRegisterOrder{}
 func NewMsgLazyRegisterOrder(
 	user string,
 	order codectypes.Any,
-	pairingId uint64,
+	pairingIndex string,
 	signature []byte,
 ) *MsgLazyRegisterOrder {
 	return &MsgLazyRegisterOrder{
-		User:      user,
-		Order:     order,
-		PairingId: pairingId,
-		Signature: signature,
+		User:         user,
+		Order:        order,
+		PairingIndex: pairingIndex,
+		Signature:    signature,
 	}
 }
 

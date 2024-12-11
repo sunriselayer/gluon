@@ -32,7 +32,7 @@ func (k msgServer) LazyRegisterOrder(goCtx context.Context, msg *types.MsgLazyRe
 		return nil, errorsmod.Wrap(sdkerrors.ErrInvalidRequest, "index already set")
 	}
 
-	pairing, found := k.customAuthKeeper.GetPairing(ctx, msg.User, msg.PairingId)
+	pairing, found := k.customAuthKeeper.GetPairing(ctx, msg.User, msg.PairingIndex)
 	if !found {
 		return nil, types.ErrPairingNotFound
 	}
