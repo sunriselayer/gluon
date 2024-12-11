@@ -27,10 +27,6 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgCreatePairing int = 100
 
-	opWeightMsgUpdatePairing = "op_weight_msg_pairing"
-	// TODO: Determine the simulation weight value
-	defaultWeightMsgUpdatePairing int = 100
-
 	opWeightMsgDeletePairing = "op_weight_msg_pairing"
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgDeletePairing int = 100

@@ -18,15 +18,15 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:     "Shows the parameters of the module",
 				},
 				{
-					RpcMethod: "PairingAll",
-					Use:       "list-pairing",
-					Short:     "List all pairing",
+					RpcMethod: "Pairings",
+					Use:       "list-pairings",
+					Short:     "List all pairings",
 				},
 				{
 					RpcMethod:      "Pairing",
-					Use:            "show-pairing [id]",
-					Short:          "Shows a pairing by id",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
+					Use:            "show-pairing [index]",
+					Short:          "Shows a pairing by index (hex string of 20 bytes)",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}},
 				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
@@ -41,21 +41,15 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod:      "CreatePairing",
-					Use:            "create-pairing [address] [publicKey]",
+					Use:            "create-pairing [user] [publicKey]",
 					Short:          "Create pairing",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "address"}, {ProtoField: "publicKey"}},
-				},
-				{
-					RpcMethod:      "UpdatePairing",
-					Use:            "update-pairing [id] [address] [publicKey]",
-					Short:          "Update pairing",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}, {ProtoField: "address"}, {ProtoField: "publicKey"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "user"}, {ProtoField: "public_key"}},
 				},
 				{
 					RpcMethod:      "DeletePairing",
-					Use:            "delete-pairing [id]",
+					Use:            "delete-pairing [user] [index]",
 					Short:          "Delete pairing",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "user"}, {ProtoField: "pairing_index"}},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
