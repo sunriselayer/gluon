@@ -30,7 +30,7 @@ func (pk PubKey) VerifySignature(msg []byte, sig []byte) bool {
 func (pk PubKey) Equals(other cryptotypes.PubKey) bool {
 	switch other := other.(type) {
 	case *PubKey:
-		return bytes.Equal(pk.User, other.User) && pk.PairingId == other.PairingId
+		return bytes.Equal(pk.User, other.User) && pk.PairingIndex == other.PairingIndex
 	default:
 		return false
 	}

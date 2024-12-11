@@ -99,10 +99,11 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 			}
 
 		case *pairing.PubKey:
-			pubKey, err = svd.cak.GetPairingPubKey(ctx, acc.GetAddress(), pk.PairingId)
+			pubKeyInternal, err := svd.cak.GetPairingPubKeyInternal(ctx, acc.GetAddress(), pk.PairingIndex)
 			if err != nil {
 				return ctx, err
 			}
+			pubKey = &pubKeyInternal
 
 		default:
 			// force error for EOA

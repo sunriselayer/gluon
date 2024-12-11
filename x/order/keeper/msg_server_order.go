@@ -36,7 +36,7 @@ func (k msgServer) LazyRegisterOrder(goCtx context.Context, msg *types.MsgLazyRe
 	if !found {
 		return nil, types.ErrPairingNotFound
 	}
-	pubKey, err := k.customAuthKeeper.GetPairingPubKey(ctx, pairing)
+	pubKey, err := k.customAuthKeeper.UnpackPairingPubKey(pairing)
 	if err != nil {
 		return nil, err
 	}

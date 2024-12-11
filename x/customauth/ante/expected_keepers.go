@@ -40,5 +40,6 @@ type FeegrantKeeper interface {
 type CustomAuthKeeper interface {
 	GetParams(ctx context.Context) (params types.Params)
 	GetOperatorPubKey(ctx context.Context) (cryptotypes.PubKey, error)
-	GetPairingPubKey(goCtx context.Context, user sdk.AccAddress, pairingId uint64) (*pairing.PubKeyInternal, error)
+	UnpackPairingPubKey(pairing types.Pairing) (cryptotypes.PubKey, error)
+	GetPairingPubKeyInternal(ctx context.Context, user sdk.AccAddress, pairingIndex string) (pairing.PubKeyInternal, error)
 }

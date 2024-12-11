@@ -8,5 +8,5 @@ option go_package = "gluon/x/customauth/types/pairing";
 message PubKey {
   // Address binary
   bytes user = 1;
-  uint64 pairing_id = 2;
+  string pairing_index = 2;
 }

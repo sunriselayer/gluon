@@ -14,7 +14,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
-func (k Keeper) getPairingPubKey(pairing types.Pairing) (cryptotypes.PubKey, error) {
+func (k Keeper) UnpackPairingPubKey(pairing types.Pairing) (cryptotypes.PubKey, error) {
 	var pubKey cryptotypes.PubKey
 	err := k.cdc.UnpackAny(&pairing.PublicKey, &pubKey)
 	if err != nil {
@@ -36,18 +36,18 @@ func (k Keeper) GetPairingIndex(pubKeyAny codectypes.Any) (string, error) {
 	return hash, nil
 }
 
-func (k Keeper) GetPairingPubKey(goCtx context.Context, user sdk.AccAddress, pairingIndex string) (*pairing.PubKeyInternal, error) {
-	pairingVal, found := k.GetPairing(goCtx, user.String(), pairingIndex)
+func (k Keeper) GetPairingPubKeyInternal(ctx context.Context, user sdk.AccAddress, pairingIndex string) (pairing.PubKeyInternal, error) {
+	pairingVal, found := k.GetPairing(ctx, user.String(), pairingIndex)
 	if !found {
-		return nil, errorsmod.Wrapf(types.ErrPairingNotFound, "address: %s, pairing_index: %s", user.String(), pairingIndex)
+		return pairing.PubKeyInternal{}, errorsmod.Wrapf(types.ErrPairingNotFound, "address: %s, pairing_index: %s", user.String(), pairingIndex)
 	}
 
-	params := k.GetParams(goCtx)
+	params := k.GetParams(ctx)
 
-	ctx := sdk.UnwrapSDKContext(goCtx)
+	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
-	if ctx.BlockTime().Compare(pairingVal.CreatedAt.Add(params.ParingDelay)) < 0 {
-		return nil, errorsmod.Wrapf(types.ErrPairingDelayPeriod, "address: %s, pairing_index: %s", user.String(), pairingIndex)
+	if sdkCtx.BlockTime().Compare(pairingVal.CreatedAt.Add(params.ParingDelay)) < 0 {
+		return pairing.PubKeyInternal{}, errorsmod.Wrapf(types.ErrPairingDelayPeriod, "address: %s, pairing_index: %s", user.String(), pairingIndex)
 	}
 
 	pubKey := pairing.PubKeyInternal{
@@ -60,11 +60,11 @@ func (k Keeper) GetPairingPubKey(goCtx context.Context, user sdk.AccAddress, pai
 	// because pairing.PubKey depends on cache
 	var buffer cryptotypes.PubKey
 	if err := k.cdc.UnpackAny(&pubKey.PairingPublicKey, &buffer); err != nil {
-		return nil, err
+		return pairing.PubKeyInternal{}, err
 	}
 	if err := k.cdc.UnpackAny(&pubKey.OperatorPublicKey, &buffer); err != nil {
-		return nil, err
+		return pairing.PubKeyInternal{}, err
 	}
 
-	return &pubKey, nil
+	return pubKey, nil
 }
