@@ -34,6 +34,6 @@ type CustomAuthKeeper interface {
 }
 
 type OrderKeeper interface {
-	GetOrderAndBody(ctx sdk.Context, orderHash string) (ordertypes.Order, ordertypes.OrderBody, error)
-	AddContractedAmount(ctx context.Context, orderHash string, additionalContractedAmount sdkmath.Int) error
+	GetOrderAndBody(ctx sdk.Context, orderOwner string, orderHash string) (ordertypes.Order, ordertypes.OrderBody, error)
+	AddContractedAmount(ctx context.Context, orderOwner string, orderHash string, additionalContractedAmount sdkmath.Int) error
 }
