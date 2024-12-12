@@ -24,7 +24,7 @@ type BankKeeper interface {
 }
 
 type CustomAuthKeeper interface {
-	GetPairing(ctx context.Context, address string, id uint64) (val customauthtypes.Pairing, found bool)
+	GetPairing(ctx context.Context, owner string, index string) (val customauthtypes.Pairing, found bool)
 	UnpackPairingPubKey(pairing customauthtypes.Pairing) (cryptotypes.PubKey, error)
 	GetPairingPubKeyInternal(ctx context.Context, user sdk.AccAddress, pairingIndex string) (pairing.PubKeyInternal, error)
 }

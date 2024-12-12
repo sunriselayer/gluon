@@ -15,7 +15,7 @@ var (
 	ErrInvalidSignature              = sdkerrors.Register(ModuleName, 1104, "invalid signature")
 	ErrPairingNotFound               = sdkerrors.Register(ModuleName, 1105, "pairing not found")
 	ErrOrderNotFound                 = sdkerrors.Register(ModuleName, 1106, "order not found")
-	ErrSameAddress                   = sdkerrors.Register(ModuleName, 1106, "same address")
+	ErrSameAddress                   = sdkerrors.Register(ModuleName, 1107, "same address")
 	ErrDenomMismatch                 = sdkerrors.Register(ModuleName, 1108, "denom mismatch")
 	ErrInvalidOrderDirection         = sdkerrors.Register(ModuleName, 1109, "invalid order direction")
 	ErrBothMarketPriceOrder          = sdkerrors.Register(ModuleName, 1110, "both market price order")

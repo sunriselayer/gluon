@@ -19,8 +19,8 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 				{
 					RpcMethod:      "Orders",
-					Use:            "list-order [owner]",
-					Short:          "List all order",
+					Use:            "list-orders [owner]",
+					Short:          "List all orders",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}},
 				},
 				{
