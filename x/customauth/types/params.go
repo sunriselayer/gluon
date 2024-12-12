@@ -1,6 +1,11 @@
 package types
 
 import (
+	time "time"
+
+	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
+	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
+
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 )
 
@@ -13,7 +18,12 @@ func ParamKeyTable() paramtypes.KeyTable {
 
 // NewParams creates a new Params instance
 func NewParams() Params {
-	return Params{}
+	pubkey := secp256k1.PubKey{Key: []byte{}}
+	pubkeyAny, _ := codectypes.NewAnyWithValue(&pubkey)
+	return Params{
+		OperatorPublicKey: *pubkeyAny,
+		ParingDelay:       time.Duration(time.Hour * 24),
+	}
 }
 
 // DefaultParams returns a default set of parameters
