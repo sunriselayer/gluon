@@ -303,33 +303,11 @@ func New(
 		return nil, err
 	}
 
-	/****  Module Options ****/
-
-	app.ModuleManager.RegisterInvariants(app.CrisisKeeper)
-
-	// create the simulation manager and define the order of the modules for deterministic simulations
-	overrideModules := map[string]module.AppModuleSimulation{
-		authtypes.ModuleName: auth.NewAppModule(app.appCodec, app.AccountKeeper, authsims.RandomGenesisAccounts, app.GetSubspace(authtypes.ModuleName)),
-	}
-	app.sm = module.NewSimulationManagerFromAppModules(app.ModuleManager.Modules, overrideModules)
-	app.sm.RegisterStoreDecoders()
-
-	// A custom InitChainer sets if extra pre-init-genesis logic is required.
-	// This is necessary for manually registered modules that do not support app wiring.
-	// Manually set the module version map as shown below.
-	// The upgrade module will automatically handle de-duplication of the module version map.
-	app.SetInitChainer(func(ctx sdk.Context, req *abci.RequestInitChain) (*abci.ResponseInitChain, error) {
-		if err := app.UpgradeKeeper.SetModuleVersionMap(ctx, app.ModuleManager.GetVersionMap()); err != nil {
-			return nil, err
-		}
-		return app.App.InitChainer(ctx, req)
-	})
-
-	if err := app.Load(loadLatest); err != nil {
-		return nil, err
-	}
-
 	// <gluon>
+	// ---------------------------------------------------------------------------- //
+	// ------------------------- Custom Ante Handler Code ------------------------- //
+	// ---------------------------------------------------------------------------- //
+
 	anteHandler := ante.NewAnteHandler(
 		app.AccountKeeper,
 		app.BankKeeper,
@@ -355,6 +333,32 @@ func New(
 
 	app.SetAnteHandler(anteHandler)
 	// </gluon>
+
+	/****  Module Options ****/
+
+	app.ModuleManager.RegisterInvariants(app.CrisisKeeper)
+
+	// create the simulation manager and define the order of the modules for deterministic simulations
+	overrideModules := map[string]module.AppModuleSimulation{
+		authtypes.ModuleName: auth.NewAppModule(app.appCodec, app.AccountKeeper, authsims.RandomGenesisAccounts, app.GetSubspace(authtypes.ModuleName)),
+	}
+	app.sm = module.NewSimulationManagerFromAppModules(app.ModuleManager.Modules, overrideModules)
+	app.sm.RegisterStoreDecoders()
+
+	// A custom InitChainer sets if extra pre-init-genesis logic is required.
+	// This is necessary for manually registered modules that do not support app wiring.
+	// Manually set the module version map as shown below.
+	// The upgrade module will automatically handle de-duplication of the module version map.
+	app.SetInitChainer(func(ctx sdk.Context, req *abci.RequestInitChain) (*abci.ResponseInitChain, error) {
+		if err := app.UpgradeKeeper.SetModuleVersionMap(ctx, app.ModuleManager.GetVersionMap()); err != nil {
+			return nil, err
+		}
+		return app.App.InitChainer(ctx, req)
+	})
+
+	if err := app.Load(loadLatest); err != nil {
+		return nil, err
+	}
 
 	return app, nil
 }
