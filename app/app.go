@@ -75,6 +75,11 @@ import (
 	ibctransferkeeper "github.com/cosmos/ibc-go/v8/modules/apps/transfer/keeper"
 	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
 
+	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
+	crisistypes "github.com/cosmos/cosmos-sdk/x/crisis/types"
+	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
+	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
+
 	customauthmodulekeeper "gluon/x/customauth/keeper"
 	customauthmoduletypes "gluon/x/customauth/types"
 
@@ -92,6 +97,7 @@ import (
 	"gluon/docs"
 
 	"gluon/app/ante"
+	"gluon/app/defaultoverrides"
 )
 
 const (
@@ -196,8 +202,18 @@ func AppConfig() depinject.Config {
 			// supply custom module basics
 			map[string]module.AppModuleBasic{
 				genutiltypes.ModuleName: genutil.NewAppModuleBasic(genutiltypes.DefaultMessageValidator),
-				govtypes.ModuleName:     gov.NewAppModuleBasic(getGovProposalHandlers()),
+				// govtypes.ModuleName:     gov.NewAppModuleBasic(getGovProposalHandlers()),
 				// this line is used by starport scaffolding # stargate/appConfig/moduleBasic
+
+				// overrides
+				banktypes.ModuleName:   defaultoverrides.BankModuleBasic{},
+				crisistypes.ModuleName: defaultoverrides.CrisisModuleBasic{},
+				govtypes.ModuleName: defaultoverrides.GovModuleBasic{
+					AppModuleBasic: gov.NewAppModuleBasic(getGovProposalHandlers()),
+				},
+				minttypes.ModuleName:             defaultoverrides.MintModuleBasic{},
+				stakingtypes.ModuleName:          defaultoverrides.StakingModuleBasic{},
+				customauthmoduletypes.ModuleName: defaultoverrides.CustomAuthModuleBasic{},
 			},
 		),
 	)
