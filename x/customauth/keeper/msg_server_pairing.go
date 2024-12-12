@@ -22,7 +22,7 @@ func (k msgServer) CreatePairing(goCtx context.Context, msg *types.MsgCreatePair
 		return nil, err
 	}
 
-	index := ""
+	index := pubKey.Address().String()
 
 	var pairing = types.Pairing{
 		Owner:     msg.User,
