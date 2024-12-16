@@ -188,6 +188,10 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 			pubKey = &pubKeyInternal
 
 		default:
+			// For gen-tx
+			if ctx.BlockHeight() == 0 {
+				return ctx, nil
+			}
 			// force error for EOA
 			return ctx, errorsmod.Wrap(sdkerrors.ErrInvalidPubKey, "not permitted public key type")
 		}
