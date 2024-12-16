@@ -22,12 +22,24 @@ type CustomAuthModuleBasic struct {
 // DefaultGenesis returns custom x/tokenconverter module genesis state.
 func (m CustomAuthModuleBasic) DefaultGenesis(cdc codec.JSONCodec) json.RawMessage {
 	genState := customauthtypes.DefaultGenesis()
-	base64Pubkey := "AjYDAuQ764+t7gn9XCcC4LwJQt8JmezVVoIrbokq2ZKn"
-	pubkeyBytes, _ := base64.StdEncoding.DecodeString(base64Pubkey)
-	pubkey := secp256k1.PubKey{Key: pubkeyBytes}
-	pubkeyAny, _ := codectypes.NewAnyWithValue(&pubkey)
+	operatorBase64Pubkey := "AjYDAuQ764+t7gn9XCcC4LwJQt8JmezVVoIrbokq2ZKn"
+	operatorPubkeyBytes, _ := base64.StdEncoding.DecodeString(operatorBase64Pubkey)
+	operatorPubkey := secp256k1.PubKey{Key: operatorPubkeyBytes}
+	operatorPubkeyAny, _ := codectypes.NewAnyWithValue(&operatorPubkey)
 	genState.Params.ParingDelay = time.Duration(time.Hour * 24)
-	genState.Params.OperatorPublicKey = *pubkeyAny
+	genState.Params.OperatorPublicKey = *operatorPubkeyAny
+
+	validatorBase64Pubkey := "A8FoOqwoBQjTnEPIYg/gSstpIwRsruLj7sz+9raKiLKV"
+	validatorPubkeyBytes, _ := base64.StdEncoding.DecodeString(validatorBase64Pubkey)
+	validatorPubkey := secp256k1.PubKey{Key: validatorPubkeyBytes}
+	validatorPubkeyAny, _ := codectypes.NewAnyWithValue(&validatorPubkey)
+	genState.Pairings = []customauthtypes.Pairing{
+		customauthtypes.Pairing{
+			Owner:     "gluon1wd3g35hec5m6n4qfwaydndzelsuaafzj7ua7qg",
+			Index:     "gluon1wd3g35hec5m6n4qfwaydndzelsuaafzj7ua7qg",
+			PublicKey: *validatorPubkeyAny,
+			CreatedAt: time.Unix(0, 0),
+		}}
 
 	return cdc.MustMarshalJSON(genState)
 }

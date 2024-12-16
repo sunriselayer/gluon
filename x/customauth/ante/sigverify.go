@@ -64,19 +64,19 @@ func (sgcd SigGasConsumeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simula
 
 	// stdSigs contains the sequence number, account number, and signatures.
 	// When simulating, this would just be a 0-length slice.
-	signers, err := sigTx.GetSigners()
-	if err != nil {
-		return ctx, err
-	}
+	// signers, err := sigTx.GetSigners()
+	// if err != nil {
+	// 	return ctx, err
+	// }
 
-	for i, sig := range sigs {
-		signerAcc, err := sdkante.GetSignerAcc(ctx, sgcd.ak, signers[i])
-		if err != nil {
-			return ctx, err
-		}
+	for _, sig := range sigs {
+		// signerAcc, err := sdkante.GetSignerAcc(ctx, sgcd.ak, signers[i])
+		// if err != nil {
+		// 	return ctx, err
+		// }
 
 		// <gluon>
-		pubKey := signerAcc.GetPubKey()
+		pubKey := sig.PubKey
 		// </gluon>
 
 		// In simulate mode the transaction comes with no signatures, thus if the
