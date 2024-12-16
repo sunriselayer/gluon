@@ -10,9 +10,11 @@ import (
 
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 
+	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"github.com/cosmos/cosmos-sdk/types/tx/signing"
 	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
 
 	sdkante "github.com/cosmos/cosmos-sdk/x/auth/ante"
@@ -20,6 +22,86 @@ import (
 	"gluon/x/customauth/types/operator"
 	"gluon/x/customauth/types/pairing"
 )
+
+var (
+	// simulation signature values used to estimate gas consumption
+	key                = make([]byte, secp256k1.PubKeySize)
+	simSecp256k1Pubkey = &secp256k1.PubKey{Key: key}
+	simSecp256k1Sig    [64]byte
+)
+
+// Consume parameter-defined amount of gas for each signature according to the passed-in SignatureVerificationGasConsumer function
+// before calling the next AnteHandler
+// CONTRACT: Pubkeys are set in context for all signers before this decorator runs
+// CONTRACT: Tx must implement SigVerifiableTx interface
+type SigGasConsumeDecorator struct {
+	ak             AccountKeeper
+	sigGasConsumer sdkante.SignatureVerificationGasConsumer
+}
+
+func NewSigGasConsumeDecorator(ak AccountKeeper, sigGasConsumer sdkante.SignatureVerificationGasConsumer) SigGasConsumeDecorator {
+	if sigGasConsumer == nil {
+		sigGasConsumer = sdkante.DefaultSigVerificationGasConsumer
+	}
+
+	return SigGasConsumeDecorator{
+		ak:             ak,
+		sigGasConsumer: sigGasConsumer,
+	}
+}
+
+func (sgcd SigGasConsumeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool, next sdk.AnteHandler) (newCtx sdk.Context, err error) {
+	sigTx, ok := tx.(authsigning.SigVerifiableTx)
+	if !ok {
+		return ctx, errorsmod.Wrap(sdkerrors.ErrTxDecode, "invalid transaction type")
+	}
+
+	params := sgcd.ak.GetParams(ctx)
+	sigs, err := sigTx.GetSignaturesV2()
+	if err != nil {
+		return ctx, err
+	}
+
+	// stdSigs contains the sequence number, account number, and signatures.
+	// When simulating, this would just be a 0-length slice.
+	signers, err := sigTx.GetSigners()
+	if err != nil {
+		return ctx, err
+	}
+
+	for i, sig := range sigs {
+		signerAcc, err := sdkante.GetSignerAcc(ctx, sgcd.ak, signers[i])
+		if err != nil {
+			return ctx, err
+		}
+
+		// <gluon>
+		pubKey := signerAcc.GetPubKey()
+		// </gluon>
+
+		// In simulate mode the transaction comes with no signatures, thus if the
+		// account's pubkey is nil, both signature verification and gasKVStore.Set()
+		// shall consume the largest amount, i.e. it takes more gas to verify
+		// secp256k1 keys than ed25519 ones.
+		if simulate && pubKey == nil {
+			pubKey = simSecp256k1Pubkey
+		}
+
+		// make a SignatureV2 with PubKey filled in from above
+		sig = signing.SignatureV2{
+			PubKey:   pubKey,
+			Data:     sig.Data,
+			Sequence: sig.Sequence,
+		}
+
+		err = sgcd.sigGasConsumer(ctx.GasMeter(), sig, params)
+		if err != nil {
+			return ctx, err
+		}
+	}
+
+	return next(ctx, tx, simulate)
+}
 
 // SigVerificationDecorator verifies all signatures for a tx and return an error if any are invalid. Note,
 // the SigVerificationDecorator will not check signatures on ReCheck.
