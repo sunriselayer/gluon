@@ -75,6 +75,11 @@ import (
 	ibctransferkeeper "github.com/cosmos/ibc-go/v8/modules/apps/transfer/keeper"
 	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
 
+	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
+	crisistypes "github.com/cosmos/cosmos-sdk/x/crisis/types"
+	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
+	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
+
 	customauthmodulekeeper "gluon/x/customauth/keeper"
 	customauthmoduletypes "gluon/x/customauth/types"
 
@@ -92,6 +97,7 @@ import (
 	"gluon/docs"
 
 	"gluon/app/ante"
+	"gluon/app/defaultoverrides"
 )
 
 const (
@@ -196,8 +202,18 @@ func AppConfig() depinject.Config {
 			// supply custom module basics
 			map[string]module.AppModuleBasic{
 				genutiltypes.ModuleName: genutil.NewAppModuleBasic(genutiltypes.DefaultMessageValidator),
-				govtypes.ModuleName:     gov.NewAppModuleBasic(getGovProposalHandlers()),
+				// govtypes.ModuleName:     gov.NewAppModuleBasic(getGovProposalHandlers()),
 				// this line is used by starport scaffolding # stargate/appConfig/moduleBasic
+
+				// overrides
+				banktypes.ModuleName:   defaultoverrides.BankModuleBasic{},
+				crisistypes.ModuleName: defaultoverrides.CrisisModuleBasic{},
+				govtypes.ModuleName: defaultoverrides.GovModuleBasic{
+					AppModuleBasic: gov.NewAppModuleBasic(getGovProposalHandlers()),
+				},
+				minttypes.ModuleName:             defaultoverrides.MintModuleBasic{},
+				stakingtypes.ModuleName:          defaultoverrides.StakingModuleBasic{},
+				customauthmoduletypes.ModuleName: defaultoverrides.CustomAuthModuleBasic{},
 			},
 		),
 	)
@@ -287,33 +303,11 @@ func New(
 		return nil, err
 	}
 
-	/****  Module Options ****/
-
-	app.ModuleManager.RegisterInvariants(app.CrisisKeeper)
-
-	// create the simulation manager and define the order of the modules for deterministic simulations
-	overrideModules := map[string]module.AppModuleSimulation{
-		authtypes.ModuleName: auth.NewAppModule(app.appCodec, app.AccountKeeper, authsims.RandomGenesisAccounts, app.GetSubspace(authtypes.ModuleName)),
-	}
-	app.sm = module.NewSimulationManagerFromAppModules(app.ModuleManager.Modules, overrideModules)
-	app.sm.RegisterStoreDecoders()
-
-	// A custom InitChainer sets if extra pre-init-genesis logic is required.
-	// This is necessary for manually registered modules that do not support app wiring.
-	// Manually set the module version map as shown below.
-	// The upgrade module will automatically handle de-duplication of the module version map.
-	app.SetInitChainer(func(ctx sdk.Context, req *abci.RequestInitChain) (*abci.ResponseInitChain, error) {
-		if err := app.UpgradeKeeper.SetModuleVersionMap(ctx, app.ModuleManager.GetVersionMap()); err != nil {
-			return nil, err
-		}
-		return app.App.InitChainer(ctx, req)
-	})
-
-	if err := app.Load(loadLatest); err != nil {
-		return nil, err
-	}
-
 	// <gluon>
+	// ---------------------------------------------------------------------------- //
+	// ------------------------- Custom Ante Handler Code ------------------------- //
+	// ---------------------------------------------------------------------------- //
+
 	anteHandler := ante.NewAnteHandler(
 		app.AccountKeeper,
 		app.BankKeeper,
@@ -339,6 +333,32 @@ func New(
 
 	app.SetAnteHandler(anteHandler)
 	// </gluon>
+
+	/****  Module Options ****/
+
+	app.ModuleManager.RegisterInvariants(app.CrisisKeeper)
+
+	// create the simulation manager and define the order of the modules for deterministic simulations
+	overrideModules := map[string]module.AppModuleSimulation{
+		authtypes.ModuleName: auth.NewAppModule(app.appCodec, app.AccountKeeper, authsims.RandomGenesisAccounts, app.GetSubspace(authtypes.ModuleName)),
+	}
+	app.sm = module.NewSimulationManagerFromAppModules(app.ModuleManager.Modules, overrideModules)
+	app.sm.RegisterStoreDecoders()
+
+	// A custom InitChainer sets if extra pre-init-genesis logic is required.
+	// This is necessary for manually registered modules that do not support app wiring.
+	// Manually set the module version map as shown below.
+	// The upgrade module will automatically handle de-duplication of the module version map.
+	app.SetInitChainer(func(ctx sdk.Context, req *abci.RequestInitChain) (*abci.ResponseInitChain, error) {
+		if err := app.UpgradeKeeper.SetModuleVersionMap(ctx, app.ModuleManager.GetVersionMap()); err != nil {
+			return nil, err
+		}
+		return app.App.InitChainer(ctx, req)
+	})
+
+	if err := app.Load(loadLatest); err != nil {
+		return nil, err
+	}
 
 	return app, nil
 }
