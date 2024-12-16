@@ -314,7 +314,7 @@ func New(
 		app.FeeGrantKeeper,
 		app.CustomauthKeeper,
 		app.txConfig.SignModeHandler(),
-		ante.DefaultSigVerificationGasConsumer,
+		ante.SigVerificationGasConsumer,
 		app.IBCKeeper,
 		app.txConfig.TxEncoder(),
 		func(msg sdk.Msg) bool {
