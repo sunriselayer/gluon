@@ -26,7 +26,7 @@ import (
 )
 
 func NewAnteHandler(
-	accountKeeper ante.AccountKeeper,
+	accountKeeper customante.AccountKeeper,
 	bankKeeper customante.BankKeeper,
 	feegrantKeeper ante.FeegrantKeeper,
 	customAuthKeeper customante.CustomAuthKeeper,
@@ -47,6 +47,10 @@ func NewAnteHandler(
 		// Ensure the tx has not reached a height timeout.
 		ante.NewTxTimeoutHeightDecorator(),
 		// Ensure the tx memo <= max memo characters.
+		// <gluon>
+		// If the signer's address does not exist on the chain, Create a new BaseAccount
+		customante.NewSetAccountDecorator(accountKeeper),
+		// </gluon>
 		ante.NewValidateMemoDecorator(accountKeeper),
 		// Ensure the tx's gas limit is > the gas consumed based on the tx size.
 		// Side effect: consumes gas from the gas meter.
