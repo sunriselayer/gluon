@@ -33,14 +33,8 @@ func (dfd SetAccountDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate b
 
 	for _, signer := range signers {
 		accExists := dfd.accountKeeper.HasAccount(ctx, signer)
-
 		if !accExists {
-			acc := dfd.accountKeeper.NewAccountWithAddress(ctx, signer)
-			err = acc.SetAccountNumber(0)
-			if err != nil {
-				return sdk.Context{}, err
-			}
-			dfd.accountKeeper.SetAccount(ctx, acc)
+			dfd.accountKeeper.SetAccount(ctx, dfd.accountKeeper.NewAccountWithAddress(ctx, signer))
 		}
 	}
 
