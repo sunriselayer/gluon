@@ -169,13 +169,14 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 		}
 
 		// <gluon>
-		var pubKey cryptotypes.PubKey
-		switch pk := pubKeys[i].(type) {
+		pubKey := pubKeys[i]
+		var signerPubKey cryptotypes.PubKey
+		switch pk := pubKey.(type) {
 		case *operator.PubKey:
 			if !isOperatorTx {
 				return ctx, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "operator pubkey can be used only for designated messages")
 			}
-			pubKey, err = svd.cak.GetOperatorPubKey(ctx)
+			signerPubKey, err = svd.cak.GetOperatorPubKey(ctx)
 			if err != nil {
 				return ctx, err
 			}
@@ -185,7 +186,7 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 			if err != nil {
 				return ctx, err
 			}
-			pubKey = &pubKeyInternal
+			signerPubKey = &pubKeyInternal
 
 		default:
 			// For gen-tx
@@ -232,7 +233,7 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 				return ctx, fmt.Errorf("expected tx to implement V2AdaptableTx, got %T", tx)
 			}
 			txData := adaptableTx.GetSigningTxData()
-			err = authsigning.VerifySignature(ctx, pubKey, signerData, sig.Data, svd.signModeHandler, txData)
+			err = authsigning.VerifySignature(ctx, signerPubKey, signerData, sig.Data, svd.signModeHandler, txData)
 			if err != nil {
 				errMsg := fmt.Sprintf("signature verification failed; please verify account number (%d) and chain-id (%s): (%s)", accNum, chainID, err.Error())
 				return ctx, errorsmod.Wrap(sdkerrors.ErrUnauthorized, errMsg)
