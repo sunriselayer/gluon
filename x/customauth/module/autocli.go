@@ -18,15 +18,16 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:     "Shows the parameters of the module",
 				},
 				{
-					RpcMethod: "Pairings",
-					Use:       "list-pairings",
-					Short:     "List all pairings",
+					RpcMethod:      "Pairings",
+					Use:            "list-pairings [owner]",
+					Short:          "List all pairings",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}},
 				},
 				{
 					RpcMethod:      "Pairing",
 					Use:            "show-pairing [index]",
 					Short:          "Shows a pairing by index (hex string of 20 bytes)",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "index"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "owner"}, {ProtoField: "index"}},
 				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
