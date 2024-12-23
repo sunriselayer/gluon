@@ -21,6 +21,8 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
 	customante "gluon/x/customauth/ante"
+	"gluon/x/customauth/types/operator"
+	"gluon/x/customauth/types/pairing"
 )
 
 func NewAnteHandler(
@@ -104,11 +106,11 @@ func SigVerificationGasConsumer(meter storetypes.GasMeter, sig signing.Signature
 		}
 		return nil
 	// <gluon>
-	// TODO:
-	// operator.PubKey
-	// pairing.PubKey
+	case *operator.PubKey:
+		return nil
+	case *pairing.PubKey:
+		return nil
 	// </gluon>
-
 	default:
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidPubKey, "unrecognized public key type: %T", pubkey)
 	}
