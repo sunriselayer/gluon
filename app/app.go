@@ -320,10 +320,15 @@ func New(
 		func(msg sdk.Msg) bool {
 			switch msg.(type) {
 			case *ordermoduletypes.MsgLazyRegisterOrder:
+				return true
 			case *ordermoduletypes.MsgCancelOrder:
+				return true
 			case *spotmoduletypes.MsgMatchOrder:
+				return true
 			case *perpmoduletypes.MsgMatchOrder:
+				return true
 			case *customauthmoduletypes.MsgCreatePairing:
+				return true
 			case *customauthmoduletypes.MsgDeletePairing:
 				return true
 			}
