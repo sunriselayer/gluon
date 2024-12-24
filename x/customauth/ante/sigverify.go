@@ -182,6 +182,13 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 			if err != nil {
 				return ctx, err
 			}
+			// Check account sequence number.
+			if sig.Sequence != acc.GetSequence() {
+				return ctx, errorsmod.Wrapf(
+					sdkerrors.ErrWrongSequence,
+					"account sequence mismatch, expected %d, got %d", acc.GetSequence(), sig.Sequence,
+				)
+			}
 
 		case *pairing.PubKey:
 			pubKeyInternal, err := svd.cak.GetPairingPubKeyInternal(ctx, acc.GetAddress(), pk.PairingIndex)
@@ -198,6 +205,13 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 				return ctx, err
 			}
 			signerPubKey = multisig.NewLegacyAminoPubKey(2, []cryptotypes.PubKey{pairingPubKey, operatorPubKey})
+			// Check account sequence number. 1 is added for two-step signatures.
+			if sig.Sequence != acc.GetSequence()+1 {
+				return ctx, errorsmod.Wrapf(
+					sdkerrors.ErrWrongSequence,
+					"account sequence mismatch, expected %d, got %d", acc.GetSequence(), sig.Sequence,
+				)
+			}
 
 		default:
 			// For gen-tx
@@ -208,14 +222,6 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 			return ctx, errorsmod.Wrap(sdkerrors.ErrInvalidPubKey, "not permitted public key type")
 		}
 		// </gluon>
-
-		// Check account sequence number.
-		if sig.Sequence != acc.GetSequence() {
-			return ctx, errorsmod.Wrapf(
-				sdkerrors.ErrWrongSequence,
-				"account sequence mismatch, expected %d, got %d", acc.GetSequence(), sig.Sequence,
-			)
-		}
 
 		// retrieve signer data
 		genesis := ctx.BlockHeight() == 0
