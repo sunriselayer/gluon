@@ -205,11 +205,11 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 				return ctx, err
 			}
 			signerPubKey = multisig.NewLegacyAminoPubKey(2, []cryptotypes.PubKey{pairingPubKey, operatorPubKey})
-			// Check account sequence number. 1 is added for two-step signatures.
-			if sig.Sequence != acc.GetSequence()+1 {
+			// Check account sequence number. Up to +1 is acceptable for a two-step signature.
+			if sig.Sequence != acc.GetSequence()-1 && sig.Sequence != acc.GetSequence() {
 				return ctx, errorsmod.Wrapf(
 					sdkerrors.ErrWrongSequence,
-					"account sequence mismatch, expected %d, got %d", acc.GetSequence(), sig.Sequence,
+					"account sequence mismatch, expected %d & %d, got %d", acc.GetSequence()-1, acc.GetSequence(), sig.Sequence,
 				)
 			}
 
