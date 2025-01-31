@@ -64,19 +64,19 @@ func (sgcd SigGasConsumeDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simula
 
 	// stdSigs contains the sequence number, account number, and signatures.
 	// When simulating, this would just be a 0-length slice.
-	signers, err := sigTx.GetSigners()
-	if err != nil {
-		return ctx, err
-	}
+	// signers, err := sigTx.GetSigners()
+	// if err != nil {
+	// 	return ctx, err
+	// }
 
-	for i, sig := range sigs {
-		signerAcc, err := sdkante.GetSignerAcc(ctx, sgcd.ak, signers[i])
-		if err != nil {
-			return ctx, err
-		}
+	for _, sig := range sigs {
+		// signerAcc, err := sdkante.GetSignerAcc(ctx, sgcd.ak, signers[i])
+		// if err != nil {
+		// 	return ctx, err
+		// }
 
 		// <gluon>
-		pubKey := signerAcc.GetPubKey()
+		pubKey := sig.PubKey
 		// </gluon>
 
 		// In simulate mode the transaction comes with no signatures, thus if the
@@ -169,13 +169,14 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 		}
 
 		// <gluon>
-		var pubKey cryptotypes.PubKey
-		switch pk := pubKeys[i].(type) {
+		pubKey := pubKeys[i]
+		var signerPubKey cryptotypes.PubKey
+		switch pk := pubKey.(type) {
 		case *operator.PubKey:
 			if !isOperatorTx {
 				return ctx, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "operator pubkey can be used only for designated messages")
 			}
-			pubKey, err = svd.cak.GetOperatorPubKey(ctx)
+			signerPubKey, err = svd.cak.GetOperatorPubKey(ctx)
 			if err != nil {
 				return ctx, err
 			}
@@ -185,7 +186,7 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 			if err != nil {
 				return ctx, err
 			}
-			pubKey = &pubKeyInternal
+			signerPubKey = &pubKeyInternal
 
 		default:
 			// For gen-tx
@@ -232,7 +233,7 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 				return ctx, fmt.Errorf("expected tx to implement V2AdaptableTx, got %T", tx)
 			}
 			txData := adaptableTx.GetSigningTxData()
-			err = authsigning.VerifySignature(ctx, pubKey, signerData, sig.Data, svd.signModeHandler, txData)
+			err = authsigning.VerifySignature(ctx, signerPubKey, signerData, sig.Data, svd.signModeHandler, txData)
 			if err != nil {
 				errMsg := fmt.Sprintf("signature verification failed; please verify account number (%d) and chain-id (%s): (%s)", accNum, chainID, err.Error())
 				return ctx, errorsmod.Wrap(sdkerrors.ErrUnauthorized, errMsg)

@@ -2,7 +2,6 @@ package keeper
 
 import (
 	"context"
-	"encoding/hex"
 
 	"gluon/x/customauth/types"
 
@@ -30,10 +29,9 @@ func (k Keeper) GetPairingIndex(pubKeyAny codectypes.Any) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	bz := pubKey.Address().Bytes()
-	hash := hex.EncodeToString(bz)
+	addr := pubKey.Address().String()
 
-	return hash, nil
+	return addr, nil
 }
 
 func (k Keeper) GetPairingPubKeyInternal(ctx context.Context, user sdk.AccAddress, pairingIndex string) (pairing.PubKeyInternal, error) {

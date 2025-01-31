@@ -21,10 +21,12 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
 	customante "gluon/x/customauth/ante"
+	"gluon/x/customauth/types/operator"
+	"gluon/x/customauth/types/pairing"
 )
 
 func NewAnteHandler(
-	accountKeeper ante.AccountKeeper,
+	accountKeeper customante.AccountKeeper,
 	bankKeeper customante.BankKeeper,
 	feegrantKeeper ante.FeegrantKeeper,
 	customAuthKeeper customante.CustomAuthKeeper,
@@ -45,6 +47,10 @@ func NewAnteHandler(
 		// Ensure the tx has not reached a height timeout.
 		ante.NewTxTimeoutHeightDecorator(),
 		// Ensure the tx memo <= max memo characters.
+		// <gluon>
+		// If the signer's address does not exist on the chain, Create a new BaseAccount
+		customante.NewSetAccountDecorator(accountKeeper),
+		// </gluon>
 		ante.NewValidateMemoDecorator(accountKeeper),
 		// Ensure the tx's gas limit is > the gas consumed based on the tx size.
 		// Side effect: consumes gas from the gas meter.
@@ -104,11 +110,11 @@ func SigVerificationGasConsumer(meter storetypes.GasMeter, sig signing.Signature
 		}
 		return nil
 	// <gluon>
-	// TODO:
-	// operator.PubKey
-	// pairing.PubKey
+	case *operator.PubKey:
+		return nil
+	case *pairing.PubKey:
+		return nil
 	// </gluon>
-
 	default:
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidPubKey, "unrecognized public key type: %T", pubkey)
 	}
