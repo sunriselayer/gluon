@@ -14,17 +14,17 @@ var _ sdk.Msg = &MsgMatchOrder{}
 
 func NewMsgMatchOrder(
 	buyer string,
-	buyerOrderHash string,
 	seller string,
-	sellerOrderHash string,
+	orderHashBuyer string,
+	orderHashSeller string,
 	quantity sdkmath.Int,
 	price string,
 ) *MsgMatchOrder {
 	return &MsgMatchOrder{
 		Buyer:           buyer,
-		BuyerOrderHash:  buyerOrderHash,
 		Seller:          seller,
-		SellerOrderHash: sellerOrderHash,
+		OrderHashBuyer:  orderHashBuyer,
+		OrderHashSeller: orderHashSeller,
 		Quantity:        quantity,
 		Price:           price,
 	}
@@ -41,11 +41,11 @@ func (msg *MsgMatchOrder) ValidateBasic() error {
 		return err
 	}
 
-	if len(msg.BuyerOrderHash) == 0 {
+	if len(msg.OrderHashBuyer) == 0 {
 		return ordertypes.ErrEmptyOrderHash
 	}
 
-	if len(msg.SellerOrderHash) == 0 {
+	if len(msg.OrderHashSeller) == 0 {
 		return ordertypes.ErrEmptyOrderHash
 	}
 

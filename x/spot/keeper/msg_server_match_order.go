@@ -14,24 +14,24 @@ import (
 func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (*types.MsgMatchOrderResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	buy, buyBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.Buyer, msg.BuyerOrderHash)
+	buy, buyBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.Buyer, msg.OrderHashBuyer)
 	if err != nil {
 		return nil, err
 	}
 
-	sell, sellBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.Seller, msg.SellerOrderHash)
+	sell, sellBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.Seller, msg.OrderHashSeller)
 	if err != nil {
 		return nil, err
 	}
 
 	buySpot, ok := buyBody.(*types.SpotOrder)
 	if !ok {
-		return nil, errorsmod.Wrapf(types.ErrInvalidOrderType, "BuyerOrderHash: %s", msg.BuyerOrderHash)
+		return nil, errorsmod.Wrapf(types.ErrInvalidOrderType, "OrderHashBuyer: %s", msg.OrderHashBuyer)
 	}
 
 	sellSpot, ok := sellBody.(*types.SpotOrder)
 	if !ok {
-		return nil, errorsmod.Wrapf(types.ErrInvalidOrderType, "SellerOrderHash: %s", msg.SellerOrderHash)
+		return nil, errorsmod.Wrapf(types.ErrInvalidOrderType, "OrderHashSeller: %s", msg.OrderHashSeller)
 	}
 
 	price, err := sdkmath.LegacyNewDecFromStr(msg.Price)
