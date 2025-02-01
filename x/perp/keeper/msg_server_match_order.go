@@ -21,22 +21,22 @@ func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (
 		return nil, err
 	}
 
-	long, longBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.Buyer, msg.BuyerOrderHash)
+	long, longBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.Buyer, msg.OrderHashBuyer)
 	if err != nil {
 		return nil, err
 	}
-	short, shortBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.Seller, msg.SellerOrderHash)
+	short, shortBody, err := k.orderKeeper.GetOrderAndBody(ctx, msg.Seller, msg.OrderHashSeller)
 	if err != nil {
 		return nil, err
 	}
 
 	longPerp, longDenomBase, longDenomQuote, longDirection, err := k.GetOrderBodyDenomsDirection(ctx, longBody)
 	if err != nil {
-		return nil, errorsmod.Wrapf(err, "BuyerOrderHash: %s", msg.BuyerOrderHash)
+		return nil, errorsmod.Wrapf(err, "OrderHashBuyer: %s", msg.OrderHashBuyer)
 	}
 	shortPerp, shortDenomBase, shortDenomQuote, shortDirection, err := k.GetOrderBodyDenomsDirection(ctx, shortBody)
 	if err != nil {
-		return nil, errorsmod.Wrapf(err, "SellerOrderHash: %s", msg.SellerOrderHash)
+		return nil, errorsmod.Wrapf(err, "OrderHashSeller: %s", msg.OrderHashSeller)
 	}
 
 	// Denom and Direction
@@ -66,11 +66,11 @@ func (k msgServer) MatchOrder(goCtx context.Context, msg *types.MsgMatchOrder) (
 	}
 
 	// Create or Cancel
-	err = k.CreateUpdateCancelPosition(ctx, msg.BuyerOrderHash, longPerp, price, msg.Quantity)
+	err = k.CreateUpdateCancelPosition(ctx, msg.OrderHashBuyer, longPerp, price, msg.Quantity)
 	if err != nil {
 		return nil, err
 	}
-	err = k.CreateUpdateCancelPosition(ctx, msg.SellerOrderHash, shortPerp, price, msg.Quantity)
+	err = k.CreateUpdateCancelPosition(ctx, msg.OrderHashSeller, shortPerp, price, msg.Quantity)
 	if err != nil {
 		return nil, err
 	}
