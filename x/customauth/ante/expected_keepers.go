@@ -5,6 +5,7 @@ import (
 
 	"cosmossdk.io/core/address"
 
+	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
@@ -44,4 +45,5 @@ type CustomAuthKeeper interface {
 	GetOperatorPubKey(ctx context.Context) (cryptotypes.PubKey, error)
 	UnpackPairingPubKey(pairing types.Pairing) (cryptotypes.PubKey, error)
 	GetPairingPubKeyInternal(ctx context.Context, user sdk.AccAddress, pairingIndex string) (pairing.PubKeyInternal, error)
+	UnpackPublicKey(pubKeyAny codectypes.Any) (cryptotypes.PubKey, error)
 }

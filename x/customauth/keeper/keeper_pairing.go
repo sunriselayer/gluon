@@ -66,3 +66,13 @@ func (k Keeper) GetPairingPubKeyInternal(ctx context.Context, user sdk.AccAddres
 
 	return pubKey, nil
 }
+
+func (k Keeper) UnpackPublicKey(pubKeyAny codectypes.Any) (cryptotypes.PubKey, error) {
+	var pubKey cryptotypes.PubKey
+	err := k.cdc.UnpackAny(&pubKeyAny, &pubKey)
+	if err != nil {
+		return nil, err
+	}
+
+	return pubKey, nil
+}

@@ -10,6 +10,7 @@ import (
 
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 
+	"github.com/cosmos/cosmos-sdk/crypto/keys/multisig"
 	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -176,9 +177,17 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 			if !isOperatorTx {
 				return ctx, errorsmod.Wrap(sdkerrors.ErrUnauthorized, "operator pubkey can be used only for designated messages")
 			}
+			// get operator pubkey
 			signerPubKey, err = svd.cak.GetOperatorPubKey(ctx)
 			if err != nil {
 				return ctx, err
+			}
+			// Check account sequence number.
+			if sig.Sequence != acc.GetSequence() {
+				return ctx, errorsmod.Wrapf(
+					sdkerrors.ErrWrongSequence,
+					"account sequence mismatch, expected %d, got %d", acc.GetSequence(), sig.Sequence,
+				)
 			}
 
 		case *pairing.PubKey:
@@ -186,7 +195,23 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 			if err != nil {
 				return ctx, err
 			}
-			signerPubKey = &pubKeyInternal
+			// create multisig pubkey
+			pairingPubKey, err := svd.cak.UnpackPublicKey(pubKeyInternal.GetPairingPublicKey())
+			if err != nil {
+				return ctx, err
+			}
+			operatorPubKey, err := svd.cak.UnpackPublicKey(pubKeyInternal.GetOperatorPublicKey())
+			if err != nil {
+				return ctx, err
+			}
+			signerPubKey = multisig.NewLegacyAminoPubKey(2, []cryptotypes.PubKey{pairingPubKey, operatorPubKey})
+			// Check account sequence number. Up to +1 is acceptable for a two-step signature.
+			if sig.Sequence != acc.GetSequence()-1 && sig.Sequence != acc.GetSequence() {
+				return ctx, errorsmod.Wrapf(
+					sdkerrors.ErrWrongSequence,
+					"account sequence mismatch, expected %d & %d, got %d", acc.GetSequence()-1, acc.GetSequence(), sig.Sequence,
+				)
+			}
 
 		default:
 			// For gen-tx
@@ -197,14 +222,6 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 			return ctx, errorsmod.Wrap(sdkerrors.ErrInvalidPubKey, "not permitted public key type")
 		}
 		// </gluon>
-
-		// Check account sequence number.
-		if sig.Sequence != acc.GetSequence() {
-			return ctx, errorsmod.Wrapf(
-				sdkerrors.ErrWrongSequence,
-				"account sequence mismatch, expected %d, got %d", acc.GetSequence(), sig.Sequence,
-			)
-		}
 
 		// retrieve signer data
 		genesis := ctx.BlockHeight() == 0
