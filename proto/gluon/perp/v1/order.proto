@@ -1,0 +1,32 @@
+syntax = "proto3";
+package gluon.perp.v1;
+
+import "cosmos_proto/cosmos.proto";
+import "gluon/order/v1/base_order.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "gluon/x/perp/types";
+
+// PerpPositionCreateOrder
+message PerpPositionCreateOrder {
+  gluon.order.v1.BaseOrder base = 1 [
+    (gogoproto.nullable) = false,
+    (gogoproto.embed) = true
+  ];
+  bool is_isolated_margin = 2;
+  // Zero margin is only accepted for cross margin
+  string margin_amount = 3 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
+}
+
+// PerpPositionCancelOrder
+message PerpPositionCancelOrder {
+  gluon.order.v1.BaseOrder base = 1 [
+    (gogoproto.nullable) = false,
+    (gogoproto.embed) = true
+  ];
+  string position_order_hash = 2;
+}

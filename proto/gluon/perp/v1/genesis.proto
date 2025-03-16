@@ -1,17 +1,21 @@
 syntax = "proto3";
 package gluon.perp.v1;
 
-import "amino/amino.proto";
-import "gogoproto/gogo.proto";
+import "gluon/perp/v1/cross_margin.proto";
+import "gluon/perp/v1/funding_rate.proto";
 import "gluon/perp/v1/params.proto";
+import "gluon/perp/v1/position.proto";
+import "gluon/perp/v1/position_price_quantity.proto";
+import "gogoproto/gogo.proto";
 
 option go_package = "gluon/x/perp/types";
 
 // GenesisState defines the perp module's genesis state.
 message GenesisState {
   // params defines all the parameters of the module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+  Params params = 1 [(gogoproto.nullable) = false];
+  repeated Position positions = 2 [(gogoproto.nullable) = false];
+  repeated PositionPriceQuantity position_price_quantities = 3 [(gogoproto.nullable) = false];
+  repeated CrossMargin cross_margins = 4 [(gogoproto.nullable) = false];
+  repeated FundingRate funding_rates = 5 [(gogoproto.nullable) = false];
 }
