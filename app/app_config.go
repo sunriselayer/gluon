@@ -74,6 +74,9 @@ import (
 	_ "gluon/x/spot/module"
 	spotmoduletypes "gluon/x/spot/types"
 
+	_ "gluon/x/perp/module"
+	perpmoduletypes "gluon/x/perp/types"
+
 	"github.com/cosmos/cosmos-sdk/runtime"
 	_ "github.com/cosmos/cosmos-sdk/testutil/x/counter" // import for side-effects
 	_ "github.com/cosmos/cosmos-sdk/x/auth/tx/config"   // import for side-effects
@@ -147,6 +150,7 @@ var (
 						customauthmoduletypes.ModuleName,
 						ordermoduletypes.ModuleName,
 						spotmoduletypes.ModuleName,
+						perpmoduletypes.ModuleName,
 						// this line is used by starport scaffolding # stargate/app/beginBlockers
 					},
 					EndBlockers: []string{
@@ -159,6 +163,7 @@ var (
 						customauthmoduletypes.ModuleName,
 						ordermoduletypes.ModuleName,
 						spotmoduletypes.ModuleName,
+						perpmoduletypes.ModuleName,
 						// this line is used by starport scaffolding # stargate/app/endBlockers
 					},
 					// The following is mostly only needed when ModuleName != StoreKey name.
@@ -204,6 +209,7 @@ var (
 						customauthmoduletypes.ModuleName,
 						ordermoduletypes.ModuleName,
 						spotmoduletypes.ModuleName,
+						perpmoduletypes.ModuleName,
 						// this line is used by starport scaffolding # stargate/app/initGenesis
 					},
 					// SkipStoreKeys is an optional list of store keys to skip when constructing the
@@ -321,6 +327,10 @@ var (
 			{
 				Name:   spotmoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&spotmoduletypes.Module{}),
+			},
+			{
+				Name:   perpmoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&perpmoduletypes.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},
