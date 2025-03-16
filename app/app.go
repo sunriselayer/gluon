@@ -49,6 +49,7 @@ import (
 	ibckeeper "github.com/cosmos/ibc-go/v9/modules/core/keeper"
 
 	"gluon/docs"
+	customauthmodulekeeper "gluon/x/customauth/keeper"
 )
 
 const (
@@ -99,6 +100,7 @@ type App struct {
 	ICAHostKeeper       icahostkeeper.Keeper
 	TransferKeeper      ibctransferkeeper.Keeper
 
+	CustomauthKeeper customauthmodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// simulation manager
@@ -171,6 +173,7 @@ func New(
 		&app.CircuitBreakerKeeper,
 		&app.PoolKeeper,
 		&app.ParamsKeeper,
+		&app.CustomauthKeeper,
 	); err != nil {
 		panic(err)
 	}

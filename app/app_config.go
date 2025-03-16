@@ -65,6 +65,9 @@ import (
 	_ "cosmossdk.io/x/upgrade" // import for side-effects
 	upgradetypes "cosmossdk.io/x/upgrade/types"
 
+	_ "gluon/x/customauth/module"
+	customauthmoduletypes "gluon/x/customauth/types"
+
 	"github.com/cosmos/cosmos-sdk/runtime"
 	_ "github.com/cosmos/cosmos-sdk/testutil/x/counter" // import for side-effects
 	_ "github.com/cosmos/cosmos-sdk/x/auth/tx/config"   // import for side-effects
@@ -135,6 +138,7 @@ var (
 						// ibc modules
 						ibcexported.ModuleName,
 						// chain modules
+						customauthmoduletypes.ModuleName,
 						// this line is used by starport scaffolding # stargate/app/beginBlockers
 					},
 					EndBlockers: []string{
@@ -144,6 +148,7 @@ var (
 						group.ModuleName,
 						pooltypes.ModuleName,
 						// chain modules
+						customauthmoduletypes.ModuleName,
 						// this line is used by starport scaffolding # stargate/app/endBlockers
 					},
 					// The following is mostly only needed when ModuleName != StoreKey name.
@@ -186,6 +191,7 @@ var (
 						icatypes.ModuleName,
 						ibcfeetypes.ModuleName,
 						// chain modules
+						customauthmoduletypes.ModuleName,
 						// this line is used by starport scaffolding # stargate/app/initGenesis
 					},
 					// SkipStoreKeys is an optional list of store keys to skip when constructing the
@@ -291,6 +297,10 @@ var (
 			{
 				Name:   paramstypes.ModuleName,
 				Config: appconfig.WrapAny(&paramsmodulev1.Module{}),
+			},
+			{
+				Name:   customauthmoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&customauthmoduletypes.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},
