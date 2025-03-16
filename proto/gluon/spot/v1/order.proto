@@ -1,0 +1,16 @@
+syntax = "proto3";
+package gluon.spot.v1;
+
+import "gluon/order/v1/base_order.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "gluon/x/spot/types";
+
+// SpotOrder
+// Encoded binary of Any of SpotOrder will be sign message.
+message SpotOrder {
+  gluon.order.v1.BaseOrder base = 1 [
+    (gogoproto.nullable) = false,
+    (gogoproto.embed) = true
+  ];
+}
