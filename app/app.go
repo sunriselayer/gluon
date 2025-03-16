@@ -50,6 +50,7 @@ import (
 
 	"gluon/docs"
 	customauthmodulekeeper "gluon/x/customauth/keeper"
+	ordermodulekeeper "gluon/x/order/keeper"
 )
 
 const (
@@ -101,6 +102,7 @@ type App struct {
 	TransferKeeper      ibctransferkeeper.Keeper
 
 	CustomauthKeeper customauthmodulekeeper.Keeper
+	OrderKeeper      ordermodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// simulation manager
@@ -174,6 +176,7 @@ func New(
 		&app.PoolKeeper,
 		&app.ParamsKeeper,
 		&app.CustomauthKeeper,
+		&app.OrderKeeper,
 	); err != nil {
 		panic(err)
 	}
