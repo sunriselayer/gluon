@@ -6,19 +6,18 @@ package types
 import (
 	context "context"
 	fmt "fmt"
-	io "io"
-	math "math"
-	math_bits "math/bits"
-
 	_ "github.com/cosmos/cosmos-proto"
 	_ "github.com/cosmos/cosmos-sdk/types/msgservice"
-	_ "github.com/cosmos/cosmos-sdk/types/tx/amino"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	grpc1 "github.com/cosmos/gogoproto/grpc"
 	proto "github.com/cosmos/gogoproto/proto"
+	any "github.com/cosmos/gogoproto/types/any"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	io "io"
+	math "math"
+	math_bits "math/bits"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -127,36 +126,249 @@ func (m *MsgUpdateParamsResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgUpdateParamsResponse proto.InternalMessageInfo
 
+// MsgLazyRegisterOrder
+type MsgLazyRegisterOrder struct {
+	User  string  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	Order any.Any `protobuf:"bytes,2,opt,name=order,proto3" json:"order"`
+	// Hex string of 20 bytes of output of Address() method of PublicKey
+	PairingIndex string `protobuf:"bytes,3,opt,name=pairing_index,json=pairingIndex,proto3" json:"pairing_index,omitempty"`
+	Signature    []byte `protobuf:"bytes,4,opt,name=signature,proto3" json:"signature,omitempty"`
+}
+
+func (m *MsgLazyRegisterOrder) Reset()         { *m = MsgLazyRegisterOrder{} }
+func (m *MsgLazyRegisterOrder) String() string { return proto.CompactTextString(m) }
+func (*MsgLazyRegisterOrder) ProtoMessage()    {}
+func (*MsgLazyRegisterOrder) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dd2fa183e279144e, []int{2}
+}
+func (m *MsgLazyRegisterOrder) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgLazyRegisterOrder) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgLazyRegisterOrder.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgLazyRegisterOrder) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgLazyRegisterOrder.Merge(m, src)
+}
+func (m *MsgLazyRegisterOrder) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgLazyRegisterOrder) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgLazyRegisterOrder.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgLazyRegisterOrder proto.InternalMessageInfo
+
+func (m *MsgLazyRegisterOrder) GetUser() string {
+	if m != nil {
+		return m.User
+	}
+	return ""
+}
+
+func (m *MsgLazyRegisterOrder) GetOrder() any.Any {
+	if m != nil {
+		return m.Order
+	}
+	return any.Any{}
+}
+
+func (m *MsgLazyRegisterOrder) GetPairingIndex() string {
+	if m != nil {
+		return m.PairingIndex
+	}
+	return ""
+}
+
+func (m *MsgLazyRegisterOrder) GetSignature() []byte {
+	if m != nil {
+		return m.Signature
+	}
+	return nil
+}
+
+// MsgLazyRegisterOrderResponse
+type MsgLazyRegisterOrderResponse struct {
+}
+
+func (m *MsgLazyRegisterOrderResponse) Reset()         { *m = MsgLazyRegisterOrderResponse{} }
+func (m *MsgLazyRegisterOrderResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgLazyRegisterOrderResponse) ProtoMessage()    {}
+func (*MsgLazyRegisterOrderResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dd2fa183e279144e, []int{3}
+}
+func (m *MsgLazyRegisterOrderResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgLazyRegisterOrderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgLazyRegisterOrderResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgLazyRegisterOrderResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgLazyRegisterOrderResponse.Merge(m, src)
+}
+func (m *MsgLazyRegisterOrderResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgLazyRegisterOrderResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgLazyRegisterOrderResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgLazyRegisterOrderResponse proto.InternalMessageInfo
+
+// MsgCancelOrder
+type MsgCancelOrder struct {
+	User      string `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	OrderHash string `protobuf:"bytes,2,opt,name=order_hash,json=orderHash,proto3" json:"order_hash,omitempty"`
+}
+
+func (m *MsgCancelOrder) Reset()         { *m = MsgCancelOrder{} }
+func (m *MsgCancelOrder) String() string { return proto.CompactTextString(m) }
+func (*MsgCancelOrder) ProtoMessage()    {}
+func (*MsgCancelOrder) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dd2fa183e279144e, []int{4}
+}
+func (m *MsgCancelOrder) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgCancelOrder) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgCancelOrder.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgCancelOrder) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgCancelOrder.Merge(m, src)
+}
+func (m *MsgCancelOrder) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgCancelOrder) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgCancelOrder.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgCancelOrder proto.InternalMessageInfo
+
+func (m *MsgCancelOrder) GetUser() string {
+	if m != nil {
+		return m.User
+	}
+	return ""
+}
+
+func (m *MsgCancelOrder) GetOrderHash() string {
+	if m != nil {
+		return m.OrderHash
+	}
+	return ""
+}
+
+// MsgCancelOrderResponse
+type MsgCancelOrderResponse struct {
+}
+
+func (m *MsgCancelOrderResponse) Reset()         { *m = MsgCancelOrderResponse{} }
+func (m *MsgCancelOrderResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgCancelOrderResponse) ProtoMessage()    {}
+func (*MsgCancelOrderResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_dd2fa183e279144e, []int{5}
+}
+func (m *MsgCancelOrderResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgCancelOrderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgCancelOrderResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgCancelOrderResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgCancelOrderResponse.Merge(m, src)
+}
+func (m *MsgCancelOrderResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgCancelOrderResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgCancelOrderResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgCancelOrderResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*MsgUpdateParams)(nil), "gluon.order.v1.MsgUpdateParams")
 	proto.RegisterType((*MsgUpdateParamsResponse)(nil), "gluon.order.v1.MsgUpdateParamsResponse")
+	proto.RegisterType((*MsgLazyRegisterOrder)(nil), "gluon.order.v1.MsgLazyRegisterOrder")
+	proto.RegisterType((*MsgLazyRegisterOrderResponse)(nil), "gluon.order.v1.MsgLazyRegisterOrderResponse")
+	proto.RegisterType((*MsgCancelOrder)(nil), "gluon.order.v1.MsgCancelOrder")
+	proto.RegisterType((*MsgCancelOrderResponse)(nil), "gluon.order.v1.MsgCancelOrderResponse")
 }
 
 func init() { proto.RegisterFile("gluon/order/v1/tx.proto", fileDescriptor_dd2fa183e279144e) }
 
 var fileDescriptor_dd2fa183e279144e = []byte{
-	// 324 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x4f, 0xcf, 0x29, 0xcd,
-	0xcf, 0xd3, 0xcf, 0x2f, 0x4a, 0x49, 0x2d, 0xd2, 0x2f, 0x33, 0xd4, 0x2f, 0xa9, 0xd0, 0x2b, 0x28,
-	0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x03, 0x4b, 0xe8, 0x81, 0x25, 0xf4, 0xca, 0x0c, 0xa5, 0x04, 0x13,
-	0x73, 0x33, 0xf3, 0xf2, 0xf5, 0xc1, 0x24, 0x44, 0x89, 0x94, 0x78, 0x72, 0x7e, 0x71, 0x6e, 0x7e,
-	0xb1, 0x7e, 0x6e, 0x71, 0x3a, 0x48, 0x6b, 0x6e, 0x71, 0x3a, 0x54, 0x42, 0x12, 0x22, 0x11, 0x0f,
-	0xe6, 0xe9, 0x43, 0x38, 0x50, 0x29, 0x91, 0xf4, 0xfc, 0xf4, 0x7c, 0x88, 0x38, 0x88, 0x05, 0x15,
-	0x95, 0x46, 0x73, 0x45, 0x41, 0x62, 0x51, 0x62, 0x2e, 0x54, 0x8b, 0xd2, 0x36, 0x46, 0x2e, 0x7e,
-	0xdf, 0xe2, 0xf4, 0xd0, 0x82, 0x94, 0xc4, 0x92, 0xd4, 0x00, 0xb0, 0x8c, 0x90, 0x19, 0x17, 0x67,
-	0x62, 0x69, 0x49, 0x46, 0x7e, 0x51, 0x66, 0x49, 0xa5, 0x04, 0xa3, 0x02, 0xa3, 0x06, 0xa7, 0x93,
-	0xc4, 0xa5, 0x2d, 0xba, 0x22, 0x50, 0xbb, 0x1c, 0x53, 0x52, 0x8a, 0x52, 0x8b, 0x8b, 0x83, 0x4b,
-	0x8a, 0x32, 0xf3, 0xd2, 0x83, 0x10, 0x4a, 0x85, 0x2c, 0xb9, 0xd8, 0x20, 0x66, 0x4b, 0x30, 0x29,
-	0x30, 0x6a, 0x70, 0x1b, 0x89, 0xe9, 0xa1, 0x7a, 0x53, 0x0f, 0x62, 0xbe, 0x13, 0xe7, 0x89, 0x7b,
-	0xf2, 0x0c, 0x2b, 0x9e, 0x6f, 0xd0, 0x62, 0x0c, 0x82, 0x6a, 0xb0, 0x32, 0x68, 0x7a, 0xbe, 0x41,
-	0x0b, 0x61, 0x54, 0xd7, 0xf3, 0x0d, 0x5a, 0xb2, 0x10, 0x67, 0x57, 0x40, 0x1d, 0x8e, 0xe6, 0x48,
-	0x25, 0x49, 0x2e, 0x71, 0x34, 0xa1, 0xa0, 0xd4, 0xe2, 0x82, 0xfc, 0xbc, 0xe2, 0x54, 0xa3, 0x34,
-	0x2e, 0x66, 0xdf, 0xe2, 0x74, 0xa1, 0x08, 0x2e, 0x1e, 0x14, 0x6f, 0xc9, 0xa3, 0x3b, 0x07, 0x4d,
-	0xbf, 0x94, 0x3a, 0x01, 0x05, 0x30, 0x0b, 0xa4, 0x58, 0x1b, 0x40, 0x8e, 0x77, 0xd2, 0x3d, 0xf1,
-	0x48, 0x8e, 0xf1, 0xc2, 0x23, 0x39, 0xc6, 0x07, 0x8f, 0xe4, 0x18, 0x27, 0x3c, 0x96, 0x63, 0xb8,
-	0xf0, 0x58, 0x8e, 0xe1, 0xc6, 0x63, 0x39, 0x86, 0x28, 0x61, 0x54, 0xb7, 0x97, 0x54, 0x16, 0xa4,
-	0x16, 0x27, 0xb1, 0x81, 0x43, 0xdc, 0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0x29, 0xa0, 0x38, 0x21,
-	0x16, 0x02, 0x00, 0x00,
+	// 517 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x53, 0x4d, 0x6f, 0xd3, 0x40,
+	0x10, 0xcd, 0xb6, 0x69, 0x25, 0x4f, 0x43, 0x10, 0x26, 0x6a, 0x5c, 0x53, 0xdc, 0x28, 0x20, 0x88,
+	0xaa, 0xd6, 0xa6, 0x05, 0x71, 0xe8, 0xad, 0xe1, 0x02, 0x12, 0x11, 0xc8, 0xa8, 0x12, 0xe2, 0x12,
+	0x6d, 0xeb, 0x65, 0x6d, 0x29, 0xf1, 0x5a, 0xbb, 0x76, 0x15, 0x73, 0x42, 0xfc, 0x01, 0xf8, 0x15,
+	0x9c, 0x7b, 0xe0, 0x27, 0x70, 0xe8, 0xb1, 0xe2, 0xc4, 0x09, 0xa1, 0xe4, 0xd0, 0xbf, 0x81, 0xbc,
+	0x6b, 0x37, 0x1f, 0x8d, 0x08, 0xe2, 0xe6, 0x9d, 0xf7, 0xf6, 0xcd, 0x7b, 0x33, 0x5e, 0xa8, 0xd3,
+	0x5e, 0xc2, 0x42, 0x87, 0x71, 0x8f, 0x70, 0xe7, 0x74, 0xcf, 0x89, 0x07, 0x76, 0xc4, 0x59, 0xcc,
+	0xf4, 0xaa, 0x04, 0x6c, 0x09, 0xd8, 0xa7, 0x7b, 0x66, 0xfd, 0x84, 0x89, 0x3e, 0x13, 0x4e, 0x5f,
+	0xd0, 0x8c, 0xd7, 0x17, 0x54, 0x11, 0xcd, 0x0d, 0x05, 0x74, 0xe5, 0xc9, 0x51, 0x87, 0x1c, 0xba,
+	0x33, 0x23, 0x1e, 0x61, 0x8e, 0xfb, 0x05, 0x58, 0xa3, 0x8c, 0x32, 0x75, 0x29, 0xfb, 0x2a, 0xd4,
+	0x28, 0x63, 0xb4, 0x47, 0x1c, 0x79, 0x3a, 0x4e, 0xde, 0x3b, 0x38, 0x4c, 0x15, 0xd4, 0xfc, 0x8c,
+	0xe0, 0x66, 0x47, 0xd0, 0xa3, 0xc8, 0xc3, 0x31, 0x79, 0x2d, 0xa5, 0xf4, 0xa7, 0xa0, 0xe1, 0x24,
+	0xf6, 0x19, 0x0f, 0xe2, 0xd4, 0x40, 0x0d, 0xd4, 0xd2, 0xda, 0xc6, 0x8f, 0x6f, 0xbb, 0xb5, 0xdc,
+	0xc6, 0xa1, 0xe7, 0x71, 0x22, 0xc4, 0x9b, 0x98, 0x07, 0x21, 0x75, 0xc7, 0x54, 0xfd, 0x09, 0xac,
+	0x2a, 0x33, 0xc6, 0x52, 0x03, 0xb5, 0xd6, 0xf6, 0xd7, 0xed, 0xe9, 0xb8, 0xb6, 0xd2, 0x6f, 0x97,
+	0xcf, 0x7f, 0x6d, 0x95, 0xdc, 0x9c, 0x7b, 0x50, 0xfd, 0x74, 0x79, 0xb6, 0x3d, 0x56, 0x69, 0x6e,
+	0x40, 0x7d, 0xc6, 0x90, 0x4b, 0x44, 0xc4, 0x42, 0x41, 0x9a, 0xdf, 0x11, 0xd4, 0x3a, 0x82, 0xbe,
+	0xc4, 0x1f, 0x52, 0x97, 0xd0, 0x40, 0xc4, 0x84, 0xbf, 0xca, 0xb4, 0xf5, 0x1d, 0x28, 0x27, 0x82,
+	0xf0, 0x85, 0x66, 0x25, 0x4b, 0x7f, 0x04, 0x2b, 0xd2, 0x52, 0x6e, 0xb3, 0x66, 0xab, 0xf1, 0xd8,
+	0xc5, 0x78, 0xec, 0xc3, 0x30, 0xcd, 0x4d, 0x2a, 0xa2, 0x7e, 0x0f, 0x6e, 0x44, 0x38, 0xc8, 0x24,
+	0xba, 0x41, 0xe8, 0x91, 0x81, 0xb1, 0x9c, 0x35, 0x72, 0x2b, 0x79, 0xf1, 0x45, 0x56, 0xd3, 0x37,
+	0x41, 0x13, 0x01, 0x0d, 0x71, 0x9c, 0x70, 0x62, 0x94, 0x1b, 0xa8, 0x55, 0x71, 0xc7, 0x85, 0x03,
+	0x2d, 0x8b, 0x29, 0xfb, 0x37, 0x2d, 0xd8, 0x9c, 0x97, 0xe2, 0x2a, 0xa6, 0x0f, 0xd5, 0x8e, 0xa0,
+	0xcf, 0x70, 0x78, 0x42, 0x7a, 0xff, 0x93, 0xef, 0x2e, 0x80, 0xb4, 0xdd, 0xf5, 0xb1, 0xf0, 0x65,
+	0x48, 0xcd, 0xd5, 0x64, 0xe5, 0x39, 0x16, 0xfe, 0xa4, 0x13, 0x03, 0xd6, 0xa7, 0x3b, 0x15, 0x1e,
+	0xf6, 0xbf, 0x2e, 0xc1, 0x72, 0x47, 0x50, 0xfd, 0x2d, 0x54, 0xa6, 0xfe, 0x8d, 0xad, 0xd9, 0x9d,
+	0xce, 0xec, 0xca, 0x7c, 0xb8, 0x80, 0x50, 0x74, 0xd0, 0x29, 0xdc, 0xba, 0xbe, 0xc8, 0xfb, 0x73,
+	0x6e, 0x5f, 0x63, 0x99, 0x3b, 0xff, 0xc2, 0xba, 0x6a, 0x74, 0x04, 0x6b, 0x93, 0xb3, 0xb4, 0xe6,
+	0x5c, 0x9e, 0xc0, 0xcd, 0x07, 0x7f, 0xc7, 0x0b, 0x59, 0x73, 0xe5, 0xe3, 0xe5, 0xd9, 0x36, 0x6a,
+	0xef, 0x9e, 0x0f, 0x2d, 0x74, 0x31, 0xb4, 0xd0, 0xef, 0xa1, 0x85, 0xbe, 0x8c, 0xac, 0xd2, 0xc5,
+	0xc8, 0x2a, 0xfd, 0x1c, 0x59, 0xa5, 0x77, 0xb7, 0xd5, 0x43, 0x1d, 0xe4, 0x4f, 0x35, 0x4e, 0x23,
+	0x22, 0x8e, 0x57, 0xe5, 0x4f, 0xf6, 0xf8, 0x4f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x68, 0x74, 0xdf,
+	0x68, 0x23, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -174,6 +386,10 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
+	// LazyRegisterOrder
+	LazyRegisterOrder(ctx context.Context, in *MsgLazyRegisterOrder, opts ...grpc.CallOption) (*MsgLazyRegisterOrderResponse, error)
+	// CancelOrder
+	CancelOrder(ctx context.Context, in *MsgCancelOrder, opts ...grpc.CallOption) (*MsgCancelOrderResponse, error)
 }
 
 type msgClient struct {
@@ -193,11 +409,33 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 	return out, nil
 }
 
+func (c *msgClient) LazyRegisterOrder(ctx context.Context, in *MsgLazyRegisterOrder, opts ...grpc.CallOption) (*MsgLazyRegisterOrderResponse, error) {
+	out := new(MsgLazyRegisterOrderResponse)
+	err := c.cc.Invoke(ctx, "/gluon.order.v1.Msg/LazyRegisterOrder", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) CancelOrder(ctx context.Context, in *MsgCancelOrder, opts ...grpc.CallOption) (*MsgCancelOrderResponse, error) {
+	out := new(MsgCancelOrderResponse)
+	err := c.cc.Invoke(ctx, "/gluon.order.v1.Msg/CancelOrder", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
+	// LazyRegisterOrder
+	LazyRegisterOrder(context.Context, *MsgLazyRegisterOrder) (*MsgLazyRegisterOrderResponse, error)
+	// CancelOrder
+	CancelOrder(context.Context, *MsgCancelOrder) (*MsgCancelOrderResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -206,6 +444,12 @@ type UnimplementedMsgServer struct {
 
 func (*UnimplementedMsgServer) UpdateParams(ctx context.Context, req *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
+}
+func (*UnimplementedMsgServer) LazyRegisterOrder(ctx context.Context, req *MsgLazyRegisterOrder) (*MsgLazyRegisterOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LazyRegisterOrder not implemented")
+}
+func (*UnimplementedMsgServer) CancelOrder(ctx context.Context, req *MsgCancelOrder) (*MsgCancelOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CancelOrder not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -230,6 +474,42 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_LazyRegisterOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgLazyRegisterOrder)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).LazyRegisterOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gluon.order.v1.Msg/LazyRegisterOrder",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).LazyRegisterOrder(ctx, req.(*MsgLazyRegisterOrder))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_CancelOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCancelOrder)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CancelOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gluon.order.v1.Msg/CancelOrder",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CancelOrder(ctx, req.(*MsgCancelOrder))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var Msg_serviceDesc = _Msg_serviceDesc
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "gluon.order.v1.Msg",
@@ -238,6 +518,14 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateParams",
 			Handler:    _Msg_UpdateParams_Handler,
+		},
+		{
+			MethodName: "LazyRegisterOrder",
+			Handler:    _Msg_LazyRegisterOrder_Handler,
+		},
+		{
+			MethodName: "CancelOrder",
+			Handler:    _Msg_CancelOrder_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -307,6 +595,143 @@ func (m *MsgUpdateParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgLazyRegisterOrder) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgLazyRegisterOrder) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgLazyRegisterOrder) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Signature) > 0 {
+		i -= len(m.Signature)
+		copy(dAtA[i:], m.Signature)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Signature)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.PairingIndex) > 0 {
+		i -= len(m.PairingIndex)
+		copy(dAtA[i:], m.PairingIndex)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.PairingIndex)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	{
+		size, err := m.Order.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintTx(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0x12
+	if len(m.User) > 0 {
+		i -= len(m.User)
+		copy(dAtA[i:], m.User)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.User)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgLazyRegisterOrderResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgLazyRegisterOrderResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgLazyRegisterOrderResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgCancelOrder) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgCancelOrder) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgCancelOrder) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.OrderHash) > 0 {
+		i -= len(m.OrderHash)
+		copy(dAtA[i:], m.OrderHash)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.OrderHash)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.User) > 0 {
+		i -= len(m.User)
+		copy(dAtA[i:], m.User)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.User)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgCancelOrderResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgCancelOrderResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgCancelOrderResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -334,6 +759,64 @@ func (m *MsgUpdateParams) Size() (n int) {
 }
 
 func (m *MsgUpdateParamsResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgLazyRegisterOrder) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.User)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = m.Order.Size()
+	n += 1 + l + sovTx(uint64(l))
+	l = len(m.PairingIndex)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Signature)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgLazyRegisterOrderResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgCancelOrder) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.User)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.OrderHash)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgCancelOrderResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -490,6 +973,401 @@ func (m *MsgUpdateParamsResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: MsgUpdateParamsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgLazyRegisterOrder) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgLazyRegisterOrder: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgLazyRegisterOrder: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field User", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.User = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Order", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Order.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PairingIndex", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.PairingIndex = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Signature", wireType)
+			}
+			var byteLen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				byteLen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if byteLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + byteLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Signature = append(m.Signature[:0], dAtA[iNdEx:postIndex]...)
+			if m.Signature == nil {
+				m.Signature = []byte{}
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgLazyRegisterOrderResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgLazyRegisterOrderResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgLazyRegisterOrderResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgCancelOrder) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgCancelOrder: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgCancelOrder: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field User", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.User = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OrderHash", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OrderHash = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgCancelOrderResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgCancelOrderResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgCancelOrderResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

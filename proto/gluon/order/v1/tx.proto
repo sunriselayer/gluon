@@ -3,7 +3,7 @@ package gluon.order.v1;
 
 import "cosmos/msg/v1/msg.proto";
 import "cosmos_proto/cosmos.proto";
-import "gluon/order/params.proto";
+import "gluon/order/v1/params.proto";
 import "gogoproto/gogo.proto";
 import "google/protobuf/any.proto";
 

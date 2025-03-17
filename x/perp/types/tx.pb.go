@@ -5,20 +5,21 @@ package types
 
 import (
 	context "context"
+	cosmossdk_io_math "cosmossdk.io/math"
 	fmt "fmt"
-	io "io"
-	math "math"
-	math_bits "math/bits"
-
 	_ "github.com/cosmos/cosmos-proto"
+	github_com_cosmos_cosmos_sdk_types "github.com/cosmos/cosmos-sdk/types"
+	types "github.com/cosmos/cosmos-sdk/types"
 	_ "github.com/cosmos/cosmos-sdk/types/msgservice"
-	_ "github.com/cosmos/cosmos-sdk/types/tx/amino"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	grpc1 "github.com/cosmos/gogoproto/grpc"
 	proto "github.com/cosmos/gogoproto/proto"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	io "io"
+	math "math"
+	math_bits "math/bits"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -127,36 +128,358 @@ func (m *MsgUpdateParamsResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgUpdateParamsResponse proto.InternalMessageInfo
 
+// MsgMatchOrder
+type MsgMatchOrder struct {
+	Buyer           string                `protobuf:"bytes,1,opt,name=buyer,proto3" json:"buyer,omitempty"`
+	Seller          string                `protobuf:"bytes,2,opt,name=seller,proto3" json:"seller,omitempty"`
+	OrderHashBuyer  string                `protobuf:"bytes,3,opt,name=order_hash_buyer,json=orderHashBuyer,proto3" json:"order_hash_buyer,omitempty"`
+	OrderHashSeller string                `protobuf:"bytes,4,opt,name=order_hash_seller,json=orderHashSeller,proto3" json:"order_hash_seller,omitempty"`
+	Price           string                `protobuf:"bytes,5,opt,name=price,proto3" json:"price,omitempty"`
+	Quantity        cosmossdk_io_math.Int `protobuf:"bytes,6,opt,name=quantity,proto3,customtype=cosmossdk.io/math.Int" json:"quantity"`
+}
+
+func (m *MsgMatchOrder) Reset()         { *m = MsgMatchOrder{} }
+func (m *MsgMatchOrder) String() string { return proto.CompactTextString(m) }
+func (*MsgMatchOrder) ProtoMessage()    {}
+func (*MsgMatchOrder) Descriptor() ([]byte, []int) {
+	return fileDescriptor_637a0f801110c3b1, []int{2}
+}
+func (m *MsgMatchOrder) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgMatchOrder) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgMatchOrder.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgMatchOrder) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgMatchOrder.Merge(m, src)
+}
+func (m *MsgMatchOrder) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgMatchOrder) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgMatchOrder.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgMatchOrder proto.InternalMessageInfo
+
+func (m *MsgMatchOrder) GetBuyer() string {
+	if m != nil {
+		return m.Buyer
+	}
+	return ""
+}
+
+func (m *MsgMatchOrder) GetSeller() string {
+	if m != nil {
+		return m.Seller
+	}
+	return ""
+}
+
+func (m *MsgMatchOrder) GetOrderHashBuyer() string {
+	if m != nil {
+		return m.OrderHashBuyer
+	}
+	return ""
+}
+
+func (m *MsgMatchOrder) GetOrderHashSeller() string {
+	if m != nil {
+		return m.OrderHashSeller
+	}
+	return ""
+}
+
+func (m *MsgMatchOrder) GetPrice() string {
+	if m != nil {
+		return m.Price
+	}
+	return ""
+}
+
+// MsgMatchOrderResponse
+type MsgMatchOrderResponse struct {
+}
+
+func (m *MsgMatchOrderResponse) Reset()         { *m = MsgMatchOrderResponse{} }
+func (m *MsgMatchOrderResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgMatchOrderResponse) ProtoMessage()    {}
+func (*MsgMatchOrderResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_637a0f801110c3b1, []int{3}
+}
+func (m *MsgMatchOrderResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgMatchOrderResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgMatchOrderResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgMatchOrderResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgMatchOrderResponse.Merge(m, src)
+}
+func (m *MsgMatchOrderResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgMatchOrderResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgMatchOrderResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgMatchOrderResponse proto.InternalMessageInfo
+
+// MsgDepositCrossMargin
+type MsgDepositCrossMargin struct {
+	User   string                                   `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	Assets github_com_cosmos_cosmos_sdk_types.Coins `protobuf:"bytes,2,rep,name=assets,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.Coins" json:"assets"`
+}
+
+func (m *MsgDepositCrossMargin) Reset()         { *m = MsgDepositCrossMargin{} }
+func (m *MsgDepositCrossMargin) String() string { return proto.CompactTextString(m) }
+func (*MsgDepositCrossMargin) ProtoMessage()    {}
+func (*MsgDepositCrossMargin) Descriptor() ([]byte, []int) {
+	return fileDescriptor_637a0f801110c3b1, []int{4}
+}
+func (m *MsgDepositCrossMargin) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgDepositCrossMargin) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgDepositCrossMargin.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgDepositCrossMargin) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgDepositCrossMargin.Merge(m, src)
+}
+func (m *MsgDepositCrossMargin) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgDepositCrossMargin) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgDepositCrossMargin.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgDepositCrossMargin proto.InternalMessageInfo
+
+func (m *MsgDepositCrossMargin) GetUser() string {
+	if m != nil {
+		return m.User
+	}
+	return ""
+}
+
+func (m *MsgDepositCrossMargin) GetAssets() github_com_cosmos_cosmos_sdk_types.Coins {
+	if m != nil {
+		return m.Assets
+	}
+	return nil
+}
+
+// MsgDepositCrossMarginResponse
+type MsgDepositCrossMarginResponse struct {
+}
+
+func (m *MsgDepositCrossMarginResponse) Reset()         { *m = MsgDepositCrossMarginResponse{} }
+func (m *MsgDepositCrossMarginResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgDepositCrossMarginResponse) ProtoMessage()    {}
+func (*MsgDepositCrossMarginResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_637a0f801110c3b1, []int{5}
+}
+func (m *MsgDepositCrossMarginResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgDepositCrossMarginResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgDepositCrossMarginResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgDepositCrossMarginResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgDepositCrossMarginResponse.Merge(m, src)
+}
+func (m *MsgDepositCrossMarginResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgDepositCrossMarginResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgDepositCrossMarginResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgDepositCrossMarginResponse proto.InternalMessageInfo
+
+// MsgWithdrawCrossMargin
+type MsgWithdrawCrossMargin struct {
+	User   string                                   `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	Assets github_com_cosmos_cosmos_sdk_types.Coins `protobuf:"bytes,2,rep,name=assets,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.Coins" json:"assets"`
+}
+
+func (m *MsgWithdrawCrossMargin) Reset()         { *m = MsgWithdrawCrossMargin{} }
+func (m *MsgWithdrawCrossMargin) String() string { return proto.CompactTextString(m) }
+func (*MsgWithdrawCrossMargin) ProtoMessage()    {}
+func (*MsgWithdrawCrossMargin) Descriptor() ([]byte, []int) {
+	return fileDescriptor_637a0f801110c3b1, []int{6}
+}
+func (m *MsgWithdrawCrossMargin) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgWithdrawCrossMargin) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgWithdrawCrossMargin.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgWithdrawCrossMargin) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgWithdrawCrossMargin.Merge(m, src)
+}
+func (m *MsgWithdrawCrossMargin) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgWithdrawCrossMargin) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgWithdrawCrossMargin.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgWithdrawCrossMargin proto.InternalMessageInfo
+
+func (m *MsgWithdrawCrossMargin) GetUser() string {
+	if m != nil {
+		return m.User
+	}
+	return ""
+}
+
+func (m *MsgWithdrawCrossMargin) GetAssets() github_com_cosmos_cosmos_sdk_types.Coins {
+	if m != nil {
+		return m.Assets
+	}
+	return nil
+}
+
+// MsgWithdrawCrossMarginResponse
+type MsgWithdrawCrossMarginResponse struct {
+}
+
+func (m *MsgWithdrawCrossMarginResponse) Reset()         { *m = MsgWithdrawCrossMarginResponse{} }
+func (m *MsgWithdrawCrossMarginResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgWithdrawCrossMarginResponse) ProtoMessage()    {}
+func (*MsgWithdrawCrossMarginResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_637a0f801110c3b1, []int{7}
+}
+func (m *MsgWithdrawCrossMarginResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgWithdrawCrossMarginResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgWithdrawCrossMarginResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgWithdrawCrossMarginResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgWithdrawCrossMarginResponse.Merge(m, src)
+}
+func (m *MsgWithdrawCrossMarginResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgWithdrawCrossMarginResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgWithdrawCrossMarginResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgWithdrawCrossMarginResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*MsgUpdateParams)(nil), "gluon.perp.v1.MsgUpdateParams")
 	proto.RegisterType((*MsgUpdateParamsResponse)(nil), "gluon.perp.v1.MsgUpdateParamsResponse")
+	proto.RegisterType((*MsgMatchOrder)(nil), "gluon.perp.v1.MsgMatchOrder")
+	proto.RegisterType((*MsgMatchOrderResponse)(nil), "gluon.perp.v1.MsgMatchOrderResponse")
+	proto.RegisterType((*MsgDepositCrossMargin)(nil), "gluon.perp.v1.MsgDepositCrossMargin")
+	proto.RegisterType((*MsgDepositCrossMarginResponse)(nil), "gluon.perp.v1.MsgDepositCrossMarginResponse")
+	proto.RegisterType((*MsgWithdrawCrossMargin)(nil), "gluon.perp.v1.MsgWithdrawCrossMargin")
+	proto.RegisterType((*MsgWithdrawCrossMarginResponse)(nil), "gluon.perp.v1.MsgWithdrawCrossMarginResponse")
 }
 
 func init() { proto.RegisterFile("gluon/perp/v1/tx.proto", fileDescriptor_637a0f801110c3b1) }
 
 var fileDescriptor_637a0f801110c3b1 = []byte{
-	// 323 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x4b, 0xcf, 0x29, 0xcd,
-	0xcf, 0xd3, 0x2f, 0x48, 0x2d, 0x2a, 0xd0, 0x2f, 0x33, 0xd4, 0x2f, 0xa9, 0xd0, 0x2b, 0x28, 0xca,
-	0x2f, 0xc9, 0x17, 0xe2, 0x05, 0x8b, 0xeb, 0x81, 0xc4, 0xf5, 0xca, 0x0c, 0xa5, 0x04, 0x13, 0x73,
-	0x33, 0xf3, 0xf2, 0xf5, 0xc1, 0x24, 0x44, 0x85, 0x94, 0x78, 0x72, 0x7e, 0x71, 0x6e, 0x7e, 0xb1,
-	0x7e, 0x6e, 0x71, 0x3a, 0x48, 0x67, 0x6e, 0x71, 0x3a, 0x54, 0x42, 0x12, 0x22, 0x11, 0x0f, 0xe6,
-	0xe9, 0x43, 0x38, 0x50, 0x29, 0x91, 0xf4, 0xfc, 0xf4, 0x7c, 0x88, 0x38, 0x88, 0x05, 0x15, 0x95,
-	0x42, 0x75, 0x43, 0x41, 0x62, 0x51, 0x62, 0x2e, 0x54, 0x87, 0xd2, 0x16, 0x46, 0x2e, 0x7e, 0xdf,
-	0xe2, 0xf4, 0xd0, 0x82, 0x94, 0xc4, 0x92, 0xd4, 0x00, 0xb0, 0x8c, 0x90, 0x19, 0x17, 0x67, 0x62,
-	0x69, 0x49, 0x46, 0x7e, 0x51, 0x66, 0x49, 0xa5, 0x04, 0xa3, 0x02, 0xa3, 0x06, 0xa7, 0x93, 0xc4,
-	0xa5, 0x2d, 0xba, 0x22, 0x50, 0xab, 0x1c, 0x53, 0x52, 0x8a, 0x52, 0x8b, 0x8b, 0x83, 0x4b, 0x8a,
-	0x32, 0xf3, 0xd2, 0x83, 0x10, 0x4a, 0x85, 0x2c, 0xb8, 0xd8, 0x20, 0x66, 0x4b, 0x30, 0x29, 0x30,
-	0x6a, 0x70, 0x1b, 0x89, 0xea, 0xa1, 0x78, 0x52, 0x0f, 0x62, 0xbc, 0x13, 0xe7, 0x89, 0x7b, 0xf2,
-	0x0c, 0x2b, 0x9e, 0x6f, 0xd0, 0x62, 0x0c, 0x82, 0xaa, 0xb7, 0xd2, 0x6f, 0x7a, 0xbe, 0x41, 0x0b,
-	0x61, 0x52, 0xd7, 0xf3, 0x0d, 0x5a, 0x32, 0x10, 0x47, 0x57, 0x40, 0x9c, 0x8d, 0xe6, 0x44, 0x25,
-	0x49, 0x2e, 0x71, 0x34, 0xa1, 0xa0, 0xd4, 0xe2, 0x82, 0xfc, 0xbc, 0xe2, 0x54, 0xa3, 0x14, 0x2e,
-	0x66, 0xdf, 0xe2, 0x74, 0xa1, 0x30, 0x2e, 0x1e, 0x14, 0x4f, 0xc9, 0xa1, 0x39, 0x06, 0x4d, 0xbb,
-	0x94, 0x1a, 0x7e, 0x79, 0x98, 0xf1, 0x52, 0xac, 0x0d, 0x20, 0x97, 0x3b, 0xe9, 0x9c, 0x78, 0x24,
-	0xc7, 0x78, 0xe1, 0x91, 0x1c, 0xe3, 0x83, 0x47, 0x72, 0x8c, 0x13, 0x1e, 0xcb, 0x31, 0x5c, 0x78,
-	0x2c, 0xc7, 0x70, 0xe3, 0xb1, 0x1c, 0x43, 0x94, 0x10, 0x8a, 0xc3, 0x4b, 0x2a, 0x0b, 0x52, 0x8b,
-	0x93, 0xd8, 0xc0, 0x81, 0x6d, 0x0c, 0x08, 0x00, 0x00, 0xff, 0xff, 0x0d, 0xcb, 0x03, 0x2b, 0x0e,
-	0x02, 0x00, 0x00,
+	// 663 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x54, 0xcf, 0x4f, 0x13, 0x4f,
+	0x14, 0xef, 0x52, 0xda, 0x7c, 0x19, 0xbe, 0x80, 0x8e, 0x14, 0xca, 0x46, 0xb7, 0xa4, 0x51, 0xd3,
+	0x20, 0xdd, 0xa5, 0x90, 0x78, 0xe0, 0x66, 0x31, 0x51, 0x0e, 0x8d, 0xa4, 0x44, 0x4d, 0xbc, 0x90,
+	0x69, 0x77, 0xb2, 0xbb, 0x81, 0xee, 0xac, 0xf3, 0xa6, 0x08, 0x37, 0xe3, 0x5d, 0xe3, 0xdf, 0xe1,
+	0x89, 0x03, 0x7a, 0xf3, 0xce, 0x91, 0x70, 0x32, 0x1e, 0xd0, 0xc0, 0x81, 0x7f, 0xc3, 0xcc, 0x8f,
+	0x16, 0x0a, 0x1b, 0xe4, 0xea, 0x69, 0x77, 0xe6, 0xf3, 0x79, 0x9f, 0xcf, 0x7b, 0x6f, 0xde, 0x0c,
+	0x9a, 0x0a, 0xb6, 0xba, 0x2c, 0xf6, 0x12, 0xca, 0x13, 0x6f, 0xbb, 0xe6, 0x89, 0x1d, 0x37, 0xe1,
+	0x4c, 0x30, 0x3c, 0xa6, 0xf6, 0x5d, 0xb9, 0xef, 0x6e, 0xd7, 0x6c, 0xa7, 0xcd, 0xa0, 0xc3, 0xc0,
+	0x6b, 0x11, 0xa0, 0xde, 0x76, 0xad, 0x45, 0x05, 0xa9, 0x79, 0x6d, 0x16, 0xc5, 0x9a, 0x6e, 0x4f,
+	0x1b, 0xbc, 0x03, 0x81, 0x94, 0xe9, 0x40, 0x60, 0x80, 0x19, 0x0d, 0x6c, 0xa8, 0x95, 0xa7, 0x17,
+	0x06, 0xb2, 0x07, 0xad, 0x13, 0xc2, 0x49, 0xa7, 0x87, 0x4d, 0x06, 0x2c, 0x60, 0x3a, 0x46, 0xfe,
+	0xe9, 0xdd, 0xf2, 0x27, 0x0b, 0x4d, 0x34, 0x20, 0x78, 0x99, 0xf8, 0x44, 0xd0, 0x35, 0xc5, 0xc7,
+	0x8f, 0xd1, 0x08, 0xe9, 0x8a, 0x90, 0xf1, 0x48, 0xec, 0x16, 0xad, 0x59, 0xab, 0x32, 0x52, 0x2f,
+	0x1e, 0xed, 0x57, 0x27, 0x8d, 0xd5, 0x13, 0xdf, 0xe7, 0x14, 0x60, 0x5d, 0xf0, 0x28, 0x0e, 0x9a,
+	0xe7, 0x54, 0xbc, 0x84, 0xf2, 0xda, 0xb1, 0x38, 0x34, 0x6b, 0x55, 0x46, 0x17, 0x0b, 0xee, 0x40,
+	0xc5, 0xae, 0x96, 0xaf, 0x0f, 0x1f, 0x1c, 0x97, 0x32, 0x4d, 0x43, 0x5d, 0x1e, 0xff, 0x70, 0xb6,
+	0x37, 0x77, 0x2e, 0x52, 0x9e, 0x41, 0xd3, 0x97, 0xf2, 0x69, 0x52, 0x48, 0x58, 0x0c, 0xb4, 0xfc,
+	0x7d, 0x08, 0x8d, 0x35, 0x20, 0x68, 0x10, 0xd1, 0x0e, 0x5f, 0x70, 0x9f, 0x72, 0xec, 0xa2, 0x5c,
+	0xab, 0xbb, 0x4b, 0xf9, 0x5f, 0xb3, 0xd4, 0x34, 0xbc, 0x80, 0xf2, 0x40, 0xb7, 0xb6, 0x28, 0x57,
+	0x19, 0x5e, 0x17, 0x60, 0x78, 0xb8, 0x82, 0x6e, 0x31, 0x69, 0xb5, 0x11, 0x12, 0x08, 0x37, 0xb4,
+	0x59, 0x56, 0xc6, 0x36, 0xc7, 0xd5, 0xfe, 0x73, 0x02, 0x61, 0x5d, 0x69, 0xcf, 0xa1, 0xdb, 0x17,
+	0x98, 0xc6, 0x66, 0x58, 0x51, 0x27, 0xfa, 0xd4, 0x75, 0xad, 0x3a, 0x89, 0x72, 0x09, 0x8f, 0xda,
+	0xb4, 0x98, 0x53, 0xb8, 0x5e, 0xe0, 0x67, 0xe8, 0xbf, 0xb7, 0x5d, 0x12, 0x0b, 0xd9, 0xf6, 0xbc,
+	0xca, 0xef, 0x91, 0x6c, 0xd5, 0xcf, 0xe3, 0x52, 0x41, 0xe7, 0x08, 0xfe, 0xa6, 0x1b, 0x31, 0xaf,
+	0x43, 0x44, 0xe8, 0xae, 0xc6, 0xe2, 0x68, 0xbf, 0x8a, 0x4c, 0xf2, 0xab, 0xb1, 0x68, 0xf6, 0x83,
+	0x97, 0x0b, 0xb2, 0xa7, 0xba, 0x64, 0xf9, 0x67, 0x6a, 0x29, 0x4f, 0xa3, 0xc2, 0x40, 0xfb, 0xfa,
+	0x8d, 0xfd, 0x6a, 0x29, 0xe4, 0x29, 0x4d, 0x18, 0x44, 0x62, 0x85, 0x33, 0x80, 0x06, 0xe1, 0x41,
+	0x14, 0xe3, 0x79, 0x34, 0xdc, 0x85, 0x1b, 0xf4, 0x57, 0xb1, 0x70, 0x1b, 0xe5, 0x09, 0x00, 0x15,
+	0x72, 0x00, 0xb2, 0x95, 0xd1, 0xc5, 0x19, 0xd7, 0x90, 0xe5, 0x8c, 0xbb, 0x66, 0xc6, 0xdd, 0x15,
+	0x16, 0xc5, 0xf5, 0x05, 0x59, 0xd9, 0x97, 0x5f, 0xa5, 0x4a, 0x10, 0x89, 0xb0, 0xdb, 0x72, 0xdb,
+	0xac, 0x63, 0x46, 0xd9, 0x7c, 0xaa, 0xe0, 0x6f, 0x7a, 0x62, 0x37, 0xa1, 0xa0, 0x02, 0xa0, 0x69,
+	0xa4, 0x97, 0x47, 0x64, 0x49, 0xca, 0xaf, 0x5c, 0x42, 0xf7, 0x52, 0xd3, 0xee, 0x17, 0xf6, 0xcd,
+	0x42, 0x53, 0x0d, 0x08, 0x5e, 0x47, 0x22, 0xf4, 0x39, 0x79, 0xf7, 0xef, 0x54, 0x36, 0x8b, 0x9c,
+	0xf4, 0xbc, 0x7b, 0xa5, 0x2d, 0x7e, 0xcc, 0xa2, 0x6c, 0x03, 0x02, 0xfc, 0x0a, 0xfd, 0x3f, 0x70,
+	0x79, 0x9d, 0x4b, 0x97, 0xee, 0xd2, 0x65, 0xb2, 0x1f, 0x5e, 0x8f, 0xf7, 0xf4, 0xf1, 0x1a, 0x42,
+	0x17, 0x2e, 0xda, 0xdd, 0xab, 0x51, 0xe7, 0xa8, 0x7d, 0xff, 0x3a, 0xb4, 0xaf, 0x18, 0x22, 0x9c,
+	0x32, 0x61, 0x29, 0xb1, 0x57, 0x59, 0xf6, 0xfc, 0x4d, 0x58, 0x7d, 0xa7, 0x4d, 0x74, 0x27, 0xed,
+	0xc8, 0x1f, 0x5c, 0x15, 0x49, 0xa1, 0xd9, 0xd5, 0x1b, 0xd1, 0x7a, 0x66, 0x76, 0xee, 0xfd, 0xd9,
+	0xde, 0x9c, 0x55, 0x9f, 0x3f, 0x38, 0x71, 0xac, 0xc3, 0x13, 0xc7, 0xfa, 0x7d, 0xe2, 0x58, 0x9f,
+	0x4f, 0x9d, 0xcc, 0xe1, 0xa9, 0x93, 0xf9, 0x71, 0xea, 0x64, 0xde, 0x60, 0xfd, 0x28, 0xef, 0xe8,
+	0x67, 0x59, 0x1d, 0x7c, 0x2b, 0xaf, 0x5e, 0xdf, 0xa5, 0x3f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x70,
+	0x5d, 0x4d, 0x95, 0x2c, 0x06, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -174,6 +497,12 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
+	// MatchOrder
+	MatchOrder(ctx context.Context, in *MsgMatchOrder, opts ...grpc.CallOption) (*MsgMatchOrderResponse, error)
+	// DepositCrossMargin
+	DepositCrossMargin(ctx context.Context, in *MsgDepositCrossMargin, opts ...grpc.CallOption) (*MsgDepositCrossMarginResponse, error)
+	// WithdrawCrossMargin
+	WithdrawCrossMargin(ctx context.Context, in *MsgWithdrawCrossMargin, opts ...grpc.CallOption) (*MsgWithdrawCrossMarginResponse, error)
 }
 
 type msgClient struct {
@@ -193,11 +522,44 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 	return out, nil
 }
 
+func (c *msgClient) MatchOrder(ctx context.Context, in *MsgMatchOrder, opts ...grpc.CallOption) (*MsgMatchOrderResponse, error) {
+	out := new(MsgMatchOrderResponse)
+	err := c.cc.Invoke(ctx, "/gluon.perp.v1.Msg/MatchOrder", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) DepositCrossMargin(ctx context.Context, in *MsgDepositCrossMargin, opts ...grpc.CallOption) (*MsgDepositCrossMarginResponse, error) {
+	out := new(MsgDepositCrossMarginResponse)
+	err := c.cc.Invoke(ctx, "/gluon.perp.v1.Msg/DepositCrossMargin", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) WithdrawCrossMargin(ctx context.Context, in *MsgWithdrawCrossMargin, opts ...grpc.CallOption) (*MsgWithdrawCrossMarginResponse, error) {
+	out := new(MsgWithdrawCrossMarginResponse)
+	err := c.cc.Invoke(ctx, "/gluon.perp.v1.Msg/WithdrawCrossMargin", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
+	// MatchOrder
+	MatchOrder(context.Context, *MsgMatchOrder) (*MsgMatchOrderResponse, error)
+	// DepositCrossMargin
+	DepositCrossMargin(context.Context, *MsgDepositCrossMargin) (*MsgDepositCrossMarginResponse, error)
+	// WithdrawCrossMargin
+	WithdrawCrossMargin(context.Context, *MsgWithdrawCrossMargin) (*MsgWithdrawCrossMarginResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -206,6 +568,15 @@ type UnimplementedMsgServer struct {
 
 func (*UnimplementedMsgServer) UpdateParams(ctx context.Context, req *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
+}
+func (*UnimplementedMsgServer) MatchOrder(ctx context.Context, req *MsgMatchOrder) (*MsgMatchOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MatchOrder not implemented")
+}
+func (*UnimplementedMsgServer) DepositCrossMargin(ctx context.Context, req *MsgDepositCrossMargin) (*MsgDepositCrossMarginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DepositCrossMargin not implemented")
+}
+func (*UnimplementedMsgServer) WithdrawCrossMargin(ctx context.Context, req *MsgWithdrawCrossMargin) (*MsgWithdrawCrossMarginResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WithdrawCrossMargin not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -230,6 +601,60 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_MatchOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgMatchOrder)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).MatchOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gluon.perp.v1.Msg/MatchOrder",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).MatchOrder(ctx, req.(*MsgMatchOrder))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_DepositCrossMargin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDepositCrossMargin)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).DepositCrossMargin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gluon.perp.v1.Msg/DepositCrossMargin",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).DepositCrossMargin(ctx, req.(*MsgDepositCrossMargin))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_WithdrawCrossMargin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgWithdrawCrossMargin)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).WithdrawCrossMargin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gluon.perp.v1.Msg/WithdrawCrossMargin",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).WithdrawCrossMargin(ctx, req.(*MsgWithdrawCrossMargin))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var Msg_serviceDesc = _Msg_serviceDesc
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "gluon.perp.v1.Msg",
@@ -238,6 +663,18 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateParams",
 			Handler:    _Msg_UpdateParams_Handler,
+		},
+		{
+			MethodName: "MatchOrder",
+			Handler:    _Msg_MatchOrder_Handler,
+		},
+		{
+			MethodName: "DepositCrossMargin",
+			Handler:    _Msg_DepositCrossMargin_Handler,
+		},
+		{
+			MethodName: "WithdrawCrossMargin",
+			Handler:    _Msg_WithdrawCrossMargin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -307,6 +744,231 @@ func (m *MsgUpdateParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgMatchOrder) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgMatchOrder) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgMatchOrder) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size := m.Quantity.Size()
+		i -= size
+		if _, err := m.Quantity.MarshalTo(dAtA[i:]); err != nil {
+			return 0, err
+		}
+		i = encodeVarintTx(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0x32
+	if len(m.Price) > 0 {
+		i -= len(m.Price)
+		copy(dAtA[i:], m.Price)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Price)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.OrderHashSeller) > 0 {
+		i -= len(m.OrderHashSeller)
+		copy(dAtA[i:], m.OrderHashSeller)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.OrderHashSeller)))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.OrderHashBuyer) > 0 {
+		i -= len(m.OrderHashBuyer)
+		copy(dAtA[i:], m.OrderHashBuyer)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.OrderHashBuyer)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Seller) > 0 {
+		i -= len(m.Seller)
+		copy(dAtA[i:], m.Seller)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Seller)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Buyer) > 0 {
+		i -= len(m.Buyer)
+		copy(dAtA[i:], m.Buyer)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Buyer)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgMatchOrderResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgMatchOrderResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgMatchOrderResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgDepositCrossMargin) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgDepositCrossMargin) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgDepositCrossMargin) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Assets) > 0 {
+		for iNdEx := len(m.Assets) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Assets[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintTx(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x12
+		}
+	}
+	if len(m.User) > 0 {
+		i -= len(m.User)
+		copy(dAtA[i:], m.User)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.User)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgDepositCrossMarginResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgDepositCrossMarginResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgDepositCrossMarginResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgWithdrawCrossMargin) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgWithdrawCrossMargin) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgWithdrawCrossMargin) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Assets) > 0 {
+		for iNdEx := len(m.Assets) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Assets[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintTx(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x12
+		}
+	}
+	if len(m.User) > 0 {
+		i -= len(m.User)
+		copy(dAtA[i:], m.User)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.User)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgWithdrawCrossMarginResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgWithdrawCrossMarginResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgWithdrawCrossMarginResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -334,6 +996,102 @@ func (m *MsgUpdateParams) Size() (n int) {
 }
 
 func (m *MsgUpdateParamsResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgMatchOrder) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Buyer)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Seller)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.OrderHashBuyer)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.OrderHashSeller)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Price)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = m.Quantity.Size()
+	n += 1 + l + sovTx(uint64(l))
+	return n
+}
+
+func (m *MsgMatchOrderResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgDepositCrossMargin) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.User)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	if len(m.Assets) > 0 {
+		for _, e := range m.Assets {
+			l = e.Size()
+			n += 1 + l + sovTx(uint64(l))
+		}
+	}
+	return n
+}
+
+func (m *MsgDepositCrossMarginResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgWithdrawCrossMargin) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.User)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	if len(m.Assets) > 0 {
+		for _, e := range m.Assets {
+			l = e.Size()
+			n += 1 + l + sovTx(uint64(l))
+		}
+	}
+	return n
+}
+
+func (m *MsgWithdrawCrossMarginResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -490,6 +1248,632 @@ func (m *MsgUpdateParamsResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: MsgUpdateParamsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgMatchOrder) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgMatchOrder: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgMatchOrder: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Buyer", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Buyer = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Seller", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Seller = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OrderHashBuyer", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OrderHashBuyer = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field OrderHashSeller", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.OrderHashSeller = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Price", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Price = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 6:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Quantity", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Quantity.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgMatchOrderResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgMatchOrderResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgMatchOrderResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgDepositCrossMargin) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgDepositCrossMargin: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgDepositCrossMargin: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field User", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.User = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Assets", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Assets = append(m.Assets, types.Coin{})
+			if err := m.Assets[len(m.Assets)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgDepositCrossMarginResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgDepositCrossMarginResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgDepositCrossMarginResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgWithdrawCrossMargin) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgWithdrawCrossMargin: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgWithdrawCrossMargin: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field User", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.User = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Assets", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Assets = append(m.Assets, types.Coin{})
+			if err := m.Assets[len(m.Assets)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgWithdrawCrossMarginResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgWithdrawCrossMarginResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgWithdrawCrossMarginResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:
