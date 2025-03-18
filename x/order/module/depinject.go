@@ -31,6 +31,9 @@ type ModuleInputs struct {
 	Environment  appmodule.Environment
 	Cdc          codec.Codec
 	AddressCodec address.Codec
+
+	AccountKeeper    types.AccountKeeper
+	CustomAuthKeeper types.CustomAuthKeeper
 }
 
 type ModuleOutputs struct {
@@ -51,6 +54,8 @@ func ProvideModule(in ModuleInputs) ModuleOutputs {
 		in.Cdc,
 		in.AddressCodec,
 		authority,
+		in.AccountKeeper,
+		in.CustomAuthKeeper,
 	)
 	m := NewAppModule(in.Cdc, k)
 

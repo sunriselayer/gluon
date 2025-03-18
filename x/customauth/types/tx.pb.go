@@ -8,10 +8,10 @@ import (
 	fmt "fmt"
 	_ "github.com/cosmos/cosmos-proto"
 	_ "github.com/cosmos/cosmos-sdk/types/msgservice"
-	_ "github.com/cosmos/cosmos-sdk/types/tx/amino"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	grpc1 "github.com/cosmos/gogoproto/grpc"
 	proto "github.com/cosmos/gogoproto/proto"
+	any "github.com/cosmos/gogoproto/types/any"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -126,36 +126,237 @@ func (m *MsgUpdateParamsResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgUpdateParamsResponse proto.InternalMessageInfo
 
+// MsgCreatePairing
+type MsgCreatePairing struct {
+	User      string  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	PublicKey any.Any `protobuf:"bytes,2,opt,name=public_key,json=publicKey,proto3" json:"public_key"`
+}
+
+func (m *MsgCreatePairing) Reset()         { *m = MsgCreatePairing{} }
+func (m *MsgCreatePairing) String() string { return proto.CompactTextString(m) }
+func (*MsgCreatePairing) ProtoMessage()    {}
+func (*MsgCreatePairing) Descriptor() ([]byte, []int) {
+	return fileDescriptor_44fd15988168711a, []int{2}
+}
+func (m *MsgCreatePairing) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgCreatePairing) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgCreatePairing.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgCreatePairing) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgCreatePairing.Merge(m, src)
+}
+func (m *MsgCreatePairing) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgCreatePairing) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgCreatePairing.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgCreatePairing proto.InternalMessageInfo
+
+func (m *MsgCreatePairing) GetUser() string {
+	if m != nil {
+		return m.User
+	}
+	return ""
+}
+
+func (m *MsgCreatePairing) GetPublicKey() any.Any {
+	if m != nil {
+		return m.PublicKey
+	}
+	return any.Any{}
+}
+
+// MsgCreatePairingResponse
+type MsgCreatePairingResponse struct {
+	PairingIndex string `protobuf:"bytes,1,opt,name=pairing_index,json=pairingIndex,proto3" json:"pairing_index,omitempty"`
+}
+
+func (m *MsgCreatePairingResponse) Reset()         { *m = MsgCreatePairingResponse{} }
+func (m *MsgCreatePairingResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgCreatePairingResponse) ProtoMessage()    {}
+func (*MsgCreatePairingResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_44fd15988168711a, []int{3}
+}
+func (m *MsgCreatePairingResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgCreatePairingResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgCreatePairingResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgCreatePairingResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgCreatePairingResponse.Merge(m, src)
+}
+func (m *MsgCreatePairingResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgCreatePairingResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgCreatePairingResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgCreatePairingResponse proto.InternalMessageInfo
+
+func (m *MsgCreatePairingResponse) GetPairingIndex() string {
+	if m != nil {
+		return m.PairingIndex
+	}
+	return ""
+}
+
+// MsgDeletePairing
+type MsgDeletePairing struct {
+	User         string `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	PairingIndex string `protobuf:"bytes,2,opt,name=pairing_index,json=pairingIndex,proto3" json:"pairing_index,omitempty"`
+}
+
+func (m *MsgDeletePairing) Reset()         { *m = MsgDeletePairing{} }
+func (m *MsgDeletePairing) String() string { return proto.CompactTextString(m) }
+func (*MsgDeletePairing) ProtoMessage()    {}
+func (*MsgDeletePairing) Descriptor() ([]byte, []int) {
+	return fileDescriptor_44fd15988168711a, []int{4}
+}
+func (m *MsgDeletePairing) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgDeletePairing) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgDeletePairing.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgDeletePairing) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgDeletePairing.Merge(m, src)
+}
+func (m *MsgDeletePairing) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgDeletePairing) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgDeletePairing.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgDeletePairing proto.InternalMessageInfo
+
+func (m *MsgDeletePairing) GetUser() string {
+	if m != nil {
+		return m.User
+	}
+	return ""
+}
+
+func (m *MsgDeletePairing) GetPairingIndex() string {
+	if m != nil {
+		return m.PairingIndex
+	}
+	return ""
+}
+
+// MsgDeletePairingResponse
+type MsgDeletePairingResponse struct {
+}
+
+func (m *MsgDeletePairingResponse) Reset()         { *m = MsgDeletePairingResponse{} }
+func (m *MsgDeletePairingResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgDeletePairingResponse) ProtoMessage()    {}
+func (*MsgDeletePairingResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_44fd15988168711a, []int{5}
+}
+func (m *MsgDeletePairingResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgDeletePairingResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgDeletePairingResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgDeletePairingResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgDeletePairingResponse.Merge(m, src)
+}
+func (m *MsgDeletePairingResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgDeletePairingResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgDeletePairingResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgDeletePairingResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*MsgUpdateParams)(nil), "gluon.customauth.v1.MsgUpdateParams")
 	proto.RegisterType((*MsgUpdateParamsResponse)(nil), "gluon.customauth.v1.MsgUpdateParamsResponse")
+	proto.RegisterType((*MsgCreatePairing)(nil), "gluon.customauth.v1.MsgCreatePairing")
+	proto.RegisterType((*MsgCreatePairingResponse)(nil), "gluon.customauth.v1.MsgCreatePairingResponse")
+	proto.RegisterType((*MsgDeletePairing)(nil), "gluon.customauth.v1.MsgDeletePairing")
+	proto.RegisterType((*MsgDeletePairingResponse)(nil), "gluon.customauth.v1.MsgDeletePairingResponse")
 }
 
 func init() { proto.RegisterFile("gluon/customauth/v1/tx.proto", fileDescriptor_44fd15988168711a) }
 
 var fileDescriptor_44fd15988168711a = []byte{
-	// 328 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x49, 0xcf, 0x29, 0xcd,
-	0xcf, 0xd3, 0x4f, 0x2e, 0x2d, 0x2e, 0xc9, 0xcf, 0x4d, 0x2c, 0x2d, 0xc9, 0xd0, 0x2f, 0x33, 0xd4,
-	0x2f, 0xa9, 0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x12, 0x06, 0xcb, 0xea, 0x21, 0x64, 0xf5,
-	0xca, 0x0c, 0xa5, 0x04, 0x13, 0x73, 0x33, 0xf3, 0xf2, 0xf5, 0xc1, 0x24, 0x44, 0x9d, 0x94, 0x78,
-	0x72, 0x7e, 0x71, 0x6e, 0x7e, 0xb1, 0x7e, 0x6e, 0x71, 0x3a, 0x48, 0x7f, 0x6e, 0x71, 0x3a, 0x54,
-	0x42, 0x12, 0x22, 0x11, 0x0f, 0xe6, 0xe9, 0x43, 0x38, 0x50, 0x29, 0x91, 0xf4, 0xfc, 0xf4, 0x7c,
-	0x88, 0x38, 0x88, 0x05, 0x15, 0x55, 0xc0, 0xe6, 0x9e, 0x82, 0xc4, 0xa2, 0xc4, 0x5c, 0xa8, 0x3e,
-	0xa5, 0x03, 0x8c, 0x5c, 0xfc, 0xbe, 0xc5, 0xe9, 0xa1, 0x05, 0x29, 0x89, 0x25, 0xa9, 0x01, 0x60,
-	0x19, 0x21, 0x33, 0x2e, 0x4e, 0x90, 0xda, 0xfc, 0xa2, 0xcc, 0x92, 0x4a, 0x09, 0x46, 0x05, 0x46,
-	0x0d, 0x4e, 0x27, 0x89, 0x4b, 0x5b, 0x74, 0x45, 0xa0, 0x16, 0x3a, 0xa6, 0xa4, 0x14, 0xa5, 0x16,
-	0x17, 0x07, 0x97, 0x14, 0x65, 0xe6, 0xa5, 0x07, 0x21, 0x94, 0x0a, 0xd9, 0x71, 0xb1, 0x41, 0xcc,
-	0x96, 0x60, 0x52, 0x60, 0xd4, 0xe0, 0x36, 0x92, 0xd6, 0xc3, 0xe2, 0x61, 0x3d, 0x88, 0x25, 0x4e,
-	0x9c, 0x27, 0xee, 0xc9, 0x33, 0xac, 0x78, 0xbe, 0x41, 0x8b, 0x31, 0x08, 0xaa, 0xcb, 0xca, 0xb4,
-	0xe9, 0xf9, 0x06, 0x2d, 0x84, 0x79, 0x5d, 0xcf, 0x37, 0x68, 0x29, 0x41, 0x3c, 0x50, 0x81, 0xec,
-	0x05, 0x34, 0xe7, 0x2a, 0x49, 0x72, 0x89, 0xa3, 0x09, 0x05, 0xa5, 0x16, 0x17, 0xe4, 0xe7, 0x15,
-	0xa7, 0x1a, 0x15, 0x70, 0x31, 0xfb, 0x16, 0xa7, 0x0b, 0x25, 0x71, 0xf1, 0xa0, 0x78, 0x50, 0x05,
-	0xab, 0xc3, 0xd0, 0x0c, 0x91, 0xd2, 0x21, 0x46, 0x15, 0xcc, 0x2a, 0x29, 0xd6, 0x06, 0x90, 0x5f,
-	0x9c, 0x8c, 0x4e, 0x3c, 0x92, 0x63, 0xbc, 0xf0, 0x48, 0x8e, 0xf1, 0xc1, 0x23, 0x39, 0xc6, 0x09,
-	0x8f, 0xe5, 0x18, 0x2e, 0x3c, 0x96, 0x63, 0xb8, 0xf1, 0x58, 0x8e, 0x21, 0x4a, 0x02, 0x8b, 0x57,
-	0x4a, 0x2a, 0x0b, 0x52, 0x8b, 0x93, 0xd8, 0xc0, 0x51, 0x61, 0x0c, 0x08, 0x00, 0x00, 0xff, 0xff,
-	0xb3, 0xe3, 0xca, 0x9c, 0x3e, 0x02, 0x00, 0x00,
+	// 479 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x93, 0x41, 0x6b, 0xd4, 0x40,
+	0x18, 0x86, 0x33, 0x6b, 0x2d, 0x64, 0x6c, 0x55, 0xc6, 0x85, 0xa6, 0x51, 0xe2, 0x12, 0x15, 0x4a,
+	0xb1, 0x13, 0xba, 0x82, 0xd0, 0x5e, 0xa4, 0xab, 0x17, 0x91, 0x05, 0x89, 0xe8, 0xc1, 0xcb, 0x92,
+	0x6c, 0xc6, 0x31, 0x98, 0x64, 0x42, 0x66, 0x52, 0x36, 0x37, 0xf1, 0x17, 0x78, 0xf0, 0x87, 0xf4,
+	0xe0, 0xd9, 0x73, 0x8f, 0xc5, 0x93, 0x27, 0x91, 0xdd, 0x43, 0xff, 0x86, 0x64, 0x26, 0x71, 0x37,
+	0xdb, 0xac, 0xec, 0x6d, 0x66, 0xbe, 0x77, 0xde, 0xf7, 0xc9, 0xf7, 0x65, 0xe0, 0x3d, 0x1a, 0xe5,
+	0x2c, 0x71, 0xc6, 0x39, 0x17, 0x2c, 0xf6, 0x72, 0xf1, 0xd1, 0x39, 0x3d, 0x74, 0xc4, 0x04, 0xa7,
+	0x19, 0x13, 0x0c, 0xdd, 0x91, 0x55, 0x3c, 0xaf, 0xe2, 0xd3, 0x43, 0x73, 0x67, 0xcc, 0x78, 0xcc,
+	0xb8, 0x13, 0x73, 0x5a, 0x8a, 0x63, 0x4e, 0x95, 0xda, 0xdc, 0x55, 0x85, 0x91, 0xdc, 0x39, 0x6a,
+	0x53, 0x95, 0x7a, 0x6d, 0x31, 0xa9, 0x97, 0x79, 0x71, 0xad, 0xe8, 0x52, 0x46, 0x99, 0xba, 0x59,
+	0xae, 0x6a, 0x4b, 0xca, 0x18, 0x8d, 0x88, 0x23, 0x77, 0x7e, 0xfe, 0xc1, 0xf1, 0x92, 0x42, 0x95,
+	0xec, 0x6f, 0x00, 0xde, 0x1a, 0x72, 0xfa, 0x36, 0x0d, 0x3c, 0x41, 0x5e, 0x4b, 0x2b, 0xf4, 0x14,
+	0xea, 0xa5, 0x39, 0xcb, 0x42, 0x51, 0x18, 0xa0, 0x07, 0xf6, 0xf4, 0x81, 0xf1, 0xf3, 0xfb, 0x41,
+	0xb7, 0x62, 0x39, 0x09, 0x82, 0x8c, 0x70, 0xfe, 0x46, 0x64, 0x61, 0x42, 0xdd, 0xb9, 0x14, 0x1d,
+	0xc1, 0x4d, 0x05, 0x63, 0x74, 0x7a, 0x60, 0xef, 0x46, 0xff, 0x2e, 0x6e, 0xf9, 0x70, 0xac, 0x42,
+	0x06, 0x1b, 0xe7, 0xbf, 0xef, 0x6b, 0x6e, 0x75, 0xe1, 0xf8, 0xe6, 0x97, 0xcb, 0xb3, 0xfd, 0xb9,
+	0x95, 0xbd, 0x0b, 0x77, 0x96, 0xa8, 0x5c, 0xc2, 0x53, 0x96, 0x70, 0x62, 0x47, 0xf0, 0xf6, 0x90,
+	0xd3, 0xe7, 0x19, 0x91, 0xa5, 0xb0, 0x84, 0x40, 0x08, 0x6e, 0xe4, 0x9c, 0x64, 0x0a, 0xd6, 0x95,
+	0x6b, 0x74, 0x04, 0x61, 0x9a, 0xfb, 0x51, 0x38, 0x1e, 0x7d, 0x22, 0x45, 0x45, 0xd4, 0xc5, 0xaa,
+	0x13, 0xb8, 0xee, 0x04, 0x3e, 0x49, 0x8a, 0x0a, 0x45, 0x57, 0xea, 0x57, 0xa4, 0x38, 0xd6, 0x4b,
+	0x1a, 0xe9, 0x62, 0x3f, 0x83, 0xc6, 0x72, 0x5a, 0x4d, 0x82, 0x1e, 0xc0, 0xed, 0x54, 0x1d, 0x8d,
+	0xc2, 0x24, 0x20, 0x93, 0x2a, 0x7e, 0xab, 0x3a, 0x7c, 0x59, 0x9e, 0xd9, 0xef, 0x24, 0xee, 0x0b,
+	0x12, 0x91, 0xff, 0xe3, 0x5e, 0x31, 0xeb, 0x5c, 0x35, 0x5b, 0x04, 0x33, 0x25, 0x58, 0xc3, 0xb7,
+	0x06, 0xeb, 0xff, 0xe8, 0xc0, 0x6b, 0x43, 0x4e, 0x91, 0x0f, 0xb7, 0x1a, 0x83, 0x7d, 0xd8, 0x3a,
+	0x90, 0xa5, 0x46, 0x9b, 0x8f, 0xd7, 0x51, 0xfd, 0x6b, 0x02, 0x81, 0xdb, 0xcd, 0x59, 0x3c, 0x5a,
+	0x75, 0xbd, 0x21, 0x33, 0x0f, 0xd6, 0x92, 0x2d, 0xc6, 0x34, 0x7b, 0xb8, 0x32, 0xa6, 0x21, 0x5b,
+	0x1d, 0xd3, 0xda, 0x39, 0xf3, 0xfa, 0xe7, 0xcb, 0xb3, 0x7d, 0x30, 0xe8, 0x9f, 0x4f, 0x2d, 0x70,
+	0x31, 0xb5, 0xc0, 0x9f, 0xa9, 0x05, 0xbe, 0xce, 0x2c, 0xed, 0x62, 0x66, 0x69, 0xbf, 0x66, 0x96,
+	0xf6, 0xde, 0x50, 0x4f, 0x70, 0xb2, 0xf8, 0x08, 0x45, 0x91, 0x12, 0xee, 0x6f, 0xca, 0x7f, 0xea,
+	0xc9, 0xdf, 0x00, 0x00, 0x00, 0xff, 0xff, 0x46, 0x01, 0x18, 0xa7, 0x0c, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -173,6 +374,10 @@ type MsgClient interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
+	// CreatePairing
+	CreatePairing(ctx context.Context, in *MsgCreatePairing, opts ...grpc.CallOption) (*MsgCreatePairingResponse, error)
+	// DeletePairing
+	DeletePairing(ctx context.Context, in *MsgDeletePairing, opts ...grpc.CallOption) (*MsgDeletePairingResponse, error)
 }
 
 type msgClient struct {
@@ -192,11 +397,33 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 	return out, nil
 }
 
+func (c *msgClient) CreatePairing(ctx context.Context, in *MsgCreatePairing, opts ...grpc.CallOption) (*MsgCreatePairingResponse, error) {
+	out := new(MsgCreatePairingResponse)
+	err := c.cc.Invoke(ctx, "/gluon.customauth.v1.Msg/CreatePairing", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) DeletePairing(ctx context.Context, in *MsgDeletePairing, opts ...grpc.CallOption) (*MsgDeletePairingResponse, error) {
+	out := new(MsgDeletePairingResponse)
+	err := c.cc.Invoke(ctx, "/gluon.customauth.v1.Msg/DeletePairing", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	// UpdateParams defines a (governance) operation for updating the module
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
+	// CreatePairing
+	CreatePairing(context.Context, *MsgCreatePairing) (*MsgCreatePairingResponse, error)
+	// DeletePairing
+	DeletePairing(context.Context, *MsgDeletePairing) (*MsgDeletePairingResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -205,6 +432,12 @@ type UnimplementedMsgServer struct {
 
 func (*UnimplementedMsgServer) UpdateParams(ctx context.Context, req *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
+}
+func (*UnimplementedMsgServer) CreatePairing(ctx context.Context, req *MsgCreatePairing) (*MsgCreatePairingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreatePairing not implemented")
+}
+func (*UnimplementedMsgServer) DeletePairing(ctx context.Context, req *MsgDeletePairing) (*MsgDeletePairingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeletePairing not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -229,6 +462,42 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_CreatePairing_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreatePairing)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreatePairing(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gluon.customauth.v1.Msg/CreatePairing",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreatePairing(ctx, req.(*MsgCreatePairing))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_DeletePairing_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDeletePairing)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).DeletePairing(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gluon.customauth.v1.Msg/DeletePairing",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).DeletePairing(ctx, req.(*MsgDeletePairing))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var Msg_serviceDesc = _Msg_serviceDesc
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "gluon.customauth.v1.Msg",
@@ -237,6 +506,14 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateParams",
 			Handler:    _Msg_UpdateParams_Handler,
+		},
+		{
+			MethodName: "CreatePairing",
+			Handler:    _Msg_CreatePairing_Handler,
+		},
+		{
+			MethodName: "DeletePairing",
+			Handler:    _Msg_DeletePairing_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -306,6 +583,136 @@ func (m *MsgUpdateParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgCreatePairing) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgCreatePairing) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgCreatePairing) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.PublicKey.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintTx(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0x12
+	if len(m.User) > 0 {
+		i -= len(m.User)
+		copy(dAtA[i:], m.User)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.User)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgCreatePairingResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgCreatePairingResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgCreatePairingResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.PairingIndex) > 0 {
+		i -= len(m.PairingIndex)
+		copy(dAtA[i:], m.PairingIndex)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.PairingIndex)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgDeletePairing) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgDeletePairing) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgDeletePairing) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.PairingIndex) > 0 {
+		i -= len(m.PairingIndex)
+		copy(dAtA[i:], m.PairingIndex)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.PairingIndex)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.User) > 0 {
+		i -= len(m.User)
+		copy(dAtA[i:], m.User)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.User)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgDeletePairingResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgDeletePairingResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgDeletePairingResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -333,6 +740,60 @@ func (m *MsgUpdateParams) Size() (n int) {
 }
 
 func (m *MsgUpdateParamsResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgCreatePairing) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.User)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = m.PublicKey.Size()
+	n += 1 + l + sovTx(uint64(l))
+	return n
+}
+
+func (m *MsgCreatePairingResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.PairingIndex)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgDeletePairing) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.User)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.PairingIndex)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgDeletePairingResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -489,6 +950,367 @@ func (m *MsgUpdateParamsResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: MsgUpdateParamsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgCreatePairing) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgCreatePairing: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgCreatePairing: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field User", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.User = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PublicKey", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.PublicKey.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgCreatePairingResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgCreatePairingResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgCreatePairingResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PairingIndex", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.PairingIndex = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgDeletePairing) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgDeletePairing: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgDeletePairing: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field User", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.User = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PairingIndex", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.PairingIndex = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgDeletePairingResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgDeletePairingResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgDeletePairingResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:
