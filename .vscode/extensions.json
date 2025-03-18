@@ -1,8 +1,0 @@
-{
-    "recommendations": [
-        "bufbuild.vscode-buf",
-        "github.vscode-github-actions",
-        "golang.go",
-        "davidanson.vscode-markdownlint"
-    ]
-}

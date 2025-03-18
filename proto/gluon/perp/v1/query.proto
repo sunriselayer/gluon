@@ -1,0 +1,148 @@
+syntax = "proto3";
+package gluon.perp.v1;
+
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "gluon/perp/v1/cross_margin.proto";
+import "gluon/perp/v1/funding_rate.proto";
+import "gluon/perp/v1/params.proto";
+import "gluon/perp/v1/position.proto";
+import "gluon/perp/v1/position_price_quantity.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+option go_package = "gluon/x/perp/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/gluon/perp/v1/params";
+  }
+
+  // Position
+  rpc Position(QueryPositionRequest) returns (QueryPositionResponse) {
+    option (google.api.http).get = "/gluon/perp/v1/positions/{owner}/{order_hash}";
+  }
+
+  // Positions
+  rpc Positions(QueryPositionsRequest) returns (QueryPositionsResponse) {
+    option (google.api.http).get = "/gluon/perp/v1/positions/{owner}";
+  }
+
+  // PositionPriceQuantity
+  rpc PositionPriceQuantity(QueryPositionPriceQuantityRequest) returns (QueryPositionPriceQuantityResponse) {
+    option (google.api.http).get = "/gluon/perp/v1/position-price-quantities/{owner}/{position_order_hash}/{price}";
+  }
+
+  // PositionPriceQuantities
+  rpc PositionPriceQuantities(QueryPositionPriceQuantitiesRequest) returns (QueryPositionPriceQuantitiesResponse) {
+    option (google.api.http).get = "/gluon/perp/v1/position-price-quantities/{owner}/{position_order_hash}";
+  }
+
+  // CrossMargin
+  rpc CrossMargin(QueryCrossMarginRequest) returns (QueryCrossMarginResponse) {
+    option (google.api.http).get = "/gluon/perp/v1/cross-margins/{owner}";
+  }
+
+  // FundingRate
+  rpc FundingRate(QueryFundingRateRequest) returns (QueryFundingRateResponse) {
+    option (google.api.http).get = "/gluon/perp/v1/funding-rates/{seconds}/{nanos}";
+  }
+  // FundingRates
+  rpc FundingRates(QueryFundingRatesRequest) returns (QueryFundingRatesResponse) {
+    option (google.api.http).get = "/gluon/perp/v1/funding-rates";
+  }
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryPositionRequest
+message QueryPositionRequest {
+  string owner = 1;
+  string order_hash = 2;
+}
+
+// QueryPositionResponse
+message QueryPositionResponse {
+  Position position = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryPositionsRequest
+message QueryPositionsRequest {
+  string owner = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+// QueryPositionsResponse
+message QueryPositionsResponse {
+  repeated Position positions = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryPositionPriceQuantityRequest
+message QueryPositionPriceQuantityRequest {
+  string owner = 1;
+  string position_order_hash = 2;
+  string price = 3;
+}
+
+// QueryPositionPriceQuantityResponse
+message QueryPositionPriceQuantityResponse {
+  PositionPriceQuantity position_price_quantity = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryPositionPriceQuantitiesRequest
+message QueryPositionPriceQuantitiesRequest {
+  string owner = 1;
+  string position_order_hash = 2;
+  cosmos.base.query.v1beta1.PageRequest pagination = 3;
+}
+
+// QueryPositionPriceQuantitiesResponse
+message QueryPositionPriceQuantitiesResponse {
+  repeated PositionPriceQuantity position_price_quantity = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryCrossMarginRequest
+message QueryCrossMarginRequest {
+  string owner = 1;
+}
+
+// QueryCrossMarginResponse
+message QueryCrossMarginResponse {
+  CrossMargin cross_margin = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryFundingRateRequest
+message QueryFundingRateRequest {
+  string denom_base = 1;
+  string denom_quote = 2;
+  uint64 seconds = 3;
+  uint32 nanos = 4;
+}
+
+// QueryFundingRateResponse
+message QueryFundingRateResponse {
+  FundingRate funding_rate = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryFundingRatesRequest
+message QueryFundingRatesRequest {
+  string denom_base = 1;
+  string denom_quote = 2;
+  cosmos.base.query.v1beta1.PageRequest pagination = 3;
+}
+
+// QueryFundingRatesResponse
+message QueryFundingRatesResponse {
+  repeated FundingRate funding_rates = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}

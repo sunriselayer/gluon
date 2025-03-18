@@ -1,0 +1,59 @@
+syntax = "proto3";
+package gluon.customauth.v1;
+
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "gluon/customauth/v1/pairing.proto";
+import "gluon/customauth/v1/params.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+option go_package = "gluon/x/customauth/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/gluon/customauth/v1/params";
+  }
+
+  // Pairing
+  rpc Pairing(QueryPairingRequest) returns (QueryPairingResponse) {
+    option (google.api.http).get = "/gluon/customauth/v1/pairings/{owner}/{index}";
+  }
+  // Pairings
+  rpc Pairings(QueryPairingsRequest) returns (QueryPairingsResponse) {
+    option (google.api.http).get = "/gluon/customauth/v1/pairings/{owner}";
+  }
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryPairingRequest
+message QueryPairingRequest {
+  string owner = 1;
+  string index = 2;
+}
+
+// QueryPairingResponse
+message QueryPairingResponse {
+  Pairing pairing = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryPairingsRequest
+message QueryPairingsRequest {
+  string owner = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+// QueryPairingsResponse
+message QueryPairingsResponse {
+  repeated Pairing pairings = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}

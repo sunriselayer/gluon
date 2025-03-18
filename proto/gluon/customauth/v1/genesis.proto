@@ -1,0 +1,15 @@
+syntax = "proto3";
+package gluon.customauth.v1;
+
+import "gluon/customauth/v1/pairing.proto";
+import "gluon/customauth/v1/params.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "gluon/x/customauth/types";
+
+// GenesisState defines the customauth module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [(gogoproto.nullable) = false];
+  repeated Pairing pairings = 2 [(gogoproto.nullable) = false];
+}

@@ -1,0 +1,42 @@
+syntax = "proto3";
+package gluon.perp.v1;
+
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "gluon/x/perp/types";
+
+// PositionDirection
+enum PositionDirection {
+  // Unspecified
+  POSITION_DIRECTION_UNSPECIFIED = 0;
+  // Long
+  POSITION_DIRECTION_LONG = 1;
+  // Short
+  POSITION_DIRECTION_SHORT = 2;
+}
+
+// Position
+message Position {
+  string owner = 1;
+  string order_hash = 2;
+  string denom_base = 3;
+  string denom_quote = 4;
+  PositionDirection direction = 5;
+  string amount = 6 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
+  // Amount of DenomQuote
+  string isolated_margin = 7 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = true
+  ];
+  google.protobuf.Timestamp funding_fee_reset_at = 8 [
+    (gogoproto.nullable) = false,
+    (gogoproto.stdtime) = true
+  ];
+}

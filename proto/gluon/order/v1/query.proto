@@ -1,0 +1,59 @@
+syntax = "proto3";
+package gluon.order.v1;
+
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "gluon/order/v1/order.proto";
+import "gluon/order/v1/params.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+
+option go_package = "gluon/x/order/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/gluon/order/v1/params";
+  }
+
+  // Order
+  rpc Order(QueryOrderRequest) returns (QueryOrderResponse) {
+    option (google.api.http).get = "/gluon/order/v1/orders/{owner}/{hash}";
+  }
+  // Orders
+  rpc Orders(QueryOrdersRequest) returns (QueryOrdersResponse) {
+    option (google.api.http).get = "/gluon/order/v1/orders/{owner}";
+  }
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryOrderRequest
+message QueryOrderRequest {
+  string owner = 1;
+  string hash = 2;
+}
+
+// QueryOrderResponse
+message QueryOrderResponse {
+  Order order = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryOrdersRequest
+message QueryOrdersRequest {
+  string owner = 1;
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+// QueryOrdersResponse
+message QueryOrdersResponse {
+  repeated Order orders = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}

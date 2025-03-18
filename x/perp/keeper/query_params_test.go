@@ -5,16 +5,18 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	keepertest "gluon/testutil/keeper"
+	"gluon/x/perp/keeper"
 	"gluon/x/perp/types"
 )
 
 func TestParamsQuery(t *testing.T) {
-	keeper, ctx := keepertest.PerpKeeper(t)
-	params := types.DefaultParams()
-	require.NoError(t, keeper.SetParams(ctx, params))
+	f := initFixture(t)
 
-	response, err := keeper.Params(ctx, &types.QueryParamsRequest{})
+	qs := keeper.NewQueryServerImpl(f.keeper)
+	params := types.DefaultParams()
+	require.NoError(t, f.keeper.Params.Set(f.ctx, params))
+
+	response, err := qs.Params(f.ctx, &types.QueryParamsRequest{})
 	require.NoError(t, err)
 	require.Equal(t, &types.QueryParamsResponse{Params: params}, response)
 }

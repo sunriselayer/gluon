@@ -1,12 +1,14 @@
 package cmd
 
 import (
-	"errors"
 	"io"
 
+	"github.com/spf13/cobra"
+
+	corestore "cosmossdk.io/core/store"
 	"cosmossdk.io/log"
 	confixcmd "cosmossdk.io/tools/confix/cmd"
-	dbm "github.com/cosmos/cosmos-db"
+
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/debug"
 	"github.com/cosmos/cosmos-sdk/client/flags"
@@ -18,54 +20,42 @@ import (
 	servertypes "github.com/cosmos/cosmos-sdk/server/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	authcmd "github.com/cosmos/cosmos-sdk/x/auth/client/cli"
-	"github.com/cosmos/cosmos-sdk/x/crisis"
+	"github.com/cosmos/cosmos-sdk/x/genutil"
 	genutilcli "github.com/cosmos/cosmos-sdk/x/genutil/client/cli"
-	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
+	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 
 	"gluon/app"
 )
 
 func initRootCmd(
 	rootCmd *cobra.Command,
-	txConfig client.TxConfig,
-	basicManager module.BasicManager,
+	moduleManager *module.Manager,
 ) {
 	rootCmd.AddCommand(
-		genutilcli.InitCmd(basicManager, app.DefaultNodeHome),
-		NewInPlaceTestnetCmd(addModuleInitFlags),
+		genutilcli.InitCmd(moduleManager),
+		NewInPlaceTestnetCmd(),
+		NewTestnetMultiNodeCmd(moduleManager),
 		debug.Cmd(),
 		confixcmd.ConfigCommand(),
-		pruning.Cmd(newApp, app.DefaultNodeHome),
+		pruning.Cmd(newApp),
 		snapshot.Cmd(newApp),
 	)
 
-	server.AddCommands(
-		rootCmd,
-		app.DefaultNodeHome,
-		newApp,
-		appExport,
-		addModuleInitFlags,
-	)
+	server.AddCommands(rootCmd, newApp, server.StartCmdOptions[servertypes.Application]{})
 
 	// add keybase, auxiliary RPC, query, genesis, and tx child commands
 	rootCmd.AddCommand(
 		server.StatusCommand(),
-		genesisCommand(txConfig, basicManager),
+		genesisCommand(moduleManager, appExport),
 		queryCommand(),
 		txCommand(),
 		keys.Commands(),
 	)
 }
 
-func addModuleInitFlags(startCmd *cobra.Command) {
-	crisis.AddModuleInitFlags(startCmd)
-}
-
 // genesisCommand builds genesis-related `gluond genesis` command. Users may provide application specific commands as a parameter
-func genesisCommand(txConfig client.TxConfig, basicManager module.BasicManager, cmds ...*cobra.Command) *cobra.Command {
-	cmd := genutilcli.Commands(txConfig, basicManager, app.DefaultNodeHome)
-
+func genesisCommand(moduleManager *module.Manager, appExport servertypes.AppExporter, cmds ...*cobra.Command) *cobra.Command {
+	cmd := genutilcli.Commands(moduleManager.Modules[genutiltypes.ModuleName].(genutil.AppModule), moduleManager, appExport)
 	for _, subCmd := range cmds {
 		cmd.AddCommand(subCmd)
 	}
@@ -83,15 +73,13 @@ func queryCommand() *cobra.Command {
 	}
 
 	cmd.AddCommand(
-		rpc.QueryEventForTxCmd(),
-		rpc.ValidatorCommand(),
+		rpc.WaitTxCmd(),
 		server.QueryBlockCmd(),
 		authcmd.QueryTxsByEventsCmd(),
 		server.QueryBlocksCmd(),
 		authcmd.QueryTxCmd(),
 		server.QueryBlockResultsCmd(),
 	)
-	cmd.PersistentFlags().String(flags.FlagChainID, "", "The network chain ID")
 
 	return cmd
 }
@@ -117,7 +105,6 @@ func txCommand() *cobra.Command {
 		authcmd.GetDecodeCommand(),
 		authcmd.GetSimulateCmd(),
 	)
-	cmd.PersistentFlags().String(flags.FlagChainID, "", "The network chain ID")
 
 	return cmd
 }
@@ -125,27 +112,22 @@ func txCommand() *cobra.Command {
 // newApp creates the application
 func newApp(
 	logger log.Logger,
-	db dbm.DB,
+	db corestore.KVStoreWithBatch,
 	traceStore io.Writer,
 	appOpts servertypes.AppOptions,
 ) servertypes.Application {
 	baseappOptions := server.DefaultBaseappOptions(appOpts)
-
-	app, err := app.New(
+	return app.New(
 		logger, db, traceStore, true,
 		appOpts,
 		baseappOptions...,
 	)
-	if err != nil {
-		panic(err)
-	}
-	return app
 }
 
 // appExport creates a new app (optionally at a given height) and exports state.
 func appExport(
 	logger log.Logger,
-	db dbm.DB,
+	db corestore.KVStoreWithBatch,
 	traceStore io.Writer,
 	height int64,
 	forZeroHeight bool,
@@ -153,41 +135,14 @@ func appExport(
 	appOpts servertypes.AppOptions,
 	modulesToExport []string,
 ) (servertypes.ExportedApp, error) {
-	var (
-		bApp *app.App
-		err  error
-	)
-
-	// this check is necessary as we use the flag in x/upgrade.
-	// we can exit more gracefully by checking the flag here.
-	homePath, ok := appOpts.Get(flags.FlagHome).(string)
-	if !ok || homePath == "" {
-		return servertypes.ExportedApp{}, errors.New("application home not set")
-	}
-
-	viperAppOpts, ok := appOpts.(*viper.Viper)
-	if !ok {
-		return servertypes.ExportedApp{}, errors.New("appOpts is not viper.Viper")
-	}
-
-	// overwrite the FlagInvCheckPeriod
-	viperAppOpts.Set(server.FlagInvCheckPeriod, 1)
-	appOpts = viperAppOpts
-
+	var bApp *app.App
 	if height != -1 {
-		bApp, err = app.New(logger, db, traceStore, false, appOpts)
-		if err != nil {
-			return servertypes.ExportedApp{}, err
-		}
-
+		bApp = app.New(logger, db, traceStore, false, appOpts)
 		if err := bApp.LoadHeight(height); err != nil {
 			return servertypes.ExportedApp{}, err
 		}
 	} else {
-		bApp, err = app.New(logger, db, traceStore, true, appOpts)
-		if err != nil {
-			return servertypes.ExportedApp{}, err
-		}
+		bApp = app.New(logger, db, traceStore, true, appOpts)
 	}
 
 	return bApp.ExportAppStateAndValidators(forZeroHeight, jailAllowedAddrs, modulesToExport)

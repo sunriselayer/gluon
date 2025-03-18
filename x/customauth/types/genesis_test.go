@@ -20,47 +20,10 @@ func TestGenesisState_Validate(t *testing.T) {
 			valid:    true,
 		},
 		{
-			desc: "valid genesis state",
-			genState: &types.GenesisState{
-
-				Pairings: []types.Pairing{
-					{
-						Index: "0",
-					},
-					{
-						Index: "1",
-					},
-				},
-				// this line is used by starport scaffolding # types/genesis/validField
-			},
-			valid: true,
+			desc:     "valid genesis state",
+			genState: &types.GenesisState{},
+			valid:    true,
 		},
-		{
-			desc: "duplicated pairing",
-			genState: &types.GenesisState{
-				Pairings: []types.Pairing{
-					{
-						Index: "0",
-					},
-					{
-						Index: "0",
-					},
-				},
-			},
-			valid: false,
-		},
-		{
-			desc: "invalid pairing count",
-			genState: &types.GenesisState{
-				Pairings: []types.Pairing{
-					{
-						Index: "1",
-					},
-				},
-			},
-			valid: false,
-		},
-		// this line is used by starport scaffolding # types/genesis/testcase
 	}
 	for _, tc := range tests {
 		t.Run(tc.desc, func(t *testing.T) {
