@@ -23,6 +23,9 @@ BUILD_FLAGS := -ldflags '$(ldflags)'
 ###  Test  ###
 ##############
 
+COVER_FILE := coverage.txt
+COVER_HTML_FILE := coverage.html
+
 test-unit:
 	@echo Running unit tests...
 	@go test -mod=readonly -v -timeout 30m ./...
